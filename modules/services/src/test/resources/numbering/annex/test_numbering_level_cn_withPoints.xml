@@ -1,0 +1,40 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody leos:origin="ec" xml:id="mainBody">
+            <level leos:depth="1" leos:origin="ec" xml:id="level_1">
+                <num leos:origin="ec" xml:id="level_1_num">1.</num>
+                <subparagraph leos:softaction="add" leos:softactionroot="true" leos:softdate="2020-10-05T18:55:09.553+02:00" leos:softuser="jane" xml:id="akn_subparagraph_MagA2h">
+                    <content leos:origin="ec" xml:id="level_1_c">
+                        <p leos:origin="ec" xml:id="level_1_c_p">Without heading - only short content</p>
+                    </content>
+                </subparagraph>
+                <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true" leos:softdate="2020-10-05T18:55:09.550+02:00" leos:softuser="jane" xml:id="lis_ZqGex3">
+                    <point xml:id="akn_point_NmzbYa">
+                        <num leos:editable="false">#</num>
+                        <content>
+                            <p>point (a)</p>
+                        </content>
+                    </point>
+                </list>
+            </level>
+            <level leos:depth="1" leos:origin="ec" leos:softaction="del" xml:id="_akn_level_fRpH">
+                <num leos:origin="ec" leos:softaction="del" xml:id="_akn_kd7">2.</num>
+                <content leos:origin="ec" xml:id="_akn4NZt">
+                    <p leos:origin="ec" xml:id="_akn_HEB">Text...</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:origin="ec" leos:softaction="del" xml:id="_akn_level_fH">
+                <num leos:origin="ec" leos:softaction="del" xml:id="_akn_k7">3.</num>
+                <content leos:origin="ec" xml:id="_aknNZt">
+                    <p leos:origin="ec" xml:id="_akn_EB">Text...</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:origin="cn" xml:id="_akn_level_fRH">
+                <num leos:origin="ec" xml:id="_akn_kdV7">#</num>
+                <content leos:origin="ec" xml:id="_aknk4NZt">
+                    <p leos:origin="ec" xml:id="_akn_HnEB">should be 2a.</p>
+                </content>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

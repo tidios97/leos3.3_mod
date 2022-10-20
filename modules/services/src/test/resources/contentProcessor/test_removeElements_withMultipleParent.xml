@@ -1,0 +1,12 @@
+<meta xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xml:id="ElementId">
+    <parent>
+        <temp refersTo="~leosComment" xml:id="xyz">
+            <p refersTo="~leosChild">This is a comment...</p>
+        </temp>
+    </parent>
+    <parent1>
+        <temp refersTo="~leosComment" xml:id="xyz1">
+            <p refersTo="~leosChild">This is a comment1...</p>
+        </temp>
+    </parent1>
+</meta>

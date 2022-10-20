@@ -1,0 +1,43 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_2">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_2__num">Article 3</num>
+                <heading leos:origin="ec" xml:id="art_2__heading">Entry into force</heading>
+                <paragraph leos:origin="ec" xml:id="art_2__para_1">
+                    <content leos:origin="ec" xml:id="art_2__para_1__content">
+                        <p leos:origin="ec" xml:id="art_2__para_1__content__p">This Regulation shall enter into force on
+                            the [...] day following that of its publication in theThis Regulation shall enter into force
+                            on the [...] day following that of its publication in theThis Regulation shall into force on
+                            the [...] day follo
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="cn" leos:softaction="add" leos:softactionroot="true" leos:softdate="2021-01-12T14:10:32.400+01:00" leos:softuser="jane" xml:id="akn_paragraph_pZfkb0">
+                    <subparagraph leos:softaction="add" leos:softactionroot="true" leos:softdate="2021-01-12T14:10:32.400+01:00" leos:softuser="jane" xml:id="akn_subparagraph_ELwywD">
+                        <content xml:id="art_2_pcBoEZ">
+                            <p xml:id="art_2_2Au227">Text...</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true" leos:softdate="2021-01-12T14:10:32.400+01:00" leos:softuser="jane" xml:id="lis_8E8i4m">
+                        <point xml:id="akn_point_NhteoY">
+                            <num leos:editable="false">(a)</num>
+                            <content>
+                                <p>Text...</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <clause leos:alternative="true" leos:deletable="true" leos:editable="true" leos:optionlist="listOption1" leos:origin="ec" leos:selectedoption="1" xml:id="clause_1">
+                <content leos:origin="ec" xml:id="clause_1__content">
+                    <p leos:origin="ec" xml:id="clause_1__content__p">This Regulation shall be binding in its entirety
+                        and directly
+                        applicable in all Member States.
+                    </p>
+                </content>
+            </clause>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,27 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody leos:origin="ec" xml:id="mainBody">
+            <level leos:depth="1" leos:origin="ec" xml:id="level_1">
+                <num leos:origin="ec" xml:id="level_1_num">1.</num>
+                <subparagraph leos:softaction="add" leos:softactionroot="true"
+                              leos:softdate="2022-06-17T09:42:49.769+02:00" leos:softuser="demo jane(Ext)"
+                              xml:id="_akn_subparagraph_43xH42">
+                    <content leos:origin="ec" xml:id="level_1_c">
+                        <p leos:origin="ec" xml:id="level_1_c_p">Without heading - only short content</p>
+                    </content>
+                </subparagraph>
+                <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                      leos:softdate="2022-06-17T09:42:49.754+02:00" leos:softuser="demo jane(Ext)" xml:id="_lis_N3mOMs">
+                    <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T09:42:49.754+02:00" leos:softuser="demo jane(Ext)"
+                           xml:id="new_point_1">
+                        <num leos:editable="false" leos:origin="cn">#</num>
+                        <content>
+                            <p>Text...</p>
+                        </content>
+                    </point>
+                </list>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

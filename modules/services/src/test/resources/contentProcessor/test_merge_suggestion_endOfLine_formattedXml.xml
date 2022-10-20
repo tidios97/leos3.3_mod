@@ -1,0 +1,10 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+            xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <p xml:id="pId">Example of a broken reference
+        <mref leos:broken="true" xml:id="mrefId">Annex, point
+            <ref href="annex_cktejzriq0003dw010090ymcw/point_2" xml:id="refId">2</ref>
+        </mref>
+        This text is after the inner node mref.
+    </p>
+</akomaNtoso>

@@ -1,0 +1,119 @@
+.publish-annotation-btn {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "post cancel space"
+    "dd dd dd";
+  width: 100%;
+
+  &__btn {
+    position: relative;
+  }
+
+  // a container which wraps the dropdown menu
+  // in order to allow it to be positioned
+  // relative to its own width
+  &__dropdown-container {
+    position: absolute;
+    top: unset;
+  }
+
+  &__dropdown-container:before {
+    // unset the default arrow (is replaced with a custom one)
+    content: '';
+    display: none;
+  }
+
+  &__dropdown-container:after {
+    // unset the default arrow (is replaced with a custom one)
+    content: '';
+    display: none;
+  }
+
+  &__dropdown-arrow {
+    position: absolute;
+  }
+
+  &__dropdown-scrollcontainer {
+    position: relative;
+    overflow: auto;
+  }
+
+  &__dropdown-anchor {
+    position: relative;
+    width: 100%;
+    grid-area: dd;
+  }
+
+}
+
+.arrow-at-top{
+  &:before, &:after {
+    // http://www.red-team-design.com/css-diagonal-borders-still-not-rendering-properly-on-firefox
+    transform: scale(.9999);
+    border-color: rgba(0, 0, 0, 0);
+
+    border-style: solid;
+    border-width: 0 7px 6px 7px;
+    content: '';
+    position: absolute;
+    height: 0;
+    left: 1rem;
+    width: 0;
+  }
+
+  &:before {
+    border-bottom-color: $gray-lighter;
+    top: -7px;
+  }
+
+  &:after {
+    border-bottom-color: $white;
+    top: -6px;
+    z-index: 3;
+  }
+}
+
+.arrow-at-bottom{
+  &:before, &:after {
+    // http://www.red-team-design.com/css-diagonal-borders-still-not-rendering-properly-on-firefox
+    transform: scale(.9999);
+    border-color: rgba(0, 0, 0, 0);
+
+    border-style: solid;
+    border-width: 6px 7px 0px 7px;
+    content: '';
+    position: absolute;
+    height: 0;
+    left: 1rem;
+    width: 0;
+  }
+
+  &:before {
+    border-top-color: $gray-lighter;
+    top: 1px;
+  }
+
+  &:after {
+    border-top-color: $white;
+    z-index: 3;
+  }
+}
+
+// .dropdown-menu initially hides the dropdown via
+// `visibility`. Show it when the dropdown is open
+.open .publish-annotation-btn__dropdown-menu {
+  visibility: visible;
+}
+
+.publish-annotation-cancel-btn {
+  @extend .btn--cancel;
+
+  font-weight: normal;
+
+  &__icon {
+    margin-right: 3px;
+    transform: translateY(10%);
+  }
+}

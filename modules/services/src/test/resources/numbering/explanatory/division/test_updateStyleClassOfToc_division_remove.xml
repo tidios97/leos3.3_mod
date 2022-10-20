@@ -1,0 +1,60 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="EXPL_COUNCIL">
+
+        <meta>
+        </meta>
+        <preface xml:id="_preface">
+        </preface>
+
+        <mainBody xml:id="body">
+            <division xml:id="body_division_1" class="type_1">
+                <num>I.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <level xml:id="body_level_1" leos:depth="1">
+                <num xml:id="body_level_1_num">1.</num>
+                <content xml:id="body_level_1_content">
+                    <p xml:id="body_level_1_content_p">Text...</p>
+                </content>
+            </level>
+            <division xml:id="body_division_2" class="type_1">
+                <num>II.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <level xml:id="body_level_2" leos:depth="1">
+                <num xml:id="body_level_2_num">2.</num>
+                <content xml:id="body_level_2_content">
+                    <p xml:id="body_level_2_content_p">Text...</p>
+                </content>
+            </level>
+            <division xml:id="body_division_3" class="type_2">
+                <num>A.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <division xml:id="body_division_4" class="type_1">
+                <num>III.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <division xml:id="body_division_5" class="type_2">
+                <num>A.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <division xml:id="body_division_7" class="type_4">
+                <num>#</num>
+                <heading>will be numbered to A.</heading>
+            </division>
+            <division xml:id="body_division_8" class="type_4">
+                <num>#</num>
+                <heading>will be numbered to A)</heading>
+            </division>
+            <division xml:id="body_division_9" class="type_1">
+                <num>IV.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <division xml:id="body_division_10" class="type_1">
+                <num>V.</num>
+                <heading>TEXT…</heading>
+            </division>
+        </mainBody>
+    </doc>
+</akomaNtoso>

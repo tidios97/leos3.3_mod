@@ -1,0 +1,24 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<level leos:origin="ec" xml:id="akn_level_rbbHoT">
+		<num leos:origin="ec" xml:id="akn_5T2LIm">3.</num>
+		<heading leos:origin="ec" xml:id="akn_Q7cDyn">
+			Level with title and only content
+		</heading>
+		<subparagraph leos:origin="ec" leos:softaction="trans" leos:softdate="2020-09-17T15:40:35.935+02:00" leos:softuser="jane" xml:id="transformed_akn_level_rbbHoT">
+			<content leos:origin="ec" xml:id="akn_BgAUI2">
+				<p xml:id="akn_B3eScM">Content - end approval  authorities must
+				ensure, before granting first and
+				subsequent stage type-approvals, thatsuitable arrangements exist between the
+				relevantmanufacturers for the supply and interchange of documents and
+				information,</p>
+			</content>
+		</subparagraph>
+		<subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2020-09-17T15:40:35.935+02:00" leos:softuser="jane" xml:id="akn_JwsNfQ">
+			<content xml:id="akn_9Bwdfa">
+				<p xml:id="akn_Gftzmc">so that the completed type of vehicle meets
+					the technical requirements of all the relevant regulatory acts
+					listed in Annex II.</p>
+			</content>
+		</subparagraph>
+	</level>
+</akomaNtoso>

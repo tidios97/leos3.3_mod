@@ -1,0 +1,41 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                     leos:softactionroot="true" leos:softdate="2022-06-17T11:37:03.602+02:00" leos:softmove_to="art_1"
+                     leos:softuser="demo jane(Ext)" xml:id="moved_art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="moved_art_1__num">Article 1</num>
+            </article>
+            <part leos:origin="ec" xml:id="part_1">
+                <num leos:origin="ec" xml:id="akn_U6JVmg">Part I</num>
+                <heading leos:origin="ec" xml:id="akn_gFxums">Part heading...</heading>
+                <chapter leos:depth="2" leos:origin="ec" xml:id="chapter_1">
+                    <num leos:origin="ec" xml:id="akn_9Stf16">Chapter 1</num>
+                    <heading leos:origin="ec" xml:id="akn_LFvufQ">Chapter heading...</heading>
+                    <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_2">
+                        <num leos:editable="false" leos:origin="ec" xml:id="art_2__num">Article 2</num>
+                        <heading leos:origin="ec" xml:id="art_2__heading">Scope</heading>
+                        <paragraph leos:depth="1" leos:origin="ec" xml:id="art_2__para_1">
+                            <num leos:origin="ec" xml:id="art_2__para_1__num">1.</num>
+                            <content leos:origin="ec" xml:id="art_2__para_1__content">
+                                <p leos:origin="ec" xml:id="art_2__para_1__content__p">Paragraph 1 of Article 2</p>
+                            </content>
+                        </paragraph>
+                    </article>
+                    <article leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_from"
+                             leos:softactionroot="true" leos:softdate="2022-06-17T11:37:03.618+02:00"
+                             leos:softmove_from="moved_art_1" leos:softuser="demo jane(Ext)" xml:id="art_1">
+                        <num leos:editable="false" leos:origin="cn" xml:id="art_1__num">Article #</num>
+                        <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                        <paragraph leos:depth="1" leos:origin="ec" xml:id="art_1__para_1">
+                            <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                            <content leos:origin="ec" xml:id="art_1__para_1__content">
+                                <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                            </content>
+                        </paragraph>
+                    </article>
+                </chapter>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

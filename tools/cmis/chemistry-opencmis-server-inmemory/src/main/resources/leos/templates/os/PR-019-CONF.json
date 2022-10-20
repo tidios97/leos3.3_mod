@@ -1,0 +1,20 @@
+{
+  "guidance": [
+   {
+      "targets": [
+        {
+          "destinationId": "_coverpage__longtitle__p__docpurpose",
+          "position": "AFTER"
+        }
+      ],
+      "content": "<guidance id=\"guidance\" class=\"guidance-green-block\"><span id=\"docpurpose-guidance\">[Document title].</span></guidance>"
+    }
+  ],
+  "alternatives": [
+  ],
+  "structure": [
+    {
+      "name": "structure_06"
+    }
+  ]
+}

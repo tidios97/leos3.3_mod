@@ -1,0 +1,30 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:affected="true" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                     leos:softdate="2022-06-17T09:52:43.031+02:00" leos:softuser="demo jane(Ext)"
+                     xml:id="_akn_article_NPLymr">
+                <num leos:editable="false" leos:origin="cn">#</num>
+                <heading>Article heading...</heading>
+                <paragraph leos:affected="true" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T09:52:43.016+02:00" leos:softuser="demo jane(Ext)"
+                           xml:id="_akn_paragraph_wRUkLj">
+                    <num leos:editable="false" leos:origin="cn">#</num>
+                    <content>
+                        <p>Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

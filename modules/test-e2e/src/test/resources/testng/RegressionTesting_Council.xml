@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="RegressionSuiteCouncil" verbose="1">
+     <parameter name="environment" value="${environment}" />
+     <parameter name="browser" value="${browser}" />
+     <parameter name="mode" value="${mode}" />
+    <test thread-count="1" name="RegressionSuiteCouncil">
+        <classes>
+            <class name="europa.edit.testRunner.CN_RegressionTestRunner"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

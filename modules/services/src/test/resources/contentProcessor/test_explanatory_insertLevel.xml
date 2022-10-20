@@ -1,0 +1,371 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="EXPL_COUNCIL">
+
+        <mainBody xml:id="body">
+            <division xml:id="body_division_1" class="type_1">
+                <num xml:id="body_division_1_num">I.</num>
+                <heading xml:id="body_division_1_heading">INTRODUCTION</heading>
+            </division>
+            <level leos:depth="1" xml:id="body_level_1">
+                <num xml:id="body_level_1_num">1.</num>
+                <content xml:id="body_level_1_content">
+                    <p xml:id="body_level_1_content_p">On …, the <u xml:id="body_level_1__content__p_u_1">Commission</u> submitted
+                        to the Council and the European Parliament a proposal for a Regulation of the European
+                        Parliament and of the Council …
+                        <authorialNote marker="1" placement="bottom" xml:id="authorialnote_1">
+                            <p xml:id="akn_YkX30n">12345/21.</p>
+                        </authorialNote>
+                        , which aims at …
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1"  xml:id="body_level_2">
+                <num xml:id="body_level_2_num">2.</num>
+                <content xml:id="body_level_2_content">
+                    <p xml:id="body_level_2_content_p">The draft regulation is based on Article … of the Treaty on the
+                        Functioning of the European Union (TFEU) (ordinary legislative procedure).
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_3">
+                <num xml:id="body_level_3_num">3.</num>
+                <content xml:id="body_level_3_content">
+                    <p xml:id="body_level_3_content_p">The <u xml:id="body_level_3__content__p_u_2">Economic and Social
+                        Committee
+                    </u> delivered its opinion on …
+                        <authorialNote marker="2" placement="bottom" xml:id="authorialnote_2">
+                            <p xml:id="akn_xA5auZ">Not yet published in the Official Journal.</p>
+                        </authorialNote>
+                        . The <u xml:id="body_level_3__content__p_u_3">Committee of the Regions</u> adopted its opinion
+                        on …
+                        <authorialNote marker="3" placement="bottom" xml:id="authorialnote_3">
+                            <p xml:id="akn_8AAJRu">Not yet published in the Official Journal.</p>
+                        </authorialNote>
+                        .
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_4">
+                <num xml:id="body_level_4_num">4.</num>
+                <content xml:id="body_level_4_content">
+                    <p xml:id="body_level_4_content_p">The<u xml:id="body_level_4__content__p_u_4">European Economic and
+                        Social Committee
+                    </u> adopted an opinion at the plenary session on …. The <u xml:id="body_level_4__content__p_u_5">
+                        Committee of the Regions
+                    </u>  decided not to issue an opinion on the proposal.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_5">
+                <num xml:id="body_level_5_num">5.</num>
+                <content xml:id="body_level_5_content">
+                    <p xml:id="body_level_5_content_p">At the request of the EP, the <u
+                            xml:id="body_level_5__content__p_u_6">EU Agency for Fundamental Rights</u>[the European Data
+                        Protection Officer] delivered an opinion on ….
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_6">
+                <num xml:id="body_level_6_num">6.</num>
+                <content xml:id="body_level_6_content">
+                    <p xml:id="body_level_6_content_p">The <u xml:id="body_level_6__content__p_u_7">European Data
+                        Protection Officer
+                    </u> delivered an opinion on ….
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_7">
+                <num xml:id="body_level_7_num">7.</num>
+                <content xml:id="body_level_7_content">
+                    <p xml:id="body_level_7_content_p">One national parliament has delivered an opinion on the
+                        application of the principles of subsidiarity and proportionality.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_8">
+                <num xml:id="body_level_8_num">8.</num>
+                <content xml:id="body_level_8_content">
+                    <p xml:id="body_level_8_content_p">In the <u xml:id="body_level_8__content__p_u_8">European
+                        Parliament</u>, the Committee …. has the lead responsibility. … was appointed rapporteur. The
+                        report was tabled on …; the Plenary voted on …
+                        <authorialNote marker="4" placement="bottom" xml:id="authorialnote_4">
+                            <p xml:id="akn_peUptW">12345/21.</p>
+                        </authorialNote>
+                        , and the proposal was referred to the … Committee to start interinstitutional negotiations.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_9">
+                <num xml:id="body_level_9_num">9.</num>
+                <content xml:id="body_level_9_content">
+                    <p xml:id="body_level_9_content_p">On …, the <u xml:id="body_level_9__content__p_u_9">European
+                        Parliament
+                    </u> adopted its legislative resolution on the proposal
+                        <authorialNote marker="5" placement="bottom" xml:id="authorialnote_5">
+                            <p xml:id="akn_PmRWX2">12345/21.</p>
+                        </authorialNote>
+                        , thus concluding its first reading.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_10">
+                <num xml:id="body_level_10_num">10.</num>
+                <content xml:id="body_level_10_content">
+                    <p xml:id="body_level_10_content_p">The <u xml:id="body_level_10__content__p_u_10">European
+                        Parliament
+                    </u> adopted its first-reading position
+                        <authorialNote marker="6" placement="bottom" xml:id="authorialnote_6">
+                            <p xml:id="akn_UWW0n5">12345/21.</p>
+                        </authorialNote>
+                        at the plenary session of ….
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_11">
+                <num xml:id="body_level_11_num">11.</num>
+                <content xml:id="body_level_11_content">
+                    <p xml:id="body_level_11_content_p">On …, the Council reached a partial general approach
+                        <authorialNote marker="7" placement="bottom" xml:id="authorialnote_7">
+                            <p xml:id="akn_buZcas">12345/21.</p>
+                        </authorialNote>
+                        on the abovementioned proposal, which constituted the mandate for the negotiations with the
+                        European Parliament in the context of the ordinary legislative procedure. A General Approach was
+                        adopted by the Council on …
+                        <authorialNote marker="8" placement="bottom" xml:id="authorialnote_8">
+                            <p xml:id="akn_bUJcJl">12345/21.</p>
+                        </authorialNote>
+                        .
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_12">
+                <num xml:id="body_level_12_num">12.</num>
+                <content xml:id="body_level_12_content">
+                    <p xml:id="body_level_12_content_p">At its meeting on …, the <u
+                            xml:id="body_level_12__content__p_u_11">Permanent Representatives Committee
+                    </u> granted the … Presidency a mandate to enter into negotiations with the EP.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_13">
+                <num xml:id="body_level_13_num">13.</num>
+                <content xml:id="body_level_13_content">
+                    <p xml:id="body_level_13_content_p">At its meeting on …, the <u
+                            xml:id="body_level_13__content__p_u_12">Permanent Representatives Committee
+                    </u> confirmed the mandate to start negotiations with the European Parliament on the
+                        amended/compromise text of the proposal as laid down in doc. 12345/21.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_14">
+                <num xml:id="body_level_14_num">14.</num>
+                <content xml:id="body_level_14_content">
+                    <p xml:id="body_level_14_content_p">On … the <u xml:id="body_level_14__content__p_u_13">European
+                        Parliament</u>adopted its position at first reading on the Commission proposal. The outcome of
+                        voting in the European Parliament reflects the compromise agreement reached between the
+                        institutions and should therefore
+                        be acceptable to the Council
+                        <authorialNote marker="9" placement="bottom" xml:id="authorialnote_9">
+                            <p xml:id="akn_jNMaup">12345/21</p>
+                        </authorialNote>
+                        .
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_15">
+                <num xml:id="body_level_15_num">15.</num>
+                <content xml:id="body_level_15_content">
+                    <p xml:id="body_level_15_content_p">At the trilogue on …, a provisional agreement on a compromise
+                        text was reached between the co-legislators.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_16">
+                <num xml:id="body_level_16_num">16.</num>
+                <content xml:id="body_level_16_content">
+                    <p xml:id="body_level_16_content_p">The Commission has provided two statements to be included in the
+                        minutes of Coreper and Council at the time of the adoption
+                    </p>
+                </content>
+            </level>
+            <division class="type_1" xml:id="body_division_2">
+                <num xml:id="body_division_2_num">II.</num>
+                <heading xml:id="body_division_2_heading">STATE OF PLAY / ANALYSIS OF THE FINAL COMPROMISE TEXT WITH A
+                    VIEW TO AN
+                    AGREEMENT
+                </heading>
+            </division>
+            <level leos:depth="1" xml:id="body_level_17">
+                <num xml:id="body_level_17_num">17.</num>
+                <content xml:id="body_level_17_content">
+                    <p xml:id="body_level_17_content_p">Text…</p>
+                </content>
+            </level>
+            <division class="type_1" xml:id="body_division_3">
+                <num xml:id="body_division_3_num">III.</num>
+                <heading xml:id="body_division_3_heading">CONCLUSION</heading>
+            </division>
+            <level leos:depth="1" xml:id="body_level_18">
+                <num xml:id="body_level_18_num">18.</num>
+                <content xml:id="body_level_18_content">
+                    <p xml:id="body_level_18_content_p">In view of the above, the <u
+                            xml:id="body_level_18__content__p_u_14">Permanent Representatives Committee
+                    </u> is invited to
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_19">
+                <num xml:id="body_level_19_num">19.</num>
+                <content xml:id="body_level_19_content">
+                    <p xml:id="body_level_19_content_p">The <u xml:id="body_level_19__content__p_u_15">Permanent
+                        Representatives Committee (Part 1)
+                    </u> is therefore invited to confirm the agreement reached by the Working Party and adopt the
+                        mandate for negotiations with the European Parliament as set out in addendum 1 to this note to
+                        enable the Presidency to conduct negotiations with the European Parliament.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_20">
+                <num xml:id="body_level_20_num">20.</num>
+                <content xml:id="body_level_20_content">
+                    <p xml:id="body_level_20_content_p">In view of the above, the <u
+                            xml:id="body_level_20__content__p_u_16">Permanent Representatives Committee
+                    </u> is invited to examine the compromise text as set out in the Annex to this note, address the
+                        outstanding issues and submit it to the Council (…) with a view to reaching a general approach
+                        at its session on ….
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_21">
+                <num xml:id="body_level_21_num">21.</num>
+                <subparagraph refersTo="~_INP" xml:id="body_level_21_subparagraph_1">
+                    <content xml:id="akn_8vX1Qd">
+                        <p xml:id="body_level_21_content_p">In view of the above, the <u
+                                xml:id="body_level_21__content__p_u_17">Permanent Representatives Committee
+                        </u> is invited to examine the compromise text as set out in the Annex to this note, address the
+                            outstanding issues and submit it to the Council (…) with a view to reaching general approach
+                            at its session on ….
+                        </p>
+                    </content>
+                </subparagraph>
+                <list xml:id="body_level_21_list_1">
+                    <indent xml:id="body_level_21_list_1_indent_1">
+                        <num xml:id="body_level_21_list_1_indent_1_num">#</num>
+                        <content xml:id="body_level_21_list_1_indent_1_content">
+                            <p xml:id="body_level_21_list_1_indent_1_content__p">should be (a)</p>
+                        </content>
+                    </indent>
+                    <indent xml:id="body_level_21_list_1_indent_2">
+                        <num xml:id="body_level_21_list_1_indent_2_num">#</num>
+                        <content xml:id="body_level_21_list_1_indent_2_content">
+                            <p xml:id="body_level_21_list_1_indent_2_content__p">should be (b)</p>
+                        </content>
+                    </indent>
+                </list>
+            </level>
+            <level leos:depth="1" xml:id="body_level_22">
+                <num xml:id="body_level_22_num">22.</num>
+                <subparagraph refersTo="~_INP" xml:id="body_level_22_subparagraph_1">
+                    <content xml:id="akn_nHiJ1c">
+                        <p xml:id="body_level_22_content_p">Against this background, the <u
+                                xml:id="body_level_22__content__p_u_18">Permanent Representatives Committee
+                        </u> is invited to:
+                        </p>
+                    </content>
+                </subparagraph>
+                <list xml:id="body_level_22_list_1">
+                    <indent xml:id="body_level_22_list_1_indent_1">
+                        <num xml:id="body_level_22_list_1_indent_1_num">#</num>
+                        <content xml:id="body_level_22_list_1_indent_1_content">
+                            <p xml:id="body_level_22_list_1_indent_1_content__p">should be (a)</p>
+                        </content>
+                    </indent>
+                    <indent xml:id="body_level_22_list_1_indent_2">
+                        <num xml:id="body_level_22_list_1_indent_2_num">#</num>
+                        <content xml:id="body_level_22_list_1_indent_2_content">
+                            <p xml:id="body_level_22_list_1_indent_2_content__p">should be (b)</p>
+                        </content>
+                    </indent>
+                </list>
+            </level>
+            <level leos:depth="1" xml:id="body_level_23">
+                <num xml:id="body_level_23_num">23.</num>
+                <content xml:id="body_level_23_content">
+                    <p xml:id="body_level_23_content_p">With a view to enabling an early second reading agreement
+                        between the Council and the European Parliament on this legislative text, the <u
+                                xml:id="body_level_23__content__p_u_18">Permanent Representatives Committee
+                        </u> is invited to analyse the consolidated versions as set out in the Annex to this note, with
+                        a view to coming to an agreement.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="2" xml:id="body_level_23_1">
+                <num xml:id="body_level_23_1_num">23.1.</num>
+                <content xml:id="body_level_23_1_content">
+                    <p xml:id="body_level_23_1_content_p">The European Parliament's Committee … is expected to vote on
+                        …, following which the … Chair will transmit a letter to the Presidency confirming that, should
+                        the Council approve these texts in first reading, after legal-linguistic revision, the
+                        Parliament would approve the Council's position in its second reading.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_24">
+                <num xml:id="body_level_24_num">24.</num>
+                <subparagraph refersTo="~_INP" xml:id="body_level_24_subparagraph_1">
+                    <content xml:id="body_level_24_subparagraph_1_content">
+                        <p xml:id="body_level_24_subparagraph_1_content__p">The <u
+                                xml:id="body_level_24__content__p_u_18">Permanent Representatives Committee
+                        </u> is therefore asked to confirm its agreement and to suggest that <u
+                                xml:id="body_level_24__content__p_u_19">the Council</u>:
+                        </p>
+                    </content>
+                </subparagraph>
+                <list xml:id="body_level_24_list_1">
+                    <indent xml:id="body_level_24_list_1_indent_1">
+                        <num xml:id="body_level_24_list_1_indent_1_num">#</num>
+                        <content xml:id="body_level_24_list_1_indent_1_content">
+                            <p xml:id="body_level_24_list_1_indent_1_content__p">should be (a)</p>
+                        </content>
+                    </indent>
+                    <indent xml:id="body_level_24_list_1_indent_2">
+                        <num xml:id="body_level_24_list_1_indent_2_num">#</num>
+                        <content xml:id="body_level_24_list_1_indent_2_content">
+                            <p xml:id="body_level_24_list_1_indent_2_content__p">should be (b)</p>
+                        </content>
+                    </indent>
+                </list>
+                <subparagraph refersTo="" xml:id="body_level_24_subparagraph_2">
+                    <content xml:id="body_level_24_subparagraph_2_content">
+                        <p xml:id="body_level_24_subparagraph_2_content__p">If the Council approves the European
+                            Parliament's position, the legislative act will be adopted.
+                        </p>
+                    </content>
+                </subparagraph>
+                <subparagraph refersTo="" xml:id="body_level_24_subparagraph_3">
+                    <content xml:id="body_level_24_subparagraph_3_content">
+                        <p xml:id="body_level_24_subparagraph_3_content__p">After being signed by the President of the
+                            European Parliament and the President of the Council, the legislative act will be published
+                            in the Official Journal of the European Union
+                        </p>
+                    </content>
+                </subparagraph>
+            </level>
+            <level leos:depth="1" xml:id="body_level_25">
+                <num xml:id="body_level_25_num">25.</num>
+                <content xml:id="body_level_25_content">
+                    <p xml:id="body_level_25_content_p">The <u xml:id="body_level_25__content__p_u_20">Council</u> is
+                        therefore invited to adopt the general approach as set out in the Annex to this note.
+                    </p>
+                </content>
+            </level>
+            <level leos:depth="1" xml:id="body_level_26">
+                <num xml:id="body_level_26_num">26.</num>
+                <content xml:id="body_level_26_content">
+                    <p xml:id="body_level_26_content_p">Unless objected by the Permanent Representatives Committee, this
+                        document will be made public by the General Secretariat of the Council after endorsement.
+                    </p>
+                </content>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

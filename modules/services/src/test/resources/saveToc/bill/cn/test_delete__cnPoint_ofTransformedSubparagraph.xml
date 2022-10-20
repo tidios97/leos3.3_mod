@@ -1,0 +1,32 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:deletable="false" leos:origin="ec" xml:id="__akn_article_Qzzb6Q">
+                <num leos:editable="false" leos:origin="ec" xml:id="__akn_article_Qzzb6Q_ouYVkq">Article 5</num>
+                <heading leos:origin="ec" xml:id="__akn_article_Qzzb6Q_dfDCr5">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="__akn_article_Qzzb6Q-par1">
+                    <num leos:origin="ec" xml:id="__akn_article_Qzzb6Q_SFMCdA">1.</num>
+                    <subparagraph leos:origin="ec" leos:softaction="trans" leos:softactionroot="true"
+                                  leos:softdate="2022-06-16T15:18:47.232+02:00" leos:softuser="jane"
+                                  xml:id="transformed___akn_article_Qzzb6Q-par1">
+                        <content leos:origin="ec" xml:id="__akn_article_Qzzb6Q_8WrwAH">
+                            <p leos:origin="ec" xml:id="__akn_article_Qzzb6Q_jhhK9U">Article 5</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                          leos:softdate="2022-06-16T15:18:47.128+02:00" leos:softuser="jane" xml:id="_lis_oOM5ZR">
+                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                               leos:softdate="2022-06-16T15:18:47.127+02:00" leos:softuser="jane"
+                               xml:id="pointNew">
+                            <num leos:editable="false" leos:origin="cn" xml:id="__akn_article_Qzzb6Q_W8ShM6">(a)</num>
+                            <content xml:id="__akn_article_Qzzb6Q_ziuo0M">
+                                <p xml:id="__akn_article_Qzzb6Q_7Z0kvJ">Text...</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+
+        </body>
+    </bill>
+</akomaNtoso>

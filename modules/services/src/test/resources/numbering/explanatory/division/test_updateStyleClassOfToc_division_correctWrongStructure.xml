@@ -1,0 +1,31 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="EXPL_COUNCIL">
+        <meta>
+        </meta>
+        <preface xml:id="_preface">
+        </preface>
+
+        <mainBody xml:id="body">
+            <division xml:id="body_division_1" class="type_4">
+                <num>I.</num>
+                <heading>TEXT...</heading>
+            </division>
+            <division xml:id="body_division_2" class="type_1">
+                <num>A.</num>
+                <heading>TEXT…</heading>
+            </division>
+            <division xml:id="body_division_3" class="type_3">
+                <num>#</num>
+                <heading>will be numbered to I)</heading>
+            </division>
+            <division xml:id="body_division_4" class="type_1">
+                <num>A)</num>
+                <heading>TEXT…</heading>
+            </division>
+            <division xml:id="body_division_5" class="type_4">
+                <num>#</num>
+                <heading>should be renumbered to III.</heading>
+            </division>
+        </mainBody>
+    </doc>
+</akomaNtoso>

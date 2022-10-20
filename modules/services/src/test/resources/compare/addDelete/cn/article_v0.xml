@@ -1,0 +1,60 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:editable="false" leos:deletable="false" leos:origin="ec" xml:id="akn_article_XcvwoL">
+                <num leos:origin="ec" leos:editable="false" xml:id="akn_article_XcvwoL_k5uUFS">Article 2</num>
+                <heading leos:origin="ec" xml:id="akn_article_XcvwoL_qeNIXb">Definitions</heading>
+                <paragraph leos:origin="ec" xml:id="akn_article_XcvwoL-par1">
+                    <num leos:origin="ec" xml:id="akn_article_XcvwoL_gEdPHb">1.</num>
+                    <content leos:origin="ec" xml:id="akn_article_XcvwoL_H5BkpR">
+                        <p leos:origin="ec" xml:id="akn_article_XcvwoL_U7pBfL">For the purposes of this Regulation, the
+                            definitions set out in Article 2 of Directive 97/67/EC shall apply.
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="akn_article_XcvwoL_evkafx">
+                    <num leos:origin="ec" xml:id="akn_article_XcvwoL_Vgmlxc">2.</num>
+                    <subparagraph leos:origin="ec" xml:id="akn_article_XcvwoL_gYemRF">
+                        <content leos:origin="ec" xml:id="akn_article_XcvwoL_MWu5cd">
+                            <p leos:origin="ec" xml:id="akn_article_XcvwoL_AX9lvt">In addition to the definitions
+                                referred to in paragraph 1, the following definitions shall apply:
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="akn_article_XcvwoL_b4Oal7">
+                        <point leos:origin="ec" xml:id="akn_article_XcvwoL_53bmYj">
+                            <num leos:origin="ec" xml:id="akn_article_XcvwoL_sT0ZI6">(a)</num>
+                            <content leos:origin="ec" xml:id="akn_article_XcvwoL_t2PBo3">
+                                <p leos:origin="ec" xml:id="akn_article_XcvwoL_nGsGrz">&quot;parcel delivery services&quot;
+                                    means services involving the clearance, sorting, transport or distribution of postal
+                                    items other than items of correspondence; transport alone shall not be considered a
+                                    parcel delivery service; delivery of such items exceeding 31,5 kg shall not be
+                                    considered a parcel delivery service;
+                                </p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_article_XcvwoL_fLu44z">
+                            <num leos:origin="ec" xml:id="akn_article_XcvwoL_YMpUZR">(b)</num>
+                            <content leos:origin="ec" xml:id="akn_article_XcvwoL_m1R6TQ">
+                                <p leos:origin="ec" xml:id="akn_article_XcvwoL_dJA7qQ">&quot;parcel delivery service
+                                    provider&quot; means an undertaking that provides one or more parcel delivery
+                                    services;
+                                </p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_article_XcvwoL_fFqOYp">
+                            <num leos:origin="ec" xml:id="akn_article_XcvwoL_dx4hcd">(c)</num>
+                            <content leos:origin="ec" xml:id="akn_article_XcvwoL_vFaMIe">
+                                <p leos:origin="ec" xml:id="akn_article_XcvwoL_mPnxLj">&quot;terminal rates&quot; means
+                                    payments from the originating universal service provider to the destination
+                                    universal service provider for the costs of cross-border parcel delivery services in
+                                    the destination Member State.
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

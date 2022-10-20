@@ -1,0 +1,79 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<bill name="REG">
+		<body leos:origin="ec" xml:id="body">
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_kehgfi">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_kehgfi_ANpiSA">Article 2</num>
+				<heading leos:origin="ec" xml:id="akn_article_kehgfi_gfy9Vy">Article heading...</heading>
+				<paragraph leos:origin="ec" xml:id="akn_article_kehgfi-par1"
+					leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_kehgfi_L8fHkw">1.</num>
+					<subparagraph leos:origin="ec"
+						xml:id="akn_article_kehgfi_6MFQQu">
+						<content leos:origin="ec" xml:id="akn_article_kehgfi_buB8hY">
+							<p leos:origin="ec" xml:id="akn_article_kehgfi_PAM8AI">Subpara 1</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="akn_article_kehgfi_VaQgsq">
+						<point leos:origin="ec" xml:id="akn_article_kehgfi_OzGVjt">
+							<num leos:origin="ec" xml:id="akn_article_kehgfi_yW8uJ1">(i)</num>
+							<content leos:origin="ec"
+								xml:id="akn_article_kehgfi_GthtE1">
+								<p leos:origin="ec" xml:id="akn_article_kehgfi_21g1WT">Point (i)
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec" xml:id="akn_article_kehgfi_CxUWm4">
+							<num leos:origin="ec" xml:id="akn_article_kehgfi_v2MmW6">(ii)</num>
+							<alinea leos:origin="ec" xml:id="akn_article_kehgfi_XFoSmg">
+								<content leos:origin="ec"
+									xml:id="akn_article_kehgfi_NmNvnw">
+									<p leos:origin="ec" xml:id="akn_article_kehgfi_jKG71Y">Point (ii)/alinea 1
+									</p>
+								</content>
+							</alinea>
+							<alinea leos:origin="ec" xml:id="akn_article_kehgfi_3EBssM">
+								<content leos:origin="ec"
+									xml:id="akn_article_kehgfi_n4oGZ9">
+									<p leos:origin="ec" xml:id="akn_article_kehgfi_cKZhTX">Point (ii)/alinea 2</p>
+								</content>
+							</alinea>
+							<alinea leos:origin="ec" xml:id="akn_article_kehgfi_7hZvzx">
+								<content leos:origin="ec"
+									xml:id="akn_article_kehgfi_ftvdgM">
+									<p leos:origin="ec" xml:id="akn_article_kehgfi_BCyJp8">Point (ii)/alinea 3
+									</p>
+								</content>
+							</alinea>
+						</point>
+						<point leos:origin="ec" xml:id="akn_article_kehgfi_bspQze">
+							<num leos:origin="ec" xml:id="akn_article_kehgfi_zFXkrv">(iii)</num>
+							<content leos:origin="ec"
+								xml:id="akn_article_kehgfi_an2h1a">
+								<p leos:origin="ec" xml:id="akn_article_kehgfi_hkrPfn">Point (iii)
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec" xml:id="akn_article_kehgfi_S2XOM9">
+							<num leos:origin="ec" xml:id="akn_article_kehgfi_oQpX1Z">(iv)</num>
+							<content leos:origin="ec"
+								xml:id="akn_article_kehgfi_9bqh7q">
+								<p leos:origin="ec" xml:id="akn_article_kehgfi_pgqA5J">Point (iv)
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_kehgfi_KTfwaN" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_kehgfi_driRIH">2.</num>
+					<content leos:origin="ec" xml:id="akn_article_kehgfi_K0bUlF">
+						<p leos:origin="ec" xml:id="akn_article_kehgfi_B236LV">Paragraf last
+						</p>
+					</content>
+				</paragraph>
+			</article>
+		</body>
+	</bill>
+</akomaNtoso>

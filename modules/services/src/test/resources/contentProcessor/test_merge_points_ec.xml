@@ -1,0 +1,53 @@
+<root xml:id="akn_f2ejkO" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" leos:editable="false" leos:deletable="false" xml:id="imp_art_d1e1221_qiqjdt">
+        <num leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_xISt2k">Article 2</num>
+        <heading leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_P9hekz">Scope</heading>
+        <paragraph leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_B90HX5">
+            <content leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_GxCek2">
+                <p leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_xyt4AQ">This Regulation lays down uniform rules concerning general prudential
+                    requirements that institutions supervised under Directive 2013/36/EU shall comply with in relation to the following items:
+                </p>
+            </content>
+        </paragraph>
+        <paragraph leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_WApFyt">
+            <list leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_Z4LsCi">
+                <point leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_NgnbOF">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_2jwLTy">(a)</num>
+                    <content leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_LEPz3S">
+                        <p leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_s6AuCN">own funds requirements relating to entirely quantifiable, uniform
+                            and standardised elements of credit risk, market risk, operational risk and settlement risk;
+                        </p>
+                    </content>
+                </point>
+                <point leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_YmrR20">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_NjFXxB">(b)</num>
+                    <content leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_zCvTSP">
+                        <p leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_I1evcQ">requirements limiting large exposures;</p>
+                    </content>
+                </point>
+                <point leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_OSeAWL">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_JACup8">(c)</num>
+                    <content leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_rAY5q2">
+                        <p leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_vTMQL9">after the delegated act referred to in Article 460 has entered into
+                            force, liquidity requirements relating to entirely quantifiable, uniform and standardised elements of liquidity risk;
+                        </p>
+                    </content>
+                </point>
+                <point leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_oaz8D1">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_NkI3nS">(d)</num>
+                    <content leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_3bM3YV">
+                        <p leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_r3HIw7">reporting requirements related to points (a), (b) and (c) and to
+                            leverage;
+                        </p>
+                    </content>
+                </point>
+                <point leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_GEj1jJ">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_rlOyG4">(e)</num>
+                    <content leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_iF4nRP">
+                        <p leos:origin="ec" xml:id="imp_art_d1e1221_qiqjdt_64XI6K">public disclosure requirements.</p>
+                    </content>
+                </point>
+            </list>
+        </paragraph>
+    </article>
+</root>

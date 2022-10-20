@@ -1,0 +1,34 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <documentCollection name="PROP_ACT">
+        <meta>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.0.0</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:template>SJ-023</leos:template>
+                <leos:docTemplate>PR-023</leos:docTemplate>
+                <leos:docPurpose xml:id="proprietary__docpurpose">on ...</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:ref>proposal_ckpwoinbr00065w01rpg2cmdr</leos:ref>
+                <leos:clonedProposals>
+                    <leos:milestoneRef name="legFileName.leg">
+                        <clonedProposalRef ref="proposal_ckpws8p6d0002io01vrkchv53">
+                            <targetUser>demo</targetUser>
+                            <creationDate>Mon Jun 14 17:39:53 CEST 2021</creationDate>
+                            <status>For revision</status>
+                        </clonedProposalRef>
+                    </leos:milestoneRef>
+                </leos:clonedProposals>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                </leos:docType>
+                <leos:objectId></leos:objectId>
+            </proprietary>
+        </meta>
+        <coverPage xml:id="coverpage">
+
+        </coverPage>
+        <collectionBody xml:id="body">
+
+        </collectionBody>
+    </documentCollection>
+</akomaNtoso>

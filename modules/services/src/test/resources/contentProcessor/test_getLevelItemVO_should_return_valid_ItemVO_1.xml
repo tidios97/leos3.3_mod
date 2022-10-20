@@ -1,0 +1,54 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+    <doc name="ANNEX">
+        <mainBody xml:id="body">
+            <level xml:id="body_level_1">
+                <num xml:id="body_level_1_num">1.</num>
+                <content xml:id="body_level_1_content">
+                    <p xml:id="body_level_1_content_p">Text...</p>
+                </content>
+            </level>
+            <level xml:id="body_level_1_1">
+                <num xml:id="body_level_1_1_num">1.1.</num>
+                <content xml:id="body_level_1_1_content">
+                    <p xml:id="body_level_1_1_content_p">Text...</p>
+                </content>
+            </level>
+            <paragraph xml:id="body_level_1_1_p">
+                <num xml:id="body_level_1_1_num"></num>
+                <content xml:id="body_level_1_1_content">
+                    <p xml:id="body_level_1_1_content_p">Text...</p>
+                </content>
+            </paragraph>
+            <level xml:id="body_level_1_1_1">
+                <num xml:id="body_level_1_1_num">1.1.1.</num>
+                <content xml:id="body_level_1_1_content">
+                    <p xml:id="body_level_1_1_content_p">Text...</p>
+                </content>
+            </level>
+            <level xml:id="body_level_1_2">
+                <num xml:id="body_level_1_2_num">1.2.</num>
+                <content xml:id="body_level_1_2_content">
+                    <p xml:id="body_level_1_2_content_p">Text...</p>
+                </content>
+            </level>
+            <paragraph xml:id="body_level_1_2_p">
+                <num xml:id="body_level_1_2_num"></num>
+                <content xml:id="body_level_1_2_content">
+                    <p xml:id="body_level_1_2_content_p">Text...</p>
+                </content>
+            </paragraph>
+            <level xml:id="body_level_1_2_1">
+                <num xml:id="body_level_1_2_1_num">1.2.1.</num>
+                <content xml:id="body_level_1_2_1_content">
+                    <p xml:id="body_level_1_2_1_content_p">Text...</p>
+                </content>
+            </level>
+            <level xml:id="body_level_2">
+                <num xml:id="body_level_2_num">2.</num>
+                <content xml:id="body_level_2_content">
+                    <p xml:id="body_level_2_content_p">Text...</p>
+                </content>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

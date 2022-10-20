@@ -1,0 +1,10 @@
+
+<aknFragment xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <citation xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+              xmlns:leos="urn:eu:europa:ec:leos"
+              leos:editable="true"
+              refersTo="~legalBasis"
+              xml:id="cit_3">
+        <p xml:id="cit_3__p">After transmission of the draft legislative act to the national Parliaments,</p>
+    </citation>
+</aknFragment>

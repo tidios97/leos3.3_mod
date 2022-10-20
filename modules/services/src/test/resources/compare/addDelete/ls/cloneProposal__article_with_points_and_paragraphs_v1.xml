@@ -1,0 +1,90 @@
+<article leos:origin="ec" xml:id="_bill__akn_article_5se970">
+    <num leos:editable="false" leos:origin="ec" xml:id="_bill__akn_article_5se970_bRKDPU">Article 4</num>
+    <heading leos:origin="ec" xml:id="_bill__akn_article_5se970_hn9sPx">Share and reuse of interoperability solutions
+        between public sector bodies, Union institutions, agencies and bodies
+    </heading>
+    <paragraph leos:origin="ec" xml:id="_bill__akn_article_5se970_rhjGjx">
+        <num leos:origin="ec" xml:id="_bill__akn_article_5se970_NupUBN">1.</num>
+        <subparagraph leos:origin="ec" xml:id="_bill__akn_article_5se970_DYdqUh">
+            <content xml:id="_bill__akn_article_5se970_ztOF2t" leos:origin="ec">
+                <p leos:origin="ec" xml:id="_bill__akn_article_5se970_OBBGPB">A public sector body or Union institution,
+                    agency or body shall make available to any other such entity that requests it, interoperability
+                    solutions that support their digital services to be delivered or managed electronically. The
+                    shared content shall include the technical documentation and, where applicable, the documented
+                    source code. This obligation to share shall not apply to interoperability solutions:
+                </p>
+            </content>
+        </subparagraph>
+        <list leos:origin="ec" xml:id="_bill__akn_article_5se970_sQRHAa">
+            <point leos:origin="ec" xml:id="_bill__akn_article_5se970_BOL5Db">
+                <num leos:origin="ec" xml:id="_bill__akn_article_5se970_DGdkHw">(a)</num>
+                <content leos:origin="ec" xml:id="_bill__akn_article_5se970_A7eJBI">
+                    <p leos:origin="ec" xml:id="_bill__akn_article_5se970_RjEsVb">that support processes
+                        which fall outside the scope of the public task of the public sector bodies or Union
+                        institutions, agencies or bodies concerned as defined by law or by other binding rules, or, in
+                        the absence of such rules, as defined in accordance with common administrative practice in the
+                        Member State or Union administrations in question, provided that the scope of the public tasks
+                        is transparent and subject to review;
+                    </p>
+                </content>
+            </point>
+            <point leos:origin="ec" xml:id="_bill__akn_article_5se970_c9Wvx5">
+                <num leos:origin="ec" xml:id="_bill__akn_article_5se970_T9UDor">(b)</num>
+                <content leos:origin="ec" xml:id="_bill__akn_article_5se970_Fx7FN5">
+                    <p leos:origin="ec" xml:id="_bill__akn_article_5se970_YDDXSu">for which third parties hold
+                        intellectual property rights;
+                    </p>
+                </content>
+            </point>
+            <point leos:origin="ec" xml:id="_bill__akn_article_5se970_jaY04g">
+                <num leos:origin="ec" xml:id="_bill__akn_article_5se970_wKFZyG">(c)</num>
+                <alinea leos:origin="ec" xml:id="_bill__akn_article_5se970_yvY58P">
+                    <content xml:id="_bill__akn_article_5se970_wPUqU6" leos:origin="ec">
+                        <p leos:origin="ec" xml:id="_bill__akn_article_5se970_U0gQKo">access to which is excluded or
+                            restricted on grounds of:
+                        </p>
+                    </content>
+                </alinea>
+                <list leos:origin="ec" xml:id="_bill__akn_article_5se970_QfpaCt">
+                    <point leos:origin="ec" xml:id="_bill__akn_article_5se970_c96HHc">
+                        <num leos:origin="ec" xml:id="_bill__akn_article_5se970_48XsAv">(i)</num>
+                        <content leos:origin="ec" xml:id="_bill__akn_article_5se970_6FWuuv">
+                            <p leos:origin="ec" xml:id="_bill__akn_article_5se970_pFlf1X">sensitive critical
+                                infrastructure protection related information as defined in Article 2, point (d) of
+                                Directive 2008/114/EC;
+                            </p>
+                        </content>
+                    </point>
+                    <point leos:origin="ec" xml:id="_bill__akn_article_5se970_QpNNkW">
+                        <num leos:origin="ec" xml:id="_bill__akn_article_5se970_wmHsq9">(ii)</num>
+                        <content leos:origin="ec" xml:id="_bill__akn_article_5se970_BQyCUA">
+                            <p leos:origin="ec" xml:id="_bill__akn_article_5se970_jFGNnU">the protection of national
+                                security, State security, defence, or public security;
+                            </p>
+                        </content>
+                    </point>
+                </list>
+            </point>
+            <point leos:origin="ec" xml:id="_bill__akn_article_5se970_QpOthP">
+                <num leos:origin="ec" xml:id="_bill__akn_article_5se970_wWICOY">(d)</num>
+                <content leos:origin="ec" xml:id="_bill__akn_article_5se970_Ww2ZIR">
+                    <p leos:origin="ec" xml:id="_bill__akn_article_5se970_LjRWGf">access to which is restricted by
+                        virtue of the access regimes in the Member States, including situations where citizens or legal
+                        entities must prove a particular interest to obtain access to documents.
+                    </p>
+                </content>
+            </point>
+        </list>
+    </paragraph>
+    <paragraph leos:origin="ec" xml:id="_bill__akn_article_5se970_66accy">
+        <num leos:origin="ec" xml:id="_bill__akn_article_5se970_t5z7mF">2.</num>
+        <content leos:origin="ec" xml:id="_bill__akn_article_5se970_ti31S6">
+            <p leos:origin="ec" xml:id="_bill__akn_article_5se970_LmANoo">To enable the reusing entity to manage the
+                solution autonomously, the owner of the solution shall specify the guarantees that will be provided to
+                the reusing agencies in terms of cooperation, support and maintenance. Reusing entities shall before
+                adopting the solutions provide an assessment of the solution covering the ability of managing
+                autonomously the cybersecurity and the evolution of the reused solution.
+            </p>
+        </content>
+    </paragraph>
+</article>

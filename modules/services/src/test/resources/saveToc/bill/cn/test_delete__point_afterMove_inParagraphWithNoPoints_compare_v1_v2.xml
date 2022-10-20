@@ -1,0 +1,35 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:affected="true" leos:autonumbering="true" leos:deletable="false" leos:editable="true" leos:origin="ec" xml:id="_art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="_art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="_art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="_art_1__para_1">
+                    <num leos:origin="ec" xml:id="_art_1__para_1__num">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="_art_1_0IxItO">
+                        <content leos:origin="ec" xml:id="_art_1__para_1__content">
+                            <p leos:origin="ec" xml:id="_art_1__para_1__content__p">Article 1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="_art_1_VqBxls">
+                        <point leos:origin="ec" xml:id="_art_1_d5lxNW">
+                            <num leos:origin="ec" xml:id="_art_1_T1FuHf">(b)</num>
+                            <content leos:origin="ec" xml:id="_art_1_liLUFO">
+                                <p leos:origin="ec" xml:id="_art_1_ckf6MW">Point b of Article 1</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:affected="true" leos:origin="ec" xml:id="_art_1_uJWnQB">
+                    <num leos:origin="ec" xml:id="_art_1_INcldv">2.</num>
+                    <subparagraph leos:origin="ec" leos:softaction="trans" leos:softactionroot="true" leos:softdate="2022-07-18T14:02:40.194+02:00"
+                                  leos:softuser="DOE Jane(DGT)" xml:id="transformed__art_1_uJWnQB">
+                        <content leos:origin="ec" xml:id="_art_1_VaI8EU">
+                            <p leos:origin="ec" xml:id="_art_1_oIcpbe">Paragraph 2 of Article 1</p>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

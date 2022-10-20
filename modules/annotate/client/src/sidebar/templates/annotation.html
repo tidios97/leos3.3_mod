@@ -1,0 +1,205 @@
+<header class="annotation-header" ng-if="!vm.user()">
+  <strong>You must be logged in to create comments/suggestions.</strong>
+</header>
+
+<div ng-keydown="vm.onKeydown($event)" ng-if="vm.user()">
+
+  <div id="annotation-wrapper" ng-mouseover="vm.showButtons($event)" ng-mouseout="vm.hideButtons($event)">
+    <annotation-header annotation="vm.annotation" is-editing="vm.editing()" is-highlight="vm.isHighlight()"
+      is-private="vm.state().isPrivate" is-saving="vm.isSaving" is-deleted="vm.isDeleted()" id="vm.id()"
+      edit="vm.edit()" reply="vm.reply()" delete="vm.delete()" on-reply-count-click="vm.onReplyCountClick()"
+      reply-count="vm.replyCount" show-document-info="vm.showDocumentInfo">
+    </annotation-header>
+    <!-- Excerpts -->
+    <section class="annotation-quote-list" ng-if="vm.quote()">
+      <excerpt collapsed-height="35" inline-controls="true" overflow-hysteresis="20" content-data="selector.exact">
+        <blockquote class="annotation-quote" h-branding="selectionFontFamily">
+          <span ng-if="vm.isOrphan()" ng-bind="vm.precedingText()"></span><span ng-class="{'is-orphan' : vm.isOrphan()}"
+            ng-bind="vm.quote()"></span><span ng-if="vm.isOrphan()" ng-bind="vm.succeedingText()"></span>
+        </blockquote>
+      </excerpt>
+    </section>
+
+    <!-- / Excerpts -->
+
+    <!-- Body -->
+    <section name="text" class="annotation-body">
+
+      <!-- forwarded annotation -->
+      <div ng-if="vm.isAnnotationForwarded()">
+        <div class="annotation-body-forward">
+            <i class="h-icon-annotation-forward"></i>
+            <div class="textfield">
+              <!-- forwarded annotation text -->
+              <excerpt enabled="true" inline-controls="false"
+                on-collapsible-changed="vm.setBodyCollapsible(collapsible)" collapse="vm.collapseBody" collapsed-height="400"
+                overflow-hysteresis="20" content-data="vm.diffText()">
+                  <markdown text="vm.diffText()"
+                    custom-text-class="{'annotation-body is-hidden':vm.isHiddenByModerator(), 'has-content':vm.isTextValid()}"
+                    read-only="true" 
+                    ng-if="vm.isSuggestion()">
+                  </markdown>
+                  <markdown text="vm.diffText()"
+                    custom-text-class="{'annotation-body is-hidden':vm.isHiddenByModerator(), 'has-content':vm.isTextValid()}"
+                    read-only="true"
+                    ng-if="!vm.isSuggestion()"></markdown>
+              </excerpt>
+              <!-- suggestion justification -->
+              <div class="annotation__justification-container" ng-if="vm.justificationText() && vm.isJustificationShown()">
+                <div class="annotation-replies">
+                  <a href="" ng-click="vm.toggleJustificationCollapsed(); $event.stopPropagation();">
+                    <span class="annotation-replies__count h-icon-chevron-right" ng-if="vm.isJustificationCollapsed()"></span>
+                    <span class="annotation-replies__count h-icon-keyboard_arrow_down"
+                      ng-if="!vm.isJustificationCollapsed()"></span>
+                    <span class="annotation-replies__link">{{ vm.justificationLabel() }}</span>
+                  </a>
+                </div>
+        
+                <!-- field for a suggestion's justification -->
+                <markdown class="annotation__justification-text"
+                  ng-if="!vm.isJustificationCollapsed()"
+                  text="vm.justificationText()"
+                  read-only="true">
+                </markdown>
+              </div>
+              <!-- field for a forwarded reply -->
+              <div ng-if="vm.annotation.replyText" class="forward-reply">
+                <i class="h-icon-annotation-reply icon-in-forward"></i>
+                <div class="reply-text">
+                  <markdown text="vm.annotation.replyText"
+                    custom-text-class="{'annotation-body is-hidden':vm.isHiddenByModerator(), 'has-content':vm.isTextValid()}"
+                    read-only="true"/>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <excerpt enabled="!vm.editing()" inline-controls="false"
+        on-collapsible-changed="vm.setBodyCollapsible(collapsible)" collapse="vm.collapseBody" collapsed-height="400"
+        overflow-hysteresis="20" content-data="vm.diffText()">
+
+        <!-- suggestion editing window -->
+        <markdown text="vm.diffText()" custom-text-class="{'annotation-body is-hidden':vm.isHiddenByModerator(),
+                                      'has-content':vm.isTextValid()}" on-edit-text="vm.setText(text)"
+          read-only="!vm.editing() || (vm.editing() && vm.isAnnotationForwarded())" 
+          ng-if="vm.isSuggestion() && !vm.isAnnotationForwarded()">
+        </markdown>
+
+        <!-- normal annotation editing window -->
+        <ckeditor-markdown text="vm.diffText()" custom-text-class="{'annotation-body is-hidden':vm.isHiddenByModerator(),
+                                      'has-content':vm.isTextValid()}" on-edit-text="vm.setText(text)"
+          read-only="!vm.editing() || (vm.editing() && vm.isAnnotationForwarded())" 
+          ng-if="!vm.isSuggestion() && !vm.isAnnotationForwarded()">
+        </ckeditor-markdown>
+      </excerpt>
+
+      <!-- justification of a suggestion, may be left textually empty -->
+      <div class="annotation__justification-container" ng-if="vm.isJustificationShown() && !vm.isAnnotationForwarded()" enabled="!vm.editing()">
+
+        <div class="annotation-replies">
+          <a href="" ng-click="vm.toggleJustificationCollapsed(); $event.stopPropagation();">
+            <span class="annotation-replies__count h-icon-chevron-right" ng-if="vm.isJustificationCollapsed()"></span>
+            <span class="annotation-replies__count h-icon-keyboard_arrow_down"
+              ng-if="!vm.isJustificationCollapsed()"></span>
+            <span class="annotation-replies__link">{{ vm.justificationLabel() }}</span>
+          </a>
+        </div>
+
+        <!-- editing window for a suggestion's justification -->
+        <ckeditor-markdown class="annotation__justification-text"
+          ng-if="!vm.isJustificationCollapsed()"
+          text="vm.justificationText()"
+          on-edit-text="vm.setJustificationText(text)"
+          read-only="!vm.editing() || (vm.editing() && vm.isAnnotationForwarded())">
+        </ckeditor-markdown>
+
+      </div>
+
+      <!-- justification for forwarding an annotation, may be left textually empty -->
+      <div class="annotation__forwardingjustification-container" ng-if="vm.isAnnotationForwarded()" enabled="vm.editing()">
+
+        <ckeditor-markdown 
+          text="vm.forwardJustifText()" 
+          on-edit-text="vm.setForwardJustifText(text)"
+          read-only="!vm.editing()">
+        </ckeditor-markdown>
+      </div>
+
+
+      <div ng-if="vm.shouldDisplayMetadata()" class="leos-annotation-info">
+        <span ng-repeat="(key, value) in vm.getMetadata()" title="{{key}}" ng-class="vm.getMetadataInfoStyle(key)">
+          {{value}}
+        </span>
+      </div>
+      <div class="leos-annotation-actions" ng-if="!vm.editing() && vm.id() ">
+        <div ng-show="vm.isSaving">Saving…</div>
+        <annotation-action-button icon="'h-icon-annotation-edit'" is-disabled="vm.isDeleted()" label="'Edit'"
+          ng-show="vm.isEditButtonShown()" on-click="vm.edit()" ></annotation-action-button>
+        <annotation-action-button icon="'h-icon-annotation-delete'" is-disabled="vm.isDeleted()" label="'Delete'"
+          ng-show="vm.isDeleteButtonShown()" on-click="vm.delete()"></annotation-action-button>
+        <annotation-action-button icon="'h-icon-annotation-reply'" is-disabled="vm.isDeleted()"
+          ng-show="vm.isReplyButtonShown()" label="'Reply'" on-click="vm.reply()"></annotation-action-button>
+        <annotation-action-button icon="'h-icon-annotation-forward'" is-disabled="vm.isDeleted()"
+          ng-show="vm.isForwardButtonShown()" label="'Forward'" on-click="vm.forward()"></annotation-action-button>
+       </div>
+      <div class="leos-annotation-contribution" ng-show="vm.isContributionLabelShown()">(contribution)</div>
+    </section>
+  </div>
+
+  <span class="annotation-header__share-info" ng-if="!vm.isReply()">
+    <a class="annotation-header__group" target="_blank" ng-if="vm.group()&& vm.group().url" href="{{vm.group().url}}">
+      <i class="h-icon-group"></i><span class="annotation-header__group-name">{{vm.group().name}}</span>
+    </a>
+    <span ng-show="vm.state().isPrivate" title="This annotation is visible only to you.">
+    <i class="h-icon-lock"></i><span class="annotation-header__group-name" ng-show="!vm.group().url">Only me</span>
+    </span>
+
+    <span class="annotation-header__group"  ng-show="!vm.state().isPrivate&&!vm.isSent()" >
+      <i class="h-icon-group"></i>
+    <span class="annotation-header__group-name" ng-if="vm.group()">{{vm.group().name}}</span>
+  </span>
+    <i class="h-icon-border-color" ng-show="vm.isHighlight() && !vm.editing()"
+      title="This is a highlight. Click 'edit' to add a note or tag."></i>
+  </span>
+
+  <footer class="annotation-footer">
+    <div class="annotation-form-actions" ng-if="vm.editing()">
+      <publish-annotation-btn class="publish-annotation-btn" group="vm.group()"
+        on-update-selected-group="vm.updateSelectedGroup(group)"
+        can-post="vm.isTextValid()"
+        is-shared="vm.isShared()"
+        on-cancel="vm.revert()"
+        on-save="vm.save()"
+        on-set-privacy="vm.setPrivacy(level)"
+        isforward="vm.isForward()"
+        is-reply="vm.isReply()"
+        origin-group="vm.annotation.originGroup"></publish-annotation-btn>
+    </div>
+
+    <div class="annotation-replies" ng-if="!vm.isReply() && vm.replyCount > 0">
+      <a href="" ng-click="vm.onReplyCountClick(); $event.stopPropagation();">
+        <span class="annotation-replies__count h-icon-chevron-right" ng-if="vm.isCollapsed"></span>
+        <span class="annotation-replies__count h-icon-keyboard_arrow_down" ng-if="!vm.isCollapsed"></span>
+        <span class="annotation-replies__link">{{ vm.replyLabel() }}</span>
+        <span class="annotation-replies__count" ng-if="!vm.isChildReplyInEditingState">({{ vm.replyCount }})</span>
+      </a>
+    </div>
+
+    <div class="annotation-actions" ng-if="vm.isSaving">
+      Saving...
+    </div>
+
+    <div class="annotation-actions-footer" ng-if="!vm.isSaving && !vm.editing() && vm.id()">
+      <div class="annotation-actions-footer-child" ng-if="vm.isSuggestion() && !vm.isProcessed() && !vm.isOrphan()&&!vm.isForward()">
+        <suggestion-buttons annotation="vm.annotation" reply="vm.reply()" reply-count="vm.replyCount"></suggestion-buttons>
+      </div>
+      
+      <div class="annotation-actions-footer-child annotation-action-treated leos-input-option" 
+          ng-if="vm.isMarkAsTreatedShown()">
+        <input type="checkbox" ng-model="vm.markAsTreated" ng-change="vm.treat(vm.markAsTreated)"/>
+        <span>Mark as processed</span>
+      </div>  
+    </div>
+  </footer>
+</div>

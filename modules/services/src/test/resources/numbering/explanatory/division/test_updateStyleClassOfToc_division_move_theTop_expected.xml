@@ -1,0 +1,24 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+    <doc name="EXPL_COUNCIL">
+
+        <meta>
+        </meta>
+        <preface xml:id="_preface">
+        </preface>
+
+        <mainBody xml:id="body">
+            <division class="type_2" xml:id="body_division_2">
+                <num>#</num>
+                <heading>Was A. Will be numbered to I.</heading>
+            </division>
+            <division class="type_1" xml:id="body_division_1">
+                <num>#</num>
+                <heading>Was I. Will be numbered to II.</heading>
+            </division>
+            <division class="type_1" xml:id="body_division_3">
+                <num>#</num>
+                <heading>Was II. Will be numbered to III.</heading>
+            </division>
+        </mainBody>
+    </doc>
+</akomaNtoso>

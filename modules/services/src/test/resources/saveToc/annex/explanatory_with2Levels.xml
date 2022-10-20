@@ -1,0 +1,26 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="EXPL_COUNCIL">
+        <mainBody xml:id="mainBody">
+            <division class="type_1" xml:id="_body_division_1">
+                <num xml:id="_akn_uEcrjC">I.</num>
+                <heading xml:id="_akn_d8EdHL">TEXT…</heading>
+            </division>
+            <level leos:depth="1" xml:id="_body_level_1">
+                <num xml:id="_body_level_1_num">1.</num>
+                <content xml:id="_body_level_1_content">
+                    <p xml:id="_body_level_1_content_p">Text...</p>
+                </content>
+            </level>
+            <division class="type_1" xml:id="_body_division_2">
+                <num xml:id="_akn_aNGs5S">II.</num>
+                <heading xml:id="_akn_C12M9z">TEXT…</heading>
+            </division>
+            <level leos:depth="1" xml:id="_body_level_2">
+                <num xml:id="_body_level_2_num">2.</num>
+                <content xml:id="_body_level_2_content">
+                    <p xml:id="_body_level_2_content_p">Text...</p>
+                </content>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

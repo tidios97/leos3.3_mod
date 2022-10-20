@@ -1,0 +1,22 @@
+<root xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false" leos:softuser="demo">
+        <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+        <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+        <paragraph leos:origin="ec" xml:id="art_1__para_1" leos:softuser="demo">
+            <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+            <subparagraph xml:id="akn_art_subpara_HaUTRs" leos:softaction="add" leos:softactionroot="true" leos:softuser="demo"
+                          leos:softdate="2019-01-29T11:56:51.605+01:00">
+                <content leos:origin="ec" xml:id="art_1__para_1__content">
+                    <p leos:origin="ec" xml:id="art_1__para_1__content__p">Text...<inline leos:origin="ec" xml:id="art_1_0miExA" name="math-tex">\\(x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)</inline>
+                    </p>
+                </content>
+            </subparagraph>
+            <subparagraph xml:id="akn_art_subpara_JwqJAz" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T11:56:51.603+01:00"
+                          leos:origin="cn">
+                <content xml:id="art_1_dB5lte">
+                    <p xml:id="art_1_WxnFDr">Subparagraph Text...</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

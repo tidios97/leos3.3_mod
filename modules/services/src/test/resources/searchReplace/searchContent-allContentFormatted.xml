@@ -1,0 +1,21 @@
+
+<?xml-stylesheet type="text/css" href="renditions/html/css/memorandum.css"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <doc name="EXPL_MEMORANDUM">
+        <mainBody xml:id="body">
+            <tblock xml:id="tblock_2" refersTo="~statementOfLegalReasons">
+                <num xml:id="tblock_2__num">2.</num>
+                <heading xml:id="tblock_2__heading">LEGAL BASIS, SUBSIDIARITY AND PROPORTIONALITY</heading>
+                <tblock xml:id="tblock_2__tblock_2" refersTo="~subsidiarity">
+                    <num xml:id="tblock_2__tblock_2__num">•</num>
+                    <heading xml:id="tblock_2__tblock_2__heading">Subsidiarity (for non-exclusive competence)</heading>
+                    <blockContainer xml:id="tblock_2__tblock_2__blockcontainer" leos:editable="true">
+                        <p xml:id="tblock_2__tblock_2__blockcontainer__p">
+                            <b xml:id="akn_E3FfJO"><u xml:id="akn_TErD12">This <sup xml:id="akn_Stz06P">is my simple</sup> content</u></b>
+                        </p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+        </mainBody>
+    </doc>
+</akomaNtoso>

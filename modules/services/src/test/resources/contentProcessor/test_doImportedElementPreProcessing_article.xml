@@ -1,0 +1,37 @@
+<article xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+             xmlns:fmx="http://formex.publications.europa.eu/schema/formex-05.21-20110601.xd"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:leos="urn:eu:europa:ec:leos"
+             xml:id="art_d1e5242">
+    <num>Article 64</num>
+    <heading>Support for PPP operations</heading>
+    <paragraph>
+        <num/>
+        <subparagraph>
+            <content>
+                <p>In the case of a PPP operation where the beneficiary is a public law body, expenditure under a PPP
+                    operation which has been incurred and paid by the private partner may, by way of derogation from
+                    Article 65(2), be considered as incurred and paid by a beneficiary and included in a request for
+                    payment to the Commission provided that the following conditions are met:
+                </p>
+            </content>
+        </subparagraph>
+        <list>
+            <point>
+                <num>(a)</num>
+                <content>
+                    <p>the beneficiary has entered into a PPP agreement with a private partner;</p>
+                </content>
+            </point>
+            <point>
+                <num>(b)</num>
+                <content>
+                    <p>the managing authority has verified that the expenditure declared by the beneficiary has been
+                        paid by the private partner and that the operation complies with applicable Union and national
+                        law, the programme and the conditions for support of the operation.
+                    </p>
+                </content>
+            </point>
+        </list>
+    </paragraph>
+</article>

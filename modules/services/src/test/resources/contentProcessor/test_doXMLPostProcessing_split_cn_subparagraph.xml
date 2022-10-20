@@ -1,0 +1,40 @@
+<root xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false" leos:softuser="demo">
+        <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+        <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+        <paragraph xml:id="art_1__para_1" leos:origin="ec" leos:softuser="demo">
+            <num xml:id="art_1__para_1__num" leos:origin="ec">1.</num>
+            <subparagraph leos:origin="ec" leos:softaction="trans" leos:softuser="demo" leos:softdate="2019-01-29T11:36:13.035+01:00" xml:id="transformed_art_1__para_1">
+                <content xml:id="art_1_lP7CeV">
+                    <p xml:id="art_1_wyGWnb">Text...</p>
+                </content>
+            </subparagraph>
+            <subparagraph leos:origin="cn" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T11:36:13.037+01:00" xml:id="art_1_e0303i">
+                <content xml:id="art_1_0SOAi3">
+                    <p xml:id="art_1_NPExjj">as as as</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+        <paragraph xml:id="akn_art_para_OQTUpc" leos:origin="cn" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T11:22:42.155+01:00">
+            <num xml:id="art_1_hNZU6V">1a.</num>
+            <subparagraph leos:origin="cn" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T11:36:13.055+01:00" xml:id="art_1_Bw0s3c">
+                <content xml:id="art_1_WwmL3d">
+                    <p xml:id="art_1_0ciZrg">Paragraph</p>
+                </content>
+            </subparagraph>
+            <subparagraph xml:id="art_1_mUjRT9" leos:origin="cn" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T11:36:13.070+01:00">
+                <content xml:id="art_1_WmFdLo">
+                    <p xml:id="art_1_kXVvwh">For calculating the value of exposures for the purposes of Article 395(1) an institution may use the
+                        &apos;fully adjusted exposure value&apos; as calculated under Part Three, Title II, Chapter 4 taking into account the credit
+                        risk mitigation,
+                    </p>
+                </content>
+            </subparagraph>
+            <subparagraph xml:id="art_1_PXd1Bx">
+                <content xml:id="art_1_JlttGn">
+                    <p xml:id="art_1_pIRiM5">volatility adjustments, and any maturity mismatch (E*).</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

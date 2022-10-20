@@ -1,0 +1,87 @@
+<?xml-stylesheet type="text/css" href="renditions/html/css/bill.css"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<bill name="REG">
+		<body leos:origin="ec" xml:id="body">
+			<chapter leos:origin="ec" xml:id="cha_Fee09f">
+				<num leos:origin="ec" xml:id="akn_S4iR11">Chapter I</num>
+				<heading leos:origin="ec" xml:id="akn_1rVo8P">Digital cooperation - information exchange and other procedural rules</heading>
+				<section leos:origin="ec" xml:id="sec_nlYayS">
+					<num leos:origin="ec" xml:id="akn_zntRbe">Section 1</num>
+					<heading leos:origin="ec" xml:id="akn_RT0jeA">DIGITAL COOPERATION RELATED TO UNION NON-CUSTOMS FORMALITIES</heading>
+					<article leos:affected="true" leos:deletable="false" leos:editable="true" leos:origin="ec" xml:id="akn_art_q7XGxr">
+						<num leos:editable="false" leos:origin="ec" xml:id="akn_art_q7XGxr_ilVeFO">Article 1</num>
+						<heading leos:origin="ec" xml:id="akn_art_q7XGxr_L2iO0x">Information exchange processed through EU CSW-CERTEX</heading>
+						<paragraph leos:origin="ec" xml:id="akn_art_q7XGxr_t7zhJW">
+							<num leos:origin="ec" xml:id="akn_art_q7XGxr_sd2xlH">1.</num>
+							<subparagraph leos:origin="ec" xml:id="akn_art_q7XGxr_bIuYAK">
+								<content leos:origin="ec" xml:id="akn_art_q7XGxr_E176AP">
+									<p leos:origin="ec" xml:id="akn_art_q7XGxr_uwVnDm">For each of the Union non-customs formalities listed in the Annex, EU CSW-CERTEX shall enable information to be exchanged between the national single window environments for customs and the relevant Union non-customs systems for the following purposes:</p>
+								</content>
+							</subparagraph>
+							<list leos:origin="ec" xml:id="akn_art_q7XGxr_JOEMzG">
+								<point leos:origin="ec" xml:id="akn_art_q7XGxr_UGnu09">
+									<num leos:origin="ec" xml:id="akn_art_q7XGxr_SfavcV">(a)</num>
+									<content leos:origin="ec" xml:id="akn_art_q7XGxr_18gO5j">
+										<p leos:origin="ec" xml:id="akn_art_q7XGxr_G9Wxer">making available the relevant data to customs authorities to perform the necessary automated verification of those formalities in accordance with Regulation (EU) No 952/2013;</p>
+									</content>
+								</point>
+								<point leos:indent-origin-indent-level="1" leos:indent-origin-num-origin="ec" leos:indent-origin-type="FIRST_SUBPOINT" leos:origin="ec" leos:softaction="trans" leos:softactionroot="true" leos:softdate="2021-12-08T09:24:09.915+01:00" leos:softtrans_from="transformed_akn_art_q7XGxr_DQjHEU" leos:softuser="jane" xml:id="akn_art_q7XGxr_DQjHEU">
+									<num leos:origin="ec" xml:id="akn_art_q7XGxr_9uYdAj">(b)</num>
+									<content xml:id="akn_art_q7XGxr_Rfgg9r">
+										<p xml:id="akn_art_q7XGxr_PTWRam">making available the relevant data to partner competent authorities to perform the quantity management of</p>
+									</content>
+								</point>
+								<point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true" leos:softdate="2021-12-08T09:24:09.916+01:00" leos:softuser="jane" xml:id="deleted_akn_art_q7XGxr_AxsRv9">
+									<num leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_4yG69e">(c)</num>
+									<content leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_wtbz1C">
+										<p leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_KeaH4r">facilitating the integration of procedures between customs and partner competent authorities for a fully automated goods clearance process and coordination of controls in accordance with Article 47(1) of Regulation (EU) No 952/2013;</p>
+									</content>
+								</point>
+								<point leos:origin="ec" xml:id="akn_art_q7XGxr_Nm6oFM">
+									<num leos:origin="ec" xml:id="akn_art_q7XGxr_dywvdH">(d)</num>
+									<content leos:origin="ec" xml:id="akn_art_q7XGxr_ZarR0w">
+										<p leos:origin="ec" xml:id="akn_art_q7XGxr_Am0rFg">allowing any between customs and the relevant partner competent authorities required by Union legislation referred to in the Annex.</p>
+									</content>
+								</point>
+							</list>
+						</paragraph>
+						<paragraph leos:origin="ec" xml:id="akn_art_q7XGxr_7GzwUc">
+							<num leos:origin="ec" xml:id="akn_art_q7XGxr_UAgiy6">2.</num>
+							<subparagraph leos:origin="ec" xml:id="akn_art_q7XGxr_RUwVxP">
+								<content leos:origin="ec" xml:id="akn_art_q7XGxr_jL3AuW">
+									<p leos:origin="ec" xml:id="akn_art_q7XGxr_GAUZf1">For each of the Union non-customs formalities listed in the Annex, EU CSW-CERTEX shall provide for the following:</p>
+								</content>
+							</subparagraph>
+							<list leos:origin="ec" xml:id="akn_art_q7XGxr_PgDoT7">
+								<point leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_myMswf" leos:editable="false" leos:deletable="false" leos:softaction="del" leos:softactionroot="true" leos:softuser="jane" leos:softdate="2021-12-08T09:24:20.697+01:00">
+									<num leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_sxCGiB">(a)</num>
+									<content leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_YgspvT">
+										<p leos:origin="ec" xml:id="deleted_akn_art_q7XGxr_GjIwo1">aligning customs and non-customs terminology where possible, and identifying the customs procedures for which the supporting documents can be used based on the administrative decisions of the partner competent authority indicated in the supporting documents;</p>
+									</content>
+								</point>
+								<point leos:origin="ec" xml:id="akn_art_q7XGxr_tDF4RY">
+									<num leos:origin="ec" xml:id="akn_art_q7XGxr_uBM98w">(b)</num>
+									<content leos:origin="ec" xml:id="akn_art_q7XGxr_1S5MPC">
+										<p leos:origin="ec" xml:id="akn_art_q7XGxr_2xa7GE">converting the format of data required to fulfil the relevant Union non-customs formalities into data compatible with the customs declaration and vice versa without changing their content.</p>
+									</content>
+								</point>
+							</list>
+						</paragraph>
+						<paragraph leos:origin="ec" xml:id="akn_art_q7XGxr_Qe9qGQ">
+							<num leos:origin="ec" xml:id="akn_art_q7XGxr_APtk7M">3.</num>
+							<content leos:origin="ec" xml:id="akn_art_q7XGxr_xDKCYG">
+								<p leos:origin="ec" xml:id="akn_art_q7XGxr_d33CUm">The Commission is empowered to adopt delegated acts in accordance with Article 21 specifying the data elements to be exchanged through EU CSW-CERTEX in accordance with paragraph 1 of this Article.</p>
+							</content>
+						</paragraph>
+						<paragraph leos:origin="ec" xml:id="akn_art_q7XGxr_R8ee99">
+							<num leos:origin="ec" xml:id="akn_art_q7XGxr_tzgNfc">4.</num>
+							<content leos:origin="ec" xml:id="akn_art_q7XGxr_AUT4Qx">
+								<p leos:origin="ec" xml:id="akn_art_q7XGxr_3MlhVZ">The Commission shall, by means of implementing acts, adopt specific rules for the information exchange referred to in paragraphs 1 and 2, including, where appropriate, any specific rules to ensure the protection of personal data. Those implementing acts shall be adopted in accordance with the advisory procedure referred to in Article 22(2).</p>
+							</content>
+						</paragraph>
+					</article>
+				</section>
+			</chapter>
+		</body>
+	</bill>
+</akomaNtoso>

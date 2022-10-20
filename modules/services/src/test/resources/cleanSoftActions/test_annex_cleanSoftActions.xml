@@ -1,0 +1,245 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <doc name="ANNEX">
+        <meta>
+            <identification source="~COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage language="en"/>
+                	<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                </FRBRManifestation>
+            </identification>
+            <references source="~COM">
+                <TLCLocation href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels" xml:id="_BEL_BRU"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL" showAs="Council of the European Union" xml:id="CONSIL"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/EP" showAs="European Parliament" xml:id="EP"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/COM" showAs="European Commission" xml:id="COM"/>
+                <TLCRole href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President" xml:id="PRESID"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/resource-type/ANNEX" name="docType" showAs="Annex" xml:id="ANNEX"/>
+                <TLCReference href="http://eurovoc.europa.eu/5456" name="contentSubject" showAs="Legal basis" xml:id="legalBasis"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/language/ENG" name="language" showAs="en" xml:id="language"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.0.0</leos:templateVersion>
+                <leos:docVersion>0.1.10</leos:docVersion>
+                <leos:docTemplate>SG-017</leos:docTemplate>
+                <leos:docPurpose xml:id="proprietary__docpurpose">on ...</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:template xml:id="proprietary_template">SG-017</leos:template>
+                <leos:ref>annex_ckg7zryru0004hc24c0cbhsya</leos:ref>
+                <leos:refOrigin>annex_ckg7yxv850004d824pb1rd2dk</leos:refOrigin>
+                <leos:annexNumber xml:id="proprietary__annexNumber">Annex</leos:annexNumber>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                </leos:docType>
+                <leos:annexIndex xml:id="proprietary__annexIndex">1</leos:annexIndex>
+                <leos:annexTitle xml:id="proprietary__annexTitle"/>
+                <leos:objectId>268</leos:objectId>
+            </proprietary>
+        </meta>
+
+        <preface leos:origin="ec" xml:id="preface">
+        </preface>
+        <mainBody leos:origin="ec" xml:id="body">
+            <level leos:origin="cn" leos:softaction="add" leos:softactionroot="true" leos:softdate="2020-10-13T15:52:28.634+02:00" leos:softuser="jane" xml:id="akn_level_s6k9Ju">
+                <num xml:id="akn_eIGvW4">-2.</num>
+                <heading xml:id="akn_WK0GNG">Heading Level</heading>
+                <content xml:id="akn_MW13ra">
+                    <p xml:id="akn_TlEOYi">Content level -2</p>
+                </content>
+            </level>
+            <title leos:origin="ec" xml:id="akn_title_GieOFM">
+                <num leos:origin="ec" xml:id="akn_sTx8nB">Title I</num>
+                <heading leos:origin="ec" xml:id="akn_QDT7K1">Title heading...</heading>
+                <level leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true" leos:softdate="2020-10-13T15:33:14.956+02:00" leos:softmove_from="moved_body_level_2" leos:softmove_label="MOVED from point 1.2" leos:softuser="jane" xml:id="body_level_2">
+                    <num leos:origin="cn" xml:id="body_level_2_num">-1.</num>
+                    <content leos:origin="ec" xml:id="akn_HL4JLl">
+                        <p leos:origin="ec" xml:id="body_level_2_content_p">Level 1.2</p>
+                    </content>
+                </level>
+                <level leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true" leos:softdate="2020-10-13T15:33:43.075+02:00" leos:softuser="jane" xml:id="deleted_akn_level_RseJk9">
+                    <num leos:origin="ec" xml:id="deleted_akn_qMcLg8">1.</num>
+                    <subparagraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.073+02:00" leos:softuser="jane" xml:id="deleted_akn_PDmVKD">
+                        <content leos:origin="ec" xml:id="deleted_akn_gfWyXn">
+                            <p leos:origin="ec" xml:id="deleted_akn_o9DJMl">Level 1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.075+02:00" leos:softuser="jane" xml:id="deleted_akn_zoG0cE">
+                        <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.075+02:00" leos:softuser="jane" xml:id="deleted_akn_zAyOSH">
+                            <num leos:origin="ec" xml:id="deleted_akn_02JeQN">(a)</num>
+                            <alinea leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.073+02:00" leos:softuser="jane" xml:id="deleted_akn_4GXM5w">
+                                <content leos:origin="ec" xml:id="deleted_akn_JpNEp1">
+                                    <p leos:origin="ec" xml:id="deleted_akn_C6Qjfi">Point a</p>
+                                </content>
+                            </alinea>
+                            <list leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.075+02:00" leos:softuser="jane" xml:id="deleted_akn_3xnBky">
+                                <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.073+02:00" leos:softuser="jane" xml:id="deleted_akn_gQ2uyl">
+                                    <num leos:origin="ec" xml:id="deleted_akn_gBTOED">(i)</num>
+                                    <content leos:origin="ec" xml:id="deleted_akn_0WSYzn">
+                                        <p leos:origin="ec" xml:id="deleted_akn_2HaGEx">Point i</p>
+                                    </content>
+                                </point>
+                                <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.074+02:00" leos:softuser="jane" xml:id="deleted_akn_0qjKGP">
+                                    <num leos:origin="ec" xml:id="deleted_akn_VkTDEm">(ii)</num>
+                                    <alinea leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.073+02:00" leos:softuser="jane" xml:id="deleted_akn_Fhzyp0">
+                                        <content leos:origin="ec" xml:id="deleted_akn_AFwahh">
+                                            <p leos:origin="ec" xml:id="deleted_akn_ExUY0O">Point ii</p>
+                                        </content>
+                                    </alinea>
+                                    <list leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.074+02:00" leos:softuser="jane" xml:id="deleted_akn_Wb9dpb">
+                                        <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.074+02:00" leos:softuser="jane" xml:id="deleted_akn_3nmXif">
+                                            <num leos:origin="ec" xml:id="deleted_akn_QoB0E7">(1)</num>
+                                            <alinea leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.073+02:00" leos:softuser="jane" xml:id="deleted_akn_gSKo6t">
+                                                <content leos:origin="ec" xml:id="deleted_akn_6OIzSG">
+                                                    <p leos:origin="ec" xml:id="deleted_akn_YDL8ov">Point 1</p>
+                                                </content>
+                                            </alinea>
+                                            <list leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.074+02:00" leos:softuser="jane" xml:id="deleted_akn_IUjI2Y">
+                                                <indent leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.073+02:00" leos:softuser="jane" xml:id="deleted_akn_VIT3m7">
+                                                    <num leos:origin="ec" xml:id="deleted_akn_A6d6Zf">-</num>
+                                                    <content leos:origin="ec" xml:id="deleted_akn_n9hWm0">
+                                                        <p leos:origin="ec" xml:id="deleted_akn_Kx4G96">first indent</p>
+                                                    </content>
+                                                </indent>
+                                                <indent leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2020-10-13T15:33:43.074+02:00" leos:softuser="jane" xml:id="deleted_akn_Gfy8NO">
+                                                    <num leos:origin="ec" xml:id="deleted_akn_HNwcTs">-</num>
+                                                    <content leos:origin="ec" xml:id="deleted_akn_nJOoUA">
+                                                        <p leos:origin="ec" xml:id="deleted_akn_kB6Jr8">second indent
+                                                        </p>
+                                                    </content>
+                                                </indent>
+                                            </list>
+                                        </point>
+                                    </list>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </level>
+                <level leos:origin="ec" xml:id="akn_level_cN0er3">
+                    <num leos:origin="ec" xml:id="akn_duz80P">1.1.</num>
+                    <subparagraph leos:origin="ec" xml:id="akn_aF3qrC">
+                        <content leos:origin="ec" xml:id="akn_kHg8QE">
+                            <p leos:origin="ec" xml:id="akn_0GuxoX">Level 1.1 </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" xml:id="akn_8FPiwH">
+                        <content leos:origin="ec" xml:id="akn_VCy4jl">
+                            <p leos:origin="ec" xml:id="akn_nABQvt">Content 1.1</p>
+                        </content>
+                    </subparagraph>
+                </level>
+                <level leos:origin="ec" xml:id="akn_level_biIuvM">
+                    <num leos:origin="ec" xml:id="akn_hv7AMt">1.1.1.</num>
+                    <subparagraph leos:origin="ec" xml:id="akn_81XGRl">
+                        <content leos:origin="ec" xml:id="akn_ULX2GT">
+                            <p leos:origin="ec" xml:id="akn_Col53V">Level 1.1.1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="akn_OKrsPP">
+                        <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true" leos:softdate="2020-10-13T15:20:05.636+02:00" leos:softmove_from="moved_akn_2wkgF4" leos:softmove_label="MOVED from title I, point 1.1.1, point (b)" leos:softuser="jane" xml:id="akn_2wkgF4">
+                            <num leos:origin="cn" xml:id="akn_LN7wn2">(-a)</num>
+                            <alinea leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false" leos:softdate="2020-10-13T15:20:05.591+02:00" leos:softmove_from="moved_akn_l4nug5" leos:softmove_label="MOVED from title I, point 1.1.1, point (b), first sub-point" leos:softuser="jane" xml:id="akn_l4nug5">
+                                <content leos:origin="ec" xml:id="akn_KL87za">
+                                    <p leos:origin="ec" xml:id="akn_m5tEWi">Point b</p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false" leos:softdate="2020-10-13T15:20:05.621+02:00" leos:softmove_from="moved_akn_NVXoge" leos:softmove_label="MOVED from title I, point 1.1.1, point (b)" leos:softuser="jane" xml:id="akn_NVXoge">
+                                <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false" leos:softdate="2020-10-13T15:20:05.606+02:00" leos:softmove_from="moved_akn_qEKrHf" leos:softmove_label="MOVED from title I, point 1.1.1, point (b)(i)" leos:softuser="jane" xml:id="akn_qEKrHf">
+                                    <num leos:origin="ec" xml:id="akn_gqREnj">(i)</num>
+                                    <content leos:origin="ec" xml:id="akn_7eYIBG">
+                                        <p leos:origin="ec" xml:id="akn_I3tvwD">Point i</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_5w7BCt">
+                            <num leos:origin="ec" xml:id="akn_TKAU55">(a)</num>
+                            <content leos:origin="ec" xml:id="akn_6toQ08">
+                                <p leos:origin="ec" xml:id="akn_vDFspX">Point a</p>
+                            </content>
+                        </point>
+                        <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to" leos:softactionroot="true" leos:softdate="2020-10-13T15:20:05.710+02:00" leos:softmove_label="MOVED to title I, point 1.1.1, point (-a)" leos:softmove_to="akn_2wkgF4" leos:softuser="jane" xml:id="moved_akn_2wkgF4">
+                            <num leos:origin="ec" xml:id="moved_akn_LN7wn2">(b)</num>
+                            <alinea leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to" leos:softactionroot="false" leos:softdate="2020-10-13T15:20:05.665+02:00" leos:softmove_label="MOVED to title I, point 1.1.1, point (-a), first sub-point" leos:softmove_to="akn_l4nug5" leos:softuser="jane" xml:id="moved_akn_l4nug5">
+                                <content leos:origin="ec" xml:id="moved_akn_KL87za">
+                                    <p leos:origin="ec" xml:id="moved_akn_m5tEWi">Point b</p>
+                                </content>
+                            </alinea>
+                            <list leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to" leos:softactionroot="false" leos:softdate="2020-10-13T15:20:05.695+02:00" leos:softmove_label="MOVED to title I, point 1.1.1, point (-a)" leos:softmove_to="akn_NVXoge" leos:softuser="jane" xml:id="moved_akn_NVXoge">
+                                <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to" leos:softactionroot="false" leos:softdate="2020-10-13T15:20:05.680+02:00" leos:softmove_label="MOVED to title I, point 1.1.1, point (-a)(i)" leos:softmove_to="akn_qEKrHf" leos:softuser="jane" xml:id="moved_akn_qEKrHf">
+                                    <num leos:origin="ec" xml:id="moved_akn_gqREnj">(i)</num>
+                                    <content leos:origin="ec" xml:id="moved_akn_7eYIBG">
+                                        <p leos:origin="ec" xml:id="moved_akn_I3tvwD">Point i</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </level>
+            </title>
+            <chapter leos:origin="ec" xml:id="cha_50Itkz">
+                <num leos:origin="ec" xml:id="akn_KCHj2e">Chapter #</num>
+                <heading leos:origin="ec" xml:id="akn_UhESTJ">Chapter heading...</heading>
+                <level leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to" leos:softactionroot="true" leos:softdate="2020-10-13T15:33:14.957+02:00" leos:softmove_label="MOVED to point -1" leos:softmove_to="body_level_2" leos:softuser="jane" xml:id="moved_body_level_2">
+                    <num leos:origin="ec" xml:id="moved_body_level_2_num">1.2.</num>
+                    <content leos:origin="ec" xml:id="moved_akn_HL4JLl">
+                        <p leos:origin="ec" xml:id="moved_body_level_2_content_p">Level 1.2</p>
+                    </content>
+                </level>
+            </chapter>
+            <level leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true" leos:softdate="2020-10-13T15:32:14.819+02:00" leos:softuser="jane" xml:id="deleted_body_level_1_1">
+                <num leos:origin="ec" xml:id="deleted_body_level_1_1_num">1.3.</num>
+                <content leos:origin="ec" xml:id="deleted_akn_j4r7fK">
+                    <p leos:origin="ec" xml:id="deleted_body_level_1_1_content_p">Level 1.3</p>
+                </content>
+            </level>
+            <level leos:origin="ec" xml:id="akn_level_bNmdKK">
+                <num leos:origin="ec" xml:id="akn_AGFGEr">1.3.1.</num>
+                <content leos:origin="ec" xml:id="akn_hZhC1x">
+                    <p leos:origin="ec" xml:id="akn_FPe38v">Level 1.3.1</p>
+                </content>
+            </level>
+            <level leos:origin="ec" xml:id="akn_level_vsTvn6">
+                <num leos:origin="ec" xml:id="akn_X3Nk2x">1.3.1.1.</num>
+                <content leos:origin="ec" xml:id="akn_nkJ5UV">
+                    <p leos:origin="ec" xml:id="akn_HAKoSm">Level 1.3.1.1</p>
+                </content>
+            </level>
+            <level leos:origin="ec" xml:id="akn_level_XPaQpn">
+                <num leos:origin="ec" xml:id="akn_Jyytta">2.</num>
+                <content leos:origin="ec" xml:id="akn_7G2Qwm">
+                    <p leos:origin="ec" xml:id="akn_o8DJvk">Level 2</p>
+                </content>
+            </level>
+            <paragraph leos:origin="ec" leos:softaction="undelete" leos:softdate="2020-10-13T15:31:45.773+02:00" leos:softuser="jane" xml:id="akn_paragraph_nB6S2Y">
+                <content leos:origin="ec" xml:id="akn_Etyf5C">
+                    <p leos:origin="ec" xml:id="akn_hTFx5F">Paragraph  first</p>
+                </content>
+            </paragraph>
+            <paragraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true" leos:softdate="2020-10-13T15:31:51.234+02:00" leos:softuser="jane" xml:id="deleted_akn_sGbEpw">
+                <content leos:origin="ec" xml:id="deleted_akn_H8vfMb">
+                    <p leos:origin="ec" xml:id="deleted_akn_Tv3Nqg">Paragraph second</p>
+                </content>
+            </paragraph>
+        </mainBody>
+    </doc>
+</akomaNtoso>

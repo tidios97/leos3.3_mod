@@ -1,0 +1,79 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <subparagraph leos:origin="ec" leos:softaction="trans" leos:softactionroot="true"
+                                  leos:softdate="2021-12-15T21:00:36.196+01:00" leos:softuser="jane"
+                                  xml:id="transformed_art_1__para_1">
+                        <content leos:origin="ec" xml:id="art_1__para_1__content">
+                            <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                          leos:softdate="2021-12-15T21:00:36.195+01:00" leos:softuser="jane" xml:id="art_1_par_1_list_1">
+                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                               leos:softdate="2021-12-15T21:00:36.195+01:00" leos:softuser="jane" xml:id="art_1_par_1_point_1">
+                            <num leos:origin="cn" xml:id="_art_1_YzVvGR">(a)</num>
+                            <alinea leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                    leos:softdate="2021-12-15T21:00:36.194+01:00" leos:softuser="jane"
+                                    xml:id="_akn_alinea_x7X2Ei">
+                                <content xml:id="_art_1_utZ9W4">
+                                    <p xml:id="_art_1_PxxrSY">Text...</p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                  leos:softdate="2021-12-15T21:00:36.194+01:00" leos:softuser="jane"
+                                  xml:id="art_1_par_1_list_2">
+                                <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                       leos:softdate="2021-12-15T21:00:36.193+01:00" leos:softuser="jane"
+                                       xml:id="art_1_par_1_point_2">
+                                    <num leos:origin="cn" xml:id="_art_1_e3NQql">(i)</num>
+                                    <alinea leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                            leos:softdate="2021-12-15T21:00:36.193+01:00" leos:softuser="jane"
+                                            xml:id="_akn_alinea_BwcWp9">
+                                        <content xml:id="_art_1_zGb5GH">
+                                            <p xml:id="_art_1_RQ2VnY">Text...</p>
+                                        </content>
+                                    </alinea>
+                                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                          leos:softdate="2021-12-15T21:00:36.192+01:00" leos:softuser="jane"
+                                          xml:id="art_1_par_1_list_3">
+                                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                               leos:softdate="2021-12-15T21:00:36.192+01:00" leos:softuser="jane"
+                                               xml:id="art_1_par_1_point_3">
+                                            <num leos:origin="cn" xml:id="_art_1_EnvvHJ">(1)</num>
+                                            <alinea leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                                    leos:softdate="2021-12-15T21:00:36.191+01:00" leos:softuser="jane"
+                                                    xml:id="akn_alinea_0iznTG">
+                                                <content xml:id="_art_1_eXEN12">
+                                                    <p xml:id="_art_1_Sd88gy">Text...</p>
+                                                </content>
+                                            </alinea>
+                                            <list leos:origin="cn" leos:softaction="add"
+                                                  leos:softactionroot="true"
+                                                  leos:softdate="2021-12-15T21:00:36.190+01:00" leos:softuser="jane"
+                                                  xml:id="lis_nLaq1B">
+                                                <indent leos:origin="cn" leos:softaction="add"
+                                                        leos:softdate="2021-12-15T21:00:36.217+01:00"
+                                                        leos:softuser="jane" xml:id="_akn_indent_3BjlnO">
+                                                    <num leos:editable="false" xml:id="art_1_4hDYZK">-</num>
+                                                    <content xml:id="_art_1_ClDjWL">
+                                                        <p xml:id="_art_1_7b5Vwy">Text...</p>
+                                                    </content>
+                                                </indent>
+                                            </list>
+                                        </point>
+                                    </list>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,126 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <part leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                  leos:softdate="2022-06-17T11:26:04.425+02:00" leos:softuser="demo jane(Ext)"
+                  xml:id="_akn_part_3kIsOK">
+                <num leos:origin="cn">#</num>
+                <heading>Part heading...</heading>
+                <title leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                       leos:softdate="2022-06-17T11:26:04.425+02:00" leos:softuser="demo jane(Ext)"
+                       xml:id="_akn_title_SdHibF">
+                    <num leos:origin="cn">#</num>
+                    <heading>Title heading...</heading>
+                    <chapter leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                             leos:softdate="2022-06-17T11:26:04.425+02:00" leos:softuser="demo jane(Ext)"
+                             xml:id="_akn_chapter_tHvNuU">
+                        <num leos:origin="cn">#</num>
+                        <heading>Chapter heading...</heading>
+                        <section leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                 leos:softdate="2022-06-17T11:26:04.425+02:00" leos:softuser="demo jane(Ext)"
+                                 xml:id="_akn_section_gyaHmz">
+                            <num leos:origin="cn">#</num>
+                            <heading>Section heading...</heading>
+                            <article leos:affected="true" leos:origin="cn" leos:softaction="add"
+                                     leos:softactionroot="true" leos:softdate="2022-06-17T11:26:04.425+02:00"
+                                     leos:softuser="demo jane(Ext)" xml:id="_akn_article_8sP6E4">
+                                <num leos:editable="false" leos:origin="cn">#</num>
+                                <heading>Article heading...</heading>
+                                <paragraph leos:affected="true" leos:origin="cn" leos:softaction="add"
+                                           leos:softactionroot="true" leos:softdate="2022-06-17T11:26:04.425+02:00"
+                                           leos:softuser="demo jane(Ext)" xml:id="_akn_paragraph_gHd2OG">
+                                    <num leos:editable="false" leos:origin="cn">#</num>
+                                    <subparagraph leos:softaction="add" leos:softactionroot="true"
+                                                  leos:softdate="2022-06-17T11:26:04.425+02:00"
+                                                  leos:softuser="demo jane(Ext)" xml:id="_akn_subparagraph_V0Lany">
+                                        <content>
+                                            <p>Text...</p>
+                                        </content>
+                                    </subparagraph>
+                                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                          leos:softdate="2022-06-17T11:26:04.425+02:00" leos:softuser="demo jane(Ext)"
+                                          xml:id="_lis_MWODbS">
+                                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                               leos:softdate="2022-06-17T11:26:04.425+02:00"
+                                               leos:softuser="demo jane(Ext)" xml:id="new_point_1">
+                                            <num leos:editable="false" leos:origin="cn">#</num>
+                                            <alinea leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                                    leos:softdate="2022-06-17T11:26:04.425+02:00"
+                                                    leos:softuser="demo jane(Ext)" xml:id="_akn_alinea_2sfSB4">
+                                                <content>
+                                                    <p>Text...</p>
+                                                </content>
+                                            </alinea>
+                                            <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                                  leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                  leos:softuser="demo jane(Ext)" xml:id="_lis_ZARAR1">
+                                                <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                                       leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                       leos:softuser="demo jane(Ext)" xml:id="new_point_2">
+                                                    <num leos:editable="false" leos:origin="cn">#</num>
+                                                    <alinea leos:origin="cn" leos:softaction="add"
+                                                            leos:softactionroot="true"
+                                                            leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                            leos:softuser="demo jane(Ext)" xml:id="_akn_alinea_LKOI73">
+                                                        <content>
+                                                            <p>Text...</p>
+                                                        </content>
+                                                    </alinea>
+                                                    <list leos:origin="cn" leos:softaction="add"
+                                                          leos:softactionroot="true"
+                                                          leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                          leos:softuser="demo jane(Ext)" xml:id="_lis_yh3RQR">
+                                                        <point leos:origin="cn" leos:softaction="add"
+                                                               leos:softactionroot="true"
+                                                               leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                               leos:softuser="demo jane(Ext)" xml:id="new_point_3">
+                                                            <num leos:editable="false" leos:origin="cn">#</num>
+                                                            <alinea leos:origin="cn" leos:softaction="add"
+                                                                    leos:softactionroot="true"
+                                                                    leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                                    leos:softuser="demo jane(Ext)"
+                                                                    xml:id="_akn_alinea_5jXegL">
+                                                                <content>
+                                                                    <p>Text...</p>
+                                                                </content>
+                                                            </alinea>
+                                                            <list leos:origin="cn" leos:softaction="add"
+                                                                  leos:softactionroot="true"
+                                                                  leos:softdate="2022-06-17T11:26:04.409+02:00"
+                                                                  leos:softuser="demo jane(Ext)" xml:id="_lis_YEygPX">
+                                                                <indent leos:origin="cn" leos:softaction="add"
+                                                                        leos:softactionroot="true"
+                                                                        leos:softdate="2022-06-17T11:26:04.393+02:00"
+                                                                        leos:softuser="demo jane(Ext)"
+                                                                        xml:id="new_point_4">
+                                                                    <num leos:editable="false" leos:origin="cn">#</num>
+                                                                    <content>
+                                                                        <p>Text...</p>
+                                                                    </content>
+                                                                </indent>
+                                                            </list>
+                                                        </point>
+                                                    </list>
+                                                </point>
+                                            </list>
+                                        </point>
+                                    </list>
+                                </paragraph>
+                            </article>
+                        </section>
+                    </chapter>
+                </title>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

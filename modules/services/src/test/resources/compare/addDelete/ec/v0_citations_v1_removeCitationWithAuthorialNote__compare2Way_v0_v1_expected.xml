@@ -1,0 +1,38 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <preamble xml:id="preamble">
+            <citations leos:editable="false" xml:id="cits">
+                <citation leos:editable="true" xml:id="cit_1">
+                    <p xml:id="cit_3__p">After transmission of the draft legislative act to the national Parliaments,
+                    </p>
+                </citation>
+                <citation class="leos-content-removed-cn" leos:editable="true" xml:id="cit_2">
+                    <p xml:id="cit_4__p">Having regard to the opinion of the European Economic and Social Committee
+                        <authorialNote marker="1" placement="bottom" xml:id="authorialnote_1">
+                            <p xml:id="authorialNote_1__p">OJ C [...], [...], p. [...]</p>
+                        </authorialNote>
+                        ,
+                    </p>
+                </citation>
+                <citation leos:editable="true" xml:id="cit_3">
+                    <p xml:id="cit_5__p">Having regard to the opinion of the Committee of the Regions
+                        <span class="leos-content-removed-cn">
+                            <authorialNote marker="2" placement="bottom" xml:id="deleted_deleted_authorialnote_2">
+                                <p xml:id="deleted_deleted_authorialNote_2__p">OJ C [...], [...], p. [...]</p>
+                            </authorialNote>
+                        </span>
+                        <span class="leos-content-new-cn">
+                            <authorialNote marker="1" placement="bottom" xml:id="authorialnote_2">
+                                <p xml:id="authorialNote_2__p">OJ C [...], [...], p. [...]</p>
+                            </authorialNote>
+                        </span>
+                        ,
+                    </p>
+                </citation>
+                <citation leos:editable="true" xml:id="cit_4">
+                    <p xml:id="cit_6__p">Acting in accordance with the ordinary legislative procedure,</p>
+                </citation>
+            </citations>
+        </preamble>
+    </bill>
+</akomaNtoso>

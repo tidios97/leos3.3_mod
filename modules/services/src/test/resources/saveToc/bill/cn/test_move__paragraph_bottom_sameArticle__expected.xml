@@ -1,0 +1,65 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:affected="true" leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:deletable="false" leos:depth="1" leos:editable="false" leos:origin="ec"
+                           leos:softaction="move_to" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T11:39:45.367+02:00" leos:softmove_to="art_1__para_1"
+                           leos:softuser="demo jane(Ext)" xml:id="moved_art_1__para_1">
+                    <num leos:origin="ec" xml:id="moved_art_1_par_1_num">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="moved_art_1_subpar_1">
+                        <content leos:origin="ec" xml:id="moved_art_1_subpar_1_content">
+                            <p leos:origin="ec" xml:id="moved_art_1_subpar_1_content_p">Paragraph 1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="moved_list">
+                        <point leos:origin="ec" xml:id="moved_point_a">
+                            <num leos:origin="ec" xml:id="moved_point_a_num">(a)</num>
+                            <content leos:origin="ec" xml:id="moved_point_a_content">
+                                <p leos:origin="ec" xml:id="moved_point_a_p">Point (a)</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="moved_point_b">
+                            <num leos:origin="ec" xml:id="moved_point_b_num">(b)</num>
+                            <content leos:origin="ec" xml:id="moved_point_b_content">
+                                <p leos:origin="ec" xml:id="moved_point_b_p">Point (b)</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:depth="1" leos:origin="ec" xml:id="art_1__para_2">
+                    <num leos:origin="ec" xml:id="art_1__para_2__num">2.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_2__content">
+                        <p leos:origin="ec" xml:id="art_1__para_2__content__p">Paragraph 2</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:depth="1" leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T11:39:45.382+02:00" leos:softmove_from="moved_art_1__para_1"
+                           leos:softuser="demo jane(Ext)" xml:id="art_1__para_1">
+                    <num leos:origin="cn" xml:id="art_1_par_1_num">#</num>
+                    <subparagraph leos:origin="ec" xml:id="art_1_subpar_1">
+                        <content leos:origin="ec" xml:id="art_1_subpar_1_content">
+                            <p leos:origin="ec" xml:id="art_1_subpar_1_content_p">Paragraph 1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="list">
+                        <point leos:origin="ec" xml:id="point_a">
+                            <num leos:origin="ec" xml:id="point_a_num">(a)</num>
+                            <content leos:origin="ec" xml:id="point_a_content">
+                                <p leos:origin="ec" xml:id="point_a_p">Point (a)</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="point_b">
+                            <num leos:origin="ec" xml:id="point_b_num">(b)</num>
+                            <content leos:origin="ec" xml:id="point_b_content">
+                                <p leos:origin="ec" xml:id="point_b_p">Point (b)</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

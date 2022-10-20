@@ -1,0 +1,42 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody xml:id="body">
+            <level leos:depth="1" leos:softaction="add" xml:id="body_level_1">
+                <num xml:id="body_level_1_num">1.#</num>
+                <content xml:id="body_level_1_content">
+                    <p xml:id="body_level_1_content_p">should be numbered to 1.</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:softaction="move_to" xml:id="body_level_2">
+                <num xml:id="moved_body_level_2_num">2.#</num>
+                <content xml:id="moved_body_level_2_content">
+                    <p xml:id="moved_body_level_2_content_p">should not be changed</p>
+                </content>
+            </level>
+            <level leos:depth="2" leos:softaction="del" xml:id="body_level_2_1">
+                <num xml:id="body_level_1_1_num">2.1.#</num>
+                <content xml:id="body_level_1_1_content">
+                    <p xml:id="body_level_1_1_content_p">should not be changed</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:softaction="move_from" xml:id="body_level_3">
+                <num xml:id="body_level_2_num">3.#</num>
+                <content xml:id="body_level_2_content">
+                    <p xml:id="body_level_2_content_p">should be numbered to 3.</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:softaction="trans" xml:id="body_level_4">
+                <num xml:id="body_level_4_num">4.#</num>
+                <content xml:id="body_level_4_content">
+                    <p xml:id="body_level_4_content_p">should be numbered to 4.</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:softaction="undelete" xml:id="body_level_5">
+                <num xml:id="body_level_5_num">5.#</num>
+                <content xml:id="body_level_5_content">
+                    <p xml:id="body_level_5_content_p">should be numbered to 5.</p>
+                </content>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

@@ -1,0 +1,25 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+
+    <bill name="REG">
+        <meta>
+        </meta>
+
+        <coverPage xml:id="coverpage">
+        </coverPage>
+
+        <preface xml:id="preface">
+        </preface>
+
+        <preamble xml:id="preamble">
+        </preamble>
+
+        <body xml:id="body">
+            <part xml:id="part11">
+                <num class="PartNumber" xml:id="part11_num">Part XI</num>
+                <heading class="PartHeading" xml:id="part11_h">FINAL PROVISIONS</heading>
+
+            </part>
+        </body>
+    </bill>
+
+</akomaNtoso>

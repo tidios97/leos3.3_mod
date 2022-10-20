@@ -1,0 +1,130 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:deletable="false" leos:editable="true" leos:origin="ec" xml:id="art3">
+                <num leos:origin="ec" xml:id="art3_vXE6IZ">Article 3</num>
+                <heading leos:origin="ec" xml:id="art3_WDH2YZ">Subject matter and scope</heading>
+                <paragraph leos:origin="ec" xml:id="par1">
+                    <num leos:origin="ec" xml:id="art3_AczccC">1.</num>
+                    <content leos:origin="ec" xml:id="art3_CxE1rn">
+                        <p leos:origin="ec" xml:id="art3_NHZN8U">paragraph 1</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="par2">
+                    <num leos:origin="ec" xml:id="art3_tsc2fW">2.</num>
+                    <content leos:origin="ec" xml:id="art3_JjUHpT">
+                        <p leos:origin="ec" xml:id="art3_gYEhBn">paragraph 2</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                           leos:softactionroot="true" leos:softdate="2022-05-31T16:11:07.947+02:00"
+                           leos:softmove_label="MOVED to Article 3(4a)" leos:softmove_to="par3"
+                           leos:softuser="jane(DIGIT)" xml:id="moved_par3">
+                    <num leos:origin="ec" xml:id="moved_art3_SC9AWu">3.</num>
+                    <subparagraph leos:deletable="false" leos:editable="false" leos:origin="ec"
+                                  leos:softaction="move_to" leos:softactionroot="false"
+                                  leos:softdate="2022-05-31T16:11:07.944+02:00"
+                                  leos:softmove_label="MOVED to Article 3(4a), first subparagraph"
+                                  leos:softmove_to="par3_sub" leos:softuser="jane(DIGIT)"
+                                  xml:id="moved_par3_sub">
+                        <content leos:origin="ec" xml:id="moved_art3_ce2U2a">
+                            <p leos:origin="ec" xml:id="moved_art3_uJJljZ">paragraph 3</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                          leos:softactionroot="false" leos:softdate="2022-05-31T16:11:07.947+02:00"
+                          leos:softmove_label="MOVED to Article 3(4a)" leos:softmove_to="list"
+                          leos:softuser="jane(DIGIT)" xml:id="moved_list">
+                        <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                               leos:softactionroot="false" leos:softdate="2022-05-31T16:11:07.946+02:00"
+                               leos:softmove_label="MOVED to Article 3(4a), point (a)"
+                               leos:softmove_to="par3_point_a" leos:softuser="jane(DIGIT)"
+                               xml:id="moved_par3_point_a">
+                            <num leos:origin="ec" xml:id="moved_art3_TOdOwf">(a)</num>
+                            <content leos:origin="ec" xml:id="moved_art3_pkRBe7">
+                                <p leos:origin="ec" xml:id="moved_art3_xkpzNN">point a</p>
+                            </content>
+                        </point>
+                        <point leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                               leos:softactionroot="false" leos:softdate="2022-05-31T16:11:07.947+02:00"
+                               leos:softmove_label="MOVED to Article 3(4a), point (b)"
+                               leos:softmove_to="par3_point_b" leos:softuser="jane(DIGIT)"
+                               xml:id="moved_par3_point_b">
+                            <num leos:origin="ec" xml:id="moved_art3_5c4Hu1">(b)</num>
+                            <content leos:origin="ec" xml:id="moved_art3_GLb7ZY">
+                                <p leos:origin="ec" xml:id="moved_art3_6vgJyY">point b</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="par4">
+                    <num leos:origin="ec" xml:id="art3_OnpQgl">4.</num>
+                    <subparagraph leos:origin="ec" xml:id="art3_k9jna3">
+                        <content leos:origin="ec" xml:id="art3_Tndj0O">
+                            <p leos:origin="ec" xml:id="art3_8q0PFw">paragraph 4</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="art3_EmN1LF">
+                        <point leos:origin="ec" xml:id="art3_hDNMaF">
+                            <num leos:origin="ec" xml:id="art3_QdKWrS">(a)</num>
+                            <content leos:origin="ec" xml:id="art3_MnAbnd">
+                                <p leos:origin="ec" xml:id="art3_txyHmY">point a, par 4</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="art3_kCmG8G">
+                            <num leos:origin="ec" xml:id="art3_e7wxhk">(b)</num>
+                            <content leos:origin="ec" xml:id="art3_DBAjjV">
+                                <p leos:origin="ec" xml:id="art3_hY0BjF">point b, par 4</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:depth="1" leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                           leos:softdate="2022-05-31T16:11:07.952+02:00"
+                           leos:softmove_from="moved_par3"
+                           leos:softmove_label="MOVED from Article 3(3)" leos:softuser="jane(DIGIT)"
+                           xml:id="par3">
+                    <num leos:origin="cn" xml:id="art3_SC9AWu">4a.</num>
+                    <subparagraph leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false"
+                                  leos:softdate="2022-05-31T16:11:07.951+02:00"
+                                  leos:softmove_from="moved_par3_sub"
+                                  leos:softmove_label="MOVED from Article 3(3), first subparagraph" leos:softuser="jane(DIGIT)"
+                                  xml:id="par3_sub">
+                        <content leos:origin="ec" xml:id="art3_ce2U2a">
+                            <p leos:origin="ec" xml:id="art3_uJJljZ">par 4a moved from par3
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false"
+                          leos:softdate="2022-05-31T16:11:07.952+02:00"
+                          leos:softmove_from="moved_list"
+                          leos:softmove_label="MOVED from Article 3(3)" leos:softuser="jane(DIGIT)"
+                          xml:id="list">
+                        <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false"
+                               leos:softdate="2022-05-31T16:11:07.951+02:00"
+                               leos:softmove_from="moved_par3_point_a"
+                               leos:softmove_label="MOVED from Article 3(3), point (a)" leos:softuser="jane(DIGIT)"
+                               xml:id="par3_point_a">
+                            <num leos:origin="ec" xml:id="art3_TOdOwf">(a)</num>
+                            <content leos:origin="ec" xml:id="art3_pkRBe7">
+                                <p leos:origin="ec" xml:id="art3_xkpzNN">point a</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="false"
+                               leos:softdate="2022-05-31T16:11:07.952+02:00"
+                               leos:softmove_from="moved_par3_point_b"
+                               leos:softmove_label="MOVED from Article 3(3), point (b)" leos:softuser="jane(DIGIT)"
+                               xml:id="par3_point_b">
+                            <num leos:origin="ec" xml:id="art3_5c4Hu1">(b)</num>
+                            <content leos:origin="ec" xml:id="art3_GLb7ZY">
+                                <p leos:origin="ec" xml:id="art3_6vgJyY">point b</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+
+        </body>
+    </bill>
+</akomaNtoso>

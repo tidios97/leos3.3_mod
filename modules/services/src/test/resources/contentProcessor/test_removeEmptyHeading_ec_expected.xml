@@ -1,0 +1,6 @@
+<level leos:depth="1" xml:id="body_level_1">
+    <num xml:id="body_level_1_num">1.</num>
+    <content xml:id="body_level_1_content">
+        <p xml:id="body_level_1_content_p">Text...</p>
+    </content>
+</level>

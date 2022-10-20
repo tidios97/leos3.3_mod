@@ -1,0 +1,139 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody xml:id="body">
+            <division class="type_1" xml:id="division_i">
+                <num xml:id="division_i_num">I.</num>
+                <content xml:id="division_i_content">
+                    <p xml:id="division_i_content_p">should be I.</p>
+                </content>
+            </division>
+            <chapter leos:origin="ec" xml:id="cha_q78MwU">
+                <num leos:origin="ec" xml:id="akn_QhsLui">Chapter 1</num>
+                <heading leos:origin="ec" xml:id="akn_4Eg2IC">Chapter heading...</heading>
+                <section xml:id="akn_section_PeBKFV">
+                    <num xml:id="akn_SALxLC">Section 1</num>
+                    <division class="type_1" xml:id="division_ii">
+                        <num xml:id="division_ii_num">II.</num>
+                        <content xml:id="division_ii_content">
+                            <p xml:id="division_ii_content_p">should be II.</p>
+                        </content>
+                    </division>
+                </section>
+
+                <division class="type_2" xml:id="division_ii_a">
+                    <num xml:id="division_ii_a_num">A.</num>
+                    <content xml:id="division_ii_a_content">
+                        <p xml:id="division_ii_a_content_p">should be A.</p>
+                    </content>
+                </division>
+            </chapter>
+
+            <division class="type_3" xml:id="division_ii_a_i">
+                <num xml:id="division_ii_a_i_num">I)</num>
+                <content xml:id="division_ii_a_i_content">
+                    <p xml:id="division_ii_a_i_content_p">should be I)</p>
+                </content>
+            </division>
+
+            <level class="" leos:depth="1" xml:id="body_level_1">
+                <num xml:id="body_level_1_num">1.</num>
+                <subparagraph xml:id="akn_subparagraph_4np1pN">
+                    <content xml:id="body_level_1_content">
+                        <p xml:id="body_level_1_content_p">Should be 1.</p>
+                    </content>
+                </subparagraph>
+                <crossHeading leos:origin="cn" xml:id="akn_RhELZX">Crossheading...</crossHeading>
+                <list leos:origin="cn" xml:id="lis_TFii2E">
+                    <point xml:id="akn_EZas6o">
+                        <num xml:id="akn_cWfvQa">(a)</num>
+                        <alinea xml:id="akn_alinea_gNRfcY">
+                            <content xml:id="akn_hv7ptL">
+                                <p xml:id="akn_CxpeEp">Should be (a)</p>
+                            </content>
+                        </alinea>
+                        <list leos:origin="cn" xml:id="lis_DC8vLq">
+                            <point xml:id="akn_point_kiE2ol">
+                                <num xml:id="akn_qZcnXD">(i)</num>
+                                <content xml:id="akn_Mq65nZ">
+                                    <p xml:id="akn_de5Nz7">Should be (i)</p>
+                                </content>
+                            </point>
+                            <point xml:id="akn_FlZMbb">
+                                <num xml:id="akn_e425K4">(ii)</num>
+                                <alinea xml:id="akn_alinea_clAXNs">
+                                    <content xml:id="akn_RwAxg5">
+                                        <p xml:id="akn_D0LNAr">Should be (ii)</p>
+                                    </content>
+                                </alinea>
+                                <list leos:origin="cn" xml:id="lis_d6McQH">
+                                    <point xml:id="akn_point_2jDdbY">
+                                        <num xml:id="akn_AauD1n">(1)</num>
+                                        <content xml:id="akn_ME2w0r">
+                                            <p xml:id="akn_ZZVnjr">Should be (1)</p>
+                                        </content>
+                                    </point>
+                                    <point xml:id="akn_SVSwFv">
+                                        <num xml:id="akn_HKp69s">(2)</num>
+                                        <content xml:id="akn_KJiJue">
+                                            <p xml:id="akn_tUFftw">Should be (2)</p>
+                                        </content>
+                                    </point>
+                                </list>
+                            </point>
+                        </list>
+                    </point>
+                    <point xml:id="akn_point_kGenUQ">
+                        <num xml:id="akn_k3a1OT">(b)</num>
+                        <content xml:id="akn_xJJy7A">
+                            <p xml:id="akn_lPP0NB">Should be (b)</p>
+                        </content>
+                    </point>
+                </list>
+            </level>
+            <level leos:depth="1" xml:id="body_level_2">
+                <num xml:id="body_level_2_num">2.</num>
+                <subparagraph xml:id="akn_subparagraph_SzvtsL">
+                    <content xml:id="body_level_2_content">
+                        <p xml:id="body_level_2_content_p">Should be 2.</p>
+                    </content>
+                </subparagraph>
+                <list leos:origin="cn" xml:id="lis_s5JJGx">
+                    <indent xml:id="akn_point_eqJUpl">
+                        <num xml:id="akn_VRGqhU">(a)</num>
+                        <content xml:id="akn_lQW3Q9">
+                            <p xml:id="akn_q4Nqob">should be (a)</p>
+                        </content>
+                    </indent>
+                    <indent xml:id="akn_point_eqJUpl2">
+                        <num xml:id="akn_VRGqhU2">(b)</num>
+                        <content xml:id="akn_lQW3Q92">
+                            <p xml:id="akn_q4Nqob2">should be (b)</p>
+                        </content>
+                    </indent>
+                </list>
+            </level>
+            <division class="type_4" xml:id="division_ii_a_i_a">
+                <num xml:id="division_ii_a_i_a_num">A)</num>
+                <content xml:id="division_ii_a_i_a_content">
+                    <p xml:id="division_ii_a_i_a_content_p">should be A)</p>
+                </content>
+            </division>
+            <level leos:depth="2" xml:id="body_level_2_1">
+                <num xml:id="body_level__2_1_num">2.1.</num>
+                <subparagraph xml:id="akn_subparagraph__2_1SzvtsL">
+                    <content xml:id="body_level__2_1_content">
+                        <p xml:id="body_level__2_1_content_p">Should be 2.1</p>
+                    </content>
+                </subparagraph>
+                <list leos:origin="cn" xml:id="lis__2_1s5JJGx">
+                    <point xml:id="akn_point_2_1_eqJUpl">
+                        <num xml:id="akn_2_1_VRGqhU">(a)</num>
+                        <content xml:id="akn_2_1_lQW3Q9">
+                            <p xml:id="akn_2_1_q4Nqob">should be (a)</p>
+                        </content>
+                    </point>
+                </list>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

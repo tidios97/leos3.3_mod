@@ -1,0 +1,18 @@
+<root xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article xml:id="akn_art_x6DzYY" leos:origin="cn" leos:editable="true" leos:deletable="true" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T12:16:11.686+01:00">
+        <num xml:id="akn_art_x6DzYY_1SAdsJ">Article -1</num>
+        <heading xml:id="akn_art_x6DzYY_4athz2">Article heading...</heading>
+        <paragraph xml:id="akn_art_x6DzYY-par1" leos:origin="cn" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T12:16:11.702+01:00">
+            <num xml:id="akn_art_x6DzYY_64P9pb">1.</num>
+            <content xml:id="akn_art_x6DzYY_4mTUzb">
+                <p xml:id="akn_art_x6DzYY_AthVYm">Text...</p>
+            </content>
+        </paragraph>
+        <paragraph xml:id="akn_art_x6DzYY_OjZlKx" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-29T12:16:11.702+01:00">
+            <num xml:id="akn_art_x6DzYY_2XWlXQ">2.</num>
+            <content xml:id="akn_art_x6DzYY_H4aFhJ">
+                <p xml:id="akn_art_x6DzYY_PTKHJy">Test</p>
+            </content>
+        </paragraph>
+    </article>
+</root>

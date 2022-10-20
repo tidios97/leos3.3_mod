@@ -1,0 +1,14 @@
+<root xml:id="ElementId" xmlns:leos="urn:eu:europa:ec:leos">
+    <meta>
+        <proprietary source="~_leos">
+            <leos:ref>bill_ckq9l0l140009jg019s8b4k2a</leos:ref>
+        </proprietary>
+    </meta>
+    <parent xml:id="akn_DiTMYu">
+        <p xml:id="p1">bla bla
+            <mref leos:broken="true" xml:id="mref1">
+                Article 1 <ref href="bill/ref1" xml:id="aid">(1)</ref>
+            </mref>
+        </p>
+    </parent>
+</root>

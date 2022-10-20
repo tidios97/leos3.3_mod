@@ -1,0 +1,226 @@
+<article xml:id="art_2">
+    <num xml:id="art_2_num">Article 1</num>
+    <heading xml:id="art_2__heading">Scope</heading>
+    <paragraph xml:id="art_2__para_1">
+        <num xml:id="art_2__para_1__b">1.</num>
+        <subparagraph xml:id="art_2__para_1_sub">
+            <content xml:id="art_2__para_1__content">
+                <p xml:id="art_2__para_1__content__p">Paragraph 1.</p>
+            </content>
+        </subparagraph>
+        <list xml:id="art_2__list1">
+            <point xml:id="art_2__list1_p_1">
+                <num>(a)</num>
+                <content>
+                    <p>point (a)</p>
+                </content>
+            </point>
+            <point xml:id="art_2__list1_p_2">
+                <num xml:id="akn_art2_YnSKbj_soCjiB">(b)</num>
+                <alinea>
+                    <content xml:id="akn_art2_YnSKbj_89xvgD">
+                        <p xml:id="akn_art2_YnSKbj_g319GD">point (b)</p>
+                    </content>
+                </alinea>
+                <list xml:id="art_2__list2">
+                    <point xml:id="art_2__list2_p_1">
+                        <num xml:id="akn_art2_YnSKbj_soCjiB">(i)</num>
+                        <alinea>
+                            <content xml:id="akn_art2_YnSKbj_89xvgD">
+                                <p xml:id="akn_art2_YnSKbj_g319GD">point (i)</p>
+                            </content>
+                        </alinea>
+                        <list xml:id="art_2__list3">
+                            <point xml:id="art_2__list3_p_1">
+                                <num xml:id="akn_art2_YnSKbj_soCjiB">(1)</num>
+                                <alinea>
+                                    <content xml:id="akn_art2_YnSKbj_89xvgD">
+                                        <p xml:id="akn_art2_YnSKbj_g319GD">point (1)</p>
+                                    </content>
+                                </alinea>
+                                <list xml:id="art_2__list4">
+                                    <point xml:id="art_2__list4_p_1">
+                                        <num xml:id="akn_art2_YnSKbj_soCjiB">-</num>
+                                        <content xml:id="akn_art2_YnSKbj_89xvgD">
+                                            <p xml:id="akn_art2_YnSKbj_g319GD">point -</p>
+                                        </content>
+                                    </point>
+                                </list>
+                            </point>
+                        </list>
+                    </point>
+                </list>
+            </point>
+            <point xml:id="art_2__list1_p_1">
+                <num>(c)</num>
+                <content>
+                    <p>point (c)</p>
+                </content>
+            </point>
+            <point xml:id="imp_null_trBErv_uTzY02">
+                <num xml:id="imp_null_trBErv_MY2pcs">(d)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_cpxzPT">
+                <num xml:id="imp_null_trBErv_uvmhZp">(e)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_npNs34">
+                <num xml:id="imp_null_trBErv_eguzci">(f)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_WyvyG8">
+                <num xml:id="imp_null_trBErv_0lhwi0">(g)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_zWZ6NR">
+                <num xml:id="imp_null_trBErv_qnHGvY">(h)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_PuA2hv">
+                <num xml:id="imp_null_trBErv_N9wVpC">(i)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_macI5w">
+                <num xml:id="imp_null_trBErv_eVu48X">(j)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Hw2ox5">
+                <num xml:id="imp_null_trBErv_88375m">(k)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_HXaN3Z">
+                <num xml:id="imp_null_trBErv_hWvPE0">(l)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_p1RGjA">
+                <num xml:id="imp_null_trBErv_ZUxBPL">(m)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_bRcd4j">
+                <num xml:id="imp_null_trBErv_G3RZNK">(n)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_vQZlKt">
+                <num xml:id="imp_null_trBErv_X8gskV">(o)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Hz22ZX">
+                <num xml:id="imp_null_trBErv_sUbeDV">(p)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_e57hCf">
+                <num xml:id="imp_null_trBErv_q404VE">(q)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Va6j7q">
+                <num xml:id="imp_null_trBErv_sLrk6V">(r)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_LCFFH8">
+                <num xml:id="imp_null_trBErv_4s9YOm">(s)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_DQYkaS">
+                <num xml:id="imp_null_trBErv_ZxfJe0">(t)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Y5OpDE">
+                <num xml:id="imp_null_trBErv_kdowen">(u)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Rd1jC0">
+                <num xml:id="imp_null_trBErv_LR0bxw">(v)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_RRfrQf">
+                <num xml:id="imp_null_trBErv_KS8afc">(w)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_dTzVwF">
+                <num xml:id="imp_null_trBErv_L9xTqY">(x)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_hOk3j1">
+                <num xml:id="imp_null_trBErv_AvBQ1U">(y)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_iB8qzK">
+                <num xml:id="imp_null_trBErv_i2WlOi">(z)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Y51HpS">
+                <num xml:id="imp_null_trBErv_Aap63J">(aa)</num>
+                <content><p>Should be numbered to za</p></content>
+            </point>
+            <point xml:id="imp_null_trBErv_Y51HpS">
+                <num xml:id="imp_null_trBErv_Aap63J">(ab)</num>
+                <content><p>Should be numbered to zb</p></content>
+            </point>
+            <point xml:id="imp_null_trBErv_Y51HpS">
+                <num xml:id="imp_null_trBErv_Aap63J">(ac)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_uTzY02">
+                <num xml:id="imp_null_trBErv_MY2pcs">(ad)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_cpxzPT">
+                <num xml:id="imp_null_trBErv_uvmhZp">(ae)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_npNs34">
+                <num xml:id="imp_null_trBErv_eguzci">(af)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_WyvyG8">
+                <num xml:id="imp_null_trBErv_0lhwi0">(ag)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_zWZ6NR">
+                <num xml:id="imp_null_trBErv_qnHGvY">(ah)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_PuA2hv">
+                <num xml:id="imp_null_trBErv_N9wVpC">(ai)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_macI5w">
+                <num xml:id="imp_null_trBErv_eVu48X">(aj)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Hw2ox5">
+                <num xml:id="imp_null_trBErv_88375m">(ak)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_HXaN3Z">
+                <num xml:id="imp_null_trBErv_hWvPE0">(al)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_p1RGjA">
+                <num xml:id="imp_null_trBErv_ZUxBPL">(am)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_bRcd4j">
+                <num xml:id="imp_null_trBErv_G3RZNK">(an)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_vQZlKt">
+                <num xml:id="imp_null_trBErv_X8gskV">(ao)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Hz22ZX">
+                <num xml:id="imp_null_trBErv_sUbeDV">(ap)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_e57hCf">
+                <num xml:id="imp_null_trBErv_q404VE">(aq)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Va6j7q">
+                <num xml:id="imp_null_trBErv_sLrk6V">(ar)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_LCFFH8">
+                <num xml:id="imp_null_trBErv_4s9YOm">(as)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_DQYkaS">
+                <num xml:id="imp_null_trBErv_ZxfJe0">(at)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Y5OpDE">
+                <num xml:id="imp_null_trBErv_kdowen">(au)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_Rd1jC0">
+                <num xml:id="imp_null_trBErv_LR0bxw">(av)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_RRfrQf">
+                <num xml:id="imp_null_trBErv_KS8afc">(aw)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_dTzVwF">
+                <num xml:id="imp_null_trBErv_L9xTqY">(ax)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_hOk3j1">
+                <num xml:id="imp_null_trBErv_AvBQ1U">(ay)</num>
+            </point>
+            <point xml:id="imp_null_trBErv_iB8qzK">
+                <num xml:id="imp_null_trBErv_i2WlOi">(az)</num>
+                <content><p>Should be numbered to zz</p></content>
+            </point>
+            <point xml:id="imp_null_trBErv_Y51HpS">
+                <num xml:id="imp_null_trBErv_Aap63J">(ba)</num>
+                <content><p>Should be numbered to zza</p></content>
+            </point>
+            <point xml:id="imp_null_trBErv_Y51HpS">
+                <num xml:id="imp_null_trBErv_Aap63J">(bb)</num>
+                <content><p>Should be numbered to zzb</p></content>
+            </point>
+        </list>
+    </paragraph>
+    <paragraph xml:id="art_2__para_2">
+        <num xml:id="art_2__para_2__num">2.</num>
+        <content xml:id="art_2__para_2__content">
+            <p xml:id="art_2__para_2__content__p">Paragraph 2.</p>
+        </content>
+    </paragraph>
+</article>

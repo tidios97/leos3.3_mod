@@ -1,0 +1,48 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:affected="true" leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:affected="true" leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <subparagraph leos:softaction="add" leos:softactionroot="true"
+                                  leos:softdate="2022-06-17T11:29:02.102+02:00" leos:softuser="demo jane(Ext)"
+                                  xml:id="_akn_subparagraph_AyrW6m">
+                        <content leos:origin="ec" xml:id="art_1__para_1__content">
+                            <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                          leos:softdate="2022-06-17T11:29:02.087+02:00" leos:softuser="demo jane(Ext)"
+                          xml:id="_lis_0d7w6n">
+                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                               leos:softdate="2022-06-17T11:29:02.087+02:00" leos:softuser="demo jane(Ext)"
+                               xml:id="point_1">
+                            <num leos:editable="false" leos:origin="cn">#</num>
+                            <content>
+                                <p>Text...</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                               leos:softdate="2022-06-17T11:29:02.102+02:00" leos:softuser="demo jane(Ext)"
+                               xml:id="point_2">
+                            <num leos:editable="false" leos:origin="cn">#</num>
+                            <content>
+                                <p>Text...</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                               leos:softdate="2022-06-17T11:29:02.102+02:00" leos:softuser="demo jane(Ext)"
+                               xml:id="point_3">
+                            <num leos:editable="false" leos:origin="cn">#</num>
+                            <content>
+                                <p>Text...</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

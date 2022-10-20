@@ -1,0 +1,46 @@
+<root xml:id="akn_f2ejkO" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" leos:editable="false" leos:deletable="false" xml:id="imp_art_d1e1276_XAPlpX">
+        <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_PCoY8I">Article 5</num>
+        <heading leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_yDHX83">Definitions</heading>
+        <paragraph leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_494qUn">
+            <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_gxZ46e">1.</num>
+            <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_nBJK4i">
+                <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_aW9qa6">For the purposes of this Regulation, the following definitions shall
+                    apply:
+                </p>
+            </content>
+        </paragraph>
+        <paragraph leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_w7XSAU">
+            <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_jzKMrH">2.</num>
+            <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_3eweeF">
+                <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_0od3XF">Where reference in this Regulation is made to real estate or residential or
+                    commercial immovable property or a mortgage on such property, it shall include shares in Finnish residential housing companies
+                    operating in accordance with the Finnish Housing Company Act of 1991 or subsequent equivalent legislation. Member States or their
+                    competent authorities may allow shares constituting an equivalent indirect holding of real estate to be treated as a direct
+                    holding of real estate provided that such an indirect holding is specifically regulated in the national law of the Member State
+                    concerned and that, when pledged as collateral, it provides equivalent protection to creditors.
+                </p>
+            </content>
+        </paragraph>
+        <paragraph xml:id="imp_art_d1e1276_XAPlpX_OzDWGj" leos:origin="ec">
+            <num xml:id="imp_art_d1e1276_XAPlpX_CcB0QB" leos:origin="ec">3.</num>
+            <subparagraph leos:origin="ec" leos:softaction="trans" leos:softuser="demo" leos:softdate="1900-01-01T00:00:00.000+01:00"
+                          xml:id="transformed_imp_art_d1e1276_XAPlpX_OzDWGj">
+                <content xml:id="imp_art_d1e1276_XAPlpX_zO3WCu">
+                    <p xml:id="imp_art_d1e1276_XAPlpX_9ewOjj">Trade finance as referred to in point (80) of paragraph 1 is generally uncommitted and
+                        requires satisfactory supporting transactional documentation for each drawdown request enabling refusal of the finance in the
+                    </p>
+                </content>
+            </subparagraph>
+            <subparagraph leos:origin="cn" leos:softaction="add" leos:softuser="demo" leos:softdate="1900-01-01T00:00:00.000+01:00"
+                          xml:id="imp_art_d1e1276_XAPlpX_to5uqp">
+                <content xml:id="imp_art_d1e1276_XAPlpX_jhLJhj">
+                    <p xml:id="imp_art_d1e1276_XAPlpX_5wgkKS">event of any doubt about credit-worthiness or the supporting transactional
+                        documentation. Repayment of trade finance exposures is usually independent of the borrower, the funds instead coming from cash
+                        received from importers or resulting from proceeds of the sales of the underlying goods.
+                    </p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

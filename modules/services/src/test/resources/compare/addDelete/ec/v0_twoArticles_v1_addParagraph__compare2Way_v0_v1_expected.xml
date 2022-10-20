@@ -1,0 +1,37 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+            xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body xml:id="body">
+            <article leos:deletable="false" leos:editable="false" xml:id="art_1">
+                <num leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading xml:id="art_1__heading">Article1 Heading</heading>
+                <paragraph xml:id="art_1__para_1">
+                    <num xml:id="art_1__para_1__num">1.</num>
+                    <content xml:id="art_1__para_1__content">
+                        <p xml:id="art_1__para_1__content__p">Article 1 content</p>
+                    </content>
+                </paragraph>
+                <paragraph class="leos-content-new-cn" xml:id="art_2_aXWL25">
+                    <content xml:id="art_2_02Haxk">
+                        <p xml:id="art_2_Ivsg1w">This Regulation shall apply from … [date of entry into
+                            force of this
+                            Regulation], with the exception of Article 8, which shall apply from … [18
+                            months after the
+                            entry into force of this Regulation].
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:deletable="false" leos:editable="false" xml:id="art_2">
+                <num leos:editable="false" xml:id="art_2__num">Article 2</num>
+                <heading xml:id="art_2__heading">Article2 Heading</heading>
+                <paragraph leos:depth="1" xml:id="art_2__para_1">
+                    <num xml:id="art_2__para_1__num">1.</num>
+                    <content xml:id="art_2__para_1__content">
+                        <p xml:id="art_2__para_1__content__p">Article 2 content</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,64 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body id="body" leos:origin="ec">
+            <article id="art_1" leos:deletable="true" leos:editable="true" leos:origin="ec">
+                <num id="art_1__num" leos:editable="false" leos:origin="ec">Article 1</num>
+                <heading id="art_1__heading" leos:origin="ec">Scope</heading>
+                <paragraph id="art_1__para_1" leos:origin="ec">
+                    <num id="art_1__para_1__num" leos:origin="ec">1.</num>
+                    <content id="art_1__para_1__content" leos:origin="ec">
+                        <aknP id="art_1__para_1__content__p" leos:origin="ec">Text...</aknP>
+                    </content>
+                </paragraph>
+            </article>
+            <article id="akn_article_siMKl7" leos:depth="1" leos:origin="ec">
+                <num id="akn_article_siMKl7_4aV0Y9" leos:editable="false" leos:origin="ec">Article 2</num>
+                <heading id="akn_article_siMKl7_C6AtNQ" leos:origin="ec">Article heading...</heading>
+                <paragraph id="akn_article_siMKl7-par1" leos:origin="ec">
+                    <num id="akn_article_siMKl7_tiVILT" leos:origin="ec">1.</num>
+                    <content id="akn_article_siMKl7_4HZXiZ" leos:origin="ec">
+                        <aknP id="akn_article_siMKl7_9nce3A" leos:origin="ec">Text...</aknP>
+                    </content>
+                </paragraph>
+            </article>
+            <article class="leos-content-new" id="akn_article_XPUnQy" leos:depth="1" leos:origin="ls"
+                     leos:softaction="add" leos:softactionroot="true" leos:softdate="2021-08-24T16:33:05.998+02:00"
+                     leos:softuser="jane">
+                <num class="leos-content-new" id="akn_article_XPUnQy_RfqUp5" leos:editable="false" leos:origin="ls">
+                    Article 3
+                </num>
+                <heading class="leos-content-new" id="akn_article_XPUnQy_MuwTbU">
+                    <span class="leos-content-new">Article heading...</span>
+                </heading>
+                <paragraph class="leos-content-new" id="akn_article_XPUnQy-par1" leos:origin="ls" leos:softaction="add"
+                           leos:softdate="2021-08-24T16:33:06.194+02:00" leos:softuser="jane">
+                    <num class="leos-content-new" id="akn_article_XPUnQy_NVGCBs">1.</num>
+                    <content class="leos-content-new" id="akn_article_XPUnQy_MAHCAV">
+                        <aknP class="leos-content-new" id="akn_article_XPUnQy_mmJSLP">
+                            <span class="leos-content-new">Text...</span>
+                        </aknP>
+                    </content>
+                </paragraph>
+            </article>
+            <article id="art_2" leos:deletable="true" leos:editable="true" leos:origin="ec">
+                <num id="art_2__num" leos:editable="false" leos:origin="ec">Article
+                    <span class="leos-content-removed">3</span>
+                    <span class="leos-content-new">4</span>
+                </num>
+                <heading id="art_2__heading" leos:origin="ec">Entry into force</heading>
+                <paragraph id="art_2__para_1" leos:origin="ec">
+                    <content id="art_2__para_1__content" leos:origin="ec">
+                        <aknP id="art_2__para_1__content__p" leos:origin="ec">This Regulation shall enter into force on
+                            the [...] day following that of its publication in the <i id="art_2__para_1__content__p__i"
+                                                                                      leos:origin="ec">Official Journal
+                                of the European Union</i>.
+                            <span class="leos-content-new">added content where i tag is
+                                present
+                            </span>
+                        </aknP>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="renditions/html/css/bill.css"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <bill name="DEC">
+        <meta>
+            <identification source="~_COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage xml:id="_FRBRlanguage" language="en"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+					<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRManifestation>
+            </identification>
+            <references source="~_COM">
+                <TLCLocation xml:id="_BEL_BRU" href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"/>
+                <TLCOrganization xml:id="_CONSIL" href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL" showAs="Council of the European Union"/>
+                <TLCOrganization xml:id="_EP" href="http://publications.europa.eu/resource/authority/corporate-body/EP" showAs="European Parliament"/>
+                <TLCOrganization xml:id="_COM" href="http://publications.europa.eu/resource/authority/corporate-body/COM" showAs="European Commission"/>
+                <TLCRole xml:id="_PRESID" href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"/>
+                <TLCReference xml:id="_DEC" name="docType" href="http://publications.europa.eu/resource/authority/resource-type/DEC"  showAs="Decision"/>
+                <TLCReference xml:id="_legalBasis" name="contentSubject" href="http://eurovoc.europa.eu/5456" showAs="Legal basis"/>
+                <TLCReference xml:id="_language" name="language" href="http://publications.europa.eu/resource/authority/language/ENG" showAs="en"/>
+                <TLCReference xml:id="_procedure_YYYY_NNN" name="procedureReference" href="http://eur-lex.europa.eu/procedure/EN/YYYY_NNN" showAs="YYYY/NNNN (AAA)" shortForm="YYYY/NNN/AAA"/>
+                <TLCReference xml:id="_azs3y" name="identifier" href="http://publications.europa.eu/resource/authority/document-identifier-format/COM_NUMBER" showAs="AAA(YYYY) NNN" shortForm="AAA/YYYY/NNN"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.1.0</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:template>SJ-019</leos:template>
+                <leos:docTemplate>BL-019</leos:docTemplate>
+            </proprietary>
+        </meta>
+        <preface xml:id="_preface">
+            <container name="procedureIdentifier" xml:id="_preface__procedureIdentifier">
+                <p xml:id="_preface__procedureIdentifier__p">
+                    <docketNumber refersTo="~_procedure_YYYY_NNN" xml:id="_preface__procedureIdentifier__p__docketNumber"/>
+                </p>
+            </container>
+            <longTitle xml:id="_preface__longtitle">
+                <p xml:id="_preface__longtitle__p">
+                    <docStage xml:id="_preface__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType refersTo="~_DEC" xml:id="_preface__longtitle__p__doctype">COUNCIL DECISION</docType>
+                    <docPurpose xml:id="_preface__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+        </preface>
+        <preamble xml:id="_preamble">
+            <formula xml:id="_preamble__formula_1" name="actingEntity">
+                <p xml:id="_preamble__formula_1__p">THE COUNCIL OF THE EUROPEAN UNION,</p>
+            </formula>
+            <citations xml:id="_cits" leos:editable="false">
+                <citation refersTo="~_legalBasis" xml:id="_cit_1" leos:editable="true">
+                    <p xml:id="_cit_1__p">Having regard to the Treaty on the Functioning of the European Union, and in particular Article [...] thereof,</p>
+                </citation>
+                <citation xml:id="_cit_2" leos:editable="true">
+                    <p xml:id="_cit_2__p">Having regard to the proposal from the European Commission,</p>
+                </citation>
+                <citation xml:id="_cit_3" leos:editable="true">
+                    <p xml:id="_cit_3__p">After transmission of the draft legislative act to the national Parliaments,</p>
+                </citation>
+                <citation xml:id="_cit_4" leos:editable="true">
+                    <p xml:id="_cit_4__p">Having regard to the opinion of the European Parliament<authorialNote xml:id="_authorialnote_1" marker="1" placement="bottom"><p xml:id="_authorialNote_1__p">OJ C [...], [...], p. [...]</p></authorialNote>,</p>
+                </citation>
+                <citation xml:id="_cit_5" leos:editable="true">
+                    <p xml:id="_cit_5__p">Having regard to the opinion of the European Economic and Social Committee<authorialNote xml:id="_authorialnote_2" marker="2" placement="bottom"><p xml:id="_authorialNote_2__p">OJ C [...], [...], p. [...]</p></authorialNote>,</p>
+                </citation>
+                <citation xml:id="_cit_6" leos:editable="true">
+                    <p xml:id="_cit_6__p">Having regard to the opinion of the Committee of the Regions<authorialNote xml:id="_authorialnote_3" marker="3" placement="bottom"><p xml:id="_authorialNote_3__p">OJ C [...], [...], p. [...]</p></authorialNote>,</p>
+                </citation>
+                <citation xml:id="_cit_7" leos:editable="true">
+                    <p xml:id="_cit_7__p">Acting in accordance with the ordinary legislative procedure,</p>
+                </citation>
+            </citations>
+            <recitals xml:id="_recs" leos:editable="false">
+                <intro xml:id="_recitalsIntro"><p xml:id="_recs_intro">Whereas:</p></intro>
+                <recital xml:id="_rec_1" leos:editable="true">
+                    <num xml:id="_rec_1__num">(1)</num>
+                    <p xml:id="_rec_1__p">Recital...</p>
+                </recital>
+                <recital xml:id="_rec_2" leos:editable="true">
+                    <num xml:id="_rec_2__num">(2)</num>
+                    <p xml:id="_rec_2__p">Recital...</p>
+                </recital>
+            </recitals>
+            <formula xml:id="_preamble__formula_2" name="enactingFormula">
+                <p xml:id="_preamble__formula_2__p">HAS ADOPTED THIS DECISION:</p>
+            </formula>
+        </preamble>
+        <body xml:id="_body">
+            <article xml:id="_art_1" leos:editable="true" leos:deletable="true" leos:autonumbering="true">
+                <num xml:id="_art_1__num" leos:editable="false">Article 1</num>
+                <heading xml:id="_art_1__heading">Scope</heading>
+                <paragraph xml:id="_art_1__para_1">
+                    <num xml:id="_art_1__para_1__num">1.</num>
+                    <content xml:id="_art_1__para_1__content">
+                        <p xml:id="_art_1__para_1__content__p">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article xml:id="_art_2" leos:editable="true" leos:deletable="true" leos:autonumbering="true">
+                <num xml:id="_art_2__num" leos:editable="false">Article 2</num>
+                <heading xml:id="_art_2__heading">Entry into force</heading>
+                <paragraph xml:id="_art_2__para_1">
+                    <content xml:id="_art_2__para_1__content">
+                        <p xml:id="_art_2__para_1__content__p">This Decision shall enter into force on the [...] day following that of its publication in the <i xml:id="_art_2__para_1__content__p__i">Official Journal of the European Union</i>.</p>
+                    </content>
+                </paragraph>
+            </article>
+            <clause xml:id="_clause_1" leos:editable="true" leos:deletable="true" leos:optionlist="listOption1" leos:selectedoption="1">
+                <content xml:id="_clause_1__content">
+                    <p xml:id="_clause_1__content__p">This Decision is addressed to the Member States.</p>
+                </content>
+            </clause>
+        </body>
+        <conclusions xml:id="_conclusions">
+            <p xml:id="_conclusions__p_1">Done at <location refersTo="~_BEL_BRU" xml:id="_conclusions__p__location_1">Brussels</location>, <date date="9999-01-01" xml:id="_akn_aviQud"/></p>
+            <block name="signatory" xml:id="_conclusions__block_1">
+                <signature xml:id="_conclusions__block_1__signature_1">
+                    <organization xml:id="_conclusions__block_1__signature_1__organization" refersTo="~_CONSIL">For the Council</organization>
+                    <role xml:id="_conclusions__block_1__signature_1__role" refersTo="~_PRESID">The President</role>
+                    <person xml:id="_conclusions__block_1__signature_1__person" refersTo="">[...]</person>
+                </signature>
+            </block>
+        </conclusions>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,46 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:affected="true" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                     leos:softdate="2022-06-17T11:21:31.091+02:00" leos:softuser="demo jane(Ext)"
+                     xml:id="_akn_article_VfKi0T">
+                <num leos:editable="false" leos:origin="cn">#</num>
+                <heading>Article heading...</heading>
+                <paragraph leos:affected="true" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T11:21:31.075+02:00" leos:softuser="demo jane(Ext)"
+                           xml:id="_akn_paragraph_UCX5gr">
+                    <num leos:editable="false" leos:origin="cn">#</num>
+                    <content>
+                        <p>Text...</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:affected="true" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T11:21:31.075+02:00" leos:softuser="demo jane(Ext)"
+                           xml:id="_akn_paragraph_fuiDgi">
+                    <num leos:editable="false" leos:origin="cn">#</num>
+                    <content>
+                        <p>Text...</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:affected="true" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2022-06-17T11:21:31.091+02:00" leos:softuser="demo jane(Ext)"
+                           xml:id="_akn_paragraph_jBkzej">
+                    <num leos:editable="false" leos:origin="cn">#</num>
+                    <content>
+                        <p>Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

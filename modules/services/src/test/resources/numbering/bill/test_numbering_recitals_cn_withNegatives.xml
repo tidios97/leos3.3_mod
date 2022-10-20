@@ -1,0 +1,46 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xml:id="akn">
+    <recitals leos:editable="false" leos:origin="ec" xml:id="recs">
+        <recital leos:editable="true" leos:origin="cn">
+            <num leos:origin="cn" xml:id="recs_WiyG0V">(#)</num>
+            <p xml:id="recs_ILXjvV">blah blah blah...-1</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="recs_jmIjdF">
+            <num leos:origin="cn" xml:id="recs_WiyG0V">(#)</num>
+            <p xml:id="recs_ILXjvV">blah blah blah...-1a</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="recs_jmIjdF">
+            <num leos:origin="cn" xml:id="recs_WiyG0V">(#)</num>
+            <p xml:id="recs_ILXjvV">blah blah blah...-1b</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_1">
+            <num leos:origin="ec" xml:id="rec_1__num">(1)</num>
+            <p leos:origin="ec" xml:id="rec_1__p">Regulation (EC) No 91/2003 of the European Parliament and of the
+                Council
+            </p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="imp_rec_d1e89_s3AqGd">
+            <num leos:origin="ec" xml:id="recs_clDXkw">(2)</num>
+            <p leos:origin="ec" xml:id="recs_vY7Jn8">Regulation (EC) No 91/2003 of the European Parliament and of the
+                Council
+            </p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="recs_jmIjdF">
+            <num leos:origin="cn" xml:id="recs_WiyG0V">(#)</num>
+            <p xml:id="recs_ILXjvV">blah blah blah...2a</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="imp_rec_d1e89_quAXDO">
+            <num leos:origin="ec" xml:id="recs_o4jNQj">(3)</num>
+            <p leos:origin="ec" xml:id="recs_hAbYkK">Regulation (EC) No 91/2003 of the European Parliament and of the
+                Council
+            </p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="recs_jmIjdF">
+            <num leos:origin="cn" xml:id="recs_WiyG0V">(#)</num>
+            <p xml:id="recs_ILXjvV">blah blah blah...3a</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="recs_Lt8Khg">
+            <num leos:origin="cn" xml:id="recs_nRwj01">(#)</num>
+            <p xml:id="recs_m67lb6">blah blah blah....3b</p>
+        </recital>
+    </recitals>
+</akomaNtoso>

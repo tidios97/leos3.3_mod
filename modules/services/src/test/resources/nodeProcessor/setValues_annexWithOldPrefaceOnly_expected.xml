@@ -1,0 +1,21 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<documentCollection name="PROP_ACT">
+		<meta>
+		</meta>
+
+		<coverPage xml:id="coverpage">
+		</coverPage>
+
+		<preface leos:origin="ec" xml:id="preface">
+			<longTitle leos:origin="ec" xml:id="preface__longtitle">
+				<p leos:origin="ec" xml:id="preface__longtitle__p">
+					<docType leos:origin="ec" refersTo="~ANNEX" xml:id="preface__longtitle__p__doctype">NEW_AnnexNumberPreface</docType>
+					<docTitle leos:origin="ec" xml:id="preface__longtitle__p__doctitle">Union non-customs formalities covered by EU CSW-CERTEX</docTitle>
+				</p>
+			</longTitle>
+		</preface>
+
+		<collectionBody xml:id="body">
+		</collectionBody>
+	</documentCollection>
+</akomaNtoso>

@@ -1,0 +1,15 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <recitals leos:origin="ec" xml:id="recs" leos:editable="false">
+        <intro leos:origin="ec" xml:id="recitalsIntro">
+            <p leos:origin="ec" xml:id="recs_intro">Whereas:</p>
+        </intro>
+        <recital leos:origin="ec" xml:id="rec_1" leos:editable="true">
+            <num leos:origin="ec" xml:id="rec_1__num">(1)</num>
+            <p leos:origin="ec" xml:id="rec_1__p">Recital...</p>
+        </recital>
+        <recital leos:origin="ec" xml:id="rec_2" leos:editable="true">
+            <num leos:origin="ec" xml:id="rec_2__num">(2)</num>
+            <p leos:origin="ec" xml:id="rec_2__p">Recital...</p>
+        </recital>
+    </recitals>
+</akomaNtoso>

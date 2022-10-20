@@ -1,0 +1,14 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "allowJs": true,
+        "types": ["node", "mocha", "sinon"],
+        "typeRoots": ["../node_modules/@types"]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

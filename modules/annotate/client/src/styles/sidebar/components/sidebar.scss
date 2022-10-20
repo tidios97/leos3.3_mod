@@ -1,0 +1,68 @@
+@import '../variables';
+@import './compare';
+@import './suggestion';
+@import './annotation';
+@import './filter-pane';
+@import './selection-pane';
+@import './dropdown-menu-btn';
+
+.thread-list__card {
+  padding: $layout-h-margin 10px;
+}
+
+#annotation-wrapper {
+  padding: 0px 5px;
+}
+
+.leos-annotation-actions {
+  text-align: right;
+  height: 8px;
+}
+
+.annotation-action-btn {
+  margin: 0px 0px 0px 5px;
+}
+
+div.is-annotation-selected {
+  border: 3px solid #79b7f9;
+}
+
+.annotation-header__user {
+  max-width: 160px;
+  height: 17px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.annotation-header {
+  height: 20px;
+}
+
+//LEOS change 2826
+.is-suggestion {
+  background-color: white;
+  border-color: $leos-suggestion-border-color;
+  border-style: solid;
+  border-width: 2px;
+}
+
+//LEOS change 3632
+.is-comment {
+  background-color: $leos-annotation-background-color;
+  border-radius: 8px;
+}
+
+.is-annotations-processed {
+  background-color: $leos-processed-annotation-background-color;
+}
+
+.annotation-header__entity{
+  max-width: 60px;
+  height: 17px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 13px;
+}

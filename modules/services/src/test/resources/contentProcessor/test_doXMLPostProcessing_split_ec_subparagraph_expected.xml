@@ -1,0 +1,25 @@
+<root xmlns:leos="urn:eu:europa:ec:leos">
+    <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="imp_art_d1e18032_19PFkP">
+        <num leos:origin="ec" xml:id="imp_art_d1e18032_19PFkP_UyZIpT">Article 2</num>
+        <heading leos:origin="ec" xml:id="imp_art_d1e18032_19PFkP_FPhfU3">Requirements to qualify for the treatment set
+            out in Article 153(3)
+        </heading>
+        <paragraph leos:origin="ec" xml:id="imp_art_d1e18032_19PFkP_MTUE8P">
+            <num leos:origin="ec" xml:id="imp_art_d1e18032_19PFkP_I6puhC">1.</num>
+            <subparagraph leos:origin="ec" xml:id="imp_art_d1e18032_19PFkP_Db7137">
+                <content xml:id="imp_art_d1e18032_19PFkP_p1CpOV">
+                    <p xml:id="imp_art_d1e18032_19PFkP_ivbEGy">To be eligible for the treatment set out in Article
+                        153(3), credit protection deriving
+                        from a guarantee or credit derivative shall meet
+                    </p>
+                </content>
+            </subparagraph>
+            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:29:45.479+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="imp_art_d1e18032_19PFkP_UeBnhG">
+                <content xml:id="imp_art_d1e18032_19PFkP_dmjmAH">
+                    <p xml:id="imp_art_d1e18032_19PFkP_tpSrWd">the following conditions:</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

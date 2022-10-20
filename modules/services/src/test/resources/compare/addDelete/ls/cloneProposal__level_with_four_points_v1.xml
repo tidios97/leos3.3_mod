@@ -1,0 +1,38 @@
+<level leos:depth="1" leos:origin="ec" xml:id="_akn_level_ib0Lfk">
+    <num leos:origin="ec" xml:id="_akn_R3R0Bn">4.</num>
+    <subparagraph leos:origin="ec" xml:id="_akn_JnzQnB">
+        <content xml:id="_akn_MmH2XK" leos:origin="ec">
+            <p leos:origin="ec" xml:id="_akn_HglHUI">Text...</p>
+        </content>
+    </subparagraph>
+    <list leos:origin="ec" xml:id="_akn_naqi3Z">
+        <point leos:origin="ec" leos:softdate="2022-07-08T13:47:40+02:00" leos:softuser="DAS Satyabrata(AGRI)"
+               xml:id="_akn_7x75qx">
+            <num leos:origin="ec" xml:id="_akn_ShC5ew">(a)</num>
+            <content leos:origin="ec" xml:id="_akn_TzP4a0">
+                <p leos:origin="ec" xml:id="_akn_RjQ4xh">dfgdfgdg</p>
+            </content>
+        </point>
+        <point leos:origin="ec" leos:softdate="2022-07-08T13:47:41+02:00" leos:softuser="DAS Satyabrata(AGRI)"
+               xml:id="_akn_A2zNCs">
+            <num leos:origin="ec" xml:id="_akn_xQ8csU">(b)</num>
+            <content leos:origin="ec" xml:id="_akn_pc0h5t">
+                <p leos:origin="ec" xml:id="_akn_lP0hQY">dfgdgdfg</p>
+            </content>
+        </point>
+        <point leos:origin="ec" leos:softdate="2022-07-08T13:47:43+02:00" leos:softuser="DAS Satyabrata(AGRI)"
+               xml:id="_akn_yliPlh">
+            <num leos:origin="ec" xml:id="_akn_mppYM2">(c)</num>
+            <content leos:origin="ec" xml:id="_akn_OkDHzf">
+                <p leos:origin="ec" xml:id="_akn_LSjiPi">fdgddfgdg</p>
+            </content>
+        </point>
+        <point leos:origin="ec" leos:softdate="2022-07-08T13:47:46+02:00" leos:softuser="DAS Satyabrata(AGRI)"
+               xml:id="_akn_pDTQoS">
+            <num leos:origin="ec" xml:id="_akn_mCl8mA">(d)</num>
+            <content leos:origin="ec" xml:id="_akn_yEuMPy">
+                <p leos:origin="ec" xml:id="_akn_IBf0lk">fgfdgdgdfg</p>
+            </content>
+        </point>
+    </list>
+</level>

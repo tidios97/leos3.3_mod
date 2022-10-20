@@ -1,0 +1,168 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:autonumbering="true" leos:deletable="false" leos:editable="false" leos:origin="ec"
+                     xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="art_1_7T3z1H">
+                        <content leos:origin="ec" xml:id="art_1_ZVEA1I">
+                            <p leos:origin="ec" xml:id="art_1_13IN9L">Text...</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="art_1_EQ9DIk">
+                        <point leos:origin="ec" xml:id="art_1_IT8dqq">
+                            <num leos:origin="ec" xml:id="art_1_5s67Kt">(a)</num>
+                            <alinea leos:origin="ec" xml:id="art_1_n99BGY">
+                                <content leos:origin="ec" xml:id="art_1_MoAUoy">
+                                    <p leos:origin="ec" xml:id="art_1_tqj5zc">
+                                        <i leos:origin="ec" xml:id="art_1_zVEmFe">
+                                            <b leos:origin="ec" xml:id="art_1_h6qV63">ejlkgnerj</b>
+                                        </i>
+                                    </p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="ec" xml:id="art_1_xzP7r7">
+                                <point leos:deletable="false" leos:editable="false" leos:origin="ec"
+                                       leos:softaction="move_to" leos:softactionroot="true"
+                                       leos:softdate="2021-01-18T11:59:09.000+01:00"
+                                       leos:softmove_label="MOVED to Article 2, first paragraph, point (a)(i)"
+                                       leos:softmove_to="art_1_1OdGZW" leos:softuser="jane" xml:id="moved_art_1_1OdGZW">
+                                    <num leos:origin="ec" xml:id="moved_art_1_JFKJJS">(i)</num>
+                                    <content leos:origin="ec" xml:id="moved_art_1_3RUilf">
+                                        <p leos:origin="ec" xml:id="moved_art_1_mGmwNI">
+                                            <b leos:origin="ec" xml:id="moved_art_1_4m75oR">wlnfewldfv</b>
+                                            df dfv dfv dfv dfv dfv dfv df v
+                                        </p>
+                                    </content>
+                                </point>
+                                <point leos:deletable="false" leos:editable="false" leos:origin="ec"
+                                       leos:softaction="move_to" leos:softactionroot="true"
+                                       leos:softdate="2022-06-17T11:41:20.862+02:00" leos:softmove_to="art_1_g9zUKf"
+                                       leos:softuser="demo jane(Ext)" xml:id="moved_art_1_g9zUKf">
+                                    <num leos:origin="ec" xml:id="moved_art_1_VuH93A">(ii)</num>
+                                    <alinea leos:origin="ec" xml:id="moved_art_1_Q0oPny">
+                                        <content leos:origin="ec" xml:id="moved_art_1_HEobsL">
+                                            <p leos:origin="ec" xml:id="moved_art_1_eFgECP">df
+                                                <i leos:origin="ec" xml:id="moved_art_1_zq3NyW">vdf vdfv dfv dfv dfv
+                                                    dfv
+                                                </i>
+                                            </p>
+                                        </content>
+                                    </alinea>
+                                    <alinea leos:origin="ec" xml:id="moved_art_1_eTFAL0">
+                                        <content leos:origin="ec" xml:id="moved_art_1_TkDXFA">
+                                            <p leos:origin="ec" xml:id="moved_art_1_QV9GRf">df v
+                                                <sup leos:origin="ec" xml:id="moved_art_1_HyQ7gI">df</sup>
+                                                v dfv dfv dfv df vdf vdf v
+                                            </p>
+                                        </content>
+                                    </alinea>
+                                </point>
+                                <point leos:origin="ec" xml:id="art_1_jiEHQd">
+                                    <num leos:origin="ec" xml:id="art_1_OIu7jk">(iii)</num>
+                                    <content leos:origin="ec" xml:id="art_1_dgTIrl">
+                                        <p leos:origin="ec" xml:id="art_1_WPiKQm">wekj
+                                            <sub leos:origin="ec" xml:id="art_1_Dw2FAk">fbw</sub>
+                                            ejk
+                                        </p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <article leos:affected="true" leos:autonumbering="true" leos:deletable="false" leos:editable="false"
+                     leos:origin="ec" xml:id="art_2">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_2__num">Article 2</num>
+                <heading leos:origin="ec" xml:id="art_2__heading">Entry into force</heading>
+                <paragraph leos:affected="true" leos:origin="ec" xml:id="art_2__para_1">
+                    <subparagraph leos:origin="ec" xml:id="art_2_TTZyb6">
+                        <content leos:origin="ec" xml:id="art_2__para_1__content">
+                            <p leos:origin="ec" xml:id="art_2__para_1__content__p">This Regulation shall enter into
+                                force on the [...] day following that of its publication in the
+                                <i leos:origin="ec" xml:id="art_2__para_1__content__p__i">Official Journal of the
+                                    European Union
+                                </i>
+                                .
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:list-type="point_num" leos:origin="ec" xml:id="art_2_rlTP0W">
+                        <point leos:origin="ec" xml:id="art_2_pamXSl">
+                            <num leos:origin="ec" xml:id="art_2_VIc2oH">(a)</num>
+                            <alinea leos:origin="ec" leos:softaction="trans" leos:softactionroot="true"
+                                    leos:softdate="2021-01-18T11:59:09.000+01:00" leos:softuser="jane"
+                                    xml:id="transformed_art_2_pamXSl">
+                                <content leos:origin="ec" xml:id="art_2_yDksm5">
+                                    <p leos:origin="ec" xml:id="art_2_V3Sqqq">"some text some text some text some text
+                                        some text some text some text some text some text some text some text"
+                                    </p>
+                                </content>
+                            </alinea>
+                            <list leos:list-type="point_num" leos:origin="cn" leos:softaction="move_from"
+                                  leos:softactionroot="true" leos:softdate="2021-01-18T11:59:09.000+01:00"
+                                  leos:softuser="jane" xml:id="lis_bsnnyi">
+                                <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                                       leos:softdate="2021-01-18T11:59:09.000+01:00"
+                                       leos:softmove_from="moved_art_1_1OdGZW"
+                                       leos:softmove_label="MOVED from Article 1(1), point (a)(i)" leos:softuser="jane"
+                                       xml:id="art_1_1OdGZW">
+                                    <num leos:origin="cn" xml:id="art_1_JFKJJS">(i)</num>
+                                    <alinea leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                            leos:softdate="2022-06-17T11:41:20.908+02:00" leos:softuser="demo jane(Ext)"
+                                            xml:id="_akn_alinea_HeL3kl">
+                                        <content leos:origin="ec" xml:id="art_1_3RUilf">
+                                            <p leos:origin="ec" xml:id="art_1_mGmwNI">
+                                                <b leos:origin="ec" xml:id="art_1_4m75oR">wlnfewldfv</b>
+                                                df dfv dfv dfv dfv dfv dfv df v
+                                            </p>
+                                        </content>
+                                    </alinea>
+                                    <list leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                                          leos:softdate="2022-06-17T11:41:20.877+02:00" leos:softuser="demo jane(Ext)"
+                                          xml:id="_lis_qxDF7r">
+                                        <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                                               leos:softdate="2022-06-17T11:41:20.862+02:00"
+                                               leos:softmove_from="moved_art_1_g9zUKf" leos:softuser="demo jane(Ext)"
+                                               xml:id="art_1_g9zUKf">
+                                            <num leos:origin="cn" xml:id="art_1_VuH93A">#</num>
+                                            <alinea leos:origin="ec" xml:id="art_1_Q0oPny">
+                                                <content leos:origin="ec" xml:id="art_1_HEobsL">
+                                                    <p leos:origin="ec" xml:id="art_1_eFgECP">df
+                                                        <i leos:origin="ec" xml:id="art_1_zq3NyW">vdf vdfv dfv dfv dfv
+                                                            dfv
+                                                        </i>
+                                                    </p>
+                                                </content>
+                                            </alinea>
+                                            <alinea leos:origin="ec" xml:id="art_1_eTFAL0">
+                                                <content leos:origin="ec" xml:id="art_1_TkDXFA">
+                                                    <p leos:origin="ec" xml:id="art_1_QV9GRf">df v
+                                                        <sup leos:origin="ec" xml:id="art_1_HyQ7gI">df</sup>
+                                                        v dfv dfv dfv df vdf vdf v
+                                                    </p>
+                                                </content>
+                                            </alinea>
+                                        </point>
+                                    </list>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <clause leos:alternative="true" leos:deletable="true" leos:editable="true" leos:optionlist="listOption1"
+                    leos:origin="ec" leos:selectedoption="1" xml:id="clause_1">
+                <content leos:origin="ec" xml:id="clause_1__content">
+                    <p leos:origin="ec" xml:id="clause_1__content__p">This Regulation shall be binding in its entirety
+                        and directly applicable in all Member States.
+                    </p>
+                </content>
+            </clause>
+        </body>
+    </bill>
+</akomaNtoso>

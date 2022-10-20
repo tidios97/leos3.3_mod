@@ -1,0 +1,19 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill>
+        <meta>
+            <proprietary source="~_leos">
+                <leos:docPurpose xml:id="proprietary__docpurpose">NEWVALUE</leos:docPurpose>
+                <leos:eeaRelevance xml:id="proprietary__eeaRelevance">(Text with EEA relevance)</leos:eeaRelevance>
+                <leos:docStage xml:id="proprietary__docstage">NEW Stage</leos:docStage>
+            </proprietary>
+            <identification>
+                <FRBRExpression>
+                    <FRBRlanguage language="EN" xml:id="frbrexpression__frbrlanguage_1"/>
+                </FRBRExpression>
+            </identification>
+        </meta>
+        <body>
+            <article xml:id="art486"/>
+        </body>
+    </bill>
+</akomaNtoso>

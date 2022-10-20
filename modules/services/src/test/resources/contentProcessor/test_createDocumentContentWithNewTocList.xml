@@ -1,0 +1,390 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+            xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <meta>
+            <identification source="~COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage language="en"/>
+                	<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                </FRBRManifestation>
+            </identification>
+            <references source="~COM">
+                <TLCLocation href="http://publications.europa.eu/resource/authority/place/BEL_BRU"
+                             showAs="Brussels"
+                             xml:id="_BEL_BRU"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL"
+                                 showAs="Council of the European Union"
+                                 xml:id="CONSIL"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/EP"
+                                 showAs="European Parliament"
+                                 xml:id="EP"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/COM"
+                                 showAs="European Commission"
+                                 xml:id="COM"/>
+                <TLCRole href="http://publications.europa.eu/resource/authority/role/PRESID"
+                         showAs="President"
+                         xml:id="PRESID"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/resource-type/REG"
+                              name="docType"
+                              showAs="Regulation"
+                              xml:id="REG"/>
+                <TLCReference href="http://eurovoc.europa.eu/5456"
+                              name="contentSubject"
+                              showAs="Legal basis"
+                              xml:id="legalBasis"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/language/ENG"
+                              name="language"
+                              showAs="en"
+                              xml:id="language"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.0.0</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:template>SJ-023</leos:template>
+                <leos:docTemplate>BL-023</leos:docTemplate>
+                <leos:docPurpose xml:id="proprietary__docpurpose">on ...</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:refOrigin>bill_ckq9kw1ew0003jg01p3jwk9br</leos:refOrigin>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</leos:docType>
+                <leos:objectId/>
+                <leos:ref>bill_ckq9l0l140009jg019s8b4k2a</leos:ref>
+            </proprietary>
+        </meta>
+        <coverPage xml:id="coverpage">
+            <container name="logo" xml:id="coverpage__container_1">
+                <p xml:id="coverpage__container_1__p">
+                    <img alt="European Commission"
+                         src="dataII="
+                         title="European Commission"
+                         xml:id="coverpage__container_1__p__img"/>
+                </p>
+            </container>
+            <longTitle xml:id="coverpage__longtitle">
+                <p xml:id="coverpage__longtitle__p">
+                    <docStage xml:id="coverpage__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType refersTo="~REG" xml:id="coverpage__longtitle__p__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</docType>
+                    <docPurpose xml:id="coverpage__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+            <container name="mainDocLanguage" xml:id="_coverpage__container_3">
+                <p xml:id="_coverpage__container_3__p"><inline name="language" refersTo="~FRBRlanguage" xml:id="_coverpage__container_3__p_inline">EN</inline></p>
+            </container>
+        </coverPage>
+        <preface xml:id="preface">
+            <longTitle xml:id="preface__longtitle">
+                <p xml:id="preface__longtitle__p">
+                    <docStage xml:id="preface__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType refersTo="~REG" xml:id="preface__longtitle__p__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</docType>
+                    <docPurpose xml:id="preface__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+        </preface>
+        <preamble xml:id="preamble">
+            <formula name="actingEntity" xml:id="preamble__formula_1">
+                <p xml:id="preamble__formula_1__p">THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,</p>
+            </formula>
+            <citations leos:editable="false" xml:id="cits">
+                <citation leos:editable="true" refersTo="~legalBasis" xml:id="cit_1">
+                    <p xml:id="cit_1__p">Having regard to the Treaty on the Functioning of the European Union, and in particular Article [...] thereof,</p>
+                </citation>
+                <citation leos:editable="true" refersTo="~legalBasis" xml:id="cit_2">
+                    <p xml:id="cit_2__p">Having regard to the proposal from the European Commission,</p>
+                </citation>
+                <citation leos:editable="true" refersTo="~legalBasis" xml:id="cit_3">
+                    <p xml:id="cit_3__p">After transmission of the draft legislative act to the national Parliaments,</p>
+                </citation>
+                <citation leos:editable="true" refersTo="~legalBasis" xml:id="cit_4">
+                    <p xml:id="cit_4__p">Having regard to the opinion of the European Economic and Social Committee<authorialNote marker="1" placement="bottom" xml:id="authorialnote_1">
+                        <p xml:id="authorialNote_1__p">OJ C [...], [...], p. [...]</p>
+                    </authorialNote>,</p>
+                </citation>
+                <citation leos:editable="true" refersTo="~legalBasis" xml:id="cit_5">
+                    <p xml:id="cit_5__p">Having regard to the opinion of the Committee of the Regions<authorialNote marker="2" placement="bottom" xml:id="authorialnote_2">
+                        <p xml:id="authorialNote_2__p">OJ C [...], [...], p. [...]</p>
+                    </authorialNote>,</p>
+                </citation>
+                <citation leos:editable="true" refersTo="~legalBasis" xml:id="cit_6">
+                    <p xml:id="cit_6__p">Acting in accordance with the ordinary legislative procedure,</p>
+                </citation>
+            </citations>
+            <recitals leos:editable="false" xml:id="recs">
+                <intro xml:id="recitalsIntro">
+                    <p xml:id="recs_intro">Whereas:</p>
+                </intro>
+                <recital leos:editable="true" xml:id="rec_1">
+                    <num xml:id="rec_1__num">(1)</num>
+                    <p xml:id="rec_1__p">Recital...</p>
+                </recital>
+                <recital leos:editable="true" xml:id="rec_2">
+                    <num xml:id="rec_2__num">(2)</num>
+                    <p xml:id="rec_2__p">Recital...</p>
+                </recital>
+                <recital leos:deletable="true" leos:editable="true" xml:id="rec_3">
+                    <num xml:id="recs_C6KPGx">(3)</num>
+                    <p xml:id="recs_ac8moM">In order to improve coordination and harmonise implementation of the Funds providing support under cohesion policy, namely the European Regional Development Fund (ERDF), the European Social Fund (ESF) and the Cohesion Fund, with the Fund for rural development, namely the European Agricultural Fund for Rural Development (EAFRD), and for the maritime and fisheries sector, namely measures financed under shared management in the European Maritime and Fisheries Fund (EMFF), common provisions should be established for all these Funds (the 'European Structural and Investment Funds' - 'ESI Funds'). In addition this Regulation contains general provisions which apply to the ERDF, the ESF and the Cohesion Fund, but do not apply to the EAFRD and the EMFF as well as general provisions applicable to the ERDF, the ESF, the Cohesion Fund and the EMFF, but do not apply to the EAFRD. Due to the particularities that exist for each ESI Fund, specific rules applicable to each ESI Fund and to the European territorial cooperation goal under the ERDF should be specified in separate Regulations.</p>
+                </recital>
+            </recitals>
+            <formula name="enactingFormula" xml:id="preamble__formula_2">
+                <p xml:id="preamble__formula_2__p">HAVE ADOPTED THIS REGULATION:</p>
+            </formula>
+        </preamble>
+        <body xml:id="body">
+            <article xml:id="art_1">
+                <num leos:editable="false" xml:id="art_1_num">Article 1</num>
+                <heading xml:id="art_1_heading">Article heading...</heading>
+                <paragraph xml:id="art_1-par1">
+                    <num xml:id="art_1-par1_num">1.</num>
+                    <content xml:id="art_1-par1_c">
+                        <p xml:id="art_1-par1_c_p">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:deletable="true" leos:editable="true" xml:id="art_2">
+                <num leos:editable="false" xml:id="art_2__num">Article 2</num>
+                <heading xml:id="art_2__heading"></heading>
+                <paragraph xml:id="art_2__para_1">
+                    <content xml:id="art_2__para_1__content">
+                        <p xml:id="art_2__para_1__content__p">This Regulation shall enter into force on the [...] day following that of its publication in the <i xml:id="art_2__para_1__content__p__i">Official Journal of the European Union</i>.<mref xml:id="art_2_J4JGHy">
+                            <ref href="bill_ckq9l0l140009jg019s8b4k2a/cit_3" xml:id="art_2_JAYUiE">third</ref> citation</mref> 0è09è9<mref xml:id="art_2_FTu1wr">
+                            <ref href="bill_ckq9l0l140009jg019s8b4k2a/cit_3" xml:id="art_2_ej3Oz2">third</ref> citation</mref>
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:deletable="true" leos:editable="true" xml:id="art_3">
+                <num leos:editable="false" xml:id="imp_null_QBaI3s_XUG9GR">Article 3</num>
+                <heading xml:id="imp_null_QBaI3s_v92sbo">Content of the Partnership Agreement</heading>
+                <paragraph xml:id="imp_null_QBaI3s_tIX3lL">
+                    <num xml:id="imp_null_QBaI3s_BG4rpU">1.</num>
+                    <subparagraph xml:id="imp_null_QBaI3s_I7s4Dc">
+                        <content xml:id="imp_null_QBaI3s_o8tQ03">
+                            <p xml:id="imp_null_QBaI3s_JRkOKT">The Partnership Agreement shall set out:</p>
+                        </content>
+                    </subparagraph>
+                    <list xml:id="imp_null_QBaI3s_rdNmwr">
+                        <point xml:id="imp_null_QBaI3s_gXK9Yo">
+                            <num xml:id="imp_null_QBaI3s_WXq8Dh">(a)</num>
+                            <alinea xml:id="imp_null_QBaI3s_3Vlr6Y">
+                                <content xml:id="imp_null_QBaI3s_iAzAaY">
+                                    <p xml:id="imp_null_QBaI3s_KY1nfq">arrangements to ensure alignment with the Union strategy for smart, sustainable and inclusive growth asrthr<mref xml:id="imp_null_QBaI3s_EE1jwr">
+                                        <ref href="bill_ckq9l0l140009jg019s8b4k2a/cit_2"
+                                             xml:id="imp_null_QBaI3s_GepYjo">second</ref> citation</mref> well as the Fund-specific missions pursuant to their Treaty-based objectives, including economic, social and territorial cohesion, including:p89p98p<mref xml:id="imp_null_QBaI3s_huB9Xg">
+                                        <ref href="bill_ckq9l0l140009jg019s8b4k2a/cit_4"
+                                             xml:id="imp_null_QBaI3s_GXbNp8">fourth</ref> citation</mref>
+                                    </p>
+                                </content>
+                            </alinea>
+                            <list xml:id="imp_null_QBaI3s_V8JLI2">
+                                <point xml:id="imp_null_QBaI3s_KPYmH6">
+                                    <num xml:id="imp_null_QBaI3s_t20L7x">(i)</num>
+                                    <content xml:id="imp_null_QBaI3s_6jHq1x">
+                                        <p xml:id="imp_null_QBaI3s_dIloed">an analysis of disparities, development needs and growth potential with reference to the thematic objectives and the territorial challenges, and taking account of the National Reform Programme, where appropriate, and relevant country-specific recommendations adopted in accordance with Article 121(2) TFEU and relevant Council recommendations adopted in accordance with Article 148(4) TFEU;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_3NQeVc">
+                                    <num xml:id="imp_null_QBaI3s_fdsHbS">(ii)</num>
+                                    <content xml:id="imp_null_QBaI3s_bLcfbA">
+                                        <p xml:id="imp_null_QBaI3s_YtjjOi">a summary of the ex ante evaluations of the programmes, or key findings of the ex ante evaluation of the Partnership Agreement, where the latter evaluation is undertaken by the Member State at its own initiative;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_wKRm0U">
+                                    <num xml:id="imp_null_QBaI3s_YKl70N">(iii)</num>
+                                    <content xml:id="imp_null_QBaI3s_jtFbuy">
+                                        <p xml:id="imp_null_QBaI3s_mW4dNo">selected thematic objectives, and for each of the selected thematic objectives a summary of the main results expected for each of the ESI Funds;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_fQOFqw">
+                                    <num xml:id="imp_null_QBaI3s_Bq9OCY">(iv)</num>
+                                    <content xml:id="imp_null_QBaI3s_Nlp3KZ">
+                                        <p xml:id="imp_null_QBaI3s_Snfrlm">the indicative allocation of support by the Union by thematic objective at national level for each of the ESI Funds, as well as the total indicative amount of support envisaged for climate change objectives;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_V8mwES">
+                                    <num xml:id="imp_null_QBaI3s_QfWnCE">(v)</num>
+                                    <content xml:id="imp_null_QBaI3s_xhsF8x">
+                                        <p xml:id="imp_null_QBaI3s_bG4sk2">the application of the horizontal principles referred to in Articles 5, 7 and 8 and policy objectives for the implementation of the ESI Funds;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_9J5kZc">
+                                    <num xml:id="imp_null_QBaI3s_DOp4ym">(vi)</num>
+                                    <content xml:id="imp_null_QBaI3s_9LJlID">
+                                        <p xml:id="imp_null_QBaI3s_fBypm8">the list of the programmes under the ERDF, the ESF and the Cohesion Fund, except those under the European territorial cooperation goal, and of the programmes of the EAFRD and the EMFF, with the respective indicative allocations by ESI Fund and by year;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_qWXI5n">
+                                    <num xml:id="imp_null_QBaI3s_WVOJS9">(vii)</num>
+                                    <content xml:id="imp_null_QBaI3s_xFoo7j">
+                                        <p xml:id="imp_null_QBaI3s_4xfB06">information on the allocation related to the performance reserve, broken down by ESI Fund and, where appropriate, by category of region, and on the amounts excluded for the purpose of calculating the performance reserve in accordance with Article 20;</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point xml:id="imp_null_QBaI3s_QPfUVs">
+                            <num xml:id="imp_null_QBaI3s_dPlbRg">(b)</num>
+                            <alinea xml:id="imp_null_QBaI3s_RfBcNN">
+                                <content xml:id="imp_null_QBaI3s_q8ONDZ">
+                                    <p xml:id="imp_null_QBaI3s_74Bhcl">arrangements to ensure effective implementation of the ESI Funds, including:</p>
+                                </content>
+                            </alinea>
+                            <list xml:id="imp_null_QBaI3s_LLgzIW">
+                                <point xml:id="imp_null_QBaI3s_lJqiRY">
+                                    <num xml:id="imp_null_QBaI3s_d7riED">(i)</num>
+                                    <content xml:id="imp_null_QBaI3s_n4dqbl">
+                                        <p xml:id="imp_null_QBaI3s_2IDete">arrangements, in line with the institutional framework of the Member States, that ensure coordination between the ESI Funds and other Union and national funding instruments and with the EIB;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_rNFBle">
+                                    <num xml:id="imp_null_QBaI3s_MZLmtv">(ii)</num>
+                                    <content xml:id="imp_null_QBaI3s_qhtKWa">
+                                        <p xml:id="imp_null_QBaI3s_m3sDcR">the information required for ex ante verification of compliance with the rules on additionality as they are defined in Part Three;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_nYzo3P">
+                                    <num xml:id="imp_null_QBaI3s_IkKfVT">(iii)</num>
+                                    <content xml:id="imp_null_QBaI3s_qAiz12">
+                                        <p xml:id="imp_null_QBaI3s_4tDeeO">a summary of the assessment of the fulfilment of applicable ex ante conditionalities in accordance with Article 19 and Annex XI at national level and, in the event that the applicable ex ante conditionalities are not fulfilled, of the actions to be taken, the bodies responsible and the timetable for implementation of those actions;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_JG1kOY">
+                                    <num xml:id="imp_null_QBaI3s_Hn3h7V">(iv)</num>
+                                    <content xml:id="imp_null_QBaI3s_KUE9xB">
+                                        <p xml:id="imp_null_QBaI3s_EMkNXY">the methodology and mechanisms to ensure consistency in the functioning of the performance framework in accordance with Article 21;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_iUWxnD">
+                                    <num xml:id="imp_null_QBaI3s_5IQypW">(v)</num>
+                                    <content xml:id="imp_null_QBaI3s_bO2MOW">
+                                        <p xml:id="imp_null_QBaI3s_Wl3Icx">an assessment of whether there is a need to reinforce the administrative capacity of the authorities involved in the management and control of the programmes and, where appropriate, of beneficiaries as well as, where necessary, a summary of actions to be taken for that purpose;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_pUYXCq">
+                                    <num xml:id="imp_null_QBaI3s_pofoJ8">(vi)</num>
+                                    <content xml:id="imp_null_QBaI3s_HkCfox">
+                                        <p xml:id="imp_null_QBaI3s_O6KISg">a summary of the actions planned in the programmes, including an indicative timetable for achievement of a reduction in the administrative burden on beneficiaries;</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point xml:id="imp_null_QBaI3s_7rtUjl">
+                            <num xml:id="imp_null_QBaI3s_qCIwW1">(c)</num>
+                            <content xml:id="imp_null_QBaI3s_pXyhh3">
+                                <p xml:id="imp_null_QBaI3s_PNcZ2w">arrangements for the partnership principle as referred in Article 5;</p>
+                            </content>
+                        </point>
+                        <point xml:id="imp_null_QBaI3s_UtDoHN">
+                            <num xml:id="imp_null_QBaI3s_r6Af0o">(d)</num>
+                            <content xml:id="imp_null_QBaI3s_X5eEBw">
+                                <p xml:id="imp_null_QBaI3s_jjOtJV">an indicative list of the partners referred to in Article 5 and a summary of the actions taken to involve them in accordance with Article 5 and of their role in the preparation of the Partnership Agreement and the progress report as referred to in Article 52.</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph xml:id="imp_null_QBaI3s_o2o7Jn">
+                    <num xml:id="imp_null_QBaI3s_nQFRI2">2.</num>
+                    <subparagraph xml:id="imp_null_QBaI3s_f6Aigm">
+                        <content xml:id="imp_null_QBaI3s_mqOZ4U">
+                            <p xml:id="imp_null_QBaI3s_zjkCAm">The Partnership Agreement shall also indicate:</p>
+                        </content>
+                    </subparagraph>
+                    <list xml:id="imp_null_QBaI3s_6sj97v">
+                        <point xml:id="imp_null_QBaI3s_GQ2t7h">
+                            <num xml:id="imp_null_QBaI3s_5Qw3CR">(a)</num>
+                            <alinea xml:id="imp_null_QBaI3s_IlUHbU">
+                                <content xml:id="imp_null_QBaI3s_ZsrMB0">
+                                    <p xml:id="imp_null_QBaI3s_6rJzB7">an integrated approach to territorial development supported by the ESI Funds or a summary of the integrated approaches to territorial development based on the content of the programmes, setting out:</p>
+                                </content>
+                            </alinea>
+                            <list xml:id="imp_null_QBaI3s_bvvfJs">
+                                <point xml:id="imp_null_QBaI3s_2otUuN">
+                                    <num xml:id="imp_null_QBaI3s_VBT6cJ">(i)</num>
+                                    <content xml:id="imp_null_QBaI3s_uh4os9">
+                                        <p xml:id="imp_null_QBaI3s_HznfJ9">the arrangements to ensure an integrated approach to the use of the ESI Funds for the territorial development of specific subregional areas, in particular the implementation arrangements for Articles 32, 33 and 36 accompanied by the principles for identifying the urban areas where integrated actions for sustainable urban development are to be implemented;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_cvjywh">
+                                    <num xml:id="imp_null_QBaI3s_Fv3jIe">(ii)</num>
+                                    <content xml:id="imp_null_QBaI3s_cZ5YiY">
+                                        <p xml:id="imp_null_QBaI3s_btD4Ge">the main priority areas for cooperation under the ESI Funds, taking account, where appropriate, of macro-regional strategies and sea basin strategies;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_e8lmSl">
+                                    <num xml:id="imp_null_QBaI3s_Wy7dpX">(iii)</num>
+                                    <content xml:id="imp_null_QBaI3s_KOIEAw">
+                                        <p xml:id="imp_null_QBaI3s_vLlOZi">where appropriate, an integrated approach to addressing the specific needs of geographical areas most affected by poverty or of target groups at highest risk of discrimination or social exclusion, with special regard to marginalised communities, persons with disabilities, the long term unemployed and young people not in employment, education or training;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_null_QBaI3s_3OF9Yb">
+                                    <num xml:id="imp_null_QBaI3s_B7RJzP">(iv)</num>
+                                    <content xml:id="imp_null_QBaI3s_nk5pg4">
+                                        <p xml:id="imp_null_QBaI3s_wChjhE">where appropriate, an integrated approach to address the demographic challenges of regions or specific needs of geographical areas which suffer from severe and permanent natural or demographic handicaps as referred to in Article 174 TFEU;</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point xml:id="imp_null_QBaI3s_SHxqEN">
+                            <num xml:id="imp_null_QBaI3s_VPMdwd">(b)</num>
+                            <content xml:id="imp_null_QBaI3s_Llzct7">
+                                <p xml:id="imp_null_QBaI3s_a8HCVD">arrangements to ensure efficient implementation of the ESI Funds, including an assessment of the existing systems for electronic data exchange, and a summary of the actions planned to gradually permit all exchanges of information between beneficiaries, and authorities responsible for management and control of programmes, to be carried out by electronic data exchange.</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <clause leos:alternative="true"
+                    leos:deletable="true"
+                    leos:editable="true"
+                    leos:optionlist="listOption1"
+                    leos:selectedoption="1"
+                    xml:id="clause_1">
+                <content xml:id="clause_1__content">
+                    <p xml:id="clause_1__content__p">This Regulation shall be binding in its entirety and directly applicable in all Member States.</p>
+                </content>
+            </clause>
+        </body>
+        <conclusions xml:id="conclusions">
+            <p xml:id="conclusions__p_1">Done at <location refersTo="~_BEL_BRU" xml:id="conclusions__p__location_1">Brussels</location>,</p>
+            <block name="signatory" xml:id="conclusions__block_1">
+                <signature xml:id="conclusions__block_1__signature_1">
+                    <organization refersTo="~EP" xml:id="conclusions__block_1__signature_1__organization">For the European Parliament</organization>
+                    <role refersTo="~PRESID" xml:id="conclusions__block_1__signature_1__role">The President</role>
+                    <person refersTo="" xml:id="conclusions__block_1__signature_1__person">[...]</person>
+                </signature>
+                <signature xml:id="conclusions__block_1__signature_2">
+                    <organization refersTo="~CONSIL"
+                                  xml:id="conclusions__block_1__signature_2__organization">For the Council</organization>
+                    <role refersTo="~PRESID" xml:id="conclusions__block_1__signature_2__role">The President</role>
+                    <person refersTo="" xml:id="conclusions__block_1__signature_2__person">[...]</person>
+                </signature>
+            </block>
+        </conclusions>
+
+        <attachments>
+            <attachment xml:id="akn_HQk35G">
+                <documentRef href="annex_ckq9l0l1o000ajg013ej7qqnx.xml"
+                             showAs="Annex"
+                             xml:id="akn_cnGNRl"/>
+            </attachment>
+
+        </attachments>
+    </bill>
+</akomaNtoso>

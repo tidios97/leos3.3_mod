@@ -1,0 +1,62 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="regulation">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="akn_art_YnSKbj">
+                <num leos:editable="false" leos:origin="ec" xml:id="akn_art_YnSKbj_N7bQVT">Article 2</num>
+                <heading leos:origin="ec" xml:id="akn_art_YnSKbj_dqTi7R">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="akn_art_YnSKbj_zrk0Mz">
+                    <num leos:origin="ec" xml:id="akn_art_YnSKbj_akUEgv">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="akn_art_YnSKbj_oNh4Vl">
+                        <content leos:origin="ec" xml:id="akn_art_YnSKbj_RmxNQr">
+                            <p leos:origin="ec" xml:id="akn_art_YnSKbj_UqAJE4">ergregregerg</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="akn_art_YnSKbj_gvmXCy">
+                        <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(-a)</num>
+                            <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">gregtgtghrt</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(-aa)</num>
+                            <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">gregtgtghrt</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="ec" xml:id="akn_art_YnSKbj_soCjiB">(a)</num>
+                            <content leos:origin="ec" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="ec" xml:id="akn_art_YnSKbj_g319GD">gregtgtghrt</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(aa)</num>
+                            <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">gregtgtghrt</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_art_YnSKbj_yiJDrd">
+                            <num leos:origin="ec" xml:id="akn_art_YnSKbj_alkc60">(b)</num>
+                            <content leos:origin="ec" xml:id="akn_art_YnSKbj_yR3ne2">
+                                <p leos:origin="ec" xml:id="akn_art_YnSKbj_ayJnjd">tgtrg</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(ba)</num>
+                            <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">gregtgtghrt</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(bb)</num>
+                            <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">gregtgtghrt</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,348 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <meta>
+            <identification source="~COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage language="en"/>
+                	<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                </FRBRManifestation>
+            </identification>
+            <references source="~COM">
+                <TLCLocation xml:id="_BEL_BRU" href="http://publications.europa.eu/resource/authority/place/BEL_BRU"
+                             showAs="Brussels"/>
+                <TLCOrganization xml:id="CONSIL"
+                                 href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL"
+                                 showAs="Council of the European Union"/>
+                <TLCOrganization xml:id="EP" href="http://publications.europa.eu/resource/authority/corporate-body/EP"
+                                 showAs="European Parliament"/>
+                <TLCOrganization xml:id="COM" href="http://publications.europa.eu/resource/authority/corporate-body/COM"
+                                 showAs="European Commission"/>
+                <TLCRole xml:id="PRESID" href="http://publications.europa.eu/resource/authority/role/PRESID"
+                         showAs="President"/>
+                <TLCReference xml:id="REG" name="docType"
+                              href="http://publications.europa.eu/resource/authority/resource-type/REG"
+                              showAs="Regulation"/>
+                <TLCReference xml:id="legalBasis" name="contentSubject" href="http://eurovoc.europa.eu/5456"
+                              showAs="Legal basis"/>
+                <TLCReference xml:id="language" name="language"
+                              href="http://publications.europa.eu/resource/authority/language/ENG" showAs="en"/>
+                <TLCReference xml:id="_procedure_2012_227" name="procedureReference"
+                              href="http://eur-lex.europa.eu/procedure/EN/2012_227" showAs="2012/0227 (COD)"
+                              shortForm="2012/227/COD"/>
+                <TLCReference xml:id="_azs3y" name="identifier"
+                              href="http://publications.europa.eu/resource/authority/identifier/COMnumber"
+                              showAs="COM(2012) 466" shortForm="COM/2012/466"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.0.0</leos:templateVersion>
+                <leos:docVersion>0.1.14</leos:docVersion>
+                <leos:template>SJ-023</leos:template>
+                <leos:docTemplate>BL-023</leos:docTemplate>
+                <leos:docPurpose xml:id="proprietary__docpurpose">on ...</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:ref>bill_ckn5qw5dr0085sv00o919q56w</leos:ref>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                </leos:docType>
+                <leos:objectId>7eb9b258c953fcd545928ec4f4a782a9fe57c67</leos:objectId>
+            </proprietary>
+        </meta>
+        <coverPage xml:id="coverpage">
+            <container name="logo" xml:id="coverpage__container_1">
+                <p xml:id="coverpage__container_1__p">
+                    <img xml:id="coverpage__container_1__p__img" src="data:image/png;base64,iVBORw0KG..."
+                         alt="European Commission" title="European Commission"/>
+                </p>
+            </container>
+            <container xml:id="akn_ito6Ch" name="mainDoc">
+                <block xml:id="akn_P7DwOr" name="placeAndDate"><location xml:id="akn_cRgdyZ" refersTo="~_BEL_BRU">
+                    Brussels</location>,
+                    <date xml:id="akn_E4utu9" date="2012-09-28">
+                        28.09.2012
+                    </date>
+                </block>
+                <block xml:id="akn_2gXu3c" name="reference">
+                    <docNumber xml:id="akn_zn9q3V">COM(2012) 466 final</docNumber>
+                </block>
+            </container>
+            <container xml:id="akn_4bOdDr" name="procedureIdentifier">
+                <p xml:id="akn_TNycWp">
+                    <docketNumber xml:id="akn_CL4Ftj">2012/0227 (COD)</docketNumber>
+                </p>
+            </container>
+            <longTitle xml:id="coverpage__longtitle">
+                <p xml:id="coverpage__longtitle__p">
+                    <docStage xml:id="coverpage__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType refersTo="~REG" xml:id="coverpage__longtitle__p__doctype">REGULATION OF THE EUROPEAN
+                        PARLIAMENT AND OF THE COUNCIL
+                    </docType>
+                    <docPurpose xml:id="coverpage__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+            <container name="mainDocLanguage" xml:id="_coverpage__container_3">
+                <p xml:id="_coverpage__container_3__p"><inline name="language" refersTo="~FRBRlanguage" xml:id="_coverpage__container_3__p_inline">EN</inline></p>
+            </container>
+
+        </coverPage>
+        <preface xml:id="preface">
+            <container xml:id="akn_8Z4nIK" name="procedureIdentifier">
+                <p xml:id="akn_R1yPcH">
+                    <docketNumber xml:id="akn_QAkmGs">2012/0227 (COD)</docketNumber>
+                </p>
+            </container>
+            <longTitle xml:id="preface__longtitle">
+                <p xml:id="preface__longtitle__p">
+                    <docStage xml:id="preface__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType refersTo="~REG" xml:id="preface__longtitle__p__doctype">REGULATION OF THE EUROPEAN
+                        PARLIAMENT AND OF THE COUNCIL
+                    </docType>
+                    <docPurpose xml:id="preface__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+        </preface>
+        <preamble xml:id="preamble">
+            <formula xml:id="preamble__formula_1" name="actingEntity">
+                <p xml:id="preamble__formula_1__p">THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,</p>
+            </formula>
+            <citations xml:id="cits" leos:editable="false">
+                <citation refersTo="~legalBasis" xml:id="cit_1" leos:editable="true">
+                    <p xml:id="cit_1__p">Citation 1
+                        content
+                        with newLine
+                    </p>
+                </citation>
+                <citation refersTo="~legalBasis" xml:id="cit_2" leos:editable="true">
+                    <p xml:id="cit_2__p">Citation 2 content with AuthorialNote
+                        <authorialNote xml:id="authorialnote_1" marker="1" placement="bottom">
+                            <p xml:id="authorialNote_1__p">Inside Authorial note</p>
+                        </authorialNote>
+                        ,
+                    </p>
+                </citation>
+            </citations>
+            <recitals xml:id="recs" leos:editable="false">
+                <intro xml:id="recitalsIntro">
+                    <p xml:id="recs_intro">Whereas:</p>
+                </intro>
+                <recital leos:editable="true" leos:deletable="true" xml:id="rec_1">
+                    <num xml:id="rec_1_num">(1)</num>
+                    <p xml:id="recs_ain12d">
+                        Recital 1 content
+                    </p>
+                </recital>
+
+                <recital leos:editable="true" leos:deletable="true" xml:id="rec_2">
+                    <num xml:id="rec_2_num">(2)</num>
+                    <p xml:id="recs_5anVUo">Recital 2 content with special character Larosière
+                    </p>
+                </recital>
+            </recitals>
+            <formula xml:id="preamble__formula_2" name="enactingFormula">
+                <p xml:id="preamble__formula_2__p">HAVE ADOPTED THIS REGULATION:</p>
+            </formula>
+        </preamble>
+
+        <body xml:id="body">
+
+            <part xml:id="akn_part_htJBP6" leos:depth="1">
+                <num xml:id="akn_BE55oX">Part I</num>
+                <heading>
+                    100
+                    <placeholder>[...]</placeholder>
+                    Articles<b>(bold Article)</b>
+                    text
+                    in
+                    header
+                </heading>
+                <article leos:origin="cn" leos:editable="false" xml:id="art_1">
+                    <num xml:id="art_1_num">Article 1</num>
+                    <heading xml:id="art_1_heading">Article 1 Heading</heading>
+                    <paragraph xml:id="art_1_par">
+                        <num xml:id="art_1_par_num">1.</num>
+                        <content xml:id="art_1_par_content">
+                            <p xml:id="art_1_par_c">Article 1
+                                paragraph 1 content
+                            </p>
+                        </content>
+                    </paragraph>
+                    <paragraph xml:id="art_1_par2">
+                        <num xml:id="art_1_par2_num">2.</num>
+                        <content xml:id="art_1_par2_content">
+                            <p xml:id="art_1_par2_c">Article 1
+                                paragraph 2 content
+                            </p>
+                        </content>
+                    </paragraph>
+                </article>
+                <article leos:origin="ec" leos:editable="true" leos:deletable="true" xml:id="art_2">
+                    <num xml:id="art_2_num">Article 2</num>
+                    <heading xml:id="art_2_heading">Article 2 Heading</heading>
+                    <paragraph leos:origin="ec" xml:id="art_2_par1">
+                        <num leos:origin="ec" xml:id="art_2_Woc735">1.</num>
+                        <subparagraph leos:origin="ec" xml:id="art_2_par1_sub1">
+                            <content leos:origin="ec" xml:id="art_2_fCeC1t">
+                                <p leos:origin="ec" xml:id="art_2_NT9OhJ">Sub paragraph --
+                                    <b leos:origin="ec" xml:id="art_2_Klz48x"> of Paragraph 1</b> Article 2
+                                </p>
+                            </content>
+                        </subparagraph>
+                        <list leos:origin="ec" xml:id="art_2_Wnl7op">
+                            <point leos:origin="ec" xml:id="art_2_urNCcV">
+                                <num leos:origin="ec" xml:id="art_2_gFkBde">(a)</num>
+                                <content leos:origin="ec" xml:id="art_2_Qzmsjc">
+                                    <p leos:origin="ec" xml:id="art_2_aQ7g6K">point (a)</p>
+                                </content>
+                            </point>
+                            <point xml:id="art_2_kWNiUC" leos:origin="ec">
+                                <num xml:id="art_2_acDbga" leos:origin="ec">(b)</num>
+                                <content leos:origin="ec" xml:id="art_2_flq9C1">
+                                    <p leos:origin="ec" xml:id="art_2_kw4sXt">point (b)</p>
+                                </content>
+                            </point>
+                            <point xml:id="art_2_ZzykdM" leos:origin="ec">
+                                <num xml:id="art_2_koxWzM" leos:origin="ec">(c)</num>
+                                <alinea xml:id="art_2_78ndzv" leos:origin="ec">
+                                    <content leos:origin="ec" xml:id="art_2_EzAUvo">
+                                        <p leos:origin="ec" xml:id="art_2_17jvrP">point (c) content. This is alinea</p>
+                                    </content>
+                                </alinea>
+                                <list leos:origin="ec" xml:id="art_2_bQW8O7">
+                                    <point leos:origin="ec" xml:id="art_2_azxVUY">
+                                        <num leos:origin="ec" xml:id="art_2_8G6jeY">(i)</num>
+                                        <content leos:origin="ec" xml:id="art_2_yoa6NC">
+                                            <p leos:origin="ec" xml:id="art_2_0mo2Fc">point (i) content</p>
+                                        </content>
+                                    </point>
+                                    <point leos:origin="ec" xml:id="art_2_mSvIgb">
+                                        <num leos:origin="ec" xml:id="art_2_Fyvr9w">(ii)</num>
+                                        <alinea leos:origin="ec" xml:id="art_2_6G73F7">
+                                            <content leos:origin="ec" xml:id="art_2_keYk7S">
+                                                <p leos:origin="ec" xml:id="art_2_PMAuPF">point (i) content</p>
+                                            </content>
+                                        </alinea>
+                                        <list leos:origin="ec" xml:id="art_2_gDJwrD">
+                                            <point leos:origin="ec" xml:id="art_2_point1">
+                                                <num leos:origin="ec" xml:id="art_2_point1_num">(1)</num>
+                                                <content leos:origin="ec" xml:id="art_2_point1_c">
+                                                    <p leos:origin="ec" xml:id="art_2_point1_c_p">point (1) content. This is alinea</p>
+                                                </content>
+                                            </point>
+                                            <point leos:origin="ec" xml:id="art_2_SQHh5n">
+                                                <num leos:origin="ec" xml:id="art_2_Z61Xsc">(2)</num>
+                                                <alinea leos:origin="ec" xml:id="art_2_6G45GHJ">
+                                                    <content leos:origin="ec" xml:id="art_2_SPx97b">
+                                                        <p leos:origin="ec" xml:id="art_2_iALt29">point (2) content</p>
+                                                    </content>
+                                                </alinea>
+                                                <list leos:origin="ec" xml:id="art_2_gDGhFRT">
+                                                    <indent leos:origin="ec" xml:id="art_2_1juLJh">
+                                                        <num leos:origin="ec" xml:id="art_2_Wxy2we">-</num>
+                                                        <alinea leos:origin="ec" xml:id="art_2_6G46GHJ">
+                                                            <content leos:origin="ec" xml:id="art_2_N0JGOv">
+                                                                <p leos:origin="ec" xml:id="art_2_ddsnGD">point - (first indent) content. this is alinea</p>
+                                                            </content>
+                                                        </alinea>
+                                                        <alinea leos:origin="ec" xml:id="art_2_6G47GHJ">
+                                                            <content leos:origin="ec" xml:id="art_2_NGHSZ">
+                                                                <p leos:origin="ec" xml:id="art_2_bgH78">point - (first indent) content.  this is alinea</p>
+                                                            </content>
+                                                        </alinea>
+                                                    </indent>
+                                                </list>
+                                            </point>
+                                            <point leos:origin="ec" xml:id="art_2_kqZEk9">
+                                                <num leos:origin="ec" xml:id="art_2_vqCBfZ">(3)</num>
+                                                <content leos:origin="ec" xml:id="art_2_2RKX4f">
+                                                    <p leos:origin="ec" xml:id="art_2_jX0q3V">point (3) content</p>
+                                                </content>
+                                            </point>
+                                        </list>
+                                    </point>
+                                    <point leos:origin="ec" xml:id="art_2_ZbWmIy">
+                                        <num leos:origin="ec" xml:id="art_2_ZUKjt1">(iii)</num>
+                                        <content leos:origin="ec" xml:id="art_2_OsSaib">
+                                            <p leos:origin="ec" xml:id="art_2_dPvXRD">point (iii) content</p>
+                                        </content>
+                                    </point>
+                                </list>
+                            </point>
+                        </list>
+                    </paragraph>
+                    <paragraph xml:id="art_2_par2">
+                        <num leos:origin="ec" xml:id="art_2_par2_num">2.</num>
+                        <content xml:id="art_2_par2_c">
+                            <p xml:id="imp_art_d179e1221_P9kEii_gJFhHI">Article 2 second paragraph content
+                            </p>
+                        </content>
+                    </paragraph>
+                </article>
+                <article leos:editable="true" leos:deletable="true" xml:id="art_3">
+                    <num xml:id="art_3_num">Article 3</num>
+                    <heading xml:id="imp_art_d179e1262_nWKVTv_lylMhW">Article 3 Heading</heading>
+                    <paragraph xml:id="imp_art_d179e1262_nWKVTv_XInC3R">
+                        <content xml:id="imp_art_d179e1262_nWKVTv_ITWClk">
+                            <p xml:id="imp_art_d179e1262_nWKVTv_ErDFaD">Article 3 first paragraph (unnumbered) content
+                            </p>
+                        </content>
+                    </paragraph>
+                </article>
+            </part>
+
+            <clause xml:id="clause_1" leos:editable="true" leos:deletable="true" leos:alternative="true"
+                    leos:optionlist="listOption1" leos:selectedoption="1">
+                <content xml:id="clause_1__content">
+                    <p xml:id="clause_1__content__p">This Regulation shall be binding in its entirety and directly
+                        applicable in all Member States.
+                    </p>
+                </content>
+            </clause>
+        </body>
+
+
+        <conclusions xml:id="conclusions">
+            <p xml:id="conclusions__p_1">Done at <location xml:id="conclusions__p__location_1" refersTo="~_BEL_BRU">
+                Brussels</location>,
+            </p>
+            <block name="signatory" xml:id="conclusions__block_1">
+                <signature xml:id="conclusions__block_1__signature_1">
+                    <organization xml:id="conclusions__block_1__signature_1__organization" refersTo="~EP">For the
+                        European Parliament
+                    </organization>
+                    <role xml:id="conclusions__block_1__signature_1__role" refersTo="~PRESID">The President</role>
+                    <person xml:id="conclusions__block_1__signature_1__person" refersTo="">[...]</person>
+                </signature>
+                <signature xml:id="conclusions__block_1__signature_2">
+                    <organization xml:id="conclusions__block_1__signature_2__organization" refersTo="~CONSIL">For the
+                        Council
+                    </organization>
+                    <role xml:id="conclusions__block_1__signature_2__role" refersTo="~PRESID">The President</role>
+                    <person xml:id="conclusions__block_1__signature_2__person" refersTo="">[...]</person>
+                </signature>
+            </block>
+        </conclusions>
+		<attachments>
+			<attachment xml:id="attachment_1">
+				<documentRef xml:id="attachment_1__annex" href="annex_cl3yjnpcz0007k485t5p989mq.xml" showAs="Annex"/>
+			</attachment>
+		</attachments>
+    </bill>
+</akomaNtoso>

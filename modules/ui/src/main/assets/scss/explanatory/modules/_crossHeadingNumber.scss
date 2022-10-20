@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/**
+ * Copyright 2020 European Commission
+ *
+ * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ *
+ *     https://joinup.ec.europa.eu/software/page/eupl
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+$LEVEL_SPACING: 27px;
+
+%xmlCrossHeadingNumber {
+  crossHeading inline[name=crossHnum], block inline[name=crossHnum] {
+    margin-left: -$LIST_SPACING;
+    min-width: $LIST_SPACING;
+    display: inline-block;
+    text-align: left;
+  }
+}
+//------------------------------- Editor Styles -----------------------------//
+%editorCrossHeadingNumber {
+  p[data-akn-name="crossheading" i][data-akn-num]::before
+  , li[data-akn-element="crossheading" i][data-akn-num]::before {
+    content: attr(data-akn-num);
+    min-width: $LIST_SPACING;
+    display: inline-block;
+    text-align: left;
+  }
+  p[data-akn-name="crossheading" i][data-akn-num]:not([style*="text-align: center;"]):not([style*="text-align: right;"])::before
+  , li[data-akn-element="crossheading" i][data-akn-num]:not([style*="text-align: center;"]):not([style*="text-align: right;"])::before {
+    margin-left: -$LIST_SPACING;
+    float: left;
+  }
+  p[data-akn-name="crossheading" i][data-akn-num][data-indent-level]:not([style*="text-align: center;"]):not([style*="text-align: right;"])
+  , li[data-akn-element="crossheading" i][data-akn-num][data-indent-level]:not([style*="text-align: center;"]):not([style*="text-align: right;"]) {
+    padding-left: calc(#{$LIST_SPACING} + #{$LIST_SPACING} * var(--indent-level));
+  }
+  li[data-akn-element="level"] {
+    p[data-akn-name="crossheading" i][data-akn-num][data-indent-level]:not([style*="text-align: center;"]):not([style*="text-align: right;"])
+    , li[data-akn-element="crossheading" i][data-akn-num][data-indent-level]:not([style*="text-align: center;"]):not([style*="text-align: right;"]) {
+      padding-left: calc(min(var(--indent-level), 1) * #{$LEVEL_SPACING} + #{$LIST_SPACING} + #{$LIST_SPACING} * var(--indent-level));
+    }
+  }
+}

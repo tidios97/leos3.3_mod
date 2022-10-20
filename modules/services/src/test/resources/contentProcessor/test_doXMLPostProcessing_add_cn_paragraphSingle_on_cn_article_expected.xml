@@ -1,0 +1,14 @@
+<root xmlns:leos="urn:eu:europa:ec:leos">
+    <article leos:deletable="true" leos:editable="true" leos:origin="cn" leos:softaction="add"
+             leos:softdate="2019-01-29T12:08:32.247+01:00" leos:softuser="demo" xml:id="akn_art_hbaALO">
+        <num leos:editable="false" xml:id="akn_art_hbaALO_1Onb1M">Article -1</num>
+        <heading xml:id="akn_art_hbaALO_OMUNZD">Article heading...</heading>
+        <paragraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:12:18.023+02:00"
+                   leos:softuser="demo(DIGIT)" xml:id="akn_art_hbaALO-par1">
+            <num xml:id="akn_art_hbaALO_eu7RzT">1.</num>
+            <content xml:id="akn_art_hbaALO_p78bjk">
+                <p xml:id="akn_art_hbaALO_qKD1jn">Text...</p>
+            </content>
+        </paragraph>
+    </article>
+</root>

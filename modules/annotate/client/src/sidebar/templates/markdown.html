@@ -1,0 +1,10 @@
+<textarea class="form-input form-textarea js-markdown-input"
+          id="suggestion-editor"
+          ng-show="vm.showEditor()"
+          ng-click="$event.stopPropagation()"
+          ng-paste="vm.onPaste($event)"
+          h-branding="annotationFontFamily"></textarea>
+<div class="markdown-body js-markdown-preview"
+     ng-class="(vm.preview && 'markdown-preview') || vm.customTextClass"
+     ng-show="!vm.showEditor()"
+     h-branding="annotationFontFamily"></div>

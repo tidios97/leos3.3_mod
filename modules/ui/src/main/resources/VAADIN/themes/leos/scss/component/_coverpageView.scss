@@ -1,0 +1,33 @@
+@import "changePane";
+
+@mixin coverpageView {
+
+    .leos-coverpage-view {
+        .close-button {
+            float: right;
+            font-weight: normal;
+            border: 1px solid $G_BORDER_COLOR;
+            
+           .v-icon {
+             color: #B92222;        
+           }
+        }
+    
+        .leos-coverpageview-title {
+            font-size: 16px;
+        }
+
+        .leos-coverpageview-icon {
+            color: $G_BROWN_COLOR;
+            font-size: 32px;
+            padding-left: 5px;
+            font-family: Vaadin-Icons;
+        }
+
+        .leos-padbar {
+            border-bottom: 1px solid $G_BORDER_COLOR;
+        }
+
+        @include changePane("doc");
+    }
+}

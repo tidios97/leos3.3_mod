@@ -1,0 +1,306 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<bill name="REG">
+		<body leos:origin="ec" xml:id="body">
+			<article leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd"
+				leos:editable="false" leos:deletable="false">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="imp_art_d378e602_Vx41Cd_Y984oR">Article 2</num>
+				<heading leos:origin="ec"
+					xml:id="imp_art_d378e602_Vx41Cd_OPt8RR">Subject matter and scope</heading>
+				<paragraph leos:origin="ec"
+					xml:id="imp_art_d378e602_Vx41Cd_XiFt4j">
+					<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_EwkZ63">4.</num>
+					<subparagraph leos:origin="ec"
+						xml:id="imp_art_d378e602_Vx41Cd_Be0nu0">
+						<content leos:origin="ec"
+							xml:id="imp_art_d378e602_Vx41Cd_RyiUp3">
+							<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_y6lU1Y">This Directive does not apply to the
+								following content of websites and mobile applications:
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_VBmoRU">
+						<point leos:origin="ec"
+							xml:id="imp_art_d378e602_Vx41Cd_pCaYUe">
+							<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_G6jvZg">(a)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_ODBS2e">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_wriPrK">office file formats published
+									before
+									23 September 2018, unless such content is needed for
+									active
+									administrative processes relating to the tasks performed
+									by the
+									public sector body concerned;
+								</p>
+							</content>
+						</point>
+						<point leos:softmove_label="MOVED from Article 2(4), point (f)"
+							leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_tOLBiv"
+							leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_tOLBiv"
+							leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.034+01:00"
+							leos:softactionroot="true"
+							class="leos-double-compare-added-original">
+							<num leos:origin="cn" xml:id="imp_art_d378e602_Vx41Cd_P8IpNL">(aa)</num>
+							<alinea
+								leos:softmove_label="MOVED from Article 2(4), point (f), first sub-point"
+								leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_phxKgN"
+								leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_phxKgN"
+								leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.034+01:00"
+								leos:softactionroot="false">
+								<content leos:origin="ec"
+									xml:id="imp_art_d378e602_Vx41Cd_Dcj7OM">
+									<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_xJbPEI">
+										reproductions of items in heritage
+										<authorialNote leos:origin="ec"
+											xml:id="imp_art_d378e602_Vx41Cd_ukk0YT" marker="7">
+											<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_4d8jlo">
+												Test
+											</p>
+										</authorialNote>
+										collections that cannot be made fully accessible because of
+										either:
+									</p>
+								</content>
+							</alinea>
+							<list leos:softmove_label="MOVED from Article 2(4), point (f)"
+								leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_bedaAn"
+								leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_bedaAn"
+								leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.034+01:00"
+								leos:softactionroot="false">
+								<point
+									leos:softmove_label="MOVED from Article 2(4), point (f)(i)"
+									leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_vgaKsI"
+									leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_vgaKsI"
+									leos:softuser="jane"
+									leos:softdate="2020-11-17T17:05:29.034+01:00"
+									leos:softactionroot="false">
+									<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_7W3xaY">(i)</num>
+									<content leos:origin="ec"
+										xml:id="imp_art_d378e602_Vx41Cd_Dh1u1Q">
+										<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_smIwFO">the incompatibility of
+											accessibility requirements with either the preservation of
+											the
+											item concerned or the authenticity of the reproduction
+											(e.g.
+											contrast); or
+										</p>
+									</content>
+								</point>
+								<point leos:softmove_label="MOVED from Article 2(4), point (f)(ii)"
+									leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_SPRJKS"
+									leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_SPRJKS"
+									leos:softuser="jane"
+									leos:softdate="2020-11-17T17:05:29.034+01:00"
+									leos:softactionroot="false">
+									<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_FBdIHq">(ii)</num>
+									<content leos:origin="ec"
+										xml:id="imp_art_d378e602_Vx41Cd_oHUbhA">
+										<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_9hrpPy">the unavailability of automated
+											and
+											cost-efficient solutions that would easily extract the
+											text of
+											manuscripts or other items in heritage collections
+											and transform
+											it into content compatible with the
+											accessibility requirements;
+										</p>
+									</content>
+								</point>
+							</list>
+						</point>
+						<point leos:origin="ec"
+							xml:id="imp_art_d378e602_Vx41Cd_22WVHR">
+							<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_4DakK8">(b)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_kRIOjw">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_jhokIO">pre-recorded time-based media
+									published before 23 September 2020;
+								</p>
+							</content>
+						</point>
+						<point leos:softmove_label="MOVED to Article 2(4), point (ha)"
+							leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_0DOqyz"
+							leos:softaction="move_to" leos:editable="false"
+							leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_0DOqyz"
+							leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.035+01:00"
+							leos:softactionroot="true"
+							class="leos-double-compare-removed-intermediate">
+							<num leos:origin="ec"
+								xml:id="moved_imp_art_d378e602_Vx41Cd_IPkVOE">(c)</num>
+							<content leos:origin="ec"
+								xml:id="moved_imp_art_d378e602_Vx41Cd_6Fk6Ml">
+								<p leos:origin="ec"
+									xml:id="moved_imp_art_d378e602_Vx41Cd_laxgnb">live time-based media;</p>
+							</content>
+						</point>
+						<point leos:softmove_label="MOVED to Article 2(4), point (ga)"
+							leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_gFxz7c"
+							leos:softaction="move_to" leos:editable="false"
+							leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_gFxz7c"
+							leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.035+01:00"
+							leos:softactionroot="true"
+							class="leos-double-compare-removed-original">
+							<num leos:origin="ec"
+								xml:id="moved_imp_art_d378e602_Vx41Cd_mRFVL5">(d)</num>
+							<content leos:origin="ec"
+								xml:id="moved_imp_art_d378e602_Vx41Cd_Zznor6">
+								<p leos:origin="ec"
+									xml:id="moved_imp_art_d378e602_Vx41Cd_UEbomW">online maps and mapping services, as long as essential
+									information is provided in an accessible digital manner for
+									maps
+									intended for navigational use;
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec"
+							xml:id="imp_art_d378e602_Vx41Cd_7ILXFr">
+							<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_C56LsI">(e)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_PegfjS">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_WPV973">third-party content that is neither
+									funded nor developed by, nor under the control of, the public
+									sector body concerned;
+								</p>
+							</content>
+						</point>
+						<point leos:softmove_label="MOVED to Article 2(4), point (aa)"
+							leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_tOLBiv"
+							leos:softaction="move_to" leos:editable="false"
+							leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_tOLBiv"
+							leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.037+01:00"
+							leos:softactionroot="true"
+							class="leos-double-compare-removed-original">
+							<num leos:origin="ec"
+								xml:id="moved_imp_art_d378e602_Vx41Cd_P8IpNL">(f)</num>
+							<alinea	leos:softmove_label="MOVED to Article 2(4), point (aa), first sub-point"
+								leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_phxKgN"
+								leos:softaction="move_to" leos:editable="false"
+								leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_phxKgN"
+								leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.035+01:00"
+								leos:softactionroot="false">
+								<content leos:origin="ec"
+									xml:id="moved_imp_art_d378e602_Vx41Cd_Dcj7OM">
+									<p leos:origin="ec"
+										xml:id="moved_imp_art_d378e602_Vx41Cd_xJbPEI">
+										reproductions of items in heritage
+										<authorialNote leos:origin="ec"
+											xml:id="imp_art_d378e602_Vx41Cd_ukk0YT" marker="8">
+											<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_4d8jlo">
+												Test
+											</p>
+										</authorialNote>
+										collections that cannot be made fully accessible because of
+										either:
+									</p>
+								</content>
+							</alinea>
+							<list leos:softmove_label="MOVED to Article 2(4), point (aa)"
+								leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_bedaAn"
+								leos:softaction="move_to" leos:editable="false"
+								leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_bedaAn"
+								leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.036+01:00"
+								leos:softactionroot="false">
+								<point leos:softmove_label="MOVED to Article 2(4), point (aa)(i)"
+									leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_vgaKsI"
+									leos:softaction="move_to" leos:editable="false"
+									leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_vgaKsI"
+									leos:softuser="jane"
+									leos:softdate="2020-11-17T17:05:29.036+01:00"
+									leos:softactionroot="false">
+									<num leos:origin="ec"
+										xml:id="moved_imp_art_d378e602_Vx41Cd_7W3xaY">(i)</num>
+									<content leos:origin="ec"
+										xml:id="moved_imp_art_d378e602_Vx41Cd_Dh1u1Q">
+										<p leos:origin="ec"
+											xml:id="moved_imp_art_d378e602_Vx41Cd_smIwFO">the incompatibility of accessibility requirements with
+											either the preservation of the item concerned or the
+											authenticity of the reproduction (e.g. contrast); or
+										</p>
+									</content>
+								</point>
+								<point leos:softmove_label="MOVED to Article 2(4), point (aa)(ii)"
+									leos:origin="ec" xml:id="moved_imp_art_d378e602_Vx41Cd_SPRJKS"
+									leos:softaction="move_to" leos:editable="false"
+									leos:deletable="false" leos:softmove_to="doubleCompare-imp_art_d378e602_Vx41Cd_SPRJKS"
+									leos:softuser="jane"
+									leos:softdate="2020-11-17T17:05:29.036+01:00"
+									leos:softactionroot="false">
+									<num leos:origin="ec"
+										xml:id="moved_imp_art_d378e602_Vx41Cd_FBdIHq">(ii)</num>
+									<content leos:origin="ec"
+										xml:id="moved_imp_art_d378e602_Vx41Cd_oHUbhA">
+										<p leos:origin="ec"
+											xml:id="moved_imp_art_d378e602_Vx41Cd_9hrpPy">the unavailability of automated and cost-efficient
+											solutions that would easily extract the text of manuscripts
+											or
+											other items in heritage collections and transform it into
+											content compatible with the accessibility requirements;
+										</p>
+									</content>
+								</point>
+							</list>
+						</point>
+						<point leos:origin="ec"
+							xml:id="imp_art_d378e602_Vx41Cd_o4BRnM">
+							<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_FXcRcK">(g)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_bVv8MP">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_DCcOw3">content of extranets and intranets,
+									that is to say, websites that are only available for a closed
+									group of people and not to the general public as such,
+									published
+									before 23 September 2019, until such websites undergo
+									a
+									substantial revision;
+								</p>
+							</content>
+						</point>
+						<point leos:softmove_label="MOVED from Article 2(4), point (d)"
+							leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_gFxz7c"
+							leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_gFxz7c"
+							leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.037+01:00"
+							leos:softactionroot="true"
+							class="leos-double-compare-added-original">
+							<num leos:origin="cn" xml:id="imp_art_d378e602_Vx41Cd_mRFVL5">(ga)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_Zznor6">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_UEbomW">online maps and mapping services,
+									as
+									long as essential information is provided in an accessible
+									digital manner for maps intended for navigational use;
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec"
+							xml:id="imp_art_d378e602_Vx41Cd_uq2UTb">
+							<num leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_bCS2bB">(h)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_jqNNoI">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_kGmdEK">content of websites and mobile
+									applications qualifying as archives, meaning that they only
+									contain content that is neither needed for active
+									administrative
+									processes nor updated or edited after 23
+									September 2019.
+								</p>
+							</content>
+						</point>
+						<point leos:softmove_label="MOVED from Article 2(4), point (c)"
+							leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_0DOqyz"
+							leos:softaction="move_from" leos:softmove_from="doubleCompare-moved_imp_art_d378e602_Vx41Cd_0DOqyz"
+							leos:softuser="jane" leos:softdate="2020-11-17T17:05:29.037+01:00"
+							leos:softactionroot="true"
+							class="leos-double-compare-added-intermediate">
+							<num leos:origin="cn" xml:id="imp_art_d378e602_Vx41Cd_IPkVOE">(ha)</num>
+							<content leos:origin="ec"
+								xml:id="imp_art_d378e602_Vx41Cd_6Fk6Ml">
+								<p leos:origin="ec" xml:id="imp_art_d378e602_Vx41Cd_laxgnb">live time-based media;</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+			</article>
+		</body>
+	</bill>
+</akomaNtoso>

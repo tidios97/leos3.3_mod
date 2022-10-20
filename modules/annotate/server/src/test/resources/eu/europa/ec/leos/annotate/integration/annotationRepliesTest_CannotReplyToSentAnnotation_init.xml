@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- default group and two more -->
+    <GROUPS group_id="1" name="__world__" displayname="Public" description="Group for everybody" ispublic="1" />
+
+    <!--  user which is the default group -->
+    <USERS user_id="1" login="demo" sidebar_tutorial_dismissed="1" />
+    <USERS user_id="2" login="demoReply" sidebar_tutorial_dismissed="1" />
+
+    <DOCUMENTS document_id="1" title="title" uri="http://a" />
+    
+    <!-- annotation is SENT already -->
+    <METADATA id="1" document_id="1" group_id="1" system_id="ISC" response_status="2" keyvalues=" " />
+    
+    <ANNOTATIONS annotation_id="annSent" text="my comment" user_id="1" TARGET_SELECTORS=" " shared="1" metadata_id="1" references="[null]"  />
+    
+    <TAGS tag_id="1" name="comment" annotation_id="annSent" />
+
+</dataset>

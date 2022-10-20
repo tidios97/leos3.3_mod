@@ -1,0 +1,52 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <recitals leos:editable="false" xml:id="recs">
+        <recital leos:editable="true" leos:origin="ec" leos:softaction="move_from" xml:id="moved_from_rec_4">
+            <num leos:origin="cn" xml:id="moved_from_rec_49_num">(-1)</num>
+            <p>Recital...(-1)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_1">
+            <num leos:origin="ec" xml:id="rec_1__num">(1#)</num>
+            <p>Recital...(1)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_2">
+            <num leos:origin="ec" xml:id="rec_2__num">(2#)</num>
+            <p>Recital...(2)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="rec_2a">
+            <num xml:id="rec_2a__num">(2a)</num>
+            <p xml:id="rec_2a__p">Recital...(2a)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="rec_2b">
+            <num xml:id="rec_2b__num">(2b)</num>
+            <p xml:id="rec_2b__p">Recital...(2b)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_3">
+            <num leos:origin="ec" xml:id="rec_3__num">(3#)</num>
+            <p>do not change. Is EC element, Will remain (3#)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" leos:softaction="move_to" xml:id="art_4">
+            <num xml:id="art_4_num">(4#)</num>
+            <p>do not change.  is move_to, Will remain (4#)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_5">
+            <num leos:origin="ec" xml:id="rec_3__num">(5#)</num>
+            <p>do not change. (5#)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="rec_5a">
+            <num xml:id="rec_5a__num">(5a)</num>
+            <p xml:id="rec_5a__p">Recital...(5a)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" leos:softaction="del" xml:id="rec_6">
+            <num leos:origin="ec" xml:id="rec_6__num">(6#)</num>
+            <p>do not change. is del</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="cn" xml:id="rec_6a">
+            <num xml:id="rec_6a__num">(6a)</num>
+            <p xml:id="rec_6a__p">Recital...(6a)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="art_7">
+            <num leos:origin="ec" xml:id="art_7_num">(7#)</num>
+            <p>do not change. Is EC element, Will remain (7#)</p>
+        </recital>
+    </recitals>
+</akomaNtoso>

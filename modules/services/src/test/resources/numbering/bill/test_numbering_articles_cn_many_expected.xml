@@ -1,0 +1,177 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xml:id="akn">
+    <body leos:origin="ec" xml:id="body">
+        <article leos:editable="true" leos:origin="ec" leos:softaction="move_from" xml:id="moved_from_art_4">
+            <num leos:origin="cn">Article -3</num>
+            <p>should be Article -3</p>
+        </article>
+        <article leos:origin="cn" xml:id="art_m3a">
+            <num leos:origin="cn">Article -3a</num>
+            <p>should be -3a</p>
+        </article>
+        <article leos:origin="cn" xml:id="art_m3b">
+            <num leos:origin="cn">Article -3b</num>
+            <p>should be -3b</p>
+        </article>
+        <article leos:origin="ec" xml:id="art_3">
+            <num leos:origin="ec">Article 3</num>
+            <p>do not change. Article 3</p>
+        </article>
+        <article leos:origin="cn" xml:id="art_3a">
+            <num leos:origin="cn">Article 3a</num>
+            <p>should be Article 3a</p>
+        </article>
+        <article leos:origin="ec" leos:softaction="move_to" xml:id="art_4">
+            <num leos:origin="ec">Article 4#</num>
+            <p>do not change. is move_to, Will remain Article 4#</p>
+        </article>
+        <article leos:origin="cn" xml:id="art_4a">
+            <num leos:origin="cn">Article 4a</num>
+            <p>should be Article 4a</p>
+        </article>
+        <article leos:origin="cn" xml:id="art_4b">
+            <num leos:origin="cn">Article 4b</num>
+            <p>should be Article 4b</p>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4c</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4d</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4e</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4f</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4g</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4h</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4i</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4j</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4k</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4l</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4m</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4n</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4o</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4p</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4q</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4r</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4s</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4t</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4u</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4v</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4w</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4x</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4y</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4z</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4aa</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ab</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ac</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ad</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ae</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4af</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ag</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ah</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ai</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4aj</num>
+            <p/>
+        </article>
+        <article leos:origin="cn">
+            <num leos:origin="cn">Article 4ak</num>
+            <p/>
+        </article>
+
+    </body>
+</akomaNtoso>

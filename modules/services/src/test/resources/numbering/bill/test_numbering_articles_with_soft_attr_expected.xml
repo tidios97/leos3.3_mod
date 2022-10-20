@@ -1,0 +1,34 @@
+<akomaNtoso xmlns:leos="urn:eu:europa:ec:leos" xml:id="akn">
+    <article xml:id="art486">
+        <num xml:id="aknum">Article 1</num>
+        <heading xml:id="aknhead">1st article</heading>
+    </article>
+    <article leos:softaction="move_to" xml:id="art487">
+        <num xml:id="aknnum2">Article 2#</num>
+        <heading xml:id="aknhead2">notchanged</heading>
+    </article>
+    <article leos:softaction="del" xml:id="art488">
+        <num xml:id="aknnum3">Article 3#</num>
+        <heading xml:id="aknhead3">3th article - notchanged
+            <authorialNote marker="2" xml:id="a2">
+                <p xml:id="p2">TestNote2</p>
+            </authorialNote>
+        </heading>
+    </article>
+    <article leos:softaction="move_from" xml:id="art489">
+        <num xml:id="art489_num">Article 2</num>
+    </article>
+    <article xml:id="art_5">
+        <num xml:id="art_5_num">Article 3</num>
+    </article>
+    <article leos:softaction="add" xml:id="art_6">
+        <num xml:id="art_6_num">Article 4</num>
+    </article>
+    <article leos:softaction="trans" xml:id="art_7">
+        <num xml:id="art_7_num">Article 5</num>
+    </article>
+    <article leos:softaction="undelete" xml:id="art_8">
+        <num xml:id="art_8_num">Article 6</num>
+    </article>
+
+</akomaNtoso>

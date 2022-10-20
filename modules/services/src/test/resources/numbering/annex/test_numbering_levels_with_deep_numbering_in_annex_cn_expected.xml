@@ -1,0 +1,30 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody xml:id="body">
+            <level leos:depth="1" leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-12T12:44:36.392+02:00" leos:softuser="jane" xml:id="_body_level_1">
+                <num xml:id="_body_level_1_num">1.</num>
+                <content xml:id="_body_level_1_content">
+                    <p xml:id="_body_level_1_content_p">Text...</p>
+                </content>
+            </level>
+            <level leos:depth="2" leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-12T12:44:37.489+02:00" leos:softuser="jane" xml:id="_body_level_1_1">
+                <num xml:id="_body_level_1_1_num">1.1.</num>
+                <content xml:id="_body_level_1_1_content">
+                    <p xml:id="_body_level_1_1_content_p">Text...</p>
+                </content>
+            </level>
+            <level leos:depth="3" leos:origin="cn" leos:softaction="add" leos:softactionroot="true" leos:softdate="2022-06-12T12:44:38.332+02:00" leos:softuser="jane" xml:id="_akn_level_8zUiFg">
+                <num leos:origin="cn">1.1.1.</num>
+                <content>
+                    <p>Text...</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-12T12:44:39.320+02:00" leos:softuser="jane" xml:id="_body_level_2">
+                <num xml:id="_body_level_2_num">2.</num>
+                <content xml:id="_body_level_2_content">
+                    <p xml:id="_body_level_2_content_p">Text...</p>
+                </content>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

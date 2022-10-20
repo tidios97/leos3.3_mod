@@ -1,0 +1,25 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <preamble leos:origin="ec" xml:id="_preamble">
+            <recitals leos:editable="false" leos:origin="ec" xml:id="_recs">
+                <intro leos:origin="ec" xml:id="_recitalsIntro">
+                    <p leos:origin="ec" xml:id="_recs_intro">Whereas:</p>
+                </intro>
+                <recital leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del"
+                         leos:softactionroot="true" leos:softdate="2022-06-17T11:53:24.783+02:00" leos:softuser="jane(DIGIT)"
+                         xml:id="deleted__rec_1">
+                    <num leos:origin="ec" xml:id="deleted__rec_1__num">(1)</num>
+                    <p leos:origin="ec" xml:id="deleted__rec_1__p">Recital...</p>
+                </recital>
+                <recital leos:editable="true" leos:origin="ec" xml:id="_rec_2">
+                    <num leos:origin="ec" xml:id="_rec_2__num">(2)</num>
+                    <p leos:origin="ec" xml:id="_rec_2__p">Recital...</p>
+                </recital>
+
+            </recitals>
+            <formula leos:origin="ec" name="enactingFormula" xml:id="_preamble__formula_2">
+                <p leos:origin="ec" xml:id="_preamble__formula_2__p">HAVE ADOPTED THIS REGULATION:</p>
+            </formula>
+        </preamble>
+    </bill>
+</akomaNtoso>

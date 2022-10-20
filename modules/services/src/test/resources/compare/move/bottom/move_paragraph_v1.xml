@@ -1,0 +1,35 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+
+                <paragraph leos:softmove_label="MOVED to Article 1 par 2a" leos:origin="ec" xml:id="moved_art_1_para_1" leos:editable="false"
+                           leos:deletable="false" leos:softaction="move_to" leos:softactionroot="true" leos:softmove_to="moved_art_1"
+                           leos:softuser="jane" leos:softdate="2020-09-21T21:00:00.000+00:00">
+                    <num leos:origin="ec" xml:id="moved_art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="moved_art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="moved_art_1__para_1__content__p">Article 1 par 1</p>
+                    </content>
+                </paragraph>
+
+                <paragraph leos:origin="ec" xml:id="par2">
+                    <content leos:origin="ec" xml:id="par2_point_c_c">
+                        <p leos:origin="ec" xml:id="par2_point_c_p">par 2</p>
+                    </content>
+                </paragraph>
+
+                <paragraph  leos:softmove_label="MOVED from Article 1 par 1" leos:origin="ec" xml:id="art_1_para_1" leos:editable="false"
+                            leos:deletable="false" leos:softaction="move_from" leos:softactionroot="true"
+                            leos:softmove_from="moved_art_1_para_1" leos:softuser="jane" leos:softdate="2020-09-21T21:00:00.000+00:00"
+                            leos:depth="1">
+                    <num leos:origin="cn" xml:id="new_num">1a.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Article 1 par 1</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

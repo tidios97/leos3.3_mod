@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="package-mapping" content="component:eu.europa.ec.leos.ui.component.contributions"/>
+</head>
+<body>
+    <v-vertical-layout _id="contributionCard" id="contributionCard" style-name="version-card" margin="false" size-full :expand="1.0">
+        <v-horizontal-layout _id="contributionCardHeader" style-name="version-card-header" width-full>
+            <v-label _id="contributionLabel" :left/>
+            <v-label _id="contributionReference" :center/>
+        </v-horizontal-layout>
+
+        <v-horizontal-layout _id="titleDescriptionIconBlock" width-full>
+            <v-vertical-layout _id="titleDescriptionBlock" spacing="false" margin="false" style-name="title-description-block" :left :expand="0.9">
+                <v-label _id="title" style-name="title"/>
+                <v-label _id="description" style-name="description collapsible-text"/>
+            </v-vertical-layout>
+
+            <v-vertical-layout _id="contributionCardActionBlock" id="contributionCardActionBlock" spacing="false" margin="false" :right :expand="0.1">
+                <v-vertical-layout _id="contributionCardAction" id="contributionCardAction" spacing="false" margin="false" :right :expand="0.1">
+                </v-vertical-layout>
+            </v-vertical-layout>
+        </v-horizontal-layout>
+        
+        <v-horizontal-layout width-full>
+            <v-label _id="lastUpdate" style-name="author-timestamp" :left :expand="0.8"/>
+            <v-label _id="contributionStatus" style-name="inline-icon" :right :expand="0.2"/>
+        </v-horizontal-layout>
+
+    </v-vertical-layout>
+</body>
+</html>

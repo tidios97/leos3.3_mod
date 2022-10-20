@@ -1,0 +1,121 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body xml:id="body">
+            <article leos:deletable="true" leos:editable="true" leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR">
+                <num leos:editable="false" leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_XBj7pb">Article 1</num>
+                <heading leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_J0h4AW">Structure of rating systems</heading>
+                <paragraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_1lKVch">
+                    <subparagraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_7qlkGH">
+                        <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_d3Fk8m">
+                            <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_fZdgOJ">The structure of rating systems for exposures to corporates, institutions and central governments and central banks shall comply with the following requirements:</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_LNYim9">
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_gG4x87">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_oTTVIF">(a)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_OeddFT">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_IzMV9H">a rating system shall take into account obligor and transaction risk characteristics;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_IE8YWs">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_PXukZE">(b)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_lrbbCG">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_0ZCGcs">a rating system shall have an obligor rating scale which reflects exclusively quantification of the risk of obligor default. The obligor rating scale shall have a minimum of 7 grades for non-defaulted obligors and one for defaulted obligors;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_FKkJJH">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_7mewJW">(c)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_VdVorU">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_pqF722">an institution shall document the relationship between obligor grades in terms of the level of default risk each grade implies and the criteria used to distinguish that level of default risk;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_6p2GJI">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_OqE3E2">(d)</num>
+                            <alinea leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_4fAWl4">
+                                <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_QWy4nN">
+                                    <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_GYTOgr">institutions with portfolios concentrated in a particular market segment and range of default risk shall have enough obligor grades within that range to avoid undue concentrations of obligors in a particular grade.</p>
+                                </content>
+                            </alinea>
+                            <alinea leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_Kl6Yr0">
+                                <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_d7sKcs">
+                                    <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_HPxFIR">Significant concentrations within a single grade shall be supported by convincing empirical evidence that the obligor grade covers a reasonably narrow PD band and that the default risk posed by all obligors in the grade falls within that band;</p>
+                                </content>
+                            </alinea>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_Q6RMsB">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_BDzXBh">(e)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_XoGHJY">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_2HBRR2">to be permitted by the competent authority to use own estimates of LGDs for own funds requirement calculation, a rating system shall incorporate a distinct facility rating scale which exclusively reflects LGD related transaction characteristics. The facility grade definition shall include both a description of how exposures are assigned to the grade and of the criteria used to distinguish the level of risk across grades;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_zEbtAx">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_5OI8iY">(f)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_cQrFFx">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_LQGXIr">significant concentrations within a single facility grade shall be supported by convincing empirical evidence that the facility grade covers a reasonably narrow LGD band, respectively, and that the risk posed by all exposures in the grade falls within that band.</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_0Txy9F">
+                    <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_ZR1I8e">
+                        <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_tjEODy">Institutions using the methods set out in 153(5) for assigning risk weights for specialised lending exposures are exempt from the requirement to have an obligor rating scale which reflects exclusively quantification of the risk of obligor default for these exposures. These institutions shall have for these exposures at least 4 grades for non-defaulted obligors and at least one grade for defaulted obligors.</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_MCtqan">
+                    <subparagraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_Rbo4Mu">
+                        <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_Cg799I">
+                            <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_45mE45">The structure of rating systems for retail exposures shall comply with the following requirements:</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_u37IGj">
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_6aO8BW">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_dYdUsb">(a)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_h9TMwp">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_NoGBMZ">rating systems shall reflect both obligor and transaction risk, and shall capture all relevant obligor and transaction characteristics;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_pptFhG">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_ruJRAC">(b)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_SwlXEf">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_qvK1pa">the level of risk differentiation shall ensure that the number of exposures in a given grade or pool is sufficient to allow for meaningful quantification and validation of the loss characteristics at the grade or pool level. The distribution of exposures and obligors across grades or pools shall be such as to avoid excessive concentrations;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_ldkL3f">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_UX4YtD">(c)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_f5pnbu">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_sxWKQd">the process of assigning exposures to grades or pools shall provide for a meaningful differentiation of risk, for a grouping of sufficiently homogenous exposures, and shall allow for accurate and consistent estimation of loss characteristics at grade or pool level. For purchased receivables the grouping shall reflect the seller's underwriting practices and the heterogeneity of its customers.</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_0bXWLR">
+                    <subparagraph leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_s4PEb2">
+                        <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_xayzuC">
+                            <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_hMWTRS">Institutions shall consider the following risk drivers when assigning exposures to grades or pools:</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_KYoSX4">
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_tOh5iS">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_ehtj2T">(a)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_CAe1hN">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_YYbudS">obligor risk characteristics;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_ic25DP">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_4KjwoG">(b)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_jGqDaK">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_CpbUMV">transaction risk characteristics, including product or collateral types or both. Institutions shall explicitly address cases where several exposures benefit from the same collateral;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_fqR4KG">
+                            <num leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_WGwW8F">(c)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_W74tQT">
+                                <p leos:origin="ec" xml:id="imp_art_d164e14588_oDcBKR_vgs0XB">delinquency, except where an institution demonstrates to the satisfaction of its competent authority that delinquency is not a material driver of risk for the exposure.</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

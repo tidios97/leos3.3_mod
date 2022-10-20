@@ -1,0 +1,46 @@
+<part>
+    <num class="PartNumber">Part XI</num>
+    <heading class="PartHeading">FINAL PROVISIONS</heading>
+    <article>
+        <num class="ArticleNumber">Article 485</num>
+        <paragraph>
+            <num class="Paragraph(numbered)">1.</num>
+            <content>
+                <p class="Paragraph(numbered)">Subject to paragraph 2, this Regulation
+                    <authorialNote marker="2">
+                        <p>TestNote1</p>
+                    </authorialNote>
+                    shall apply from 1 January 2013.
+                </p>
+            </content>
+        </paragraph>
+        <paragraph>
+            <num class="Paragraph(numbered)">2.</num>
+            <content>
+                <p class="Paragraph(numbered)">Article 436(1) shall apply from 1 January 2015
+                    <authorialNote marker="4">
+                        <p>TestNote2</p>
+                    </authorialNote>
+                    .
+                </p>
+            </content>
+        </paragraph>
+    </article>
+    <article>
+        <num class="ArticleNumber">Article 486</num>
+        <alinea>
+            <content>
+                <p class="Paragraph(unnumbered)">This Regulation shall enter into force on the day following
+                    that of its publication in the
+                    <i>Official Journal of the European
+                        <authorialNote marker="8">
+                            <p>TestNote3</p>
+                        </authorialNote>
+                        Union
+                    </i>
+                    .
+                </p>
+            </content>
+        </alinea>
+    </article>
+</part>

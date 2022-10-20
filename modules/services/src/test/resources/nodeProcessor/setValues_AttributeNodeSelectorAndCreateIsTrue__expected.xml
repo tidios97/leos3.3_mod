@@ -1,0 +1,8 @@
+<akomaNtoso>
+    <meta xml:id="test"/>
+    <coverPage xml:id="testCover">
+        <container name="annexNumber">
+            <p>Annex 1</p>
+        </container>
+    </coverPage>
+</akomaNtoso>

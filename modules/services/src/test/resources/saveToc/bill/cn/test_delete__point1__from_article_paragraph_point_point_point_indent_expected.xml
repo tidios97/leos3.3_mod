@@ -1,0 +1,29 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                     leos:softdate="2021-12-16T11:45:52.416+01:00" leos:softuser="jane" xml:id="art_2">
+                <num leos:origin="cn" xml:id="_art_88UMXP_Ykb4t6">Article 1a</num>
+                <heading xml:id="_art_88UMXP_5NIBl8">Article heading...</heading>
+                <paragraph leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2021-12-16T11:45:52.416+01:00" leos:softtrans_from="art_2_par_1_subpar_1"
+                           leos:softuser="jane" xml:id="art_2_par_1">
+                    <num leos:origin="cn" xml:id="_art_88UMXP_XbMD6c">1.</num>
+                    <content xml:id="_art_88UMXP_RLsKco">
+                        <p xml:id="_art_88UMXP_pqOHDk">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

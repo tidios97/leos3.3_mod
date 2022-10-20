@@ -1,0 +1,35 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body id="body" leos:origin="ec">
+            <article id="_imp_art_d32e819_guPWE2" leos:deletable="true" leos:editable="true" leos:origin="ec">
+                <num id="_imp_art_d32e819_guPWE2_JOfalO" leos:origin="ec">Article 7</num>
+                <heading id="_imp_art_d32e819_guPWE2_tlCpWt" leos:origin="ec">Disproportionate burden</heading>
+                <paragraph id="_imp_art_d32e819_guPWE2_tBbeYI" leos:origin="ec">
+                    <num id="_imp_art_d32e819_guPWE2_8gJOvC" leos:origin="ec">1.</num>
+                    <content id="_imp_art_d32e819_guPWE2_ZyfgLE" leos:origin="ec">
+                        <aknP id="_imp_art_d32e819_guPWE2_9sGSuY" leos:origin="ec">Member States shall ensure that
+                            public sector bodies apply the accessibility requirements set out in Article 4 to the extent
+                            that those requirements do not impose a disproportionate burden on the public sector bodies
+                            for the purposes of that Article.
+                        </aknP>
+                    </content>
+                </paragraph>
+                <paragraph id="_imp_art_d32e819_guPWE2_VAxGDW" leos:origin="ec">
+                    <num id="_imp_art_d32e819_guPWE2_kZrxf3" leos:origin="ec">
+                        <span class="leos-content-removed">4</span>
+                        <span class="leos-content-new">3</span>.
+                    </num>
+                    <content id="_imp_art_d32e819_guPWE2_34rxGj" leos:origin="ec">
+                        <aknP id="_imp_art_d32e819_guPWE2_KJo13o" leos:origin="ec">Where a public sector body avails
+                            itself of the derogation provided for in paragraph 1 of this Article for a specific website
+                            or mobile application after conducting an assessment as referred to in paragraph 2 of this
+                            Article, it shall explain, in the accessibility statement referred to in Article 7, the
+                            parts of the accessibility requirements that could not be complied with and shall, where
+                            appropriate, provide accessible alternatives.
+                        </aknP>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

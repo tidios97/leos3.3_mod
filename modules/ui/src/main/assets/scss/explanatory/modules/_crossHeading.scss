@@ -1,0 +1,158 @@
+@charset "UTF-8";
+/**
+ * Copyright 2019 European Commission
+ *
+ * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence.
+ * You may obtain a copy of the Licence at:
+ *
+ *     https://joinup.ec.europa.eu/software/page/eupl
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+*/
+$LEVEL_SPACING: 27px;
+
+//------------------------------- XML Styles --------------------------------//
+%xmlCrossHeading {
+  crossHeading, block {
+    display: block;
+  }
+  point crossHeading
+  , indent crossHeading {
+    margin-left: calc(-#{$LIST_SPACING} * 1);
+  }
+  point point crossHeading
+  , indent indent crossHeading {
+    margin-left: calc(-#{$LIST_SPACING} * 2);
+  }
+  point point point crossHeading
+  , indent indent indent crossHeading {
+    margin-left: calc(-#{$LIST_SPACING} * 3);
+  }
+  point point point indent crossHeading
+  , indent indent indent indent crossHeading {
+    margin-left: calc(-#{$LIST_SPACING} * 4);
+  }
+  crossHeading[leos\:indent-level]
+  , block[leos\:indent-level] {
+    padding-left: calc(#{$LIST_SPACING} * var(--indent-level));
+  }
+  crossHeading[leos\:indent-level][style*="--inline-num:1;"]
+  , block[leos\:indent-level][style*="--inline-num:1;"] {
+    padding-left: calc(#{$LIST_SPACING} + (#{$LIST_SPACING} * var(--indent-level)));
+  }
+  level[leos\:depth="1"], level[leos\:depth="2"], level[leos\:depth="3"], level[leos\:depth="4"] {
+    crossHeading, block {
+      margin-left: calc(-22px - (#{$LIST_SPACING} * 1));
+    }
+    point point crossHeading, indent indent crossHeading {
+      margin-left: calc(-22px - (#{$LIST_SPACING} * 2));
+    }
+    point point point crossHeading, indent indent indent crossHeading {
+      margin-left: calc(-22px - (#{$LIST_SPACING} * 3));
+    }
+    point point point indent crossHeading, indent indent indent indent crossHeading {
+      margin-left: calc(-22px - (#{$LIST_SPACING} * 4));
+    }
+    crossHeading[leos\:indent-level][style*="--inline-num:1;"]
+    , block[leos\:indent-level][style*="--inline-num:1;"] {
+      padding-left: calc(#{$LIST_SPACING} + min(var(--indent-level), 1) * 22px + #{$LIST_SPACING} * var(--indent-level));
+    }
+    crossHeading[leos\:indent-level]
+    , block[leos\:indent-level] {
+      padding-left: calc(min(var(--indent-level), 1) * 22px + #{$LIST_SPACING} * var(--indent-level));
+    }
+  }
+}
+
+%editorCrossHeading {
+  li[data-akn-element="crossheading" i], p[data-akn-element="crossheading" i] {
+    margin-right: 5px;
+  }
+  li[data-akn-element="level"] {
+    li[data-akn-element="crossheading" i]
+    , p[data-akn-element="crossheading" i] {
+      margin-left: calc(-#{$LIST_SPACING} * 1);
+      margin-right: 5px;
+    }
+  }
+  li[data-akn-element="paragraph"] {
+    li[data-akn-element="crossheading" i]
+    , p[data-akn-element="crossheading" i] {
+      margin-right: 10px;
+    }
+  }
+  li[data-akn-element="point"] li[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] li[data-akn-element="crossheading" i]
+  , li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] p[data-akn-element="crossheading" i] {
+    margin-left: calc(-#{$LIST_SPACING} * 2);
+  }
+  li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="crossheading" i]
+  , li[data-akn-element="point"] li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] li[data-akn-element="indent"] p[data-akn-element="crossheading" i] {
+    margin-left: calc(-#{$LIST_SPACING} * 3);
+  }
+  li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="crossheading" i]
+  , li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] p[data-akn-element="crossheading" i]  {
+    margin-left: calc(-#{$LIST_SPACING} * 4);
+  }
+  li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+  , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] p[data-akn-element="crossheading" i] {
+    margin-left: calc(-#{$LIST_SPACING} * 5);
+  }
+  p[data-akn-element="crossheading" i][data-indent-level]:not([data-akn-num])
+  , li[data-akn-element="crossheading" i][data-indent-level]:not([data-akn-num]) {
+    padding-left: calc(#{$LIST_SPACING} * var(--indent-level));
+  }
+  li[data-akn-element="level"] > ol {
+    li[data-akn-element="crossheading" i]
+    , p[data-akn-element="crossheading" i] {
+      margin-left: calc(-#{$LEVEL_SPACING} - #{$LIST_SPACING} * 1);
+    }
+    li[data-akn-element="point"] li[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] li[data-akn-element="crossheading" i]
+    , li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] p[data-akn-element="crossheading" i] {
+      margin-left: calc(-#{$LEVEL_SPACING} - #{$LIST_SPACING} * 2);
+    }
+    li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="crossheading" i]
+    , li[data-akn-element="point"] li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] li[data-akn-element="indent"] p[data-akn-element="crossheading" i] {
+      margin-left: calc(-#{$LEVEL_SPACING} - #{$LIST_SPACING} * 3);
+    }
+    li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="crossheading" i]
+    , li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] p[data-akn-element="crossheading" i]  {
+      margin-left: calc(-#{$LEVEL_SPACING} - #{$LIST_SPACING} * 4);
+    }
+    li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] li[data-akn-element="point"] p[data-akn-element="crossheading" i]
+    , li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] li[data-akn-element="indent"] p[data-akn-element="crossheading" i] {
+      margin-left: calc(-#{$LEVEL_SPACING} - #{$LIST_SPACING} * 5);
+    }
+    p[data-akn-element="crossheading" i][data-indent-level]:not([data-akn-num])
+    , li[data-akn-element="crossheading" i][data-indent-level]:not([data-akn-num]) {
+      padding-left: calc(min(var(--indent-level), 1) * #{$LEVEL_SPACING} + #{$LIST_SPACING} * var(--indent-level));
+    }
+  }
+  li[data-akn-element="level"] {
+    p[data-akn-element="crossheading" i][data-indent-level]:not([data-akn-num])
+    , li[data-akn-element="crossheading" i][data-indent-level]:not([data-akn-num]) {
+      padding-left: calc(min(var(--indent-level), 1) * #{$LEVEL_SPACING} + #{$LIST_SPACING} * var(--indent-level));
+    }
+  }
+}
+
+%tocCrossHeading {
+  crossHeading > content > aknP, crossHeading > content > p,block > content > aknP, block > content > p {
+    @extend %clearTopText;
+    padding-top: 0pt;
+  }
+}

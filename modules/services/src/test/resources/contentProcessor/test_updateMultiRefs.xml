@@ -1,0 +1,21 @@
+<root xmlns:leos="urn:eu:europa:ec:leos" xml:id="ElementId">
+    <meta>
+        <proprietary source="~_leos">
+            <leos:ref>bill_ckq9l0l140009jg019s8b4k2a</leos:ref>
+        </proprietary>
+    </meta>
+    <parent>
+        <p xml:id="p1">bla bla
+            <mref xml:id="mref1">
+                Article 1<ref href="bill/ref1" xml:id="aid">(a)</ref> and
+                <ref href="bill/ref2" xml:id="bid">(b)</ref>
+            </mref>
+            more bla bla
+            <mref xml:id="mref2">
+                Article 2<ref href="bill/ref21" xml:id="aid2">(a)</ref> and
+                <ref href="bill/ref22" xml:id="bid2">(b)</ref>
+            </mref>
+            test bla bla
+        </p>
+    </parent>
+</root>

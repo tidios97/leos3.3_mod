@@ -1,0 +1,8 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+    <!--
+        This file is included since the CXFServlet needs a configuration for no real obvious reason
+        It can use this empty configuration instead. The real configuration is done in Java via annotations.
+    -->
+</beans>

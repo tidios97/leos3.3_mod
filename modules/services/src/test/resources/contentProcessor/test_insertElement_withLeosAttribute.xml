@@ -1,0 +1,10 @@
+<article xmlns:leos="urn:eu:europa:ec:leos" xml:id="art_new">
+    <num leos:editable="false">Article #</num>
+    <heading>Article new</heading>
+    <paragraph xml:id="akn_article_QxG2p8-par1">
+        <num>1.</num>
+        <content>
+            <p>New Article...</p>
+        </content>
+    </paragraph>
+</article>

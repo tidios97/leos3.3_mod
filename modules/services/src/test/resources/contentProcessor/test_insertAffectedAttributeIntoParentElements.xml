@@ -1,0 +1,89 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body xml:id="body">
+            <part leos:depth="1" xml:id="akn_part_htJBP6">
+                <num xml:id="akn_BE55oX">Part I</num>
+                <heading xml:id="akn_rwaTqU">100 Articles</heading>
+                <article leos:editable="false" leos:origin="ec" xml:id="art_1">
+                    <num xml:id="art_1_num">Article 4</num>
+                    <heading xml:id="art_1_heading">Definitions</heading>
+                    <paragraph xml:id="art_1_par">
+                        <num xml:id="art_1_par_num">1.</num>
+                        <content xml:id="art_1_par_content">
+                            <p xml:id="art_1_par_c">Where reference</p>
+                        </content>
+                    </paragraph>
+                </article>
+                <chapter leos:depth="1" xml:id="chapter">
+                    <article leos:deletable="true" leos:editable="true" xml:id="art_2">
+                        <num xml:id="imp_art_d179e1221_P9kEii_l5sIk5">Article 1</num>
+                        <heading xml:id="imp_art_d179e1221_P9kEii_QVmXB0">Scope</heading>
+                        <paragraph xml:id="imp_art_d179e1221_P9kEii_oHxHh8">
+                            <subparagraph xml:id="imp_art_d179e1221_P9kEii_DV2icu">
+                                <content xml:id="imp_art_d179e1221_P9kEii_THG15B">
+                                    <p xml:id="imp_art_d179e1221_P9kEii_LTEPGI">This R</p>
+                                </content>
+                            </subparagraph>
+                            <list xml:id="imp_art_d179e1221_P9kEii_z694nQ">
+                                <point xml:id="imp_art_d179e1221_P9kEii_7vqFIG">
+                                    <num xml:id="imp_art_d179e1221_P9kEii_BDRJur">(a)</num>
+                                    <content xml:id="imp_art_d179e1221_P9kEii_DZpz46">
+                                        <p xml:id="imp_art_d179e1221_P9kEii_gJwSRp">own funds requireme</p>
+                                    </content>
+                                </point>
+                                <point xml:id="point_to_number">
+                                    <num xml:id="imp_art_d179e1221_P9kEii_Tpz3I5">(b)</num>
+                                    <content xml:id="imp_art_d179e1221_P9kEii_IDOTXN">
+                                        <p xml:id="imp_art_d179e1221_P9kEii_BvbriB">requirements limiting large exposures;</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_art_d179e1221_P9kEii_QPPi7I">
+                                    <num xml:id="imp_art_d179e1221_P9kEii_sKUtuB">(c)</num>
+                                    <content xml:id="imp_art_d179e1221_P9kEii_oR90ov">
+                                        <p xml:id="imp_art_d179e1221_P9kEii_19OinT">after the delegat</p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_art_d179e1221_P9kEii_JhAvs2">
+                                    <num xml:id="imp_art_d179e1221_P9kEii_2MtFoo">(d)</num>
+                                    <content xml:id="imp_art_d179e1221_P9kEii_DlbOCD">
+                                        <p xml:id="imp_art_d179e1221_P9kEii_kphtxo">reporting requirements (a), (b) and (c) and to leverage; </p>
+                                    </content>
+                                </point>
+                                <point xml:id="imp_art_d179e1221_P9kEii_i8rp45">
+                                    <num xml:id="imp_art_d179e1221_P9kEii_1INAyz">(e)</num>
+                                    <content xml:id="imp_art_d179e1221_P9kEii_db1MNb">
+                                        <p xml:id="imp_art_d179e1221_P9kEii_tGHCF1">public disclosure requirements.</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </paragraph>
+                        <paragraph xml:id="imp_art_d179e1221_P9kEii_i7E3Oa">
+                            <content xml:id="imp_art_d179e1221_P9kEii_X1IUVI">
+                                <p xml:id="imp_art_d179e1221_P9kEii_gJFhHI">This Regulation does not govern publication
+                                    requirements for competent authorities in the field of prudential regulation and
+                                    supervision of institutions as set out in Directive 2013/36/EU.
+                                </p>
+                            </content>
+                        </paragraph>
+                    </article>
+                </chapter>
+                <chapter leos:depth="1" xml:id="chapter2">
+                    <article leos:deletable="true"
+                             leos:editable="true"
+                             xml:id="imp_art_d179e1262_nWKVTv">
+                        <num xml:id="imp_art_d179e1262_nWKVTv_5w3GqY">Article 2</num>
+                        <heading xml:id="imp_art_d179e1262_nWKVTv_lylMhW">Supervisory powers</heading>
+                        <paragraph xml:id="imp_art_d179e1262_nWKVTv_XInC3R">
+                            <content xml:id="imp_art_d179e1262_nWKVTv_ITWClk">
+                                <p xml:id="imp_art_d179e1262_nWKVTv_ErDFaD">For the purposes of ensuring compliance with
+                                    this Regulation, competent authorities shall have the powers and shall follow the
+                                    procedures set out in Directive 2013/36/EU.
+                                </p>
+                            </content>
+                        </paragraph>
+                    </article>
+                </chapter>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

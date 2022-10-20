@@ -1,0 +1,140 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+
+            <article leos:softmove_label="MOVED from Article 2" leos:editable="false" leos:deletable="false" leos:origin="ec"
+                     xml:id="art_2" leos:softaction="move_from" leos:softactionroot="true"
+                     leos:softmove_from="moved_art_2" leos:softuser="jane"
+                     leos:softdate="2020-09-23T19:37:50.221+02:00" leos:depth="1">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_2_num">Article -1</num>
+                <heading leos:origin="ec" xml:id="art_2_heading">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="art_2_par_1" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_2_par_1_num">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="deleted_art_2_subpar_1" leos:editable="false"
+                                  leos:deletable="false" leos:softaction="del" leos:softactionroot="true" leos:softuser="jane"
+                                  leos:softdate="2020-09-29T12:26:34.797+02:00">
+                        <content leos:origin="ec" xml:id="deleted_art_2_subpar_1_content">
+                            <p leos:origin="ec" xml:id="deleted_art_2_subpar_1_content_p">Article 3 content (subparagraph 1)</p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" xml:id="art_2_subpar_2">
+                        <content leos:origin="ec" xml:id="art_2_subpar_2_content">
+                            <p leos:origin="ec" xml:id="art_2_subpar_2_content_p">subparagraph 2</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="art_2_par_1_list_1">
+                        <point leos:origin="ec" xml:id="art_2_par_1_point_a">
+                            <num leos:origin="ec" xml:id="art_2_par_1_point_a_num">(a)</num>
+                            <alinea leos:origin="ec" xml:id="art_2_par_1_point_a_alinea_1">
+                                <content leos:origin="ec" xml:id="art_2_par_1_point_a_alinea_1_c">
+                                    <p leos:origin="ec" xml:id="art_2_par_1_point_a_alinea_1_c_p">Point (a)</p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="ec" xml:id="art_2_par_1_list_2">
+                                <point leos:origin="ec" xml:id="art_2_par_1_point_i">
+                                    <num leos:origin="ec" xml:id="art_2_par_1_point_i_num">(i)</num>
+                                    <content leos:origin="ec" xml:id="art_2_par_1_point_i_c">
+                                        <p leos:origin="ec" xml:id="art_2_par_1_point_i_c_p">Point (i)</p>
+                                    </content>
+                                </point>
+
+                                <point leos:origin="ec" xml:id="art_2_par_1_point_iv">
+                                    <num leos:origin="ec" xml:id="art_2_par_1_point_iv_num">(iv)</num>
+                                    <alinea leos:origin="ec" xml:id="art_2_par_1_point_iv_a1">
+                                        <content leos:origin="ec" xml:id="art_2_par_1_point_iv_a1_c">
+                                            <p leos:origin="ec" xml:id="art_2_par_1_point_iv_a1_c_p">Point (iv)</p>
+                                        </content>
+                                    </alinea>
+                                    <list leos:origin="ec" xml:id="art_2_par_1_point_iv_l1">
+                                        <point leos:origin="ec" xml:id="art_2_par_1_point_1">
+                                            <num leos:origin="ec" xml:id="art_2_par_1_point_1_num">(1)</num>
+                                            <content leos:origin="ec" xml:id="art_2_par_1_point_1_c">
+                                                <p leos:origin="ec" xml:id="art_2_par_1_point_1_c_p">Point (1)</p>
+                                            </content>
+                                        </point>
+                                        <point leos:origin="ec" xml:id="art_2_par_1_point_2">
+                                            <num leos:origin="ec" xml:id="art_2_par_1_point_2_num">(2)</num>
+                                            <content leos:origin="ec" xml:id="art_2_par_1_point_2_c">
+                                                <p leos:origin="ec" xml:id="art_2_par_1_point_2_c_p">Point (2)</p>
+                                            </content>
+                                        </point>
+                                        <point leos:origin="ec" xml:id="art_2_par_1_point_3" >
+                                            <num leos:origin="ec" xml:id="art_2_par_1_point_3_num">(3)</num>
+                                            <alinea leos:origin="ec" xml:id="art_2_par_1_point_3_a1">
+                                                <content leos:origin="ec" xml:id="art_2_par_1_point_3_a1_c">
+                                                    <p leos:origin="ec" xml:id="art_2_par_1_point_3_a1_c_p">Point (3)</p>
+                                                </content>
+                                            </alinea>
+                                            <list leos:origin="ec" xml:id="art_2_par_1_point_3_l">
+                                                <indent leos:origin="ec" xml:id="art_2_par_1_indent_1">
+                                                    <num leos:origin="ec" xml:id="art_2_par_1_indent_1_num">-</num>
+                                                    <alinea leos:origin="ec" xml:id="art_2_par_1_indent_1_a">
+                                                        <content leos:origin="ec" xml:id="art_2_par_1_indent_1_a_c">
+                                                            <p leos:origin="ec" xml:id="art_2_par_1_indent_1_a_c_p">first indent</p>
+                                                        </content>
+                                                    </alinea>
+                                                    <alinea leos:origin="ec" xml:id="art_2_par_1_indent_1_a2">
+                                                        <content leos:origin="ec" xml:id="art_2_par_1_indent_1_a2_c">
+                                                            <p leos:origin="ec" xml:id="art_2_par_1_indent_1_a2_c_p">second indent</p>
+                                                        </content>
+                                                    </alinea>
+                                                </indent>
+                                            </list>
+                                        </point>
+                                    </list>
+                                </point>
+                            </list>
+                        </point>
+                        <point leos:origin="ec" xml:id="art_2_par_1_point_b">
+                            <num leos:origin="ec" xml:id="art_2_par_1_point_b_num">(b)</num>
+                            <content leos:origin="ec" xml:id="art_2_par_1_point_b_content">
+                                <p leos:origin="ec" xml:id="art_2_par_1_point_b_content_p">Point (b)</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="art_2_par_2" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_2_par_2_num">2.</num>
+                    <content leos:origin="ec" xml:id="art_2_par_2_content">
+                        <p leos:origin="ec" xml:id="art_2_par_2_content_p">Article 3, second paragraph</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="art_2_par_3" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_2_par_3_num">3.</num>
+                    <content leos:origin="ec" xml:id="art_2_par_3_content">
+                        <p leos:origin="ec" xml:id="art_2_par_3_content_p">Article 3, third paragraph</p>
+                    </content>
+                </paragraph>
+            </article>
+
+            <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Article 1 content</p>
+                    </content>
+                </paragraph>
+            </article>
+
+            <article leos:softmove_label="MOVED to Article -1" leos:editable="false" leos:deletable="false" leos:origin="ec"
+                     xml:id="moved_art_2" leos:softaction="move_to" leos:softactionroot="true"
+                     leos:softmove_to="art_2" leos:softuser="jane" leos:softdate="2020-09-23T19:37:50.221+02:00">
+                <num leos:origin="ec" leos:editable="false" xml:id="moved_art_2_num">Article 2</num>
+            </article>
+
+            <article leos:origin="ec" xml:id="art_3" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_3__num">Article 3</num>
+                <heading leos:origin="ec" xml:id="art_3__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_3__para_1" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_3__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_3__para_1__content">
+                        <p leos:origin="ec" xml:id="art_3__para_1__content__p">Article 3 content</p>
+                    </content>
+                </paragraph>
+            </article>
+
+        </body>
+    </bill>
+</akomaNtoso>

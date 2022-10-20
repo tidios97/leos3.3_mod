@@ -1,0 +1,23 @@
+<root xmlns:leos="urn:eu:europa:ec:leos">
+    <article leos:deletable="true" leos:editable="true" leos:origin="cn" leos:softaction="add"
+             leos:softdate="2019-01-29T12:18:35.254+01:00" leos:softuser="demo" xml:id="akn_art_9WnbxA">
+        <num xml:id="akn_art_9WnbxA_dKRiJn">Article -2</num>
+        <heading xml:id="akn_art_9WnbxA_re50lT">Article heading...</heading>
+        <paragraph leos:origin="cn" leos:softaction="add" leos:softdate="2019-01-29T12:22:35.303+01:00"
+                   leos:softuser="demo" xml:id="akn_art_9WnbxA-par1">
+            <num xml:id="akn_art_9WnbxA_X3ieIj">1.</num>
+            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:26:55.286+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="akn_art_9WnbxA_I6Rser">
+                <content xml:id="akn_art_9WnbxA_ONy1Cf">
+                    <p xml:id="akn_art_9WnbxA_wijfWd">Text...</p>
+                </content>
+            </subparagraph>
+            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:26:55.301+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="akn_art_9WnbxA_Z8lLi7">
+                <content xml:id="akn_art_9WnbxA_pVuh3B">
+                    <p xml:id="akn_art_9WnbxA_vDfgXM">test</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

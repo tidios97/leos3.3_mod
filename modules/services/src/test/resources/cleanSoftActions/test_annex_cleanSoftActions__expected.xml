@@ -1,0 +1,166 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <doc name="ANNEX">
+        <meta>
+            <identification source="~COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage language="en"/>
+                    <preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                        <akn4eu:akn4euVersion value="4.0.0.0"/>
+                    </preservation>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                </FRBRManifestation>
+            </identification>
+            <references source="~COM">
+                <TLCLocation href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"
+                             xml:id="_BEL_BRU"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL"
+                                 showAs="Council of the European Union" xml:id="CONSIL"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/EP"
+                                 showAs="European Parliament" xml:id="EP"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/COM"
+                                 showAs="European Commission" xml:id="COM"/>
+                <TLCRole href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"
+                         xml:id="PRESID"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/resource-type/ANNEX" name="docType"
+                              showAs="Annex" xml:id="ANNEX"/>
+                <TLCReference href="http://eurovoc.europa.eu/5456" name="contentSubject" showAs="Legal basis"
+                              xml:id="legalBasis"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/language/ENG" name="language"
+                              showAs="en" xml:id="language"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.0.0</leos:templateVersion>
+                <leos:docVersion>0.1.10</leos:docVersion>
+                <leos:docTemplate>SG-017</leos:docTemplate>
+                <leos:docPurpose xml:id="proprietary__docpurpose">on ...</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:template xml:id="proprietary_template">SG-017</leos:template>
+                <leos:ref>annex_ckg7zryru0004hc24c0cbhsya</leos:ref>
+                <leos:refOrigin>annex_ckg7yxv850004d824pb1rd2dk</leos:refOrigin>
+                <leos:annexNumber xml:id="proprietary__annexNumber">Annex</leos:annexNumber>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                </leos:docType>
+                <leos:annexIndex xml:id="proprietary__annexIndex">1</leos:annexIndex>
+                <leos:annexTitle xml:id="proprietary__annexTitle"/>
+                <leos:objectId>268</leos:objectId>
+            </proprietary>
+        </meta>
+
+        <preface xml:id="preface">
+        </preface>
+        <mainBody xml:id="body">
+            <level leos:origin="cn" xml:id="akn_level_s6k9Ju">
+                <num xml:id="akn_eIGvW4">-2.</num>
+                <heading xml:id="akn_WK0GNG">Heading Level</heading>
+                <content xml:id="akn_MW13ra">
+                    <p xml:id="akn_TlEOYi">Content level -2</p>
+                </content>
+            </level>
+            <title xml:id="akn_title_GieOFM">
+                <num xml:id="akn_sTx8nB">Title I</num>
+                <heading xml:id="akn_QDT7K1">Title heading...</heading>
+                <level xml:id="body_level_2">
+                    <num leos:origin="cn" xml:id="body_level_2_num">-1.</num>
+                    <content xml:id="akn_HL4JLl">
+                        <p xml:id="body_level_2_content_p">Level 1.2</p>
+                    </content>
+                </level>
+
+                <level xml:id="akn_level_cN0er3">
+                    <num xml:id="akn_duz80P">1.1.</num>
+                    <subparagraph xml:id="akn_aF3qrC">
+                        <content xml:id="akn_kHg8QE">
+                            <p xml:id="akn_0GuxoX">Level 1.1 </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph xml:id="akn_8FPiwH">
+                        <content xml:id="akn_VCy4jl">
+                            <p xml:id="akn_nABQvt">Content 1.1</p>
+                        </content>
+                    </subparagraph>
+                </level>
+                <level xml:id="akn_level_biIuvM">
+                    <num xml:id="akn_hv7AMt">1.1.1.</num>
+                    <subparagraph xml:id="akn_81XGRl">
+                        <content xml:id="akn_ULX2GT">
+                            <p xml:id="akn_Col53V">Level 1.1.1</p>
+                        </content>
+                    </subparagraph>
+                    <list xml:id="akn_OKrsPP">
+                        <point xml:id="akn_2wkgF4">
+                            <num leos:origin="cn" xml:id="akn_LN7wn2">(-a)</num>
+                            <alinea xml:id="akn_l4nug5">
+                                <content xml:id="akn_KL87za">
+                                    <p xml:id="akn_m5tEWi">Point b</p>
+                                </content>
+                            </alinea>
+                            <list xml:id="akn_NVXoge">
+                                <point xml:id="akn_qEKrHf">
+                                    <num xml:id="akn_gqREnj">(i)</num>
+                                    <content xml:id="akn_7eYIBG">
+                                        <p xml:id="akn_I3tvwD">Point i</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point xml:id="akn_5w7BCt">
+                            <num xml:id="akn_TKAU55">(a)</num>
+                            <content xml:id="akn_6toQ08">
+                                <p xml:id="akn_vDFspX">Point a</p>
+                            </content>
+                        </point>
+
+                    </list>
+                </level>
+            </title>
+            <chapter xml:id="cha_50Itkz">
+                <num xml:id="akn_KCHj2e">Chapter #</num>
+                <heading xml:id="akn_UhESTJ">Chapter heading...</heading>
+
+            </chapter>
+
+            <level xml:id="akn_level_bNmdKK">
+                <num xml:id="akn_AGFGEr">1.3.1.</num>
+                <content xml:id="akn_hZhC1x">
+                    <p xml:id="akn_FPe38v">Level 1.3.1</p>
+                </content>
+            </level>
+            <level xml:id="akn_level_vsTvn6">
+                <num xml:id="akn_X3Nk2x">1.3.1.1.</num>
+                <content xml:id="akn_nkJ5UV">
+                    <p xml:id="akn_HAKoSm">Level 1.3.1.1</p>
+                </content>
+            </level>
+            <level xml:id="akn_level_XPaQpn">
+                <num xml:id="akn_Jyytta">2.</num>
+                <content xml:id="akn_7G2Qwm">
+                    <p xml:id="akn_o8DJvk">Level 2</p>
+                </content>
+            </level>
+            <paragraph xml:id="akn_paragraph_nB6S2Y">
+                <content xml:id="akn_Etyf5C">
+                    <p xml:id="akn_hTFx5F">Paragraph  first</p>
+                </content>
+            </paragraph>
+
+        </mainBody>
+    </doc>
+</akomaNtoso>

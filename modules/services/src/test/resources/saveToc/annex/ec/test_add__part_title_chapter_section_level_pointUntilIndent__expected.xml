@@ -1,0 +1,35 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody leos:origin="ec" xml:id="mainBody">
+            <level leos:depth="1" leos:origin="ec" xml:id="level_1">
+                <num leos:origin="ec" xml:id="level_1_num">1.</num>
+                <heading>New level heading</heading>
+                <content leos:origin="ec" xml:id="level_1_c">
+                    <p leos:origin="ec" xml:id="level_1_c_p">Without heading - only short content</p>
+                </content>
+            </level>
+            <part xml:id="par_M0cfqI">
+                <num>#</num>
+                <heading>Part heading...</heading>
+                <title xml:id="tit_skbamQ">
+                    <num>#</num>
+                    <heading>Title heading...</heading>
+                    <chapter xml:id="cha_UNLWxQ">
+                        <num>#</num>
+                        <heading>Chapter heading...</heading>
+                        <section leos:depth="2" xml:id="sec_WEoPGW">
+                            <num>#</num>
+                            <heading>Section heading...</heading>
+                            <level leos:depth="2" xml:id="akn_level_diwyvq">
+                                <num leos:editable="false">1.1.</num>
+                                <content>
+                                    <p>Text...</p>
+                                </content>
+                            </level>
+                        </section>
+                    </chapter>
+                </title>
+            </part>
+        </mainBody>
+    </doc>
+</akomaNtoso>

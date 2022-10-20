@@ -1,0 +1,31 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <preamble leos:origin="ec" xml:id="_preamble">
+            <recitals leos:editable="false" leos:origin="ec" xml:id="_recs">
+                <intro leos:origin="ec" xml:id="_recitalsIntro">
+                    <p leos:origin="ec" xml:id="_recs_intro">Whereas:</p>
+                </intro>
+                <recital leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                         leos:softactionroot="true" leos:softdate="2022-05-31T11:40:23.066+02:00"
+                         leos:softmove_label="MOVED to Recital (2a)" leos:softmove_to="_rec_1" leos:softuser="jane(DIGIT)"
+                         xml:id="moved__rec_1">
+                    <num leos:origin="ec" xml:id="moved__rec_1__num">(1)</num>
+                    <p leos:origin="ec" xml:id="moved__rec_1__p">Recital...</p>
+                </recital>
+                <recital leos:editable="true" leos:origin="ec" xml:id="_rec_2">
+                    <num leos:origin="ec" xml:id="_rec_2__num">(2)</num>
+                    <p leos:origin="ec" xml:id="_rec_2__p">Recital...</p>
+                </recital>
+                <recital leos:editable="true" leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                         leos:softdate="2022-05-31T11:40:23.066+02:00" leos:softmove_from="moved__rec_1"
+                         leos:softmove_label="MOVED from Recital (1)" leos:softuser="jane(DIGIT)" xml:id="_rec_1">
+                    <num leos:origin="cn" xml:id="_rec_1__num">(2a)</num>
+                    <p leos:origin="ec" xml:id="_rec_1__p">Recital...</p>
+                </recital>
+            </recitals>
+            <formula leos:origin="ec" name="enactingFormula" xml:id="_preamble__formula_2">
+                <p leos:origin="ec" xml:id="_preamble__formula_2__p">HAVE ADOPTED THIS REGULATION:</p>
+            </formula>
+        </preamble>
+    </bill>
+</akomaNtoso>

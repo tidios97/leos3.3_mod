@@ -1,0 +1,66 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="regulation">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art1">
+                <num leos:editable="false" leos:origin="ec" xml:id="_art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="_art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="_art_1__para_1">
+                    <num leos:origin="ec" xml:id="_art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="_art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="_art_1__para_1__content__p">Text number 1</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_1_qnK8k5">
+                    <num leos:origin="ec" xml:id="_art_1_B7jh1J">2.</num>
+                    <subparagraph leos:origin="ec" xml:id="_art_1_3lyVsD">
+                        <content leos:origin="ec" xml:id="_art_1_O5brcD">
+                            <p leos:origin="ec" xml:id="_art_1_xCqpwX">Text number 2</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="_art_1_JFtVhJ">
+                        <point leos:indent-origin-indent-level="1" leos:indent-origin-num-origin="ec" leos:indent-origin-type="POINT" leos:origin="ec" leos:softaction="trans" leos:softactionroot="true" leos:softdate="2022-05-18T18:00:09.463+02:00" leos:softuser="demo" xml:id="transformed__art_1_ycViTm">
+                            <num leos:origin="ec" xml:id="_art_1_Q3BFvW">(a)</num>
+                            <alinea leos:origin="ec" xml:id="_art_1_ycViTm">
+                                <content leos:origin="ec" xml:id="_art_1_Yp8Vfd">
+                                    <p leos:origin="ec" xml:id="_art_1_9459sM">Test a</p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="cn" xml:id="_lis_RqIESw">
+                                <point leos:indent-origin-indent-level="1" leos:indent-origin-num="(b)" leos:indent-origin-num-id="_art_1_dRw2yf" leos:indent-origin-num-origin="ec" leos:indent-origin-type="POINT" leos:origin="ec" leos:softtrans_from="_akn_alinea_hZyXWk" xml:id="_art_1_TppwNv">
+                                    <num leos:origin="cn" xml:id="_art_1_dRw2yf">(i)</num>
+                                    <content leos:origin="ec" xml:id="_art_1_xCzcEJ">
+                                        <p leos:origin="ec" xml:id="_art_1_OKjcjV">Test b</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point leos:origin="ec" xml:id="_art_1_PsT01z">
+                            <num leos:origin="ec" xml:id="_art_1_93L8nV">(c)</num>
+                            <content leos:origin="ec" xml:id="_art_1_5ky9a0">
+                                <p leos:origin="ec" xml:id="_art_1_vLSVtO">Test c</p>
+                            </content>
+                        </point>
+                        <point leos:origin="cn" leos:softaction="add" leos:softactionroot="true" leos:softdate="2022-05-18T18:00:09.464+02:00" leos:softuser="demo" xml:id="_akn_point_Pu0fK6">
+                            <num leos:editable="false" leos:origin="cn" xml:id="_art_1_OPsEIz">(ca)</num>
+                            <content xml:id="_art_1_xe9oAq">
+                                <p xml:id="_art_1_cChFIb">Text...</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_1_3RJUeG">
+                    <num leos:origin="ec" xml:id="_art_1_hYgHtZ">3.</num>
+                    <content leos:origin="ec" xml:id="_art_1_tGoCU5">
+                        <p leos:origin="ec" xml:id="_art_1_vTFfYu">Text number 3</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_1_8sPXrB">
+                    <num leos:origin="ec" xml:id="_art_1_BXcf9X">4.</num>
+                    <content leos:origin="ec" xml:id="_art_1_RorfC9">
+                        <p leos:origin="ec" xml:id="_art_1_k6Aw6n">Text number 4</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

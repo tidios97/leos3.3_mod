@@ -1,0 +1,43 @@
+doc[name="ANNEX" i] longTitle {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] table > tr:first-child {
+    font-weight: normal;
+}
+
+akomaNtoso doc[name="ANNEX" i] coverPage container[name=mainDocLanguage] {
+    font-weight: normal;
+}
+
+akomaNtoso doc[name="ANNEX" i] coverPage container[name=docLabel] > * {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] part > num, doc[name="ANNEX" i] part > heading {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] aknTitle > num, doc[name="ANNEX" i] aknTitle > heading {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] chapter > num, doc[name="ANNEX" i] chapter > heading {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] section > num, doc[name="ANNEX" i] section > heading {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] article > heading, doc[name="ANNEX" i] .cke_editable article .akn-article-heading {
+    font-weight: normal;
+}
+
+akomaNtoso doc[name="ANNEX" i] mainbody[leos\:origin="cn"], akomaNtoso doc[name="ANNEX" i] preface[leos\:origin="cn"] {
+    font-weight: normal;
+}
+
+doc[name="ANNEX" i] .leos-authnote marker {
+    font-weight: normal;
+}

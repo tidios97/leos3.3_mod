@@ -1,0 +1,26 @@
+<akomaNtoso xml:id="akn">
+    <article xml:id="art486">
+        <num xml:id="aknum">Article 1</num>
+        <heading xml:id="aknhead">1st article</heading>
+    </article>
+    <article xml:id="art487">
+        <num xml:id="aknnum2">Article 2</num>
+        <heading xml:id="aknhead2">2th articl
+            <authorialNote marker="1" xml:id="a1">
+                <p xml:id="p1">TestNote1</p>
+            </authorialNote>
+            e
+        </heading>
+    </article>
+    <article xml:id="art488">
+        <num>Article 3</num>
+        <heading xml:id="aknhead3">3th article
+            <authorialNote marker="2" xml:id="a2">
+                <p xml:id="p2">TestNote2</p>
+            </authorialNote>
+        </heading>
+    </article>
+    <article xml:id="art489">
+        <num>Article 4</num>
+    </article>
+</akomaNtoso>

@@ -1,0 +1,35 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<recitals leos:origin="ec" xml:id="recs" leos:editable="false">
+		<intro leos:origin="ec" xml:id="recitalsIntro">
+			<p leos:origin="ec" xml:id="recs_intro">Whereas:</p>
+		</intro>
+		<recital leos:origin="ec" xml:id="rec_1" leos:editable="true">
+			<num leos:origin="ec" xml:id="rec_1__num">(1)</num>
+			<p leos:origin="ec" xml:id="rec_1__p">Recital...</p>
+		</recital>
+		<recital xml:id="akn_recital_fpLjBG" leos:editable="true"
+			leos:softaction="add" leos:softactionroot="true" leos:softuser="jane"
+			leos:softdate="2020-09-16T17:16:26.381+02:00" leos:depth="1"
+			leos:origin="cn" class="leos-double-compare-added-intermediate">
+			<num xml:id="recs_hZDIHO" leos:editable="false"
+				class="leos-double-compare-added-intermediate">
+				<span class="leos-double-compare-added-intermediate">(1a)</span>
+			</num>
+			<p xml:id="recs_HxDN0G"
+				class="leos-double-compare-added-intermediate">
+				<span class="leos-double-compare-added-intermediate">Recital...</span>
+			</p>
+		</recital>
+		<recital leos:origin="ec" xml:id="deleted_rec_2"
+			leos:editable="false" leos:deletable="false" leos:softaction="del"
+			leos:softactionroot="true" leos:softuser="jane"
+			leos:softdate="2020-09-16T17:13:13.869+02:00"
+			class="leos-double-compare-removed-original">
+			<num leos:origin="ec" xml:id="deleted_rec_2__num"
+				leos:editable="false" leos:deletable="false"
+				class="leos-double-compare-removed-original">(2)</num>
+			<p leos:origin="ec" xml:id="deleted_rec_2__p" leos:editable="false"
+				leos:deletable="false" class="leos-double-compare-removed-original">Recital...</p>
+		</recital>
+	</recitals>
+</akomaNtoso>

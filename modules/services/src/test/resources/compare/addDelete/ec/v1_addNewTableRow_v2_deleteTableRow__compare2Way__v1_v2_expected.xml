@@ -1,0 +1,73 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+            xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:autonumbering="true"
+                     leos:deletable="false"
+                     leos:editable="false"
+                     leos:origin="ec"
+                     xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1
+                </num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1_lV1uCS">
+                    <num leos:origin="ec" xml:id="art_1_gz0ngA">5.</num>
+                    <subparagraph leos:origin="ec" xml:id="art_1_gWOb8S">
+                        <content leos:origin="ec" xml:id="art_1_sYeyKs">
+                            <p leos:origin="ec" xml:id="art_1_RM1tRN">dfbhdfwsb wdxwb </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" xml:id="art_1_AL93Vx">
+                        <content leos:origin="ec" xml:id="art_1_tvUaC8">
+                            <table border="1"
+                                   cellpadding="1"
+                                   cellspacing="1"
+                                   leos:origin="ec"
+                                   style="width: 500px;"
+                                   xml:id="art_1_itg4AK">
+                                <tr leos:origin="ec" xml:id="art_1_6h28Ma">
+                                    <td leos:origin="ec" xml:id="art_1_rBXlhX">
+                                        <p leos:origin="ec" xml:id="art_1_37zYH1">b xcwb </p>
+                                    </td>
+                                    <td leos:origin="ec" xml:id="art_1_U7Tg5F">
+                                        <p leos:origin="ec" xml:id="art_1_17kl0P">wxcb </p>
+                                    </td>
+                                </tr>
+                                <tr leos:origin="ec" xml:id="art_1_UelpIh">
+                                    <td leos:origin="ec" xml:id="art_1_JLKisg">
+                                        <p leos:origin="ec" xml:id="art_1_RDSFWW">wxcb </p>
+                                    </td>
+                                    <td leos:origin="ec" xml:id="art_1_e3y7J1">
+                                        <p leos:origin="ec" xml:id="art_1_Qk3VIw">xwcb </p>
+                                    </td>
+                                </tr>
+                                <tr leos:origin="ec" xml:id="art_1_SKOz7V">
+                                    <td leos:origin="ec" xml:id="art_1_VxNVdQ">
+                                        <p leos:origin="ec" xml:id="art_1_soNmDM">new content </p>
+                                    </td>
+                                    <td leos:origin="ec" xml:id="art_1_HN5Ncw">
+                                        <p leos:origin="ec" xml:id="art_1_eeSI5j">bxwb</p>
+                                    </td>
+                                </tr>
+                                <tr class="leos-content-removed-cn" xml:id="art_1_Y6ckMJ">
+                                    <td leos:origin="ec" xml:id="art_1_2rM3qI">
+                                        <p xml:id="art_1_Ns02GO"> new row</p>
+                                    </td>
+                                    <td leos:origin="ec" xml:id="art_1_URvlPe">
+                                        <p xml:id="art_1_EsBNjI"> new row</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="art_1_0eDFTM">
+                    <num leos:origin="ec" xml:id="art_1_zaYyb8">6.</num>
+                    <content leos:origin="ec" xml:id="art_1_WNFyD3">
+                        <p leos:origin="ec" xml:id="art_1_JSCFl0">bxwb</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

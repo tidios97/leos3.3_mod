@@ -1,0 +1,34 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <part leos:origin="ec" xml:id="part_1">
+                <num leos:origin="ec" xml:id="akn_U6JVmg">Part I</num>
+                <heading leos:origin="ec" xml:id="akn_gFxums">Part heading...</heading>
+                <chapter leos:origin="ec" xml:id="chapter_1" leos:depth="2">
+                    <num leos:origin="ec" xml:id="akn_9Stf16">Chapter 1</num>
+                    <heading leos:origin="ec" xml:id="akn_LFvufQ">Chapter heading...</heading>
+                    <article leos:origin="ec" xml:id="art_2" leos:editable="false" leos:deletable="false">
+                        <num leos:origin="ec" leos:editable="false" xml:id="art_2__num">Article 2</num>
+                        <heading leos:origin="ec" xml:id="art_2__heading">Scope</heading>
+                        <paragraph leos:origin="ec" xml:id="art_2__para_1" leos:depth="1">
+                            <num leos:origin="ec" xml:id="art_2__para_1__num">1.</num>
+                            <content leos:origin="ec" xml:id="art_2__para_1__content">
+                                <p leos:origin="ec" xml:id="art_2__para_1__content__p">Paragraph 1 of Article 2</p>
+                            </content>
+                        </paragraph>
+                    </article>
+                </chapter>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

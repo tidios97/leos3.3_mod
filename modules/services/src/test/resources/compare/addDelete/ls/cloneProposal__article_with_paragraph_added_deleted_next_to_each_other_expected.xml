@@ -1,0 +1,54 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body id="body" leos:origin="ec">
+            <article leos:deletable="true" leos:editable="true" leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh">
+                <num leos:editable="false" leos:origin="ls" xml:id="_imp_art_d1e1145_86TFdh_QMdH41">Article 15</num>
+                <heading leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_qmsGbB">Committee procedure</heading>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_1WLydK">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_ioKhyZ">1.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_ZNdY6u">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_RbWbAq">The Commission shall be assisted by
+                            a committee. That committee shall be a committee within the meaning of Regulation (EU) No
+                            182/2011.
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del"
+                           leos:softactionroot="true" leos:softdate="2022-07-04T22:03:41.498+02:00"
+                           leos:softuser="demo(DIGIT)" xml:id="deleted__imp_art_d1e1145_86TFdh_bFURkX">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_zJzEfj">2.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_cgAjdU">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_aXtH0j">Where reference is made to this
+                            paragraph, Article 4 of Regulation (EU) No 182/2011 shall apply.
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true"
+                           leos:softdate="2022-06-20T15:55:03.336+02:00" leos:softuser="KHANDELWAL SHAILESH(AGRI)"
+                           xml:id="deleted__imp_art_d1e1145_86TFdh_bFURkX">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_zJzEfj">2.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_cgAjdU">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_aXtH0j">Where reference is made to this
+                            paragraph, Article 4 of Regulation (EU) No 182/2011 shall apply.
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ls" leos:softaction="add" leos:softdate="2022-06-20T15:55:03.376+02:00"
+                           leos:softuser="KHANDELWAL SHAILESH(AGRI)" xml:id="_imp_art_d1e1145_86TFdh_m65Vk0">
+                    <num xml:id="_imp_art_d1e1145_86TFdh_PxeW17">2.</num>
+                    <content xml:id="_imp_art_d1e1145_86TFdh_8ME8Gk">
+                        <p xml:id="_imp_art_d1e1145_86TFdh_HXOfZd">New paragraph added</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_CnrJTj">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_IXiUpS">3.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_OWRkEt">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e1145_86TFdh_hh6qas">Where reference is made to this
+                            paragraph, Article 5 of Regulation (EU) No 182/2011 shall apply.
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

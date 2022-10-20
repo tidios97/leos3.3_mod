@@ -1,0 +1,28 @@
+<root xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+        <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+        <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+        <paragraph leos:origin="ec" xml:id="art_1__para_1">
+            <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+            <content leos:origin="ec" xml:id="art_1__para_1__content">
+                <p leos:origin="ec" xml:id="art_1__para_1__content__p">Text...<inline leos:origin="ec" xml:id="art_1_0miExA" name="math-tex">\\(x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)</inline>
+                </p>
+            </content>
+        </paragraph>
+        <paragraph xml:id="akn_art_para_nf5uS5" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-24T10:44:29.283+01:00"
+                   leos:origin="cn">
+            <num xml:id="art_1_tXlaEH" leos:editable="false">1a.</num>
+            <subparagraph xml:id="akn_art_subpara_7oRqVE" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-24T10:44:52.692+01:00">
+                <content xml:id="art_1_IcSoZv">
+                    <p xml:id="art_1_vJRdj0">Paragraph Text...</p>
+                </content>
+            </subparagraph>
+            <subparagraph xml:id="akn_art_subpara_egDbOK" leos:softaction="add" leos:softuser="demo" leos:softdate="2019-01-24T10:44:52.692+01:00"
+                          leos:origin="cn">
+                <content xml:id="art_1_ZJYR3v">
+                    <p xml:id="art_1_2Evnrd">Subparagraph Text...</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

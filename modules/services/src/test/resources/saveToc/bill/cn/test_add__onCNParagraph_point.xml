@@ -1,0 +1,34 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:autonumbering="true" leos:deletable="false" leos:editable="true" leos:origin="ec"
+                     xml:id="_art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="_art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="_art_1__heading">Scope</heading>
+                <paragraph leos:indent-origin-indent-level="0" leos:indent-origin-num-origin="ec"
+                           leos:indent-origin-type="FIRST_SUBPARAGRAPH" leos:origin="ec" leos:softaction="trans"
+                           leos:softactionroot="true" leos:softdate="2022-04-01T10:18:11.804+02:00"
+                           leos:softtrans_from="transformed__art_1__para_1" leos:softuser="jane"
+                           xml:id="_art_1__para_1">
+                    <num leos:origin="ec" xml:id="_art_1__para_1__num">1.</num>
+                    <content xml:id="_art_1__para_1__content">
+                        <p xml:id="_art_1__para_1__content__p">Paragraphs 1 and 2 shall not apply in full or in part to
+                            EU parent institutions, institutions controlled by an EU parent financial holding company or
+                            EU parent mixed financial holding company, to the extent
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:indent-origin-indent-level="1" leos:indent-origin-type="OTHER_SUBPARAGRAPH"
+                           leos:origin="cn" leos:softaction="add" leos:softdate="2022-04-01T10:18:11.804+02:00"
+                           leos:softuser="jane" xml:id="par_1">
+                    <num leos:origin="cn" xml:id="_num_6lGZjg">1a.</num>
+                    <content xml:id="_art_1_KcnyFm">
+                        <p xml:id="_art_1_MwOrK3">that they are included within equivalent disclosures provided on a
+                            consolidated basis by a parent undertaking established in a third country.
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

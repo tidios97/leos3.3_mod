@@ -1,0 +1,28 @@
+<div ng-if="!vm.isReply" class="dropdown-menu-btn" >
+  <button
+    class="dropdown-menu-btn__btn"
+    ng-bind="vm.label"
+    ng-click="vm.onClick($event); $event.stopPropagation();"
+    ng-disabled="vm.isDisabled"
+    h-branding="ctaTextColor, ctaBackgroundColor">
+  </button>
+  <button
+    class="dropdown-menu-btn__dropdown-arrow"
+    title="{{vm.dropdownMenuLabel}}"
+    ng-click="vm.toggleDropdown($event); $event.stopPropagation();">
+    <div class="dropdown-menu-btn__dropdown-arrow-separator"></div>
+    <div
+      class="dropdown-menu-btn__dropdown-arrow-indicator"
+      h-branding="ctaTextColor, ctaBackgroundColor">
+      <div>▼</div>
+    </div>
+  </button>
+</div>
+<div ng-if="vm.isReply" class="dropdown-menu-btn">
+  <button
+  ng-bind="vm.label"
+  ng-click="vm.onClick($event); $event.stopPropagation();"
+  ng-disabled="vm.isDisabled"
+  class="dropdown-menu-btn__btn-no-arrow"
+  h-branding="ctaTextColor, ctaBackgroundColor"></button>
+</div>

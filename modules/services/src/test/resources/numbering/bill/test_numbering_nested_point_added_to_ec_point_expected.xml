@@ -1,0 +1,76 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="regulation">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__b">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="akn_art_YnSKbj_oNh4Vl">
+                        <content leos:origin="ec" xml:id="art_1__para_1__content">
+                            <p leos:origin="ec" xml:id="art_1__para_1__content__p">Para1</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="akn_art_YnSKbj_gvmXCy">
+                        <point leos:origin="ec" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="ec" xml:id="akn_art_YnSKbj_soCjiB">(a)</num>
+                            <content leos:origin="ec" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="ec" xml:id="akn_art_YnSKbj_g319GD">point(a)</p>
+                            </content>
+                            <list leos:origin="ec" xml:id="akn_art_YnSKbj_gvmXCy">
+                                <point leos:origin="ec" xml:id="akn_art_YnSKbj_LA9Azw">
+                                    <num leos:origin="ec" xml:id="akn_art_YnSKbj_soCjiB">(i)</num>
+                                    <content leos:origin="ec" xml:id="akn_art_YnSKbj_89xvgD">
+                                        <p leos:origin="ec" xml:id="akn_art_YnSKbj_g319GD">point(i)</p>
+                                    </content>
+                                    <list leos:origin="ec" xml:id="akn_art_YnSKbj_gvmXCy">
+                                        <point leos:origin="ec" xml:id="akn_art_YnSKbj_LA9Azw">
+                                            <num leos:origin="ec" xml:id="akn_art_YnSKbj_soCjiB">(1)</num>
+                                            <content leos:origin="ec" xml:id="akn_art_YnSKbj_89xvgD">
+                                                <p leos:origin="ec" xml:id="akn_art_YnSKbj_g319GD">point (1)</p>
+                                            </content>
+                                        </point>
+                                        <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                                            <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(1a)</num>
+                                            <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                                <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">point (1a)</p>
+                                            </content>
+                                            <list leos:origin="ec" xml:id="akn_art_YnSKbj_gvmXCy">
+                                                <point leos:origin="ec" xml:id="akn_art_YnSKbj_LA9Azw">
+                                                    <num leos:origin="ec" xml:id="akn_art_YnSKbj_soCjiB">-</num>
+                                                    <content leos:origin="ec" xml:id="akn_art_YnSKbj_89xvgD">
+                                                        <p leos:origin="ec" xml:id="akn_art_YnSKbj_g319GD">point -</p>
+                                                    </content>
+                                                </point>
+                                                <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                                                    <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">-</num>
+                                                    <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                                        <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">point -</p>
+                                                    </content>
+                                                </point>
+                                            </list>
+                                        </point>
+                                    </list>
+                                </point>
+                            </list>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_art_YnSKbj_LA9Azw">
+                            <num leos:origin="ec" xml:id="akn_art_YnSKbj_soCjiB">(b)</num>
+                            <content leos:origin="ec" xml:id="akn_art_YnSKbj_89xvgD">
+                                <p leos:origin="ec" xml:id="akn_art_YnSKbj_g319GD">point(b)</p>
+                            </content>
+                            <list leos:origin="cn" xml:id="akn_art_YnSKbj_gvmXCy">
+                                <point leos:origin="cn" xml:id="akn_art_YnSKbj_LA9Azw">
+                                    <num leos:origin="cn" xml:id="akn_art_YnSKbj_soCjiB">(i)</num>
+                                    <content leos:origin="cn" xml:id="akn_art_YnSKbj_89xvgD">
+                                        <p leos:origin="cn" xml:id="akn_art_YnSKbj_g319GD">point(i)</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

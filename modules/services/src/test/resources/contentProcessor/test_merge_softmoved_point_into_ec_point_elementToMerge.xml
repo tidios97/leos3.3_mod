@@ -1,0 +1,13 @@
+<point leos:softmove_label="MOVED from point (c)" leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_4K2GdA" leos:softaction="move_from"
+       leos:softactionroot="true" leos:softmove_from="moved_imp_art_d1e1276_XAPlpX_4K2GdA" leos:softuser="demo"
+       leos:softdate="1900-01-01T00:00:00.000+01:00">
+    <num leos:origin="cn" xml:id="imp_art_d1e1276_XAPlpX_jh6oZJ">(aa)</num>
+    <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_fYqac8">
+        <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_Eif3cN">firms which are not authorised to provide the ancillary service referred to in
+            point (1) of Section B of Annex I to Directive 2004/39/EC, which provide only one or more of the investment services and activities listed
+            in points 1, 2, 4 and 5 of Section A of Annex I to that Directive, and which are not permitted to hold money or securities belonging to
+            their clients and which for that reason may not at any time place themselves in debt with those clients;
+        </p>
+    </content>
+</point>
+        

@@ -1,0 +1,56 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <recitals leos:editable="false" xml:id="recs">
+        <recital leos:editable="true" leos:origin="ls" xml:id="rec_0">
+            <num leos:origin="ls" xml:id="rec_0_num">(1)</num>
+            <p>Recital...(1)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" leos:softaction="move_from" xml:id="moved_from_rec_8">
+            <num leos:origin="ls" xml:id="moved_from_rec_8_num">(2)</num>
+            <p>Recital...(2)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_3">
+            <num leos:origin="ec" xml:id="rec_3__num">(3)</num>
+            <p>Recital...(3)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_4">
+            <num leos:origin="ec" xml:id="rec_4__num">(4)</num>
+            <p>Recital...(4)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ls" xml:id="rec_5">
+            <num xml:id="rec_5__num">(5)</num>
+            <p xml:id="rec_5__p">Recital...(5)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ls" xml:id="rec_6">
+            <num xml:id="rec_6__num">(6)</num>
+            <p xml:id="rec_6__p">Recital...(6)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_7">
+            <num leos:origin="ec" xml:id="rec_7__num">(7)</num>
+            <p xml:id="rec_7__p">Recital...(7)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" leos:softaction="move_to" xml:id="art_8_moved">
+            <num xml:id="art_8_moved_num">(8#)</num>
+            <p>do not change.  is move_to, Will remain (8#)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="rec_9">
+            <num leos:origin="ec" xml:id="rec_9__num">(8)</num>
+            <p xml:id="rec_10__p">Recital...(8)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ls" xml:id="rec_10">
+            <num xml:id="rec_10__num">(9)</num>
+            <p xml:id="rec_10__p">Recital...(9)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" leos:softaction="del" xml:id="rec_11">
+            <num leos:origin="ec" xml:id="rec_11__num">(10#)</num>
+            <p>do not change. is del. remains 10#</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ls" xml:id="rec_12">
+            <num xml:id="rec_12__num">(10)</num>
+            <p xml:id="rec_12__p">Recital...(10)</p>
+        </recital>
+        <recital leos:editable="true" leos:origin="ec" xml:id="art_13">
+            <num leos:origin="ec" xml:id="art_13_num">(11)</num>
+            <p xml:id="rec_13__p">Recital...(11)</p>
+        </recital>
+    </recitals>
+</akomaNtoso>

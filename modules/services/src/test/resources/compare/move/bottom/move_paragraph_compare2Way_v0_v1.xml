@@ -1,0 +1,32 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph class="leos-content-removed-cn" leos:deletable="false" leos:editable="false" leos:origin="ec"
+                           xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Article 1 par 1</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="par2">
+                    <content leos:origin="ec" xml:id="par2_point_c_c">
+                        <p leos:origin="ec" xml:id="par2_point_c_p">par 2</p>
+                    </content>
+                </paragraph>
+
+                <paragraph class="leos-content-new-cn" leos:deletable="false" leos:depth="1" leos:editable="false"
+                           leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                           leos:softdate="2020-09-21T21:00:00.000+00:00" leos:softmove_from="moved_art_1_para_1"
+                           leos:softmove_label="MOVED from Article 1 par 1" leos:softuser="jane" xml:id="art_1_para_1">
+                    <num class="leos-content-new-cn" leos:origin="cn" xml:id="new_num">1a.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Article 1 par 1</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

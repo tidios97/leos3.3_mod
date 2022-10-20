@@ -1,0 +1,26 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<documentCollection name="PROP_ACT">
+		<meta>
+		</meta>
+
+		<coverPage xml:id="coverpage">
+		</coverPage>
+
+		<collectionBody xml:id="body">
+			<component xml:id="body_cmp_1" refersTo="#memorandum">
+				<!-- reference to the memorandum, relative to this proposal -->
+				<documentRef xml:id="body_cmp_1__dref_1" href="memorandum_cksyaotr60002s8283zfnj2vt.xml" showAs="EXPLANATORY MEMORANDUM"/>
+			</component>
+			<component xml:id="body_cmp_2" refersTo="#bill">
+				<!-- reference to the bill, relative to this proposal -->
+				<documentRef xml:id="body_cmp_1__dref_2" href="bill_cksyaouxb0003s828sqpul5di.xml" showAs="REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL"/>
+			</component>
+			<component xml:id="akn_brDLRi" refersTo="#council_explanatory">
+				<documentRef xml:id="akn_owcK0Q" showAs="COUNCIL EXPLANATORY" href="explanatory_cksyaovm00004s828ljloqpfx.xml"/>
+			</component>
+			<component xml:id="akn_OSsJLx" refersTo="#council_explanatory">
+				<documentRef xml:id="akn_gTBp7T" href="explanatory_cksyaow720005s8282cyznybt.xml" showAs="COUNCIL EXPLANATORY"/>
+			</component>
+		</collectionBody>
+	</documentCollection>
+</akomaNtoso>

@@ -1,0 +1,49 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+
+        <mainBody leos:origin="ec" xml:id="_body">
+            <level leos:depth="1" leos:origin="ec" xml:id="_body_level_1">
+                <num leos:origin="ec" xml:id="_body_level_1_num">1.</num>
+                <content leos:origin="ec" xml:id="_body_level_1_content">
+                    <p leos:origin="ec" xml:id="_body_level_1_content_p">Text...</p>
+                </content>
+            </level>
+            <level leos:depth="1" leos:origin="ec" xml:id="_body_level_2">
+                <num leos:origin="ec" xml:id="_body_level_2_num">2.</num>
+                <content leos:origin="ec" xml:id="_body_level_2_content">
+                    <p leos:origin="ec" xml:id="_body_level_2_content_p">Text...</p>
+                </content>
+            </level>
+            <chapter leos:depth="1" leos:origin="ec" xml:id="__akn_chapter_29xZII">
+                <num leos:origin="ec" xml:id="_akn_s16OoV">Chapter #</num>
+                <heading leos:origin="ec" xml:id="_akn_1YleOH">Chapter heading...</heading>
+                <section leos:depth="1" leos:origin="ec" xml:id="__akn_section_zF5KsW">
+                    <num leos:origin="ec" xml:id="_akn_hsU9qn">Section #</num>
+                    <heading leos:origin="ec" xml:id="_akn_pUpW97">Section heading...</heading>
+                    <level leos:depth="1" leos:origin="ec" xml:id="_akn_level_YuxqgR">
+                        <num leos:origin="ec" xml:id="_akn_UV2COX">3.</num>
+                        <content leos:origin="ec" xml:id="_akn_87yRCv">
+                            <p leos:origin="ec" xml:id="_akn_TFvxRk">Text...</p>
+                        </content>
+                    </level>
+                </section>
+            </chapter>
+
+            <paragraph leos:depth="3" leos:origin="ec" xml:id="akn_paragraph_6y0dox">
+                <content leos:origin="ec" xml:id="deleted__akn_reG1Sr">
+                    <p leos:origin="ec" xml:id="deleted__akn_OWRyQx">
+                        Text...
+                    </p>
+                </content>
+            </paragraph>
+
+            <level leos:depth="3" leos:origin="ec" xml:id="_akn_level_KhMhsi">
+                <num leos:origin="ec" xml:id="_akn_HkSXfc">4.1.2.</num>
+                <content leos:origin="ec" xml:id="_akn_qs4lF5">
+                    <p leos:origin="ec" xml:id="_akn_ZeC6e0">Text...</p>
+                </content>
+            </level>
+
+        </mainBody>
+    </doc>
+</akomaNtoso>

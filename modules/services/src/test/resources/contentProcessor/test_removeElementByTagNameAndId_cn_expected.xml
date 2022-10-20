@@ -1,0 +1,51 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <part leos:origin="ec" xml:id="part11">
+                <num leos:origin="ec" xml:id="n1">Part XI</num>
+                <heading leos:origin="ec" xml:id="h1">FINAL PROVISIONS</heading>
+                <article leos:origin="ec" xml:id="art485">
+                    <num leos:origin="ec" xml:id="n2">Article 485</num>
+                    <paragraph leos:origin="ec" xml:id="art485-par1">
+                        <num leos:origin="ec" xml:id="n3">1.</num>
+                        <content leos:origin="ec" xml:id="c1">
+                            <p leos:origin="ec" xml:id="p1">Subject to paragraph 2, this Regulation
+                                <authorialNote leos:origin="ec" marker="1" xml:id="a1">
+                                    <p leos:origin="ec" xml:id="ptest1">TestNote1</p>
+                                </authorialNote>
+                                shall apply from 1 January 2013.
+                            </p>
+                        </content>
+                    </paragraph>
+                    <paragraph leos:origin="ec" xml:id="art485-par2">
+                        <num leos:origin="ec" xml:id="n4">2.</num>
+                        <content leos:origin="ec" xml:id="con">
+                            <p leos:origin="ec" xml:id="p2">Article 436(1) shall apply from 1 January 2015
+                                <authorialNote leos:origin="ec" marker="2" xml:id="a2">
+                                    <p leos:origin="ec" xml:id="ptest2">TestNote2</p>
+                                </authorialNote>
+                                .
+                            </p>
+                        </content>
+                    </paragraph>
+                </article>
+                <article leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true"
+                         leos:softdate="2022-08-09T14:36:05.755+02:00" leos:softuser="demo(DIGIT)" xml:id="deleted_art486">
+                    <num leos:origin="ec" xml:id="deleted_art_2_n">Article 486</num>
+                    <paragraph leos:origin="ec" leos:softaction="del" leos:softactionroot="false" leos:softdate="2022-08-09T14:36:05.761+02:00"
+                               leos:softuser="demo(DIGIT)" xml:id="deleted_art_2_par">
+                        <num leos:origin="ec" xml:id="deleted_art_2_par_n">1.</num>
+                        <content leos:origin="ec" xml:id="deleted_art_2_par_c">
+                            <p leos:origin="ec" xml:id="deleted_p1">Subject to paragraph 2, this Regulation
+                                <authorialNote leos:origin="ec" marker="3" xml:id="deleted_a1">
+                                    <p leos:origin="ec" xml:id="deleted_ptest1">TestNote1</p>
+                                </authorialNote>
+                                shall apply from 1 January 2013.
+                            </p>
+                        </content>
+                    </paragraph>
+                </article>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

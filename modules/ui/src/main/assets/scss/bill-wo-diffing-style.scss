@@ -1,0 +1,31 @@
+akomaNtoso bill coverPage longTitle, bill longTitle {
+  font-weight: normal;
+}
+
+bill part > num, bill part > heading {
+  font-weight: normal;
+}
+
+bill aknTitle > num, bill aknTitle > heading {
+  font-weight: normal;
+}
+
+bill chapter > num, bill chapter > heading {
+  font-weight: normal;
+}
+
+bill section > num, bill section > heading {
+  font-weight: normal;
+}
+
+bill .cke_editable .akn-element-heading, .leos-toc-content .toc-content-area .cke_editable .akn-element-heading {
+  font-weight: normal;
+}
+
+bill article > heading, bill .cke_editable article .akn-article-heading, .leos-toc-content .toc-content-area .cke_editable article .akn-article-heading {
+  font-weight: normal;
+}
+
+bill .leos-authnote marker {
+  font-weight: normal;
+}

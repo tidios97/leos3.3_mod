@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="RegressionSuiteCommission" verbose="1">
+    <parameter name="environment" value="${environment}" />
+    <parameter name="browser" value="${browser}" />
+    <parameter name="mode" value="${mode}" />
+    <test thread-count="1" name="ReRunFailedScenario">
+        <classes>
+            <class name="europa.edit.testRunner.ReRunFailedTestCasesTestRunner"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,38 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <part leos:origin="ec" xml:id="part_1">
+                <num leos:origin="ec" xml:id="akn_U6JVmg">Part I</num>
+                <heading leos:origin="ec" xml:id="akn_gFxums">Part heading...</heading>
+                <chapter leos:origin="ec" xml:id="chapter_1">
+                    <num leos:origin="ec" xml:id="akn_9Stf16">Chapter 1</num>
+                    <heading leos:origin="ec" xml:id="akn_LFvufQ">Chapter heading...</heading>
+                    <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_3" >
+                        <num leos:editable="false" leos:origin="ec" xml:id="art_3__num">Article 1</num>
+                        <heading leos:origin="ec" xml:id="art_3__heading">Scope</heading>
+                        <paragraph leos:origin="ec" xml:id="art_3__para_1">
+                            <num leos:origin="ec" xml:id="art_3__para_1__num">1.</num>
+                            <content leos:origin="ec" xml:id="art_3__para_1__content">
+                                <p leos:origin="ec" xml:id="art_3__para_1__content__p">Paragraph 1</p>
+                            </content>
+                        </paragraph>
+                    </article>
+                    <section xml:id="akn_section_dxjGsc">
+                        <num xml:id="akn_kkKBST">#</num>
+                        <heading xml:id="akn_65WHvP">Section heading...</heading>
+                        <article xml:id="new_art_1">
+                            <num leos:editable="false" xml:id="new_art_1_eKam21">Article 2</num>
+                            <heading xml:id="new_art_1_yUx3QW">Article heading...</heading>
+                            <paragraph xml:id="new_art_1-par1">
+                                <num xml:id="new_art_1_QbZpeS">1.</num>
+                                <content xml:id="new_art_1_3VsECX">
+                                    <p xml:id="new_art_1_COLMH3">Text...</p>
+                                </content>
+                            </paragraph>
+                        </article>
+                    </section>
+                </chapter>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

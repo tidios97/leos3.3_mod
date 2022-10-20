@@ -1,0 +1,18 @@
+<article leos:editable="false" leos:origin="ec" xml:id="art_1">
+    <num xml:id="art_1_num">Article 4</num>
+    <heading xml:id="art_1_heading">Definitions</heading>
+    <paragraph xml:id="art_1_par">
+        <num xml:id="art_1_par_num">1.</num>
+        <content xml:id="art_1_par_content">
+            <p xml:id="art_1_par_c">Where reference in this Regulation is made to real estate or
+                residential or commercial immovable property or a mortgage on such property, it shall include shares
+                in Finnish residential housing companies operating in accordance with the Finnish Housing Company
+                Act of 1991 or subsequent equivalent legislation. Member States or their competent authorities may
+                allow shares constituting an equivalent indirect holding of real estate to be treated as a direct
+                holding of real estate provided that such an indirect holding is specifically regulated in the
+                national law of the Member State concerned and that, when pledged as collateral, it provides
+                equivalent protection to creditors.
+            </p>
+        </content>
+    </paragraph>
+</article>

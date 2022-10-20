@@ -1,0 +1,66 @@
+
+<?xml-stylesheet type="text/css" href="renditions/html/css/memorandum.css"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+ >
+    <doc name="EXPL_MEMORANDUM">
+        <meta>
+            <identification source="~COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="false"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage language="en"/>
+                	<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="9999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                </FRBRManifestation>
+            </identification>
+            <references source="~COM">
+                <TLCLocation xml:id="_BEL_BRU" href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"/>
+                <TLCOrganization xml:id="CONSIL" href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL" showAs="Council of the European Union"/>
+                <TLCOrganization xml:id="EP" href="http://publications.europa.eu/resource/authority/corporate-body/EP" showAs="European Parliament"/>
+                <TLCOrganization xml:id="COM" href="http://publications.europa.eu/resource/authority/corporate-body/COM" showAs="European Commission"/>
+                <TLCReference xml:id="EXPL_MEMORANDUM" name="docType" href="http://publications.europa.eu/resource/authority/resource-type/EXPL_MEMORANDUM"  showAs="Explanatory Memorandum"/>
+                <TLCRole xml:id="PRESID" href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"/>
+                <TLCReference xml:id="legalBasis" name="contentSubject" href="http://eurovoc.europa.eu/5456" showAs="Legal basis"/>
+                <TLCReference xml:id="language" name="language" href="http://publications.europa.eu/resource/authority/language/ENG" showAs="en"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:version>1.1.1</leos:version>
+                <leos:template>SJ-023</leos:template>
+                <leos:docTemplate>EM-LP01</leos:docTemplate>
+                <leos:docPurpose xml:id="proprietary__docpurpose">my search content</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</leos:docType>
+                <leos:ref>memorandum</leos:ref>
+            </proprietary>
+        </meta>
+        <mainBody xml:id="body">
+            <tblock xml:id="tblock_2" refersTo="~statementOfLegalReasons">
+                <num xml:id="tblock_2__num">2.</num>
+                <heading xml:id="tblock_2__heading">LEGAL BASIS, SUBSIDIARITY AND PROPORTIONALITY</heading>
+                <tblock xml:id="tblock_2__tblock_2" refersTo="~subsidiarity">
+                    <num xml:id="tblock_2__tblock_2__num">•</num>
+                    <heading xml:id="tblock_2__tblock_2__heading">Subsidiarity (for non-exclusive competence)</heading>
+                    <blockContainer xml:id="tblock_2__tblock_2__blockcontainer" leos:editable="true">
+                        <p xml:id="tblock_2__tblock_2__blockcontainer__p">This is my search content</p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+        </mainBody>
+    </doc>
+</akomaNtoso>

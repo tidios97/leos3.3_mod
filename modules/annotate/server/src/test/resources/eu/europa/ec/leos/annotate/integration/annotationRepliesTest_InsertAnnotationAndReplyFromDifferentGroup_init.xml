@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- default group and two more -->
+    <GROUPS group_id="1" name="__world__" displayname="Public" description="Group for everybody" ispublic="1" />
+    <GROUPS group_id="2" name="firstGroup" displayname="first group" description="first group" ispublic="1" />
+    <GROUPS group_id="3" name="secondGroup" displayname="second group" description="second group" ispublic="1" />
+
+    <!--  user which is member all groups -->
+    <USERS user_id="1" login="demo" sidebar_tutorial_dismissed="1" />
+    <USERS_GROUPS id="1" user_id="1" group_id="1" />
+    <USERS_GROUPS id="2" user_id="1" group_id="2" />
+    <USERS_GROUPS id="3" user_id="1" group_id="3" />
+</dataset>

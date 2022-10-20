@@ -1,0 +1,23 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art_2" leos:editable="false"
+                     leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_2__num">Article 10</num>
+                <heading leos:origin="ec" xml:id="art_2__heading">Entry into force</heading>
+                <paragraph leos:origin="ec" xml:id="art_2__para_1">
+                    <content leos:origin="ec" xml:id="art_2__para_1__content">
+                        <p leos:origin="ec" xml:id="art_2__para_1__content__p">
+                            This Regulation shall enter into force on
+                            the twentieth day following that of its publication in the
+                            <i leos:origin="ec" xml:id="art_2__para_1__content__p__i">
+                                Official Journal of the European Union
+                            </i>
+                            .
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

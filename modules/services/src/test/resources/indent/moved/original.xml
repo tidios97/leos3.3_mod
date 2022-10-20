@@ -1,0 +1,145 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<bill name="REG">
+		<body leos:origin="ec" xml:id="body">
+			<article leos:autonumbering="true" leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+				<num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+				<heading leos:origin="ec" xml:id="art_1__heading">Paragraphs-Subparagraphs</heading>
+				<paragraph leos:origin="ec" xml:id="art_1_qWPPNr">
+					<num leos:origin="ec" xml:id="art_1_8ylKOx">1.</num>
+					<subparagraph leos:origin="ec" xml:id="art_1_pcKcai">
+						<content leos:origin="ec" xml:id="art_1_xJBmXh">
+							<p leos:origin="ec" xml:id="art_1_w8GmHn">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum nisi quis turpis eleifend, vitae maximus mauris hendrerit. Cras accumsan sem a tempus lacinia. Mauris bibendum libero molestie pellentesque sodales.</p>
+						</content>
+					</subparagraph>
+					<subparagraph leos:origin="ec" xml:id="art_1_vivBFj">
+						<content leos:origin="ec" xml:id="art_1_ztpQlS">
+							<p leos:origin="ec" xml:id="art_1_cJRpyM">Nunc egestas molestie nisi et laoreet. Quisque quis massa in odio malesuada ornare. Duis maximus et erat ac sodales. In venenatis dictum erat pretium venenatis. Suspendisse potenti. Aenean aliquet at tortor sed suscipit. Aenean lacinia lacus quis tellus egestas bibendum.</p>
+						</content>
+					</subparagraph>
+				</paragraph>
+				<paragraph leos:origin="ec" xml:id="art_1_cWS5uc">
+					<num leos:origin="ec" xml:id="art_1_gKDGvA">2.</num>
+					<subparagraph leos:origin="ec" xml:id="art_1_SWueb9">
+						<content leos:origin="ec" xml:id="art_1_OB7gPz">
+							<p leos:origin="ec" xml:id="art_1_MyuFrN">Aenean in iaculis nisi, nec eleifend nisl. Nam quam ante, molestie vitae mollis ut, convallis in lacus. Pellentesque eu sollicitudin velit, eu varius nunc. Pellentesque sed faucibus tortor. Aliquam vel justo sed lorem accumsan tristique.</p>
+						</content>
+					</subparagraph>
+					<subparagraph leos:origin="ec" xml:id="art_1_Szhnjy">
+						<content leos:origin="ec" xml:id="art_1_6MNx7g">
+							<p leos:origin="ec" xml:id="art_1_VlvQIt">Nam pharetra mi ac laoreet imperdiet. Nullam sit amet eros sed nunc aliquam commodo. Integer leo lacus, bibendum sit amet ornare ac, auctor sit amet nunc. In tincidunt tincidunt lorem. Mauris a ligula tellus. Fusce eu luctus magna. Etiam vitae purus eget elit tempor blandit.</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="art_1_quez9c">
+						<point leos:origin="ec" xml:id="art_1_CgrLVv">
+							<num leos:origin="ec" xml:id="art_1_bMM8M3">(a)</num>
+							<alinea leos:origin="ec" xml:id="art_1_lknqOD">
+								<content leos:origin="ec" xml:id="art_1_OOjjcP">
+									<p leos:origin="ec" xml:id="art_1_FvJaZa">Vivamus eget neque sed quam egestas varius. Aliquam laoreet risus vel arcu maximus, id lobortis magna fermentum. Donec id lorem orci.</p>
+								</content>
+							</alinea>
+							<alinea leos:origin="ec" xml:id="art_1_Kjl2Li">
+								<content leos:origin="ec" xml:id="art_1_91Pv8B">
+									<p leos:origin="ec" xml:id="art_1_0Y121M">Proin egestas dolor ac quam rutrum, ut viverra leo rhoncus. Curabitur sollicitudin scelerisque facilisis. Proin lacus ipsum, aliquet eget nisi nec, aliquet placerat nunc. Nam sagittis urna ac nisi iaculis convallis.</p>
+								</content>
+							</alinea>
+							<list leos:origin="ec" xml:id="art_1_4YpgMW">
+								<point leos:origin="ec" xml:id="art_1_phm52r">
+									<num leos:origin="ec" xml:id="art_1_hL8CzZ">(i)</num>
+									<alinea leos:origin="ec" xml:id="art_1_KDECQO">
+										<content leos:origin="ec" xml:id="art_1_pWClT9">
+											<p leos:origin="ec" xml:id="art_1_j9YcTo">Sed interdum, risus eget efficitur ultricies, arcu purus consequat odio, ac gravida tortor purus sed libero.</p>
+										</content>
+									</alinea>
+									<list leos:origin="ec" xml:id="art_1_wC4HHI">
+										<point leos:origin="ec" xml:id="art_1_VVFNFH">
+											<num leos:origin="ec" xml:id="art_1_dBhjCP">(1)</num>
+											<content leos:origin="ec" xml:id="art_1_CcY7zc">
+												<p leos:origin="ec" xml:id="art_1_ZNbFLX">Ut non mattis est. Cras laoreet erat ut congue sollicitudin. Integer semper tellus in enim porta eleifend. Integer porta eleifend auctor. Integer aliquam magna erat.</p>
+											</content>
+										</point>
+										<point leos:origin="ec" xml:id="art_1_FAcGNE">
+											<num leos:origin="ec" xml:id="art_1_K7zUsv">(2)</num>
+											<alinea leos:origin="ec" xml:id="art_1_1cEGq3">
+												<content leos:origin="ec" xml:id="art_1_IduNeb">
+													<p leos:origin="ec" xml:id="art_1_mMX8dS">Etiam pulvinar nulla vitae dolor placerat, id varius tellus porttitor. Aliquam sit amet eros et mi elementum maximus quis malesuada felis.</p>
+												</content>
+											</alinea>
+											<list leos:origin="ec" xml:id="art_1_a5IF64">
+												<indent leos:origin="ec" xml:id="art_1_5ndVlN">
+													<num leos:origin="ec" xml:id="art_1_1kCzri">-</num>
+													<content leos:origin="ec" xml:id="art_1_J7Haeg">
+														<p leos:origin="ec" xml:id="art_1_IIi5fV">Vestibulum lobortis molestie lorem, in finibus ligula porta ut. Suspendisse feugiat, erat et elementum condimentum, velit sem ultrices nisi, a tincidunt massa arcu vel nibh</p>
+													</content>
+												</indent>
+												<indent leos:origin="ec" xml:id="art_1_ZFtvOn">
+													<num leos:origin="ec" xml:id="art_1_oaZ1zo">-</num>
+													<content leos:origin="ec" xml:id="art_1_0LngP7">
+														<p leos:origin="ec" xml:id="art_1_OXEcmh">Curabitur urna eros, eleifend nec magna eu, sollicitudin mattis ipsum.</p>
+													</content>
+												</indent>
+											</list>
+										</point>
+										<point leos:origin="ec" xml:id="art_1_PB1uf1">
+											<num leos:origin="ec" xml:id="art_1_0Y6Ruu">(3)</num>
+											<content leos:origin="ec" xml:id="art_1_gRZBCJ">
+												<p leos:origin="ec" xml:id="art_1_WZxiZc">Nam
+													<i leos:origin="ec" xml:id="art_1_gDcX3H">fermentum ipsum in dui pellentesque sollicitudin. Morbi scelerisque enim vel</i>
+													pulvinar lobortis. Suspendisse maximus lobortis vestibulum.
+												</p>
+											</content>
+										</point>
+									</list>
+								</point>
+								<point leos:origin="ec" xml:id="art_1_MsYOP8">
+									<num leos:origin="ec" xml:id="art_1_ax6vkl">(ii)</num>
+									<content leos:origin="ec" xml:id="art_1_I7EeF3">
+										<p leos:origin="ec" xml:id="art_1_nFNMcc">Phasellus quis urna nunc. Maecenas eros lectus, sollicitudin ut elit ut, accumsan imperdiet erat.</p>
+									</content>
+								</point>
+							</list>
+						</point>
+						<point leos:origin="ec" xml:id="art_1_xazYIn">
+							<num leos:origin="ec" xml:id="art_1_oWo2e5">(b)</num>
+							<content leos:origin="ec" xml:id="art_1_VFWm4v">
+								<p leos:origin="ec" xml:id="art_1_ZloLEq">Ut non mattis est.
+									<b leos:origin="ec" xml:id="art_1_lEGcYS">Cras laoreet erat ut congue sollicitudin</b>
+									. Integer semper tellus in enim porta eleifend. Integer porta eleifend auctor.
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec" xml:id="art_1_UzJLOt">
+							<num leos:origin="ec" xml:id="art_1_WkWkAs">(c)</num>
+							<content leos:origin="ec" xml:id="art_1_ERpshv">
+								<p leos:origin="ec" xml:id="art_1_wSqD5p">Integer aliquam magna erat. </p>
+							</content>
+						</point>
+					</list>
+					<subparagraph leos:origin="ec" xml:id="art_1_zRegN5">
+						<content leos:origin="ec" xml:id="art_1_pfTCNc">
+							<p leos:origin="ec" xml:id="art_1_QvvqAE">Nam fermentum ipsum in dui pellentesque sollicitudin.</p>
+						</content>
+					</subparagraph>
+				</paragraph>
+				<paragraph leos:origin="ec" xml:id="art_1_rJ0X91">
+					<num leos:origin="ec" xml:id="art_1_J9TqeO">3.</num>
+					<content leos:origin="ec" xml:id="art_1_PHYnaY">
+						<p leos:origin="ec" xml:id="art_1_R4DNM2">Morbi scelerisque enim vel pulvinar lobortis. Suspendisse maximus lobortis vestibulum.</p>
+					</content>
+				</paragraph>
+				<paragraph leos:origin="ec" xml:id="art_1_5sXQEG">
+					<num leos:origin="ec" xml:id="art_1_RTAnn0">4.</num>
+					<subparagraph leos:origin="ec" xml:id="art_1_VZXNqe">
+						<content leos:origin="ec" xml:id="art_1_vxjIbF">
+							<p leos:origin="ec" xml:id="art_1_oA5THa">Ut non mattis est. Cras laoreet erat ut congue sollicitudin. Integer semper tellus in enim porta eleifend. Integer porta eleifend auctor.</p>
+						</content>
+					</subparagraph>
+					<subparagraph leos:origin="ec" xml:id="art_1_V3vEhT">
+						<content leos:origin="ec" xml:id="art_1_jlNcdg">
+							<p leos:origin="ec" xml:id="art_1_lkIRj5">Integer aliquam magna erat. Nam fermentum ipsum in dui pellentesque sollicitudin. Morbi scelerisque enim vel pulvinar lobortis. Suspendisse maximus lobortis vestibulum.</p>
+						</content>
+					</subparagraph>
+				</paragraph>
+			</article>
+		</body>
+	</bill>
+</akomaNtoso>

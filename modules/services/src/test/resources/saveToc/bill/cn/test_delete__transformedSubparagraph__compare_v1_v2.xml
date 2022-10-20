@@ -1,0 +1,23 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:affected="true" leos:deletable="false" leos:origin="ec" xml:id="__akn_article_Vh2NWC">
+                <num leos:editable="false" leos:origin="ec" xml:id="__akn_article_Vh2NWC_8u9hTn">Article 4</num>
+                <heading leos:origin="ec" xml:id="__akn_article_Vh2NWC_u0UDrL">Article heading...</heading>
+                <paragraph class="leos-double-compare-removed" leos:affected="true" leos:deletable="false" leos:editable="false" leos:origin="ec"
+                           leos:softaction="del" leos:softactionroot="true" leos:softdate="2022-08-12T11:07:58.047+02:00" leos:softuser=" jane(DIGIT)"
+                           xml:id="deleted___akn_article_Vh2NWC-par1">
+                    <num class="leos-double-compare-removed" leos:deletable="false" leos:editable="false" leos:origin="ec"
+                         xml:id="deleted___akn_article_Vh2NWC_DoW4XJ">1.
+                    </num>
+                    <subparagraph class="leos-double-compare-removed" leos:deletable="false" leos:editable="false" leos:origin="cn" leos:softaction="add"
+                                  leos:softdate="2022-06-16T00:42:24.354+02:00" leos:softuser="jane(DIGIT)" xml:id="__akn_article_Vh2NWC_nnPENY">
+                        <content xml:id="__akn_article_Vh2NWC_Ad6i2x">
+                            <p xml:id="__akn_article_Vh2NWC_W74rbz">icle 4</p>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

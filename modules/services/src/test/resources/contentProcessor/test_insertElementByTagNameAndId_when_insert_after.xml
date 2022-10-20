@@ -1,0 +1,61 @@
+<part xml:id="part11">
+    <num class="PartNumber" xml:id="n1">Part XI</num>
+    <heading class="PartHeading" xml:id="h1">FINAL PROVISIONS</heading>
+    <article xml:id="art485">
+        <num class="ArticleNumber" xml:id="n1">Article 485</num>
+        <paragraph xml:id="art485-par1">
+            <num class="Paragraph(numbered)" xml:id="n2">1.</num>
+            <content xml:id="c1">
+                <p class="Paragraph(numbered)" xml:id="p1">Subject to paragraph 2, this Regulation
+                    <authorialNote marker="2" xml:id="a1">
+                        <p xml:id="ptest1">TestNote1</p>
+                    </authorialNote>
+                    shall apply from 1 January 2013.
+                </p>
+            </content>
+        </paragraph>
+        <paragraph xml:id="art485-par2">
+            <num class="Paragraph(numbered)" xml:id="n2">2.</num>
+            <content xml:id="con">
+                <p class="Paragraph(numbered)" xml:id="p2">Article 436(1) shall apply from 1 January 2015
+                    <authorialNote marker="4" xml:id="a2">
+                        <p xml:id="ptest2">TestNote2</p>
+                    </authorialNote>
+                    .
+                </p>
+            </content>
+        </paragraph>
+    </article>
+    <article xml:id="art486">
+        <num class="ArticleNumber" xml:id="n3">Article 486</num>
+        <alinea xml:id="art486-aln1">
+            <content xml:id="c3">
+                <p class="Paragraph(unnumbered)" xml:id="p3">This Regulation shall enter into force on the day following
+                    that of its publication in the
+                    <i xml:id="i2">Official Journal of the European
+                        <authorialNote marker="8" xml:id="a3">
+                            <p>TestNote3</p>
+                        </authorialNote>
+                        Union
+                    </i>
+                    .
+                </p>
+            </content>
+        </alinea>
+    </article>
+    <article xml:id="art435">
+        <num xml:id="n4">Article #</num>
+        <heading xml:id="h4">Article heading...</heading>
+        <paragraph xml:id="art1-par1">
+            <num xml:id="n4p">1.</num>
+            <content xml:id="c4">
+                <p xml:id="p4">Text.
+                    <authorialNote marker="1" xml:id="a1">
+                        <p>TestNote4</p>
+                    </authorialNote>
+                    ..
+                </p>
+            </content>
+        </paragraph>
+    </article>
+</part>

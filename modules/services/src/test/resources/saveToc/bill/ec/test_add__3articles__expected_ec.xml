@@ -1,0 +1,48 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body xml:id="body">
+            <article xml:id="art_2">
+                <num leos:editable="false" xml:id="art_2_eKam21">Article 1</num>
+                <heading xml:id="art_2_yUx3QW">Article heading...</heading>
+                <paragraph xml:id="art_2-par1">
+                    <num xml:id="art_2_QbZpeS">1.</num>
+                    <content xml:id="art_2_3VsECX">
+                        <p xml:id="art_2_COLMH3">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article xml:id="art_3">
+                <num leos:editable="false" xml:id="art_3_eKam21">Article 2</num>
+                <heading xml:id="art_3_yUx3QW">Article heading...</heading>
+                <paragraph xml:id="art_3-par1">
+                    <num xml:id="art_3_QbZpeS">1.</num>
+                    <content xml:id="art_3_3VsECX">
+                        <p xml:id="art_3_COLMH3">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+
+            <article leos:deletable="false" leos:editable="false" xml:id="art_1">
+                <num leos:editable="false" xml:id="art_1__num">Article 3</num>
+                <heading xml:id="art_1__heading">Scope</heading>
+                <paragraph xml:id="art_1__para_1">
+                    <num xml:id="art_1__para_1__num">1.</num>
+                    <content xml:id="art_1__para_1__content">
+                        <p xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+
+            <article xml:id="art_4">
+                <num leos:editable="false" xml:id="art_4_eKam21">Article 4</num>
+                <heading xml:id="art_4_yUx3QW">Article heading...</heading>
+                <paragraph xml:id="art_4-par1">
+                    <num xml:id="art_4_QbZpeS">1.</num>
+                    <content xml:id="art_4_3VsECX">
+                        <p xml:id="art_4_COLMH3">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,36 @@
+<level leos:depth="1" leos:origin="ec" leos:originaldepth="1" xml:id="_akn_level_r86AJV">
+    <num leos:origin="ec" xml:id="_akn_vuCQnk">7.</num>
+    <subparagraph leos:softuser="DAS Satyabrata(AGRI)" leos:softdate="2022-08-09T11:18:36+02:00" leos:origin="ec"
+                  xml:id="_akn_XUc7aQ">
+        <content xml:id="_akn_mhwV5m" leos:origin="ec">
+            <p leos:origin="ec" xml:id="_akn_ZaWRoX">Text...</p>
+        </content>
+    </subparagraph>
+    <list leos:origin="ec" xml:id="_akn_HgCLLt">
+        <point leos:origin="ec" leos:softdate="2022-08-09T11:18:44+02:00" leos:softuser="DAS Satyabrata(AGRI)"
+               xml:id="_akn_bO1FBP">
+            <num leos:origin="ec" xml:id="_akn_ok2Qx0">(a)</num>
+            <content xml:id="_akn_L76XXh" leos:origin="ec">
+                <p xml:id="_akn_J9NuX2" leos:origin="ec">indent 1</p>
+            </content>
+        </point>
+    </list>
+    <subparagraph leos:origin="ec" xml:id="_akn_Ucqp7s" leos:indent-origin-type="POINT"
+                  leos:indent-origin-num-id="_akn_6HjkLb" leos:indent-origin-num-origin="ec"
+                  leos:softuser="KHANDELWAL SHAILESH(AGRI)" leos:softdate="2022-08-12T17:53:48+02:00"
+                  leos:indent-origin-num="(b)">
+        <content xml:id="_akn_yPOOkM" leos:origin="ec">
+            <p leos:origin="ec" xml:id="_akn_ksfLEy">indent 2</p>
+        </content>
+    </subparagraph>
+    <list leos:origin="ec" xml:id="_akn_UZhdZp">
+        <point leos:origin="ec" leos:softdate="2022-08-09T11:19:07+02:00" leos:softuser="DAS Satyabrata(AGRI)"
+               xml:id="_akn_L5eryX" leos:indent-origin-type="POINT" leos:indent-origin-num="(i)"
+               leos:indent-origin-num-id="_akn_HABfvD" leos:indent-origin-num-origin="ec">
+            <num leos:origin="ec" xml:id="_akn_HABfvD">(a)</num>
+            <content leos:origin="ec" xml:id="_akn_6sE63f">
+                <p leos:origin="ec" xml:id="_akn_6FBVcl">indent 3</p>
+            </content>
+        </point>
+    </list>
+</level>

@@ -1,0 +1,68 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:autonumbering="true" leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1_oCaBKV">
+                    <num leos:origin="ec" xml:id="art_1_WmqwgF">6.</num>
+                    <subparagraph leos:origin="ec" xml:id="art_1_n8gMPN">
+                        <content leos:origin="ec" xml:id="art_1_mV9Fx1">
+                            <p leos:origin="ec" xml:id="art_1_mN076D">Fourth example
+                                <b leos:origin="ec" xml:id="art_1_u5oy7q">(Point 13) -- Point (c) indented after point (b) --</b>
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" xml:id="art_1_rOj5Lb">
+                        <content leos:origin="ec" xml:id="art_1_HuAl7e">
+                            <p leos:origin="ec" xml:id="art_1_pBi0vz">
+                                <b leos:origin="ec" xml:id="art_1_0jSRAW">Numbering question</b>
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="art_1_K3CpYa">
+                        <point leos:origin="ec" xml:id="art_1_wyx0oV">
+                            <num leos:origin="ec" xml:id="art_1_Duv5Uy">(a)</num>
+                            <content leos:origin="ec" xml:id="art_1_RpO1nk">
+                                <p leos:origin="ec" xml:id="art_1_uWUAzd">'cultural goods' means any item which is of importance for archaeology, prehistory, history, literature, art or science as listed in the Annex;     </p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="art_1_rPyufr">
+                            <num leos:origin="ec" xml:id="art_1_KIsnQm">(b)</num>
+                            <content leos:origin="ec" xml:id="art_1_cfb3Lc">
+                                <p leos:origin="ec" xml:id="art_1_CHTiwS">'introduction of cultural goods' means any entry into the customs territory of the Union of cultural goods which are subject to customs supervision or customs control within the customs territory of the Union in accordance with Regulation (EU) No 952/2013;</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="art_1_6019MB">
+                            <num leos:origin="ec" xml:id="art_1_fT0oDf">(c)</num>
+                            <alinea leos:origin="ec" xml:id="art_1_CfNfjy">
+                                <content leos:origin="ec" xml:id="art_1_NDqXXG">
+                                    <p leos:origin="ec" xml:id="art_1_YuSqNZ">'import of cultural goods' means:</p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="ec" xml:id="art_1_CayDn2">
+                                <point leos:origin="ec" xml:id="art_1_ZCO33r">
+                                    <num leos:origin="ec" xml:id="art_1_z8eYMP">(i)</num>
+                                    <content leos:origin="ec" xml:id="art_1_Af0q0W">
+                                        <p leos:origin="ec" xml:id="art_1_TcR8PH">the release of cultural goods for free circulation as referred to in Article 201 of Regulation (EU) No 952/2013; or</p>
+                                    </content>
+                                </point>
+                                <point leos:origin="ec" xml:id="art_1_y2e76q">
+                                    <num leos:origin="ec" xml:id="art_1_LtUrqo">(ii)</num>
+                                    <content leos:origin="ec" xml:id="art_1_NH9U0o">
+                                        <p leos:origin="ec" xml:id="art_1_a8a1eI">the placing of cultural goods under one of the following categories of special procedures referred to in Article 210 of Regulation (EU ) No 952/2013:</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <clause leos:alternative="true" leos:deletable="true" leos:editable="true" leos:optionlist="listOption1" leos:origin="ec" leos:selectedoption="1" xml:id="clause_1">
+                <content leos:origin="ec" xml:id="clause_1__content">
+                    <p leos:origin="ec" xml:id="clause_1__content__p">This Regulation shall be binding in its entirety and directly applicable in all Member States.</p>
+                </content>
+            </clause>
+        </body>
+    </bill>
+</akomaNtoso>

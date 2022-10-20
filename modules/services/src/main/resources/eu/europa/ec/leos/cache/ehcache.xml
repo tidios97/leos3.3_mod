@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">
+
+    <!-- Disk cache location -->
+    <diskStore path="java.io.tmpdir"/>
+
+    <!-- User cache policy -->
+    <cache name="users"
+        eternal="false"
+        maxElementsInMemory="50"
+        overflowToDisk="false"
+        timeToIdleSeconds="600"
+        timeToLiveSeconds="3600"
+        memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- TOC structure cache policy -->
+    <cache name="tocStructureList"
+        eternal="false"
+        maxElementsInMemory="25"
+        overflowToDisk="false"
+        timeToIdleSeconds="600"
+        timeToLiveSeconds="3600"
+        memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- TOC structure rules cache policy -->
+    <cache name="tocStructureTocRulesMap"
+        eternal="false"
+        maxElementsInMemory="25"
+        overflowToDisk="false"
+        timeToIdleSeconds="600"
+        timeToLiveSeconds="3600"
+        memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- TOC structure numbering config cache policy -->
+    <cache name="tocStructureNumConfList"
+        eternal="false"
+        maxElementsInMemory="25"
+        overflowToDisk="false"
+        timeToIdleSeconds="600"
+        timeToLiveSeconds="3600"
+        memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- TOC structure alternate config cache policy -->
+    <cache name="alternateConfList"
+        eternal="false"
+        maxElementsInMemory="25"
+        overflowToDisk="false"
+        timeToIdleSeconds="600"
+        timeToLiveSeconds="3600"
+        memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- Document version retrieved cache policy -->
+    <cache name="docVersions"
+        eternal="false"
+        maxElementsInMemory="100"
+        overflowToDisk="false"
+        timeToIdleSeconds="600"
+        timeToLiveSeconds="0"
+        memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- Official Journal cache policy -->
+    <cache name="aknCache"
+           eternal="false"
+           maxElementsInMemory="25"
+           overflowToDisk="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- Search Engine cache policy -->
+    <cache name="searchEngineCache"
+           eternal="false"
+           maxElementsInMemory="25"
+           overflowToDisk="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- Reference label target document xml cache policy -->
+    <cache name="referenceLabelTargetDocumentCache"
+           eternal="false"
+           maxElementsInMemory="25"
+           overflowToDisk="false"
+           timeToIdleSeconds="5"
+           timeToLiveSeconds="5"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- Reference label document type cache policy -->
+    <cache name="referenceLabelTargetDocumentTypeCache"
+           eternal="false"
+           maxElementsInMemory="25"
+           overflowToDisk="false"
+           timeToIdleSeconds="5"
+           timeToLiveSeconds="5"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <!-- CMIS repository folder cache policy -->
+    <cache name="cmisRepositoryFolderCache"
+           eternal="false"
+           maxElementsInMemory="50"
+           overflowToDisk="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"/>
+
+</ehcache>

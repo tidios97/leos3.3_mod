@@ -1,0 +1,65 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:autonumbering="true" leos:deletable="false" leos:editable="true" leos:origin="ec"
+                     xml:id="_art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="_art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="_art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="_art_1__para_1">
+                    <num leos:origin="ec" xml:id="_art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="_art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="_art_1__para_1__content__p">art 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:deletable="false" leos:editable="true" leos:origin="ec" xml:id="_art_2">
+                <num leos:origin="ec" xml:id="_art_2_num">Article 1</num>
+                <heading leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_WDH2YZ">art 2</heading>
+                <paragraph leos:origin="ec" xml:id="_art_2_num_par1">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_AczccC">1.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_CxE1rn">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_NHZN8U">par 1</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" leos:softaction="undelete" leos:softactionroot="true"
+                           leos:softdate="2022-05-20T14:33:58.281+02:00" leos:softuser="jane" xml:id="_art_2_num_par2">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_SC9AWu">2.</num>
+                    <subparagraph leos:origin="ec" leos:softaction="undelete" leos:softactionroot="false"
+                                  leos:softdate="2022-05-20T14:33:58.250+02:00" leos:softuser="jane"
+                                  xml:id="_art_2_num_par2_sub">
+                        <content leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_ce2U2a">
+                            <p leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_uJJljZ">par 2</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" leos:softaction="undelete" leos:softactionroot="false"
+                          leos:softdate="2022-05-20T14:33:58.265+02:00" leos:softuser="jane"
+                          xml:id="_art_2_num_par1_list">
+                        <point leos:origin="ec" leos:softaction="undelete" leos:softactionroot="false"
+                               leos:softdate="2022-05-20T14:33:58.265+02:00" leos:softuser="jane"
+                               xml:id="par3_point_a">
+                            <num leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_TOdOwf">(a)</num>
+                            <content leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_pkRBe7">
+                                <p leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_xkpzNN">point (a)</p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" leos:softaction="undelete" leos:softactionroot="false"
+                               leos:softdate="2022-05-20T14:33:58.265+02:00" leos:softuser="jane"
+                               xml:id="par3_point_b">
+                            <num leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_5c4Hu1">(b)</num>
+                            <content leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_GLb7ZY">
+                                <p leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_6vgJyY">point (b)</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_2_num_par3">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_2eg4Xa">3.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_NTDh5S">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e602_1nNpFO_7N0MwY">par 3</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

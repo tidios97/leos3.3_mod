@@ -1,0 +1,57 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" id="body">
+            <article leos:deletable="true" leos:editable="true" leos:origin="ec" xml:id="_imp_art_d1e734_7297DL">
+                <num leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_BK3jp2">Article 11</num>
+                <heading leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_IHeOLO">Work programmes</heading>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_omMbij">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_Cccj3d">1.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_G8uKvV">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_ysOuNp">The Kozloduy programme and the
+                            Bohunice programme shall be implemented by multiannual work programmes referred to in
+                            Article 110 of the Financial Regulation. The multiannual work programmes shall be adopted in
+                            accordance with the procedure referred to in Article 13(2).
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_J4tVxY">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_4xDN2t">2.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_1DH1zy">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_rvOt3w">The JRC decommissioning and waste
+                            management programme shall be implemented by multiannual work programmes and shall be
+                            adopted in accordance with the procedure set out in Article 4 of Commission Decision
+                            96/282/Euratom
+                            <authorialNote leos:origin="ec" marker="3" placement="bottom"
+                                           xml:id="_imp_art_d1e734_7297DL_rNQGqb">
+                                <p leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_v5gYXm">Commission Decision
+                                    96/282/Euratom of 10 April 1996 on the reorganization of the Joint Research Centre
+                                    (OJ L 107, 30.4.1996, p. 12).
+                                </p>
+                            </authorialNote>
+                            .
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_v4guH9">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_w48Ei6">3.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_IYjYkl">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_OS8KOE">The multiannual work programmes
+                            referred to in paragraphs 1 and 2 shall reflect the decommissioning plans that serve as
+                            baseline for monitoring and evaluation of the Kozloduy programme and the Bohunice programme.
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_XbbfV3">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_cRRfGU">4.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_MhKkJC">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e734_7297DL_1SpSZT">The multiannual work programmes
+                            referred to in paragraphs 1 and 2 shall specify the current state, the objectives, the
+                            expected results, the related performance indicators and the timeline for the use of funds
+                            and shall define the details for the dissemination of knowledge.
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

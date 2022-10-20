@@ -1,0 +1,97 @@
+<akomaNtoso>
+    <bill>
+        <body>
+            <article xml:id="art486">
+                <num>Article 486
+                    <placeholder>[…]</placeholder>
+                </num>
+                <heading>
+                    <content>
+                        <p>1ste article</p>
+                    </content>
+                </heading>
+                <alinea xml:id="art486-aln1">bla bla</alinea>
+            </article>
+            <article xml:id="art_1">
+                <num xml:id="art_1__num">Article 1</num>
+                <heading xml:id="art_1__heading">Article 1 Heading</heading>
+                <paragraph xml:id="art_1_par1">
+                    <num xml:id="art_1_par1_num">1.</num>
+                    <subparagraph xml:id="art_1_par1_sub1">
+                        <content xml:id="art_1_xJBmXh">
+                            <p xml:id="art_1_w8GmHn">Sub 1</p>
+                        </content>
+                    </subparagraph>
+                    <list xml:id="art_1_par1_list1">
+                        <point xml:id="art_1_par1_list1_point_a">
+                            <num xml:id="art_1_par1_list1_point_a_num">(a)</num>
+                            <alinea xml:id="art_1_par1_list1_point_a_alinea1">
+                                <content xml:id="art_1_OOjjcP">
+                                    <p xml:id="art_1_FvJaZa">Point (a) first alinea</p>
+                                </content>
+                            </alinea>
+                            <alinea xml:id="art_1_par1_list1_point_a_alinea2">
+                                <content xml:id="art_1_91Pv8B">
+                                    <p xml:id="art_1_0Y121M">Point (a) second alinea</p>
+                                </content>
+                            </alinea>
+                            <list xml:id="art_1_par1_list2">
+                                <point xml:id="art_1_par1_list2_point_i">
+                                    <num xml:id="art_1_par1_list2_point_i_num">(i)</num>
+                                    <alinea xml:id="art_1_par1_list2_point_i_alinea">
+                                        <content xml:id="art_1_pWClT9">
+                                            <p xml:id="art_1_j9YcTo">Point (i) first alinea</p>
+                                        </content>
+                                    </alinea>
+                                    <list xml:id="art_1_par1_list3">
+                                        <point xml:id="art_1_par1_list3_point_1">
+                                            <num xml:id="art_1_par1_list3_point_1_num">(1)</num>
+                                            <content xml:id="art_1_CcY7zc">
+                                                <p xml:id="art_1_ZNbFLX">Point (1)</p>
+                                            </content>
+                                        </point>
+                                        <point xml:id="art_1_par1_list3_point_2">
+                                            <num xml:id="art_1_par1_list3_point_2_num">(2)</num>
+                                            <alinea xml:id="art_1_par1_list3_point_2_alinea">
+                                                <content xml:id="art_1_IduNeb">
+                                                    <p xml:id="art_1_mMX8dS">Point (2)</p>
+                                                </content>
+                                            </alinea>
+                                            <list xml:id="art_1_par1_list4">
+                                                <indent xml:id="art_1_par1_list4_indent_1">
+                                                    <num xml:id="art_1_par1_list4_indent_1_num">-</num>
+                                                    <content xml:id="art_1_J7Haeg">
+                                                        <p xml:id="art_1_IIi5fV">First indent</p>
+                                                    </content>
+                                                </indent>
+                                                <indent xml:id="art_1_par1_list4_indent_2">
+                                                    <num xml:id="art_1_par1_list4_indent_2_num">-</num>
+                                                    <content xml:id="art_1_0LngP7">
+                                                        <p xml:id="art_1_OXEcmh">Second indent</p>
+                                                    </content>
+                                                </indent>
+                                            </list>
+                                        </point>
+                                    </list>
+                                </point>
+                                <point xml:id="art_1_MsYOP8">
+                                    <num xml:id="art_1_ax6vkl">(ii)</num>
+                                    <content xml:id="art_1_I7EeF3">
+                                        <p xml:id="art_1_nFNMcc">Point (ii)</p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point xml:id="art_1_xazYIn">
+                            <num xml:id="art_1_oWo2e5">(b)</num>
+                            <content xml:id="art_1_VFWm4v">
+                                <p xml:id="art_1_ZloLEq">Point (b)
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,110 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="deleted_art_1"
+                     leos:editable="false" leos:deletable="false" leos:softaction="del"
+                     leos:softactionroot="true" leos:softuser="jane"
+                     leos:softdate="2020-10-05T18:56:42.898+02:00">
+                <num leos:origin="ec" leos:editable="false"
+			xml:id="deleted_art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="deleted_art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="deleted_art_1__para_1"
+                           leos:softaction="del" leos:softactionroot="true" leos:softuser="jane"
+                           leos:softdate="2020-10-05T18:56:42.898+02:00">
+                    <num leos:origin="ec" xml:id="deleted_art_1__para_1__num">1.</num>
+                    <content leos:origin="ec"
+                             xml:id="deleted_art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="deleted_art_1__para_1__content__p">Text...</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="deleted_art_1_I7ywgI"
+                           leos:softaction="del" leos:softactionroot="true" leos:softuser="jane"
+                           leos:softdate="2020-10-05T18:56:42.898+02:00">
+                    <num leos:origin="ec" xml:id="deleted_art_1_nQB2l8">2.</num>
+                    <subparagraph leos:origin="ec"
+                                  xml:id="deleted_art_1_RMkG0l" leos:softaction="del"
+                                  leos:softactionroot="true" leos:softuser="jane"
+                                  leos:softdate="2020-10-05T18:56:42.898+02:00">
+                        <content leos:origin="ec" xml:id="deleted_art_1_TU6AkT">
+                            <p leos:origin="ec" xml:id="deleted_art_1_ysA1aB">TEST</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="deleted_art_1_LLHZfr"
+                          leos:softaction="del" leos:softactionroot="true"
+                          leos:softuser="jane" leos:softdate="2020-10-05T18:56:42.898+02:00">
+                        <point leos:origin="ec" xml:id="deleted_art_1_39XCjs"
+                               leos:softaction="del" leos:softactionroot="true"
+                               leos:softuser="jane" leos:softdate="2020-10-05T18:56:42.898+02:00">
+                            <num leos:origin="ec" xml:id="deleted_art_1_xKMAZV">(a)</num>
+                            <content leos:origin="ec" xml:id="deleted_art_1_8uwW2Y">
+                                <p leos:origin="ec" xml:id="deleted_art_1_sO0nQe">New Text</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <article leos:editable="false" leos:deletable="false"
+                     leos:origin="ec" xml:id="deleted_akn_article_nY5NnC"
+                     leos:softaction="del" leos:softactionroot="true" leos:softuser="jane"
+                     leos:softdate="2020-10-05T18:56:42.898+02:00">
+                <num leos:origin="ec" xml:id="deleted_akn_article_nY5NnC_xfZPPT" leos:editable="false">Article 2</num>
+                <heading leos:origin="ec" xml:id="deleted_akn_article_nY5NnC_Y2xhx4">Article heading...</heading>
+                <paragraph leos:origin="ec"
+                           xml:id="deleted_akn_article_nY5NnC-par1" leos:depth="1"
+                           leos:editable="false" leos:deletable="false" leos:softaction="del"
+                           leos:softactionroot="false" leos:softuser="jane"
+                           leos:softdate="2020-10-05T18:56:42.898+02:00">
+                    <num leos:origin="ec" xml:id="deleted_akn_article_nY5NnC_ZCEjR0">1.</num>
+                    <content leos:origin="ec"
+                             xml:id="deleted_akn_article_nY5NnC_G7gxqF">
+                        <p leos:origin="ec" xml:id="deleted_akn_article_nY5NnC_U6kCwW">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:editable="false" leos:deletable="false"
+                     leos:origin="ec" xml:id="akn_article_4VfkDJ">
+                <num leos:origin="ec" leos:editable="false" xml:id="akn_article_4VfkDJ_qkO2ZO">Article 3</num>
+                <heading leos:origin="ec" xml:id="akn_article_4VfkDJ_4TmNSn">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="akn_article_4VfkDJ-par1">
+                    <num leos:origin="ec" xml:id="akn_article_4VfkDJ_zYi9O8">1.</num>
+                    <subparagraph leos:origin="ec"
+                                  xml:id="akn_article_4VfkDJ_Xrnq93">
+                        <content leos:origin="ec" xml:id="akn_article_4VfkDJ_uslTFU">
+                            <p leos:origin="ec" xml:id="akn_article_4VfkDJ_jsMO1P">Text...</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="akn_article_4VfkDJ_FJCGWJ">
+                        <point leos:origin="ec" xml:id="akn_article_4VfkDJ_WVSgIq">
+                            <num leos:origin="ec" xml:id="akn_article_4VfkDJ_KFXuRY">(a)
+                            </num>
+                            <content leos:origin="ec"
+                                     xml:id="akn_article_4VfkDJ_YCTRI0">
+                                <p leos:origin="ec" xml:id="akn_article_4VfkDJ_iLvELQ">New Text</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+            <article leos:origin="ec" xml:id="art_2" leos:editable="false"
+                     leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_2__num">Article 4</num>
+                <heading leos:origin="ec" xml:id="art_2__heading">Entry into force</heading>
+                <paragraph leos:origin="ec" xml:id="art_2_STWr0M">
+                    <content leos:origin="ec" xml:id="art_2_D961l7">
+                        <p leos:origin="ec" xml:id="art_2_anlErk">This Regulation shall
+                            enter into force on the [...]</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="art_2__para_1">
+                    <content leos:origin="ec" xml:id="art_2__para_1__content">
+                        <p leos:origin="ec" xml:id="art_2__para_1__content__p">
+                            day following that of its publication in the
+                            <i leos:origin="ec" xml:id="art_2__para_1__content__p__i">Official Journal of the European Union</i>
+                            .
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

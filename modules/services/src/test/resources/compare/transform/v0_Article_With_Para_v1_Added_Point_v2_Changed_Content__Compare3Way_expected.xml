@@ -1,0 +1,46 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<bill name="REG">
+		<body leos:origin="ec" xml:id="body">
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_cs3XUM">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_cs3XUM_fMT0c4">Article 1</num>
+				<heading leos:origin="ec" xml:id="akn_article_cs3XUM_rlDtyg">Double comparison</heading>
+				<paragraph leos:origin="ec" xml:id="akn_article_cs3XUM-par1">
+					<num leos:origin="ec" xml:id="akn_article_cs3XUM_zoUQw3">1.</num>
+					<subparagraph
+						xml:id="transformed_akn_article_cs3XUM-par1" leos:origin="ec"
+						leos:softaction="trans" leos:softactionroot="true"
+						leos:softuser="jane" leos:softdate="2020-11-24T10:45:53.718+01:00"
+						class="leos-double-compare-added-original">
+						<content xml:id="akn_article_cs3XUM_3YyxHl" leos:origin="ec">
+							<p xml:id="akn_article_cs3XUM_K0V36W" leos:origin="ec">
+								We are
+								<span class="leos-double-compare-added-intermediate">not really </span>
+								on good track
+							</p>
+						</content>
+					</subparagraph>
+					<list xml:id="lis_oTZxO6" leos:softaction="add"
+						leos:softuser="jane" leos:softdate="2020-11-24T10:45:53.717+01:00"
+						leos:softactionroot="true" leos:origin="cn"
+						class="leos-double-compare-added-original">
+						<point leos:origin="cn" leos:softaction="add"
+							leos:softuser="jane" leos:softdate="2020-11-24T10:45:53.731+01:00"
+							xml:id="akn_point_K7zvuX"
+							class="leos-double-compare-added-original">
+							<num xml:id="akn_article_cs3XUM_iL6ixf" leos:editable="false">
+								<span class="leos-double-compare-added-original">(a) </span>
+							</num>
+							<content xml:id="akn_article_cs3XUM_wI0x11">
+								<p xml:id="akn_article_cs3XUM_w5FAXc">
+									<span class="leos-double-compare-added-original">Text...</span>
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+			</article>
+		</body>
+	</bill>
+</akomaNtoso>

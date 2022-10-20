@@ -1,0 +1,25 @@
+
+<?xml-stylesheet type="text/css" href="renditions/html/css/memorandum.css"?><akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <doc name="EXPL_MEMORANDUM">
+        <mainBody xml:id="body">
+            <tblock xml:id="tblock_2" refersTo="~statementOfLegalReasons">
+                <num xml:id="tblock_2__num">2.</num>
+                <heading xml:id="tblock_2__heading">LEGAL BASIS, SUBSIDIARITY AND PROPORTIONALITY</heading>
+                <tblock xml:id="tblock_2__tblock_2" refersTo="~subsidiarity">
+                    <num xml:id="tblock_2__tblock_2__num">•</num>
+                    <heading xml:id="tblock_2__tblock_2__heading">Subsidiarity (for non-exclusive competence)</heading>
+                    <blockContainer xml:id="tblock_2__tblock_2__blockcontainer" leos:editable="true">
+                            <p xml:id="tblock_2__tblock_2__blockcontainer__p">This is <b xml:id="akn_E3FfJO">my search</b> content.</p>
+                            <p xml:id="tblock_2__tblock_2__blockcontainer__b"><b xml:id="akn_E3FfJO1">only Bold.</b></p>
+                            <p xml:id="tblock_2__tblock_2__blockcontainer__i"><b xml:id="akn_E3FfJO2">Bold</b> And<i xml:id="italic"> Italic.</i></p>
+                            <p xml:id="tblock_2__tblock_2__blockcontainer__t"><b xml:id="akn_E3FfJO3">Bold</b> And Text.</p>
+                            <p xml:id="tblock_2__tblock_2__blockcontainer_5">Re<b xml:id="akn_E3FfJO4">gul</b>at<i xml:id="italic2">io</i>n.</p>
+                        <p xml:id="tblock_2__tblock_2__blockcontainer_6">some Text <b xml:id="bol_id_1">Ex</b><sup xml:id="akn_E3FfJO5">plo</sup>rar<sub xml:id="italic3">at</sub>ory</p>
+                            <p xml:id="art_2__para_1__content__p">This Regulation shall enter into force on the [...] day fo<b xml:id="art_2_LDYF8e">llow</b>ing that of its publication in the <i id="art_2__para_1__content__p__i">Official Journal of the European Union</i>.</p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+        </mainBody>
+    </doc>
+</akomaNtoso>

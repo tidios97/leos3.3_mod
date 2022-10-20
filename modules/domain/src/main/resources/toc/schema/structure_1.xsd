@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://eu.europa.ec.digit.leos.pilot/schema/"
+           xmlns="http://eu.europa.ec.digit.leos.pilot/schema/">
+
+    <xs:element name="structure">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="description" type="xs:string"/>
+                <xs:element name="version" type="xs:string"/>
+                <xs:element name="tocItems" type="tocItems"/>
+                <xs:element name="numberingConfigs" type="numberingConfigs"/>
+                <xs:element name="alternateConfigs" type="alternateConfigs"/>
+                <xs:element name="tocRules" type="tocRules" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="tocItems">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="tocItem" type="tocItem"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tocItem">
+        <xs:sequence>
+            <xs:element name="aknTag" type="aknTag"/>
+            <xs:element name="root" type="xs:boolean" default="false"/>
+            <xs:element name="higherElement" type="xs:boolean" default="false" minOccurs="0"/>
+            <xs:element name="draggable" type="xs:boolean" default="false"/>
+            <xs:element name="childrenAllowed" type="xs:boolean" default="false"/>
+            <xs:element name="display" type="xs:boolean" default="false"/>
+            <xs:element name="itemNumber" type="optionsType" default="none"/>
+            <xs:element name="autoNumbering" type="xs:boolean" default="false" minOccurs="0"/>
+            <xs:element name="itemHeading" type="optionsType" default="none"/>
+            <xs:element name="itemDescription" type="xs:boolean" default="false"/>
+            <xs:element name="numberEditable" type="xs:boolean" default="false"/>
+            <xs:element name="contentDisplayed" type="xs:boolean" default="false"/>
+            <xs:element name="deletable" type="xs:boolean" default="false"/>
+            <xs:element name="numWithType" type="xs:boolean" default="false"/>
+            <xs:element name="expandedByDefault" type="xs:boolean" default="false"/>
+            <xs:element name="sameParentAsChild" type="xs:boolean" default="false"/>
+            <xs:element name="numberingType" type="numberingType"/>
+            <xs:element name="profiles" type="profiles" minOccurs="0"/>
+            <xs:element name="editable" type="xs:boolean" default="false"/>
+            <xs:element name="addSoftAttr" type="xs:boolean" default="true" minOccurs="0"/>
+            <xs:element name="template" type="xs:string" minOccurs="0"/>
+            <xs:element name="maxDepth" type="xs:string" minOccurs="0"/>
+            <xs:element name="actionsPosition" type="actionPositions" default="RIGHT" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="optionsType" final="restriction">
+        <xs:annotation>
+            <xs:documentation>Option values used to configure an element like itemNumber and itemHeading</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="none"/>
+            <xs:enumeration value="mandatory"/>
+            <xs:enumeration value="optional"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="numberingConfigs">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="numberingConfig" type="numberingConfig"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="numberingConfig">
+        <xs:annotation>
+            <xs:documentation>Number configuration. Example: 1), 1., (a), etc</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="type" type="numberingType" default="NONE"/>
+            <xs:element name="numbered" type="xs:boolean" default="false"/>
+            <xs:element name="prefix" type="xs:string" default="" minOccurs="0"/>
+            <xs:element name="suffix" type="xs:string" default="" minOccurs="0"/>
+            <xs:element name="sequence" type="xs:string" default="" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" default="" minOccurs="0"/>
+            <xs:element name="regex" type="xs:string" default="" minOccurs="0"/>
+            <xs:element name="msgValidationError" type="xs:string" default="" minOccurs="0"/>
+
+            <!-- ATTENTION: Make sure that all configNumbers indicated in the list levels are present in the plugin listItemNumberModule.js -->
+            <xs:element name="levels" type="levels" minOccurs="0"/>
+            <xs:element name="level" type="xs:string" default="" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="alternateConfigs">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="alternateConfig" type="alternateConfig"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="alternateConfig">
+        <xs:sequence>
+            <xs:element name="type" type="aknTag"/>
+            <xs:element name="profile" type="xs:string" default=""/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="profiles">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="profile" type="profile"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="profile">
+        <xs:sequence>
+            <xs:element name="elementSelector" minOccurs="0" type="xs:string"/>
+            <xs:element name="profileName" type="xs:string" default=""/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="levels">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="level" type="level"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="level">
+        <xs:sequence>
+            <xs:element name="depth" type="xs:int"/>
+            <xs:element name="numberingType" type="numberingType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="numberingType" final="restriction">
+        <xs:annotation>
+            <xs:documentation>All types of numbering. Add here the new type</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="ARABIC"/>
+            <xs:enumeration value="ARABIC_POSTFIXDOT"/>
+            <xs:enumeration value="ARABIC_PARENTHESIS"/>
+            <xs:enumeration value="ALPHA_LOWER_PARENTHESIS"/>
+            <xs:enumeration value="ROMAN_LOWER_PARENTHESIS"/>
+            <xs:enumeration value="ROMAN_UPPER"/>
+            <xs:enumeration value="BULLET_BLACK_CIRCLE"/>
+            <xs:enumeration value="BULLET_WHITE_CIRCLE"/>
+            <xs:enumeration value="BULLET_BLACK_SQUARE"/>
+            <xs:enumeration value="BULLET_WHITE_SQUARE"/>
+            <xs:enumeration value="BULLET_NUM"/>
+            <xs:enumeration value="INDENT"/>
+            <xs:enumeration value="HIGHER_ELEMENT_NUM"/>
+            <xs:enumeration value="POINT_NUM"/>
+            <xs:enumeration value="LEVEL_NUM"/>
+            <xs:enumeration value="DIVISION_NUM"/>
+            <xs:enumeration value="ROMAN_UPPER_POSTFIXDOT"/>
+            <xs:enumeration value="ROMAN_UPPER_POSTFIXPARENTHESIS"/>
+            <xs:enumeration value="ALPHA_UPPER_POSTFIXDOT"/>
+            <xs:enumeration value="ALPHA_UPPER_POSTFIXPARENTHESIS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="aknTag" final="restriction">
+        <xs:annotation>
+            <xs:documentation>All toc tags</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="preface"/>
+            <xs:enumeration value="docstage"/>
+            <xs:enumeration value="doctype"/>
+            <xs:enumeration value="docpurpose"/>
+            <xs:enumeration value="body"/>
+            <xs:enumeration value="preamble"/>
+            <xs:enumeration value="citations"/>
+            <xs:enumeration value="citation"/>
+            <xs:enumeration value="recitals"/>
+            <xs:enumeration value="recital"/>
+            <xs:enumeration value="body"/>
+            <xs:enumeration value="part"/>
+            <xs:enumeration value="title"/>
+            <xs:enumeration value="chapter"/>
+            <xs:enumeration value="section"/>
+            <xs:enumeration value="division"/>
+            <xs:enumeration value="article"/>
+            <xs:enumeration value="paragraph"/>
+            <xs:enumeration value="subparagraph"/>
+            <xs:enumeration value="list"/>
+            <xs:enumeration value="point"/>
+            <xs:enumeration value="indent"/>
+            <xs:enumeration value="subpoint"/>
+            <xs:enumeration value="alinea"/>
+            <xs:enumeration value="clause"/>
+            <xs:enumeration value="conclusions"/>
+
+            <xs:enumeration value="mainBody"/>
+            <xs:enumeration value="tblock"/>
+            <xs:enumeration value="blockContainer"/>
+            <xs:enumeration value="num"/>
+            <xs:enumeration value="heading"/>
+            <xs:enumeration value="crossHeading"/>
+            <xs:enumeration value="block"/>
+            <xs:enumeration value="level"/>
+            <xs:enumeration value="content"/>
+            <xs:enumeration value="division"/>
+
+            <xs:enumeration value="formula"/>
+
+            <xs:enumeration value="coverPage"/>
+            <xs:enumeration value="longTitle"/>
+            <xs:enumeration value="docPurpose"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="tocRules">
+        <xs:sequence>
+            <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="tocItem" minOccurs="0" type="aknTag"/>
+                        <xs:element name="list" minOccurs="0" type="tocIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tocIdList">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="tocItem" type="aknTag"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="actionPositions" final="restriction">
+        <xs:annotation>
+            <xs:documentation>Action positions is used to configure action button position for any element profile</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LEFT"/>
+            <xs:enumeration value="RIGHT"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

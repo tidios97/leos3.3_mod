@@ -1,0 +1,79 @@
+<article xml:id="imp_art_d553e23657_MHFxJd">
+    <num>Article 1</num>
+    <heading>Definitions</heading>
+    <paragraph>
+        <subparagraph>
+            <content>
+                <p>Sub paragraph content</p>
+            </content>
+        </subparagraph>
+        <list>
+            <indent>
+                <num></num>
+                <alinea>
+                    <content>
+                        <p>General terms</p>
+                    </content>
+                </alinea>
+                <list>
+                    <point>
+                        <num>(1)</num>
+                        <content>
+                            <p>Point (a)</p>
+                        </content>
+                    </point>
+                </list>
+            </indent>
+            <indent>
+                <num></num>
+                <alinea>
+                    <content>
+                        <p>Transaction types</p>
+                    </content>
+                </alinea>
+                <list>
+                    <point>
+                        <num>(2)</num>
+                        <content>
+                            <p>Point (a)</p>
+                        </content>
+                    </point>
+                    <point>
+                        <num>(3)</num>
+                        <content>
+                            <p>Point (a)</p>
+                        </content>
+                    </point>
+                </list>
+            </indent>
+            <indent>
+                <num></num>
+                <alinea>
+                    <content>
+                        <p>Netting set, hedging sets, and related terms</p>
+                    </content>
+                </alinea>
+                <list>
+                    <point>
+                        <num>(4)</num>
+                        <alinea>
+                            <content>
+                                <p>Point (a)</p>
+                            </content>
+                        </alinea>
+                        <alinea>
+                            <content>
+                                <p>Alinea</p>
+                            </content>
+                        </alinea>
+                        <alinea>
+                            <content>
+                                <p>Alinea</p>
+                            </content>
+                        </alinea>
+                    </point>
+                </list>
+            </indent>
+        </list>
+    </paragraph>
+</article>

@@ -1,0 +1,76 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+            xmlns:leos="urn:eu:europa:ec:leos">
+
+    <bill name="REG">
+        <meta>
+        </meta>
+
+        <coverPage xml:id="coverpage">
+        </coverPage>
+
+        <preface xml:id="preface">
+        </preface>
+
+        <preamble xml:id="preamble">
+        </preamble>
+
+        <body xml:id="body">
+            <part xml:id="part11">
+                <num class="PartNumber" xml:id="part11_num">Part XI</num>
+                <heading class="PartHeading" xml:id="part11_h">FINAL PROVISIONS</heading>
+                <article xml:id="art485">
+                    <num class="ArticleNumber" xml:id="art485_num">Article 485</num>
+                    <paragraph xml:id="art485_par1">
+                        <num class="Paragraph(numbered)" xml:id="art485_par1_num">1.</num>
+                        <content xml:id="art485_par1_c">
+                            <p class="Paragraph(numbered)" xml:id="art485_par1_c_p">Subject to paragraph 2, this
+                                Regulation
+                                <authorialNote marker="2" xml:id="a1">
+                                    <p xml:id="ptest1">TestNote1</p>
+                                </authorialNote>
+                                shall apply from 1 January 2013.
+                            </p>
+                        </content>
+                    </paragraph>
+                    <paragraph xml:id="art485_par2">
+                        <num class="Paragraph(numbered)" xml:id="art485_par2_num">2.</num>
+                        <content xml:id="art485_par2_c">
+                            <p class="Paragraph(numbered)" xml:id="art485_par2_c_p">Article 436(1) shall apply from 1
+                                January 2015
+                                <authorialNote marker="4" xml:id="a2">
+                                    <p xml:id="ptest2">TestNote2</p>
+                                </authorialNote>
+                                .
+                            </p>
+                        </content>
+                    </paragraph>
+                    <paragraph xml:id="par1_new">
+                        <num xml:id="par1_new_num">1.</num>
+                        <content xml:id="par1_new_c">
+                            <p xml:id="par1_new_c_p">This is a new paragraph</p>
+                        </content>
+                    </paragraph>
+                </article>
+                <article xml:id="art486">
+                    <num class="ArticleNumber" xml:id="art486_num">Article 486</num>
+                    <alinea xml:id="art486_alinea">
+                        <content xml:id="art486_alinea_c">
+                            <p class="Paragraph(unnumbered)" xml:id="art486_alinea_c_p">This Regulation shall enter into
+                                force on the day following
+                                that of its publication in the
+                                <i xml:id="i2">Official Journal of the European
+                                    <authorialNote marker="8" xml:id="a3">
+                                        <p>TestNote3</p>
+                                    </authorialNote>
+                                    Union
+                                </i>
+                                .
+                            </p>
+                        </content>
+                    </alinea>
+                </article>
+            </part>
+        </body>
+    </bill>
+
+</akomaNtoso>

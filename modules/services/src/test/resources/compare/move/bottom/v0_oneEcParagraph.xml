@@ -1,0 +1,18 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:deletable="false" leos:origin="ec" xml:id="__akn_article_Vh2NWC">
+                <num leos:editable="false" leos:origin="ec" xml:id="__akn_article_Vh2NWC_8u9hTn">Article 1</num>
+                <heading leos:origin="ec" xml:id="__akn_article_Vh2NWC_u0UDrL">Article heading...</heading>
+
+                <paragraph leos:origin="ec" xml:id="__akn_article_Vh2NWC-par1">
+                    <num leos:origin="ec" xml:id="__akn_article_Vh2NWC_DoW4XJ">1.</num>
+                    <content leos:origin="ec" xml:id="__akn_article_Vh2NWC_uOZSHM">
+                        <p leos:origin="ec" xml:id="__akn_article_Vh2NWC_7NHJDU">Paragraph 1</p>
+                    </content>
+                </paragraph>
+
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

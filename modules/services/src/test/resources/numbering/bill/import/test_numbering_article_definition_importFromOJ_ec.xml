@@ -1,0 +1,60 @@
+<article xml:id="imp_art_d164e11586_t839nO">
+    <num>Article 142</num>
+    <heading>Definitions</heading>
+    <paragraph xml:id="par1">
+        <num>1.</num>
+        <subparagraph>
+            <content>
+                <p>For the purposes of this Chapter, the following definitions shall apply:</p>
+            </content>
+        </subparagraph>
+        <list xml:id="list_L1">
+            <point xml:id="list_L1_point_1">
+                <num>1)</num>
+                <content>
+                    <p>point (a)</p>
+                </content>
+            </point>
+            <point xml:id="list_L1_point_2">
+                <num>2)</num>
+                <content>
+                    <p>point (b)</p>
+                </content>
+            </point>
+            <point xml:id="list_L1_point_3">
+                <num>3)</num>
+                <alinea>
+                    <content>
+                        <p>point (c)</p>
+                    </content>
+                </alinea>
+                <list xml:id="list_L2">
+                    <point xml:id="list_L2_point_1">
+                        <num>(a)</num>
+                        <content>
+                            <p>point (i)</p>
+                        </content>
+                    </point>
+                    <point xml:id="list_L2_point_2">
+                        <num>(b)</num>
+                        <content>
+                            <p>point (ii)</p>
+                        </content>
+                    </point>
+                </list>
+            </point>
+            <point xml:id="list_L1_point_4">
+                <num>4)</num>
+                <content>
+                    <p>point (d)</p>
+                </content>
+            </point>
+        </list>
+    </paragraph>
+    <paragraph xml:id="par2">
+        <num>(2a).</num>
+        <content>
+            <p>Paragraph 2.</p>
+        </content>
+    </paragraph>
+</article>

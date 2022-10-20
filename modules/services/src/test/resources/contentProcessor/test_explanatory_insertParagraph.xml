@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+            xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <doc name="EXPL_COUNCIL">
+        <mainBody xml:id="body">
+            <paragraph xml:id="body_para_1">
+                <content xml:id="body_para_1__content">
+                    <p xml:id="body_para_1__content__p">With a view to the meeting of the Working Party on … that will
+                        take place on …, delegations will find attached a Presidency compromise text on the
+                        above-mentioned proposal.
+                    </p>
+                </content>
+            </paragraph>
+            <paragraph xml:id="body_para_2">
+                <content xml:id="body_para_2__content">
+                    <p xml:id="body_para_2__content__p">Changes compared to the previous version (12345/21) are
+                        indicated in
+                        <b xml:id="body_para_2__content__p_b_1">
+                            <u xml:id="body_para_2__content__p_u_1">bold</u>
+                        </b>
+                        and
+                        <b xml:id="body_para_2__content__p_b_2">
+                            <u xml:id="body_para_2__content__p_u_2">underline</u>
+                        </b>
+                        for additions and in
+                        <b xml:id="body_para_2__content__p_b_3">
+                            <u xml:id="body_para_2__content__p_u_3">
+                                <del xml:id="body_para_2__content__p_del_1">bold, strikethrough and underline</del>
+                            </u>
+                        </b>
+                        for deletions. Previous additions or deletions to the text of the Commission proposal (12345/21)
+                        are marked respectively in <b xml:id="body_para_2__content__p_b_4">bold</b> or in
+                        <b xml:id="body_para_2__content__p_b_5">
+                            <del xml:id="body_para_2__content__p_del_2">bold and strikethrough</del>
+                        </b>
+                        .
+                    </p>
+                </content>
+            </paragraph>
+        </mainBody>
+    </doc>
+</akomaNtoso>

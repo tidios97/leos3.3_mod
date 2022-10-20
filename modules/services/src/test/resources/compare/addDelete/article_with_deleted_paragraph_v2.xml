@@ -1,0 +1,76 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" id="bill_ckqwldp2y0004vs58opysih71">
+    <bill name="REG">
+        <aknBody leos:origin="ec" id="body">
+            <article leos:deletable="true" leos:editable="true" leos:origin="ec" id="imp_art_d1e2948_SFNKnF">
+                <num leos:origin="ec" id="imp_art_d1e2948_SFNKnF_LzU9K2">Article 3</num>
+                <heading leos:origin="ec" id="imp_art_d1e2948_SFNKnF_3EZ6Gh">Procedure for the adoption of programmes
+                </heading>
+                <paragraph leos:origin="ec" id="imp_art_d1e2948_SFNKnF_N36FNx">
+                    <num leos:origin="ec" id="imp_art_d1e2948_SFNKnF_nOZs0u">1.</num>
+                    <content leos:origin="ec" id="imp_art_d1e2948_SFNKnF_9pPQri">
+                        <aknP leos:origin="ec" id="imp_art_d1e2948_SFNKnF_yCKZVq">The Commission shall assess the
+                            consistency of programmes with this Regulation and with the Fund-specific rules, their
+                            effective contribution to the selected thematic objectives and to the Union priorities
+                            specific to each ESI Fund, and also the consistency with the Partnership Agreement, taking
+                            account of the relevant country-specific recommendations adopted in accordance with Article
+                            121(2) TFEU and relevant Council recommendations adopted in accordance with Article 148(4)
+                            TFEU as well as of the ex ante evaluation. The assessment shall address, in particular, the
+                            adequacy of the programme strategy, the corresponding objectives, indicators, targets and
+                            the allocation of budgetary resources.
+                        </aknP>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" id="imp_art_d1e2948_SFNKnF_2PKN90">
+                    <num leos:origin="ec" id="imp_art_d1e2948_SFNKnF_NQ0jbF">2.</num>
+                    <content leos:origin="ec" id="imp_art_d1e2948_SFNKnF_rhmyrW">
+                        <aknP leos:origin="ec" id="imp_art_d1e2948_SFNKnF_J5YBMl">By way of derogation from paragraph 1,
+                            the Commission shall not need to assess the consistency of the dedicated operational
+                            programmes for the YEI referred to in point (a) of the second paragraph of Article 18 of the
+                            ESF Regulation and dedicated programmes referred to in point (b) of the first subparagraph
+                            of Article 39(4) of this Regulation with the Partnership Agreement in the absence of the
+                            submission by the Member State of its Partnership Agreement at the date of submission of
+                            such dedicated programmes.
+                        </aknP>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" id="imp_art_d1e2948_SFNKnF_aT6P6V">
+                    <num leos:origin="ec" id="imp_art_d1e2948_SFNKnF_ijavvN">3.</num>
+                    <content leos:origin="ec" id="imp_art_d1e2948_SFNKnF_kn33y9">
+                        <aknP leos:origin="ec" id="imp_art_d1e2948_SFNKnF_rS4NWT">The Commission shall make observations
+                            within three months of the date of submission of the programme. The Member State shall
+                            provide to the Commission all necessary additional information and, where appropriate,
+                            revise the proposed programme.
+                        </aknP>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" id="imp_art_d1e2948_SFNKnF_pBRkgn">
+                    <num leos:origin="ec" id="imp_art_d1e2948_SFNKnF_7ZHgNE">4.</num>
+                    <subparagraph leos:origin="ec" id="imp_art_d1e2948_SFNKnF_dxRa7H">
+                        <content leos:origin="ec" id="imp_art_d1e2948_SFNKnF_QvwgLZ">
+                            <aknP leos:origin="ec" id="imp_art_d1e2948_SFNKnF_MOUlfY">In accordance with the
+                                Fund-specific rules, the Commission shall approve each programme no later than six
+                                months following its submission by the Member State concerned, provided that any
+                                observations made by the Commission have been adequately taken into account, but not
+                                before 1 January 2014 or before adoption by the Commission of a decision approving the
+                                Partnership Agreement.
+                            </aknP>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" id="imp_art_d1e2948_SFNKnF_ErRbNv">
+                        <content leos:origin="ec" id="imp_art_d1e2948_SFNKnF_C0I0mQ">
+                            <aknP leos:origin="ec" id="imp_art_d1e2948_SFNKnF_s2yz13">By way of derogation from the
+                                requirement referred to in the first subparagraph, programmes under the European
+                                territorial cooperation goal may be approved by the Commission before the adoption of
+                                the decision approving the Partnership Agreement and dedicated operational programmes
+                                for the YEI referred to in point (a) of the second paragraph of Article 18 of the ESF
+                                Regulation and dedicated programmes referred to in point (b) of the first subparagraph
+                                of Article 39(4) of this Regulation may be approved by the Commission before the
+                                submission of the Partnership Agreement.
+                            </aknP>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+            </article>
+        </aknBody>
+    </bill>
+</akomaNtoso>

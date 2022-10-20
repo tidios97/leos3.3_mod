@@ -1,0 +1,36 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody xml:id="body">
+            <level leos:depth="1" xml:id="level_1">
+                <num>1.</num>
+            </level>
+            <level leos:depth="2" xml:id="level_1_1">
+                <num>1.1.</num>
+            </level>
+            <level leos:depth="3" xml:id="level_1_1_1">
+                <num>1.1.1.</num>
+            </level>
+            <level leos:depth="4" xml:id="level_1_1_1_1">
+                <num>1.1.1.1.</num>
+            </level>
+            <level leos:depth="1" xml:id="level_2">
+                <num>2.</num>
+            </level>
+            <level leos:depth="4" xml:id="level_2_1">
+                <num>1.2.1.2.</num>
+            </level>
+            <level leos:depth="1" xml:id="level_3">
+                <num>3.</num>
+            </level>
+            <level leos:depth="5" xml:id="level_3_1">
+                <num>3.1</num>
+            </level>
+            <level leos:depth="2" xml:id="level_3_2">
+                <num>3.1</num>
+            </level>
+            <level leos:depth="3" xml:id="level_3_2_1">
+                <num>3.1.1</num>
+            </level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

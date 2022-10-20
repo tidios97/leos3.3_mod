@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- default group and two more -->
+    <GROUPS group_id="1" name="__world__" displayname="Public"
+        description="Group for everybody" ispublic="1"/>
+
+    <!--  user which is the default group -->
+    <USERS user_id="1" login="demo" sidebar_tutorial_dismissed="1"/>
+</dataset>

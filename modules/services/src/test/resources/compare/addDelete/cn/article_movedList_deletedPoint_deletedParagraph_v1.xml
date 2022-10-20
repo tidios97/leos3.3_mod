@@ -1,0 +1,140 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:editable="false" leos:deletable="false" leos:origin="ec" xml:id="akn_article_XcvwoL">
+                <num leos:origin="ec" leos:editable="false" xml:id="akn_article_XcvwoL_k5uUFS">Article 2</num>
+                <heading leos:origin="ec" xml:id="akn_article_XcvwoL_qeNIXb">Definitions</heading>
+                <paragraph xml:id="akn_article_XcvwoL-par1" leos:origin="ec" leos:depth="1">
+                    <num xml:id="akn_article_XcvwoL_gEdPHb" leos:origin="ec">1.</num>
+                    <subparagraph leos:origin="ec" xml:id="transformed_akn_article_XcvwoL-par1" leos:softaction="trans"
+                                  leos:softactionroot="true" leos:softuser="izaremem"
+                                  leos:softdate="2020-07-08T22:27:15.445+02:00">
+                        <content xml:id="akn_article_XcvwoL_H5BkpR" leos:origin="ec">
+                            <p xml:id="akn_article_XcvwoL_U7pBfL" leos:origin="ec">For the purposes of this Regulation,
+                                the definitions in Article 2 of Directive 97/67/EC and in points 1, 2 and 5 of Article 2
+                                of Directive 2011/83/EU apply. In addition, the following definitions apply:
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:softmove_label="MOVED from Article 2(2)" leos:origin="ec"
+                          xml:id="akn_article_XcvwoL_b4Oal7" leos:softaction="move_from" leos:softactionroot="true"
+                          leos:softmove_from="moved_akn_article_XcvwoL_b4Oal7" leos:softuser="izaremem"
+                          leos:softdate="2020-07-08T22:27:15.445+02:00" leos:depth="2">
+                        <point xml:id="akn_point_eP7nLr" leos:origin="cn" leos:softaction="add"
+                               leos:softactionroot="true" leos:softuser="izaremem"
+                               leos:softdate="2020-06-30T10:33:57.870+02:00">
+                            <num xml:id="akn_article_XcvwoL_KI3iCU">(-a)</num>
+                            <content xml:id="akn_article_XcvwoL_r4j1OQ">
+                                <p xml:id="akn_article_XcvwoL_H2AAbE">&quot;parcel&quot; means a postal item containing
+                                    goods with or without commercial value, other than an item of correspondence, with a
+                                    weight not exceeding 31,5 kg;
+                                </p>
+                            </content>
+                        </point>
+                        <point leos:softmove_label="MOVED from Article 2(2), point (a)"
+                               xml:id="akn_article_XcvwoL_53bmYj" leos:origin="ec" leos:softaction="move_from"
+                               leos:softactionroot="false" leos:softmove_from="moved_akn_article_XcvwoL_53bmYj"
+                               leos:softuser="izaremem" leos:softdate="2020-07-08T22:27:15.444+02:00">
+                            <num xml:id="akn_article_XcvwoL_sT0ZI6" leos:origin="ec">(a)</num>
+                            <content xml:id="akn_article_XcvwoL_t2PBo3" leos:origin="ec">
+                                <p xml:id="akn_article_XcvwoL_nGsGrz" leos:origin="ec">&quot;parcel delivery services&quot;
+                                    means services involving the clearance, sorting, transport and distribution of
+                                    parcels;
+                                </p>
+                            </content>
+                        </point>
+                        <point leos:softmove_label="MOVED from Article 2(2), point (b)"
+                               xml:id="akn_article_XcvwoL_fLu44z" leos:origin="ec" leos:softaction="move_from"
+                               leos:softactionroot="false" leos:softuser="izaremem"
+                               leos:softdate="2020-07-08T22:27:15.444+02:00"
+                               leos:softmove_from="moved_akn_article_XcvwoL_fLu44z">
+                            <num xml:id="akn_article_XcvwoL_YMpUZR" leos:origin="ec">(b)</num>
+                            <content xml:id="akn_article_XcvwoL_m1R6TQ" leos:origin="ec">
+                                <p xml:id="akn_article_XcvwoL_dJA7qQ" leos:origin="ec">&quot;parcel delivery service
+                                    provider&quot; means an undertaking that provides one or more parcel delivery
+                                    services with the exception of undertakings established in one Member State alone,
+                                    that only provide domestic parcel delivery services as part of a sales contract and
+                                    as part of the contract personally deliver goods that are subject of that contract
+                                    to the user;
+                                </p>
+                            </content>
+                        </point>
+                        <point xml:id="akn_point_QgWtq5" leos:origin="cn" leos:softaction="add"
+                               leos:softactionroot="true" leos:softuser="izaremem"
+                               leos:softdate="2020-07-03T16:43:55.134+02:00">
+                            <num xml:id="akn_article_XcvwoL_Y1sL0o">(ba)</num>
+                            <content xml:id="akn_article_XcvwoL_bSidWt">
+                                <p xml:id="akn_article_XcvwoL_8QEEJv">&quot;subcontractor&quot; means an undertaking
+                                    that provides the clearance, sorting, transport or distribution of parcels for the
+                                    parcel delivery service provider.
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="deleted_akn_article_XcvwoL_evkafx" leos:depth="1"
+                           leos:editable="false" leos:deletable="false" leos:softaction="del" leos:softactionroot="true"
+                           leos:softuser="izaremem" leos:softdate="2020-07-08T22:35:37.997+02:00">
+                    <num leos:origin="ec" xml:id="deleted_akn_article_XcvwoL_Vgmlxc">2.</num>
+                    <subparagraph leos:origin="ec" xml:id="deleted_akn_article_XcvwoL_gYemRF" leos:editable="false"
+                                  leos:deletable="false" leos:softaction="del" leos:softactionroot="false"
+                                  leos:softuser="izaremem" leos:softdate="2020-07-08T22:35:37.996+02:00">
+                        <content leos:origin="ec" xml:id="deleted_akn_article_XcvwoL_MWu5cd">
+                            <p leos:origin="ec" xml:id="deleted_akn_article_XcvwoL_AX9lvt">In addition to the
+                                definitions referred to in paragraph 1, the following definitions shall apply:
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:softmove_label="MOVED to Article 2(1)" leos:origin="ec"
+                          xml:id="moved_akn_article_XcvwoL_b4Oal7" leos:editable="false" leos:deletable="false"
+                          leos:softaction="move_to" leos:softactionroot="true"
+                          leos:softmove_to="akn_article_XcvwoL_b4Oal7" leos:softuser="izaremem"
+                          leos:softdate="2020-07-08T22:27:15.446+02:00">
+                        <point leos:softmove_label="MOVED to Article 2(1), point (a)"
+                               xml:id="moved_akn_article_XcvwoL_53bmYj" leos:origin="ec" leos:editable="false"
+                               leos:deletable="false" leos:softaction="move_to" leos:softactionroot="false"
+                               leos:softmove_to="akn_article_XcvwoL_53bmYj" leos:softuser="izaremem"
+                               leos:softdate="2020-07-08T22:27:15.445+02:00">
+                            <num xml:id="moved_akn_article_XcvwoL_sT0ZI6" leos:origin="ec">(a)</num>
+                            <content xml:id="moved_akn_article_XcvwoL_t2PBo3" leos:origin="ec">
+                                <p xml:id="moved_akn_article_XcvwoL_nGsGrz" leos:origin="ec">&quot;parcel delivery
+                                    services&quot; means services involving the clearance, sorting, transport and
+                                    distribution of parcels;
+                                </p>
+                            </content>
+                        </point>
+                        <point leos:softmove_label="MOVED to Article 2(1), point (b)"
+                               xml:id="moved_akn_article_XcvwoL_fLu44z" leos:origin="ec" leos:editable="false"
+                               leos:deletable="false" leos:softaction="move_to" leos:softactionroot="false"
+                               leos:softmove_to="akn_article_XcvwoL_fLu44z" leos:softuser="izaremem"
+                               leos:softdate="2020-07-08T22:27:15.445+02:00">
+                            <num xml:id="moved_akn_article_XcvwoL_YMpUZR" leos:origin="ec">(b)</num>
+                            <content xml:id="moved_akn_article_XcvwoL_m1R6TQ" leos:origin="ec">
+                                <p xml:id="moved_akn_article_XcvwoL_dJA7qQ" leos:origin="ec">&quot;parcel delivery
+                                    service provider&quot; means an undertaking that provides one or more parcel
+                                    delivery services; undertakings established in one Member State alone, and that only
+                                    provide domestic parcel delivery services as part of a sales contract as defined by
+                                    point 5 of Article 2 of Directive 2011/83/EU and as part of the contract the
+                                    undertaking personally delivers goods that are subject of that contract to the user
+                                    shall not be considered as parcel delivery service provider;
+                                </p>
+                            </content>
+                        </point>
+                        <point xml:id="deleted_akn_article_XcvwoL_fFqOYp" leos:origin="ec" leos:editable="false"
+                               leos:deletable="false" leos:softaction="del" leos:softactionroot="true"
+                               leos:softuser="izaremem" leos:softdate="2020-07-03T16:35:21.495+02:00">
+                            <num xml:id="deleted_akn_article_XcvwoL_dx4hcd" leos:origin="ec">(c)</num>
+                            <content xml:id="deleted_akn_article_XcvwoL_vFaMIe" leos:origin="ec">
+                                <p xml:id="deleted_akn_article_XcvwoL_mPnxLj" leos:origin="ec">&quot;terminal rates&quot;
+                                    means remuneration from the originating universal service provider to the
+                                    destination universal service provider for the costs of cross-border parcel delivery
+                                    services in the destination Member State.
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

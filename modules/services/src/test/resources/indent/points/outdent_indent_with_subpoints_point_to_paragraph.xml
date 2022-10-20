@@ -1,0 +1,300 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" xml:id="akn_article_kehgfi">
+                <num leos:editable="false" leos:origin="ec" xml:id="akn_article_kehgfi_ANpiSA">Article 1</num>
+                <heading leos:origin="ec" xml:id="akn_article_kehgfi_gfy9Vy">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="akn_article_kehgfi-par1">
+                    <subparagraph leos:origin="ec" xml:id="akn_article_kehgfi_fKgDYR">
+                        <content leos:origin="ec" xml:id="akn_article_kehgfi_5KimEF">
+                            <p leos:origin="ec" xml:id="akn_article_kehgfi_YzAClt">objectives and reduction targets to
+                                eliminate the use of mercuryand mercury componational objectives and reduction targets
+                                to eliminate the use of mercury and mercury compounds;national objectives and reduction
+                                targets to eliminate the use of mercury and mercury compoundsnational o
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" xml:id="akn_article_kehgfi_SqQlT5">
+                        <content leos:origin="ec" xml:id="akn_article_kehgfi_MlbsF5">
+                            <p leos:origin="ec" xml:id="akn_article_kehgfi_lPkxjP">sub - bjectives and reduction targets
+                                to eliminate the use of mercury and mercury compoundsnational objectives and reduction
+                                targets to eliminate the use of mercury and mercury compoundsundsnational objectives and
+                                reduction targets to eliminate the use of mercury and mercury compounds;national object
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph leos:origin="ec" xml:id="akn_article_kehgfi_6MFQQu">
+                        <content leos:origin="ec" xml:id="akn_article_kehgfi_buB8hY">
+                            <p leos:origin="ec" xml:id="akn_article_kehgfi_PAM8AI">sub - tives and reduction targets to
+                                eliminate the use of mercury and mercury compoundsnational objectives and reduction
+                                targets to eliminate the use of  mercury and mercury compoundsnational objectives and
+                                reduction targets to eliminate the c use of mercury and mercury compounds
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="ec" xml:id="akn_article_kehgfi_gcqulC">
+                        <point leos:origin="ec" xml:id="akn_article_kehgfi_vGg4Ik">
+                            <num leos:origin="ec" xml:id="akn_article_kehgfi_MUmEFY">(a)</num>
+                            <alinea leos:origin="ec" xml:id="akn_article_kehgfi_lgt5Qg">
+                                <content leos:origin="ec" xml:id="akn_article_kehgfi_qQV1JS">
+                                    <p leos:origin="ec" xml:id="akn_article_kehgfi_yrmukB">vtives and reduction targets
+                                        to eliminate the use of mercury and mercury compoundsnational objectives and
+                                        reduction targets to eliminate the use of mercury and mercury compoundsnational
+                                        objectives and reduction targets to eliminate the use of m
+                                    </p>
+                                </content>
+                            </alinea>
+                            <list leos:origin="ec" xml:id="akn_article_kehgfi_VaQgsq">
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_Cwu3R0">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_Swph04">(i)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_5ajzQK">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_HVCa6s">tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to  eliminate the use of mercury and
+                                            mercury compoundsnational objectives and reduction targets to eliminate the
+                                            use of mercury and mercury  compoundsercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:indent-origin-indent-level="2" leos:indent-origin-num="(ii)"
+                           leos:indent-origin-num-id="akn_article_kehgfi_yW8uJ1" leos:indent-origin-num-origin="ec"
+                           leos:indent-origin-type="POINT" leos:indent-unumbered-paragraph="true" leos:origin="ec"
+                           leos:softaction="trans" leos:softactionroot="true"
+                           leos:softdate="2022-06-16T22:54:37.179+02:00" leos:softuser="demo(DGT)"
+                           xml:id="transformed_akn_article_kehgfi_OzGVjt">
+                    <subparagraph leos:origin="ec" xml:id="akn_article_kehgfi_OzGVjt">
+                        <content leos:origin="ec" xml:id="akn_article_kehgfi_GthtE1">
+                            <p leos:origin="ec" xml:id="akn_article_kehgfi_21g1WT">tives and reduction targets to
+                                eliminate the use of ercury and mercury compoundsnational objectives and reduction
+                                targets  to eliminate the use of mercury and mercury compoundsnational objectives and
+                                reduction targets to eliminate the use of mercury and mercury compounds
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <list class="leos-content-soft-new" leos:origin="ec" xml:id="_lis_Erzk9Z">
+                        <point leos:indent-origin-indent-level="2" leos:indent-origin-num="(iii)"
+                               leos:indent-origin-num-id="akn_article_kehgfi_v2MmW6" leos:indent-origin-num-origin="ec"
+                               leos:indent-origin-type="FIRST_SUBPOINT" leos:origin="ec"
+                               xml:id="akn_article_kehgfi_CxUWm4">
+                            <num leos:origin="cn" xml:id="akn_article_kehgfi_v2MmW6">(
+                                <span class="leos-content-soft-removed">iii</span>
+                                <span class="leos-content-soft-new">-b</span>)
+                            </num>
+                            <alinea leos:origin="ec" xml:id="akn_article_kehgfi_XFoSmg">
+                                <content leos:origin="ec" xml:id="akn_article_kehgfi_NmNvnw">
+                                    <p leos:origin="ec" xml:id="akn_article_kehgfi_jKG71Y">tives and reduction targets
+                                        to eliminate the use of mercury and mercury compoundsnational objectives and
+                                        reduction targets to eliminate the use of mercury
+                                    </p>
+                                </content>
+                            </alinea>
+                            <alinea leos:origin="ec" xml:id="akn_article_kehgfi_3EBssM">
+                                <content leos:origin="ec" xml:id="akn_article_kehgfi_n4oGZ9">
+                                    <p leos:origin="ec" xml:id="akn_article_kehgfi_cKZhTX">sub/alinea - and mercury
+                                        compoundsnational objectives and reduction targettives and reduction targets to
+                                        eliminate the use of mercury and mercury compoundsnational objectives and
+                                        reduction targets to eliminate the use
+                                    </p>
+                                </content>
+                            </alinea>
+                            <alinea leos:origin="ec" xml:id="akn_article_kehgfi_7hZvzx">
+                                <content leos:origin="ec" xml:id="akn_article_kehgfi_ftvdgM">
+                                    <p leos:origin="ec" xml:id="akn_article_kehgfi_BCyJp8">sub/alinea - of mercury and
+                                        mercury compoundsnational objectives and reduction targets to eliminate the use
+                                        of mercury and mercury compoundss to eliminate the use of mercury and mercury
+                                        compounds
+                                    </p>
+                                </content>
+                            </alinea>
+                            <list class="leos-content-soft-new" leos:origin="ec" xml:id="_lis_iMMaAk">
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_bspQze">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_zFXkrv">(iv)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_an2h1a">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_hkrPfn">tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to eliminate the use of mercury and
+                                            mercury compoundsnational objectives and reduction targets to eliminate the
+                                            use of mercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_S2XOM9">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_oQpX1Z">(v)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_9bqh7q">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_pgqA5J">tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to eliminate the use of mercury and mercury
+                                            compoundsnational objectives and reduction targets to eliminate the use of
+                                            mercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_TpiNPc">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_OoPoXq">(vi)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_Atasy7">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_X8P6hk">tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to eliminate the use of mercury and mercury
+                                            compoundsnational objectives and reduction targets to eliminate the use of
+                                            mercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_EWCOvC">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_wfhrVh">(vii)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_8qWWx2">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_E3PWfB">tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to eliminate the use of mercury and mercury
+                                            compoundsnational objectives and reduction targets to eliminate the use of
+                                            mercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_40ehFW">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_d571Rv">(viii)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_OfhTqw">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_cIorlU">tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to eliminate the use of mercury and mercury
+                                            compoundsnational objectives and reduction targets to eliminate the use of
+                                            mercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_TfmR2a">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_7XnvUY">(ix)</num>
+                                    <alinea leos:origin="ec" xml:id="akn_article_kehgfi_s68WuO">
+                                        <content leos:origin="ec" xml:id="akn_article_kehgfi_SvXLgT">
+                                            <p leos:origin="ec" xml:id="akn_article_kehgfi_HUMKyX">tives and reduction
+                                                targets to eliminate the use of mercury and mercury compoundsnational
+                                                objectives and reduction targets to eliminate the use of mercury and
+                                                mercury compoundsnational objectives and reduction targets to eliminate
+                                                the use of mercury and mercury compounds
+                                            </p>
+                                        </content>
+                                    </alinea>
+                                    <list leos:origin="ec" xml:id="akn_article_kehgfi_AyLL6n">
+                                        <point leos:origin="ec" xml:id="akn_article_kehgfi_JJs3Xv">
+                                            <num leos:origin="ec" xml:id="akn_article_kehgfi_aLrTmi">(1)</num>
+                                            <content leos:origin="ec" xml:id="akn_article_kehgfi_EzYC5D">
+                                                <p leos:origin="ec" xml:id="akn_article_kehgfi_YmCEiA">tives and
+                                                    reduction targets to eliminate the use of mercury and mercury
+                                                    compoundsnational objectives and reduction targets to eliminate the
+                                                    use of mercury and mercury compoundsnational objectives and
+                                                    reduction targets to eliminate the use of mercury and mercury
+                                                    compounds
+                                                </p>
+                                            </content>
+                                        </point>
+                                        <point leos:origin="ec" xml:id="akn_article_kehgfi_xfMu4V">
+                                            <num leos:origin="ec" xml:id="akn_article_kehgfi_KBeJSu">(2)</num>
+                                            <content leos:origin="ec" xml:id="akn_article_kehgfi_7zv2N3">
+                                                <p leos:origin="ec" xml:id="akn_article_kehgfi_GDLTrg">tives and
+                                                    reduction targets to eliminate the use of mercury and mercury
+                                                    compoundsnational objectives and reduction targets to eliminate the
+                                                    use of mercury and mercury compoundsnational objectives and
+                                                    reduction targets to eliminate the use of mercury and mercury
+                                                    compounds
+                                                </p>
+                                            </content>
+                                        </point>
+                                        <point leos:origin="ec" xml:id="akn_article_kehgfi_liFwBH">
+                                            <num leos:origin="ec" xml:id="akn_article_kehgfi_mc9qZ4">(3)</num>
+                                            <alinea leos:origin="ec" xml:id="akn_article_kehgfi_9hQjgL">
+                                                <content leos:origin="ec" xml:id="akn_article_kehgfi_TdDSFn">
+                                                    <p leos:origin="ec" xml:id="akn_article_kehgfi_Qwihmb">tives and
+                                                        reduction targets to eliminate the use of mercury and mercury
+                                                        compoundsnational objectives and reduction targets to eliminate
+                                                        the use of
+                                                    </p>
+                                                </content>
+                                            </alinea>
+                                            <alinea leos:origin="ec" xml:id="akn_article_kehgfi_1LJJf2">
+                                                <content leos:origin="ec" xml:id="akn_article_kehgfi_GPPx1t">
+                                                    <p leos:origin="ec" xml:id="akn_article_kehgfi_2s7PQf">alinea -
+                                                        mercury and mercury compoundsnational objectives and reduction
+                                                        targets to eliminate the use of mercury and mercury compounds
+                                                    </p>
+                                                </content>
+                                            </alinea>
+                                            <list leos:origin="ec" xml:id="akn_article_kehgfi_ORCrsm">
+                                                <indent leos:origin="ec" xml:id="akn_article_kehgfi_91ppQl">
+                                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_H3w6QU">-</num>
+                                                    <alinea leos:origin="ec" xml:id="akn_article_kehgfi_8n1Pzm">
+                                                        <content leos:origin="ec" xml:id="akn_article_kehgfi_YKd2jQ">
+                                                            <p leos:origin="ec" xml:id="akn_article_kehgfi_7pk2JV">tives
+                                                                and reduction targets to eliminate the use of mercury
+                                                                and mercury compoundsnational objectives and reduction
+                                                                targets to eliminate the use of mercury and mercury
+                                                                compoundsnational
+                                                            </p>
+                                                        </content>
+                                                    </alinea>
+                                                    <alinea leos:origin="ec" xml:id="akn_article_kehgfi_TLLJhK">
+                                                        <content leos:origin="ec" xml:id="akn_article_kehgfi_MvnLoY">
+                                                            <p leos:origin="ec" xml:id="akn_article_kehgfi_JXaDCm">
+                                                                alinea  - objectives and reduction targets to eliminate
+                                                                the use of mercury and mercury compounds
+                                                            </p>
+                                                        </content>
+                                                    </alinea>
+                                                </indent>
+                                            </list>
+                                        </point>
+                                        <point leos:origin="ec" xml:id="akn_article_kehgfi_AHgpcz">
+                                            <num leos:origin="ec" xml:id="akn_article_kehgfi_Om0kcY">(4)</num>
+                                            <content leos:origin="ec" xml:id="akn_article_kehgfi_XvRxDO">
+                                                <p leos:origin="ec" xml:id="akn_article_kehgfi_QjtvPV">back, tives and
+                                                    reduction targets to eliminate the use of mercury and mercury
+                                                    compoundsnational objectives and reduction targets to eliminate the
+                                                    use of mercury and mercury compoundsnational objectives and
+                                                    reduction targets to eliminate the use of mercury and mercury
+                                                    compounds
+                                                </p>
+                                            </content>
+                                        </point>
+                                    </list>
+                                </point>
+                                <point leos:origin="ec" xml:id="akn_article_kehgfi_qmDhMi">
+                                    <num leos:origin="ec" xml:id="akn_article_kehgfi_ZHGJcL">(x)</num>
+                                    <content leos:origin="ec" xml:id="akn_article_kehgfi_mHAaVG">
+                                        <p leos:origin="ec" xml:id="akn_article_kehgfi_gSGFq9">back, tives and reduction
+                                            targets to eliminate the use of mercury and mercury compoundsnational
+                                            objectives and reduction targets to eliminate the use of mercury and mercury
+                                            compoundsnational objectives and reduction targets to eliminate the use of
+                                            mercury and mercury compounds
+                                        </p>
+                                    </content>
+                                </point>
+                            </list>
+                        </point>
+                        <point leos:origin="ec" xml:id="akn_article_kehgfi_iXwNId">
+                            <num leos:origin="ec" xml:id="akn_article_kehgfi_b21tY9">(b)</num>
+                            <content leos:origin="ec" xml:id="akn_article_kehgfi_STFJry">
+                                <p leos:origin="ec" xml:id="akn_article_kehgfi_RuOxxN">And reduction targets to
+                                    eliminate the use of mercury and mercury compoundsnational objectives and reduction
+                                    targets to eliminatethe use of mercury and mercury compoundsobjectives and reduction
+                                    targets to eliminatethe use of mercury and mercury compounds
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="akn_article_kehgfi_KTfwaN">
+                    <content leos:origin="ec" xml:id="akn_article_kehgfi_K0bUlF">
+                        <p leos:origin="ec" xml:id="akn_article_kehgfi_B236LV">Paragraf tional objectives and reduction
+                            targets to eliminate the use of mercury and mercury compounds;national objectives and
+                            reduction targets to eliminate the use of mercury and mercury compoundsnational objectives
+                            and reduction targets to eliminate the use of mercury and mercury compoundsnational
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

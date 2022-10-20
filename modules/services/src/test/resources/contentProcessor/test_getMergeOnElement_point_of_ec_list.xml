@@ -1,0 +1,89 @@
+<root xml:id="akn_f2ejkO" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" leos:editable="false" leos:deletable="false" xml:id="imp_art_d1e1276_XAPlpX">
+        <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_PCoY8I">Article 5</num>
+        <heading leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_yDHX83">Definitions</heading>
+        <paragraph leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_494qUn">
+            <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_gxZ46e">1.</num>
+            <subparagraph leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_KyB4qy">
+                <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_nBJK4i">
+                    <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_aW9qa6">For the purposes of this Regulation, the following definitions shall
+                        apply:
+                    </p>
+                </content>
+            </subparagraph>
+            <list leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_J7TbDh">
+                <point leos:origin="ec" xml:id="deleted_imp_art_d1e1276_XAPlpX_4K2GdA" leos:editable="false" leos:deletable="false"
+                       leos:softaction="del" leos:softactionroot="true" leos:softuser="demo" leos:softdate="1900-01-01T00:00:00.000+01:00">
+                    <num leos:origin="ec" xml:id="deleted_imp_art_d1e1276_XAPlpX_jh6oZJ">(c)</num>
+                    <content leos:origin="ec" xml:id="deleted_imp_art_d1e1276_XAPlpX_fYqac8">
+                        <p leos:origin="ec" xml:id="deleted_imp_art_d1e1276_XAPlpX_Eif3cN">firms which are not authorised to provide the ancillary
+                            service referred to in point (1) of Section B of Annex I to Directive 2004/39/EC, which provide only one or more of the
+                            investment services and activities listed in points 1, 2, 4 and 5 of Section A of Annex I to that Directive, and which are
+                            not permitted to hold money or securities belonging to their clients and which for that reason may not at any time place
+                            themselves in debt with those clients;
+                        </p>
+                    </content>
+                </point>
+                <point leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_VKPtnz">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_bx6xKW">(1)</num>
+                    <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_syrXR4">
+                        <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_OpsDCb">'credit institution' means an undertaking the business of which is
+                            to take deposits or other repayable funds from the public and to grant credits for its own account;
+                        </p>
+                    </content>
+                </point>
+                <point leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_HMwJok">
+                    <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_TD9PRk">(2)</num>
+                    <alinea leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_vPsN8G">
+                        <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_Atnkut">
+                            <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_Z5vpZD">'investment firm' means a person as defined in point (1) of
+                                Article 4(1) of Directive 2004/39/EC, which is subject to the requirements imposed by that Directive, excluding the
+                                following:
+                            </p>
+                        </content>
+                    </alinea>
+                    <list leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_aZi7xk">
+                        <point leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_X9uQs2">
+                            <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_G73ZDv">(a)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_HMkDsZ">
+                                <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_oKMA14">credit institutions;</p>
+                            </content>
+                        </point>
+                        <point leos:softmove_label="MOVED from point (c)" leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_4K2GdA"
+                               leos:softaction="move_from" leos:softactionroot="true" leos:softmove_from="moved_imp_art_d1e1276_XAPlpX_4K2GdA"
+                               leos:softuser="demo" leos:softdate="1900-01-01T00:00:00.000+01:00">
+                            <num leos:origin="cn" xml:id="imp_art_d1e1276_XAPlpX_jh6oZJ">(aa)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_fYqac8">
+                                <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_Eif3cN">firms which are not authorised to provide the ancillary
+                                    service referred to in point (1) of Section B of Annex I to Directive 2004/39/EC, which provide only one or more
+                                    of the investment services and activities listed in points 1, 2, 4 and 5 of Section A of Annex I to that
+                                    Directive, and which are not permitted to hold money or securities belonging to their clients and which for that
+                                    reason may not at any time place themselves in debt with those clients;
+                                </p>
+                            </content>
+                        </point>
+                        <point leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_bD74NR">
+                            <num leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_Sk62PF">(b)</num>
+                            <content leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_4sLVEG">
+                                <p leos:origin="ec" xml:id="imp_art_d1e1276_XAPlpX_vpwYsL">local firms;</p>
+                            </content>
+                        </point>
+                        <point leos:softmove_label="MOVED to point (aa)" leos:origin="ec" xml:id="moved_imp_art_d1e1276_XAPlpX_4K2GdA"
+                               leos:editable="false" leos:deletable="false" leos:softaction="move_to" leos:softactionroot="true"
+                               leos:softmove_to="imp_art_d1e1276_XAPlpX_4K2GdA" leos:softuser="demo" leos:softdate="1900-01-01T00:00:00.000+01:00">
+                            <num leos:origin="ec" xml:id="moved_imp_art_d1e1276_XAPlpX_jh6oZJ">(c)</num>
+                            <content leos:origin="ec" xml:id="moved_imp_art_d1e1276_XAPlpX_fYqac8">
+                                <p leos:origin="ec" xml:id="moved_imp_art_d1e1276_XAPlpX_Eif3cN">firms which are not authorised to provide the
+                                    ancillary service referred to in point (1) of Section B of Annex I to Directive 2004/39/EC, which provide only one
+                                    or more of the investment services and activities listed in points 1, 2, 4 and 5 of Section A of Annex I to that
+                                    Directive, and which are not permitted to hold money or securities belonging to their clients and which for that
+                                    reason may not at any time place themselves in debt with those clients;
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </point>
+            </list>
+        </paragraph>
+    </article>
+</root>

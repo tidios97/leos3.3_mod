@@ -1,0 +1,54 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Article 1 content</p>
+                    </content>
+                </paragraph>
+            </article>
+
+            <article xml:id="art_1a" leos:softaction="add" leos:softactionroot="true" leos:softuser="jane"
+                     leos:softdate="2020-09-21T21:00:00.000+00:00" leos:depth="1" leos:origin="cn">
+                <num xml:id="art_1a_num" leos:editable="false">Article 1a</num>
+                <heading xml:id="art_1a_heading">Article heading...</heading>
+                <paragraph leos:origin="cn" leos:softaction="add" leos:softuser="jane"
+                           leos:softdate="2020-09-21T21:00:00.000+00:00" xml:id="art_1a-par1" leos:depth="1">
+                    <num xml:id="art_1a_para_1_num">1.</num>
+                    <subparagraph leos:origin="cn" xml:id="art_1a_para_1_subpara_1" leos:softaction="add"
+                                  leos:softactionroot="true" leos:softuser="jane"
+                                  leos:softdate="2020-09-21T21:00:00.000+00:00">
+                        <content xml:id="art_1a_para_1_subpara_1_content">
+                            <p xml:id="art_1a_para_1_subpara_1_content_p">Article1a startingContent</p>
+                        </content>
+                    </subparagraph>
+                    <list xml:id="art_1a_list" leos:softaction="add" leos:softactionroot="true" leos:softuser="jane"
+                          leos:softdate="2020-09-21T21:00:00.000+00:00" leos:origin="cn" leos:depth="2">
+                        <point leos:origin="cn" leos:softaction="add" leos:softuser="jane"
+                               leos:softdate="2020-09-21T21:00:00.000+00:00" xml:id="art_1a_point_a">
+                            <num xml:id="art_1a_point_a_num" leos:editable="false">(a)</num>
+                            <content xml:id="art_1a_point_a_content">
+                                <p xml:id="art_1a_point_a_content_p">startingContentPointA</p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+            </article>
+
+            <article leos:origin="ec" xml:id="art_2" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_2__num">Article 2</num>
+                <heading leos:origin="ec" xml:id="art_2__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_2__para_1" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_2__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_2__para_1__content">
+                        <p leos:origin="ec" xml:id="art_2__para_1__content__p">Article 2 content</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

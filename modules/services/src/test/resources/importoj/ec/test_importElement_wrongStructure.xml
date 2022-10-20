@@ -1,0 +1,88 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+    <article xml:id="art_1">
+        <num xml:id="imp_art_23_P99mof_l82HBa">Article 25</num>
+        <heading xml:id="imp_art_23_P99mof_sxMEnk">heading article</heading>
+
+        <paragraph xml:id="imp_art_23_P99mof_aAN1ei">
+            <num xml:id="imp_art_23_P99mof_J4LSx4">1.</num>
+            <subparagraph xml:id="imp_art_23_P99mof_bMsjS9">
+                <content xml:id="imp_art_23_P99mof_dP8nUz">
+                    <p xml:id="imp_art_23_P99mof_mAXTwB">Article 25, paragraph 1, first subparagraph</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+
+        <paragraph xml:id="imp_art_23_P99mof_58pYPx">
+            <num xml:id="imp_art_23_P99mof_h0d1hy">2.</num>
+            <subparagraph xml:id="imp_art_23_P99mof_Qk0CtG">
+                <content xml:id="imp_art_23_P99mof_prZB8Z">
+                    <p xml:id="imp_art_23_P99mof_gwVoMB">Article 25, paragraph 2, first subparagraph</p>
+                </content>
+            </subparagraph>
+            <list xml:id="imp_art_23_P99mof_u93htc">
+                <point xml:id="imp_art_23_P99mof_zfNq9s">
+                    <num xml:id="imp_art_23_P99mof_FC1tcm">(a)</num>
+                    <alinea xml:id="imp_art_23_P99mof_C0cyPH">
+                        <content xml:id="imp_art_23_P99mof_bwovMa">
+                            <p xml:id="imp_art_23_P99mof_CCX9D5">Article 25, paragraph 2, Point (a), first alinea</p>
+                        </content>
+                    </alinea>
+                    <alinea xml:id="imp_art_23_P99mof_kUIIeV">
+                        <content xml:id="imp_art_23_P99mof_ThoMVz">
+                            <p xml:id="imp_art_23_P99mof_0615td">Article 25, paragraph 2, Point (b), second alinea</p>
+                        </content>
+                    </alinea>
+                </point>
+                <point xml:id="imp_art_23_P99mof_fD6PFK">
+                    <num xml:id="imp_art_23_P99mof_g7iGYJ">(b)</num>
+                    <alinea xml:id="imp_art_23_P99mof_i4rCY2">
+                        <content xml:id="imp_art_23_P99mof_DJx4Q8">
+                            <p xml:id="imp_art_23_P99mof_8fYIul">Article 25, paragraph 2, Point (b), first alinea</p>
+                        </content>
+                    </alinea>
+                    <alinea xml:id="imp_art_23_P99mof_LYUT0e">
+                        <content xml:id="imp_art_23_P99mof_znCsOX">
+                            <p xml:id="imp_art_23_P99mof_n8tcjP">Article 25, paragraph 2, Point (b), second alinea</p>
+                        </content>
+                    </alinea>
+                    <list xml:id="imp_art_23_P99mof_SQ8BMd">
+                        <indent xml:id="imp_art_23_P99mof_ydKJie">
+                            <num xml:id="imp_art_23_P99mof_hERt8s">-</num>
+                            <content xml:id="imp_art_23_P99mof_QQsneg">
+                                <p xml:id="imp_art_23_P99mof_Fkz4lv">Article 25, paragraph 2, Point (b), first indent
+                                </p>
+                            </content>
+                        </indent>
+                        <indent xml:id="imp_art_23_P99mof_2zx3yF">
+                            <num xml:id="imp_art_23_P99mof_HS4TKc">-</num>
+                            <content xml:id="imp_art_23_P99mof_cXJL5d">
+                                <p xml:id="imp_art_23_P99mof_Qx99ji">Article 25, paragraph 2, Point (b), second indent
+                                </p>
+                            </content>
+                        </indent>
+                    </list>
+                </point>
+                <point xml:id="imp_art_23_P99mof_lHSKlW">
+                    <num xml:id="imp_art_23_P99mof_pHLgiE">(c)</num>
+                    <alinea xml:id="imp_art_23_P99mof_aVESKN">
+                        <content xml:id="imp_art_23_P99mof_NdRXK8">
+                            <p xml:id="imp_art_23_P99mof_NEWqze">Article 25, paragraph 2, Point (c), first alinea</p>
+                        </content>
+                    </alinea>
+                    <alinea xml:id="imp_art_23_P99mof_m5xD3y">
+                        <content xml:id="imp_art_23_P99mof_0u6LpQ">
+                            <p xml:id="imp_art_23_P99mof_pPg6PJ">Article 25, paragraph 2, Point (c), second alinea</p>
+                        </content>
+                    </alinea>
+                </point>
+            </list>
+        </paragraph>
+        <paragraph xml:id="imp_art_23_P99mof_h8IbPR">
+            <num xml:id="imp_art_23_P99mof_nCaALw">3.</num>
+            <content xml:id="imp_art_23_P99mof_bsE5nj">
+                <p xml:id="imp_art_23_P99mof_fq1R1F">Article 25, paragraph 3</p>
+            </content>
+        </paragraph>
+    </article>
+</akomaNtoso>
+            

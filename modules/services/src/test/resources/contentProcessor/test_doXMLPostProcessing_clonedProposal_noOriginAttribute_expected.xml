@@ -1,0 +1,78 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <meta>
+            <proprietary source="~_leos">
+                <leos:ref>bill_ckq9l0l140009jg019s8b4k2a</leos:ref>
+            </proprietary>
+        </meta>
+        <body xml:id="body">
+            <article leos:deletable="false" leos:editable="false" leos:origin="ls" leos:softaction="add"
+                     leos:softdate="2022-06-17T12:00:22.911+02:00" leos:softuser="demo(DIGIT)" xml:id="art_1">
+                <num leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:deletable="false" leos:depth="1" leos:editable="false" leos:origin="ls"
+                           leos:softaction="move_to" leos:softactionroot="true"
+                           leos:softdate="2020-10-07T16:55:04.311+02:00" leos:softmove_label="MOVED to art_1__para_1"
+                           leos:softmove_to="art_1__para_1" leos:softuser="jane" xml:id="moved_art_1__para_1">
+                    <num xml:id="moved_art_1__para_1__num">1.</num>
+                    <content xml:id="moved_art_1__para_1__content">
+                        <aknp xml:id="moved_art_1__para_1__content__p">Paragraph 1</aknp>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:origin="ls" leos:softaction="add" leos:softdate="2022-06-17T12:00:22.911+02:00"
+                     leos:softuser="demo(DIGIT)" xml:id="akn_y6OhzY">
+                <num class="ArticleNumber" xml:id="akn_y6OhzY_8zGjMY">Article 3</num>
+                <paragraph leos:origin="ls" leos:softaction="add" leos:softdate="2022-06-17T12:00:22.911+02:00"
+                           leos:softuser="demo(DIGIT)" xml:id="akn_y6OhzY_wXhbLC">
+                    <num class="Paragraph(numbered)" xml:id="akn_y6OhzY_9o7UGo">1.</num>
+                    <content xml:id="akn_y6OhzY_oJOy7x">
+                        <aknp class="Paragraph(numbered)" xml:id="akn_y6OhzY_GugpQ2">Subject to paragraph 1, Article 3
+                            <authorialNote marker="1" xml:id="akn_y6OhzY_wmc6rE">
+                                <aknp xml:id="akn_y6OhzY_t0Un7D">TestNote1</aknp>
+                            </authorialNote>
+                        </aknp>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ls" leos:softaction="add" leos:softdate="2022-06-17T12:00:22.911+02:00"
+                           leos:softuser="demo(DIGIT)" xml:id="akn_y6OhzY_Ghb2wp">
+                    <num xml:id="akn_y6OhzY_XjbDX8">2.</num>
+                    <content xml:id="akn_y6OhzY_MCt6zb">
+                        <aknp class="Paragraph(numbered)" xml:id="akn_y6OhzY_N4NyBk">Par 2</aknp>
+                    </content>
+                </paragraph>
+            </article>
+            <part xml:id="part_1">
+                <num xml:id="akn_U6JVmg">Part I</num>
+                <heading xml:id="akn_gFxums">Part heading...</heading>
+                <chapter leos:depth="2" xml:id="chapter_1">
+                    <num xml:id="akn_9Stf16">Chapter 1</num>
+                    <heading xml:id="akn_LFvufQ">Chapter heading...</heading>
+                    <article leos:deletable="false" leos:editable="false" leos:origin="ls" leos:softaction="add"
+                             leos:softdate="2022-06-17T12:00:22.911+02:00" leos:softuser="demo(DIGIT)" xml:id="art_2">
+                        <num leos:editable="false" xml:id="art_2__num">Article 2</num>
+                        <heading xml:id="art_2__heading">Scope</heading>
+                        <paragraph leos:depth="1" leos:origin="ls" leos:softaction="add"
+                                   leos:softdate="2022-06-17T12:00:22.911+02:00" leos:softuser="demo(DIGIT)"
+                                   xml:id="art_2__para_1">
+                            <num xml:id="art_2__para_1__num">1.</num>
+                            <content xml:id="art_2__para_1__content">
+                                <aknp xml:id="art_2__para_1__content__p">Paragraph 1 of Article 2</aknp>
+                            </content>
+                        </paragraph>
+                        <paragraph leos:depth="1" leos:origin="ls" leos:softaction="move_from"
+                                   leos:softactionroot="true" leos:softdate="2020-10-07T16:55:04.317+02:00"
+                                   leos:softmove_from="moved_art_1__para_1"
+                                   leos:softmove_label="MOVED from moved_art_1__para_1" leos:softuser="jane"
+                                   xml:id="art_1__para_1">
+                            <num leos:origin="cn" xml:id="art_1__para_1__num">1a.</num>
+                            <content xml:id="art_1__para_1__content">
+                                <aknp xml:id="art_1__para_1__content__p">Paragraph 1</aknp>
+                            </content>
+                        </paragraph>
+                    </article>
+                </chapter>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

@@ -1,0 +1,17 @@
+<akomaNtoso>
+    <meta xml:id="test"></meta>
+    <coverPage xml:id="testCover">
+        <container name="x">
+            <p>Dummuy</p>
+        </container>
+        <container name="annexNumber">
+            <p>ValidValue &amp;</p>
+        </container>
+        <container name="test">
+            <p>InValidValue</p>
+        </container>
+    </coverPage>
+    <container name="annexNumber">
+        <p>InValidValue</p>
+    </container>
+</akomaNtoso>

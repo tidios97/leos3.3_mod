@@ -1,0 +1,1707 @@
+<akomaNtoso
+	xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+	xmlns:leos="urn:eu:europa:ec:leos">
+	<bill name="REG">
+		<meta>
+			<identification source="~COM">
+				<FRBRWork>
+					<FRBRthis value="" />
+					<FRBRuri value="" />
+					<FRBRdate date="9999-01-01" name="" />
+					<FRBRauthor href="" />
+					<FRBRcountry value="EU" />
+					<FRBRprescriptive value="true" />
+				</FRBRWork>
+				<FRBRExpression>
+					<FRBRthis value="" />
+					<FRBRuri value="" />
+					<FRBRdate date="9999-01-01" name="" />
+					<FRBRauthor href="" />
+					<FRBRlanguage language="en" />
+					<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+						<akn4eu:akn4euVersion value="4.0.0.0"/>
+					</preservation>
+				</FRBRExpression>
+				<FRBRManifestation>
+					<FRBRthis value="" />
+					<FRBRuri value="" />
+					<FRBRdate date="9999-01-01" name="" />
+					<FRBRauthor href="" />
+				</FRBRManifestation>
+			</identification>
+			<references source="~COM">
+				<TLCLocation xml:id="_BEL_BRU"
+					href="http://publications.europa.eu/resource/authority/place/BEL_BRU"
+					showAs="Brussels" />
+				<TLCOrganization xml:id="CONSIL"
+					href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL"
+					showAs="Council of the European Union" />
+				<TLCOrganization xml:id="EP"
+					href="http://publications.europa.eu/resource/authority/corporate-body/EP"
+					showAs="European Parliament" />
+				<TLCOrganization xml:id="COM"
+					href="http://publications.europa.eu/resource/authority/corporate-body/COM"
+					showAs="European Commission" />
+				<TLCRole xml:id="PRESID"
+					href="http://publications.europa.eu/resource/authority/role/PRESID"
+					showAs="President" />
+				<TLCReference xml:id="REG" name="docType"
+					href="http://publications.europa.eu/resource/authority/resource-type/REG"
+					showAs="Regulation" />
+				<TLCReference xml:id="legalBasis" name="contentSubject"
+					href="http://eurovoc.europa.eu/5456" showAs="Legal basis" />
+				<TLCReference xml:id="language" name="language"
+					href="http://publications.europa.eu/resource/authority/language/ENG"
+					showAs="en" />
+			</references>
+			<proprietary source="~_leos">
+				<leos:templateVersion>2.0.0</leos:templateVersion>
+				<leos:docVersion>0.1.0</leos:docVersion>
+				<leos:template>SJ-023</leos:template>
+				<leos:docTemplate>BL-023</leos:docTemplate>
+				<leos:docPurpose xml:id="proprietary__docpurpose">on cross-border parcel
+					delivery services
+				</leos:docPurpose>
+				<leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+				<leos:ref>bill_ckc1lgwrm000f7x84juc484ux</leos:ref>
+				<leos:refOrigin>bill_ckbkzaz4r000mg6969cbsrot6</leos:refOrigin>
+				<leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN
+					PARLIAMENT AND OF THE COUNCIL
+				</leos:docType>
+				<leos:objectId></leos:objectId>
+			</proprietary>
+		</meta>
+		<preface leos:origin="ec" xml:id="preface">
+			<longTitle leos:origin="ec" xml:id="preface__longtitle">
+				<p leos:origin="ec" xml:id="preface__longtitle__p">
+					<docStage leos:origin="ec"
+						xml:id="preface__longtitle__p__docstage">Proposal for a</docStage>
+					<docType leos:origin="ec" refersTo="~REG"
+						xml:id="preface__longtitle__p__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+					</docType>
+					<docPurpose leos:origin="ec"
+						xml:id="preface__longtitle__p__docpurpose">on cross-border parcel delivery services</docPurpose>
+				</p>
+			</longTitle>
+		</preface>
+		<preamble leos:origin="ec" xml:id="preamble">
+			<formula leos:origin="ec" xml:id="preamble__formula_1"
+				name="actingEntity">
+				<p leos:origin="ec" xml:id="preamble__formula_1__p">THE EUROPEAN PARLIAMENT AND THE COUNCIL
+					OF THE EUROPEAN UNION,
+				</p>
+			</formula>
+			<citations leos:origin="ec" xml:id="cits"
+				leos:editable="false">
+				<citation leos:origin="ec" xml:id="cit_1"
+					refersTo="~legalBasis" leos:editable="true">
+					<p leos:origin="ec" xml:id="cit_1__p">Having regard to the Treaty on the
+						Functioning of the European Union, and in particular Article 114
+						thereof,
+					</p>
+				</citation>
+				<citation leos:origin="ec" refersTo="~legalBasis"
+					xml:id="cit_2" leos:editable="true">
+					<p leos:origin="ec" xml:id="cit_2__p">Having regard to the proposal from the
+						European Commission,
+					</p>
+				</citation>
+				<citation leos:origin="ec" xml:id="cit_3"
+					refersTo="~legalBasis" leos:editable="true">
+					<p leos:origin="ec" xml:id="cit_3__p">After transmission of the draft
+						legislative act to the national parliaments,
+					</p>
+				</citation>
+				<citation leos:origin="ec" refersTo="~legalBasis"
+					xml:id="cit_4" leos:editable="true">
+					<p leos:origin="ec" xml:id="cit_4__p">
+						Having regard to the opinion of the European Economic and Social
+						Committee
+						<authorialNote leos:origin="ec"
+							xml:id="authorialnote_1" marker="1" placement="bottom">
+							<p leos:origin="ec" xml:id="authorialNote_1__p">OJ C [...], [...], p. [...]</p>
+						</authorialNote>
+						,
+					</p>
+				</citation>
+				<citation leos:origin="ec" refersTo="~legalBasis"
+					xml:id="cit_6" leos:editable="true">
+					<p leos:origin="ec" xml:id="cit_6__p">Acting in accordance with the ordinary
+						legislative procedure,
+					</p>
+				</citation>
+			</citations>
+			<recitals leos:origin="ec" xml:id="recs"
+				leos:editable="false">
+				<intro leos:origin="ec" xml:id="recitalsIntro">
+					<p leos:origin="ec" xml:id="recs_intro">Whereas:</p>
+				</intro>
+				<recital xml:id="rec_1" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="rec_1__num" leos:origin="ec">(1)</num>
+					<p xml:id="rec_1__p" leos:origin="ec">The tariffs applicable to low
+						volume senders of cross-border parcels and other postal items,
+						particularly small and medium-sized enterprises (SMEs) and
+						individuals, are still relatively high in a significant number of
+						cases. This has a direct negative impact on consumers and users
+						seeking cross-border parcel delivery services, especially in the
+						context of e-commerce in the internal market of the Union.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_ldLdxO" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:09:01.668+02:00">
+					<num xml:id="recs_stAEgK">(1a)</num>
+					<p xml:id="recs_O3rbmA">Article 14 of the Treaty on the Functioning of the
+						European Union (TFEU) highlights the place occupied by services of
+						general economic interest, such as postal services, in the shared
+						values of the European Union, as well as their role in promoting
+						social and territorial cohesion. It states that care should be
+						taken that such services operate on the basis of principles and
+						conditions which enable them to fulfil their missions.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_4AYEfP" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:09:01.668+02:00">
+					<num xml:id="recs_j3fT2X">(1b)</num>
+					<p xml:id="recs_n6dE04">Protocol No 26 on Services of General Interest annexed
+						to the TFEU and to the Treaty on European Union further highlights
+						that the shared values of the Union in respect of services of
+						general economic interest within the meaning of Article 14 TFEU
+						include the differences in the needs and preferences of users that
+						may result from different geographical, social or cultural
+						situations and a high level of quality, safety and affordability,
+						equal treatment and the promotion of universal access and of user
+						rights.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_SfxHa4" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:09:01.668+02:00">
+					<num xml:id="recs_tYQteL">(1c)</num>
+					<p xml:id="recs_w9PguB">Article 169(1) and point (a) of Article 169(2) TFEU
+						provide that the Union is to contribute to the attainment of a
+						high level of consumer protection through measures adopted
+						pursuant to Article 114 thereof.
+					</p>
+				</recital>
+				<recital xml:id="rec_2" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="rec_2__num" leos:origin="ec">(2)</num>
+					<p xml:id="rec_2__p" leos:origin="ec">
+						There are fundamental differences between Member States when it
+						comes to competences conferred on national regulatory authorities
+						with regard to market monitoring and regulatory oversight of
+						parcel delivery service providers, although some authorities can
+						successfully require providers to supply relevant price
+						information. This has been confirmed by a joint report
+						<authorialNote xml:id="recs_BHM0zX" marker="3">
+							<p xml:id="recs_1JON4m">BoR (15) 214/ERGP PL (15) 32.</p>
+						</authorialNote>
+						prepared by the European Regulators Group for Postal Services and
+						the Body of European Regulators for Electronic Communications, who
+						concluded that national regulatory authorities need the
+						appropriate regulatory powers to intervene and that such powers do
+						not seem to be present in all Member States. Those differences
+						result in additional administrative burdens and compliance costs
+						for parcel delivery service providers who operate across borders.
+						Those differences therefore constitute an obstacle to the
+						cross-border provision of parcel delivery services and thus have a
+						direct effect on the functioning of the internal market.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_Ne70Oz" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:33:40.467+02:00">
+					<num xml:id="recs_TV4zcp">(2a)</num>
+					<p xml:id="recs_hu1WEu">Due to the international nature of postal and parcel
+						sector, the further development of European and international
+						technical standards is important for the benefit of users and the
+						environment, and to broaden market opportunities for
+						businesses.Furthermore, users often report quality of service
+						issues when sending, receiving or returning cross-border parcels.
+						Thus further improvements in quality of service standards and
+						interoperability of cross-border parcel deliveries are equally
+						needed and should be prioritised further in accordance with
+						Directive 97/67/EC, through the European Committee for
+						Standardisation and otherwise; more progress on the efficiency of
+						services is also needed, which should take into account in
+						particular the interests of users.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_FEk99a" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:33:40.468+02:00">
+					<num xml:id="recs_Zp5leV">(2b)</num>
+					<p xml:id="recs_4psR5L">
+						Standardisation of postal services and the improvement of quality
+						of service in support of Directive 97/67/EC is a strategic
+						priority of the European Union
+						<authorialNote xml:id="recs_vX9TPv" marker="4">
+							<p xml:id="recs_A7Gdm1">Annual Union Work Programme for
+								European
+								Standardisation for 2015 - COM (2014) 500 final,
+								30.7.2014.
+							</p>
+						</authorialNote>
+						; it should be continued. Technical standardisation is
+						indispensable for the promotion of interoperability between
+						national networks and for an efficient universal service. The
+						Commission issued in August 2016 a fourth standardisation request
+						to the European Committee for standardisation (CEN) to establish a
+						work programme and to provide a final report in August 2020
+						<authorialNote xml:id="recs_250nAP" marker="5">
+							<p xml:id="recs_fFZhlL">M/548 - C(2016) 4876 final, 1.8.2016.
+							</p>
+						</authorialNote>
+						. This work should take into account in particular the interest of
+						users, environmental considerations, efficiency and should
+						contribute to promoting the creation of a Digital Single Market
+						for the European Union.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_64sy9L" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_t3PETl" leos:origin="ec">(3)</num>
+					<p xml:id="recs_CWRmNg" leos:origin="ec">The market for cross-border
+						parcel delivery services is diverse and complex and competitive,
+						with different providers offering different services and prices
+						depending on weight, size and format of the parcels sent as well
+						as destination, added value features, such as traceability
+						solutions, and the number of parcels sent. In several Member
+						States, universal service providers do not have a majority share
+						of the parcel delivery market. That diversity makes parcel
+						delivery services hard for consumers and users to compare between
+						different providers and services they provide, both in terms of
+						quality and price. Furthermore, low volume senders, such as SMEs
+						and individuals are often not aware of the existence of different
+						parcel delivery services offered. It should be made easier, in
+						particular, for small and medium-sized enterprises and individuals
+						to access the relevant information.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_6zWlWM" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_DIsnEy" leos:origin="ec">(4)</num>
+					<p xml:id="recs_uWyYog" leos:origin="ec">In order to improve the
+						cross-border parcel delivery services, especially for individuals
+						and small businesses, including in remote or sparsely populated
+						areas and for those who are disabled or with reduced mobility, it
+						is necessary to improve the access to and transparency of public
+						lists of tariffs for a limited set of cross-border parcel delivery
+						services. Making cross-border prices more transparent and easily
+						comparable across the Union should encourage the reduction of
+						unreasonable differences between tariffs.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_SFoQzg" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:45:13.049+02:00">
+					<num xml:id="recs_6rAJR9">(4a)</num>
+					<p xml:id="recs_3rfwbX">Single piece parcel is part of the universal service in
+						every Member State and is also the service the most frequently
+						used by individuals and small businesses. Improving the
+						transparency and the affordability of single piece tariffs is
+						necessary for the further development of e-commerce.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_rdYm6q" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T11:45:13.049+02:00">
+					<num xml:id="recs_d7qDVJ">(4b)</num>
+					<p xml:id="recs_VNLcTU">Many companies that sell, used to sell or tried to sell
+						online considered high delivery costs together with expensive
+						complaints process and guarantees to be a problem, further action
+						is needed to ensure that, in particular SMEs and consumers in
+						remote areas, fully benefit from seamless cross-border parcel
+						delivery services to which they have access and are reasonably
+						priced.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_ggzfuG" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-06-30T09:20:56.790+02:00">
+					<num xml:id="recs_p0ZgIb">(5a)</num>
+					<p xml:id="recs_BgRXIi">Universal service providers refers to postal operators
+						that provide a universal postal service or parts thereof within a
+						specific Member State. Universal service providers who operate in
+						more than one Member State should be classified as a universal
+						service provider only in the Member State(s) in which they provide
+						a universal postal service.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_nsxi7L" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_6jhVre" leos:origin="ec">(6)</num>
+					<p xml:id="recs_YWSt5l" leos:origin="ec">
+						Currently, postal services are regulated by Directive 97/67/EC of
+						the European Parliament and of the Council
+						<authorialNote xml:id="recs_Z11DvS" marker="6">
+							<p xml:id="recs_H73Wqf">Directive 97/67/EC of the European
+								Parliament and of
+								the Council of 15 December 1997 on common
+								rules for the
+								development of the internal market of Community
+								postal services
+								and the improvement of quality of service (OJ L
+								15, 21.1.1998, p
+								14).
+							</p>
+						</authorialNote>
+						. That Directive establishes common rules governing the provision
+						of postal services and the universal postal service in the Union.
+						This Regulation complements, insofar as cross-border parcel
+						delivery services are concerned, the rules set out in Directive
+						97/67/EC. Compliance with the minimum universal service
+						requirements laid down in the directive is ensured by national
+						regulatory authorities designated by the Member States.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_3XdjGd" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-06T15:38:57.776+02:00">
+					<num xml:id="recs_a3pP1r">(6a)</num>
+					<p xml:id="recs_58lalo">This Regulation does not introduce any modification
+						regarding the definition of postal item in the meaning of point 6
+						of Article 2 of Directive 97/67/EC and its implementation.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_ZVFDqy" leos:origin="ec">
+					<num xml:id="recs_YI55Y4" leos:origin="ec">(7)</num>
+					<p xml:id="recs_Z9Fr0h" leos:origin="ec">An estimated 80 % of
+						addressed parcels generated by e-commerce today weigh less than
+						two kilograms, and are often processed in the letter-post mail
+						stream, although information is lacking on the weight of parcels
+						delivered by other means. It is important that those items are
+						subject to this Regulation
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_SRxKLn" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_PrLlSk" leos:origin="ec">(8)</num>
+					<p xml:id="recs_pAQbZx" leos:origin="ec">For the purpose of
+						implementing this Regulation, it is important to provide clear
+						definitions of parcels and parcel delivery services and to specify
+						which postal items are covered by these definitions. It is assumed
+						that postal items which are over 20mm thick contain goods and not
+						correspondence. Postal items consisting only of correspondence
+						should not fall under the scope of parcel delivery services. In
+						line with consistent practice, parcels, with or without commercial
+						value, weigh up to 31.5 kg, as heavier items cannot be handled by
+						a single average individual without mechanical aids and this
+						activity is part of the freight transport and logistic sector.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_MRmFSW" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-06T12:27:41.898+02:00">
+					<num xml:id="recs_dntrAb">(8a)</num>
+					<p xml:id="recs_BzEAx1">Providers of parcel delivery services using alternative
+						business models, for example those drawing on the collaborative
+						economy and e-commerce platforms, should be subject to this
+						Regulation if they provide at least one of the steps in the postal
+						delivery chain. Clearance, sorting and delivery, including pick-up
+						services, should be considered parcel delivery services, including
+						when provided by express and courier service providers, as well as
+						consolidators, in line with current practice. Transport alone that
+						is not undertaken in conjunction with one of those steps should
+						fall outside the scope of parcel delivery services as it should in
+						this case be assumed that this activity is part of the transport
+						sector, unless the undertaking concerned or one of its
+						subsidiaries or linked undertakings otherwise falls within the
+						scope of this Regulation.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_i8fowb" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T12:05:46.751+02:00">
+					<num xml:id="recs_5kTRX4">(8b)</num>
+					<p xml:id="recs_ljygSj">An undertaking that provides transport alone should not
+						be considered a subcontractor.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_s1bkDq" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-03T15:07:23.393+02:00">
+					<num xml:id="recs_mwQx1O">(8c)</num>
+					<p xml:id="recs_AVyZx6">This Regulation should not apply to undertakings
+						established in only one Member State that only have domestic
+						in-house delivery networks in order to fulfil orders of goods that
+						they have sold themselves under the sales contract as defined by
+						point 5 of Article 2 of Directive 2011/83/EU. Undertakings that
+						use domestic in-house delivery networks also for the delivery of
+						goods sold by third parties should be subject to this Regulation.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_CrN2E9" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T12:05:46.751+02:00">
+					<num xml:id="recs_2JeC27">(8d)</num>
+					<p xml:id="recs_ByCkvb">The minimum confidential information that should be
+						forwarded to the national authorities and procedures followed by
+						the authorities to ensure compliance with the commercial nature of
+						national operators should be defined and secure channels
+						established for the communication thereof.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_M5Mkei" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_8OFGZR" leos:origin="ec">(10)</num>
+					<p xml:id="recs_s1Jt6a" leos:origin="ec">
+						It is necessary that national regulatory authorities have
+						knowledge and information for statistical purposes about parcel
+						delivery service providers active on the market on the basis of
+						appropriate authorisation procedures or other legal requirements.
+						Due to the labour intensive nature of the sector and in order to
+						limit the administrative burden for small parcel delivery service
+						providers who are only active on a regional or domestic market, a
+						threshold of 50 persons should be applied, based on the number of
+						persons working for the service provider over the previous
+						calendar year and involved in the provision of parcel delivery
+						services in the Member State in which the provider is established,
+						unless that provider is established in more than one Member State.
+						The threshold of 50 persons is inspired by the Commission
+						Recommendation 2003/361
+						<authorialNote xml:id="recs_vtos9Q" marker="7">
+							<p xml:id="recs_U5hWro">Commission Recommendation 2003/361/EC
+								of 6 May 2003
+								concerning the definition of micro, small and
+								medium-sized
+								enterprises (OJ L 124, 20.5.2003, p. 36).
+							</p>
+						</authorialNote>
+						. That threshold should include persons involved in the provision
+						of parcel delivery services such as full-time, part-time and
+						temporary employees and self-employed persons working for the
+						parcel delivery service provider. Breakdown by employment status
+						should only include the statuses recognised by the relevant
+						applicable law of the Member States concerned. In addition, in
+						order to take into account the Member States’ specificities in
+						relation to their market of cross-border parcel delivery services,
+						national regulatory authorities could in certain cases either
+						lower the threshold to 25 persons or request the cross-border
+						parcel delivery service provider to include in the threshold
+						full-time, part-time and temporary employees and self-employed
+						persons working for its subcontractors, in order to increase the
+						transparency of the cross-border tariffs and of the market as a
+						whole.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_E8gwrb" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T12:05:46.751+02:00">
+					<num xml:id="recs_uq4Xhl">(10a)</num>
+					<p xml:id="recs_JdbGQb">When submitting information on the number of persons
+						working for the parcel delivery service provider to the national
+						regulatory authority, such data should be submitted in accordance
+						with established company reporting practices relating to
+						statistical information. It is important in order to ensure
+						comparability of data while keeping the administrative burden on
+						the providers to the minimum.
+					</p>
+				</recital>
+				<recital leos:origin="ec" xml:id="akn_recital_YIEI8r"
+					leos:editable="true">
+					<num leos:origin="ec" xml:id="recs_CAGBm3">(11)</num>
+					<p leos:origin="ec" xml:id="recs_CYesHZ">The place at which a provider is
+						established is to be determined in line with the case law of the
+						Court of Justice. Where a provider has several places of
+						establishment, it is important to determine the place of
+						establishment from which the actual service concerned is provided.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_WPzrj8" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-06-30T09:37:42.475+02:00">
+					<num xml:id="recs_tZJgjv">(11a)</num>
+					<p xml:id="recs_an0QNW">When submitting information to the national regulatory
+						authority, the characteristics of the parcel delivery services
+						should include the steps in the postal delivery chain (clearance,
+						sorting, transport and distribution) undertaken by that provider;
+						whether the service is within or outside the scope of the
+						universal service obligation; the territorial scope of the service
+						(regional, domestic, cross-border); and whether added value is
+						offered.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_6WGOLC" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_uNoMU6" leos:origin="ec">(12)</num>
+					<p xml:id="recs_b8UlnX" leos:origin="ec">The list of postal items that
+						are subject to price transparency measures should be limited to
+						facilitate comparability and minimise administrative burdens on
+						cross-border parcel delivery service providers and national
+						regulatory authorities. Standard and registered services should be
+						included as these form the basis of the universal service
+						obligation, and given the importance of track and trace
+						functionality for e-commerce, the prices for track and trace and
+						registered parcels should also be included, whether or not they
+						form part of the universal service obligation to ensure
+						comparability across the European Union. The focus should be on
+						lighter weights which comprise the majority of postal items
+						delivered by parcel delivery service providers, including the
+						prices for postal items over 20mm thick which are processed as
+						letters. Only single piece tariffs should be included as these are
+						the prices paid by the smallest senders. The postal items
+						concerned should be set out clearly in an annex to this
+						Regulation. This Regulation does not oblige cross-border parcel
+						delivery service providers to offer all the postal items listed in
+						the Annex. The tariff information should be provided by
+						cross-border parcel delivery service providers themselves to
+						ensure accuracy. Those tariffs should be published by the
+						Commission on a dedicated website which is neutral and
+						non-commercial in character and should constitute the basis for
+						the national regulatory authorities to assess the tariffs of those
+						postal items listed in the Annex falling under universal service
+						obligation of universal service providers. The assessment of the
+						cross-border tariffs that may be unreasonably high should take
+						into account the principles set out in Article 12 of Directive
+						97/67/EC.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_V7wMxz" leos:origin="ec">
+					<num xml:id="recs_a8Ml8S" leos:origin="ec">(14)</num>
+					<p xml:id="recs_8toEGz" leos:origin="ec">In order to reduce the
+						administrative burden for national regulatory authorities and for
+						service providers subject to universal service obligation and in
+						line with the principle of proportionality, when considering which
+						cross-border tariffs are necessary to be assessed, national
+						regulatory authorities may base its consideration on objective
+						pre-assessment filter mechanism.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_JPsrxQ" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_eo9qf7" leos:origin="ec">(15)</num>
+					<p xml:id="recs_TakXG4" leos:origin="ec">Uniform tariffs for
+						cross-border deliveries to two or more Member States may be
+						important in the interest of protecting regional and social
+						cohesion. In this context consideration should be given to the
+						need to promote e-commerce and offer new opportunities for
+						sparsely populated and remote areas to participate in online trade
+						and to enhance their regional economies.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_W333GR" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_nZTr9Z" leos:origin="ec">(16)</num>
+					<p xml:id="recs_5VFN2n" leos:origin="ec">Significant differences
+						between domestic and cross-border tariffs for parcel delivery
+						services should be justified by objective criteria. In order to
+						reduce the administrative burden for national regulatory
+						authorities and universal service providers and in line with the
+						principle of proportionality, an assessment of cross-border
+						tariffs should only be required in cases where national regulatory
+						authorities have, on the basis of an objective pre-assessment
+						filter mechanism, elements to consider that cross-border tariffs
+						are likely to be unreasonably high.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_uYNX1R" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_7E96KX" leos:origin="ec">(17)</num>
+					<p xml:id="recs_s2wHre" leos:origin="ec">In order to ensure
+						transparency across the Union, a non-confidential version of the
+						assessment by each national regulatory authority should be
+						published by the Commission.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_kOkNIN" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-01T10:30:16.207+02:00">
+					<num xml:id="recs_buFcNh">(20a)</num>
+					<p xml:id="recs_Z8hMTp">
+						In order to limit the administrative burden, the transfer of data
+						by parcel delivery service providers, national regulatory
+						authorities and the Commission should be electronic, and in
+						particular should allow the use of e-signatures, as provided for
+						in Regulation (EU) No 910/2014
+						<authorialNote marker="8" xml:id="recs_9ZMwzk">
+							<p xml:id="recs_6ettw8">Regulation (EU) 910/2014 of the European Parliament
+								and of the Council of 23 July 2014 on electronic identification
+								and trust services for electronic transactions in the internal
+								market and repealing Directive 1999/93/EC (OJ L 257, 28.08.2014,
+								p. 73).
+							</p>
+						</authorialNote>
+						.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_QrSTWn" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_tZkiea" leos:origin="ec">(21)</num>
+					<p xml:id="recs_72G8oL" leos:origin="ec">As markets for parcel
+						delivery services are changing fast, the Commission should
+						re-assess the efficiency and effectiveness of this Regulation,
+						taking into account developments in e-commerce, and submit a
+						regular report to the European Parliament and the Council. That
+						report should be accompanied, where appropriate, by legislative
+						proposals for review to the European Parliament and the Council.
+						That report should be produced with involvement of all appropriate
+						stakeholders including the European Social Dialogue Committee for
+						the postal sector.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_8eJukz" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-01T10:30:16.207+02:00">
+					<num xml:id="recs_Nudqqp">(21a)</num>
+					<p xml:id="recs_EdNrAD">The Commission should build on valuable input from the
+						European Regulators Group for Postal Services composed by
+						representatives of the national regulatory authorities.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_fgyNN5" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_vPMXt9" leos:origin="ec">(22)</num>
+					<p xml:id="recs_M8QhF7" leos:origin="ec">
+						In order to ensure uniform conditions for the implementation of
+						this Regulation, implementing powers should be conferred on the
+						Commission to establish a form for the submission of information
+						by parcel delivery service providers to national regulatory
+						authorities. Those powers should be exercised in accordance with
+						Regulation (EU) No 182/2011 of the European Parliament and of the
+						Council
+						<authorialNote marker="9" xml:id="recs_NLHLjg"
+							leos:origin="ec">
+							<p xml:id="recs_PkrzW7" leos:origin="ec">Regulation (EU) 182/2011 of
+								the European Parliament and of the Council of 16 February 2011
+								laying down the rules and general principles concerning
+								mechanisms for control by the Member States of the Commission's
+								exercise of implementing powers (OJ L 55, 28.2.2011, p. 13).
+							</p>
+						</authorialNote>
+						.
+					</p>
+				</recital>
+				<recital leos:origin="ec" xml:id="akn_recital_0FjoqF"
+					leos:editable="true">
+					<num leos:origin="ec" xml:id="recs_jqvhcL">(23)</num>
+					<p leos:origin="ec" xml:id="recs_Jmy04d">This Regulation respects the
+						fundamental rights and observes the principles recognised in
+						particular by the Charter of Fundamental Rights of the European
+						Union, and should be implemented in accordance with those rights
+						and principles.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_jcDSqa" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_dQOslG" leos:origin="ec">(24)</num>
+					<p xml:id="recs_NusAzf" leos:origin="ec">
+						Directive (EU) 2016/680 of the European Parliament and of the
+						Council
+						<authorialNote marker="10" xml:id="recs_mlbclc"
+							leos:origin="ec">
+							<p xml:id="recs_qdb12E" leos:origin="ec">Directive (EU) 2016/680 of
+								the European Parliament and of the Council of 27 April 2016 on
+								the protection of natural persons with regard to the processing
+								of personal data by competent authorities for the purposes of
+								the prevention, investigation, detection or prosecution of
+								criminal offences or the execution of criminal penalties, and on
+								the free movement of such data, and repealing Council Framework
+								Decision 2008/977/JHA. (OJ L 119, 4.5.2016 p. 89).
+							</p>
+						</authorialNote>
+						 and Regulation (EU) 2016/679 of the European Parliament and of
+						the Council
+						<authorialNote marker="11" xml:id="recs_gPV409"
+							leos:origin="ec">
+							<p xml:id="recs_LhMe79" leos:origin="ec">Regulation (EU) 2016/679 of
+								the European Parliament and of the Council of 27 April 2016 on
+								the protection of natural persons with regard to the processing
+								of personal data and on the free movement of such data, and
+								repealing Directive 95/46/EC (General Data Protection
+								Regulation). (OJ L 119, 4.5.2016, p. 1).
+							</p>
+						</authorialNote>
+						 apply to the processing of personal data within the framework of
+						this Regulation.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_hdk1Co" leos:editable="true"
+					leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-01T10:30:16.208+02:00">
+					<num xml:id="recs_RKcyxY">(24a)</num>
+					<p xml:id="recs_OyTwd9">Member States should lay down rules on penalties
+						applicable to infringements of this Regulation and ensure that
+						they are implemented. Those penalties should be effective,
+						proportionate and dissuasive.
+					</p>
+				</recital>
+				<recital xml:id="akn_recital_Umy3Xp" leos:editable="true"
+					leos:origin="ec">
+					<num xml:id="recs_ICs06v" leos:origin="ec">(25)</num>
+					<p xml:id="recs_UDZ6yr" leos:origin="ec">Since the objectives of this
+						Regulation, namely to establish the regulatory principles and
+						rules necessary to improve regulatory oversight, to improve
+						transparency of tariffs and establish certain principles as
+						regards cross-border parcel delivery services that should support
+						competition, with the ultimate goal of fostering better
+						cross-border parcel delivery services for users. Since
+						aforementioned goal cannot be sufficiently achieved by the Member
+						States but can rather, by reason of their scale and effects, be
+						better achieved at Union level, the Union may adopt measures in
+						accordance with the principle of subsidiarity as set out in
+						Article 5 of the Treaty on European Union. In accordance with the
+						principle of proportionality, as set out in that Article, this
+						Regulation does not go beyond what is necessary in order to
+						achieve those objectives,
+					</p>
+				</recital>
+			</recitals>
+			<formula leos:origin="ec" xml:id="preamble__formula_2"
+				name="enactingFormula">
+				<p leos:origin="ec" xml:id="preamble__formula_2__p">HAVE ADOPTED THIS REGULATION:</p>
+			</formula>
+		</preamble>
+		<body leos:origin="ec" xml:id="body">
+			<chapter leos:origin="ec" xml:id="akn_chapter_KJCTcf">
+				<num leos:origin="ec" xml:id="akn_lrz6PQ">Chapter 1</num>
+				<heading leos:origin="ec" xml:id="akn_0E2NPi">General provisions
+				</heading>
+			</chapter>
+			<article leos:origin="ec" xml:id="art_1"
+				leos:editable="false" leos:deletable="false">
+				<num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1
+				</num>
+				<heading leos:origin="ec" xml:id="art_1__heading">Subject matter and
+					objectives
+				</heading>
+				<paragraph leos:origin="ec" xml:id="art_1__para_1">
+					<subparagraph xml:id="art_1_AlVQ1t" leos:origin="ec">
+						<content xml:id="art_1_kcpJiD" leos:origin="ec">
+							<p xml:id="art_1_NaGh81" leos:origin="ec">This Regulation
+								establishes specific provisions to foster better cross-border
+								parcel delivery services, in addition to the provisions set out
+								in Directive 97/67/EC, concerning:
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="art_1_4Eht8m">
+						<point leos:origin="ec" xml:id="art_1_KKOowR">
+							<num leos:origin="ec" xml:id="art_1_RYgzjV">(a)</num>
+							<content leos:origin="ec" xml:id="art_1_g91LnI">
+								<p leos:origin="ec" xml:id="art_1_L767oR">the regulatory oversight related to
+									parcel delivery services;
+								</p>
+							</content>
+						</point>
+						<point xml:id="art_1_dtgB1E" leos:origin="ec">
+							<num xml:id="art_1_KDbujg" leos:origin="ec">(b)</num>
+							<content xml:id="art_1_QYgw8m" leos:origin="ec">
+								<p xml:id="art_1_ek81QH" leos:origin="ec">transparency of tariffs
+									and assessment of tariffs for certain cross-border parcel
+									delivery services, to identify those tariffs that are
+									unreasonably high;
+								</p>
+							</content>
+						</point>
+						<point xml:id="art_1_MSLata" leos:origin="ec">
+							<num xml:id="art_1_utt04t" leos:origin="ec">(c)</num>
+							<content xml:id="art_1_lYMZsj" leos:origin="ec">
+								<p xml:id="art_1_B0hEI7" leos:origin="ec">information for consumers
+									by traders on cross-border parcel delivery services.
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+			</article>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_XcvwoL">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_XcvwoL_k5uUFS">Article 2</num>
+				<heading leos:origin="ec" xml:id="akn_article_XcvwoL_qeNIXb">Definitions</heading>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_XcvwoL-par1" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_XcvwoL_gEdPHb">1.</num>
+					<content leos:origin="ec"
+						xml:id="akn_article_XcvwoL_H5BkpR">
+						<p leos:origin="ec" xml:id="akn_article_XcvwoL_U7pBfL">For the purposes of this Regulation,
+							the definitions set out in Article 2 of Directive 97/67/EC shall
+							apply.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_XcvwoL_evkafx" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_XcvwoL_Vgmlxc">2.
+					</num>
+					<subparagraph leos:origin="ec"
+						xml:id="akn_article_XcvwoL_gYemRF">
+						<content leos:origin="ec"
+							xml:id="akn_article_XcvwoL_MWu5cd">
+							<p leos:origin="ec" xml:id="akn_article_XcvwoL_AX9lvt">In
+								addition to the definitions
+								referred to in paragraph 1, the
+								following definitions shall
+								apply:
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="akn_article_XcvwoL_b4Oal7">
+						<point xml:id="akn_point_eP7nLr" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-06-30T10:33:57.870+02:00">
+							<num xml:id="akn_article_XcvwoL_KI3iCU">(-a)</num>
+							<content xml:id="akn_article_XcvwoL_r4j1OQ">
+								<p xml:id="akn_article_XcvwoL_H2AAbE">“parcel” means a postal item, containing goods with
+									or without commercial value, with a weight not exceeding 31,5
+									kg excluding items of correspondence;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_XcvwoL_53bmYj" leos:origin="ec">
+							<num xml:id="akn_article_XcvwoL_sT0ZI6" leos:origin="ec">(a)</num>
+							<content xml:id="akn_article_XcvwoL_t2PBo3"
+								leos:origin="ec">
+								<p xml:id="akn_article_XcvwoL_nGsGrz" leos:origin="ec">&quot;parcel
+									delivery services&quot; means services involving the clearance,
+									sorting, transport and distribution of parcels;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_XcvwoL_fLu44z" leos:origin="ec">
+							<num xml:id="akn_article_XcvwoL_YMpUZR" leos:origin="ec">(b)</num>
+							<content xml:id="akn_article_XcvwoL_m1R6TQ"
+								leos:origin="ec">
+								<p xml:id="akn_article_XcvwoL_dJA7qQ" leos:origin="ec">&quot;parcel
+									delivery service provider&quot; means an undertaking that
+									provides one or more parcel delivery services; undertakings
+									established in one Member State alone, and that only provide
+									domestic parcel delivery services as part of a sales contract
+									as defined by point 5 of Article 2 of Directive 2011/83/EU and
+									as part of the contract the undertaking personally delivers
+									goods that are subject of that contract to the user shall not
+									be considered as parcel delivery service provider;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_QgWtq5" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-03T16:43:55.134+02:00">
+							<num xml:id="akn_article_XcvwoL_Y1sL0o">(ba)</num>
+							<content xml:id="akn_article_XcvwoL_bSidWt">
+								<p xml:id="akn_article_XcvwoL_8QEEJv">&quot;subcontractor&quot; means an undertaking that
+									provides the clearance, sorting, transport or distribution of
+									parcels for the parcel delivery service provider;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_ky4yix" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-07T12:59:25.557+02:00">
+							<num xml:id="akn_article_XcvwoL_eBLM4j">(ca)</num>
+							<content xml:id="akn_article_XcvwoL_FxoC2H">
+								<p xml:id="akn_article_XcvwoL_uzMpdY">the definitions of “consumer”, &quot;trader&quot;
+									and “sales contract” in paragraphs 1, 2 and 5 of Article 2 of
+									Directive 2011/83/EU;
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+			</article>
+			<article xml:id="akn_article_LiHkZK" leos:origin="cn"
+				leos:softaction="add" leos:softactionroot="true"
+				leos:softuser="izaremem"
+				leos:softdate="2020-07-07T13:02:50.902+02:00">
+				<num leos:editable="false" xml:id="akn_article_LiHkZK_Fi8MOB">Article 2a</num>
+				<heading xml:id="akn_article_LiHkZK_b8VsY7">Level of harmonisation</heading>
+				<paragraph xml:id="akn_article_LiHkZK-par1"
+					leos:origin="cn" leos:softaction="add" leos:softuser="izaremem"
+					leos:softdate="2020-07-07T13:02:50.909+02:00">
+					<content xml:id="akn_article_LiHkZK_raQdoQ">
+						<p xml:id="akn_article_LiHkZK_3so51Z">The requirements laid down in this Regulation are
+							minimum requirements and shall not prevent any Member State from
+							maintaining or introducing additional necessary and proportionate
+							measures, in order to achieve better cross-border parcel delivery
+							services. Such measures shall be compatible with Union law.
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<chapter leos:origin="ec" xml:id="akn_chapter_24VTJB">
+				<num leos:origin="ec" xml:id="akn_95Wx0B">Chapter 2</num>
+				<heading leos:origin="ec" xml:id="akn_qCFIj9">Regulatory
+					oversight
+				</heading>
+			</chapter>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_ssFNYA">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_ssFNYA_kfGEFa">Article 3</num>
+				<heading leos:origin="ec" xml:id="akn_article_ssFNYA_DVzeRb">Provision of information
+				</heading>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_ssFNYA_hHIyOC" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_ssFNYA_XbecXN">1.</num>
+					<subparagraph xml:id="akn_article_ssFNYA_KwYoOr"
+						leos:origin="ec">
+						<content xml:id="akn_article_ssFNYA_yAHFi8"
+							leos:origin="ec">
+							<p xml:id="akn_article_ssFNYA_9klGrj" leos:origin="ec">All parcel
+								delivery service providers shall submit the following
+								information to the national regulatory authority of the Member
+								State in which they are established unless the national
+								regulatory authority has already requested and received such
+								information:
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="akn_article_ssFNYA_H5Jrub">
+						<point xml:id="akn_article_ssFNYA-par1" leos:origin="ec">
+							<num xml:id="akn_article_ssFNYA_7PuWsQ" leos:origin="ec">(a)</num>
+							<content xml:id="akn_article_ssFNYA_XftXEu"
+								leos:origin="ec">
+								<p xml:id="akn_article_ssFNYA_cB7lgd" leos:origin="ec">the name of
+									the parcel delivery service provider, its legal status and
+									form, registration number in a trade or similar register, VAT
+									identification number, the address of the establishment and a
+									contact person;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_ssFNYA_5FteGH" leos:origin="ec">
+							<num xml:id="akn_article_ssFNYA_69RMk9" leos:origin="ec">(b)</num>
+							<content xml:id="akn_article_ssFNYA_RZMt7R"
+								leos:origin="ec">
+								<p xml:id="akn_article_ssFNYA_tqTI7P" leos:origin="ec">the
+									characteristics and where possible, a detailed description, of
+									the parcel delivery services offered by the parcel delivery
+									service provider;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_ssFNYA_efjnZO" leos:origin="ec">
+							<num xml:id="akn_article_ssFNYA_ynJ74R" leos:origin="ec">(c)</num>
+							<content xml:id="akn_article_ssFNYA_Zt6CZp"
+								leos:origin="ec">
+								<p xml:id="akn_article_ssFNYA_VNKJw9" leos:origin="ec">the parcel
+									delivery service provider&apos;s general terms and conditions
+									for parcel delivery services, including details of complaints
+									procedures for users and any potential limitations of liability
+									that may apply;
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+				<paragraph xml:id="akn_article_ssFNYA_A69upd"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_ssFNYA_pwotT6" leos:origin="ec">2.</num>
+					<content xml:id="akn_article_ssFNYA_wgU1Ss"
+						leos:origin="ec">
+						<p xml:id="akn_article_ssFNYA_dPZx5M" leos:origin="ec">Parcel
+							delivery service providers shall inform the national regulatory
+							authority of any change concerning information referred to in
+							paragraph 1 within 30 days.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_ssFNYA_zTZy7K" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_ssFNYA_zfBLvU">3.</num>
+					<subparagraph xml:id="akn_article_ssFNYA_HdIfta"
+						leos:origin="ec">
+						<content xml:id="akn_article_ssFNYA_EP5Mt8"
+							leos:origin="ec">
+							<p xml:id="akn_article_ssFNYA_Khrgvv" leos:origin="ec">By 30 June of
+								each calendar year, all parcel delivery service providers shall
+								submit the following information to the national regulatory
+								authority of the Member State in which they are established
+								unless the national regulatory authority has already requested
+								and received such information:
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="akn_article_ssFNYA_scsaQf">
+						<point xml:id="akn_article_ssFNYA_oIbCjy" leos:origin="ec">
+							<num xml:id="akn_article_ssFNYA_uXZeBG" leos:origin="ec">(a)</num>
+							<content xml:id="akn_article_ssFNYA_kss3uY"
+								leos:origin="ec">
+								<p xml:id="akn_article_ssFNYA_ghVFg6" leos:origin="ec">the annual
+									turnover in parcel delivery services for the previous calendar
+									year in the Member State in which the parcel delivery service
+									provider is established, broken down into domestic and incoming
+									and outgoing cross-border parcel delivery services;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_ssFNYA_tL578B" leos:origin="ec">
+							<num xml:id="akn_article_ssFNYA_ZHihGd" leos:origin="ec">(b)</num>
+							<content xml:id="akn_article_ssFNYA_ISpqog"
+								leos:origin="ec">
+								<p xml:id="akn_article_ssFNYA_ZZ9JgT" leos:origin="ec">the number
+									of persons working for the parcel delivery service provider
+									over the previous calendar year involved in the provision of
+									parcel delivery services in the Member State in which that
+									provider is established, including breakdowns by reference to
+									employment status, in particular of the number of persons
+									working full-time, part-time, temporary employees and
+									self-employed;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_ssFNYA_mtJKyO" leos:origin="ec">
+							<num xml:id="akn_article_ssFNYA_c4TJaT" leos:origin="ec">(c)</num>
+							<content xml:id="akn_article_ssFNYA_DdENvN"
+								leos:origin="ec">
+								<p xml:id="akn_article_ssFNYA_cMTygV" leos:origin="ec">the number
+									of parcels handled over the previous calendar year in the
+									Member State in which the parcel delivery service provider is
+									established, broken down into domestic, incoming and outgoing
+									cross-border parcels;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_g2rUf8" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-06T17:39:56.162+02:00">
+							<num xml:id="akn_article_ssFNYA_dxBJsB">(ca)</num>
+							<content xml:id="akn_article_ssFNYA_zlNubw">
+								<p xml:id="akn_article_ssFNYA_8fvC0F">the names of their subcontractors involved in the
+									provision of parcel delivery services, together with any
+									information held by the parcel delivery service provider on the
+									characteristics of parcel delivery services provided by the
+									subcontractors;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_WJ7VKf" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-06-30T10:42:25.963+02:00">
+							<num xml:id="akn_article_ssFNYA_bEuccP">(cb)</num>
+							<content xml:id="akn_article_ssFNYA_JU3BfD">
+								<p xml:id="akn_article_ssFNYA_zVTyUm">where available, any publicly accessible price list
+									applicable on 1 January of each calendar year for parcel
+									delivery services.
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+				<paragraph xml:id="akn_article_ssFNYA_mSuz8p"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_ssFNYA_QH4Q61" leos:origin="ec">4.</num>
+					<content xml:id="akn_article_ssFNYA_Wk4VyH"
+						leos:origin="ec">
+						<p xml:id="akn_article_ssFNYA_Ybd9rU" leos:origin="ec">
+							<u xml:id="akn_article_ssFNYA_pYdpp4">By 4 months after entry
+								into force
+							</u>
+							, the Commission shall, by means of an implementing act,
+							establish a form for the submission of the information referred
+							to in paragraphs 1 and 3. That implementing act shall be adopted
+							in accordance with the examination procedure referred to in
+							Article 9.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_ssFNYA_foPbR9"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_ssFNYA_TaZ8Kj" leos:origin="ec">5.</num>
+					<content xml:id="akn_article_ssFNYA_3F8l06"
+						leos:origin="ec">
+						<p xml:id="akn_article_ssFNYA_In7yuz" leos:origin="ec">The national
+							regulatory authorities may impose information requirements
+							additional to those referred to in paragraphs 1 and 3 provided
+							that they are necessary and proportionate.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_ssFNYA_TSU12s"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_ssFNYA_spUAI8" leos:origin="ec">6.</num>
+					<content xml:id="akn_article_ssFNYA_MH1anJ"
+						leos:origin="ec">
+						<p xml:id="akn_article_ssFNYA_5okwMh" leos:origin="ec">This Article
+							shall not apply to any parcel delivery service provider which
+							had, over the previous calendar year, on average fewer than 50
+							persons working for it and involved in the provision of parcel
+							delivery services in the Member State in which that provider is
+							established, unless that provider is established in more than one
+							Member State. A national regulatory authority may, taking into
+							account the specificities of the Member State concerned and
+							provided that it is necessary and proportionate to ensure
+							conformity with this Regulation, lower the threshold to
+							25 persons. Additionally or alternatively, a national regulatory
+							authority may include in the threshold full-time, part time and
+							temporary employees and self-employed persons working for parcel
+							delivery service provider’s sub-contractors.
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_wEVsj1">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_wEVsj1_Y3SxqW">Article 4</num>
+				<heading leos:origin="ec" xml:id="akn_article_wEVsj1_b42E3t">Transparency of
+					cross-border tariffs
+				</heading>
+				<paragraph xml:id="akn_article_wEVsj1_Ils1vn"
+					leos:origin="ec"
+					leos:softtrans_from="transformed_akn_article_wEVsj1_Ils1vn"
+					leos:depth="1">
+					<num xml:id="akn_article_wEVsj1_1ZwiOy" leos:origin="ec">1.</num>
+					<content xml:id="akn_article_wEVsj1_7jKPeX">
+						<p xml:id="akn_article_wEVsj1_tBXGue">All cross-border parcel delivery service providers
+							other than those excluded by Article 3(6) shall provide the
+							national regulatory authority of the Member State in which they
+							are established with the public list of tariffs applicable on 1
+							January of each calendar year for the delivery of single piece
+							postal items listed in the Annex. That information shall be
+							provided by 31 January of each calendar year at the latest.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_wEVsj1_LNT3Qa"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_wEVsj1_9PhxKS" leos:origin="ec">2.</num>
+					<content xml:id="akn_article_wEVsj1_xAbvEj"
+						leos:origin="ec">
+						<p xml:id="akn_article_wEVsj1_V9bVC7" leos:origin="ec">The national
+							regulatory authorities shall without delay and by 28 February of
+							each calendar year at the latest submit the public lists of
+							tariffs obtained in accordance with paragraph 1 to the
+							Commission. The Commission shall publish them on a dedicated
+							website by 31 March of each calendar year at the latest.
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_lM2TJQ">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_lM2TJQ_FTIeBz">Article 5</num>
+				<heading leos:origin="ec" xml:id="akn_article_lM2TJQ_6VzlbA">Assessment of cross-border
+					tariffs
+				</heading>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_lM2TJQ_aYDFls" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_lM2TJQ_N6K4UM">1.
+					</num>
+					<subparagraph xml:id="akn_article_lM2TJQ_SBzp3L"
+						leos:origin="ec">
+						<content xml:id="akn_article_lM2TJQ_D8Sivs"
+							leos:origin="ec">
+							<p xml:id="akn_article_lM2TJQ_sdwoHl" leos:origin="ec">The national
+								regulatory authority shall identify based on the public list of
+								tariffs obtained in accordance with Article 4, the cross-border
+								tariffs of the parcel delivery service provider originating in
+								its Member State which are subject to universal service
+								obligation , it objectively considers necessary to assess for
+								each of the single piece postal items listed in the Annex.
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="akn_article_lM2TJQ_DZ6HWk">
+						<point leos:origin="ec" xml:id="akn_article_lM2TJQ_dhYT8g">
+							<num leos:origin="ec" xml:id="akn_article_lM2TJQ_zkjXRI">(a)
+							</num>
+							<content leos:origin="ec"
+								xml:id="akn_article_lM2TJQ_cas5IY">
+								<p leos:origin="ec" xml:id="akn_article_lM2TJQ_wy3jQK">the
+									domestic tariffs of the
+									comparable parcel delivery services in
+									the originating Member
+									State and in the destination Member
+									State;
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec" xml:id="akn_article_lM2TJQ_H3r3zg">
+							<num leos:origin="ec" xml:id="akn_article_lM2TJQ_f9orVf">(c)
+							</num>
+							<content leos:origin="ec"
+								xml:id="akn_article_lM2TJQ_PfuLxo">
+								<p leos:origin="ec" xml:id="akn_article_lM2TJQ_BkwZU6">any
+									application of a uniform tariff
+									to two or more Member States.
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+				<paragraph xml:id="akn_article_lM2TJQ_Aei3mv"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_lM2TJQ_iTl9nH" leos:origin="ec">2.</num>
+					<subparagraph
+						xml:id="transformed_akn_article_lM2TJQ_Aei3mv" leos:origin="ec"
+						leos:softaction="trans" leos:softactionroot="true"
+						leos:softuser="izaremem"
+						leos:softdate="2020-07-06T14:36:42.676+02:00">
+						<content xml:id="akn_article_lM2TJQ_iPWCsF"
+							leos:origin="ec">
+							<p xml:id="akn_article_lM2TJQ_M7OZsK" leos:origin="ec">The national
+								regulatory authority shall objectively assess cross-border
+								tariffs identified under paragraph 1 in line with the principles
+								in Article 12 of Directive 97/67/EC in order to identify those
+								cross-border tariffs it considers unreasonably high. In that
+								assessment, in particular the following criteria shall be taken
+								into account:
+							</p>
+						</content>
+					</subparagraph>
+					<list xml:id="lis_czKVTp" leos:softaction="add"
+						leos:softactionroot="true" leos:softuser="izaremem"
+						leos:softdate="2020-07-06T14:36:42.676+02:00" leos:origin="cn"
+						leos:depth="1">
+						<point xml:id="akn_point_Q5qQ9e" leos:origin="cn"
+							leos:softaction="add" leos:softuser="izaremem"
+							leos:softdate="2020-07-06T14:36:42.684+02:00">
+							<num xml:id="akn_article_lM2TJQ_BKFC3R">(a)</num>
+							<content xml:id="akn_article_lM2TJQ_pIdwQP">
+								<p xml:id="akn_article_lM2TJQ_XE0eVg">the domestic and any other relevant tariffs of the
+									comparable parcel delivery services in the originating Member
+									State and in the destination Member State;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_u4p7Pi" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-06T14:52:50.313+02:00">
+							<num xml:id="akn_article_lM2TJQ_PnVZx2">(b)</num>
+							<content xml:id="akn_article_lM2TJQ_SjBIsV">
+								<p xml:id="akn_article_lM2TJQ_fV2r6f">any application of a uniform tariff to two or more
+									Member States;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_oKZEcO" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-06T16:20:52.308+02:00">
+							<num xml:id="akn_article_lM2TJQ_rHmC0M">(c)</num>
+							<content xml:id="akn_article_lM2TJQ_AAt43g">
+								<p xml:id="akn_article_lM2TJQ_W1iF5L">bilateral volumes, specific transportation or
+									handling costs, other relevant costs and service quality
+									standards;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_cjzWPj" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-07T16:17:56.656+02:00">
+							<num xml:id="akn_article_lM2TJQ_X1mhS8">(d)</num>
+							<content xml:id="akn_article_lM2TJQ_NQWSgJ">
+								<p xml:id="akn_article_lM2TJQ_B7jQXD">the likely impact of the applicable cross-border
+									tariffs on individual and small and medium sized enterprise
+									users including those situated in remote or sparsely populated
+									areas, and on individual users who are disabled or with reduced
+									mobility.
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+				<paragraph xml:id="akn_paragraph_DxI9Xf"
+					leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T16:17:56.657+02:00" leos:depth="1"
+					leos:origin="cn">
+					<num xml:id="akn_article_lM2TJQ_5z4Cim" leos:editable="false">2a.</num>
+					<subparagraph xml:id="akn_subparagraph_dESlfS"
+						leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+						leos:softuser="izaremem"
+						leos:softdate="2020-07-07T16:19:47.480+02:00">
+						<content xml:id="akn_article_lM2TJQ_FlDJAD">
+							<p xml:id="akn_article_lM2TJQ_6uluJK">In addition to the criteria in paragraph 2, the
+								national regulatory authority may when it deems necessary also
+								take into account in particular the following criteria:
+							</p>
+						</content>
+					</subparagraph>
+					<list xml:id="lis_foB8wH" leos:softaction="add"
+						leos:softactionroot="true" leos:softuser="izaremem"
+						leos:softdate="2020-07-07T16:19:47.480+02:00" leos:origin="cn"
+						leos:depth="1">
+						<point xml:id="akn_point_5SEm6Z" leos:origin="cn"
+							leos:softaction="add" leos:softuser="izaremem"
+							leos:softdate="2020-07-07T16:19:47.490+02:00">
+							<num xml:id="akn_article_lM2TJQ_H7v9TF">(a)</num>
+							<content xml:id="akn_article_lM2TJQ_t40HWn">
+								<p xml:id="akn_article_lM2TJQ_VfxCVf">whether tariffs are subject to specific price
+									regulation under national legislation;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_point_uyVotC" leos:origin="cn"
+							leos:softaction="add" leos:softactionroot="true"
+							leos:softuser="izaremem"
+							leos:softdate="2020-07-07T16:23:17.037+02:00">
+							<num xml:id="akn_article_lM2TJQ_WmALJI">(b)</num>
+							<content xml:id="akn_article_lM2TJQ_Bda6du">
+								<p xml:id="akn_article_lM2TJQ_or5GqX">whether any abuse of dominant market position has
+									been identified in accordance with relevant applicable law.
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+				<paragraph xml:id="akn_paragraph_kmRT6L" leos:origin="cn"
+					leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T16:19:47.480+02:00" leos:depth="1">
+					<num xml:id="akn_article_lM2TJQ_4vwvFJ">2b.</num>
+					<content xml:id="akn_article_lM2TJQ_K1gEow">
+						<p xml:id="akn_article_lM2TJQ_bdjVwj">The Commission shall set out guidelines on the
+							methodology for the application of the criteria provided for in
+							paragraphs 2 and 2a.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_lM2TJQ_IVKZeS"
+					leos:origin="ec">
+					<num xml:id="akn_article_lM2TJQ_hvi0eW" leos:origin="ec">3.</num>
+					<content xml:id="akn_article_lM2TJQ_x8Bbud"
+						leos:origin="ec">
+						<p xml:id="akn_article_lM2TJQ_ZhzK2P" leos:origin="ec">For the
+							purposes of the assessment referred to in paragraph 2, if the
+							national regulatory authority deems it to be necessary, it may
+							request any further relevant evidence in relation to those
+							tariffs that may be required for the assessment to be made.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_paragraph_CbWaCJ" leos:origin="cn"
+					leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-07T16:59:23.994+02:00">
+					<num xml:id="akn_article_lM2TJQ_6dVsuo">3a.</num>
+					<content xml:id="akn_article_lM2TJQ_7qQAur">
+						<p xml:id="akn_article_lM2TJQ_3lO5WZ">The evidence referred to in paragraph 3 shall be
+							submitted to the national regulatory authority within 1 month of
+							receipt of the request, together with any justification of the
+							tariffs under assessment.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_lM2TJQ-par1"
+					leos:origin="ec" leos:depth="1">
+					<num xml:id="akn_article_lM2TJQ_cnxIU9" leos:origin="ec">4.</num>
+					<subparagraph
+						xml:id="transformed_akn_article_lM2TJQ-par1" leos:origin="ec"
+						leos:softaction="trans" leos:softuser="izaremem"
+						leos:softdate="2020-07-02T17:41:30.011+02:00">
+						<content xml:id="akn_article_lM2TJQ_5F0nZP">
+							<p xml:id="akn_article_lM2TJQ_VGeajW">The national regulatory authority shall submit
+								electronically its assessment to the Commission. In addition,
+								the national regulatory authority shall provide a
+								non-confidential version of that assessment to the Commission
+								and, upon justified request, to any of the national regulatory
+								authorities of affected Member States.
+							</p>
+						</content>
+					</subparagraph>
+					<subparagraph xml:id="akn_article_lM2TJQ_TZmkWy"
+						leos:origin="cn" leos:softaction="add" leos:softuser="izaremem"
+						leos:softdate="2020-07-02T17:42:40.080+02:00">
+						<content xml:id="akn_article_lM2TJQ_kT9STB">
+							<p xml:id="akn_article_lM2TJQ_tQ7imT">The information required by this paragraph shall be
+								provided by [31 May] of each calendar year at the latest.
+							</p>
+						</content>
+					</subparagraph>
+				</paragraph>
+				<paragraph class="leos-double-compare-removed-original"
+					xml:id="akn_paragraph_mfHr4r" leos:origin="cn"
+					leos:softaction="add" leos:softactionroot="true"
+					leos:softuser="izaremem"
+					leos:softdate="2020-07-02T17:52:13.077+02:00" leos:depth="1"
+					leos:editable="false" leos:deletable="false">
+					<num xml:id="akn_article_lM2TJQ_D0nG18">4a.</num>
+					<content xml:id="akn_article_lM2TJQ_RfOe7s">
+						<p xml:id="akn_article_lM2TJQ_Mho2E3">The national regulatory authorities and the Commission
+							shall in accordance with national and Union law ensure the
+							confidentiality of the assessment and evidence provided in
+							accordance with paragraph 2.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_lM2TJQ_V5UEJF"
+					leos:origin="ec">
+					<num xml:id="akn_article_lM2TJQ_iDvhrf" leos:origin="ec">5.</num>
+					<content xml:id="akn_article_lM2TJQ_rvTxR9"
+						leos:origin="ec">
+						<p xml:id="akn_article_lM2TJQ_cGSkYq" leos:origin="ec">
+							The Commission shall publish the non-confidential version of the
+							assessment provided by the national regulatory authorities
+							<span class="leos-double-compare-removed-intermediate">in accordance with paragraph 4 on the dedicated
+								website by 30 June of each calendar year at the latest</span>
+							<span class="leos-double-compare-added-intermediate">without delay and in any event within 1 month of
+								receipt</span>
+							.
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_GiR9HH">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_GiR9HH_qog9qj">Article 6</num>
+				<heading leos:origin="ec" xml:id="akn_article_GiR9HH_iJ71w3">Transparent and
+					non-discriminatory cross-border access
+				</heading>
+			</article>
+			<chapter leos:origin="ec" xml:id="akn_chapter_7s6QZL">
+				<num leos:origin="ec" xml:id="akn_sbID8J">Chapter 3</num>
+				<heading leos:origin="ec" xml:id="akn_k8IdE4">Implementation,
+					review and
+					entry into force
+				</heading>
+			</chapter>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_vTh2RK">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_vTh2RK_1WhRBG">Article 7</num>
+				<heading leos:origin="ec" xml:id="akn_article_vTh2RK_GrBb5j">Penalties</heading>
+				<paragraph xml:id="akn_article_vTh2RK-par1"
+					leos:origin="ec">
+					<content xml:id="akn_article_vTh2RK_TOTPQC"
+						leos:origin="ec">
+						<p xml:id="akn_article_vTh2RK_UsaG0Z" leos:origin="ec">1. Member
+							States shall lay down the rules on the penalties applicable for
+							infringements to this Regulation, and shall take all measures
+							necessary to ensure that they are implemented. The penalties
+							provided for shall be effective, proportionate and dissuasive.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="akn_article_vTh2RK_dLgcTd"
+					leos:origin="ec">
+					<content xml:id="akn_article_vTh2RK_U9wrkS"
+						leos:origin="ec">
+						<p xml:id="akn_article_vTh2RK_0H0qSd" leos:origin="ec">
+							2. Each Member States shall notify the Commission the provisions
+							of its law which it adopts pursuant to paragraph 1 by
+							<i xml:id="akn_article_vTh2RK_Dhxb2H">[18 months after the
+								entry into force of this
+								Regulation]
+							</i>
+							and, without delay, any subsequent amendment affecting them.
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_nVFmTO">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_nVFmTO_N9ClIm">Article 8</num>
+				<heading leos:origin="ec" xml:id="akn_article_nVFmTO_zKiffd">Review</heading>
+				<paragraph xml:id="akn_article_nVFmTO_A8TAnO"
+					leos:origin="ec">
+					<content xml:id="akn_article_nVFmTO_Fihehx"
+						leos:origin="ec">
+						<p xml:id="akn_article_nVFmTO_jrhgK1" leos:origin="ec">
+							By [
+							<i xml:id="akn_article_nVFmTO_wKZvPr">two years after the entry
+								into force of this
+								Regulation
+							</i>
+							], and every two years thereafter, the Commission shall submit to
+							the European Parliament, the Council and the Economic and Social
+							Committee an evaluation report on the application of this
+							Regulation accompanied, where appropriate, by a proposal for its
+							review.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_nVFmTO_m7H6Fh">
+					<subparagraph leos:origin="ec"
+						xml:id="akn_article_nVFmTO_wq2rn9">
+						<content leos:origin="ec"
+							xml:id="akn_article_nVFmTO_z0jyzz">
+							<p leos:origin="ec" xml:id="akn_article_nVFmTO_lZGLHY">The
+								Commission shall evaluate at
+								least the following:
+							</p>
+						</content>
+					</subparagraph>
+					<list leos:origin="ec" xml:id="akn_article_nVFmTO_VEE6vt">
+						<point xml:id="akn_article_nVFmTO_dGqBcH" leos:origin="ec">
+							<num xml:id="akn_article_nVFmTO_uXMG0V" leos:origin="ec">(a)</num>
+							<content xml:id="akn_article_nVFmTO_LOFkOv"
+								leos:origin="ec">
+								<p xml:id="akn_article_nVFmTO_9sWSJf" leos:origin="ec">whether the
+									assessment has contributed to the improvement of the
+									cross-border parcel delivery services, including the
+									affordability for users located in remote or sparsely populated
+									areas;
+								</p>
+							</content>
+						</point>
+						<point xml:id="akn_article_nVFmTO_QCz4FN" leos:origin="ec">
+							<num xml:id="akn_article_nVFmTO_ncfHgb" leos:origin="ec">(c)</num>
+							<content xml:id="akn_article_nVFmTO_vC3OrR"
+								leos:origin="ec">
+								<p xml:id="akn_article_nVFmTO_gvMAF7" leos:origin="ec">the extent
+									to which national regulatory authorities have had difficulties
+									applying this Regulation, including a quantitative analysis of
+									the administrative consequences;
+								</p>
+							</content>
+						</point>
+						<point leos:origin="ec" xml:id="akn_article_nVFmTO_oH75rd">
+							<num leos:origin="ec" xml:id="akn_article_nVFmTO_WckkV4">(d)
+							</num>
+							<content leos:origin="ec"
+								xml:id="akn_article_nVFmTO_1gG4oM">
+								<p leos:origin="ec" xml:id="akn_article_nVFmTO_mWfomE">progress
+									on other initiatives for
+									completing the single market for
+									parcel delivery services.
+								</p>
+							</content>
+						</point>
+					</list>
+				</paragraph>
+			</article>
+			<article leos:editable="false" leos:deletable="false"
+				leos:origin="ec" xml:id="akn_article_Rs4e5y">
+				<num leos:origin="ec" leos:editable="false"
+					xml:id="akn_article_Rs4e5y_BL5itz">Article 9</num>
+				<heading leos:origin="ec" xml:id="akn_article_Rs4e5y_4TrVu8">Committee procedure
+				</heading>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_Rs4e5y-par1" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_Rs4e5y_Y2B4dI">1.</num>
+					<content leos:origin="ec"
+						xml:id="akn_article_Rs4e5y_qhk1B7">
+						<p leos:origin="ec" xml:id="akn_article_Rs4e5y_K0araT">The Commission shall be assisted by
+							the Postal Directive Committee established by Article 21 of
+							Directive 97/67/EC. That committee shall be a committee within
+							the meaning of Regulation (EU) No 182/2011.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph leos:origin="ec"
+					xml:id="akn_article_Rs4e5y_gRlsFx" leos:depth="1">
+					<num leos:origin="ec" xml:id="akn_article_Rs4e5y_AUyexD">2.
+					</num>
+					<content leos:origin="ec"
+						xml:id="akn_article_Rs4e5y_tV0HGF">
+						<p leos:origin="ec" xml:id="akn_article_Rs4e5y_Dy01Fz">Where
+							reference is made to this
+							paragraph, Article 5 of Regulation (EU)
+							No 182/2011 shall apply.
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<article leos:origin="ec" xml:id="art_2"
+				leos:editable="false" leos:deletable="false">
+				<num leos:origin="ec" leos:editable="false" xml:id="art_2__num">Article 10
+				</num>
+				<heading leos:origin="ec" xml:id="art_2__heading">Entry into force</heading>
+				<paragraph xml:id="art_2__para_1" leos:origin="ec">
+					<content xml:id="art_2__para_1__content">
+						<p xml:id="art_2__para_1__content__p">
+							1. This Regulation shall enter into force on the twentieth day
+							following that of its publication in the
+							<i xml:id="art_2__para_1__content__p__i" leos:origin="ec">Official
+								Journal of the European Union
+							</i>
+							.
+						</p>
+					</content>
+				</paragraph>
+				<paragraph xml:id="art_2_aXWL25" leos:origin="cn"
+					leos:softaction="add" leos:softuser="izaremem"
+					leos:softdate="2020-07-06T16:37:10.717+02:00">
+					<content xml:id="art_2_02Haxk">
+						<p xml:id="art_2_Ivsg1w">
+							2. This Regulation shall apply from …
+							<i xml:id="art_2_7aRTol">[date of entry into force of this
+								Regulation]
+							</i>
+							, with the exception of Article 7, which shall apply from …
+							<i xml:id="art_2_FyCU0s">[18 months after the entry into force
+								of this
+								Regulation]
+							</i>
+						</p>
+					</content>
+				</paragraph>
+			</article>
+			<clause leos:origin="ec" xml:id="clause_1"
+				leos:editable="true" leos:deletable="true" leos:alternative="true"
+				leos:optionlist="listOption1" leos:selectedoption="1">
+				<content leos:origin="ec" xml:id="clause_1__content">
+					<p leos:origin="ec" xml:id="clause_1__content__p">This Regulation shall be binding in
+						its entirety and directly applicable in all Member States.
+					</p>
+				</content>
+			</clause>
+		</body>
+		<conclusions leos:origin="ec" xml:id="conclusions">
+			<p leos:origin="ec" xml:id="conclusions__p_1">
+				Done at
+				<location leos:origin="ec"
+					xml:id="conclusions__p__location_1" refersTo="~_BEL_BRU">Brussels</location>
+				,
+			</p>
+			<block leos:origin="ec" name="signatory"
+				xml:id="conclusions__block_1">
+				<signature leos:origin="ec"
+					xml:id="conclusions__block_1__signature_1">
+					<organization leos:origin="ec"
+						xml:id="conclusions__block_1__signature_1__organization"
+						refersTo="~EP">For the European Parliament</organization>
+					<role leos:origin="ec"
+						xml:id="conclusions__block_1__signature_1__role"
+						refersTo="~PRESID">The President</role>
+					<person leos:origin="ec"
+						xml:id="conclusions__block_1__signature_1__person" refersTo="">[...]
+					</person>
+				</signature>
+				<signature leos:origin="ec"
+					xml:id="conclusions__block_1__signature_2">
+					<organization leos:origin="ec"
+						xml:id="conclusions__block_1__signature_2__organization"
+						refersTo="~CONSIL">For the Council</organization>
+					<role leos:origin="ec"
+						xml:id="conclusions__block_1__signature_2__role"
+						refersTo="~PRESID">The President</role>
+					<person leos:origin="ec"
+						xml:id="conclusions__block_1__signature_2__person" refersTo="">[...]
+					</person>
+				</signature>
+			</block>
+		</conclusions>
+		<attachments>
+			<attachment xml:id="akn_BGRdgI">
+				<documentRef xml:id="akn_XaZPWY"
+					href="annex_ckc1lgy85000g7x84g1enzs00.xml" showAs="Annex" />
+			</attachment>
+		</attachments>
+	</bill>
+</akomaNtoso>

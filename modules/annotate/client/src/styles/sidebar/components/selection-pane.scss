@@ -1,0 +1,26 @@
+.leos-selection-pane {
+  background-color: $body-background;
+  border: solid 1px $gray-lighter;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  padding: 1em;
+}
+
+.leos-selection-pane__actions-section {
+  margin-top: 10px;
+}
+
+.leos-selection-pane__label {
+  display: inline-block;
+  width: 100%;
+}
+
+.leos-selection-pane__button {
+  @include primary-action-btn;
+  height: 22px;
+  margin-right: 5px;
+}
+
+.leos-selection-pane__info {
+  margin-left: 10px;
+}

@@ -1,0 +1,43 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:softmove_label="MOVED from Article 2" leos:origin="ec" xml:id="art_2" leos:editable="false"
+                     leos:deletable="false" leos:softaction="move_from"
+                     leos:softmove_from="moved_art_2" leos:softuser="jane"
+                     leos:softdate="2020-10-06T19:40:28.317+02:00" leos:softactionroot="true">
+                <num leos:origin="cn" leos:editable="false" xml:id="art_2__num">Article -1</num>
+                <heading xml:id="art_2_xhfvBc">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_2__para_1" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_2__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_2__para_1__content">
+                        <p leos:origin="ec" xml:id="art_2__para_1__content__p">Paragraph 1 of Article 2</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1__para_1" leos:depth="1">
+                    <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="art_1__para_1__content__p">Paragraph 1</p>
+                    </content>
+                </paragraph>
+            </article>
+            <part leos:origin="ec" xml:id="part_1">
+                <num leos:origin="ec" xml:id="akn_U6JVmg">Part I</num>
+                <heading leos:origin="ec" xml:id="akn_gFxums">Part heading...</heading>
+                <chapter leos:origin="ec" xml:id="chapter_1" leos:depth="2">
+                    <num leos:origin="ec" xml:id="akn_9Stf16">Chapter 1</num>
+                    <heading leos:origin="ec" xml:id="akn_LFvufQ">Chapter heading...</heading>
+                    <article leos:softmove_label="MOVED to Article -1" leos:origin="ec" xml:id="moved_art_2"
+                             leos:editable="false" leos:deletable="false" leos:softaction="move_to"
+                             leos:softmove_to="art_2" leos:softuser="jane" leos:softdate="2020-10-06T19:40:28.322+02:00"
+                             leos:softactionroot="true">
+                        <num leos:origin="ec" leos:editable="false" xml:id="moved_art_2__num">Article 2</num>
+                    </article>
+                </chapter>
+            </part>
+        </body>
+    </bill>
+</akomaNtoso>

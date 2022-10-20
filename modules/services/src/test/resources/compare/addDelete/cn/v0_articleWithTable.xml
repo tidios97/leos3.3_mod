@@ -1,0 +1,56 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false"
+                     leos:autonumbering="true">
+                <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="art_1_lV1uCS">
+                    <num leos:origin="ec" xml:id="art_1_gz0ngA">5.</num>
+                    <subparagraph leos:origin="ec" xml:id="art_1_gWOb8S">
+                        <content leos:origin="ec" xml:id="art_1_sYeyKs">
+                            <p leos:origin="ec" xml:id="art_1_RM1tRN">dfbhdfwsb wdxwb </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph xml:id="art_1_AL93Vx" leos:origin="ec">
+                        <content xml:id="art_1_tvUaC8" leos:origin="ec">
+                            <table xml:id="art_1_itg4AK" leos:origin="ec" border="1" cellpadding="1" cellspacing="1"
+                                   style="width: 500px;">
+                                <tr xml:id="art_1_6h28Ma" leos:origin="ec">
+                                    <td xml:id="art_1_rBXlhX" leos:origin="ec">
+                                        <p xml:id="art_1_37zYH1" leos:origin="ec">b xcwb </p>
+                                    </td>
+                                    <td xml:id="art_1_U7Tg5F" leos:origin="ec">
+                                        <p xml:id="art_1_17kl0P" leos:origin="ec">wxcb </p>
+                                    </td>
+                                </tr>
+                                <tr xml:id="art_1_UelpIh" leos:origin="ec">
+                                    <td xml:id="art_1_JLKisg" leos:origin="ec">
+                                        <p xml:id="art_1_RDSFWW" leos:origin="ec">wxcb </p>
+                                    </td>
+                                    <td xml:id="art_1_e3y7J1" leos:origin="ec">
+                                        <p xml:id="art_1_Qk3VIw" leos:origin="ec">xwcb </p>
+                                    </td>
+                                </tr>
+                                <tr xml:id="art_1_SKOz7V" leos:origin="ec">
+                                    <td xml:id="art_1_VxNVdQ" leos:origin="ec">
+                                        <p xml:id="art_1_soNmDM" leos:origin="ec">wxb </p>
+                                    </td>
+                                    <td xml:id="art_1_HN5Ncw" leos:origin="ec">
+                                        <p xml:id="art_1_eeSI5j" leos:origin="ec">bxwb</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="art_1_0eDFTM">
+                    <num leos:origin="ec" xml:id="art_1_zaYyb8">6.</num>
+                    <content leos:origin="ec" xml:id="art_1_WNFyD3">
+                        <p leos:origin="ec" xml:id="art_1_JSCFl0">bxwb</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

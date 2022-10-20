@@ -1,0 +1,28 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"
+           >
+    <bill name="REG">
+        <meta>
+            <proprietary source="~_leos">
+                <leos:version>1.1.1</leos:version>
+                <leos:template>SJ-023</leos:template>
+                <leos:docTemplate>BL-023</leos:docTemplate>
+                <leos:relevantElements leos:originalVersion="0.1.0" leos:currentVersion="0.1.1">
+                    <leos:relevantElement leos:ref="preface" leos:tagName="preface"/>
+                    <leos:relevantElement leos:ref="body" leos:tagName="body"/>
+                    <leos:relevantElement leos:ref="preamble" leos:tagName="preamble"/>
+                    <leos:relevantElement leos:ref="conclusions" leos:tagName="conclusions"/>
+                </leos:relevantElements>
+                <leos:comments>
+                    <leos:comment><![CDATA[test]]></leos:comment>
+                    <leos:comment><![CDATA[Legal act without Annexes]]></leos:comment>
+                    <leos:comment><![CDATA[0.1.0 vs 0.1.1]]></leos:comment>
+                </leos:comments>
+                <leos:docPurpose xml:id="proprietary__docpurpose">on XYZ</leos:docPurpose>
+                <leos:docStage xml:id="proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:docType xml:id="proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                </leos:docType>
+                <leos:ref>bill</leos:ref>
+            </proprietary>
+        </meta>
+    </bill>
+</akomaNtoso>

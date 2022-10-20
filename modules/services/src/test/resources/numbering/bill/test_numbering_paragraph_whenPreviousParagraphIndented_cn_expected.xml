@@ -1,0 +1,58 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="regulation">
+        <body leos:origin="ec" xml:id="body">
+            <article leos:origin="ec" xml:id="art1">
+                <num leos:origin="ec" xml:id="art1_num">Article 1</num>
+                <heading leos:origin="ec" xml:id="art1_h">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="art1_par1">
+                    <num leos:origin="ec" xml:id="art1_par1__num">1</num>
+                    <content leos:origin="ec" xml:id="art1_par1__content">
+                        <p leos:origin="ec" xml:id="art1_par1__content__p">par 1</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_JKbjQ2">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_zUY3tH">2.</num>
+                    <subparagraph leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_TTDctY">
+                        <num xml:id="_imp_art_d1e4012_teul2x_kjnajb"/>
+                        <content leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_fNDfSv">
+                            <p leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_o0Dy27">The condition</p>
+                        </content>
+                    </subparagraph>
+                    <list leos:origin="cn" xml:id="_lis_zsFCrx">
+                        <point leos:indent-origin-indent-level="0" leos:indent-origin-num="3."
+                               leos:indent-origin-num-id="_imp_art_d1e4012_teul2x_I0uM48"
+                               leos:indent-origin-num-origin="ec" leos:indent-origin-type="PARAGRAPH" leos:origin="ec"
+                               xml:id="_imp_art_d1e4012_teul2x_I8J3Pa">
+                            <num leos:origin="cn" xml:id="_imp_art_d1e4012_teul2x_I0uM48">(a)</num>
+                            <content leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_eNZU7z">
+                                <p leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_iI7mMX">The condition laid down in
+                                    point (h)(iii) of paragraph 1 shall be deemed to be met notwithstanding the
+                                    instrument paying a dividend multiple, provided that such a dividend multiple does
+                                    not result in a distribution that causes a disproportionate drag on own funds.
+                                </p>
+                            </content>
+                        </point>
+                    </list>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_vWmqB6">
+                    <num leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_YX1rOa">4.</num>
+                    <content leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_3mHCHd">
+                        <p leos:origin="ec" xml:id="_imp_art_d1e4012_teul2x_W312RT">For the purposes of point (h)(i) of
+                            paragraph 1, differentiated distributions shall only reflect differentiated voting rights.
+                            In this respect, higher distributions shall only apply to Common Equity Tier 1 instruments
+                            with fewer or no voting rights.
+                        </p>
+                    </content>
+                </paragraph>
+                <paragraph leos:depth="1" leos:origin="cn" leos:softaction="add" leos:softactionroot="true"
+                           leos:softdate="2022-05-17T10:54:57.827+02:00" leos:softuser="jane"
+                           xml:id="_akn_paragraph_EQmjrL">
+                    <num leos:editable="false" leos:origin="cn" xml:id="_imp_art_d1e4012_teul2x_ULPxl9">4a.</num>
+                    <content xml:id="_imp_art_d1e4012_teul2x_0cAfgF">
+                        <p xml:id="_imp_art_d1e4012_teul2x_LzuwTd">will become 4a.</p>
+                    </content>
+                </paragraph>
+            </article>
+        </body>
+    </bill>
+</akomaNtoso>

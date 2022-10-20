@@ -1,0 +1,6 @@
+<paragraph xml:id="par1_new">
+    <num xml:id="par1_new_num">1.</num>
+    <content xml:id="par1_new_c">
+        <p xml:id="par1_new_c_p">This is a new paragraph</p>
+    </content>
+</paragraph>
