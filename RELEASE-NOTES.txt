@@ -1,54 +1,21 @@
 ABOUT LEOS
 ================================================================================
 
-    LEOS is a software that was created under ISA Action 2016.38 Legislation 
-Interoperability Tools - LegIT to address the need of the public administration 
-and European Institutions to generate draft legislation in a legal XML format. 
-    
-    It is a legislation editor and this current prototype supports the drafting 
-of the 'secondary' legislation of the EU law which has to be adopted under the 
-Ordinary Legislative Procedure. 
+LEOS (Legislation Editing Open Software) is a software designed to address the need of the public administrations and European Institutions to generate draft legislation in a legal XML format. It was created under ISA Programme - ISA Action 1.13. LEOS - Legislation Editing Open Software and it continued to evolved under ISA2 Action 2016.38 Legislation Interoperability Tools - LegIT.  The LEOS journey continues under Digital Europe Programme (https://digital-strategy.ec.europa.eu/en/activities/digital-programme).
 
-    Therefore, it covers the writing of Proposals for Directive, Decision and 
-Regulation submitted by the Commission to the Council and the Parliament.
+LEOS has been created to addresses the modernisation and digital transformation of the drafting and revising of legislation in EU Institutions, EU agencies and bodies and Member States. The aim is to:
 
-    If you want to find out more about this procedure, please read the European 
-Parliament's article.
-europarl.europa.eu/about-parliament/en/powers-and-procedures/legislative-powers
+-  Improve the quality of legislation.
+-  Increase the efficiency of the legislative process across the Union.
+-  Facilitate interoperability and seamless cooperation between the different actors in the legislative process in and between EU Institutions and Member States.
+-  Improve transparency and accessibility and thus effectiveness of law.
+-  Explore and pilot the use of innovative technologies such as Artificial Intelligence.
 
-    Given the high diversity of legislative traditions encountered across the 
-Union and the different levels of modernisation, it was extremely difficult to 
-provide a universal single turnkey ICT solution that adapts to each specific 
-context.
+It is based on the Akoma Ntoso XML format an OASIS LegalDocML standard (in particular, it supports the AKN4EU interinstitutional instantiation subschema of Akoma Ntoso) that facilitates interoperability between EU institutions and Member States
 
-    Even if a significant part of the business logic can be found embedded in 
-the code, we design with the goal of delivering re-usable building blocks so 
-LEOS is released Open Source as we believe that some parts of it could be reused
-and adapted by some other Public Administration having similar needs.
+The code is available for free under EUPL licence (version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence")), and the development team paid attention to organise the code in a structured way to ease its reusability (modules, plugins…).  
 
-    For more information on the features please follow us on Joinup:
-joinup.ec.europa.eu/solution/leos-open-source-software-editing-legislation
-
-    The code is available for free under EUPL licence, and the development team 
-paid attention to organise the code in a structured way to ease its reusability 
-(modules, plugins…).
-    For more information on the EUPL licence:
-https://joinup.ec.europa.eu/collection/eupl/licence-compatibility
-
-    The LEOS demo provided in our release comes with an example user interface 
-that includes the logo of the European Commission. 
-This is just for demonstration purpose and please note that the logo of the 
-European Commission may be used by third parties only if:
--  Permission is requested and granted before the logo is used
--  There is no likelihood of the user of the logo being confused with the 
-European Commission
--  It is not used in connection with objectives or activities which are 
-incompatible with the aims and principles of the European Commission
--  It is not used to imply or suggest unintended endorsement or promotion of the
-objectives and activities of the user of the logo by the European Commission
-
-    For more information please visit :
-ec.europa.eu/info/resources-partners/european-commission-visual-identity_en
+For more information on the EUPL licence, please visit this https://joinup.ec.europa.eu/collection/eupl. 
 
 WHAT'S NEW?
 ================================================================================
