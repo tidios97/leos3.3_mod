@@ -21,6 +21,7 @@ import eu.europa.ec.leos.vo.toc.NumberingConfig;
 import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
+import eu.europa.ec.leos.vo.toc.TocItemTypeName;
 import eu.europa.ec.leos.vo.toc.indent.IndentedItemType;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,6 +39,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
 import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.CN;
 import static eu.europa.ec.leos.services.support.XmlHelper.CONTENT;
@@ -104,13 +106,22 @@ public class TableOfContentProcessorImpl implements TableOfContentProcessor {
     }
 
     public static TocItem getTocItemFromNumberingType(String number, String tagName, TocItem originalTocItem, List<NumberingConfig> numberingConfigs, List<TocItem> tocItems, Node node) {
-        if (tagName.equals(INDENT)) {
+        Node parent = null;
+        if (originalTocItem.getParentNameNumberingTypeDependency() != null) {
+            parent = XercesUtils.getParentWithTagName(node, originalTocItem.getParentNameNumberingTypeDependency().value());
+        }
+        TocItemTypeName tocItemType = parent != null ? StructureConfigUtils.getTocItemTypeFromTagNameAndAttributes(tocItems,
+                parent.getNodeName(),
+                XercesUtils.getAttributes(parent)) : TocItemTypeName.REGULAR;
+        if (tagName.equals(POINT)) {
+            return StructureConfigUtils.getTocItemByTagNameAndTocItemType(tocItems, tocItemType, tagName);
+        } else if (tagName.equals(INDENT)) {
             if (node.getParentNode().getParentNode().getNodeName().equalsIgnoreCase(POINT)) {
-                TocItem pointTocItem = StructureConfigUtils.getTocItemByName(tocItems, POINT);
-                return StructureConfigUtils.getTocItemByNumberingConfig(tocItems, pointTocItem.getNumberingType(), tagName);
+                return StructureConfigUtils.getTocItemByTagNameAndTocItemType(tocItems, tocItemType, tagName);
             } else {
                 List<TocItem> foundTocItems = StructureConfigUtils.getTocItemsByName(tocItems, INDENT);
-                return StructureConfigUtils.getTocItemByNumValue(numberingConfigs, foundTocItems, number);
+                int depth = XercesUtils.getPointDepth(node);
+                return StructureConfigUtils.getTocItemByNumValue(numberingConfigs, foundTocItems, number, depth);
             }
         }
         return originalTocItem;

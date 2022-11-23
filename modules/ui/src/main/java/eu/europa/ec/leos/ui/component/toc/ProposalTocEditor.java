@@ -35,7 +35,6 @@ import static eu.europa.ec.leos.model.action.SoftActionType.MOVE_TO;
 import static eu.europa.ec.leos.services.processor.content.TableOfContentHelper.hasTocItemSoftAction;
 import static eu.europa.ec.leos.services.processor.content.TableOfContentProcessor.resetUserInfo;
 import static eu.europa.ec.leos.services.support.XmlHelper.EC;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEVEL;
 import static eu.europa.ec.leos.services.support.XmlHelper.LS;
 import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_MOVE_PLACEHOLDER_ID_PREFIX;
@@ -88,13 +87,6 @@ public class ProposalTocEditor extends AbstractTocEditor {
                     ? droppedItems : Lists.reverse(droppedItems);
             for (TableOfContentItemVO sourceItem : sourceItems) {
                 performAddOrMoveAction(isAdd, tocTree, tocRules, sourceItem, targetItem, parentItem, position);
-                if (position.equals(ItemPosition.AS_CHILDREN)
-                        && LEVEL.equals(sourceItem.getTocItem().getAknTag().value())
-                        && LEVEL.equals(targetItem.getTocItem().getAknTag().value())) {
-                    TableOfContentItemVO lastChild = getLastChildLevel(sourceItem, targetItem);
-                    TableOfContentItemVO actualTargetItem = getActualTargetItem(sourceItem, targetItem, parentItem, position, true);
-                    moveSourceAfterChildOrSibling(sourceItem, tocTree, actualTargetItem, lastChild);
-                }
             }
             tocTree.deselectAll();
             tocTree.getDataProvider().refreshAll();
@@ -105,7 +97,6 @@ public class ProposalTocEditor extends AbstractTocEditor {
     @Override
     protected void addOrMoveItem(final boolean isAdd, final TableOfContentItemVO sourceItem, final TableOfContentItemVO targetItem,
                                  final TreeGrid<TableOfContentItemVO> tocTree, final TableOfContentItemVO actualTargetItem, final ItemPosition position) {
-        boolean isRestored = false;
         if (isAdd) {
             super.addOrMoveItem(true, sourceItem, targetItem, tocTree, actualTargetItem, position);
             moveOriginAttribute(sourceItem, targetItem);
@@ -115,9 +106,9 @@ public class ProposalTocEditor extends AbstractTocEditor {
         } else {
             handleMoveAction(sourceItem, tocTree);
             super.addOrMoveItem(false, sourceItem, targetItem, tocTree, actualTargetItem, position);
-            isRestored = restoreMovedItemOrSetNumber(tocTree, sourceItem, targetItem, position);
+            restoreMovedItemOrSetNumber(tocTree, sourceItem, targetItem, position);
         }
-        handleLevelMove(sourceItem, targetItem, tocTree, actualTargetItem, position, isRestored);
+        handleLevelMove(sourceItem, targetItem);
         resetUserInfo(sourceItem);
         updateDepthOfTocItems(tocTree.getTreeData().getChildren(sourceItem.getParentItem()));
     }

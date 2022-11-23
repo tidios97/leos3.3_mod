@@ -1,54 +1,33 @@
-<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+            xmlns:leos="urn:eu:europa:ec:leos">
     <bill name="REG">
         <body leos:origin="ec" xml:id="body">
-            <article leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del"
-                     leos:softactionroot="true" leos:softdate="2022-08-18T08:59:43.072+02:00"
-                     leos:softuser="demo jane(Ext)" xml:id="deleted___akn_article_Vh2NWC">
-                <num leos:editable="false" leos:origin="ec" xml:id="deleted___akn_article_Vh2NWC_8u9hTn">Article 4</num>
-                <heading leos:origin="ec" xml:id="deleted___akn_article_Vh2NWC_u0UDrL">Article heading...</heading>
-                <paragraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del"
-                           leos:softactionroot="true" leos:softdate="2022-08-18T08:59:43.072+02:00"
-                           leos:softuser="demo jane(Ext)" xml:id="deleted_akn_article_Xudya3_DjwAT2">
-                    <subparagraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del"
-                                  leos:softactionroot="true" leos:softdate="2022-08-17T21:15:41.000+02:00"
-                                  leos:softuser="S Leo(CNECT)" xml:id="deleted_deleted_akn_article_Xudya3_DjwAT2">
-                        <content xml:id="deleted_akn_article_Xudya3_WP6hXO">
-                            <aknP id="akn_article_Xudya3_9wTmiL" xml:id="deleted_akn_article_Xudya3_9wTmiL">
-                                The implementing acts referred to in paragraph
-                                1 shall be adopted in accordance with the examination procedure referred to in 
-                                <mref id="akn_article_Xudya3_i28ySd" leos:origin="ec"
-                                      xml:id="deleted_akn_article_Xudya3_i28ySd">Article 53
-                                    <ref href="bill_cl6x8yxyz0003xk256bfnj9r6/akn_article_ZdvCzG_aoRg4H"
-                                         id="akn_article_Xudya3_uTZKp8" leos:origin="ec"
-                                         onClick="LEOS.scrollTo('akn_article_ZdvCzG_aoRg4H')"
-                                         xml:id="deleted_akn_article_Xudya3_uTZKp8">(2)
-                                    </ref>
-                                </mref>
-                                 
-                            </aknP>
-                        </content>
-                    </subparagraph>
-                    <subparagraph leos:deletable="false" leos:editable="false" leos:origin="cn" leos:softaction="del"
-                                  leos:softactionroot="true" leos:softdate="2022-08-17T21:15:41.000+02:00"
-                                  leos:softuser="S Leo(CNECT)" xml:id="deleted__akn_article_Xudya3_xdYdU7">
-                        <content xml:id="deleted__akn_article_Xudya3_1CwICq">
-                            <aknP id="_akn_article_Xudya3_mVVRAc" xml:id="deleted__akn_article_Xudya3_mVVRAc">except
-                                those where an admissible opposition is
-                                lodged under 
-                                <mref id="_akn_article_Xudya3_eLNDSC" leos:origin="ec"
-                                      xml:id="deleted__akn_article_Xudya3_eLNDSC">Article 9
-                                    <ref href="bill_cl6x8yxyz0003xk256bfnj9r6/akn_article_yXTDOu_UUTgyi"
-                                         id="_akn_article_Xudya3_0fsIrG" leos:origin="ec"
-                                         onClick="LEOS.scrollTo('akn_article_yXTDOu_UUTgyi')"
-                                         xml:id="deleted__akn_article_Xudya3_0fsIrG">(4)
-                                    </ref>
-                                </mref>
-                                , which shall be adopted without applying that examination procedure. 
-                            </aknP>
-                        </content>
-                    </subparagraph>
-                </paragraph>
-            </article>
+            <chapter leos:origin="ec" xml:id="cha_HysnPu">
+                <num leos:origin="ec" xml:id="akn_rnHisF">Chapter II</num>
+                <heading leos:origin="ec" xml:id="akn_RWG2yz">European Union Customs Single Window Certificates Exchange System</heading>
+                <article leos:deletable="false" leos:editable="true" leos:origin="ec" xml:id="akn_art_ubc2NQ">
+                    <num leos:editable="false" leos:origin="ec" xml:id="akn_art_ubc2NQ_Wwu4Uv">Article 5</num>
+                    <heading leos:origin="ec" xml:id="akn_art_ubc2NQ_HeudnT">Roles and responsibilities for EU CSW-CERTEX
+                    </heading>
+                    <paragraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del"
+                               leos:softactionroot="true" leos:softdate="2022-09-20T11:47:39.408+02:00"
+                               leos:softuser="S Leo(CNECT)" xml:id="deleted_akn_art_ubc2NQ_Zur2uo">
+                        <num leos:origin="ec" xml:id="deleted_akn_art_ubc2NQ_uoY0vh">1.</num>
+                        <subparagraph leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="del" leos:softactionroot="true" leos:softdate="2022-09-20T11:46:08.000+02:00" leos:softuser="S Leo(CNECT)" xml:id="deleted_deleted_akn_art_ubc2NQ_Zur2uo">
+                            <content xml:id="deleted_akn_art_ubc2NQ_kK4yzk">
+                                <p xml:id="deleted_akn_art_ubc2NQ_Dq8ODX">The Commission, in collaboration with the Member States, shall develop,</p>
+                            </content>
+                        </subparagraph>
+                        <subparagraph leos:deletable="false" leos:editable="false" leos:origin="cn" leos:softaction="del" leos:softactionroot="true" leos:softdate="2022-09-20T11:46:08.000+02:00" leos:softuser="S Leo(CNECT)" xml:id="deleted_splitted__akn_art_ubc2NQ_V7XtGu">
+                            <content xml:id="deleted_splitted__akn_art_ubc2NQ_eV3qEl">
+                                <p xml:id="deleted_splitted__akn_art_ubc2NQ_AXqe4i">integrate and operate EU CSW-CERTEX.</p>
+                            </content>
+                        </subparagraph>
+                    </paragraph>
+                </article>
+            </chapter>
         </body>
     </bill>
 </akomaNtoso>
+
+

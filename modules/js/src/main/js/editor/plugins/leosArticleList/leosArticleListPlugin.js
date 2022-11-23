@@ -32,6 +32,7 @@ define(function leosArticleListPluginModule(require) {
     var CKEDITOR = require("promise!ckEditor");
     var LOG = require("logger");
     var pluginTools = require("plugins/pluginTools");
+    var leosPluginUtils = require("plugins/leosPluginUtils");
 
     var pluginName = "leosArticleList";
 
@@ -796,7 +797,8 @@ define(function leosArticleListPluginModule(require) {
 
         // Kill the tail br in extracted.
         last = frag.getLast();
-        if ( last && last.type == CKEDITOR.NODE_ELEMENT && last.is( 'br' ) )
+        // LEOS-6702 add condition !frag.getFirst().equals(last) to avoid removing all fragment
+        if ( last && last.type == CKEDITOR.NODE_ELEMENT && last.is( 'br' ) && !frag.getFirst().equals(last) )
             last.remove();
 
         // Insert fragment at the range position.
@@ -962,7 +964,19 @@ define(function leosArticleListPluginModule(require) {
 
                         if ( joinWith ) {
                             joinNextLineToCursor( editor, cursor, range );
-                            evt.cancel();
+                            var parentOfPreviousIsParagraph = previous.getParent().getAttribute("data-akn-element") === leosPluginUtils.PARAGRAPH;
+                            var parentOfPreviousIsNumbered = previous.getParent().getAttribute("data-akn-num");
+                            /*
+                             * This if was created, because the first level of Point (a)
+                             * cannot become a paragraph in case of unnumbered paragraphs.
+                             * Then if we cancel the event, the listener that is joining
+                             * the lines will not execute.
+                             * Then, !(parentOfPreviousIsParagraph && !parentOfPreviousIsNumbered)
+                             * simplified becomes (!parentOfPreviousIsParagraph || parentOfPreviousIsNumbered)
+                            */
+                            if (!parentOfPreviousIsParagraph || parentOfPreviousIsNumbered) {
+                                evt.cancel();
+                            }
                         }
                         else {
                             var list = path.contains( listNodeNames );

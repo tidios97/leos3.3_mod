@@ -47,6 +47,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.SUBPOINT;
 import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocument;
 import static eu.europa.ec.leos.services.support.XercesUtils.getId;
 import static eu.europa.ec.leos.services.util.TestUtils.squeezeXmlAndRemoveAllNS;
+import static eu.europa.ec.leos.services.util.TestUtils.squeezeXmlRemovingAttributeAndRemoveAllNS;
 import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
@@ -59,7 +60,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.ArgumentMatchers.booleanThat;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -661,6 +661,21 @@ public class XmlContentProcessorProposalTest extends XmlContentProcessorTest {
     }
 
     @Test
+    public void test_doImportedElementPreProcessing_defArticle() {
+        byte[] documentXml = TestUtils.getFileContent(FILE_PREFIX + "/test_doImportedElementPreProcessing_defArticle.xml");
+        String returnedElement = xercesXmlContentProcessor.doImportedElementPreProcessing(new String(documentXml, UTF_8), null);
+        byte[] expected = TestUtils.getFileContent(FILE_PREFIX + "/test_doImportedElementPreProcessing_defArticle_expected.xml");
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(expected, UTF_8)), squeezeXmlAndRemoveAllNS(returnedElement));
+
+        Document document = createXercesDocument(returnedElement.getBytes(XmlHelper.UTF_8));
+        Node node = document.getFirstChild();
+        String id = getId(node);
+        assertNotNull(id);
+        assertTrue(id.startsWith("_imp_"));
+        assertFalse(id.contains("null"));
+    }
+
+    @Test
     public void test_doImportedElementPreProcessing() {
         byte[] documentXml = TestUtils.getFileContent(FILE_PREFIX + "/test_doImportedElementPreProcessing_article.xml");
         String returnedElement = xercesXmlContentProcessor.doImportedElementPreProcessing(new String(documentXml, UTF_8), null);
@@ -790,6 +805,98 @@ public class XmlContentProcessorProposalTest extends XmlContentProcessorTest {
         byte[] expectedDocument = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_updated_moved_element_within_article_expected.xml");
         assertEquals(squeezeXmlAndRemoveAllNS(new String(expectedDocument, UTF_8)),
                 squeezeXmlAndRemoveAllNS(result.right()));
+    }
+
+    @Test
+    public void test_movePointsAfterArticleIsMoved_same_article_clonedProposal() {
+        //Given
+        byte[] xmlContent = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_moved_article_point_same_article.xml");
+        byte[] elementFragment = TestUtils.getFileContent(FILE_PREFIX + "/test_moved_article_fragment_with_moved_point_in_same_article.xml");
+
+        // When
+        when(cloneContext.isClonedProposal()).thenReturn(true);
+        NumberProcessor numberProcessorPoint = new NumberProcessorParagraphAndPoint(messageHelper, numberProcessorHandler);
+        ReflectionTestUtils.setField(numberProcessorHandler, "numberProcessors", Arrays.asList(numberProcessorPoint));
+        Pair<byte[], String> result = xercesXmlContentProcessor.updateSoftMovedElement(xmlContent, new String(elementFragment, UTF_8));
+
+        // Then
+        byte[] expectedDocument = TestUtils.getFileContent(FILE_PREFIX + "/test_moved_article_fragment_with_moved_point_in_same_article_expected.xml");
+        assertEquals(squeezeXmlRemovingAttributeAndRemoveAllNS(new String(expectedDocument, UTF_8), "leos:softuser"),
+                squeezeXmlRemovingAttributeAndRemoveAllNS(result.right(), "leos:softuser"));
+    }
+
+    @Test
+    public void test_movePointsAfterArticleIsMoved_different_article_clonedProposal() {
+        //Given
+        byte[] xmlContent = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_moved_article_point_different_article.xml");
+        byte[] elementFragment = TestUtils.getFileContent(FILE_PREFIX + "/test_moved_article_fragment_with_moved_point_in_different_article.xml");
+
+        // When
+        when(cloneContext.isClonedProposal()).thenReturn(true);
+        NumberProcessor numberProcessorPoint = new NumberProcessorParagraphAndPoint(messageHelper, numberProcessorHandler);
+        ReflectionTestUtils.setField(numberProcessorHandler, "numberProcessors", Arrays.asList(numberProcessorPoint));
+        Pair<byte[], String> result = xercesXmlContentProcessor.updateSoftMovedElement(xmlContent, new String(elementFragment, UTF_8));
+
+        // Then
+        byte[] expectedDocument = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_moved_article_point_different_article_expected.xml");
+        assertEquals(squeezeXmlRemovingAttributeAndRemoveAllNS(new String(expectedDocument, UTF_8), "leos:softuser"),
+                squeezeXmlRemovingAttributeAndRemoveAllNS(new String(result.left()), "leos:softuser"));
+    }
+
+    @Test
+    public void test_moveParagraphAfterArticleIsMoved_same_article_clonedProposal() {
+        //Given
+        byte[] xmlContent = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_moved_article_paragraph_same_article.xml");
+        byte[] elementFragment = TestUtils.getFileContent(FILE_PREFIX + "/test_moved_article_fragment_with_moved_paragraph_in_same_article.xml");
+
+        // When
+        when(cloneContext.isClonedProposal()).thenReturn(true);
+        NumberProcessor numberProcessorPoint = new NumberProcessorParagraphAndPoint(messageHelper, numberProcessorHandler);
+        ReflectionTestUtils.setField(numberProcessorHandler, "numberProcessors", Arrays.asList(numberProcessorPoint));
+        Pair<byte[], String> result = xercesXmlContentProcessor.updateSoftMovedElement(xmlContent, new String(elementFragment, UTF_8));
+
+        // Then
+        byte[] expectedDocument = TestUtils.getFileContent(FILE_PREFIX + "/test_moved_article_fragment_with_moved_paragraph_in_same_article_expected.xml");
+        assertEquals(squeezeXmlRemovingAttributeAndRemoveAllNS(new String(expectedDocument, UTF_8), "leos:softuser"),
+                squeezeXmlRemovingAttributeAndRemoveAllNS(result.right(), "leos:softuser"));
+    }
+
+    @Test
+    public void test_moveParagraphAfterArticleIsMoved_different_article_clonedProposal() {
+        //Given
+        byte[] xmlContent = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_moved_article_paragraph_different_article.xml");
+        byte[] elementFragment = TestUtils.getFileContent(FILE_PREFIX + "/test_moved_article_fragment_with_moved_paragraph_in_different_article.xml");
+
+        // When
+        when(cloneContext.isClonedProposal()).thenReturn(true);
+        NumberProcessor numberProcessorPoint = new NumberProcessorParagraphAndPoint(messageHelper, numberProcessorHandler);
+        ReflectionTestUtils.setField(numberProcessorHandler, "numberProcessors", Arrays.asList(numberProcessorPoint));
+        Pair<byte[], String> result = xercesXmlContentProcessor.updateSoftMovedElement(xmlContent, new String(elementFragment, UTF_8));
+
+        // Then
+        byte[] expectedDocument = TestUtils.getFileContent(FILE_PREFIX + "/test_bill_with_moved_article_paragraph_different_article_expected.xml");
+        assertEquals(squeezeXmlRemovingAttributeAndRemoveAllNS(new String(expectedDocument, UTF_8), "leos:softuser"),
+                squeezeXmlRemovingAttributeAndRemoveAllNS(new String(result.left()), "leos:softuser"));
+    }
+    
+    @Test
+    public void test_annex_point_insert_depth_attribute() throws Exception {
+        byte[] docContent = TestUtils.getFileContent(FILE_PREFIX + "/test_annex_point_insert_depth_attribute.xml");
+        byte[] docContentExpected = TestUtils.getFileContent(FILE_PREFIX + "/test_annex_point_insert_depth_attribute_expected.xml");
+        
+        byte[] result = xercesXmlContentProcessor.insertDepthAttribute(docContent, "point", "para_1_list_point_b");
+        
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(docContentExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+    
+    @Test
+    public void test_annex_level_insert_depth_attribute() throws Exception {
+        byte[] docContent = TestUtils.getFileContent(FILE_PREFIX + "/test_annex_level_insert_depth_attribute.xml");
+        byte[] docContentExpected = TestUtils.getFileContent(FILE_PREFIX + "/test_annex_level_insert_depth_attribute_expected.xml");
+        
+        byte[] result = xercesXmlContentProcessor.insertDepthAttribute(docContent, "level", "level_1");
+        
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(docContentExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
     }
 
     @Test

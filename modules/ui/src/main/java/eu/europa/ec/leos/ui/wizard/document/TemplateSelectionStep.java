@@ -70,8 +70,8 @@ class TemplateSelectionStep extends CustomComponent implements WizardStep {
     private boolean canFinish;
 
     TemplateSelectionStep(final DocumentVO document, List<CatalogItem> templateItems, MessageHelper messageHelper,
-                          boolean canFinish) {
-        catalogContainer = CatalogUtil.getCatalogContainer(templateItems);
+                          boolean canFinish, boolean ignoreHidden) {
+        catalogContainer = CatalogUtil.getCatalogContainer(templateItems, ignoreHidden);
 
         this.document = document;
         this.messageHelper = messageHelper;

@@ -223,6 +223,22 @@ public class LeosRepositoryImpl implements LeosRepository {
     }
 
     @Override
+    public LegDocument updateLegDocument(String id, List<String> containedDocuments) {
+        logger.trace("Updating Leg document contained files... [id=" + id + "]");
+        long startTimeNanos = System.nanoTime();
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put(CmisProperties.CONTAINED_DOCUMENTS.getId(), containedDocuments);
+
+        Document doc = cmisRepository.updateDocument(id, properties);
+        long time = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTimeNanos);
+        logger.trace("CMIS Repository Leg document contained files update took " + time + " milliseconds.");
+
+        return toLeosDocument(doc, LegDocument.class, true)
+                .orElseThrow(() -> new IllegalStateException("Unable to update leg contained files! [id=" + id + "]"));
+    }
+
+    @Override
     public LegDocument updateLegDocument(String id, LeosLegStatus status, byte[] contentBytes, VersionType versionType, String comment) {
         logger.debug("Updating Leg document status and content... [id=" + id + ", status=" + status.name() + ", content size=" + contentBytes.length + ", versionType=" + versionType + ", comment=" + comment + ']');
         long startTimeNanos = System.nanoTime();
@@ -507,7 +523,7 @@ public class LeosRepositoryImpl implements LeosRepository {
         return userLogin + "::" + authority + (userEntity != null ? "::" + userEntity : "");
     }
 
-    private <D extends LeosDocument> Optional<D> toLeosDocument(Document doc, Class<? extends D> type, boolean fetchContent) {
+    public <D extends LeosDocument> Optional<D> toLeosDocument(Document doc, Class<? extends D> type, boolean fetchContent) {
         D leosDocument = null;
         if (doc != null) {
             Map<String, String> oldVersions = repositoryContextProvider.get().getVersionsWithoutVersionLabel();
@@ -725,6 +741,16 @@ public class LeosRepositoryImpl implements LeosRepository {
 
         return toLeosDocument(doc, ExportDocument.class, true)
                 .orElseThrow(() -> new IllegalStateException("Unable to update export document comments! [id=" + id + ", comments=" + comments + ']'));
+    }
+
+    @Override
+    public Folder createFolder(String path, String name) {
+        return cmisRepository.createFolder(path, name);
+    }
+
+    @Override
+    public Folder findFolderByPath(String path) {
+        return cmisRepository.findFolderByPath(path);
     }
 
 }

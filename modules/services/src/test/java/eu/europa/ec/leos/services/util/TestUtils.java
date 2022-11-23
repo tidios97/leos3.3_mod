@@ -49,6 +49,17 @@ public class TestUtils {
         return squeezeXml(input);
     }
 
+    public static String squeezeXmlRemovingAttributeAndRemoveAllNS(String input, String attr) {
+        input = removeAllNameSpaces(input);
+        return squeezeXml(input, attr);
+    }
+
+    public static String squeezeXml(String input, String attr) {
+        return input.replaceAll("\\s+", "")
+                .replaceAll(attr+"=\".+?\"", "leos:softdate=\"dummyUser\"")
+                .replaceAll("leos:softdate=\".+?\"", "leos:softdate=\"dummyDate\"");
+    }
+
     public static String squeezeXml(String input) {
         return input.replaceAll("\\s+", "")
                 .replaceAll("leos:softdate=\".+?\"", "leos:softdate=\"dummyDate\"")

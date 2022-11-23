@@ -81,6 +81,9 @@ public class BillContext {
     private DocumentVO billDocument;
     private DocumentVO annexDocument;
     private String annexTemplate;
+    private String annexClonedRef;
+    private int annexIndex;
+    private String annexNumber;
 
     private final Map<ContextAction, String> actionMsgMap;
 
@@ -167,6 +170,21 @@ public class BillContext {
         annexTemplate = templateName;
     }
 
+    public void useAnnexIndex(int annexIndex) {
+        Validate.notNull(annexIndex, "Annex template is required!");
+        this.annexIndex = annexIndex;
+    }
+
+    public void useAnnexNumber(String annexNumber) {
+        Validate.notNull(annexNumber, "Annex template is required!");
+        this.annexNumber = annexNumber;
+    }
+
+    public void useAnnexClonedRef(String annexClonedRef) {
+        Validate.notNull(annexClonedRef, "Annex cloned ref is required!");
+        this.annexClonedRef = annexClonedRef;
+    }
+
     public void useVersionComment(String comment) {
         Validate.notNull(comment, "Version comment is required!");
         this.versionComment = comment;
@@ -220,6 +238,9 @@ public class BillContext {
         for (DocumentVO docChild : billDocument.getChildDocuments()) {
             if (docChild.getCategory() == ANNEX) {
                 useAnnexDocument(docChild);
+                useAnnexNumber(docChild.getMetadata().getNumber());
+                useAnnexIndex(Integer.parseInt(docChild.getMetadata().getIndex()));
+
                 Annex annex = executeImportBillAnnex();
                 annexes.add(annex);
             }
@@ -425,17 +446,30 @@ public class BillContext {
 
         MetadataVO annexMeta = annexDocument.getMetadata();
         annexContext.useTemplate(annexMeta.getDocTemplate());
-        annexContext.useIndex(Integer.parseInt(annexDocument.getMetadata().getIndex()));
         annexContext.useCollaborators(bill.getCollaborators());
         annexContext.useDocument(annexDocument);
         annexContext.useActionMessageMap(actionMsgMap);
-        annexContext.useAnnexNumber(annexMeta.getNumber());
+        annexContext.useIndex(annexIndex);
+        annexContext.useAnnexNumber(annexNumber);
         Annex annex = annexContext.executeImportAnnex();
 
         String href = annex.getName();
         String showAs = annexMeta.getNumber(); //createdAnnex.getMetadata().get().getNumber(); //ShowAs attribute is not used so it is kept as blank as of now.
         bill = billService.addAttachment(bill, href, showAs, actionMsgMap.get(ContextAction.ANNEX_ADDED));
         return annex;
+    }
+
+    public void executeImportContributionAnnex() {
+        LOG.trace("Executing 'Import contribution annex' use case...");
+        Validate.notNull(packageService, "Bill package is required!");
+        AnnexContext annexContext = annexContextProvider.get();
+        List<Annex> annexes = packageService.findDocumentsByPackagePath(leosPackage.getPath(), Annex.class, false);
+        int annexIndex = annexes.size() + 1;
+        String annexNumber = AnnexNumberGenerator.getAnnexNumber(annexes.size() == 0 ? annexes.size() : annexIndex, messageHelper);
+        annexContext.useActionMessage(ContextAction.ANNEX_BLOCK_UPDATED, messageHelper.getMessage("collection.block.annex.metadata.updated"));
+        useAnnexNumber(annexNumber);
+        useAnnexIndex(annexIndex);
+        executeImportBillAnnex();
     }
 
     public void createRefForAnnex(BillMetadata billMetadata) {
@@ -464,6 +498,7 @@ public class BillContext {
                 .withTitle(annexMetadataVO.getTitle())
                 .withType(billMetadata.getType())
                 .withTemplate(annexMetadataVO.getDocTemplate())
+                .withClonedRef(annexDocument.getRef())
                 .withRef(ref);
         final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(annexDocument.getSource(), createValueMap(updatedAnnexMetadata),
                 xmlNodeConfigProcessor.getConfig(updatedAnnexMetadata.getCategory()), xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());

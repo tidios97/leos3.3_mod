@@ -20,13 +20,42 @@
                             border-top-left-radius: 5px;    
                         }        
                     }
-                
                     .v-tabsheet-tabitem-selected {
                         .v-caption {
-                           background:$MAIN_BLUE;
                            font-weight:bold;
-                           color: $WHITE;
+                           padding:4px;
                         }
+                    }
+
+                    .v-tabsheet-tabitemcell-leos-annex-added {
+                        .v-caption {
+                          background: $G_GREEN_COLOR;
+                          border: 1px solid $G_GREEN_COLOR;
+                          color: $WHITE;
+                        }
+                    }
+
+                    .v-tabsheet-tabitemcell-leos-annex-removed {
+                        .v-caption {
+                          background: $LIGHT_RED_COLOR;
+                          border: 1px solid $LIGHT_RED_COLOR;
+                          color: $WHITE;
+                        }
+                    }
+
+                    .v-tabsheet-tabitemcell-leos-annex-processed {
+                      .v-caption {
+                        background: $LIGHT_GREY;
+                        border: 1px solid $LIGHT_GREY;
+                        color: $WHITE;
+                      }
+                    }
+                    .v-tabsheet-tabitemcell-leos-doc-modified {
+                      .v-caption {
+                        background: $LIGHT_ORANGE_COLOR;
+                        border: 1px solid $LIGHT_ORANGE_COLOR;
+                        color: $WHITE;
+                      }
                     }
                 }
             }
@@ -39,9 +68,7 @@
                   background:transparent; 
                }
             }
-        
         }
-    
         .leos-milestone-toc-toolbar {
             background: $GREY;
         }

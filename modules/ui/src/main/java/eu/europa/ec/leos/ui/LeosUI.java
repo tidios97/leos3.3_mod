@@ -76,6 +76,12 @@ public class LeosUI extends UI {
     @Value("${leos.pollingInterval}")
     protected int pollInterval;
 
+	@Value("#{applicationProperties['leos.footer.help.url']}")
+    private String helpUrl;
+
+	@Value("#{applicationProperties['leos.footer.private.statement.url']}")
+    private String privateStatementUrl;
+
     @Override
     protected void init(VaadinRequest request) {
         LOG.trace("Leos UI initializing...");
@@ -113,7 +119,7 @@ public class LeosUI extends UI {
 
         leosLayout.addComponent(viewDisplay);
 
-        final Footer footer = new Footer(messageHelper);
+        Footer footer = new Footer(messageHelper, helpUrl, privateStatementUrl);
         leosLayout.addComponent(footer);
 
         // expand body to use all available space

@@ -255,39 +255,57 @@ define(function annotateExtensionModule(require) {
      * below config will significantly modify the way client will behave
      */
     function _addHostConfig(doc, annotateState) {
-        var script = doc.createElement('script');
-        script.type = 'application/json';
-        script.className = 'js-hypothesis-config';
+        var script = doc.querySelector('script.js-hypothesis-config');
+        var addElement = !script;
+        if (script == null) {
+             script = doc.createElement('script');
+             script.type = 'application/json';
+             script.className = 'js-hypothesis-config';
+        }
+
         var webSocketUrl = annotateState.anotHost.replace('https','wss').replace('http','ws')+"/ws";
-        script.innerHTML = `{
-                                "leosDocumentRootNode": "akomantoso",
-                                "operationMode" : "${annotateState.operationMode}",
-                                "showStatusFilter" : ${annotateState.showStatusFilter},
-                                "showGuideLinesButton" : ${annotateState.showGuideLinesButton},
-                                "annotationPopupDefaultStatus" : "${annotateState.annotationPopupDefaultStatus}",
-                                "annotationContainer": "${annotateState.annotationContainer}",
-                                "context": "${annotateState.proposalRef}",
-                                "connectedEntity": "${annotateState.connectedEntity}",
-                                "ignoredTags": ["div"],
-                                "allowedSelectorTags": "a.ref2link-generated, span.leos-content-soft-new",
-                                "editableSelector": "[leos\\\\:editable=true],article,heading,recitals,citations,level,paragraph,coverpage docpurpose",
-                                "notAllowedSuggestSelector": "num:not([leos\\\\:origin='cn']), guidance, heading:contains('Entry into force')",
-                                "displayMetadataCondition": {"ISCReference": "Consultation Reference", "responseVersion": "Response Version", "responseId": "Consulted Unit"},
-                                "oauthClientId": "${annotateState.oauthClientId}",
-                                "assetRoot": "${annotateState.anotClient}",
-                                "sidebarAppUrl": "${annotateState.anotHost}/app.html",
-                                "services": [{
-                                    "authority": "${annotateState.authority}",
-                                    "apiUrl": "${annotateState.anotHost}/api/",
-                                    "websocketUrl":"${webSocketUrl}"
-                                 }],
-                                 "spellChecker": {
-                                    "enabled": "${annotateState.isSpellCheckerEnabled}",
-                                    "serviceUrl": "${annotateState.spellCheckerServiceUrl}",
-                                    "sourceUrl": "${annotateState.spellCheckerSourceUrl}"
-                                 }
-                            }`;
-        doc.body.appendChild(script);
+        var innerHtmlJson = {
+            "leosDocumentRootNode": "akomantoso",
+            "operationMode" : `${annotateState.operationMode}`,
+            "showStatusFilter" : annotateState.showStatusFilter,
+            "showGuideLinesButton" : annotateState.showGuideLinesButton,
+            "annotationPopupDefaultStatus" : `${annotateState.annotationPopupDefaultStatus}`,
+            "annotationContainer": `${annotateState.annotationContainer}`,
+            "context": `${annotateState.proposalRef}`,
+            "connectedEntity": `${annotateState.connectedEntity}`,
+            "ignoredTags": ["div"],
+            "allowedSelectorTags": "a.ref2link-generated, span.leos-content-soft-new",
+            "editableSelector": "[leos\\:editable=true],article,heading,recitals,citations,level,paragraph,coverpage docpurpose",
+            "notAllowedSuggestSelector": "num:not([leos\\:origin='cn']), guidance, heading:contains('Entry into force')",
+            "displayMetadataCondition": {"ISCReference": "Consultation Reference", "responseVersion": "Response Version", "responseId": "Consulted Unit"},
+            "oauthClientId": `${annotateState.oauthClientId}`,
+            "assetRoot": `${annotateState.anotClient}`,
+            "sidebarAppUrl": `${annotateState.anotHost}/app.html`,
+            "services": [{
+                "authority": `${annotateState.authority}`,
+                "apiUrl": `${annotateState.anotHost}/api/`,
+                "websocketUrl":`${webSocketUrl}`
+             }],
+             "spellChecker": {
+                "enabled": `${annotateState.isSpellCheckerEnabled}`,
+                "serviceUrl": `${annotateState.spellCheckerServiceUrl}`,
+                "sourceUrl": `${annotateState.spellCheckerSourceUrl}`
+             }
+        };
+        if (annotateState.sidebarAppId) {
+            innerHtmlJson["sidebarAppId"] = annotateState.sidebarAppId;
+        }
+        if (annotateState.temporaryDataId) {
+            innerHtmlJson["temporaryData"] = {
+               "id": `${annotateState.temporaryDataId}`,
+               "document": `${annotateState.temporaryDataDocument}`
+            }
+        };
+
+        script.innerHTML = JSON.stringify(innerHtmlJson);
+        if (addElement) {
+           doc.body.appendChild(script);
+        }
     }
 
     // handle connector unregistration on client-side
@@ -296,20 +314,58 @@ define(function annotateExtensionModule(require) {
         log.debug("Unregistering annotate extension...");
 
         // Unload sidebar
-        _destroyAnnotate(document);
+        _destroyAnnotate(document, connector.getState().sidebarAppId);
         log.debug("Destruction of annotate application done");
 
-        CKEDITOR.removeListener("instanceReady", _connectorEditorListener);
+        // Only remove instanceReade listener if main sidebar is about to be removed
+        if (!connector.getState().sidebarAppId) {
+            CKEDITOR.removeListener("instanceReady", _connectorEditorListener);
+        }
         // clean connector
         connector.target = null;
     }
 
-    function _destroyAnnotate(doc) {
-        var appLinkEl = doc.querySelector('link[type="application/annotator+html"][rel="sidebar"]');
-        if (appLinkEl != null) {
-            var event = new Event('destroy');
-            appLinkEl.dispatchEvent(event);
+    function _destroyAnnotate(doc, sidebarAppId) {
+        if (sidebarAppId) {
+            _destroyAdditionalSidebar(doc, sidebarAppId);
+            return;
         }
+        _destroyAllAdditional(doc);
+        _destroyAnnotateMain(doc);
+    }
+
+    function _destroyAdditionalSidebar(doc, sidebarAppId) {
+        const additionalAnnotateLink = doc.querySelector(`link[type="application/annotator+html"][rel="sidebar-${sidebarAppId}"]`);
+        if (!additionalAnnotateLink) {
+            return;
+        }
+        _dispatchDestroyAnnotate(additionalAnnotateLink, sidebarAppId);
+    }
+
+    function _destroyAnnotateMain(doc) {
+        var appLinkEl = doc.querySelector('link[type="application/annotator+html"][rel="sidebar"]');
+        if(appLinkEl) {
+            _dispatchDestroyAnnotate(appLinkEl);
+        }
+    }
+    function _destroyAllAdditional(doc) {
+        var appLinkElements = doc.querySelectorAll('link[type="application/annotator+html"][rel*="sidebar-"]');
+        if (appLinkElements.length === 0) {
+            return;
+        }
+
+        for(let iterator of appLinkElements.entries()) {
+            let appLinkEl = iterator[1];
+            let refAttrValue =  appLinkEl.attributes['rel'].value;
+            let sidebarAppId = refAttrValue.replace('sidebar', '').substring(1);
+            _dispatchDestroyAnnotate(appLinkEl, sidebarAppId);
+        }
+    }
+
+    function _dispatchDestroyAnnotate(element, sidebarAppId) {
+        let eventName = sidebarAppId ? `destroy_${sidebarAppId}` : 'destroy';
+        let event = new Event(eventName);
+        element.dispatchEvent(event);
     }
 
     function escapeXml(text) {

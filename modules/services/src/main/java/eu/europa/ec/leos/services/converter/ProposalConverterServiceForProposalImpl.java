@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 
 @Service
@@ -38,6 +39,7 @@ import java.nio.file.Files;
 class ProposalConverterServiceForProposalImpl extends ProposalConverterServiceImpl {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProposalConverterServiceForProposalImpl.class);
+    public static final Charset UTF_8 = Charset.forName("UTF-8");
 
     @Autowired
     ProposalConverterServiceForProposalImpl(
@@ -53,6 +55,10 @@ class ProposalConverterServiceForProposalImpl extends ProposalConverterServiceIm
     protected void updateSource(final DocumentVO document, File documentFile, boolean canModifySource) {
         try {
             byte[] xmlBytes = Files.readAllBytes(documentFile.toPath());
+            String xmlContent = new String(xmlBytes, UTF_8);
+            xmlContent = xmlContent.replaceAll("class=\"leos-content-new\"", "").
+                    replaceAll("class=\"leos-content-removed\"", "");
+            xmlBytes = xmlContent.getBytes(UTF_8);
             if (document.getCategory() == LeosCategory.BILL && canModifySource) {
                 // We have to remove the references to the annexes, we will add them when importing
                 xmlBytes = xmlContentProcessor.removeElements(xmlBytes, xPathCatalog.getXPathAttachments(), 0);

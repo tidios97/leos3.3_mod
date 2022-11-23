@@ -3,14 +3,12 @@ package eu.europa.ec.leos.ui.view.memorandum;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.StreamResource;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.document.Memorandum;
 import eu.europa.ec.leos.domain.cmis.metadata.LeosMetadata;
 import eu.europa.ec.leos.domain.common.InstanceType;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.instance.Instance;
@@ -34,13 +32,13 @@ import eu.europa.ec.leos.ui.component.versions.VersionComparator;
 import eu.europa.ec.leos.ui.component.versions.VersionsTab;
 import eu.europa.ec.leos.ui.event.InitLeosEditorEvent;
 import eu.europa.ec.leos.ui.extension.ActionManagerExtension;
+import eu.europa.ec.leos.ui.extension.AnnotateExtension;
 import eu.europa.ec.leos.ui.extension.LeosEditorExtension;
 import eu.europa.ec.leos.ui.component.toc.TocEditor;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.web.event.NotificationEvent;
 import eu.europa.ec.leos.web.event.component.LayoutChangeRequestEvent;
 import eu.europa.ec.leos.web.event.component.ResetRevisionComponentEvent;
-import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.CreateEventParameter;
 import eu.europa.ec.leos.web.event.view.document.FetchUserPermissionsResponse;
 import eu.europa.ec.leos.web.event.view.document.InstanceTypeResolver;
@@ -60,6 +58,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @ViewScope
 @SpringComponent
@@ -127,9 +126,19 @@ class ProposalMemorandumScreenImpl extends MemorandumScreenImpl {
     }
 
     @Override
-    public void showRevision(String versionContent, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList) {
+    public void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId) {
+        this.showRevision(versionContent, contributionVO, tocItemList);
+        final LeosDisplayField revisionContent =  revisionComponent.getRevisionContent();
+        final String temporaryDocument = contributionVO.getDocumentName().replace(".xml", "");
+        new AnnotateExtension(revisionContent, eventBus, cfgHelper, "leos-revision-content", AnnotateExtension.OperationMode.READ_ONLY,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, null,
+                connectedEntity, "revision-01", temporaryAnnotationsId, temporaryDocument);
+    }
+
+    @Override
+    public void showRevision(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList) {
         initRevisionComponent();
-        revisionComponent.populateRevisionContent(versionContent, LeosCategory.MEMORANDUM, contributionStatus, contributionVO);
+        revisionComponent.populateRevisionContent(versionContent, LeosCategory.MEMORANDUM, contributionVO);
         changePosition(new LayoutChangeRequestEvent(ColumnPosition.DEFAULT, ComparisonComponent.class, revisionComponent));
     }
 
@@ -258,6 +267,12 @@ class ProposalMemorandumScreenImpl extends MemorandumScreenImpl {
             accordion.addTab(contributionsTab, messageHelper.getMessage("document.accordion.contribution"), VaadinIcons.CHEVRON_RIGHT);
             contributionsTab.populateContributionsData(allContributions);
         }
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String versionedReference) {
+        accordion.setSelectedTab(contributionsTab);
+        return contributionsTab.findContribution(versionedReference);
     }
 
     private boolean isClonedProposal() {

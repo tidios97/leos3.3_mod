@@ -20,23 +20,14 @@ import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.LeosExportStatus;
 import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
-import eu.europa.ec.leos.domain.cmis.document.Annex;
-import eu.europa.ec.leos.domain.cmis.document.Bill;
-import eu.europa.ec.leos.domain.cmis.document.Explanatory;
-import eu.europa.ec.leos.domain.cmis.document.ExportDocument;
-import eu.europa.ec.leos.domain.cmis.document.LegDocument;
-import eu.europa.ec.leos.domain.cmis.document.Memorandum;
-import eu.europa.ec.leos.domain.cmis.document.Proposal;
-import eu.europa.ec.leos.domain.cmis.document.XmlDocument;
-import eu.europa.ec.leos.domain.cmis.metadata.AnnexMetadata;
-import eu.europa.ec.leos.domain.cmis.metadata.BillMetadata;
-import eu.europa.ec.leos.domain.cmis.metadata.ExplanatoryMetadata;
-import eu.europa.ec.leos.domain.cmis.metadata.ProposalMetadata;
+import eu.europa.ec.leos.domain.cmis.document.*;
+import eu.europa.ec.leos.domain.cmis.metadata.*;
 import eu.europa.ec.leos.domain.common.Result;
 import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.MetadataVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
+import eu.europa.ec.leos.integration.rest.UserJSON;
 import eu.europa.ec.leos.model.event.ExportPackageCreatedEvent;
 import eu.europa.ec.leos.model.event.ExportPackageDeletedEvent;
 import eu.europa.ec.leos.model.event.ExportPackageUpdatedEvent;
@@ -44,10 +35,6 @@ import eu.europa.ec.leos.model.event.MilestoneCreatedEvent;
 import eu.europa.ec.leos.model.event.MilestoneUpdatedEvent;
 import eu.europa.ec.leos.model.event.UpdateUserInfoEvent;
 import eu.europa.ec.leos.model.messaging.UpdateInternalReferencesMessage;
-import eu.europa.ec.leos.model.notification.collaborators.AddCollaborator;
-import eu.europa.ec.leos.model.notification.collaborators.EditCollaborator;
-import eu.europa.ec.leos.model.notification.collaborators.RemoveCollaborator;
-import eu.europa.ec.leos.model.user.Collaborator;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.permissions.Role;
 import eu.europa.ec.leos.repository.RepositoryContext;
@@ -55,14 +42,18 @@ import eu.europa.ec.leos.security.LeosPermissionAuthorityMapHelper;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.security.UserAuthentication;
 import eu.europa.ec.leos.services.clone.CloneContext;
-import eu.europa.ec.leos.services.collection.CreateCollectionService;
+import eu.europa.ec.leos.services.collection.CollaboratorService;
 import eu.europa.ec.leos.services.collection.CreateCollectionResult;
+import eu.europa.ec.leos.services.collection.CreateCollectionService;
+import eu.europa.ec.leos.services.converter.ProposalConverterService;
 import eu.europa.ec.leos.services.document.AnnexService;
 import eu.europa.ec.leos.services.document.BillService;
 import eu.europa.ec.leos.services.document.DocumentContentService;
 import eu.europa.ec.leos.services.document.ExplanatoryService;
 import eu.europa.ec.leos.services.document.ProposalService;
 import eu.europa.ec.leos.services.document.SecurityService;
+import eu.europa.ec.leos.services.exception.CollaboratorException;
+import eu.europa.ec.leos.services.exception.SendNotificationException;
 import eu.europa.ec.leos.services.export.ExportDW;
 import eu.europa.ec.leos.services.export.ExportLW;
 import eu.europa.ec.leos.services.export.ExportLeos;
@@ -71,6 +62,8 @@ import eu.europa.ec.leos.services.export.ExportService;
 import eu.europa.ec.leos.services.messaging.UpdateInternalReferencesProducer;
 import eu.europa.ec.leos.services.milestone.MilestoneService;
 import eu.europa.ec.leos.services.notification.NotificationService;
+import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
+import eu.europa.ec.leos.services.store.ArchiveService;
 import eu.europa.ec.leos.services.store.ExportPackageService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.TemplateService;
@@ -86,35 +79,20 @@ import eu.europa.ec.leos.ui.event.FetchMilestoneEvent;
 import eu.europa.ec.leos.ui.event.NotifyExportPackageEvent;
 import eu.europa.ec.leos.ui.event.RevisionDoneEvent;
 import eu.europa.ec.leos.ui.event.UpdateCommentsExportPackageEvent;
-import eu.europa.ec.leos.ui.event.view.collection.AddCollaboratorRequest;
-import eu.europa.ec.leos.ui.event.view.collection.CancelCreateExplanatoryRequest;
-import eu.europa.ec.leos.ui.event.view.collection.CreateAnnexRequest;
-import eu.europa.ec.leos.ui.event.view.collection.CreateExplanatoryRequest;
-import eu.europa.ec.leos.ui.event.view.collection.DeleteAnnexEvent;
-import eu.europa.ec.leos.ui.event.view.collection.DeleteAnnexRequest;
-import eu.europa.ec.leos.ui.event.view.collection.DeleteCollectionEvent;
-import eu.europa.ec.leos.ui.event.view.collection.DeleteCollectionRequest;
-import eu.europa.ec.leos.ui.event.view.collection.DeleteExplanatoryEvent;
-import eu.europa.ec.leos.ui.event.view.collection.DeleteExplanatoryRequest;
-import eu.europa.ec.leos.ui.event.view.collection.DownloadMandateEvent;
-import eu.europa.ec.leos.ui.event.view.collection.DownloadProposalEvent;
-import eu.europa.ec.leos.ui.event.view.collection.EditCollaboratorRequest;
-import eu.europa.ec.leos.ui.event.view.collection.ExportMandateEvent;
-import eu.europa.ec.leos.ui.event.view.collection.ExportProposalEvent;
-import eu.europa.ec.leos.ui.event.view.collection.RemoveCollaboratorRequest;
-import eu.europa.ec.leos.ui.event.view.collection.SaveAnnexMetaDataRequest;
-import eu.europa.ec.leos.ui.event.view.collection.SaveExplanatoryMetaDataRequest;
-import eu.europa.ec.leos.ui.event.view.collection.SearchContextEvent;
-import eu.europa.ec.leos.ui.event.view.collection.SearchUserInContextEvent;
-import eu.europa.ec.leos.ui.event.view.collection.SearchUserRequest;
+import eu.europa.ec.leos.ui.event.contribution.ViewContributionEvent;
+import eu.europa.ec.leos.ui.event.revision.OpenAndViewContibutionEvent;
+import eu.europa.ec.leos.ui.event.view.collection.*;
 import eu.europa.ec.leos.ui.model.ExportPackageVO;
 import eu.europa.ec.leos.ui.model.MilestonesVO;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
+import eu.europa.ec.leos.ui.view.ComparisonDelegate;
 import eu.europa.ec.leos.ui.window.milestone.MilestoneExplorer;
+import eu.europa.ec.leos.ui.window.milestone.MilestoneHelper;
 import eu.europa.ec.leos.usecases.document.BillContext;
 import eu.europa.ec.leos.usecases.document.CollectionContext;
 import eu.europa.ec.leos.usecases.document.ContextAction;
+import eu.europa.ec.leos.usecases.document.FinancialStatementContext;
 import eu.europa.ec.leos.vo.catalog.CatalogItem;
 import eu.europa.ec.leos.web.event.NavigationRequestEvent;
 import eu.europa.ec.leos.web.event.NotificationEvent;
@@ -126,8 +104,10 @@ import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
 import eu.europa.ec.leos.web.event.view.document.OpenCoverPageEvent;
 import eu.europa.ec.leos.web.event.view.document.OpenLegalTextEvent;
 import eu.europa.ec.leos.web.event.view.explanatory.OpenExplanatoryEvent;
+import eu.europa.ec.leos.web.event.view.financialStatment.OpenFinancialStatementEvent;
 import eu.europa.ec.leos.web.event.view.memorandum.OpenMemorandumEvent;
 import eu.europa.ec.leos.web.event.view.repository.ExplanatoryCreateWizardRequestEvent;
+import eu.europa.ec.leos.web.event.view.repository.SupportingDocumentsCreateWizardRequestEvent;
 import eu.europa.ec.leos.web.event.window.SaveMetaDataRequestEvent;
 import eu.europa.ec.leos.web.model.UserVO;
 import eu.europa.ec.leos.web.support.SessionAttribute;
@@ -165,13 +145,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.StampedLock;
 import java.util.stream.Collectors;
 
-import static eu.europa.ec.leos.security.LeosPermission.CAN_ADD_REMOVE_COLLABORATOR;
+import static eu.europa.ec.leos.services.support.XmlHelper.XML_DOC_EXT;
 
 @Component
 @Scope("prototype")
@@ -182,6 +163,7 @@ class CollectionPresenter extends AbstractLeosPresenter {
     private final CollectionScreen collectionScreen;
     private final Provider<CollectionContext> proposalContextProvider;
     private final Provider<BillContext> billContextProvider;
+    private final Provider<FinancialStatementContext> financialStatementContextProvider;
     private final Provider<RepositoryContext> repositoryContextProvider;
     private final AnnexService annexService;
     private final ExplanatoryService explanatoryService;
@@ -199,8 +181,12 @@ class CollectionPresenter extends AbstractLeosPresenter {
     private final ProposalService proposalService;
     private final UpdateInternalReferencesProducer updateInternalReferencesProducer;
     private final CreateCollectionService createCollectionService;
+    private final CollaboratorService collaboratorService;
     private UserService userService;
     private final ExportPackageService exportPackageService;
+    private final ArchiveService archiveService;
+    private final ProposalConverterService proposalConverterService;
+    private final XmlContentProcessor xmlContentProcessor;
 
     private String proposalId;
     private String proposalVersionSeriesId;
@@ -214,6 +200,7 @@ class CollectionPresenter extends AbstractLeosPresenter {
     private final CloneContext cloneContext;
     private UserAuthentication userAuthentication;
     private final DocumentContentService documentContentService;
+    private final ComparisonDelegate comparisonDelegate;
 
     @Value("${leos.clone.originRef}")
     private String cloneOriginRef;
@@ -224,7 +211,7 @@ class CollectionPresenter extends AbstractLeosPresenter {
                         CollectionScreen collectionScreen,
                         Provider<CollectionContext> proposalContextProvider,
                         Provider<BillContext> billContextProvider,
-                        Provider<RepositoryContext> repositoryContextProvider, AnnexService annexService,
+                        Provider<FinancialStatementContext> financialStatementContextProvider, Provider<RepositoryContext> repositoryContextProvider, AnnexService annexService,
                         BillService billService,
                         ExplanatoryService explanatoryService,
                         PackageService packageService,
@@ -235,15 +222,17 @@ class CollectionPresenter extends AbstractLeosPresenter {
                         NotificationService notificationService, MessageHelper messageHelper,
                         TemplateService templateService, CoEditionHelper coEditionHelper,
                         LeosPermissionAuthorityMapHelper authorityMapHelper, UuidHelper uuidHelper, ProposalService proposalService, WorkspaceService workspaceService,
-                        UpdateInternalReferencesProducer updateInternalReferencesProducer, CreateCollectionService createCollectionService, UserService userService,
-                        ExportPackageService exportPackageService, CloneContext cloneContext, UserAuthentication userAuthentication,
-                        DocumentContentService documentContentService) {
+                        UpdateInternalReferencesProducer updateInternalReferencesProducer, CreateCollectionService createCollectionService, CollaboratorService collaboratorService, UserService userService,
+                        ExportPackageService exportPackageService, ArchiveService archiveService, CloneContext cloneContext, UserAuthentication userAuthentication,
+                        DocumentContentService documentContentService, ComparisonDelegate comparisonDelegate,
+                        ProposalConverterService proposalConverterService, XmlContentProcessor xmlContentProcessor) {
 
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
 
         this.collectionScreen = collectionScreen;
         this.proposalContextProvider = proposalContextProvider;
         this.billContextProvider = billContextProvider;
+        this.financialStatementContextProvider = financialStatementContextProvider;
         this.repositoryContextProvider = repositoryContextProvider;
         this.annexService = annexService;
         this.explanatoryService = explanatoryService;
@@ -261,11 +250,16 @@ class CollectionPresenter extends AbstractLeosPresenter {
         this.proposalService = proposalService;
         this.updateInternalReferencesProducer = updateInternalReferencesProducer;
         this.createCollectionService = createCollectionService;
+        this.collaboratorService = collaboratorService;
         this.userService = userService;
         this.exportPackageService = exportPackageService;
+        this.archiveService = archiveService;
         this.cloneContext = cloneContext;
         this.userAuthentication = userAuthentication;
         this.documentContentService = documentContentService;
+        this.comparisonDelegate = comparisonDelegate;
+        this.proposalConverterService = proposalConverterService;
+        this.xmlContentProcessor = xmlContentProcessor;
     }
 
     @Override
@@ -397,6 +391,16 @@ class CollectionPresenter extends AbstractLeosPresenter {
                     docVersionSeriesIds.add(annex.getVersionSeriesId());
                     break;
                 }
+                case FINANCIAL_STATEMENT: {
+                    FinancialStatement financialStatement = (FinancialStatement) document;
+                    DocumentVO financialStatementVO = createFinancialStatementVO(financialStatement);
+                    proposalVO.addChildDocument(financialStatementVO);
+                    financialStatementVO.addCollaborators(financialStatement.getCollaborators());
+                    financialStatementVO.getMetadata().setInternalRef(financialStatement.getMetadata().getOrError(() -> "financialStatement metadata is not available!").getRef());
+                    financialStatementVO.setVersionSeriesId(financialStatement.getVersionSeriesId());
+                    docVersionSeriesIds.add(financialStatement.getVersionSeriesId());
+                    break;
+                }
                 default:
                     LOG.debug("Do nothing for rest of the categories like MEDIA, CONFIG & LEG");
                     break;
@@ -420,21 +424,69 @@ class CollectionPresenter extends AbstractLeosPresenter {
                 Date.from(legDocument.getCreationInstant()),
                 Date.from(legDocument.getLastModificationInstant()),
                 messageHelper.getMessage("milestones.column.status.value." + legDocument.getStatus().name()),
-                legDocument.getName());
+                legDocument.getName(), getProposalRef());
 
         if (cloneProposalMetadataVOs != null && !cloneProposalMetadataVOs.isEmpty()) {
             List<MilestonesVO> clonedMilestonesVOS = new ArrayList<>();
-            cloneProposalMetadataVOs.forEach(clonedProposalMetadataVO -> {
+            cloneProposalMetadataVOs.forEach(cpmVo -> {
                 List<String> titles = new ArrayList<>();
-                titles.add(messageHelper.getMessage("clone.proposal.contribution.sent") + userService.getUser(clonedProposalMetadataVO.getTargetUser()).getName());
-                MilestonesVO milestoneVO = new MilestonesVO(titles, clonedProposalMetadataVO.getCreationDate(),
-                        null, clonedProposalMetadataVO.getRevisionStatus(), null);
+                titles.add(messageHelper.getMessage("clone.proposal.contribution.sent").concat(" ").
+                        concat(userService.getUser(cpmVo.getTargetUser()).getName()));
+                MilestonesVO milestoneVO = new MilestonesVO(titles, cpmVo.getCreationDate(),
+                        null, cpmVo.getRevisionStatus(),
+                        cpmVo.getLegFileName(), cpmVo.getCloneProposalRef());
                 milestoneVO.setClone(true);
+                if (cpmVo.getRevisionStatus().equalsIgnoreCase(
+                        messageHelper.getMessage("clone.proposal.status.contribution.done")) &&
+                        identifyContributionChanges(cpmVo.getCloneProposalRef(), cpmVo.getLegFileName())) {
+                    milestoneVO.setContributionChanged(true);
+                }
                 clonedMilestonesVOS.add(milestoneVO);
             });
             milestonesVO.setClonedMilestones(clonedMilestonesVOS);
         }
         return milestonesVO;
+    }
+
+    private boolean identifyContributionChanges(String clonedProposalRef, String clonedLegFileName) {
+        Validate.notNull(clonedProposalRef, "Cloned proposal ref should not be null");
+        Validate.notNull(clonedLegFileName, "Cloned leg file name should not be null");
+        Proposal proposal = proposalService.getProposalByRef(clonedProposalRef);
+        LeosPackage clonedLeosPackage = packageService.findPackageByDocumentId(proposal.getId());
+        LegDocument clonedLegDocument = getLegDocument(clonedLegFileName, clonedLeosPackage);
+        LeosPackage originalLeosPackage = packageService.findPackageByDocumentId(proposalId);
+        String originalLegName = proposalService.getOriginalMilestoneName(proposal.getName(), proposal.getContent().get().getSource().getBytes());
+        LegDocument originalLegDocument = getLegDocument(originalLegName, originalLeosPackage);
+        boolean contributionChanged = false;
+        if (clonedLegDocument != null && originalLegDocument != null) {
+            File legFileTemp = null, originalLegFileTemp = null;
+            try {
+                legFileTemp = File.createTempFile("milestone", ".leg");
+                Map<String, Object> contributionFiles = MilestoneHelper.getMilestoneFiles(legFileTemp, clonedLegDocument);
+                Map<String, Object> annexAddedMap = MilestoneHelper.populateAnnexAddedMap(contributionFiles, clonedLegDocument, getAnnexes(originalLeosPackage),
+                        xmlContentProcessor);
+                if (annexAddedMap != null && annexAddedMap.size() > 0) {
+                    contributionChanged = true;
+                } else {
+                    originalLegFileTemp = File.createTempFile("milestoneOriginal", ".leg");
+                    Map<String, Object> originalDocumentFiles = MilestoneHelper.getMilestoneFiles(originalLegFileTemp, originalLegDocument);
+                    Map<String, Object> annexDeletedMap = MilestoneHelper.populateAnnexDeletedMap(originalDocumentFiles,
+                            contributionFiles, originalLegDocument, getAnnexes(originalLeosPackage), xmlContentProcessor);
+                    if (annexDeletedMap != null && annexDeletedMap.size() > 0) {
+                        contributionChanged = true;
+                    }
+                }
+            } catch (IOException e) {
+                LOG.error("Exception occurred while deleting the file from file system" + e);
+            } finally {
+                try {
+                    MilestoneHelper.deleteTempFilesIfExists(legFileTemp);
+                } catch (IOException e) {
+                    LOG.error("Exception occurred while deleting the file from file system" + e);
+                }
+            }
+        }
+        return contributionChanged;
     }
 
     private void populateExportPackages() {
@@ -536,10 +588,12 @@ class CollectionPresenter extends AbstractLeosPresenter {
             LOG.error("Unexpected error occurred while notifiying Export Package", e);
             eventBus.post(new NotificationEvent(NotificationEvent.Type.ERROR, "collection.block.export.package.action.notify.error", e.getMessage()));
         } finally {
-            exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
-            if ((exportDocument != null) && (!exportDocument.getStatus().equals(LeosExportStatus.FILE_READY))) {
-                exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
-                leosApplicationEventBus.post(new ExportPackageUpdatedEvent(proposalRef, exportDocument));
+            if (exportDocument != null) {
+                exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
+                if ((exportDocument != null) && (!exportDocument.getStatus().equals(LeosExportStatus.FILE_READY))) {
+                    exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
+                    leosApplicationEventBus.post(new ExportPackageUpdatedEvent(proposalRef, exportDocument));
+                }
             }
         }
     }
@@ -638,6 +692,22 @@ class CollectionPresenter extends AbstractLeosPresenter {
     }
 
     // FIXME refine
+    private DocumentVO createFinancialStatementVO(FinancialStatement financialStatement) {
+        DocumentVO financialDocumentVO =
+                new DocumentVO(financialStatement.getId(),
+                        financialStatement.getMetadata().exists(m -> m.getLanguage() != null) ? financialStatement.getMetadata().get().getLanguage() : "EN",
+                        LeosCategory.FINANCIAL_STATEMENT,
+                        financialStatement.getLastModifiedBy(),
+                        Date.from(financialStatement.getLastModificationInstant()));
+
+        if (financialStatement.getMetadata().isDefined()) {
+            FinancialStatementMetadata metadata = financialStatement.getMetadata().get();
+            financialDocumentVO.setTitle(metadata.getTitle());
+        }
+        return financialDocumentVO;
+    }
+
+    // FIXME refine
     private DocumentVO getCoverPageVO(DocumentVO proposalVO) {
         DocumentVO coverPageVO = new DocumentVO(proposalVO.getId(),
                 proposalVO.getMetadata().getLanguage() != null ? proposalVO.getMetadata().getLanguage() : "EN",
@@ -715,6 +785,61 @@ class CollectionPresenter extends AbstractLeosPresenter {
     }
 
     @Subscribe
+    void handleContributionRejectRequest(ContributionAnnexRejectEvent event) {
+        final String docName = event.getDocName();
+        List<String> updatedDocuments = new ArrayList<>();
+        LegDocument legDocument = event.getLegDocument();
+        legDocument.getContainedDocuments().forEach(fileName -> {
+            int versionIndex = fileName.indexOf("_");
+            String name = "", version = "";
+            if (versionIndex != -1) {
+                name = fileName.substring(0, versionIndex);
+                version = fileName.substring(versionIndex);
+            } else {
+                name = fileName;
+            }
+            if (name.equalsIgnoreCase(docName)) {
+                updatedDocuments.add(name.concat("_processed").concat(version));
+            } else {
+                updatedDocuments.add(fileName);
+            }
+        });
+        milestoneService.updateMilestone(legDocument.getId(), updatedDocuments);
+        eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "contribution.milestone.annex.reject.confirmation"));
+    }
+
+    @Subscribe
+    void handleContributionAnnexAcceptRequest(ContributionAnnexAcceptEvent event) {
+        String docName = event.getDocName();
+        if (docName.indexOf(XML_DOC_EXT) == -1) {
+            docName = docName.concat(XML_DOC_EXT);
+        }
+
+        DocumentVO annexVO = proposalConverterService.createDocument(docName, event.getDocFile(), true);
+        if (event.isAdded()) {
+            annexVO.getMetadata().setIndex(null);
+            LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
+            Bill bill = billService.findBillByPackagePath(leosPackage.getPath());
+            BillMetadata metadata = bill.getMetadata().getOrError(() -> "Bill metadata is required!");
+            BillContext billContext = billContextProvider.get();
+            billContext.usePackage(leosPackage);
+            billContext.useActionMessage(ContextAction.ANNEX_BLOCK_UPDATED, messageHelper.getMessage("collection.block.annex.metadata.updated"));
+            billContext.useAnnexDocument(annexVO);
+            billContext.usePurpose(metadata.getPurpose());
+            billContext.createRefForAnnex(metadata);
+            annexVO.getMetadata().setIndex(Integer.toString(((AnnexMetadata)annexVO.getMetadataDocument()).getIndex()));
+            billContext.executeImportContributionAnnex();
+            eventBus.post(new DocumentUpdatedEvent());
+            populateData();
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collection.block.annex.added"));
+        } else {
+            // call delete annex
+            eventBus.post(new DeleteAnnexRequest(annexVO));
+        }
+        eventBus.post(new ContributionAnnexProcessedEvent());
+    }
+
+    @Subscribe
     void deleteAnnexRequest(DeleteAnnexRequest event) {
         collectionScreen.confirmAnnexDeletion(event.getAnnex());
     }
@@ -722,7 +847,7 @@ class CollectionPresenter extends AbstractLeosPresenter {
     @Subscribe
     void deleteAnnex(DeleteAnnexEvent event) {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        // 1. delete Annex
+        // 1. delete Annex and archive before deletion
         LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
 
         BillContext billContext = billContextProvider.get();
@@ -730,12 +855,13 @@ class CollectionPresenter extends AbstractLeosPresenter {
         billContext.usePackage(leosPackage);
         billContext.useActionMessage(ContextAction.ANNEX_METADATA_UPDATED, messageHelper.getMessage("collection.block.annex.metadata.updated"));
         billContext.useActionMessage(ContextAction.ANNEX_DELETED, messageHelper.getMessage("collection.block.annex.removed"));
+        archiveService.archiveDocument(event.getAnnex(), Annex.class, leosPackage.getPath());
         billContext.executeRemoveBillAnnex();
         updateInternalReferencesProducer.send(new UpdateInternalReferencesMessage(proposalId, event.getAnnex().getMetadata().getInternalRef(), id));
         eventBus.post(new DocumentUpdatedEvent());
         // 2. update ui
         populateData();
-        eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "annex.deleted"));
+        eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collection.block.annex.deleted"));
         LOG.info("Deleted Annex {} id {}, in {} milliseconds ({} sec)", event.getAnnex().getMetadata().getInternalRef(), event.getAnnex().getId(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
     }
 
@@ -753,6 +879,31 @@ class CollectionPresenter extends AbstractLeosPresenter {
         eventBus.post(new DocumentUpdatedEvent());
         //2. update screen to show update
         populateData();
+    }
+
+    @Subscribe
+    void deleteFinancialStatementRequest(DeleteFinancialStatementRequest event) {
+        collectionScreen.confirmFinancialStatementDeletion(event.getFinancialStatement());
+    }
+
+    @Subscribe
+    void deleteFinancialStatement(DeleteFinancialStatementEvent event) {
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        // 1. delete FinancialStatement
+        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
+
+        FinancialStatementContext financialStatementContext = financialStatementContextProvider.get();
+        financialStatementContext.useFinancialStatement(event.getFinancialStatement().getId());
+        financialStatementContext.usePackage(leosPackage);
+        financialStatementContext.useActionMessage(ContextAction.FINANCIAL_STATEMENT_METADATA_UPDATED, messageHelper.getMessage("collection.block.financial.statement.metadata.updated"));
+        financialStatementContext.useActionMessage(ContextAction.FINANCIAL_STATEMENT_DELETED, messageHelper.getMessage("collection.block.financial.statement.deleted"));
+        financialStatementContext.executeDeleteFinancialStatement();
+        updateInternalReferencesProducer.send(new UpdateInternalReferencesMessage(proposalId, event.getFinancialStatement().getMetadata().getInternalRef(), id));
+        eventBus.post(new DocumentUpdatedEvent());
+        // 2. update ui
+        populateData();
+        eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collection.block.financial.statement.deleted"));
+        LOG.info("Deleted Annex {} id {}, in {} milliseconds ({} sec)", event.getFinancialStatement().getMetadata().getInternalRef(), event.getFinancialStatement().getId(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
     }
 
     @Subscribe
@@ -779,11 +930,21 @@ class CollectionPresenter extends AbstractLeosPresenter {
     }
 
     @Subscribe
+    void showSupportingDocumentsCreateWizard(SupportingDocumentsCreateWizardRequestEvent event) throws IOException {
+        List<CatalogItem> catalogItems = templateService.getTemplatesCatalog();
+        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
+        List<XmlDocument> documents = packageService.findDocumentsByPackagePath(leosPackage.getPath(), XmlDocument.class, false);
+        Optional<XmlDocument>  xmlDoc = documents.stream().filter(document -> document.getMetadata().get().getDocTemplate().equals("FS-001")).findFirst();
+        List<String> existingTemplates = new ArrayList<>();
+        existingTemplates.add(xmlDoc.isPresent() ? xmlDoc.get().getMetadata().get().getDocTemplate() : null);
+        collectionScreen.showSupportDocumentWizard(catalogItems, existingTemplates);
+    }
+
+    @Subscribe
     void createExplanatory(CreateExplanatoryRequest event) {
         try {
             Stopwatch stopwatch = Stopwatch.createStarted();
-            LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
-            Proposal proposal = proposalService.findProposalByPackagePath(leosPackage.getPath());
+            Proposal proposal = proposalService.findProposal(proposalId);
             ProposalMetadata metadata = proposal.getMetadata().getOrError(() -> "Proposal metadata is required!");
 
             CollectionContext context = proposalContextProvider.get();
@@ -815,6 +976,34 @@ class CollectionPresenter extends AbstractLeosPresenter {
     }
 
     @Subscribe
+    void createSupportDocument(CreateSupportDocumentRequest event) {
+        try {
+            Stopwatch stopwatch = Stopwatch.createStarted();
+            LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
+            Proposal proposal = proposalService.findProposalByPackagePath(leosPackage.getPath());
+            ProposalMetadata metadata = proposal.getMetadata().getOrError(() -> "Proposal metadata is required!");
+            CollectionContext context = proposalContextProvider.get();
+            String template = event.getTemplate();
+            context.useTemplate(template);
+            context.usePurpose(metadata.getPurpose());
+            context.useProposal(proposalId);
+            String actionMessage;
+            switch (template) {
+                default :
+                    actionMessage = messageHelper.getMessage("collection.block.financial.statement.added");
+                    context.useActionMessage(ContextAction.FINANCIAL_STATEMENT_ADDED, actionMessage);
+                    context.executeCreateFinancialStatement();
+            }
+            eventBus.post(new DocumentUpdatedEvent());
+            populateData();
+            LOG.info(actionMessage+", in {} milliseconds ({} sec)", stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
+        } catch (Exception e) {
+            LOG.error("Unexpected error occurred while creating the financial statment", e);
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.ERROR, "collection.block.financial.statement.add.error", e.getMessage()));
+        }
+    }
+
+    @Subscribe
     void deleteExplanatory(DeleteExplanatoryEvent event) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         // 1. delete explanatory
@@ -835,6 +1024,32 @@ class CollectionPresenter extends AbstractLeosPresenter {
 
     private String getProposalRef() {
         return (String) httpSession.getAttribute(id + "." + SessionAttribute.PROPOSAL_REF.name());
+    }
+
+    @Subscribe
+    void openAndViewContribution(OpenAndViewContibutionEvent event) {
+        final String documentRef = event.getDocument();
+        final String version = event.getVersion();
+
+        RepositoryContext repositoryContext = repositoryContextProvider.get();
+        XmlDocument document = workspaceService.findDocumentByRef(documentRef, XmlDocument.class);
+        if (document.getCategory().equals(LeosCategory.MEMORANDUM)) {
+            Memorandum originalDocument = workspaceService.findDocumentById(((Memorandum)document).getClonedFrom(), Memorandum.class);
+            repositoryContext.populateVersionsWithoutVersionLabel(Memorandum.class, originalDocument.getMetadata().get().getRef());
+            eventBus.post(new NavigationRequestEvent(Target.MEMORANDUM, originalDocument.getMetadata().get().getRef(), version));
+        } else if (document.getCategory().equals(LeosCategory.BILL)) {
+            Bill originalDocument = workspaceService.findDocumentById(((Bill)document).getClonedFrom(), Bill.class);
+            repositoryContext.populateVersionsWithoutVersionLabel(Bill.class, originalDocument.getMetadata().get().getRef());
+            eventBus.post(new NavigationRequestEvent(Target.LEGALTEXT, originalDocument.getMetadata().get().getRef(), version));
+        } else if (document.getCategory().equals(LeosCategory.ANNEX)) {
+            Annex originalDocument = workspaceService.findDocumentById(((Annex)document).getClonedFrom(), Annex.class);
+            repositoryContext.populateVersionsWithoutVersionLabel(Annex.class, originalDocument.getMetadata().get().getRef());
+            eventBus.post(new NavigationRequestEvent(Target.ANNEX, originalDocument.getMetadata().get().getRef(), version));
+        } else if (document.getCategory().equals(LeosCategory.PROPOSAL)) {
+            Proposal originalDocument = workspaceService.findDocumentById(((Proposal)document).getClonedFrom(), Proposal.class);
+            repositoryContext.populateVersionsWithoutVersionLabel(Proposal.class, originalDocument.getMetadata().get().getRef());
+            eventBus.post(new NavigationRequestEvent(Target.COVERPAGE, originalDocument.getMetadata().get().getRef(), version));
+        }
     }
 
     @Subscribe
@@ -867,6 +1082,14 @@ class CollectionPresenter extends AbstractLeosPresenter {
         RepositoryContext repositoryContext = repositoryContextProvider.get();
         repositoryContext.populateVersionsWithoutVersionLabel(Annex.class, documentRef);
         eventBus.post(new NavigationRequestEvent(Target.ANNEX, documentRef));
+    }
+
+    @Subscribe
+    void openFinancialStatement(OpenFinancialStatementEvent event) {
+        final String documentRef = event.getFinancialStatement().getMetadata().getInternalRef();
+        RepositoryContext repositoryContext = repositoryContextProvider.get();
+        repositoryContext.populateVersionsWithoutVersionLabel(FinancialStatement.class, documentRef);
+        eventBus.post(new NavigationRequestEvent(Target.FINANCIAL_STATEMENT, documentRef));
     }
 
     @Subscribe
@@ -1142,160 +1365,73 @@ class CollectionPresenter extends AbstractLeosPresenter {
 
     @Subscribe
     void searchUserInContext(SearchUserInContextEvent event) {
-        List<User> users = userHelper.searchUsersInContextByKeyAndReference(event.getSearchKey(), event.getSearchContext(), getProposalRef());
+        List<UserJSON> users = userHelper.searchUsersInContextByKeyAndReference(event.getSearchKey(), event.getSearchContext(), getProposalRef());
         collectionScreen.proposeUsers(users.stream().map(UserVO::new).collect(Collectors.toList()));
     }
 
     @Subscribe
     void addCollaborator(AddCollaboratorRequest event) {
-        Stopwatch stopwatch = Stopwatch.createStarted();
-        UserVO user = event.getCollaborator().getUser();
-        Role role = event.getCollaborator().getRole();
-
+        final UserVO userVO = event.getCollaborator().getUser();
+        final Role role = event.getCollaborator().getRole();
+        final String selectedEntity = userVO.getEntity();
+        final String proposalUrl = event.getProposalURL();
         try {
-            LOG.trace("Adding collaborator...{}, with authority {}", user.getLogin(), role);
-            getXmlDocuments().forEach(doc -> updateCollaborators(user, role, doc, false));
-            eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collaborator.message.added", user.getName(),
+            Proposal proposal = proposalService.findProposalByRef(proposalRef);
+            collaboratorService.addCollaborator(proposal, userVO.getLogin(), role.getName(), selectedEntity, proposalUrl);
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collaborator.message.user.added", userVO.getName(),
                     messageHelper.getMessage(role.getMessageKey())));
-            leosApplicationEventBus.post(new CollaboratorsUpdatedEvent(id, proposalVersionSeriesId, Operation.ADDED));
+        } catch (SendNotificationException e) {
+            eventBus.post(new NotificationEvent(leosUI, "collection.block.caption.collaborator",
+                    "collaborator.message.send.notification.failed", NotificationEvent.Type.TRAY));
         } catch (Exception e) {
-            LogUtil.logError(LOG, eventBus, "Unexpected error occurred while addCollaborator!", e);
-            return;
+            LogUtil.logError(LOG, eventBus, e.getMessage(), e);
         }
-
-        try {
-            LOG.trace("Sending email to new collaborator user {}", user.getLogin());
-            notificationService.sendNotification(new AddCollaborator(user, user.getEntity(), role.getName(), proposalId, event.getProposalURL()));
-        } catch (Exception e) {
-            LOG.warn("Unexpected error occurred while sending notification to user {}", user.getLogin(), e);
-            eventBus.post(new NotificationEvent(leosUI, "collection.block.caption.collaborator", "collaborator.message.send.notification.failed", NotificationEvent.Type.TRAY));
-        }
-
-        LOG.info("Collaborator '{}' inserted to proposal {} id {}, in {} milliseconds ({} sec)", user.getLogin(), getProposalRef(), proposalId, stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
+        leosApplicationEventBus.post(new CollaboratorsUpdatedEvent(id, proposalVersionSeriesId, Operation.ADDED));
     }
 
     @Subscribe
     void removeCollaborator(RemoveCollaboratorRequest event) {
-        Stopwatch stopwatch = Stopwatch.createStarted();
-        UserVO user = event.getCollaborator().getUser();
-        Role role = event.getCollaborator().getRole();
-
+        final UserVO userVO = event.getCollaborator().getUser();
+        final Role role = event.getCollaborator().getRole();
+        final String selectedEntity = userVO.getEntity();
+        final String proposalUrl = event.getProposalURL();
         try {
-            LOG.trace("Removing collaborator...{}, with authority {}", user.getLogin(), role);
-            List<XmlDocument> documents = getXmlDocuments();
-            if (checkCollaboratorIsNotLastOwner(documents, role)) {
-                documents.forEach(doc -> updateCollaborators(user, role, doc, true));
-                eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collaborator.message.removed", user.getName()));
-                leosApplicationEventBus.post(new CollaboratorsUpdatedEvent(id, proposalVersionSeriesId, Operation.REMOVED));
-            } else {
-                eventBus.post(new NotificationEvent(NotificationEvent.Type.ERROR, "collaborator.message.last.owner.removed",
-                        messageHelper.getMessage(role.getMessageKey())));
-                return;
-            }
+            Proposal proposal = proposalService.findProposalByRef(proposalRef);
+            collaboratorService.removeCollaborator(proposal, userVO.getLogin(), role.getName(), selectedEntity, proposalUrl);
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collaborator.message.user.removed", userVO.getName(),
+                    messageHelper.getMessage(role.getMessageKey())));
+        } catch (CollaboratorException e) {
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.ERROR, "collaborator.message.last.owner.removed",
+                    messageHelper.getMessage(role.getMessageKey())));
+        } catch (SendNotificationException e) {
+            eventBus.post(new NotificationEvent(leosUI, "collection.block.caption.collaborator",
+                    "collaborator.message.send.notification.failed", NotificationEvent.Type.TRAY));
         } catch (Exception e) {
-            LogUtil.logError(LOG, eventBus, "Unexpected error occurred while removeCollaborator!", e);
-            return;
+            LogUtil.logError(LOG, eventBus, e.getMessage(), e);
         }
-
-        try {
-            LOG.trace("Sending email to removed collaborator user {}", user.getLogin());
-            notificationService.sendNotification(new RemoveCollaborator(user, user.getEntity(), role.getName(), proposalId, event.getProposalURL()));
-        } catch (Exception e) {
-            LOG.warn("Unexpected error occurred while sending notification to user {}", user.getLogin(), e);
-            eventBus.post(new NotificationEvent(leosUI, "collection.block.caption.collaborator", "collaborator.message.send.notification.failed", NotificationEvent.Type.TRAY));
-        }
-
-        LOG.info("Collaborator '{}' removed from proposal {} id {}, in {} milliseconds ({} sec)", user.getLogin(), getProposalRef(), proposalId, stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
+        leosApplicationEventBus.post(new CollaboratorsUpdatedEvent(id, proposalVersionSeriesId, Operation.REMOVED));
     }
 
     @Subscribe
     void editCollaborator(EditCollaboratorRequest event) {
-        Stopwatch stopwatch = Stopwatch.createStarted();
-        UserVO user = event.getCollaborator().getUser();
-        Role role = event.getCollaborator().getRole();
-
+        final UserVO userVO = event.getCollaborator().getUser();
+        final Role role = event.getCollaborator().getRole();
+        final String selectedEntity = userVO.getEntity();
+        final String proposalUrl = event.getProposalURL();
         try {
-            List<XmlDocument> documents = getXmlDocuments();
-            String collaboratorRole = documents.get(0).getCollaborators().stream()
-                    .filter(c -> user.getLogin().equals(c.getLogin()))
-                    .map(Collaborator::getRole)
-                    .findFirst()
-                    .orElse(null);
-            Role oldRole = authorityMapHelper.getRoleFromListOfRoles(collaboratorRole);
-            LOG.trace("Updating collaborator...{}, old authority {}, with new authority {}", user.getLogin(), oldRole, role);
-            if (checkCollaboratorIsNotLastOwner(documents, oldRole)) {
-                documents.forEach(doc -> updateCollaborators(user, role, doc, false));
-                eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collaborator.message.edited", user.getName(),
-                        messageHelper.getMessage(oldRole.getMessageKey()),
-                        messageHelper.getMessage(role.getMessageKey())));
-                leosApplicationEventBus.post(new CollaboratorsUpdatedEvent(id, proposalVersionSeriesId, Operation.EDITED));
-            } else {
-                eventBus.post(new NotificationEvent(NotificationEvent.Type.ERROR, "collaborator.message.last.owner.edited",
-                        messageHelper.getMessage(oldRole.getMessageKey())));
-                return;
-            }
+            Proposal proposal = proposalService.findProposalByRef(proposalRef);
+            collaboratorService.editCollaborator(proposal, userVO.getLogin(), role.getName(), selectedEntity, proposalUrl);
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "collaborator.message.edited", userVO.getName(),
+                    messageHelper.getMessage(role.getMessageKey())));
+        } catch (CollaboratorException e) {
+            eventBus.post(new NotificationEvent(NotificationEvent.Type.ERROR, e.getMessage()));
+        } catch (SendNotificationException e) {
+            eventBus.post(new NotificationEvent(leosUI, "collection.block.caption.collaborator",
+                    "collaborator.message.send.notification.failed", NotificationEvent.Type.TRAY));
         } catch (Exception e) {
-            LogUtil.logError(LOG, eventBus, "Unexpected error occurred while editing Collaborator!", e);
-            return;
+            LogUtil.logError(LOG, eventBus, e.getMessage(), e);
         }
-
-        try {
-            LOG.trace("Sending email to updated collaborator user {}", user.getLogin());
-            notificationService.sendNotification(new EditCollaborator(user, user.getEntity(), role.getName(), proposalId, event.getProposalURL()));
-        } catch (Exception e) {
-            LOG.warn("Unexpected error occurred while sending notification to user {}", user.getLogin(), e);
-            eventBus.post(new NotificationEvent(leosUI, "collection.block.caption.collaborator", "collaborator.message.send.notification.failed", NotificationEvent.Type.TRAY));
-        }
-
-        LOG.info("Collaborator '{}' edited from proposal {} id {}, in {} milliseconds ({} sec)", user.getLogin(), getProposalRef(), proposalId, stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
-    }
-
-    //Update document based on action(add/edit/remove)
-    private void updateCollaborators(UserVO user, Role role, XmlDocument doc, boolean isRemoveAction) {
-        Validate.notNull(doc, "The document must not be null!");
-        Validate.notNull(user, "The user must not be null!");
-        List<Collaborator> collaborators = doc.getCollaborators();
-
-        if (collaborators != null) {
-            String entity = (user.getSelectedEntity() != null) ? user.getSelectedEntity().getName() : null;
-            collaborators.removeIf(c -> c == null || c.getLogin() == null || (c.getLogin().equals(user.getLogin()) &&
-                    (c.getEntity() == null || entity == null || c.getEntity().equals(entity))));
-            if (!isRemoveAction) {
-                //pick selectedEntity or first found entity if no selectedEntity defined
-                String newEntity = entity;
-                if (newEntity == null) {
-                    newEntity = user.getEntities().get(0) != null ? user.getEntities().get(0).getName() : null;
-                }
-                collaborators.add(new Collaborator(user.getLogin(), role.getName(), newEntity));
-            }
-            securityService.updateCollaborators(doc.getId(), collaborators, doc.getClass());
-        }
-    }
-
-    //Check if in collaborators there is only one author
-    private boolean checkCollaboratorIsNotLastOwner(List<XmlDocument> documents, Role role) {
-        boolean isLastOwner = false;
-        boolean canAddRemoveCollaborators = false;
-        for (String permission : role.getPermissions().getPermissions()) {
-            if (CAN_ADD_REMOVE_COLLABORATOR.name().equals(permission)) {
-                canAddRemoveCollaborators = true;
-            }
-        }
-        if (role.isCollaborator() && canAddRemoveCollaborators) {
-            List<Collaborator> collaborators = documents.get(0).getCollaborators();
-            long frequency = collaborators.stream()
-                    .filter(collaborator -> role.getName().equals(collaborator.getRole()))
-                    .count();
-            if (frequency == 1) {
-                isLastOwner = true;
-            }
-        }
-        return !isLastOwner;
-    }
-
-    private List<XmlDocument> getXmlDocuments() {
-        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
-        return packageService.findDocumentsByPackagePath(leosPackage.getPath(), XmlDocument.class, false);
+        leosApplicationEventBus.post(new CollaboratorsUpdatedEvent(id, proposalVersionSeriesId, Operation.EDITED));
     }
 
     @Subscribe
@@ -1333,8 +1469,29 @@ class CollectionPresenter extends AbstractLeosPresenter {
     @Subscribe
     public void fetchMilestone(FetchMilestoneEvent event) {
         LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
-        LegDocument legDocument = packageService.findDocumentByPackagePathAndName(leosPackage.getPath(), event.getLegFileName(), LegDocument.class);
+        LegDocument legDocument = getLegDocument(event.getLegFileName(), leosPackage);
         collectionScreen.showMilestoneExplorer(legDocument, event.getMilestoneTitle(), getProposalRef());
+    }
+
+    @Subscribe
+    public void viewContribution(ViewContributionEvent event) {
+        Proposal proposal = proposalService.getProposalByRef(event.getPropsalRef());
+        LeosPackage clonedLeosPackage = packageService.findPackageByDocumentId(proposal.getId());
+        LegDocument clonedLegDocument = getLegDocument(event.getLegFileName(), clonedLeosPackage);
+        LeosPackage originalLeosPackage = packageService.findPackageByDocumentId(proposalId);
+        String originalLegName = proposalService.getOriginalMilestoneName(proposal.getName(), proposal.getContent().get().getSource().getBytes());
+        LegDocument originalLegDocument = getLegDocument(originalLegName, originalLeosPackage);
+        List<Annex> annexes = getAnnexes(originalLeosPackage);
+        collectionScreen.showContributionMilestone(clonedLegDocument, originalLegDocument, event.getContributionTitle(),
+                event.getPropsalRef(), annexes, true);
+    }
+
+    private List<Annex> getAnnexes(LeosPackage leosPackage) {
+        return packageService.findDocumentsByPackagePath(leosPackage.getPath(), Annex.class, false);
+    }
+
+    private LegDocument getLegDocument(String legFileName, LeosPackage leosPackage) {
+        return packageService.findDocumentByPackagePathAndName(leosPackage.getPath(), legFileName, LegDocument.class);
     }
 
     @Subscribe

@@ -14,7 +14,7 @@
  */
 
 @function card-icon-color($type) {
-    $document-icon-color: $G_BROWN_COLOR;
+    $document-icon-color: $G_ORANGE_COLOR;
     $proposal-icon-color: $MAIN_BLUE;
 
     @if $type == "document" {

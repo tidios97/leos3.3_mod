@@ -109,6 +109,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -161,6 +162,8 @@ abstract class MemorandumScreenImpl extends VerticalLayout implements Memorandum
     protected VersionComparator versionComparator;
     private SearchDelegate searchDelegate;
     private TableOfContentProcessor tableOfContentProcessor;
+
+    protected String connectedEntity;
 
     @Value("${leos.coedition.sip.enabled}")
     private boolean coEditionSipEnabled;
@@ -273,7 +276,7 @@ abstract class MemorandumScreenImpl extends VerticalLayout implements Memorandum
 
         markAsDirty();
     }
-    
+
     private void initListeners() {
     	//LEOS-5435: Screen level controls are disabled for now as they are interrupting editor level scrolling.
     	//this.addShortcutListener(new CtrlHomeListener("leos-doc-content"));
@@ -530,14 +533,10 @@ abstract class MemorandumScreenImpl extends VerticalLayout implements Memorandum
         milestoneExplorer.focus();
     }
 
-    private boolean isAnnotateAuthorityEquals(ConfigurationHelper cfgHelper, String instance) {
-        return cfgHelper.getProperty("annotate.authority") != null && cfgHelper.getProperty("annotate.authority").equals(instance);
-    }
-
     @Override
     public void initAnnotations(DocumentVO memorandum, String proposalRef, String connectedEntity) {
         new AnnotateExtension<>(memorandumContent, eventBus, cfgHelper, null, AnnotateExtension.OperationMode.NORMAL,
-                isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
                 connectedEntity);
     }
     
@@ -564,5 +563,10 @@ abstract class MemorandumScreenImpl extends VerticalLayout implements Memorandum
     @Override
     public boolean isCoverPageVisible() {
         return !coverPageSeparated;
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String revisionVersion) {
+        return Optional.empty();
     }
 }

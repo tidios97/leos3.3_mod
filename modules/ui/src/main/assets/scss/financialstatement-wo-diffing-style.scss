@@ -1,0 +1,43 @@
+doc[name="FINANCIAL_STATEMENT" i] longTitle[leos\:origin="ec"] {
+    font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] table[leos\:origin="ec"] > tr:first-child {
+    font-weight: normal;
+}
+
+akomaNtoso doc[name="FINANCIAL_STATEMENT" i] coverPage[leos\:origin="ec"] container[name=mainDocLanguage] {
+    font-weight: normal;
+}
+
+akomaNtoso doc[name="FINANCIAL_STATMENT" i] coverPage[leos\:origin="ec"] container[name=docLabel] > * {
+    font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] part > num[leos\:origin="ec"], doc[name="FINANCIAL_STATEMENT" i] part[leos\:origin="ec"] > heading {
+    font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] aknTitle > num[leos\:origin="ec"], doc[name="FINANCIAL_STATEMENT" i] aknTitle[leos\:origin="ec"] > heading {
+    font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] chapter[leos\:origin="ec"] > num, doc[name="FINANCIAL_STATEMENT" i] chapter[leos\:origin="ec"] > heading {
+    font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] section > num[leos\:origin="ec"], doc[name="FINANCIAL_STATEMENT" i] section[leos\:origin="ec"] > heading {
+    font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] article > heading[leos\:origin="ec"], doc[name="FINANCIAL_STATEMENT" i] .cke_editable article[leos\:origin="ec"] .akn-article-heading {
+    font-weight: normal;
+}
+
+akomaNtoso doc[name="FINANCIAL_STATEMENT" i] mainbody[leos\:origin="ec"], akomaNtoso doc[name="FINANCIAL_STATEMENT" i] preface[leos\:origin="ec"] {
+  font-weight: normal;
+}
+
+doc[name="FINANCIAL_STATEMENT" i] .leos-authnote marker[leos\:origin="ec"] {
+    font-weight: normal;
+}

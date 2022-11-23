@@ -35,15 +35,14 @@ define(function aknDivisionNumProfileModule(require) {
     plugins.push(require("plugins/leosMessageBus/leosMessageBusPlugin"));
     plugins.push(require("plugins/leosDropHandler/leosDropHandlerPlugin"));
     plugins.push(require("plugins/leosXmlEntities/leosXmlEntitiesPlugin"));
+	plugins.push(require("plugins/leosPreventElementDeletion/leosPreventElementDeletionPlugin"));
     plugins.push(require("plugins/leosPreventSelectAll/leosPreventSelectAllPlugin"));
     plugins.push(require("plugins/aknHtmlBold/aknHtmlBoldPlugin"));
     plugins.push(require("plugins/aknHtmlItalic/aknHtmlItalicPlugin"));
     plugins.push(require("plugins/aknHtmlUnderline/aknHtmlUnderlinePlugin"));
 
     var pluginNames=[];
-    var specificConfig = {
-        addPreventElementDeletionWidgetToFirstChild: true
-    };
+    var specificConfig = {};
     $.each(plugins, function( index, value ) {
         pluginNames.push(value.name);
         specificConfig= $.extend( specificConfig,  value.specificConfig);

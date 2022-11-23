@@ -37,10 +37,10 @@
                     </p>
                 </content>
             </subparagraph>
-            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:30:29.193+02:00"
-                          leos:softuser="demo(DIGIT)" xml:id="art_1_PXd1Bx">
-                <content xml:id="art_1_JlttGn">
-                    <p xml:id="art_1_pIRiM5">volatility adjustments, and any maturity mismatch (E*).</p>
+            <subparagraph leos:origin="cn" leos:softaction="splitted" leos:softdate="2022-06-17T09:30:29.193+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="splitted_art_1_PXd1Bx">
+                <content xml:id="splitted_art_1_JlttGn">
+                    <p xml:id="splitted_art_1_pIRiM5">volatility adjustments, and any maturity mismatch (E*).</p>
                 </content>
             </subparagraph>
         </paragraph>

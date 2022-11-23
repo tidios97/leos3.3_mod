@@ -16,12 +16,10 @@ package eu.europa.ec.leos.usecases.document;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
-import eu.europa.ec.leos.domain.cmis.document.Bill;
-import eu.europa.ec.leos.domain.cmis.document.Explanatory;
-import eu.europa.ec.leos.domain.cmis.document.Memorandum;
-import eu.europa.ec.leos.domain.cmis.document.Proposal;
+import eu.europa.ec.leos.domain.cmis.document.*;
 import eu.europa.ec.leos.domain.cmis.metadata.ProposalMetadata;
 import eu.europa.ec.leos.domain.common.InstanceType;
+import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.instance.Instance;
 import eu.europa.ec.leos.services.document.ProposalService;
 import eu.europa.ec.leos.services.store.PackageService;
@@ -37,9 +35,8 @@ import org.springframework.stereotype.Component;
 import javax.inject.Provider;
 import java.util.Map;
 
-import static eu.europa.ec.leos.domain.cmis.LeosCategory.BILL;
-import static eu.europa.ec.leos.domain.cmis.LeosCategory.MEMORANDUM;
-import static eu.europa.ec.leos.domain.cmis.LeosCategory.PROPOSAL;
+import static eu.europa.ec.leos.domain.cmis.LeosCategory.*;
+import static eu.europa.ec.leos.domain.cmis.LeosCategory.COUNCIL_EXPLANATORY;
 
 @Component
 @Scope("prototype")
@@ -48,13 +45,18 @@ public class CollectionContextProposal extends CollectionContext {
 
     private static final Logger LOG = LoggerFactory.getLogger(CollectionContextProposal.class);
 
+    private final Provider<FinancialStatementContext> financialStatementContextProvider;
+    private final MessageHelper messageHelper;
+
     @Autowired
     CollectionContextProposal(TemplateService templateService,
                               PackageService packageService,
                               ProposalService proposalService,
                               Provider<MemorandumContext> memorandumContextProvider,
-                              Provider<BillContext> billContextProvider) {
+                              Provider<BillContext> billContextProvider, Provider<FinancialStatementContext> financialStatementContextProvider, MessageHelper messageHelper) {
         super(templateService, packageService, proposalService, memorandumContextProvider, billContextProvider);
+        this.financialStatementContextProvider = financialStatementContextProvider;
+        this.messageHelper = messageHelper;
     }
     @Override
     protected void createExplanatoryMilestones(LeosPackage leosPackage) {
@@ -74,6 +76,26 @@ public class CollectionContextProposal extends CollectionContext {
     }
     @Override
     protected void executeUpdateExplanatory(LeosPackage leosPackage, String purpose, Map<ContextAction, String> actionMsgMap) {
+    }
+
+    @Override
+    public void executeCreateFinancialStatement() {
+        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposal.getId());
+        FinancialStatementContext financialStatementContext = financialStatementContextProvider.get();
+        financialStatementContext.usePackage(leosPackage);
+        String template = categoryTemplateMap.get(FINANCIAL_STATEMENT).getName();
+        financialStatementContext.useTemplate(template);
+        financialStatementContext.usePurpose(purpose);
+        financialStatementContext.useTitle(messageHelper.getMessage("document.default.financial.statement.title.default." + template));
+        Option<ProposalMetadata> metadataOption = proposal.getMetadata();
+        Validate.isTrue(metadataOption.isDefined(), "Proposal metadata is required!");
+        ProposalMetadata metadata = metadataOption.get();
+        financialStatementContext.useType(metadata.getType());
+        financialStatementContext.useActionMessageMap(actionMsgMap);
+        financialStatementContext.useCollaborators(proposal.getCollaborators());
+        FinancialStatement financialStatement = financialStatementContext.executeCreateFinancialStatement();
+        proposalService.addComponentRef(proposal, financialStatement.getName(), FINANCIAL_STATEMENT);
+        proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextAction.DOCUMENT_CREATED));
     }
 
     public void executeCreateProposal() {

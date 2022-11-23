@@ -99,6 +99,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocument;
 import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
@@ -298,6 +299,7 @@ public class DocumentPresenterTest extends LeosPresenterTest {
         when(proposalService.findProposalByPackagePath(leosPackage.getPath())).thenReturn(leosProposal);
         when(userHelper.getCollaboratorConnectedEntityByLoggedUser(leosProposal.getCollaborators())).thenReturn("SG");
         when(cloneContext.isClonedProposal()).thenReturn(false);
+        when(documentScreen.findContributionAndShowTab(docRef)).thenReturn(Optional.empty());
 
         // DO THE ACTUAL CALL
         documentPresenter.enter();
@@ -319,7 +321,8 @@ public class DocumentPresenterTest extends LeosPresenterTest {
         verify(documentScreen).updateUserCoEditionInfo(coEditionVos, PRESENTER_ID);
         verify(contributionService).getDocumentContributions(docId, 0, Bill.class);
         verify(documentScreen).setDataFunctions(any(), any(), any(), any(), any(), any(), any(), any(), any());
-        
+        verify(documentScreen).findContributionAndShowTab(docRef);
+
         verify(packageService, Mockito.times(2)).findPackageByDocumentId(document.getId());
         verify(proposalService, Mockito.times(2)).findProposalByPackagePath(leosPackage.getPath());
         verify(userHelper).getCollaboratorConnectedEntityByLoggedUser(leosProposal.getCollaborators());
@@ -391,6 +394,7 @@ public class DocumentPresenterTest extends LeosPresenterTest {
         when(proposalService.findProposalByPackagePath(leosPackage.getPath())).thenReturn(leosProposal);
         when(userHelper.getCollaboratorConnectedEntityByLoggedUser(leosProposal.getCollaborators())).thenReturn("SG");
         when(cloneContext.isClonedProposal()).thenReturn(true);
+        when(documentScreen.findContributionAndShowTab(docRef)).thenReturn(Optional.empty());
 
         // DO THE ACTUAL CALL
         documentPresenter.enter();
@@ -410,6 +414,7 @@ public class DocumentPresenterTest extends LeosPresenterTest {
         verify(documentScreen).setPermissions(argThat(org.hamcrest.Matchers.hasProperty("id")), eq(true));
         verify(documentScreen).initAnnotations(argThat(org.hamcrest.Matchers.hasProperty("id")), any(), any());
         verify(documentScreen).updateUserCoEditionInfo(coEditionVos, PRESENTER_ID);
+        verify(documentScreen).findContributionAndShowTab(docRef);
         verify(contributionService).getDocumentContributions(docId, 0, Bill.class);
         verify(documentScreen).setDataFunctions(any(), any(), any(), any(), any(), any(), any(), any(), any());
 

@@ -91,7 +91,7 @@ public class DocumentVO {
                 this.getMetadata().setDocTemplate(metadataB.getDocTemplate());
                 this.getMetadata().setTemplateName(metadataB.getTemplate());
                 this.getMetadata().setEeaRelevance(metadataB.getEeaRelevance());
-                
+                this.setRef(metadataB.getRef());
                 break;
             case ANNEX:
                 AnnexMetadata metadataA = ((Annex) xmlDocument).getMetadata()
@@ -111,7 +111,7 @@ public class DocumentVO {
                 this.getMetadata().setDocTemplate(metadataA.getDocTemplate());
                 this.getMetadata().setTemplateName(metadataA.getTemplate());
                 this.getMetadata().setEeaRelevance(metadataA.getEeaRelevance());
-                
+                this.setRef(metadataA.getRef());
                 break;
             case COUNCIL_EXPLANATORY:
                 ExplanatoryMetadata metadataE = ((Explanatory) xmlDocument).getMetadata()
@@ -128,6 +128,7 @@ public class DocumentVO {
                 this.getMetadata().setDocTemplate(metadataE.getDocTemplate());
                 this.getMetadata().setTemplateName(metadataE.getTemplate());
                 this.getMetadata().setEeaRelevance(metadataE.getEeaRelevance());
+                this.setRef(metadataE.getRef());
 
                 break;
             case PROPOSAL:
@@ -135,6 +136,12 @@ public class DocumentVO {
                         .getOrError(() -> "Proposal metadata is required");
                 this.template = metadataP.getTemplate();
                 this.language = metadataP.getLanguage();
+                this.getMetadata().setDocPurpose(metadataP.getPurpose());
+                this.getMetadata().setTemplate(metadataP.getTemplate());
+                this.getMetadata().setDocTemplate(metadataP.getDocTemplate());
+                this.getMetadata().setTemplateName(metadataP.getTemplate());
+                this.getMetadata().setEeaRelevance(metadataP.getEeaRelevance());
+                this.setRef(metadataP.getRef());
                 break;
             case MEMORANDUM:
                 MemorandumMetadata metadataM = ((Memorandum) xmlDocument).getMetadata()
@@ -146,7 +153,8 @@ public class DocumentVO {
                 this.getMetadata().setDocTemplate(metadataM.getDocTemplate());
                 this.getMetadata().setTemplateName(metadataM.getTemplate());
                 this.getMetadata().setEeaRelevance(metadataM.getEeaRelevance());
-                
+                this.setRef(metadataM.getRef());
+
                 break;
         }
     }

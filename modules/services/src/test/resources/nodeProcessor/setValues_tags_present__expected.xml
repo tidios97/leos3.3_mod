@@ -10,7 +10,7 @@
                 </FRBRExpression>
             </identification>
             <proprietary>
-                <leos:docPurpose xml:id="xyyyzzz">NEWVALUE &amp;amp;</leos:docPurpose>
+                <leos:docPurpose xml:id="xyyyzzz">NEWVALUE &amp;</leos:docPurpose>
                 <leos:docStage xml:id="xyyyzzz">NEW Stage</leos:docStage>
             </proprietary>
         </meta>

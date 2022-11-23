@@ -39,8 +39,10 @@ public class LeosMetadataExtensions {
             cmisProperties = toCmisProperties((BillMetadata) leosMetadata);
         } else if (leosMetadata instanceof AnnexMetadata) {
             cmisProperties = toCmisProperties((AnnexMetadata) leosMetadata);
-        }else if (leosMetadata instanceof ExplanatoryMetadata) {
+        } else if (leosMetadata instanceof ExplanatoryMetadata) {
             cmisProperties = toCmisProperties((ExplanatoryMetadata) leosMetadata);
+        } else if (leosMetadata instanceof FinancialStatementMetadata) {
+            cmisProperties = toCmisProperties((FinancialStatementMetadata) leosMetadata);
         } else {
             throw new IllegalStateException("Unknown LEOS Metadata! [type=" + leosMetadata.getClass().getSimpleName() + ']');
         }
@@ -90,8 +92,15 @@ public class LeosMetadataExtensions {
         cmisProperties.put(CmisProperties.ANNEX_INDEX.getId(), annexMetadata.getIndex());
         cmisProperties.put(CmisProperties.ANNEX_NUMBER.getId(), annexMetadata.getNumber());
         cmisProperties.put(CmisProperties.ANNEX_TITLE.getId(), annexMetadata.getTitle());
+        cmisProperties.put(CmisProperties.ANNEX_CLONED_REF.getId(), annexMetadata.getClonedRef());
 
         return cmisProperties;
+    }
+
+    private static Map<String, ? extends Object> toCmisProperties(FinancialStatementMetadata financialStatementMetadata) {
+        String title = financialStatementMetadata.getTitle();
+
+        return buildCommonProperties(financialStatementMetadata, title);
     }
 
     private static Map<String, ? extends Object> buildCommonProperties(LeosMetadata leosMetadata, String title) {

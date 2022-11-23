@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Copyright 2017 European Commission
+# Copyright 2022 European Commission
 #
 # Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 # You may not use this work except in compliance with the Licence.
@@ -22,6 +22,8 @@ cd ./tools/user-repo
 echo "---------------------USER REPOSITORY COMPILING...----------------------------------"
 mvn clean install
 echo "---------------------USER REPOSITORY COMPILED.-------------------------------------"
+
+cd ./web
 
 echo "---------------------USER REPOSITORY STARTING...-----------------------------------"
 mvn spring-boot:run -Dspring-boot.run.profiles=h2

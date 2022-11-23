@@ -109,4 +109,8 @@ public interface ProposalService {
     XmlDocument findFirstVersion(String ref);
 
     String getPurposeFromXml(byte[] xml);
+
+    Proposal getProposalByRef(String ref);
+
+    String getOriginalMilestoneName(String docName, byte[] xmlContent);
 }

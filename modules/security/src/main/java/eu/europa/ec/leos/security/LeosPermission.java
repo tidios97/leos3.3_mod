@@ -17,6 +17,7 @@ public enum LeosPermission {
     CAN_CREATE,
     CAN_READ,
     CAN_UPDATE,
+    CAN_EDIT_ALL_ANNOTATIONS,
     CAN_DELETE,
     CAN_COMMENT,
     CAN_SUGGEST,
@@ -33,5 +34,6 @@ public enum LeosPermission {
     CAN_SEE_SOURCE,
     CAN_SEE_ALL_DOCUMENTS,
     CAN_WORK_WITH_EXPORT_PACKAGE,
-    CAN_CLOSE_PROPOSAL
+    CAN_CLOSE_PROPOSAL,
+    CAN_RENUMBER
 }

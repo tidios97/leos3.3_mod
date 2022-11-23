@@ -33,6 +33,7 @@ import eu.europa.ec.leos.web.model.VersionInfoVO;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -98,7 +99,9 @@ interface MemorandumScreen {
     
     void showVersion(String versionContent, String versionInfo);
 
-    void showRevision(String versionContent, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList);
+    void showRevision(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList);
+
+    void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId);
 
     void disableMergePane();
 
@@ -126,4 +129,6 @@ interface MemorandumScreen {
     void refineSearch(Long searchId, int matchedIndex, boolean isReplaced);
 
     boolean isCoverPageVisible();
+
+    Optional<ContributionVO> findContributionAndShowTab(String revisionVersion);
 }

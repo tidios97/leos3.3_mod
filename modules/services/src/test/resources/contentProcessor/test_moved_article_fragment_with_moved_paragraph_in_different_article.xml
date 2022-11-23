@@ -1,0 +1,36 @@
+<article leos:autonumbering="true" leos:deletable="true" leos:editable="true" leos:origin="ec" xml:id="_art_1">
+    <num leos:editable="false" leos:origin="ec" xml:id="_art_1__num">Article 1</num>
+    <heading leos:origin="ec" xml:id="_art_1__heading">Scope</heading>
+    <paragraph leos:origin="ec" xml:id="_art_1__para_1">
+        <num leos:origin="ec" xml:id="_art_1__para_1__num">1.</num>
+        <content leos:origin="ec" xml:id="_art_1__para_1__content">
+            <p leos:origin="ec" xml:id="_art_1__para_1__content__p">Text...</p>
+        </content>
+    </paragraph>
+    <paragraph leos:origin="ec" xml:id="_art_1_01mqU2">
+        <num leos:origin="ec" xml:id="_art_1_oz60MD">2.</num>
+        <content leos:origin="ec" xml:id="_art_1_Bnqh4N">
+            <p leos:origin="ec" xml:id="_art_1_9fnogS">threyhwfseh</p>
+        </content>
+    </paragraph>
+    <paragraph leos:softuser="DOE Jane(DGT)" leos:softdate="2022-09-21T15:48:32+02:00" leos:origin="ec"
+               xml:id="temp___akn_article_XiUbXW_qUcDga" leos:softaction="move_from" leos:softactionroot="true"
+               leos:softmove_from="moved___akn_article_XiUbXW_qUcDga">
+        <num leos:origin="ls" xml:id="__akn_article_XiUbXW_CEPhFu">3.</num>
+        <content leos:origin="ec" xml:id="__akn_article_XiUbXW_eNJKLe">
+            <p leos:origin="ec" xml:id="__akn_article_XiUbXW_bWAioz">34t34tergergergerg</p>
+        </content>
+    </paragraph>
+    <paragraph leos:origin="ec" xml:id="_art_1_HEKrHo">
+        <num leos:origin="ec" xml:id="_art_1_GGtnpK">4.</num>
+        <content leos:origin="ec" xml:id="_art_1_XkyGiE">
+            <p leos:origin="ec" xml:id="_art_1_VqKxid">wergwegwegew</p>
+        </content>
+    </paragraph>
+    <paragraph leos:origin="ec" xml:id="_art_1_v01SHK">
+        <num leos:origin="ec" xml:id="_art_1_32Oyqp">5.</num>
+        <content leos:origin="ec" xml:id="_art_1_pL3jdf">
+            <p leos:origin="ec" xml:id="_art_1_2RXeaM">weewhwehh</p>
+        </content>
+    </paragraph>
+</article>

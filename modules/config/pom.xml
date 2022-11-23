@@ -18,25 +18,38 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+        <groupId>eu.europa.ec.leos.pilot</groupId>
         <artifactId>leos-modules</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>leos-config</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>Config</name>
     <description>LEOS Config Module</description>
 
     <properties>
-        <!-- Project -->
         <project.output.directory>target/generated-config</project.output.directory>
     </properties>
 
+    <dependencies>
+        <!--Logging frameworks -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- Security framework -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <filters>
-            <filter>src/main/filters/leos.properties</filter>
+            <filter>src/etc/config/filters/common.properties</filter>
+            <filter>src/etc/config/filters/${leos.build.instance}/${leos.build.env}.properties</filter>
         </filters>
         <plugins>
             <!-- CLEAN -->
@@ -60,31 +73,21 @@
                                 <resource>
                                     <!-- Filtered resource files. -->
                                     <filtering>true</filtering>
-                                    <directory>src/main/resources</directory>
+                                    <directory>src/etc/config/resources</directory>
                                     <includes>
                                         <include>*.properties</include>
                                         <include>*.xml</include>
+                                        <include>*.wsdl</include>
                                     </includes>
                                 </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>filter-resources-environment</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.output.directory}</outputDirectory>
-                            <resources>
                                 <resource>
-                                    <!-- Filtered resource files. -->
+                                    <!-- Filtered resource files per instance. -->
                                     <filtering>true</filtering>
-                                    <directory>src/main/resources/${leos.build.instance}/${leos.build.env}</directory>
+                                    <directory>src/etc/config/resources/${leos.build.instance}</directory>
                                     <includes>
                                         <include>*.properties</include>
                                         <include>*.xml</include>
+                                        <include>*.wsdl</include>
                                     </includes>
                                 </resource>
                             </resources>

@@ -118,6 +118,9 @@ define(function aknArticleMandatePluginModule(require) {
             akn : "xml:id",
             html : "id"
         }, {
+            akn : "refersTo",
+            html : "refersto"
+        }, {
             akn : "leos:origin",
             html : "data-origin"
         }, {
@@ -149,6 +152,9 @@ define(function aknArticleMandatePluginModule(require) {
             html : "data-akn-attr-softmove_label"
         }, {
             html : "data-akn-name=article"
+        }, {
+            akn : "leos:renumbered",
+            html : "data-akn-attr-renumbered"
         } ],
         sub : [ {
             akn : "num",

@@ -43,6 +43,7 @@ import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.model.xml.Element;
 import eu.europa.ec.leos.security.LeosPermission;
 import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.services.Annotate.AnnotateService;
 import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.document.ContributionService;
 import eu.europa.ec.leos.services.document.DocumentContentService;
@@ -52,7 +53,6 @@ import eu.europa.ec.leos.services.export.ExportLW;
 import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportService;
 import eu.europa.ec.leos.services.export.ExportVersions;
-import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.processor.AttachmentProcessor;
 import eu.europa.ec.leos.services.processor.ElementProcessor;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
@@ -73,6 +73,7 @@ import eu.europa.ec.leos.ui.event.FetchMilestoneByVersionedReferenceEvent;
 import eu.europa.ec.leos.ui.event.InitLeosEditorEvent;
 import eu.europa.ec.leos.ui.event.contribution.ApplyContributionsRequestEvent;
 import eu.europa.ec.leos.ui.event.contribution.CompareAndShowRevisionEvent;
+import eu.europa.ec.leos.ui.event.contribution.MergeActionRequestEvent;
 import eu.europa.ec.leos.ui.event.metadata.DocumentMetadataRequest;
 import eu.europa.ec.leos.ui.event.metadata.DocumentMetadataResponse;
 import eu.europa.ec.leos.ui.event.metadata.SearchMetadataRequest;
@@ -95,6 +96,7 @@ import eu.europa.ec.leos.ui.model.AnnotateMetadata;
 import eu.europa.ec.leos.ui.model.AnnotationStatus;
 import eu.europa.ec.leos.services.clone.InternalRefMap;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
+import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.CommonDelegate;
 import eu.europa.ec.leos.ui.view.ComparisonDelegate;
@@ -121,7 +123,9 @@ import eu.europa.ec.leos.web.event.component.WindowClosedEvent;
 import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
 import eu.europa.ec.leos.web.event.view.document.ComparisonEvent;
+import eu.europa.ec.leos.web.event.view.document.DocumentNavigationRequest;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
 import eu.europa.ec.leos.web.event.view.document.EditElementRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.FetchUserGuidanceRequest;
@@ -142,6 +146,7 @@ import eu.europa.ec.leos.web.event.view.document.TocItemListRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.TocItemListResponseEvent;
 import eu.europa.ec.leos.web.event.window.CancelElementEditorEvent;
 import eu.europa.ec.leos.web.event.window.CloseElementEditorEvent;
+import eu.europa.ec.leos.web.model.MergeActionVO;
 import eu.europa.ec.leos.web.model.VersionInfoVO;
 import eu.europa.ec.leos.web.support.SessionAttribute;
 import eu.europa.ec.leos.web.support.UrlBuilder;
@@ -151,7 +156,6 @@ import eu.europa.ec.leos.web.support.xml.DownloadStreamResource;
 import eu.europa.ec.leos.web.ui.navigation.Target;
 import eu.europa.ec.leos.web.ui.screen.document.ColumnPosition;
 import io.atlassian.fugue.Option;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -163,7 +167,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Provider;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -173,15 +176,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Component
 @Scope("prototype")
 class CoverPagePresenter extends AbstractLeosPresenter {
 
     private static final Logger LOG = LoggerFactory.getLogger(CoverPagePresenter.class);
-
-    private static final String COVERPAGE_EEA_RELEVANCE_ID = "_coverpage__eearelevance";
 
     private final CoverPageScreen coverPageScreen;
     private final ProposalService proposalService;
@@ -216,6 +219,8 @@ class CoverPagePresenter extends AbstractLeosPresenter {
     private MergeContributionHelper mergeContributionHelper;
     private XmlContentProcessor xmlContentProcessor;
     private TransformationService transformationService;
+    private final List<String> openElementEditors;
+    private final AnnotateService annotateService;
 
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -236,7 +241,7 @@ class CoverPagePresenter extends AbstractLeosPresenter {
             ExportService exportService,
             Provider<BillContext> billContextProvider,
             WorkspaceService workspaceService, LegService legService,
-            SearchService searchService, CommonDelegate<Proposal> commonDelegate,
+            SearchService searchService, CommonDelegate<Proposal> commonDelegate, AnnotateService annotateService,
             CloneContext cloneContext, ContributionService contributionService, InstanceTypeResolver instanceTypeResolver,
             AttachmentProcessor attachmentProcessor, MergeContributionHelper mergeContributionHelper, XmlContentProcessor xmlContentProcessor, TransformationService transformationService) {
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
@@ -267,6 +272,8 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         this.xmlContentProcessor = xmlContentProcessor;
         this.mergeContributionHelper = mergeContributionHelper;
         this.transformationService = transformationService;
+        this.annotateService = annotateService;
+        this.openElementEditors = new ArrayList<>();
     }
 
     @Override
@@ -288,6 +295,13 @@ class CoverPagePresenter extends AbstractLeosPresenter {
             Proposal proposal = getDocument();
             populateViewData(proposal);
             populateVersionsData(proposal);
+            String revisionReference = getRevisionRef();
+            if (revisionReference != null) {
+                Optional<ContributionVO> contributionVO = coverPageScreen.findContributionAndShowTab(revisionReference);
+                if (contributionVO.isPresent()) {
+                    eventBus.post(new OpenRevisionDocumentEvent(contributionVO.get()));
+                }
+            }
         } catch (Exception exception) {
             LOG.error("Exception occurred in init(): ", exception);
             eventBus.post(new NotificationEvent(Type.INFO, "unknown.error.message"));
@@ -326,6 +340,10 @@ class CoverPagePresenter extends AbstractLeosPresenter {
 
     private String getDocumentRef() {
         return (String) httpSession.getAttribute(id + "." + SessionAttribute.PROPOSAL_REF.name());
+    }
+
+    private String getRevisionRef() {
+        return (String) httpSession.getAttribute(id + "." + SessionAttribute.REVISION_VERSION.name());
     }
 
     private Proposal getDocument() {
@@ -449,20 +467,50 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         LOG.trace("Handling close document request...");
 
         //if unsaved changes remain in the session, first ask for confirmation
-        if(isProposalUnsaved()){
-            eventBus.post(new ShowConfirmDialogEvent(event, null));
+        if(isProposalUnsaved() || this.isHasOpenElementEditors()){
+            eventBus.post(new ShowConfirmDialogEvent(new CloseDocumentConfirmationEvent(), null));
             return;
         }
-        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
-        resetCloneProposalMetadataVO();
-        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS));
+        this.closeDocument();
+    }
+
+    @Subscribe
+    void handleNavigationRequest(DocumentNavigationRequest event) {
+        LOG.trace("Handling document navigation request...");
+        if (event.getNavigationEvent() != null) event.getNavigationEvent().setForwardToDocument(false);
+        if(isProposalUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(event.getNavigationEvent(), null));
+            return;
+        }
+        eventBus.post(event.getNavigationEvent());
     }
 
     private boolean isProposalUnsaved(){
         return getProposalFromSession() != null;
     }
+
     private Proposal getProposalFromSession() {
         return (Proposal) httpSession.getAttribute("proposal#" + getDocumentRef());
+    }
+
+    private boolean isHasOpenElementEditors() {
+        return this.openElementEditors.size() > 0;
+    }
+
+    @Subscribe
+    void handleCloseDocumentConfirmation(CloseDocumentConfirmationEvent event) {
+        this.closeDocument();
+    }
+
+    private void closeDocument() {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        resetCloneProposalMetadataVO();
+        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS, false));
+    }
+
+    @Subscribe
+    void handleShowConfirmDialog(ShowConfirmDialogEvent event) {
+        ConfirmDialogHelper.showOpenEditorDialog(this.leosUI, event, this.eventBus, this.messageHelper);
     }
 
     @Subscribe
@@ -527,6 +575,7 @@ class CoverPagePresenter extends AbstractLeosPresenter {
             String element = elementProcessor.getElement(proposal, elementTagName, elementId);
             coEditionHelper.storeUserEditInfo(httpSession.getId(), id, user, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
             coverPageScreen.showElementEditor(elementId, elementTagName, element);
+            openElementEditors.add(elementId);
         }
         catch (Exception ex){
             LOG.error("Exception while edit element operation for coverpage", ex);
@@ -590,6 +639,7 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         String elementId = event.getElementId();
         coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
         LOG.debug("User edit information removed");
+        openElementEditors.remove(elementId);
         eventBus.post(new RefreshDocumentEvent());
     }
 
@@ -631,6 +681,7 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         Proposal proposal = getDocument();
         List<LeosPermission> userPermissions = securityContext.getPermissions(proposal);
         coverPageScreen.sendUserPermissions(userPermissions);
+        annotateService.sendUserPermissions(userPermissions);
     }
 
     @Subscribe
@@ -816,13 +867,6 @@ class CoverPagePresenter extends AbstractLeosPresenter {
     private void compareAndShowRevision(ContributionVO contributionVO) {
         final Proposal revision = proposalService.findProposal(contributionVO.getDocumentId(), false);
         byte[] contributionContent = contributionVO.getXmlContent();
-        // Ensure EEA relevance element is not considered as a mergeable change
-        if (xmlContentProcessor.getElementById(contributionContent, COVERPAGE_EEA_RELEVANCE_ID) != null) {
-            contributionContent = xmlContentProcessor.removeAttributeFromElement(contributionContent, COVERPAGE_EEA_RELEVANCE_ID, "class");
-            Element eeaChildElement = xmlContentProcessor.getChildElement(contributionContent, null, COVERPAGE_EEA_RELEVANCE_ID, Collections.emptyList(), 1);
-            contributionContent = eeaChildElement != null ? xmlContentProcessor.removeAttributeFromElement(contributionContent,
-                    eeaChildElement.getElementId(), "class") : contributionContent;
-        }
         final String revisionContent = documentContentService.getDocumentForContributionAsHtml(contributionContent,
                 urlBuilder.getWebAppPath(VaadinServletService.getCurrentServletRequest()),
                 securityContext.getPermissions(revision), true);
@@ -830,7 +874,7 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         coverPageScreen.refreshVersions(getVersionVOS(), false);
         Proposal proposal = getDocument();
         List<TocItem>  tocItemList = getTocITems(proposal);
-        coverPageScreen.showRevision(revisionContent, revision.getContributionStatus(), contributionVO, tocItemList);
+        coverPageScreen.showRevision(revisionContent, contributionVO, tocItemList);
     }
 
     private List<TocItem> getTocITems(Proposal proposal) {
@@ -893,6 +937,7 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         byte[] xmlClonedContent = event.getMergeActionVOS().get(0).getContributionVO().getXmlContent();
         List<InternalRefMap> intRefMap = getInternalRefMaps(event, proposal, xmlClonedContent);
         byte[] xmlContent = mergeContributionHelper.updateDocumentWithContributions(event, proposal, tocItemList, intRefMap);
+        proposal = updateEEARelevance(proposal, event);
         xmlContent = xmlContentProcessor.doXMLPostProcessing(xmlContent);
         updateProposalContent(proposal, xmlContent, messageHelper.getMessage("contribution.merge.operation.message"), mergeActionKey);
         if(event.isAllContributions()) {
@@ -900,6 +945,47 @@ class CoverPagePresenter extends AbstractLeosPresenter {
         } else {
             eventBus.post(new RefreshContributionEvent());
         }
+    }
+
+    private List<MergeActionVO> getEEARelevanceMergeActions(List<MergeActionVO> mergeActions) {
+        return mergeActions.stream()
+                .filter(mergeAction -> mergeAction.getElementId().equals(XmlHelper.COVERPAGE_EEA_RELEVANCE_ID))
+                .collect(Collectors.toList());
+    }
+
+    private Proposal updateEEARelevance(Proposal proposal, ApplyContributionsRequestEvent event) {
+        List<MergeActionVO> eeaRelevanceMergeActions = getEEARelevanceMergeActions(event.getMergeActionVOS());
+        if (!eeaRelevanceMergeActions.isEmpty()) {
+            ProposalMetadata proposalMetadata = proposal.getMetadata().get();
+            for (MergeActionVO mergeActionVO : eeaRelevanceMergeActions) {
+                switch (mergeActionVO.getElementState()) {
+                    case ADD:
+                        if (mergeActionVO.getAction().equals(MergeActionRequestEvent.MergeAction.UNDO)) {
+                            proposalMetadata = proposalMetadata.withEeaRelevance(false);
+                        } else {
+                            proposalMetadata = proposalMetadata.withEeaRelevance(true);
+                        }
+                        break;
+                    case DELETE:
+                        if (mergeActionVO.getAction().equals(MergeActionRequestEvent.MergeAction.UNDO)) {
+                            proposalMetadata = proposalMetadata.withEeaRelevance(true);
+                        } else {
+                            proposalMetadata = proposalMetadata.withEeaRelevance(false);
+                        }
+                        break;
+                }
+            }
+            proposal = proposalService.updateProposal(proposal, proposalMetadata);
+            CollectionContext context = proposalContextProvider.get();
+            context.useProposal(proposal.getId());
+            context.usePurpose(proposalMetadata.getPurpose());
+            context.useEeaRelevance(proposalMetadata.getEeaRelevance());
+            String comment = messageHelper.getMessage("operation.metadata.updated");
+            context.useActionMessage(ContextAction.METADATA_UPDATED, comment);
+            context.useActionComment(comment);
+            context.executeUpdateDocumentsAssociatedToProposal();
+        }
+        return proposal;
     }
 
     private List<InternalRefMap> getInternalRefMaps(ApplyContributionsRequestEvent event, Proposal proposal, byte[] xmlClonedContent) {

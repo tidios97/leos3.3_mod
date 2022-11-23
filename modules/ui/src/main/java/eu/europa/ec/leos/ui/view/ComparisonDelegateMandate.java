@@ -20,9 +20,9 @@ import eu.europa.ec.leos.instance.Instance;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorService;
+import eu.europa.ec.leos.services.compare.processor.LeosPostDiffingProcessor;
 import eu.europa.ec.leos.services.document.DocumentContentService;
 import eu.europa.ec.leos.services.document.TransformationService;
-import eu.europa.ec.leos.services.compare.processor.PostDiffingProcessor;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.web.support.UrlBuilder;
 import org.springframework.context.annotation.Scope;
@@ -49,7 +49,7 @@ public class ComparisonDelegateMandate<T extends XmlDocument> extends Comparison
                 includeCoverPage);
         String secondItemHtml = documentContentService.getDocumentAsHtml(newVersion, contextPath, securityContext.getPermissions(newVersion),
                 includeCoverPage);
-        PostDiffingProcessor postDiffingProcessor = new PostDiffingProcessor();
+        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
         secondItemHtml = postDiffingProcessor.adjustSoftActionDiffing(secondItemHtml);
         String result = compareService.compareContents(new ContentComparatorContext.Builder(firstItemHtml, secondItemHtml)
                 .withAttrName(ATTR_NAME)

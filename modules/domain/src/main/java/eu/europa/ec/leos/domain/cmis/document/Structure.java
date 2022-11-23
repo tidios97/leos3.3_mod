@@ -23,4 +23,9 @@ public final class Structure extends XmlDocument {
     public final Option<StructureMetaData> getMetadata() {
         return this.metadata;
     }
+
+    @Override
+    public String getContributionStatus() {
+        return null;
+    }
 }

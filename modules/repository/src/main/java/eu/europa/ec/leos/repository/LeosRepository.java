@@ -24,6 +24,7 @@ import eu.europa.ec.leos.domain.cmis.metadata.LeosMetadata;
 import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.model.filter.QueryFilter;
 import eu.europa.ec.leos.model.user.Collaborator;
+import org.apache.chemistry.opencmis.client.api.Folder;
 
 import java.util.List;
 import java.util.Map;
@@ -111,6 +112,15 @@ public interface LeosRepository {
      * @return the updated Leg document
      */
     LegDocument updateLegDocument(String id, LeosLegStatus status);
+
+    /**
+     * Updating Leg document contained documents.
+     *
+     * @param id     the leg document id.
+     * @param containedDocuments the updated contained documents.
+     * @return the updated Leg document
+     */
+    LegDocument updateLegDocument(String id, List<String> containedDocuments);
 
     /**
      * Updates a document with the given metadata.
@@ -302,4 +312,8 @@ public interface LeosRepository {
     ExportDocument updateExportDocument(String id, List<String> comments);
 
     <D extends LeosDocument> D updateDocument(String id, Map<String, Object> properties, Class<? extends D> type, boolean latest);
+
+    Folder createFolder(String path, String name);
+
+    Folder findFolderByPath(String path);
 }

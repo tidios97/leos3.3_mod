@@ -1,12 +1,19 @@
 package eu.europa.ec.leos.services.numbering;
 
+import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
+import eu.europa.ec.leos.services.processor.content.XmlContentProcessorMandate;
 import eu.europa.ec.leos.services.util.TestUtils;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 
 import static eu.europa.ec.leos.services.util.TestUtils.squeezeXml;
 import static org.junit.Assert.assertEquals;
 
 public class NumberServiceBillMandateTest extends NumberServiceMandateTest {
+
+    @InjectMocks
+    protected XmlContentProcessor xmlContentProcessor = Mockito.spy(new XmlContentProcessorMandate());
 
     @Test
     public void test_numbering_recitals_cn() {
@@ -253,4 +260,15 @@ public class NumberServiceBillMandateTest extends NumberServiceMandateTest {
         String expected = squeezeXml(new String(xmlExpected));
         assertEquals(expected, result);
     }
+
+    @Test
+    public void test_auto_renumbering_for_cn() {
+        final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_renumbering_recitals_articles_paragraph_pointa.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_renumbering_recitals_articles_paragraph_pointa_expected.xml");
+        byte[] result = xmlContentProcessor.prepareForRenumber(xmlInput);
+        result = numberService.renumberRecitals(result);
+        result = numberService.renumberArticles(result);
+        assertEquals(squeezeXml(new String(xmlExpected)), squeezeXml(new String(result)));
+    }
+
 }

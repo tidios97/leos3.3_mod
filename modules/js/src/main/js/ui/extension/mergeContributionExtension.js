@@ -57,11 +57,11 @@ define(function mergeContributionExtensionModule(require) {
         changed_element.each(function (index) {
             var $element = $(changed_element[index]);
             if (SUB_ELEMENT.includes(UTILS.getElementTagName($element))) {
-                if(!($element.parent().hasClass(MERGE_CONTRIBUTION))){
+                if (!($element.parent().hasClass(MERGE_CONTRIBUTION))) {
                     var elementParentName = UTILS.getElementTagName($element.parent());
-                    var $parent = elementParentName === "aknp" ? $element.parent() : UTILS.getParentWrapper($element, wrapperElementsList);
-                    if($parent) {
-                        $parent.attr(PARENT_AFFECTED,true);
+                    var $parent = (elementParentName === "aknp" || elementParentName === "block") ? $element.parent() : UTILS.getParentWrapper($element, wrapperElementsList);
+                    if ($parent) {
+                        $parent.attr(PARENT_AFFECTED, true);
                         _attachWrapperActionEvents(connector, $parent)
                     }
                 }

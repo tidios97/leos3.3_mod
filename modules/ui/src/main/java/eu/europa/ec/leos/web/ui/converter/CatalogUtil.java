@@ -39,7 +39,7 @@ public class CatalogUtil {
 
     public static final String DEFAULT_LANGUAGE = "EN";
 
-    public static HierarchicalContainer getCatalogContainer(List<CatalogItem> templateItems) {
+    public static HierarchicalContainer getCatalogContainer(List<CatalogItem> templateItems, boolean ignoreHidden) {
 
         HierarchicalContainer container = new HierarchicalContainer();
 
@@ -52,8 +52,11 @@ public class CatalogUtil {
         container.addContainerProperty(ENABLED_PROPERTY, Boolean.class, Boolean.FALSE);
         container.addContainerProperty(HIDDEN_PROPERTY, Boolean.class, Boolean.FALSE);
         container.addContainerProperty(ICON_PROPERTY, ThemeResource.class, null);
-
-        populate(container, null, templateItems);
+        if (ignoreHidden) {
+            populateAllCatalogItems(container, null, templateItems);
+        } else {
+            populate(container, null, templateItems);
+        }
         return container;
     }
 
@@ -94,4 +97,39 @@ public class CatalogUtil {
             }
         }
     }
+
+    @SuppressWarnings("unchecked")
+    private static void populateAllCatalogItems(HierarchicalContainer container, CatalogItem parent, List<CatalogItem> itemList) {
+        if ((container != null) && (itemList != null)) {
+            String lang = DEFAULT_LANGUAGE;
+            for (CatalogItem ctgItem : itemList) {
+                Item item = container.addItem(ctgItem.getId());
+                item.getItemProperty(TYPE_PROPERTY).setValue(ctgItem.getType());
+                item.getItemProperty(NAME_PROPERTY).setValue(ctgItem.getName(lang));
+                item.getItemProperty(DESC_PROPERTY).setValue(ctgItem.getDescription(lang));
+                item.getItemProperty(ENABLED_PROPERTY).setValue(ctgItem.isEnabled());
+                item.getItemProperty(KEY_PROPERTY).setValue(ctgItem.getKey());
+                if (parent != null) {
+                    container.setParent(ctgItem.getId(), parent.getId());
+                }
+                switch (ctgItem.getType()) {
+                    case CATEGORY:
+                        item.getItemProperty(ICON_PROPERTY).setValue(LeosTheme.TREE_CATEGORY_ICON_16);
+                        boolean hasChildren = ctgItem.getItems().size() > 0;
+                        container.setChildrenAllowed(ctgItem.getId(), hasChildren);
+                        // recursively populate container with child items
+                        populateAllCatalogItems(container, ctgItem, ctgItem.getItems());
+                        break;
+                    case TEMPLATE:
+                        item.getItemProperty(LANG_PROPERTY).setValue(ctgItem.getLanguages());
+                        item.getItemProperty(ICON_PROPERTY).setValue(LeosTheme.TREE_TEMPLATE_ICON_16);
+                        container.setChildrenAllowed(ctgItem.getId(), false);
+                        break;
+                    default:
+                        LOG.warn("Unknown catalog item type: {}", ctgItem.getType());
+                }
+            }
+        }
+    }
+
 }

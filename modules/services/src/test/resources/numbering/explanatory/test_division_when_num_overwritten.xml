@@ -1,0 +1,24 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="EXPL_COUNCIL">
+        <mainBody xml:id="body">
+            <division class="type_1" xml:id="division_i">
+                <num xml:id="division_i_num"><b>I.</b></num>
+                <content xml:id="division_i_content">
+                    <p xml:id="division_i_content_p">should be <b>I.</b></p>
+                </content>
+            </division>
+            <division class="type_1" leos:auto-num-overwrite="true" xml:id="division_ii">
+                <num xml:id="division_ii_num"><b>II.Test</b></num>
+                <content xml:id="division_ii_content">
+                    <p xml:id="division_ii_content_p">should be <b>II.Test</b></p>
+                </content>
+            </division>
+            <division class="type_1" xml:id="division_iii">
+                <num xml:id="division_iii_num">#</num>
+                <content xml:id="division_iii_content">
+                    <p xml:id="division_iii_content_p">should be <b>III.</b></p>
+                </content>
+            </division>
+        </mainBody>
+    </doc>
+</akomaNtoso>

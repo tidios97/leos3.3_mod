@@ -115,4 +115,12 @@ public class NumberServiceAnnexMandateTest extends NumberServiceTest {
         assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
     }
 
+    @Test
+    public void test_renumbering_level_with_soft_attributes() {
+        final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_renumbering_level_with_soft_attr.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_renumbering_level_with_soft_attr_expected.xml");
+        byte[] result = numberService.renumberLevel(xmlInput);
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+
 }

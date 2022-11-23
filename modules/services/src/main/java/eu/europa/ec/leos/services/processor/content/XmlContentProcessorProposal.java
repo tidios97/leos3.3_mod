@@ -22,9 +22,12 @@ import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.numbering.NumberProcessorHandler;
 import eu.europa.ec.leos.services.support.XercesUtils;
 import eu.europa.ec.leos.vo.toc.NumberingConfig;
+import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
+import eu.europa.ec.leos.vo.toc.TocItemTypeName;
 import io.atlassian.fugue.Pair;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +42,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.updateTocItemTypeAttributes;
+import static eu.europa.ec.leos.services.support.XercesUtils.getDescendants;
 import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
 import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
 import static eu.europa.ec.leos.services.support.XmlHelper.CITATION;
@@ -49,6 +54,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
 import static eu.europa.ec.leos.services.support.XmlHelper.INTRO;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_DEPTH_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_EDITABLE_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_LIST_TYPE_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_ORIGIN_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ROOT_ATTR;
@@ -57,6 +63,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_MOVE_FROM;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_MOVE_TO;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_USER_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEVEL;
+import static eu.europa.ec.leos.services.support.XmlHelper.LIST;
 import static eu.europa.ec.leos.services.support.XmlHelper.LS;
 import static eu.europa.ec.leos.services.support.XmlHelper.MAIN_BODY;
 import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
@@ -118,6 +125,7 @@ public class XmlContentProcessorProposal extends XmlContentProcessorImpl {
             LOG.debug("buildTocItemContent adding {} '{}' as child of {}", newChild.getNodeName(), getId(newChild), node.getNodeName());
             XercesUtils.addChild(newChild, node);
         }
+        String tagName = tocVo.getTocItem().getAknTag().value();
 
         appendChildrenIfNotNull(childrenNode, node); // only for part of the body which is not configured in structure.xml, like CLAUSE tag
 
@@ -129,7 +137,19 @@ public class XmlContentProcessorProposal extends XmlContentProcessorImpl {
             }
             processSoftElements(node, tocVo, user);
         }
+        updateTocItemTypeAttributes(tocItems, node, tocVo);
+        if (tagName.equals(ARTICLE)) {
+            setAttributeForNumberingInListsArticle(tocItems, node, tocVo.getTocItemType());
+        }
         return node;
+    }
+
+    private void setAttributeForNumberingInListsArticle(List<TocItem> tocItems, Node node, TocItemTypeName tocItemType) {
+        List<Node> lists = getDescendants(node, Arrays.asList(LIST));
+        for (Node list : lists) {
+            XercesUtils.insertOrUpdateAttributeValue(list, LEOS_LIST_TYPE_ATTR,
+                    StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType(tocItems, tocItemType, POINT).toString().toLowerCase());
+        }
     }
 
     private void processSoftElements(Node node, TableOfContentItemVO tocVo, User user) {
@@ -233,16 +253,16 @@ public class XmlContentProcessorProposal extends XmlContentProcessorImpl {
         for (int nodeIdx = 0; nodeIdx < softMovedNodes.getLength(); nodeIdx++) {
             Node node = softMovedNodes.item(nodeIdx);
             String idAttrVal = XercesUtils.getAttributeValue(node, XMLID);
-            if(idAttrVal != null && idAttrVal.indexOf("temp_") != -1) {
+            if (idAttrVal != null && idAttrVal.indexOf("temp_") != -1) {
                 String updatedIdAttrVal = idAttrVal.replace("temp_", EMPTY_STRING);
                 String xPath = "//*[@xml:id = '" + updatedIdAttrVal + "']";
                 NodeList sourceNodes = XercesUtils.getElementsByXPath(fragment, xPath);
-                if(sourceNodes != null && sourceNodes.getLength() > 0) { //If moved within article
+                if (sourceNodes != null && sourceNodes.getLength() > 0) { //If moved within article
                     insertSoftMovedAttributesAndRenumber(updatedIdAttrVal, sourceNodes.item(0), document);
-                    result = new Pair<>(new byte[0], nodeToString(fragment.getFirstChild().getFirstChild()));
+                    result = new Pair<>(nodeToByteArray(document), nodeToString(fragment.getFirstChild().getFirstChild()));
                 } else { //If moved between articles
                     sourceNodes = XercesUtils.getElementsByXPath(document, xPath);
-                    if(sourceNodes != null && sourceNodes.getLength() > 0) {
+                    if (sourceNodes != null && sourceNodes.getLength() > 0) {
                         insertSoftMovedAttributesAndRenumber(updatedIdAttrVal, sourceNodes.item(0), document);
                         result = new Pair<>(nodeToByteArray(document), new String());
                     }
@@ -252,39 +272,61 @@ public class XmlContentProcessorProposal extends XmlContentProcessorImpl {
         return result;
     }
 
-    private void insertSoftMovedAttributesAndRenumber(String idAttrVal, Node sourceNode, Node document) {
-        Validate.notNull(idAttrVal, "Id attribute should not be null");
-        Validate.notNull(sourceNode, "source node should not be null");
 
-        Node parentNode = sourceNode.getParentNode();
-        String tagName = sourceNode.getNodeName();
-        String xPath = "//*[@xml:id = '" + SOFT_MOVE_PLACEHOLDER_ID_PREFIX + idAttrVal + "']";
-        NodeList movedNodes = XercesUtils.getElementsByXPath(document, xPath);
-        if (movedNodes == null || movedNodes.getLength() == 0) {
-            String sourceNodeIdVal = XercesUtils.getAttributeValue(sourceNode, XMLID);
-            XercesUtils.addAttribute(sourceNode, XMLID, SOFT_MOVE_PLACEHOLDER_ID_PREFIX + sourceNodeIdVal);
-            XercesUtils.addAttribute(sourceNode, LEOS_SOFT_ACTION_ATTR, SoftActionType.MOVE_TO.getSoftAction());
-            XercesUtils.addAttribute(sourceNode, LEOS_SOFT_USER_ATTR, getSoftUserAttribute(securityContext.getUser()));
-            XercesUtils.addAttribute(sourceNode, LEOS_SOFT_DATE_ATTR, getDateAsXml());
-            XercesUtils.addAttribute(sourceNode, LEOS_SOFT_ACTION_ROOT_ATTR, "true");
-            XercesUtils.addAttribute(sourceNode, LEOS_SOFT_MOVE_TO, idAttrVal);
+        private void insertSoftMovedAttributesAndRenumber (String idAttrVal, Node sourceNode, Node document) {
+            Validate.notNull(idAttrVal, "Id attribute should not be null");
+            Validate.notNull(sourceNode, "source node should not be null");
 
-            //Add leos:editable=false to make this element read-only inside CKE
-            XercesUtils.addAttribute(sourceNode, LEOS_EDITABLE_ATTR, "false");
-        } else { //Node was already moved so delete the intermediate node to avoid duplicate soft moved nodes
-            XercesUtils.deleteElement(sourceNode);
-            XercesUtils.addAttribute(movedNodes.item(0), LEOS_SOFT_DATE_ATTR, getDateAsXml());
-        }
-        while (parentNode != null && !POINT_PARENT_ELEMENTS.contains(parentNode.getNodeName())) {
-            parentNode = parentNode.getParentNode();
-        }
-        try {
-            if (ELEMENTS_TO_BE_NUMBERED.contains(tagName)) {
-                numberProcessorHandler.renumberElement(parentNode, tagName, true);
+            Node parentNode = sourceNode.getParentNode();
+            String tagName = sourceNode.getNodeName();
+            String xPath = "//*[@xml:id = '" + SOFT_MOVE_PLACEHOLDER_ID_PREFIX + idAttrVal + "']";
+            NodeList movedNodes = XercesUtils.getElementsByXPath(document, xPath);
+            if (movedNodes == null || movedNodes.getLength() == 0) {
+                updateSoftAtrributes(idAttrVal, sourceNode, SOFT_MOVE_PLACEHOLDER_ID_PREFIX);
+            } else if (!containsSoftActionAttributes(movedNodes.item(0))) {
+                updateNodeWithChildren(movedNodes.item(0), XMLID, SOFT_DELETE_PLACEHOLDER_ID_PREFIX, idAttrVal);
+                updateSoftAtrributes(idAttrVal, sourceNode, SOFT_MOVE_PLACEHOLDER_ID_PREFIX);
+            } else { //Node was already moved so delete the intermediate node to avoid duplicate soft moved nodes
+                XercesUtils.deleteElement(sourceNode);
+                XercesUtils.addAttribute(movedNodes.item(0), LEOS_SOFT_DATE_ATTR, getDateAsXml());
             }
-        } catch (Exception e) {
-            LOG.error("Unable to renumber element", e);
+            while (parentNode != null && !POINT_PARENT_ELEMENTS.contains(parentNode.getNodeName())) {
+                parentNode = parentNode.getParentNode();
+            }
+            try {
+                if (ELEMENTS_TO_BE_NUMBERED.contains(tagName)) {
+                    numberProcessorHandler.renumberElement(parentNode, tagName, true);
+                }
+            } catch (Exception e) {
+                LOG.error("Unable to renumber element", e);
+            }
         }
+
+    private void updateNodeWithChildren(Node item, String attr, String prefix, String idAttrVal) {
+        addAttribute(item, attr, StringUtils.isNotEmpty(prefix) ? prefix + idAttrVal : idAttrVal);
+        NodeList childNodes = item.getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            Node node = childNodes.item(i);
+            if ((childNodes.item(i) instanceof Document) || (node instanceof org.w3c.dom.Element)) {
+                updateNodeWithChildren(childNodes.item(i), attr, prefix, XercesUtils.getAttributeValue(childNodes.item(i), attr));
+            }
+        }
+    }
+
+    private void updateSoftAtrributes(String idAttrVal, Node sourceNode, String idPrefix) {
+        addAttribute(sourceNode, XMLID, idPrefix + idAttrVal);
+        addAttribute(sourceNode, LEOS_SOFT_ACTION_ATTR, SoftActionType.MOVE_TO.getSoftAction());
+        addAttribute(sourceNode, LEOS_SOFT_USER_ATTR, getSoftUserAttribute(securityContext.getUser()));
+        addAttribute(sourceNode, LEOS_SOFT_DATE_ATTR, getDateAsXml());
+        addAttribute(sourceNode, LEOS_SOFT_ACTION_ROOT_ATTR, "true");
+        addAttribute(sourceNode, LEOS_SOFT_MOVE_TO, idAttrVal);
+        //Add leos:editable=false to make this element read-only inside CKE
+        addAttribute(sourceNode, LEOS_EDITABLE_ATTR, "false");
+    }
+
+    private boolean containsSoftActionAttributes(Node node) {
+        SoftActionType softActionType = XercesUtils.getAttributeForSoftAction(node, LEOS_SOFT_ACTION_ATTR);
+        return softActionType != null;
     }
 
     private void removeTempIdAttributeIfExists(Node node) {

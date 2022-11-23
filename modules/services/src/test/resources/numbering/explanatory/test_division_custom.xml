@@ -1,0 +1,84 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="ANNEX">
+        <mainBody xml:id="body">
+            <division class="type_1" xml:id="division_i">
+                <num xml:id="division_i_num">I.</num>
+                <content xml:id="division_i_content">
+                    <p xml:id="division_i_content_p">should be I.</p>
+                </content>
+            </division>
+            <division class="type_1" xml:id="division_ii">
+                <num xml:id="division_ii_num">#</num>
+                <content xml:id="division_ii_content">
+                    <p xml:id="division_ii_content_p">should be <b>II.</b></p>
+                </content>
+            </division>
+            <division class="type_2" xml:id="division_ii_a">
+                <num xml:id="division_ii_a_num">1.</num>
+                <content xml:id="division_ii_a_content">
+                    <p xml:id="division_ii_a_content_p">should be <b>A.</b></p>
+                </content>
+            </division>
+            <division class="type_3" xml:id="division_ii_a_i">
+                <num xml:id="division_ii_a_i_num">1.1</num>
+                <content xml:id="division_ii_a_i_content">
+                    <p xml:id="division_ii_a_i_content_p">should be <b><i>I)</i></b></p>
+                </content>
+            </division>
+            <division class="type_4" xml:id="division_ii_a_i_a">
+                <num xml:id="division_ii_a_i_a_num">a</num>
+                <content xml:id="division_ii_a_i_a_content">
+                    <p xml:id="division_ii_a_i_a_content_p">should be <i>A)</i></p>
+                </content>
+            </division>
+            <division class="type_1" xml:id="division_iii">
+                <num xml:id="division_iii_num">#</num>
+                <content xml:id="division_iii_content">
+                    <p xml:id="division_iii_content_p">should be <b>III.</b></p>
+                </content>
+            </division>
+            <division class="type_2" xml:id="division_iii_a">
+                <num xml:id="division_iii_a_num">#</num>
+                <content xml:id="division_iii_a_content">
+                    <p xml:id="division_iii_a_content_p">should be <b>A.</b></p>
+                </content>
+            </division>
+            <division class="type_3" xml:id="division_iii_a_i">
+                <num xml:id="division_iii_a_i_num">#</num>
+                <content xml:id="division_iii_a_i_content">
+                    <p xml:id="division_iii_a_i_content_p">should be <b><i>I)</i></b></p>
+                </content>
+            </division>
+            <division class="type_4" leos:auto-num-overwrite="true" xml:id="division_iii_a_i_a">
+                <num xml:id="division_iii_a_i_a_num">MyNumber</num>
+                <content xml:id="division_iii_a_i_a_content">
+                    <p xml:id="division_iii_a_i_a_content_p">should continue MyNumber</p>
+                </content>
+            </division>
+            <division class="type_4" xml:id="division_iii_a_i_b">
+                <num xml:id="division_iii_a_i_b_num">#</num>
+                <content xml:id="division_iii_a_i_b_content">
+                    <p xml:id="division_iii_a_i_b_content_p">should be <i>B)</i></p>
+                </content>
+            </division>
+            <division class="type_3" leos:auto-num-overwrite="true" xml:id="division_iii_a_ii">
+                <num xml:id="division_iii_a_ii_num">Second Roman.</num>
+                <content xml:id="division_iii_a_ii_content">
+                    <p xml:id="division_iii_a_ii_content_p">should be Second Roman.</p>
+                </content>
+            </division>
+            <division class="type_2" xml:id="division_iii_b">
+                <num xml:id="division_iii_b_num">#</num>
+                <content xml:id="division_iii_b_content">
+                    <p xml:id="division_iii_b_content_p">should be <b>B.</b></p>
+                </content>
+            </division>
+            <division class="type_1" xml:id="division_iv">
+                <num xml:id="division_iv_num">#</num>
+                <content xml:id="division_iv_content">
+                    <p xml:id="division_iv_content_p">should be <b>IV.</b></p>
+                </content>
+            </division>
+        </mainBody>
+    </doc>
+</akomaNtoso>

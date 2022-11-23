@@ -255,6 +255,38 @@
             <expandedByDefault>true</expandedByDefault>
             <sameParentAsChild>false</sameParentAsChild>
             <numberingType>ARABIC</numberingType>
+            <tocItemTypes>
+                <tocItemType>
+                    <name>REGULAR</name>
+                    <subElementNumberingConfigs>
+                        <subElementNumberingConfig>
+                            <subElement>point</subElement>
+                            <numberingType>POINT_NUM</numberingType>
+                        </subElementNumberingConfig>
+                        <subElementNumberingConfig>
+                            <subElement>indent</subElement>
+                            <numberingType>POINT_NUM</numberingType>
+                        </subElementNumberingConfig>
+                    </subElementNumberingConfigs>
+                </tocItemType>
+                <tocItemType>
+                    <name>DEFINITION</name>
+                    <attribute>
+                        <attributeName>refersTo</attributeName>
+                        <attributeValue>~_ART_DEF</attributeValue>
+                    </attribute>
+                    <subElementNumberingConfigs>
+                        <subElementNumberingConfig>
+                            <subElement>point</subElement>
+                            <numberingType>POINT_NUM_DEF</numberingType>
+                        </subElementNumberingConfig>
+                        <subElementNumberingConfig>
+                            <subElement>indent</subElement>
+                            <numberingType>POINT_NUM_DEF</numberingType>
+                        </subElementNumberingConfig>
+                    </subElementNumberingConfigs>
+                </tocItemType>
+            </tocItemTypes>
             <profiles>
                 <profile>
                     <elementSelector>article[leos\:origin='cn']</elementSelector>
@@ -352,6 +384,34 @@
             <expandedByDefault>true</expandedByDefault>
             <sameParentAsChild>true</sameParentAsChild>
             <numberingType>POINT_NUM</numberingType>
+            <parentNameNumberingTypeDependency>article</parentNameNumberingTypeDependency>
+            <profiles>
+                <profile>
+                    <elementSelector>article[leos\:origin='ec'] point:not(:has(point, indent, alinea))</elementSelector>
+                    <profileName>inlineAknPointMandate</profileName>
+                </profile>
+            </profiles>
+            <editable>true</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>point</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>true</autoNumbering>
+            <itemHeading>none</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>true</sameParentAsChild>
+            <numberingType>POINT_NUM_DEF</numberingType>
+            <parentNameNumberingTypeDependency>article</parentNameNumberingTypeDependency>
             <profiles>
                 <profile>
                     <elementSelector>article[leos\:origin='ec'] point:not(:has(point, indent, alinea))</elementSelector>
@@ -378,6 +438,34 @@
             <expandedByDefault>true</expandedByDefault>
             <sameParentAsChild>true</sameParentAsChild>
             <numberingType>POINT_NUM</numberingType>
+            <parentNameNumberingTypeDependency>article</parentNameNumberingTypeDependency>
+            <profiles>
+                <profile>
+                    <elementSelector>article[leos\:origin='ec'] indent:not(:has(alinea))</elementSelector>
+                    <profileName>inlineAknIndentMandate</profileName>
+                </profile>
+            </profiles>
+            <editable>true</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>indent</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>false</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>true</autoNumbering>
+            <itemHeading>none</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>true</sameParentAsChild>
+            <numberingType>POINT_NUM_DEF</numberingType>
+            <parentNameNumberingTypeDependency>article</parentNameNumberingTypeDependency>
             <profiles>
                 <profile>
                     <elementSelector>article[leos\:origin='ec'] indent:not(:has(alinea))</elementSelector>
@@ -550,21 +638,22 @@
             <description>(a), (b), etc</description>
         </numberingConfig>
         <numberingConfig>
+            <type>ALPHA_LOWER_PARENTHESIS</type>
+            <numbered>true</numbered>
+            <prefix>(</prefix>
+            <suffix>)</suffix>
+            <sequence>a</sequence>
+            <description>(a), (b), etc</description>
+            <regex>[a-z]+$|#</regex>
+        </numberingConfig>
+        <numberingConfig>
             <type>ROMAN_LOWER_PARENTHESIS</type>
             <numbered>true</numbered>
             <prefix>(</prefix>
             <suffix>)</suffix>
             <sequence>i</sequence>
             <description>(i), (ii), etc</description>
-        </numberingConfig>
-        <numberingConfig>
-            <type>ROMAN_UPPER</type>
-            <numbered>true</numbered>
-            <prefix></prefix>
-            <suffix></suffix>
-            <sequence>I</sequence>
-            <description>I, II, etc</description>
-            <regex>M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$|#</regex>
+            <regex>m{0,4}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})$|#</regex>
             <msgValidationError>roman.num.config.validation.error.message</msgValidationError>
         </numberingConfig>
         <numberingConfig>
@@ -596,6 +685,29 @@
                 <level>
                     <depth>3</depth>
                     <numberingType>ARABIC_PARENTHESIS</numberingType>
+                </level>
+                <level>
+                    <depth>4</depth>
+                    <numberingType>INDENT</numberingType>
+                </level>
+            </levels>
+        </numberingConfig>
+
+        <numberingConfig>
+            <type>POINT_NUM_DEF</type>
+            <numbered>true</numbered>
+            <levels>
+                <level>
+                    <depth>1</depth>
+                    <numberingType>ARABIC_PARENTHESIS</numberingType>
+                </level>
+                <level>
+                    <depth>2</depth>
+                    <numberingType>ALPHA_LOWER_PARENTHESIS</numberingType>
+                </level>
+                <level>
+                    <depth>3</depth>
+                    <numberingType>ROMAN_LOWER_PARENTHESIS</numberingType>
                 </level>
                 <level>
                     <depth>4</depth>

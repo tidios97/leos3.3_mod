@@ -190,10 +190,6 @@ public abstract class NumberProcessorHandler {
             for (int i = 0; i < nodeList.size(); i++) {
                 final ParentChildNode parentChildNode = nodeList.get(i);
                 final Node node = parentChildNode.getNode();
-                if (skipAutoRenumbering(node)) {
-                    incrementValue(numberConfig);
-                    LOG.trace("Skipping SoftChanged {} '{}', number '{}'", elementName, getId(node), getNodeNum(node));
-                }
                 numberProcessorsDepthBased.stream()
                         .filter(numberProcessor -> numberProcessor.canRenumber(node))
                         .findFirst()
@@ -207,16 +203,22 @@ public abstract class NumberProcessorHandler {
     private void renumber(List<Node> nodeList, boolean renumberChildren) {
         if (nodeList.size() > 0) {
             final Node firstElement = nodeList.get(0);
-            final int elementDepth = getPointDepth(firstElement);
+            final int elementDepth = XercesUtils.getPointDepth(firstElement);
             final String elementName = firstElement.getNodeName();
             final NumberConfig numberConfig = numberConfigFactory.getNumberConfig(elementName, elementDepth, firstElement);
             numberConfig.setComplex(setComplexNumbering(nodeList));
-            updateStartingNumber(nodeList, numberConfig, elementName);
+            String leosRenumbered = XercesUtils.getAttributeValue(firstElement, "leos:renumbered");
+            if (leosRenumbered == null || !leosRenumbered.equals("true")) {
+                updateStartingNumber(nodeList, numberConfig, elementName);
+            }
 
             for (int i = 0; i < nodeList.size(); i++) {
                 final Node node = nodeList.get(i);
                 if (skipAutoRenumbering(node)) {
-                    incrementValue(numberConfig);
+                    String leosRenumberedForNode = XercesUtils.getAttributeValue(node, "leos:renumbered");
+                    if (leosRenumberedForNode == null || !leosRenumberedForNode.equals("true")) {
+                        incrementValue(numberConfig);
+                    }
                     LOG.trace("Skipping SoftChanged {} '{}', number '{}'", elementName, getId(node), getNodeNum(node));
                 } else {
                     numberProcessors.stream()
@@ -243,29 +245,12 @@ public abstract class NumberProcessorHandler {
      */
     protected abstract boolean setComplexNumbering(List<Node> nodeList);
 
-    protected abstract void incrementValue(NumberConfig numberConfig);
+    public abstract void incrementValue(NumberConfig numberConfig);
     protected abstract boolean setComplexNumbering(List<ParentChildNode> nodeList, int depth);
 
     public abstract boolean isElementSameOrigin(Node node);
 
     protected abstract void updateStartingNumber(List<Node> nodeList, NumberConfig numberConfig, String elementName);
-
-    private static int getPointDepth(Node node) {
-        int pointDepth = 0;
-        if (Arrays.asList(POINT, INDENT).contains(node.getNodeName())) {
-            Node parentNode = node.getParentNode();
-            while (parentNode != null) {
-                String parentName = parentNode.getNodeName();
-                if (LIST.equals(parentName)) {
-                    pointDepth++;
-                } else if (PARAGRAPH.equals(parentName)) {
-                    break;
-                }
-                parentNode = parentNode.getParentNode();
-            }
-        }
-        return pointDepth;
-    }
 
     public String getNumberFromLabel(NumberConfig numberConfig, String elementName, String labelNumber) {
         String prefix;

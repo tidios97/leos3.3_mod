@@ -30,11 +30,15 @@ import java.util.Map;
 
 import static eu.europa.ec.leos.services.compare.ComparisonHelper.isSoftAction;
 import static eu.europa.ec.leos.services.compare.ComparisonHelper.withPlaceholderPrefix;
+import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isElementIndented;
+import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.elementImpactedByIndentation;
+import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isElementIndentedInOtherContext;
 import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
+import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_DELETE_PLACEHOLDER_ID_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_MOVE_PLACEHOLDER_ID_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX;
-import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isElementIndented;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INITIAL_NUM;
 
 @Service
 @Instance(instances = {InstanceType.COMMISSION, InstanceType.OS})
@@ -93,8 +97,7 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
                 && (isSoftAction(element.getNode(), SoftActionType.DELETE)
                 || isSoftAction(element.getNode(), SoftActionType.MOVE_TO)
                 || withPlaceholderPrefix(element.getNode(), SOFT_DELETE_PLACEHOLDER_ID_PREFIX))
-                && !isSoftAction(element.getNode(), SoftActionType.DELETE_TRANSFORM)
-                ;
+                && !isSoftAction(element.getNode(), SoftActionType.DELETE_TRANSFORM);
     }
 
     @Override
@@ -161,32 +164,20 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
         if (context.getDisplayRemovedContentAsReadOnly() && !shouldIgnoreElement(context.getNewElement())) {
             if (newElementTagId != null) {
                 if (context.getOldContentElements().containsKey(newElementTagId.replace(
-                        SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX, EMPTY_STRING))  && !isElementIndented(context.getNewElement())) {
+                        SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX, EMPTY_STRING))) {
                     //append the soft movedFrom element content compared to the original content and ignore its renumbering
-                    Element originalMovedElementInOldContent = context.getOldContentElements().get(context.getNewElement().getTagId().replace(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX, EMPTY_STRING));
+                    Element transformedElementInOldContent = context.getOldContentElements().get(context.getNewElement().getTagId().replace(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX, EMPTY_STRING));
                     compareElementContents(new ContentComparatorContext.Builder(context)
-                            .withOldElement(originalMovedElementInOldContent)
+                            .withOldElement(transformedElementInOldContent)
                             .withDisplayRemovedContentAsReadOnly(Boolean.TRUE)
                             .withIgnoreElements(Boolean.TRUE)
                             .withIgnoreRenumbering(Boolean.TRUE)
                             .withStartTagAttrName(context.getAttrName())
                             .withStartTagAttrValue(context.getAddedValue())
                             .build());
-                } else if(isElementIndented(context.getNewElement())) {
-                    //If newElement is indented that means compare the children for text changes
-                    Element originalElementInOldContent = context.getOldContentElements().get(context.getNewElement().getTagId());
-                    compareElementContents(new ContentComparatorContext.Builder(context)
-                            .withOldElement(originalElementInOldContent)
-                            .withDisplayRemovedContentAsReadOnly(Boolean.FALSE)
-                            .withIgnoreElements(Boolean.TRUE)
-                            .withIgnoreRenumbering(Boolean.TRUE)
-                            .withStartTagAttrName(null)
-                            .withStartTagAttrValue(null)
-                            .build());
                 } else if (!newElementTagId.startsWith(SOFT_MOVE_PLACEHOLDER_ID_PREFIX)
                         && !newElementTagId.startsWith(SOFT_DELETE_PLACEHOLDER_ID_PREFIX)
-                        && !newElementTagId.startsWith(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX)
-                        && !isElementIndented(context.getNewElement())) {
+                        && !newElementTagId.startsWith(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX)) {
                     compareElementContents(new ContentComparatorContext.Builder(context)
                             .withIndexOfOldElementInNewContent(-1)
                             .withOldElement(null)
@@ -227,17 +218,32 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
                 Node node = getChangedElementContent(context.getOldContentNode(), context.getOldElement(), context.getAttrName(), context.getRemovedValue());
                 addReadOnlyAttributes(node);
                 addToResultNode(context, node);
+            } else if (containsSoftMoveToElement(context.getNewContentElements(), context.getOldElement()) &&
+                    containsSoftDeleteElement(context.getOldElement(), context.getNewContentElements())) {
+                //If element is soft deleted in new content then print the deleted element from new content
+                appendSoftActionPrefix(context, SOFT_MOVE_PLACEHOLDER_ID_PREFIX);
             } else if (containsSoftDeleteElement(context.getOldElement(), context.getNewContentElements())) {
                 //If element is soft deleted in new content then print the deleted element from new content
-                Element softDeletedNewElement = context.getNewContentElements().get(SOFT_DELETE_PLACEHOLDER_ID_PREFIX + context.getOldElement().getTagId());
-                Node node = XercesUtils.getElementById(context.getNewContentNode(), softDeletedNewElement.getTagId());
-                XercesUtils.insertOrUpdateAttributeValue(node, context.getAttrName(), context.getRemovedValue());
-                addReadOnlyAttributes(node);
+                appendSoftActionPrefix(context, SOFT_DELETE_PLACEHOLDER_ID_PREFIX);
+            } else if (context.getOldElement().getTagName().equals(NUM)
+                    && context.getOldElement().getParent().getTagId().equals(context.getNewElement().getParent().getTagId())
+                    && isElementIndentedInOtherContext(context.getNewContentElements(), context.getOldElement().getParent())) {
+                // Removed num on indentation should be marked as "removed"
+                String attrValue = getStartTagValueForRemovedElementFromAncestor(context.getOldElement(), context);
+                Node node = getChangedElementContent(context.getOldContentNode(), context.getOldElement(), context.getAttrName(), attrValue);
                 addToResultNode(context, node);
             }
         } else {
             appendRemovedElementContent(context);
         }
+    }
+
+    private void appendSoftActionPrefix(ContentComparatorContext context, String softActionPrefix) {
+        Element softDeletedNewElement = context.getNewContentElements().get(softActionPrefix + context.getOldElement().getTagId());
+        Node node = softDeletedNewElement.getNode();
+        XercesUtils.insertOrUpdateAttributeValue(node, context.getAttrName(), context.getRemovedValue());
+        addReadOnlyAttributes(node);
+        addToResultNode(context, node);
     }
 
     private String getStartTagValueForRemovedElementFromAncestor(Element element, ContentComparatorContext context) {
@@ -317,6 +323,12 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
                     Element softDeletedNewElement = context.getNewContentElements().get(SOFT_DELETE_PLACEHOLDER_ID_PREFIX + context.getOldElement().getTagId());
                     int indexOfSoftDeletedElementInNewContent = getBestMatchInList(softDeletedNewElement.getParent().getChildren(), softDeletedNewElement);
 
+                    String oldNum = XercesUtils.getAttributeValue(softDeletedNewElement.getNode(), LEOS_INITIAL_NUM);
+                    if (oldNum != null) {
+                        Node newNumNode = XercesUtils.getFirstChild(softDeletedNewElement.getNode(), NUM);
+                        newNumNode.setTextContent(oldNum);
+                    }
+
                     compareElementContents(new ContentComparatorContext.Builder(context)
                             .withIndexOfOldElementInNewContent(indexOfSoftDeletedElementInNewContent)
                             .withNewElement(softDeletedNewElement)
@@ -338,7 +350,7 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
                 appendRemovedContent(context);
             }
         } else if (!context.getNewContentElements().containsKey(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX + context.getOldElement().getParent().getTagId())
-                || !context.getOldElement().getTagId().equals(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX + context.getOldElement().getParent().getTagId())
+                && !context.getOldElement().getTagId().equals(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX + context.getOldElement().getParent().getTagId())
                 && (context.getNewContentElements().containsKey(SOFT_DELETE_PLACEHOLDER_ID_PREFIX + SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX + context.getOldElement().getParent().getTagId())
                 || (context.getNewContentElements().containsKey(SOFT_MOVE_PLACEHOLDER_ID_PREFIX + SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX + context.getOldElement().getParent().getTagId())))) {
             //append the soft movedTo element
@@ -394,5 +406,22 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
         } else {
             return super.getRemovedNumContent(context);
         }
+    }
+
+    @Override
+    protected boolean shouldBeMarkedAsAdded(ContentComparatorContext context) {
+        return !isClonedProposalOrContribution() || (!elementImpactedByIndentation(context)
+                && (context.getOldElement() == null
+                || isSoftAction(context.getNewElement().getNode(), SoftActionType.MOVE_FROM)
+                || isSoftAction(context.getNewElement().getNode(), SoftActionType.ADD)
+                || !(context.getOldElement().getTagId().equals(context.getNewElement().getTagId()))));
+    }
+
+    @Override
+    protected boolean isElementImpactedByIndention(Map<String, Element> otherContextElements, Element element) {
+        return (isElementIndentedInOtherContext(otherContextElements, element)
+                || IndentContentComparatorHelper.hasIndentedParent(otherContextElements, element)
+                || IndentContentComparatorHelper.hasIndentedChild(otherContextElements, element)
+                || IndentContentComparatorHelper.hasIndentedChild(otherContextElements, element.getParent()));
     }
 }

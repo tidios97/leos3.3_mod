@@ -1,0 +1,145 @@
+{
+  "guidance": [
+    {
+      "targets": [
+        {
+          "destinationId": "_preamble__formula_1__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_preamble__formula_1__p\" class=\"guidance-green-block\"><span id=\"_preamble__formula_1__p-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Citations\" target=\"_blank\">Citations</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_cit_4",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-cit-4\" class=\"guidance-green-block\"><span id=\"cit-4-guidance\">[where necessary]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_cit_5",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-cit-5\" class=\"guidance-green-block\"><span id=\"cit-5-guidance\">[where necessary]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_recitalsIntro",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_recitalsIntro\" class=\"guidance-green-block\"><span id=\"_recitalsIntro-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/x/Yxt2F\" target=\"_blank\">Recitals</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_rec_3",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-rec_3\" class=\"guidance-green-block\"><span id=\"rec_3-guidance\">[That recital is optional in accordance with the guidance note on explanatory documents available <a href=\"https://myintracomm.ec.europa.eu/corp/sg/fr/droit_comm/infractions/Documents/guidance_explanatory_documents_en.pdf\" target=\"_blank\">here</a> . Please note that a thorough justification must be provided in the explanatory memorandum on whether or not the Commission considers such explanatory documents to be justified.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_1__heading",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_art_1__heading\" class=\"guidance-green-block\"><span id=\"_art_1__heading-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Scope\" target=\"_blank\">Scope</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_definitions_heading",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_art_definitions_heading\" class=\"guidance-green-block\"><span id=\"_art_2_definitions_heading-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Definitions\" target=\"_blank\">Definitions</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_n1_4CzCN4",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-art_n1_4CzCN4\" class=\"guidance-green-block\"><span id=\"art_n1_4CzCN4-guidance\">[The time limit for transposition will be as short as possible and, generally, will not exceed two years]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_n2_iBvBjx",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-art_n2_iBvBjx\" class=\"guidance-green-block\"><span id=\"art_n2_iBvBjx-guidance\">[The time limit for transposition will be as short as possible and, generally, will not exceed two years]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_n2",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-art_n2\" class=\"guidance-green-block\"><span id=\"art_n2-guidance\">[to be used where it is essential that the national provisions be applied from the same date in all Member States]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_n4",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-art_n4\" class=\"guidance-green-block\"><span id=\"art_n4-guidance\">[Choose between the two options, depending on the addressees of the act, in accordance with the Treaties.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_n3_ZoKQ0d",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_art_n3_ZoKQ0d\" class=\"guidance-green-block\"><span id=\"_art_n3_ZoKQ0d-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Date+of+entry+into+force\" target=\"_blank\">Entry into force</a></span></guidance>"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "listOption1",
+      "list": [
+        {
+          "index": "1",
+          "content": "<article xml:id=\"_art_2\" leos:editable=\"true\" leos:deletable=\"false\" leos:alternative=\"true\" leos:optionlist=\"listOption1\" leos:selectedoption=\"1\"><num xml:id=\"art_2__num\" leos:editable=\"false\">Article 2</num><heading xml:id=\"art_2__heading\">Article heading</heading><paragraph xml:id=\"art_n1__para_1\"><num xml:id=\"art_n1_s1B8uy\">1.</num><subparagraph xml:id=\"art_n1__para_1__subpara_1\"><content xml:id=\"art_n1_Qhm10R\"><p xml:id=\"art_n1_4CzCN4\"> Member States shall bring into force the laws, regulations and administrative provisions necessary to comply with this Directive by [...]  at the latest. They shall forthwith communicate to the Commission the text of those provisions. </p></content></subparagraph><subparagraph xml:id=\"art_n1__para_1__subpara_2\"><content xml:id=\"art_n1_bR03pA\"><p xml:id=\"art_n1_HTuqhq\">When Member States adopt those provisions, they shall contain a reference to this Directive or be accompanied by such a reference on the occasion of their official publication. Member States shall determine how such reference is to be made.</p></content></subparagraph></paragraph><paragraph xml:id=\"art_n1__para_2\"><num xml:id=\"art_n1_SzLpQM\">2.</num><content xml:id=\"art_n1_ApnR4I\"><p xml:id=\"art_n1_LBE4Df\">Member States shall communicate to the Commission the text of the main provisions of national law which they adopt in the field covered by this Directive.</p></content></paragraph></article>"
+        },
+        {
+          "index": "2",
+          "content": "<article xml:id=\"_art_n2\" leos:editable=\"true\" leos:deletable=\"false\" leos:alternative=\"true\" leos:optionlist=\"listOption1\" leos:selectedoption=\"2\"><num xml:id=\"art_n2_tMMjfH\" leos:editable=\"false\" leos:deletable=\"false\" leos:alternative=\"true\" leos:optionlist=\"listOption2\" leos:selectedoption=\"2\">Article 2</num><heading xml:id=\"art_n2_xM2j7b\">Transposition</heading><paragraph xml:id=\"art_n2__para_1\"><num xml:id=\"art_n2_i28JyH\">1.</num><subparagraph xml:id=\"art_n2__para_1__subpara_1\"><content xml:id=\"art_n2_U4XrFV\"><p xml:id=\"art_n2_iBvBjx\">Member States shall adopt and publish, by [...] <!-- [The time limit for transposition will be as short as possible and, generally, will not exceed two years] -->at the latest, the laws, regulations and administrative provisions necessary to comply with this Directive. They shall forthwith communicate to the Commission the text of those provisions.</p></content></subparagraph><subparagraph xml:id=\"art_n2__para_1__subpara_2\"><content xml:id=\"art_n2_dvPwbu\"><p xml:id=\"art_n2_tAP1Yk\">They shall apply those provisions from [...].</p></content></subparagraph><subparagraph xml:id=\"art_n2__para_1__subpara_3\"><content xml:id=\"art_n2_7WZHhd\"><p xml:id=\"art_n2_WSB7fW\">When Member States adopt those provisions, they shall contain a reference to this Directive or be accompanied by such a reference on the occasion of their official publication. Member States shall determine how such reference is to be made.</p></content></subparagraph></paragraph><paragraph xml:id=\"art_n2__para_2\"><num xml:id=\"art_n2_qw6cvY\">2.</num><content xml:id=\"art_n2_bTghug\"><p xml:id=\"art_n2_msixSB\">Member States shall communicate to the Commission the text of the main provisions of national law which they adopt in the field covered by this Directive.</p></content></paragraph></article>"
+        }
+      ]
+    },
+    {
+      "name": "listOption2",
+      "list": [
+        {
+          "index": "1",
+          "content": "<article xml:id=\"_art_n4\" leos:editable=\"true\" leos:deletable=\"false\" leos:alternative=\"true\" leos:optionlist=\"listOption2\" leos:selectedoption=\"1\"><num xml:id=\"art_n4_LcUtyg\" leos:editable=\"false\">Article 4</num><heading xml:id=\"art_n4_Q27Lyk\">Addressees</heading><paragraph xml:id=\"art_n4__para_1\"><content xml:id=\"art_n4_QXd2sT\"><p xml:id=\"art_n4_9iYqIL\">This Directive is addressed to the Member States.</p></content></paragraph></article>"
+        },
+        {
+          "index": "2",
+          "content": "<article xml:id=\"_art_n4\" leos:editable=\"true\" leos:deletable=\"false\" leos:alternative=\"true\" leos:optionlist=\"listOption2\" leos:selectedoption=\"2\"><num xml:id=\"art_n4_LcUtyg\" leos:editable=\"false\">Article 4</num><heading xml:id=\"art_n4_Q27Lyk\">Addressees</heading><paragraph xml:id=\"art_n4__para_1\"><content xml:id=\"art_n5_kfM6hD\"><p xml:id=\"art_n5_yZp7Mq\">This Directive is addressed to the Member States in accordance with the Treaties.</p></content></paragraph></article>"
+        }
+      ]
+    }    
+  ],
+  "structure": [
+    {
+      "name": "structure_01"
+    }
+  ]
+}

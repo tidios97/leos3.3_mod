@@ -75,6 +75,35 @@ public class AnnotateExtension<T extends AbstractField<V>, V> extends LeosJavaSc
         getState().spellCheckerSourceUrl = cfgHelper.getIntegrationProperty("leos.spell.checker.source.url");
         containerId = (containerId == null) ? cfgHelper.getProperty("annotation.container") : ("#" + containerId);
         getState().annotationContainer = containerId;
+        getState().sidebarAppId = null;
+        extend(target);
+    }
+
+    public AnnotateExtension(T target, EventBus eventBus, ConfigurationHelper cfgHelper, String containerId,
+                              OperationMode operationMode, boolean showStatusFilter, boolean showGuideLinesButton,
+                              String proposalRef, String connectedEntity, String sidebarAppId,
+                              String temporaryAnnotationsId, String temporaryDocument) {
+        super();
+        this.eventBus = eventBus;
+        registerServerSideAPI();
+        getState().authority = cfgHelper.getProperty("annotate.authority");
+        getState().anotClient = cfgHelper.getProperty("annotate.client.url");
+        getState().anotHost = cfgHelper.getProperty("annotate.server.url");
+        getState().oauthClientId = cfgHelper.getProperty("annotate.jwt.issuer.client.id");
+        getState().operationMode = operationMode.name();
+        getState().showStatusFilter = showStatusFilter;
+        getState().showGuideLinesButton = showGuideLinesButton;
+        getState().annotationPopupDefaultStatus = cfgHelper.getProperty("annotate.popup.default.status");
+        getState().proposalRef = proposalRef;
+        getState().connectedEntity = connectedEntity;
+        getState().isSpellCheckerEnabled = Boolean.valueOf(cfgHelper.getIntegrationProperty("leos.spell.checker.enabled"));
+        getState().spellCheckerServiceUrl = cfgHelper.getIntegrationProperty("leos.spell.checker.service.url");
+        getState().spellCheckerSourceUrl = cfgHelper.getIntegrationProperty("leos.spell.checker.source.url");
+        containerId = (containerId == null) ? cfgHelper.getProperty("annotation.container") : ("#" + containerId);
+        getState().annotationContainer = containerId;
+        getState().sidebarAppId = sidebarAppId;
+        getState().temporaryDataId = temporaryAnnotationsId;
+        getState().temporaryDataDocument = temporaryDocument;
         extend(target);
     }
 
@@ -212,5 +241,4 @@ public class AnnotateExtension<T extends AbstractField<V>, V> extends LeosJavaSc
     public void requestFilteredAnnotations(RequestFilteredAnnotations event) {
         callFunction("requestFilteredAnnotations");
     }
-
 }

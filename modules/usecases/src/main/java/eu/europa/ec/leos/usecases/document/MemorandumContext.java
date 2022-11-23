@@ -20,6 +20,8 @@ import eu.europa.ec.leos.domain.cmis.metadata.MemorandumMetadata;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.services.document.MemorandumService;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
+import eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor;
+import eu.europa.ec.leos.services.processor.node.XmlNodeProcessor;
 import io.atlassian.fugue.Option;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -32,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.createValueMap;
 import static eu.europa.ec.leos.services.support.XmlHelper.XML_DOC_EXT;
 
 @Component
@@ -42,6 +45,8 @@ public class MemorandumContext {
 
     private final MemorandumService memorandumService;
     private final XmlContentProcessor xmlContentProcessor;
+    private final XmlNodeProcessor xmlNodeProcessor;
+    private final XmlNodeConfigProcessor xmlNodeConfigProcessor;
 
     private LeosPackage leosPackage = null;
     private Memorandum memorandum = null;
@@ -57,9 +62,11 @@ public class MemorandumContext {
     private final Map<ContextAction, String> actionMsgMap;
 
     @Autowired
-    MemorandumContext(MemorandumService memorandumService, XmlContentProcessor xmlContentProcessor) {
+    MemorandumContext(MemorandumService memorandumService, XmlContentProcessor xmlContentProcessor, XmlNodeProcessor xmlNodeProcessor, XmlNodeConfigProcessor xmlNodeConfigProcessor) {
         this.memorandumService = memorandumService;
         this.xmlContentProcessor = xmlContentProcessor;
+        this.xmlNodeProcessor = xmlNodeProcessor;
+        this.xmlNodeConfigProcessor = xmlNodeConfigProcessor;
         this.actionMsgMap = new HashMap<>();
     }
 
@@ -156,9 +163,7 @@ public class MemorandumContext {
         Validate.notNull(memorandum, "Memorandum template is required!");
         Option<MemorandumMetadata> metadataOption = memorandum.getMetadata();
         Validate.isTrue(metadataOption.isDefined(), "Memorandum metadata is required!");
-
         Validate.notNull(purpose, "Memorandum purpose is required!");
-        MemorandumMetadata metadata = metadataOption.get().withPurpose(purpose).withType(type).withTemplate(template).withEeaRelevance(eeaRelevance);
         Validate.notNull(memoDocument.getSource(), "Memorandum xml is required!");
 
         createRefForMemorandum();
@@ -180,9 +185,12 @@ public class MemorandumContext {
         final MemorandumMetadata updatedMemorandumMetadata = memorandum.getMetadata().get()
                 .withPurpose(purpose)
                 .withRef(ref);
+        final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(memoDocument.getSource(), createValueMap(updatedMemorandumMetadata),
+                xmlNodeConfigProcessor.getConfig(updatedMemorandumMetadata.getCategory()));
 
         memoDocument.setName(ref + XML_DOC_EXT);
         memoDocument.setMetadataDocument(updatedMemorandumMetadata);
+        memoDocument.setSource(updatedSource);
 
         return ref;
     }

@@ -13,15 +13,16 @@
  */
 package eu.europa.ec.leos.integration;
 
+import eu.europa.ec.leos.integration.rest.UserJSON;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.security.SecurityUserProvider;
 
 import java.util.List;
 
 public interface UsersProvider extends SecurityUserProvider {
-    List<User> searchUsers(String searchKey);
+    List<UserJSON> searchUsers(String searchKey);
 
-    List<User> searchUsersInContext(String searchKey, String searchContext, String searchReference);
+    List<UserJSON> searchUsersInContext(String searchKey, String searchContext, String searchReference);
 
     User getUserByLogin(String userId);
 

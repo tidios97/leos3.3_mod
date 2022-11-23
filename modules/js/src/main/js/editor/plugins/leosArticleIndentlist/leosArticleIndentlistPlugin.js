@@ -253,6 +253,19 @@ define(function leosArticleIndentListPluginModule(require) {
                         li.append(followingList);
                     }
 
+                    // Correction on outdent to avoid subparagraphs or alinea being moved before indented li
+                    if ($(li.$).next("p").length>0) {
+                        li.$.innerHTML = "<p>" + li.$.innerHTML + "</p>";
+                        leosPluginUtils.copyContentAndMpAttributeToElement(li, li.getFirst());
+                        var next;
+                        while (next = li.getNext()) {
+                            if (!!next.is && next.is('p')) {
+                                li.append(next);
+                            }
+                        }
+
+                    }
+
                     li.insertAfter(parentLiElement);
                 }
             }
@@ -346,37 +359,38 @@ define(function leosArticleIndentListPluginModule(require) {
 
     function _handleListOutdent(child, document, parentLiElement, pendingLis) {
         // Check if list has more than one child item and is outdenting to top level, but only as an un-numbered paragraph - LEOS-5980, LEOS-6109
-        if(child.getChildCount() > 1 && parentLiElement.getParent().getParent().is('article') && (parentLiElement.$.attributes.getNamedItem("data-akn-num") === null
-            || parentLiElement.$.attributes.getNamedItem("data-akn-num") === undefined)) {
+        var newLiArray = [];
+        if(child.getChildCount() > 1 && parentLiElement.getParent().getParent().is(leosPluginUtils.ARTICLE) && (parentLiElement.$.attributes.getNamedItem(leosPluginUtils.DATA_AKN_NUM) === null
+            || parentLiElement.$.attributes.getNamedItem(leosPluginUtils.DATA_AKN_NUM) === undefined
+            || (!!parentLiElement.getAttribute(leosPluginUtils.DATA_AKN_NUM_ID) && parentLiElement.getAttribute(leosPluginUtils.DATA_AKN_NUM_ID).includes("deleted_")))) {
+            newLiArray = [child];
             // Move list children into new lists with one item per list
             //  to avoid multi-subparagraphs inside paragraphs when outdenting
-            var newLiArray = [];
-            var softUser = child.getAttribute('data-akn-attr-softuser');
-            var softDate = child.getAttribute('data-akn-attr-softdate');
-            for (var k = child.getChildCount() - 1; k >= 0 ; k-- ) {
-                var innerItem = child.getChild(k);
-                if( innerItem.getText() === null || innerItem.getText() === undefined || innerItem.getText().length === 0 ) {
-                    continue;
+            if ($(child.$).children("p[" + leosPluginUtils.DATA_AKN_ELEMENT + "=" + leosPluginUtils.ALINEA + "]").length > 0
+                || $(child.$).children("p[" + leosPluginUtils.DATA_AKN_ELEMENT + "=" + leosPluginUtils.SUBPARAGRAPH + "]").length > 0) {
+                for (var k = 1; k < child.getChildCount(); k++) {
+                    var innerItem = child.getChild(k);
+                    if (innerItem.getText() === null || innerItem.getText() === undefined || innerItem.getText().length === 0
+                        || !innerItem.is) {
+                        continue;
+                    }
+                    if (innerItem.is('p') && innerItem.hasAttribute(leosPluginUtils.DATA_AKN_ELEMENT)
+                        && (innerItem.getAttribute(leosPluginUtils.DATA_AKN_ELEMENT) == leosPluginUtils.ALINEA
+                            || innerItem.getAttribute(leosPluginUtils.DATA_AKN_ELEMENT) == leosPluginUtils.SUBPARAGRAPH)) {
+                        innerItem.renameNode('li');
+                        innerItem.setAttribute(leosPluginUtils.DATA_AKN_ELEMENT, leosPluginUtils.PARAGRAPH);
+                        innerItem.$.innerHTML = "<p>" + innerItem.$.innerHTML + "</p>";
+                        innerItem.remove();
+                        k--;
+                        innerItem.insertAfter(newLiArray[newLiArray.length - 1]);
+                        leosPluginUtils.copyContentAndMpAttributeToElement(innerItem, innerItem.getFirst());
+                        newLiArray.push(innerItem);
+                    }
                 }
-                // Create list node wrapper for this child.
-                var newListNode = document.createElement( 'li' );
-                if(softUser !== null && softUser !== undefined) {
-                    newListNode.setAttribute('data-akn-attr-softuser', softUser);
-                }
-                if(softDate !== null && softDate !== undefined) {
-                    newListNode.setAttribute('data-akn-attr-softdate', softDate);
-                }
-                if (innerItem.setAttribute) {
-                    innerItem.setAttribute('data-akn-element', '');
-                }
-                newListNode.append(innerItem)
-                newLiArray.push(newListNode);
             }
-            
-            for (var j = 0; j < newLiArray.length; j++ ) {
+            for (var j = newLiArray.length-1; j >= 0 ; j-- ) {
                 pendingLis.push( newLiArray[j] );
             }
-            child.remove();
         } else {
             pendingLis.push(child);
         }

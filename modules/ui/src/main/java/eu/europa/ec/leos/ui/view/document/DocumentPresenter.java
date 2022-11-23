@@ -53,6 +53,7 @@ import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.model.xml.Element;
 import eu.europa.ec.leos.security.LeosPermission;
 import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.services.Annotate.AnnotateService;
 import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.document.BillService;
 import eu.europa.ec.leos.services.document.ContributionService;
@@ -66,7 +67,6 @@ import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportService;
 import eu.europa.ec.leos.services.export.ExportVersions;
 import eu.europa.ec.leos.services.export.FileHelper;
-import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.importoj.ImportService;
 import eu.europa.ec.leos.services.label.ReferenceLabelService;
 import eu.europa.ec.leos.services.messaging.UpdateInternalReferencesProducer;
@@ -126,6 +126,7 @@ import eu.europa.ec.leos.ui.model.AnnotateMetadata;
 import eu.europa.ec.leos.ui.model.AnnotationStatus;
 import eu.europa.ec.leos.services.clone.InternalRefMap;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
+import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.support.DownloadExportRequest;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.CommonDelegate;
@@ -154,9 +155,12 @@ import eu.europa.ec.leos.web.event.component.WindowClosedEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent.Action;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseElementEvent;
 import eu.europa.ec.leos.web.event.view.document.ComparisonEvent;
+import eu.europa.ec.leos.web.event.view.document.ConfirmRenumberingEvent;
 import eu.europa.ec.leos.web.event.view.document.DeleteElementRequestEvent;
+import eu.europa.ec.leos.web.event.view.document.DocumentNavigationRequest;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
 import eu.europa.ec.leos.web.event.view.document.EditElementRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.FetchCrossRefTocRequestEvent;
@@ -171,6 +175,7 @@ import eu.europa.ec.leos.web.event.view.document.MergeSuggestionsRequest;
 import eu.europa.ec.leos.web.event.view.document.ReferenceLabelRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.RefreshContributionEvent;
 import eu.europa.ec.leos.web.event.view.document.RefreshDocumentEvent;
+import eu.europa.ec.leos.web.event.view.document.RenumberingEvent;
 import eu.europa.ec.leos.web.event.view.document.RequestFilteredAnnotations;
 import eu.europa.ec.leos.web.event.view.document.ResponseFilteredAnnotations;
 import eu.europa.ec.leos.web.event.view.document.SaveElementRequestEvent;
@@ -196,7 +201,6 @@ import eu.europa.ec.leos.web.ui.navigation.Target;
 import eu.europa.ec.leos.web.ui.screen.document.ColumnPosition;
 import io.atlassian.fugue.Option;
 import io.atlassian.fugue.Pair;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -209,7 +213,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Provider;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -221,6 +224,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -284,6 +288,8 @@ class DocumentPresenter extends AbstractLeosPresenter {
     private static final String LEOS_ALTERNATIVE_ATTR = "leos:alternative";
     private boolean milestoneExplorerOpened = false;
     private InstanceTypeResolver instanceTypeResolver;
+    private final AnnotateService annotateService;
+    private final List<String> openElementEditors;
 
     @Autowired
     DocumentPresenter(SecurityContext securityContext, HttpSession httpSession, EventBus eventBus,
@@ -299,7 +305,9 @@ class DocumentPresenter extends AbstractLeosPresenter {
                       EventBus leosApplicationEventBus, UuidHelper uuidHelper, Provider<StructureContext> structureContextProvider,
                       WorkspaceService workspaceService, LegService legService, UpdateInternalReferencesProducer updateInternalReferencesProducer,
                       ProposalService proposalService, ContributionService contributionService, SearchService searchService, ExportPackageService exportPackageService,
-                      NotificationService notificationService, CloneContext cloneContext, InstanceTypeResolver instanceTypeResolver, XmlContentProcessor xmlContentProcessor, NumberService numberService, MergeContributionHelper mergeContributionHelper, AttachmentProcessor attachmentProcessor) {
+                      NotificationService notificationService, CloneContext cloneContext, InstanceTypeResolver instanceTypeResolver, XmlContentProcessor xmlContentProcessor,
+                      NumberService numberService, MergeContributionHelper mergeContributionHelper, AttachmentProcessor attachmentProcessor,
+                      AnnotateService annotateService) {
 
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
         this.contributionService = contributionService;
@@ -335,6 +343,8 @@ class DocumentPresenter extends AbstractLeosPresenter {
         this.xmlContentProcessor = xmlContentProcessor;
         this.numberService = numberService;
         this.mergeContributionHelper = mergeContributionHelper;
+        this.annotateService = annotateService;
+        this.openElementEditors = new ArrayList<>();
     }
 
     private byte[] getContent(Bill bill) {
@@ -354,6 +364,13 @@ class DocumentPresenter extends AbstractLeosPresenter {
             Bill bill = getDocument();
             populateViewWithDocumentDetails(bill, TocMode.SIMPLIFIED);
             populateVersionAndContributionData(bill);
+            String revisionReference = getRevisionRef();
+            if (revisionReference != null) {
+                Optional<ContributionVO> contributionVO = documentScreen.findContributionAndShowTab(revisionReference);
+                if (contributionVO.isPresent()) {
+                    eventBus.post(new OpenRevisionDocumentEvent(contributionVO.get()));
+                }
+            }
         } catch (Exception exception) {
             LOG.error("Exception occurred in init(): ", exception);
             eventBus.post(new NotificationEvent(Type.ERROR, "unknown.error.message"));
@@ -441,18 +458,46 @@ class DocumentPresenter extends AbstractLeosPresenter {
 
     @Subscribe
     void closeDocument(CloseDocumentEvent event) {
-        if (isBillUnsaved()) {
-            eventBus.post(new ShowConfirmDialogEvent(event, null));
+        if (this.isBillUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(new CloseDocumentConfirmationEvent(), null));
             return;
         }
+        this.closeDocument();
+    }
 
-        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
-        resetCloneProposalMetadataVO();
-        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS));
+    @Subscribe
+    void handleNavigationRequest(DocumentNavigationRequest event) {
+        LOG.trace("Handling document navigation request...");
+        if (event.getNavigationEvent() != null) event.getNavigationEvent().setForwardToDocument(false);
+        if(isBillUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(event.getNavigationEvent(), null));
+            return;
+        }
+        eventBus.post(event.getNavigationEvent());
     }
 
     private boolean isBillUnsaved() {
         return getBillFromSession() != null;
+    }
+
+    private boolean isHasOpenElementEditors() {
+        return this.openElementEditors.size() > 0;
+    }
+
+    @Subscribe
+    void handleCloseDocumentConfirmation(CloseDocumentConfirmationEvent event) {
+        this.closeDocument();
+    }
+
+    private void closeDocument() {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        resetCloneProposalMetadataVO();
+        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS, false));
+    }
+
+    @Subscribe
+    void handleShowConfirmDialog(ShowConfirmDialogEvent event) {
+        ConfirmDialogHelper.showOpenEditorDialog(this.leosUI, event, this.eventBus, this.messageHelper);
     }
 
     @Subscribe
@@ -532,6 +577,7 @@ class DocumentPresenter extends AbstractLeosPresenter {
 
         coEditionHelper.storeUserEditInfo(httpSession.getId(), id, user, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
         documentScreen.showElementEditor(event.getElementId(), elementTagName, element, jsonAlternatives);
+        this.openElementEditors.add(elementId);
     }
 
     @Subscribe
@@ -540,10 +586,11 @@ class DocumentPresenter extends AbstractLeosPresenter {
             Stopwatch stopwatch = Stopwatch.createStarted();
             final String elementId = event.getElementId();
             final String elementTagName = event.getElementTagName();
+            final String xmlFragment = event.getElementContent();
             elementToEditAfterClose = null;
 
             Bill bill = getDocument();
-            byte[] newXmlContent = billProcessor.updateElement(bill, elementTagName, elementId, event.getElementContent());
+            byte[] newXmlContent = billProcessor.updateElement(bill, elementTagName, elementId, xmlFragment);
             if (newXmlContent == null) {
                 documentScreen.showAlertDialog("operation.element.not.performed");
                 return;
@@ -603,6 +650,7 @@ class DocumentPresenter extends AbstractLeosPresenter {
         String elementId = event.getElementId();
         coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
         LOG.debug("User edit information removed");
+        this.openElementEditors.remove(elementId);
         eventBus.post(new RefreshDocumentEvent());
         if (elementToEditAfterClose != null) {
             documentScreen.scrollTo(elementToEditAfterClose.getElementId());
@@ -673,6 +721,30 @@ class DocumentPresenter extends AbstractLeosPresenter {
         updateBillContent(bill, newXmlContent, checkinCommentJson, "document." + tagName + ".inserted");
         updateInternalReferencesProducer.send(new UpdateInternalReferencesMessage(bill.getId(), bill.getMetadata().get().getRef(), id));
         LOG.info("New Element of type '{}' inserted in Bill {} id {}, in {} milliseconds ({} sec)", tagName, bill.getName(), bill.getId(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
+    }
+
+    @Subscribe
+    void confirmRenumberDocument(ConfirmRenumberingEvent event) {
+        documentScreen.confirmRenumberDocument();
+    }
+
+    @Subscribe
+    void renumberDocument(RenumberingEvent event) {
+
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        final Bill bill = getDocument();
+
+        final byte[] newXmlContent = billProcessor.renumberDocument(bill);
+
+        final String title = messageHelper.getMessage("operation.element.document_renumbered");
+        final String description = messageHelper.getMessage("operation.checkin.minor");
+        final CheckinCommentVO checkinComment = new CheckinCommentVO(title, description, new CheckinElement(ActionType.DOCUMENT_RENUMBERED));
+        final String checkinCommentJson = CheckinCommentUtil.getJsonObject(checkinComment);
+
+        updateBillContent(bill, newXmlContent, checkinCommentJson, "document.renumbered");
+        updateInternalReferencesProducer.send(new UpdateInternalReferencesMessage(bill.getId(), bill.getMetadata().get().getRef(), id));
+        LOG.info("Renumbering document executed, in {} milliseconds ({} sec)", stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
+
     }
 
     @Subscribe
@@ -891,6 +963,10 @@ class DocumentPresenter extends AbstractLeosPresenter {
 
     private String getDocumentRef() {
         return (String) httpSession.getAttribute(id + "." + SessionAttribute.BILL_REF.name());
+    }
+
+    private String getRevisionRef() {
+        return (String) httpSession.getAttribute(id + "." + SessionAttribute.REVISION_VERSION.name());
     }
 
     private List<TableOfContentItemVO> getListOfTableOfContent(Bill bill, TocMode mode) {
@@ -1160,6 +1236,7 @@ class DocumentPresenter extends AbstractLeosPresenter {
         cloneContext.setCloneProposalMetadataVO(cloneProposalMetadataVO);
         compareAndShowRevision(event.getContributionVO());
     }
+
     private void compareAndShowRevision(ContributionVO contributionVO) {
         final Bill revision = billService.findBill(contributionVO.getDocumentId(), false);
         final String revisionContent = documentContentService.getDocumentForContributionAsHtml(
@@ -1170,8 +1247,16 @@ class DocumentPresenter extends AbstractLeosPresenter {
         documentScreen.refreshVersions(getVersionVOS(), false);
         Bill bill = getDocument();
         List<TocItem> tocItemList = getTocITems(bill);
-        documentScreen.showRevision(revisionContent, revision.getContributionStatus(), contributionVO,
-                tocItemList);
+
+        final String temporaryAnnotationsId = this.storeRevisionAnnotationsTemporary(contributionVO.getDocumentId(), contributionVO.getLegFileName(), contributionVO.getVersionedReference());
+        documentScreen.showRevisionWithSidebar(revisionContent, contributionVO, tocItemList, temporaryAnnotationsId);
+    }
+
+    private String storeRevisionAnnotationsTemporary(final String documentId, final String legFileName, final String versionedReference) {
+        final LeosPackage leosPackage = this.packageService.findPackageByDocumentId(documentId);
+        //final LegDocument referenceDocument = this.legService.findLastLegByVersionedReference(leosPackage.getPath(), versionedReference);
+        final LegDocument legDocument = this.packageService.findDocumentByPackagePathAndName(leosPackage.getPath(), legFileName, LegDocument.class);
+        return this.legService.storeLegDocumentTemporary(legDocument);
     }
 
     private List<TocItem> getTocITems(Bill bill) {
@@ -1344,6 +1429,7 @@ class DocumentPresenter extends AbstractLeosPresenter {
             }
             exportOptions.setWithFilteredAnnotations(isWithAnnotations);
             exportOptions.setFilteredAnnotations(annotations);
+            exportOptions.setWithCoverPage(false);
             LeosPackage leosPackage = packageService.findPackageByDocumentId(documentId);
             BillContext context = billContextProvider.get();
             context.usePackage(leosPackage);
@@ -1601,10 +1687,12 @@ class DocumentPresenter extends AbstractLeosPresenter {
         } catch (Exception e) {
             LogUtil.logError(LOG, eventBus, "Unexpected error occurred while generating Export Package", e);
         } finally {
-            exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
-            if ((exportDocument != null) && (!exportDocument.getStatus().equals(LeosExportStatus.FILE_READY))) {
-                exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
-                leosApplicationEventBus.post(new ExportPackageCreatedEvent(proposalRef, exportDocument));
+            if (exportDocument != null) {
+                exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
+                if ((exportDocument != null) && (!exportDocument.getStatus().equals(LeosExportStatus.FILE_READY))) {
+                    exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
+                    leosApplicationEventBus.post(new ExportPackageCreatedEvent(proposalRef, exportDocument));
+                }
             }
         }
     }
@@ -1660,6 +1748,7 @@ class DocumentPresenter extends AbstractLeosPresenter {
         Bill bill = getDocument();
         List<LeosPermission> userPermissions = securityContext.getPermissions(bill);
         documentScreen.sendUserPermissions(userPermissions);
+        annotateService.sendUserPermissions(userPermissions);
     }
 
     private VersionInfoVO getVersionInfo(XmlDocument document) {

@@ -1,12 +1,19 @@
 package eu.europa.ec.leos.services.collection;
 
 import eu.europa.ec.leos.domain.common.Result;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
+import eu.europa.ec.leos.domain.vo.DocumentVO;
 
 import java.io.File;
-import java.util.List;
 
 public interface CreateCollectionService {
+
+    /**
+     * Create a collection from document vo
+     *
+     * @param documentVO
+     * @return The collection creation result containing the proposal view url.
+     */
+    CreateCollectionResult createCollection(DocumentVO documentVO)throws CreateCollectionException;
 
     /**
      * Create a collection from a Leg document file
@@ -14,8 +21,8 @@ public interface CreateCollectionService {
      * @param legDocument
      * @return The collection creation result containing the proposal view url and the bill view url
      */
-    CreateCollectionResult createCollection(File legDocument) throws CreateCollectionException;
-    
+    CreateCollectionResult createCollectionFromLeg(File legDocument) throws CreateCollectionException;
+
     /**
      * Clone an existing collection from a Leg document file
      *

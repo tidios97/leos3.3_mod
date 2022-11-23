@@ -3,7 +3,7 @@
 
         <mainBody xml:id="body">
             <division class="type_1" xml:id="body_division_1">
-                <num xml:id="body_division_1_num">I.</num>
+                <num xml:id="body_division_1_num"><b xml:id="_akn_IqJxQr">I.</b></num>
                 <heading xml:id="body_division_1_heading">INTRODUCTION</heading>
             </division>
             <level leos:depth="1" xml:id="body_level_1">
@@ -189,7 +189,7 @@
                 </content>
             </level>
             <division class="type_1" xml:id="body_division_2">
-                <num xml:id="body_division_2_num">II.</num>
+                <num xml:id="body_division_2_num"><b xml:id="_akn_sMxQBh">II.</b></num>
                 <heading xml:id="body_division_2_heading">STATE OF PLAY / ANALYSIS OF THE FINAL COMPROMISE TEXT WITH A
                     VIEW TO AN
                     AGREEMENT
@@ -202,7 +202,7 @@
                 </content>
             </level>
             <division class="type_1" xml:id="body_division_3">
-                <num xml:id="body_division_3_num">III.</num>
+                <num xml:id="body_division_3_num"><b xml:id="_akn_mWxAs5">III.</b></num>
                 <heading xml:id="body_division_3_heading">CONCLUSION</heading>
             </division>
             <level leos:depth="1" xml:id="body_level_18">

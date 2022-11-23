@@ -14,6 +14,8 @@
 package eu.europa.ec.leos.ui.component.milestones;
 
 import com.google.common.eventbus.EventBus;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
@@ -21,6 +23,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.Column;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.TreeGrid;
 import com.vaadin.ui.components.grid.HeaderRow;
@@ -29,6 +32,7 @@ import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.ui.event.CreateRevisionRequestEvent;
 import eu.europa.ec.leos.ui.event.FetchMilestoneEvent;
 import eu.europa.ec.leos.ui.event.RevisionDoneEvent;
+import eu.europa.ec.leos.ui.event.contribution.ViewContributionEvent;
 import eu.europa.ec.leos.ui.model.MilestonesVO;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 import eu.europa.ec.leos.web.ui.component.actions.MilestoneActionMenu;
@@ -47,6 +51,7 @@ public class MilestonesComponent extends CustomComponent {
     private MessageHelper messageHelper;
     private EventBus eventBus;
     private Boolean sendForRevisionEnabled;
+    private Boolean viewRevisionMilestone;
     private Boolean isClonedProposal = false;
 
     enum COLUMN {
@@ -76,6 +81,7 @@ public class MilestonesComponent extends CustomComponent {
         this.messageHelper = messageHelper;
         this.eventBus = eventBus;
         this.sendForRevisionEnabled = Boolean.valueOf(cfgHelper.getProperty("leos.sendForRevision.enabled"));
+        this.viewRevisionMilestone = Boolean.valueOf(cfgHelper.getProperty("leos.view.revision.milestone"));
         initGrid();
     }
 
@@ -83,9 +89,11 @@ public class MilestonesComponent extends CustomComponent {
         this.getUI().access(() -> {
             milestonesGrid.setItems(milestones);
             milestones.forEach(milestone -> {
-                List<MilestonesVO> childMilestone  = milestone.getClonedMilestones();
-                if(childMilestone != null && !childMilestone.isEmpty()){
-                    childMilestone.forEach(clonedMilestone -> milestonesGrid.getTreeData().addItem(milestone, clonedMilestone));
+                List<MilestonesVO> clonedMilestones  = milestone.getClonedMilestones();
+                if(clonedMilestones != null && !clonedMilestones.isEmpty()){
+                    clonedMilestones.forEach(clonedMilestone ->  {
+                        milestonesGrid.getTreeData().addItem(milestone, clonedMilestone);
+                    });
                 }
                 milestonesGrid.expand(milestone);
             });
@@ -113,7 +121,18 @@ public class MilestonesComponent extends CustomComponent {
             titleColumn.setMaximumWidth(250);
             mainHeader.getCell(titleColumn).setHtml(messageHelper.getMessage("milestones.header.column.title"));
         } else {
-            Column<MilestonesVO, String> titleColumn = milestonesGrid.addColumn(MilestonesVO::getTitle).setDescriptionGenerator(MilestonesVO::getTitle);
+            Column<MilestonesVO, Label> titleColumn = milestonesGrid.addComponentColumn(vo -> {
+                Label title;
+                if(vo.isContributionChanged()) {
+                    title = new Label(VaadinIcons.INFO_CIRCLE.getHtml().concat(" ").
+                            concat(vo.getTitle()), ContentMode.HTML);
+                    title.setDescription(messageHelper.getMessage("clone.proposal.contribution.change.received.tooltip"),
+                            ContentMode.HTML);
+                } else {
+                    title = new Label(vo.getTitle(), ContentMode.HTML);
+                }
+                return title;
+            }).setDescriptionGenerator(MilestonesVO::getTitle);
             titleColumn.setMaximumWidth(250);
             mainHeader.getCell(titleColumn).setHtml(messageHelper.getMessage("milestones.header.column.title"));
         }
@@ -153,11 +172,23 @@ public class MilestonesComponent extends CustomComponent {
                     actionMenuItem.addStyleName("leos-actions-milestone-menu");
                     return actionMenuItem;
                 } else {
-                    return null;
+                    if(vo.getStatus() != null && isViewRevisionMilestoneEnabled() &&
+                            vo.getStatus().equalsIgnoreCase(messageHelper.getMessage("clone.proposal.status.contribution.done"))) {
+                        MilestoneActionMenu actionMenuItem = new MilestoneActionMenu(messageHelper, eventBus);
+                        actionMenuItem.createMenuItem(messageHelper.getMessage("milestone.menu.item.view.contribution"), selectedItem ->
+                                viewContribution(vo));
+                        actionMenuItem.addStyleName("leos-actions-milestone-menu");
+                        return actionMenuItem;
+                    }
                 }
+                return null;
             });
             milestoneActionsColumn.setMaximumWidth(100);
         }
+    }
+
+    private boolean isViewRevisionMilestoneEnabled() {
+        return (viewRevisionMilestone != null && viewRevisionMilestone);
     }
 
     public void setClonedProposal(Boolean clonedProposal) {
@@ -170,6 +201,10 @@ public class MilestonesComponent extends CustomComponent {
 
     private void viewMilestoneExplorer(MilestonesVO vo) {
         eventBus.post(new FetchMilestoneEvent(vo.getLegDocumentName(), vo.getTitle()));
+    }
+
+    private void viewContribution(MilestonesVO vo) {
+        eventBus.post(new ViewContributionEvent(vo.getLegDocumentName(), vo.getProposalRef(), vo.getTitle()));
     }
 
     private void revisionDone(String legDocumentName) {

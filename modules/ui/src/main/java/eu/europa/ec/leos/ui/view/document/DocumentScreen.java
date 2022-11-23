@@ -17,7 +17,6 @@ import com.vaadin.server.StreamResource;
 import eu.europa.ec.leos.domain.cmis.document.Bill;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.cmis.metadata.LeosMetadata;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.SearchMatchVO;
 import eu.europa.ec.leos.model.action.ContributionVO;
@@ -36,6 +35,7 @@ import eu.europa.ec.leos.web.support.xml.DownloadStreamResource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -119,8 +119,9 @@ interface DocumentScreen {
 
     void showVersion(String content, String versionInfo);
 
-    void showRevision(String content, String contributionStatus, ContributionVO contributionVO,
-                      List<TocItem> tocItemList);
+    void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList);
+
+    void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId);
 
     void disableMergePane();
 
@@ -170,4 +171,8 @@ interface DocumentScreen {
     void saveDoneForReplacedItems();
 
     boolean isCoverPageVisible();
+
+    void confirmRenumberDocument();
+
+    Optional<ContributionVO> findContributionAndShowTab(String revisionVersion);
 }

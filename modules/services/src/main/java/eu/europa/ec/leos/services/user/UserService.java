@@ -13,6 +13,7 @@
  */
 package eu.europa.ec.leos.services.user;
 
+import eu.europa.ec.leos.integration.rest.UserJSON;
 import eu.europa.ec.leos.model.user.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,7 +35,7 @@ public interface UserService {
      * @param key
      * @return a list of users and an empty list if no user is found.
      */
-    public List<User> searchUsersByKey(String key);
+    public List<UserJSON> searchUsersByKey(String key);
 
     /**
      * Get list of users with a given key, context and reference.
@@ -42,7 +43,7 @@ public interface UserService {
      * @param key
      * @return a list of users and an empty list if no user is found.
      */
-    public List<User> searchUsersInContextByKeyAndReference(String key, String searchContext, String searchReference);
+    public List<UserJSON> searchUsersInContextByKeyAndReference(String key, String searchContext, String searchReference);
 
     /**
      * Switch logged-in user with the given login.

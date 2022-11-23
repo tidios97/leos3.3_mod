@@ -51,7 +51,7 @@ class UsersClientImpl implements UsersProvider {
     private RestOperations restTemplate;
     
     @Override
-    public List<User> searchUsers(String searchKey)
+    public List<UserJSON> searchUsers(String searchKey)
     {
         Validate.notNull(searchKey, "Search Key must not be null!");
 
@@ -67,12 +67,11 @@ class UsersClientImpl implements UsersProvider {
             LOG.warn("Exception while getting searching user. Failed calling: {}, Exception: () ",  uri, e.getMessage());
             throw new RuntimeException("Unable to search for user", e);
         }
-        List<User> users = (List<User>) (List<? extends User>) results;
-        return users;
+        return results;
     }
 
     @Override
-    public List<User> searchUsersInContext(String searchKey, String searchContext, String searchReference) {
+    public List<UserJSON> searchUsersInContext(String searchKey, String searchContext, String searchReference) {
         Validate.notNull(searchKey, "Search Key must not be null!");
 
         final String uri = repositoryUrl +  "/users";
@@ -90,13 +89,12 @@ class UsersClientImpl implements UsersProvider {
             LOG.warn("Exception while getting searching user. Failed calling: {}, Exception: () ",  uri, e.getMessage());
             throw new RuntimeException("Unable to search for user", e);
         }
-        List<User> users = (List<User>) (List<? extends User>) results;
-        return users;
+        return results;
     }
 
     @Override
     @Cacheable(value = "users")
-    public User getUserByLogin(String userId) {
+    public UserJSON getUserByLogin(String userId) {
         final String uri = repositoryUrl + findByLoginUri;
         Validate.notNull(userId, "User ID must not be null!");
         Map<String, String> params = new HashMap<String, String>();
@@ -109,7 +107,6 @@ class UsersClientImpl implements UsersProvider {
             LOG.warn("Exception while getting user by login. Failed calling: {}, Exception: () ",  uri, e.getMessage());
             throw new RuntimeException("Unable to look at user with login ", e);
         }
-
         return result;
     }
 

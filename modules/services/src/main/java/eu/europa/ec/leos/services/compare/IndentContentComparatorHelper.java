@@ -102,7 +102,8 @@ class IndentContentComparatorHelper {
     }
 
     public static Boolean containsNotDeletedElementsInOtherContext(Map<String, Element> otherContentElements, Element element) {
-        return (!isECOrigin(element) || (element.getTagName().equals(LIST) && !isElementSoftMoveToOrSoftDeletedInOtherContext(otherContentElements, element))) && getNotDeletedElementsFromContent(otherContentElements, element).size() > 0;
+        return (!isECOrigin(element) || (element.getTagName().equals(LIST) && !isElementSoftMoveToOrSoftDeletedInOtherContext(otherContentElements,
+                element))) && getNotDeletedElementsFromContent(otherContentElements, element).size() > 0;
     }
 
     public static boolean wasChildOfPreviousSibling(Element newElement, ContentComparatorContext context, int currentIndex) {
@@ -176,6 +177,39 @@ class IndentContentComparatorHelper {
             }
         }
         return false;
+    }
+
+    public static boolean hasIndentedChild(Map<String, Element> otherContextElements, Element element) {
+        List<Element> children = element.getChildren();
+        for (Element child : children) {
+            if (isElementIndentedInOtherContext(otherContextElements, child) || hasIndentedChild(otherContextElements, child)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasIndentedParent(Map<String, Element> otherContextElements, Element element) {
+        Element parent = element;
+        while (parent!=null) {
+            if (isElementIndentedInOtherContext(otherContextElements, parent)) {
+                return true;
+            }
+            parent = parent.getParent();
+        }
+        return false;
+    }
+
+    public static boolean elementImpactedByIndentation(ContentComparatorContext context) {
+        if (context.getOldElement() == null) {
+            return isElementIndented(context.getNewElement());
+        } else {
+            return (!context.getNewElement().getTagName().equals(NUM) && (isElementIndentedInOtherContext(context.getNewContentElements(),
+                    context.getOldElement())
+                    || hasIndentedParent(context.getNewContentElements(), context.getOldElement())
+                    || hasIndentedChild(context.getNewContentElements(), context.getOldElement())
+                    || hasIndentedChild(context.getNewContentElements(), context.getOldElement().getParent())));
+        }
     }
 
     public static Boolean isElementIndentedInOtherContext(Map<String, Element> otherContextElements, Element element) {
@@ -288,6 +322,11 @@ class IndentContentComparatorHelper {
             }
         }
         return true;
+    }
+
+    public static boolean isFirstSubElement(Element element) {
+        int index = element.getParent().getChildren().indexOf(element);
+        return (element.getTagName().equalsIgnoreCase(SUBPOINT) || element.getTagName().equalsIgnoreCase(SUBPARAGRAPH)) && index == 0;
     }
 
     private static boolean isIndentAction(Node node) {

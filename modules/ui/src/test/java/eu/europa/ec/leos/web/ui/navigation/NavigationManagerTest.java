@@ -27,7 +27,15 @@ import eu.europa.ec.leos.web.event.NavigationRequestEvent;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import javax.annotation.Nonnull;
+
 public class NavigationManagerTest extends LeosTest {
+    private final class NavigationRequestTestEvent extends NavigationRequestEvent {
+        public NavigationRequestTestEvent(@Nonnull Target target,  String... parameters) {
+            super(target, false, parameters);
+        }
+    }
+
     @Mock
     private EventBus eventBus;
 
@@ -41,7 +49,7 @@ public class NavigationManagerTest extends LeosTest {
     public void test_homeView_navigationRequest() {
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.HOME));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.HOME));
 
         // verify
         verify(navigator).navigateTo(Target.HOME.getViewId());
@@ -52,7 +60,7 @@ public class NavigationManagerTest extends LeosTest {
         String parameter1 = "param1";
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1));
 
         // verify
         verify(navigator).navigateTo(Target.LEGALTEXT.getViewId() + "/" + parameter1);
@@ -64,7 +72,7 @@ public class NavigationManagerTest extends LeosTest {
         String parameter2 = "param2";
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1, parameter2));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1, parameter2));
 
         // verify
         verify(navigator).navigateTo(Target.LEGALTEXT.getViewId() + "/" + parameter1 + "/" + parameter2);
@@ -77,7 +85,7 @@ public class NavigationManagerTest extends LeosTest {
         String parameter3 = "test";
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1, parameter2, parameter3));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1, parameter2, parameter3));
 
         // verify
         verify(navigator).navigateTo(Target.LEGALTEXT.getViewId() + "///" + parameter3);// two blanks followed by actual param. No trim
@@ -88,7 +96,7 @@ public class NavigationManagerTest extends LeosTest {
         String parameter1 = "param1";
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, null, parameter1, null));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, null, parameter1, null));
 
         // verify
         verify(navigator).navigateTo(Target.LEGALTEXT.getViewId() + "//" + parameter1 + "/");// No trim
@@ -99,7 +107,7 @@ public class NavigationManagerTest extends LeosTest {
         String parameter1 = "param1";
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1, null, null));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1, null, null));
 
         // verify
         verify(navigator).navigateTo(Target.LEGALTEXT.getViewId() + "/" + parameter1 + "//");// No trim
@@ -109,10 +117,10 @@ public class NavigationManagerTest extends LeosTest {
     public void test_previousView_navigationRequest() {
         // setup
         String parameter1 = "param1";
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1));
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS));
 
         // verify
         verify(navigator).navigateTo(Target.LEGALTEXT.getViewId() + "/" + parameter1);
@@ -123,13 +131,13 @@ public class NavigationManagerTest extends LeosTest {
         // setup some random calls
         String parameter1 = "param1";
         String parameter2 = "param2";
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PROPOSAL, parameter2));// previous view
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.HOME));// current view
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PROPOSAL, parameter2));// previous view
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.HOME));// current view
         clearInvocations(navigator);//testing the stateful scenario so clear is needed
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS)); // go back should take us to proposal view
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS)); // go back should take us to proposal view
 
         // verify
         verify(navigator).navigateTo(Target.PROPOSAL.getViewId() + "/" + parameter2);
@@ -141,15 +149,15 @@ public class NavigationManagerTest extends LeosTest {
         String parameter1 = "param1";
         String parameter2 = "param2";
         String parameter3 = "param3";
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.HOME));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PROPOSAL,  parameter1));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT,  parameter2));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PROPOSAL,  parameter3)); //current
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.HOME));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PROPOSAL,  parameter1));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT,  parameter2));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PROPOSAL,  parameter3)); //current
         clearInvocations(navigator);        //testing the stateful scenario so clear is needed
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS)); // go back should take us to proposal view
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS)); // go back should take us to proposal view
 
         // verify
         verify(navigator).navigateTo(Target.HOME.getViewId());
@@ -161,15 +169,15 @@ public class NavigationManagerTest extends LeosTest {
         String parameter1 = "param1";
         String parameter2 = "param2";
         String parameter3 = "param3";
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.HOME));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PROPOSAL,  parameter1));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT,  parameter2));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.HOME));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PROPOSAL,  parameter1));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT,  parameter2));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS));
 
         clearInvocations(navigator);        //testing the stateful scenario so clear is needed
 
         // Actual call - navigating to same view with different parameter
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PROPOSAL,  parameter3)); //current
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PROPOSAL,  parameter3)); //current
 
         // verify
         verify(navigator).navigateTo(Target.PROPOSAL.getViewId() + "/" + parameter3);
@@ -179,7 +187,7 @@ public class NavigationManagerTest extends LeosTest {
     @Test
     public void test_previousWithNoViewInStack_navigationRequest() { //should take to home
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS));
 
         // verify
         verify(navigator).navigateTo(Target.HOME.getViewId());
@@ -191,12 +199,12 @@ public class NavigationManagerTest extends LeosTest {
         String parameter1 = "param1";
         String parameter2 = "param2";
         String parameter3 = "param3";
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.LEGALTEXT, parameter1));
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.LEGALTEXT, parameter1));
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS));
         clearInvocations(navigator);//testing the stateful scenario so clear is needed
 
         // Actual call
-        navigationManager.navigationRequest(new NavigationRequestEvent(Target.PREVIOUS)); // go back should take us to proposal view
+        navigationManager.navigationRequest(new NavigationRequestTestEvent(Target.PREVIOUS)); // go back should take us to proposal view
 
         // verify
         verify(navigator).navigateTo(Target.HOME.getViewId());

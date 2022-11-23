@@ -64,6 +64,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.CLONED_STATUS;
 import static eu.europa.ec.leos.services.support.XmlHelper.CLONED_TARGET_USER;
 import static eu.europa.ec.leos.services.support.XmlHelper.COVERPAGE;
 import static eu.europa.ec.leos.services.support.XmlHelper.XML_DOC_EXT;
+import static eu.europa.ec.leos.util.LeosDomainUtil.CMIS_PROPERTY_SPLITTER;
 import static eu.europa.ec.leos.util.LeosDomainUtil.getLeosDateFromString;
 
 public abstract class ProposalServiceImpl implements ProposalService {
@@ -327,21 +328,32 @@ public abstract class ProposalServiceImpl implements ProposalService {
         if (node != null) {
             List<Node> clonedList = getChildren(node, CLONED_PROPOSAL_REF);
             for (int i = 0; i < clonedList.size(); i++) {
+                CloneProposalMetadataVO cloneProposalMetadataVO = new CloneProposalMetadataVO();
                 Node cloned = clonedList.get(i);
                 String clonedProposalRef = cloned.getAttributes().item(0).getNodeValue();
                 // Cloned proposals with contribution marked as done are listed in the cloned milestone ids property
-                boolean isContributionDone = proposal.getClonedMilestoneIds().stream().filter(c -> c.startsWith(clonedProposalRef)).count() > 0;
+                boolean isContributionDone = proposal.getClonedMilestoneIds().stream().filter(c -> {
+                    if(c.startsWith(clonedProposalRef)) {
+                        cloneProposalMetadataVO.setRevisionStatus(messageHelper.getMessage("clone.proposal.status.contribution.done"));
+                        String[] milestoneIds = c.split(CMIS_PROPERTY_SPLITTER);
+                        cloneProposalMetadataVO.setLegFileName(milestoneIds[1]);
+                        cloneProposalMetadataVO.setCloneProposalRef(clonedProposalRef);
+                        return true;
+                    } else {
+                        cloneProposalMetadataVO.setRevisionStatus(XercesUtils.getChildContent(cloned, CLONED_STATUS));
+                        return false;
+                    }
+                }).count() > 0;
 
                 String targetUser = XercesUtils.getChildContent(cloned, CLONED_TARGET_USER);
                 String creationDate = XercesUtils.getChildContent(cloned, CLONED_CREATION_DATE);
                 String status = isContributionDone ?
                         messageHelper.getMessage("clone.proposal.status.contribution.done") :
                         XercesUtils.getChildContent(cloned, CLONED_STATUS);
-
-                CloneProposalMetadataVO cloneProposalMetadataVO = new CloneProposalMetadataVO();
                 cloneProposalMetadataVO.setTargetUser(targetUser);
                 cloneProposalMetadataVO.setCreationDate(getLeosDateFromString(creationDate));
                 cloneProposalMetadataVO.setRevisionStatus(status);
+
                 clonedProposalMetadataVOs.add(cloneProposalMetadataVO);
             }
         }
@@ -447,6 +459,16 @@ public abstract class ProposalServiceImpl implements ProposalService {
     public String getPurposeFromXml(byte[] xml) {
         String content = new String(xml, StandardCharsets.UTF_8);
         return content.substring(content.indexOf(">", content.indexOf("<docPurpose")) + 1, content.indexOf("</docPurpose>"));
+    }
+
+    @Override
+    public Proposal getProposalByRef(String ref) {
+        return proposalRepository.getProposalByRef(ref);
+    }
+
+    @Override
+    public String getOriginalMilestoneName(String docName, byte[] xmlContent) {
+        return xmlContentProcessor.getOriginalMilestoneName(docName, xmlContent);
     }
 
     @Override

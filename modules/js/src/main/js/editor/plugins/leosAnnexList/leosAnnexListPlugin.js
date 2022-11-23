@@ -761,7 +761,7 @@ define(function leosAnnexListPluginModule(require) {
         var frag = nextCursor.extractContents();
 
         cursor.trim( false, true );
-        var bm = cursor.createBookmark();
+        var bm = cursor.createBookmark2();
 
         // Kill original bogus;
         var currentPath = new CKEDITOR.dom.elementPath( cursor.startContainer ),
@@ -785,15 +785,23 @@ define(function leosAnnexListPluginModule(require) {
 
         // Kill the tail br in extracted.
         last = frag.getLast();
-        if ( last && last.type == CKEDITOR.NODE_ELEMENT && last.is( 'br' ) )
+        // LEOS-6702 add condition !frag.getFirst().equals(last) to avoid removing all fragment
+        if ( last && last.type == CKEDITOR.NODE_ELEMENT && last.is( 'br' ) && !frag.getFirst().equals(last) )
             last.remove();
 
         // Insert fragment at the range position.
         var nextNode = cursor.startContainer.getChild( cursor.startOffset );
-        if ( nextNode )
-            frag.insertBefore( nextNode );
-        else
+        if (nextNode){
+            var pElement = new CKEDITOR.dom.element('p');
+            pElement.append(frag);
+            pElement.insertBefore(nextNode);
+            cursor.setStart(pElement, 0);
+            cursor.setEnd(pElement, 0);
+            cursor.select();
+            bm = cursor.createBookmark2();
+        } else {
             cursor.startContainer.append( frag );
+        }
 
         // Move the sub list nested in the next list item.
         if ( nextLi ) {
@@ -858,7 +866,6 @@ define(function leosAnnexListPluginModule(require) {
 
     var pluginDefinition = {
         hidpi: true, // %REMOVE_LINE_CORE%
-        requires: 'leosAnnexIndentListPlugin',
         init: function( editor ) {
             if ( editor.blockless )
                 return;
@@ -942,12 +949,21 @@ define(function leosAnnexListPluginModule(require) {
                             }
                         }
 
-                        if(joinWith.is && (joinWith.is('li') || (joinWith.is('ol') && new RegExp('.*subparagraph.*').test(previous.getId())))) {
-                            return;
-                        }
-                        else if ( joinWith ) {
+                        if ( joinWith ) {
                             joinNextLineToCursor( editor, cursor, range );
-                            evt.cancel();
+                            var parentOfPreviousIsParagraph = previous.getParent().getAttribute("data-akn-element") === leosPluginUtils.PARAGRAPH;
+                            var parentOfPreviousIsNumbered = previous.getParent().getAttribute("data-akn-num");
+                            /*
+                             * This if was created, because the first level of Point (a)
+                             * cannot become a paragraph in case of unnumbered paragraphs.
+                             * Then if we cancel the event, the listener that is joining
+                             * the lines will not execute.
+                             * Then, !(parentOfPreviousIsParagraph && !parentOfPreviousIsNumbered)
+                             * simplified becomes (!parentOfPreviousIsParagraph || parentOfPreviousIsNumbered)
+                            */
+                            if (!parentOfPreviousIsParagraph || parentOfPreviousIsNumbered) {
+                                evt.cancel();
+                            }
                         }
                         else {
                             var list = path.contains( listNodeNames );

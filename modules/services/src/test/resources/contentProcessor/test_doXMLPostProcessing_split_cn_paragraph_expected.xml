@@ -15,16 +15,16 @@
         <paragraph leos:origin="cn" leos:softaction="add" leos:softdate="2019-01-24T11:49:17.207+01:00"
                    leos:softuser="demo" xml:id="akn_art_para_1VF7qi">
             <num xml:id="art_1_bM9Yvx">1c.</num>
-            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:29:04.897+02:00"
-                          leos:softuser="demo(DIGIT)" xml:id="art_1_vjLqth">
-                <content xml:id="art_1_cC9aPz">
-                    <p xml:id="art_1_Qmw1fL">Paragraph</p>
+            <subparagraph leos:origin="cn" leos:softaction="splitted" leos:softdate="2022-06-17T09:29:04.897+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="splitted_art_1_vjLqth">
+                <content xml:id="splitted_art_1_cC9aPz">
+                    <p xml:id="splitted_art_1_Qmw1fL">Paragraph</p>
                 </content>
             </subparagraph>
-            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:29:04.897+02:00"
-                          leos:softuser="demo(DIGIT)" xml:id="art_1_l2xM4D">
-                <content xml:id="art_1_S92nAe">
-                    <p xml:id="art_1_PhwHwx">Text...</p>
+            <subparagraph leos:origin="cn" leos:softaction="splitted" leos:softdate="2022-06-17T09:29:04.897+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="splitted_art_1_l2xM4D">
+                <content xml:id="splitted_art_1_S92nAe">
+                    <p xml:id="splitted_art_1_PhwHwx">Text...</p>
                 </content>
             </subparagraph>
         </paragraph>

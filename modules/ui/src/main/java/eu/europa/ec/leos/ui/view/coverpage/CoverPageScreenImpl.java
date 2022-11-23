@@ -118,6 +118,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -519,14 +520,10 @@ abstract class CoverPageScreenImpl extends VerticalLayout implements CoverPageSc
         milestoneExplorer.focus();
     }
 
-    private boolean isAnnotateAuthorityEquals(ConfigurationHelper cfgHelper, String instance) {
-        return cfgHelper.getProperty("annotate.authority") != null && cfgHelper.getProperty("annotate.authority").equals(instance);
-    }
-
     @Override
     public void initAnnotations(DocumentVO coverPage, String proposalRef, String connectedEntity) {
         new AnnotateExtension<>(coverContent, eventBus, cfgHelper, null, AnnotateExtension.OperationMode.NORMAL,
-                isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
                 connectedEntity);
     }
 
@@ -555,4 +552,8 @@ abstract class CoverPageScreenImpl extends VerticalLayout implements CoverPageSc
         return !coverPageSeparated;
     }
 
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String revisionVersion) {
+        return Optional.empty();
+    }
 }

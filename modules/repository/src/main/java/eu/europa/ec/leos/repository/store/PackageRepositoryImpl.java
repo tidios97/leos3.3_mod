@@ -80,6 +80,12 @@ public class PackageRepositoryImpl implements PackageRepository {
     }
 
     @Override
+    public LegDocument updateLegDocument(String id, List<String> containedDocuments) {
+        logger.debug("Updating contained documents... [id=" + id + "");
+        return leosRepository.updateLegDocument(id, containedDocuments);
+    }
+
+    @Override
     public LegDocument updateLegDocument(String id, LeosLegStatus status, byte[] content, VersionType versionType, String comment) {
         logger.debug("Updating Leg document status and content... [id=" + id + ", status=" + status.name() + ", content size=" + content.length + ", versionType=" + versionType + ", comment=" + comment + "]");
         return leosRepository.updateLegDocument(id, status, content, versionType, comment);

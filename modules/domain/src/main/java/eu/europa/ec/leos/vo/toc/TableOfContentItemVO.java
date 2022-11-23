@@ -38,6 +38,7 @@ public class TableOfContentItemVO implements Serializable {
     private String id;
     private String originAttr;
     private String number;
+    private String initialNum;
     private String originNumAttr;
     private String heading;
     private String originHeadingAttr;
@@ -49,6 +50,7 @@ public class TableOfContentItemVO implements Serializable {
     private boolean isBlock;
     private boolean isCrossHeading;
     private boolean isCrossHeadingInList;
+    private TocItemTypeName tocItemType = TocItemTypeName.REGULAR;
 
     private final List<TableOfContentItemVO> childItems = new ArrayList<>();
     private TableOfContentItemVO parentItem;
@@ -586,6 +588,7 @@ public class TableOfContentItemVO implements Serializable {
         addFieldIfNotNull("node", item.node, LEFT_PAD, RIGHT_CHAR, sb);
         addFieldIfNotNull("originAttr", item.originAttr, LEFT_PAD, RIGHT_CHAR, sb);
         addFieldIfNotNull("number", item.number, LEFT_PAD, RIGHT_CHAR, sb);
+        addFieldIfNotNull("initialNum", item.initialNum, LEFT_PAD, RIGHT_CHAR, sb);
         addFieldIfNotNull("originNumAttr", item.originNumAttr, LEFT_PAD, RIGHT_CHAR, sb);
         addFieldIfNotNull("heading", item.heading, LEFT_PAD, RIGHT_CHAR, sb);
         addFieldIfNotNull("originHeadingAttr", item.originHeadingAttr, LEFT_PAD, RIGHT_CHAR, sb);
@@ -645,5 +648,21 @@ public class TableOfContentItemVO implements Serializable {
 
     public void setIndentLevel(int indentLevel) {
         this.indentLevel = indentLevel;
+    }
+
+    public void setInitialNum(String initialNum) {
+        this.initialNum = initialNum;
+    }
+
+    public String getInitialNum() {
+        return initialNum;
+    }
+
+    public void setTocItemType(TocItemTypeName tocItemType) {
+        this.tocItemType = tocItemType;
+    }
+
+    public TocItemTypeName getTocItemType() {
+        return this.tocItemType;
     }
 }

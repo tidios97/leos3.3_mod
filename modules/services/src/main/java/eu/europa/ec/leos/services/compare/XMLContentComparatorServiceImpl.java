@@ -38,10 +38,12 @@ import static eu.europa.ec.leos.services.compare.ComparisonHelper.isElementConte
 import static eu.europa.ec.leos.services.compare.ComparisonHelper.isSoftAction;
 import static eu.europa.ec.leos.services.compare.ComparisonHelper.withPlaceholderPrefix;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.containsNotDeletedElementsInOtherContext;
+import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.elementImpactedByIndentation;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.hasIndentedChild;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isElementIndented;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isElementIndentedInOtherContext;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isElementRemovedInOtherContext;
+import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isFirstSubElement;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isIndentedRenumbering;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isNewElementOutdentedFromOld;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.isRemovedElementIndentedInNewContext;
@@ -59,6 +61,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_DATE_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_MOVE_FROM;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_MOVE_TO;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_USER_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.LIST;
 import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_DELETE_PLACEHOLDER_ID_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_MOVE_PLACEHOLDER_ID_PREFIX;
@@ -154,16 +157,13 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 }
             }
             // Check if indented element removed from new context
-            else if (context.getIndexOfOldElementInNewContent() == -1
-                    && (!isElementIndented(context.getOldElement()) && isElementIndentedInOtherContext(context.getNewContentElements(), context.getOldElement())
-                    || (isElementIndented(context.getOldElement()) && !isElementIndentedInOtherContext(context.getNewContentElements(), context.getOldElement())))) {
+            else if (context.getIndexOfOldElementInNewContent() == -1 && isElementImpactedByIndention(context.getNewContentElements(), context.getOldElement())) {
                 // means that old element is not anymore child in new context and has been removed from new content root
                 oldContentChildIndex++;
                 if (context.getThreeWayDiff()) {
                     int indexOfIntermediateElementInNewContent = getBestMatchInList(context.getNewContentRoot().getChildren(), context.getIntermediateElement());
                     if (indexOfIntermediateElementInNewContent == -1
-                            && (!isElementIndented(context.getIntermediateElement()) && isElementIndentedInOtherContext(context.getNewContentElements(), context.getIntermediateElement())
-                            || (isElementIndented(context.getIntermediateElement()) && !isElementIndentedInOtherContext(context.getNewContentElements(), context.getIntermediateElement())))) {
+                            && isElementImpactedByIndention(context.getNewContentElements(), context.getIntermediateElement())) {
                         // means that intermediate element is not anymore child in new context and has been removed from new content root
                         intermediateContentChildIndex++;
                     }
@@ -172,20 +172,17 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                     appendRemovedContent(context);
                 }
             } else if (context.getThreeWayDiff() && context.getIntermediateContentRoot() != null && getBestMatchInList(context.getIntermediateContentRoot().getChildren(), context.getOldElement()) == -1
-                    && ((!isElementIndented(context.getOldElement()) && isElementIndentedInOtherContext(context.getIntermediateContentElements(), context.getOldElement()))
-                    || (isElementIndented(context.getOldElement()) && !isElementIndentedInOtherContext(context.getIntermediateContentElements(), context.getOldElement())))) {
+                    && isElementImpactedByIndention(context.getIntermediateContentElements(), context.getOldElement())) {
                 // means that old element is not anymore child in intermediate context and has been removed from intermediate content root
                 oldContentChildIndex++;
             } else if (context.getThreeWayDiff() && context.getIntermediateElement() != null && getBestMatchInList(context.getNewContentRoot().getChildren(), context.getIntermediateElement()) == -1 && context.getIndexOfNewElementInOldContent() != -1 && context.getIndexOfOldElementInNewContent() != -1
-                    && (!isElementIndented(context.getIntermediateElement()) && isElementIndentedInOtherContext(context.getNewContentElements(), context.getIntermediateElement())
-                    || (isElementIndented(context.getIntermediateElement()) && !isElementIndentedInOtherContext(context.getNewContentElements(), context.getIntermediateElement())))) {
+                    && isElementImpactedByIndention(context.getNewContentElements(), context.getIntermediateElement())) {
                 // means that intermediate element is not anymore child in new context and has been removed from new content root
                 intermediateContentChildIndex++;
             }
             // Check if indented element added in new context
             else if (context.getIndexOfNewElementInOldContent() == -1
-                    && (!isElementIndented(context.getNewElement()) && isElementIndentedInOtherContext(context.getOldContentElements(), context.getNewElement())
-                    || (isElementIndented(context.getNewElement()) && !isElementIndentedInOtherContext(context.getOldContentElements(), context.getNewElement())))) {
+                    && isElementImpactedByIndention(context.getOldContentElements(), context.getNewElement())) {
                 // means that new element is added as child in new context
                 if ((!isSoftAction(context.getOldElement().getNode(), SoftActionType.MOVE_FROM)
                         && isElementRemovedInOtherContext(context.getNewContentElements(), context.getOldElement()))
@@ -200,8 +197,7 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 if (context.getThreeWayDiff()) {
                     int indexOfIntermediateElementInOldContent = getBestMatchInList(context.getOldContentRoot().getChildren(), context.getIntermediateElement());
                     if (indexOfIntermediateElementInOldContent == -1 && context.getIntermediateElement() != null
-                            && (!isElementIndented(context.getIntermediateElement()) && isElementIndentedInOtherContext(context.getOldContentElements(), context.getIntermediateElement())
-                            || (isElementIndented(context.getIntermediateElement()) && !isElementIndentedInOtherContext(context.getOldContentElements(), context.getIntermediateElement())))) {
+                            && isElementImpactedByIndention(context.getOldContentElements(), context.getIntermediateElement())) {
                         // means that intermediate element is added as child in intermediate context
                         if (!isSoftAction(context.getOldElement().getNode(), SoftActionType.MOVE_FROM) && isElementRemovedInOtherContext(context.getIntermediateContentElements(), context.getOldElement())) {
                             appendRemovedElementContentIfRequired(context);
@@ -211,8 +207,7 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                     }
                 }
             } else if (context.getThreeWayDiff() && context.getIntermediateContentRoot() != null && getBestMatchInList(context.getIntermediateContentRoot().getChildren(), context.getNewElement()) == -1
-                    && ((!isElementIndented(context.getNewElement()) && isElementIndentedInOtherContext(context.getIntermediateContentElements(), context.getNewElement()))
-                    || (isElementIndented(context.getNewElement()) && !isElementIndentedInOtherContext(context.getIntermediateContentElements(), context.getNewElement())))) {
+                    && isElementImpactedByIndention(context.getIntermediateContentElements(), context.getNewElement())) {
                 // means that new element is added as child in new context
                 if (!isSoftAction(context.getIntermediateElement().getNode(), SoftActionType.MOVE_FROM) && isElementRemovedInOtherContext(context.getNewContentElements(), context.getIntermediateElement())) {
                     appendIntermediateRemovedElement(context, intermediateContentChildIndex);
@@ -224,8 +219,8 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 newContentChildIndex++;
             } else if (newContentChildIndex == context.getIndexOfOldElementInNewContent()
                     && (!context.getDisplayRemovedContentAsReadOnly()
-                    || shouldCompareElements(context.getOldElement(), context.getNewElement())
-                    && shouldCompareElements(context.getNewElement(), context.getOldElement()))) {
+                    || (shouldCompareElements(context.getOldElement(), context.getNewElement())
+                    && shouldCompareElements(context.getNewElement(), context.getOldElement())))) {
 
                 if (context.getThreeWayDiff() && isIntermediateElementRemovedInNewContent(context)) {
                     if (isElementIndexLessThanRootChildren(context.getIntermediateContentRoot(), intermediateContentChildIndex)) {
@@ -286,12 +281,34 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 } else {
                     if (ignoredElementIndex != -1) {
                         appendRemovedElementContentIfRequired(context);
-                    } else if (isElementUnWrapped(context)) {
+                    } else if ((isElementUnWrapped(context) || isElementWrapped(context))
+                            && !elementImpactedByIndentation(context)
+                            && !hasIndentedChild(context.getNewContentElements(), context.getOldElement().getParent())) {
                         appendAddedElementContent(context);
                         newContentChildIndex++;
+                    } else if (isElementUnWrapped(context)) {
+                        if (isThreeWayDiffEnabled(context) && isIntermediateElementUnWrapped(context)) {
+                            compareElementContents(new ContentComparatorContext.Builder(context)
+                                    .withIntermediateElement(context.getIntermediateElement().getChildren().get(0))
+                                    .withOldElement(context.getOldElement().getChildren().get(0))
+                                    .build());
+                            intermediateContentChildIndex++;
+                        } else {
+                            compareElementContents(new ContentComparatorContext.Builder(context)
+                                    .withOldElement(context.getOldElement().getChildren().get(0))
+                                    .build());
+                        }
+                        oldContentChildIndex++;
+                        newContentChildIndex++;
                     } else if (oldContentChildIndex == newContentChildIndex) {
-                        appendAddedElementContentIfRequired(context);
-                        appendRemovedElementContentIfRequired(context);
+                        if (isList(context.getOldElement()) && isList(context.getNewElement())
+                                && hasIndentedChild(context.getNewElement())
+                                && context.getNewElement().getParent().getTagId().equals(context.getOldElement().getParent().getTagId())) {
+                            compareElementContents(context);
+                        } else {
+                            appendAddedElementContentIfRequired(context);
+                            appendRemovedElementContentIfRequired(context);
+                        }
                         newContentChildIndex++;
                     }
                     oldContentChildIndex++;
@@ -396,7 +413,8 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 // In case of out/indentation the indented children should not be added as removed elements
                 if(!shouldIgnoreElement(oldElementChild)
                         && !containsNotDeletedElementsInOtherContext(context.getNewContentElements(), oldElementChild)
-                        && isElementRemovedInOtherContext(context.getNewContentElements(), oldElementChild)) {
+                        && isElementRemovedInOtherContext(context.getNewContentElements(), oldElementChild)
+                        && !isElementUnWrapped(context)) {
                     appendRemovedElementContentIfRequired(newContext);
                 }
             }
@@ -479,7 +497,7 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 && ((isElementContentEqual(context) && !containsIgnoredElements(node)) || (context.getIgnoreRenumbering() && !isIndentedRenumbering(context.getOldElement(), context.getNewElement()) && shouldIgnoreRenumbering(context.getNewElement())))) {
             if (context.getThreeWayDiff()) {
                 node = buildNodeForAddedElement(context.getNewElement(), context.getIntermediateElement(), context);
-            } else if (!(isElementContentEqual(context) && !containsIgnoredElements(node)) && context.getStartTagAttrName() != null) {
+            } else if (!(isElementContentEqual(context) && !containsIgnoredElements(node)) && context.getStartTagAttrName() != null && shouldBeMarkedAsAdded(context)) {
                 XercesUtils.insertOrUpdateAttributeValue(node, context.getStartTagAttrName(), context.getStartTagAttrValue());
             }
             addToResultNode(context, node);
@@ -504,7 +522,12 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                     node = buildNode(context.getNewElement()); //build tag for children without styles
                 }
             } else {
-                node = buildNode(context.getNewElement(), context.getStartTagAttrName(), context.getStartTagAttrValue());
+                // Indented elements should not be marked as added
+                if (shouldBeMarkedAsAdded(context)) {
+                    node = buildNode(context.getNewElement(), context.getStartTagAttrName(), context.getStartTagAttrValue());
+                } else {
+                    node = buildNode(context.getNewElement()); //build tag for children without styles
+                }
             }
 
             context.resetStartTagAttribute();
@@ -692,7 +715,12 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
         Node node = null;
         if (!shouldIgnoreElement(element)) {
             node = XercesUtils.getElementById(contentNode, element.getTagId());
-            if (attrName != null && attrValue != null) {
+            if(node == null) {
+                //LEOS-5691:If getElementById returns null, look for element by Name (Only case with metadata elements)
+                node = XercesUtils.getFirstElementByName(contentNode, element.getTagName());
+            }
+            // Lists should not be marked as added
+            if (attrName != null && attrValue != null && !isList(element)) {
                 XercesUtils.insertOrUpdateAttributeValue(node, attrName, attrValue);
             }
         }
@@ -929,12 +957,22 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                     } else if(isElementIndented(context.getNewElement())) {
                         addToResultNode(context, newNode);
                         newContentChildIndex++;
-                    }else if(oldContentChildIndex == newContentChildIndex) {
+                    } else if (isList(context.getOldElement()) && isList(context.getNewElement())
+                            && hasIndentedChild(context.getNewElement())
+                            && context.getNewElement().getParent().getTagId().equals(context.getOldElement().getParent().getTagId())) {
                         addToResultNode(context, newNode);
+                        newContentChildIndex++;
+                    } else if (isFirstSubElement(context.getNewElement()) && isFirstSubElement(context.getOldElement())
+                            && context.getNewElement().getParent().getTagId().equals(context.getOldElement().getParent().getTagId())) {
+                        addToResultNode(context, newNode);
+
+                    }else if(oldContentChildIndex == newContentChildIndex && !isElementIndentedInOtherContext(context.getNewContentElements(),
+                            context.getOldElement())) {
                         addReadOnlyAttributes(oldNode);
                         insertSoftDeleteAttributes(oldNode);
                         addToResultNode(context, oldNode);
                         newContentChildIndex++;
+                        addToResultNode(context, newNode);
                     }
                     oldContentChildIndex++;
                 }
@@ -975,7 +1013,8 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 //boolean isList = LIST.equalsIgnoreCase(oldElementChild.getTagName());
                 if(!shouldIgnoreElement(oldElementChild)
                         && !containsNotDeletedElementsInOtherContext(context.getNewContentElements(), oldElementChild)
-                        && isElementRemovedInOtherContext(context.getNewContentElements(), oldElementChild)) {
+                        && isElementRemovedInOtherContext(context.getNewContentElements(), oldElementChild)
+                        && !isElementUnWrapped(context)) {
                     insertSoftDeleteAttributes(node);
                     addReadOnlyAttributes(node);
                     addToResultNode(context, node);
@@ -1020,18 +1059,34 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
         }
     }
 
-    private boolean isElementWrapped(ContentComparatorContext context) {
+    protected boolean isElementWrapped(ContentComparatorContext context) {
         //e.g. to check if the <content> is wrapped by <subparagraph> or <alinea> in case of outdent/indent
         if(context.getNewElement().getChildren() != null && context.getNewElement().getChildren().size() > 0) {
-            return context.getOldElement().equals(context.getNewElement().getChildren().get(0));
+            return context.getOldElement() != null && context.getOldElement().equals(context.getNewElement().getChildren().get(0));
         }
         return false;
     }
 
-    private boolean isElementUnWrapped(ContentComparatorContext context) {
+    protected boolean isElementUnWrapped(ContentComparatorContext context) {
         //e.g. to check if the <alinea> or <subparagraph> is removed in case of outdent/indent
         if(context.getOldElement().getChildren() != null && context.getOldElement().getChildren().size() > 0) {
             return context.getNewElement().equals(context.getOldElement().getChildren().get(0));
+        }
+        return false;
+    }
+
+    private boolean isIntermediateElementUnWrapped(ContentComparatorContext context) {
+        //e.g. to check if the <alinea> or <subparagraph> is removed in case of outdent/indent
+        if(context.getIntermediateElement().getChildren() != null && context.getIntermediateElement().getChildren().size() > 0) {
+            return context.getNewElement().equals(context.getIntermediateElement().getChildren().get(0));
+        }
+        return false;
+    }
+
+    private boolean isIntermediateElementWrapped(ContentComparatorContext context) {
+        //e.g. to check if the <alinea> or <subparagraph> is added in case of outdent/indent
+        if(context.getNewElement().getChildren() != null && context.getNewElement().getChildren().size() > 0) {
+            return context.getIntermediateElement().equals(context.getNewElement().getChildren().get(0));
         }
         return false;
     }
@@ -1081,6 +1136,10 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
         return usesFakeEncapsulation;
     }
 
+    private boolean isList(Element element) {
+        return element != null && element.getTagName().equals(LIST);
+    }
+
     protected abstract boolean isCurrentElementNonIgnored(Node node);
 
     protected abstract boolean isCurrentElementIgnored(Node node);
@@ -1107,7 +1166,15 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
 
     protected abstract Node buildNodeForRemovedElement(Element element, ContentComparatorContext context, Map<String, Element> contentElements);
 
+    protected boolean shouldBeMarkedAsAdded(ContentComparatorContext context) {
+        return true;
+    }
+
     protected abstract boolean shouldDisplayRemovedContent(Element elementOldContent, int indexOfOldElementInNewContent);
+
+    protected boolean isElementImpactedByIndention(Map<String, Element> otherContextElements, Element element) {
+        return false;
+    }
 
     @Override
     public String[] twoColumnsCompareContents(ContentComparatorContext context) {

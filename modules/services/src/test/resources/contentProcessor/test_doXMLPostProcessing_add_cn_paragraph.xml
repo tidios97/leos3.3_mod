@@ -1,0 +1,27 @@
+<root xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <article leos:origin="ec" xml:id="art_1" leos:editable="false" leos:deletable="false">
+        <num leos:origin="ec" leos:editable="false" xml:id="art_1__num">Article 1</num>
+        <heading leos:origin="ec" xml:id="art_1__heading">Scope</heading>
+        <paragraph leos:origin="ec" xml:id="art_1__para_1">
+            <num leos:origin="ec" xml:id="art_1__para_1__num">1.</num>
+            <content leos:origin="ec" xml:id="art_1__para_1__content">
+                <p leos:origin="ec" xml:id="art_1__para_1__content__p">Text...<inline leos:origin="ec" xml:id="art_1_0miExA" name="math-tex">\\(x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)</inline>
+                </p>
+            </content>
+        </paragraph>
+        <paragraph xml:id="akn_art_para_1VF7qi" leos:origin="cn" leos:softaction="add" leos:softuser="demo"
+                   leos:softdate="2019-01-24T11:49:17.207+01:00">
+            <num xml:id="art_1_bM9Yvx">1c.</num>
+            <subparagraph leos:origin="cn" xml:id="art_1_vjLqth">
+                <content xml:id="art_1_cC9aPz">
+                    <p xml:id="art_1_Qmw1fL">Paragraph</p>
+                </content>
+            </subparagraph>
+            <subparagraph leos:origin="cn" xml:id="art_1_l2xM4D">
+                <content xml:id="art_1_S92nAe">
+                    <p xml:id="art_1_PhwHwx">Text...</p>
+                </content>
+            </subparagraph>
+        </paragraph>
+    </article>
+</root>

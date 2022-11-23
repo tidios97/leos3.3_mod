@@ -46,6 +46,7 @@ import eu.europa.ec.leos.model.event.DocumentUpdatedByCoEditorEvent;
 import eu.europa.ec.leos.model.event.ExportPackageCreatedEvent;
 import eu.europa.ec.leos.model.event.UpdateUserInfoEvent;
 import eu.europa.ec.leos.model.explanatory.ExplanatoryStructureType;
+import eu.europa.ec.leos.ui.event.CreateExportPackageActualVersionRequestEvent;
 import eu.europa.ec.leos.ui.event.InitLeosEditorEvent;
 import eu.europa.ec.leos.web.event.view.document.ResponseFilteredAnnotations;
 import eu.europa.ec.leos.model.messaging.UpdateInternalReferencesMessage;
@@ -107,6 +108,7 @@ import eu.europa.ec.leos.ui.event.view.DownloadXmlFilesRequestEvent;
 import eu.europa.ec.leos.ui.model.AnnotateMetadata;
 import eu.europa.ec.leos.ui.model.AnnotationStatus;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
+import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.support.DownloadExportRequest;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.CommonDelegate;
@@ -132,10 +134,12 @@ import eu.europa.ec.leos.web.event.component.VersionListRequestEvent;
 import eu.europa.ec.leos.web.event.component.VersionListResponseEvent;
 import eu.europa.ec.leos.web.event.component.WindowClosedEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseElementEvent;
 import eu.europa.ec.leos.web.event.view.document.ComparisonEvent;
 import eu.europa.ec.leos.web.event.view.document.DeleteElementRequestEvent;
+import eu.europa.ec.leos.web.event.view.document.DocumentNavigationRequest;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
 import eu.europa.ec.leos.web.event.view.document.EditElementRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.FetchCrossRefTocRequestEvent;
@@ -244,6 +248,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
     private String connectedEntity;
     private final CommonDelegate<Explanatory> commonDelegate;
     private boolean milestoneExplorerOpened = false;
+    private final List<String> openElementEditors;
 
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -285,6 +290,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         this.exportPackageService = exportPackageService;
         this.notificationService = notificationService;
         this.commonDelegate = commonDelegate;
+        this.openElementEditors = new ArrayList<>();
     }
 
     @Override
@@ -433,6 +439,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
             exportOptions.setExportVersions(new ExportVersions(currentDocument, currentDocument));
             exportOptions.setWithFilteredAnnotations(isWithAnnotations);
             exportOptions.setFilteredAnnotations(annotations);
+            exportOptions.setWithCoverPage(false);
 
             LeosPackage leosPackage = packageService.findPackageByDocumentId(documentId);
             BillContext context = billContextProvider.get();
@@ -552,11 +559,23 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
     }
 
     @Subscribe
+    void createExportPackageForActualVersion(CreateExportPackageActualVersionRequestEvent event) {
+        final Explanatory currentDocument = getDocument();
+        XmlDocument original = documentContentService.getOriginalExplanatory(currentDocument);
+        ExportOptions exportOptions = new ExportDW(ExportOptions.Output.WORD, Explanatory.class, false);
+        exportOptions.setExportVersions(new ExportVersions(original, currentDocument));
+        exportOptions.setRelevantElements(event.getRelevantElements());
+        exportOptions.setWithFilteredAnnotations(event.isWithAnnotations());
+
+        requestFilteredAnnotationsForExport(event.getTitle(), false, exportOptions);
+    }
+
+    @Subscribe
     void createExportPackageCleanVersion(CreateExportPackageCleanVersionRequestEvent event) {
         ExportOptions exportOptions = new ExportDW(ExportOptions.Output.WORD, Explanatory.class, false, true);
         exportOptions.setRelevantElements(event.getRelevantElements());
         exportOptions.setWithFilteredAnnotations(event.isWithAnnotations());
-        exportOptions.setPrintStyle(event.getPrintStyle());
+
         requestFilteredAnnotationsForExport(event.getTitle(), true, exportOptions);
     }
 
@@ -594,18 +613,17 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         String proposalId = context.getProposalId();
         final String jobFileName = "Proposal_" + proposalId + "_AKN2DW_CLEAN_" + System.currentTimeMillis() + ".zip";
 
+        ExportDocument exportDocument = null;
         LeosExportStatus processedStatus = LeosExportStatus.PROCESSED_ERROR;
         if (exportOptions.isWithFilteredAnnotations()) {
             exportOptions.setFilteredAnnotations(filteredAnnotations);
         }
-        String exportDocumentId = "";
         try {
             Stopwatch stopwatch = Stopwatch.createStarted();
             exportOptions.setComments(getCommentsForExportPackage(title, exportOptions));
             exportOptions.setPrintStyle(printStyle);
             byte[] exportedBytes = exportService.createExportPackage(jobFileName, proposalId, exportOptions);
-            ExportDocument exportDocument = exportPackageService.createExportDocument(proposalId, exportOptions.getComments(), exportedBytes);
-            exportDocumentId = exportDocument.getId();
+            exportDocument = exportPackageService.createExportDocument(proposalId, exportOptions.getComments(), exportedBytes);
             exportPackageService.updateExportDocument(exportDocument.getId(), LeosExportStatus.NOTIFIED);
             notificationService.sendNotification(proposalRef, exportDocument.getId());
             processedStatus = LeosExportStatus.PROCESSED_OK;
@@ -614,10 +632,12 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         } catch (Exception e) {
             LogUtil.logError(LOG, eventBus, "Unexpected error occurred while generating Export Package", e);
         } finally {
-            ExportDocument exportDocument = exportPackageService.findExportDocumentById(exportDocumentId, false);
-            if (exportDocument != null && !exportDocument.getStatus().equals(LeosExportStatus.FILE_READY)) {
-                exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
-                leosApplicationEventBus.post(new ExportPackageCreatedEvent(proposalRef, exportDocument));
+            if (exportDocument != null) {
+                exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
+                if (exportDocument != null && !exportDocument.getStatus().equals(LeosExportStatus.FILE_READY)) {
+                    exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
+                    leosApplicationEventBus.post(new ExportPackageCreatedEvent(proposalRef, exportDocument));
+                }
             }
         }
     }
@@ -669,13 +689,22 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         LOG.trace("Handling close document request...");
 
         //if unsaved changes remain in the session, first ask for confirmation
-        if(isExplanatoryUnsaved()){
-            eventBus.post(new ShowConfirmDialogEvent(event, null));
+        if(isExplanatoryUnsaved() || this.isHasOpenElementEditors()){
+            eventBus.post(new ShowConfirmDialogEvent(new CloseDocumentConfirmationEvent(), null));
             return;
         }
+        this.closeDocument();
+    }
 
-        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
-        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS));
+    @Subscribe
+    void handleNavigationRequest(DocumentNavigationRequest event) {
+        LOG.trace("Handling document navigation request...");
+        if (event.getNavigationEvent() != null) event.getNavigationEvent().setForwardToDocument(false);
+        if(isExplanatoryUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(event.getNavigationEvent(), null));
+            return;
+        }
+        eventBus.post(event.getNavigationEvent());
     }
 
     private boolean isExplanatoryUnsaved(){
@@ -684,6 +713,24 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
 
     private Explanatory getExplanatoryFromSession() {
         return (Explanatory) httpSession.getAttribute("explanatory#" + getDocumentRef());
+    }
+    private boolean isHasOpenElementEditors() {
+        return this.openElementEditors.size() > 0;
+    }
+
+    @Subscribe
+    void handleCloseDocumentConfirmation(CloseDocumentConfirmationEvent event) {
+        this.closeDocument();
+    }
+
+    private void closeDocument() {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS, false));
+    }
+
+    @Subscribe
+    void handleShowConfirmDialog(ShowConfirmDialogEvent event) {
+        ConfirmDialogHelper.showOpenEditorDialog(this.leosUI, event, this.eventBus, this.messageHelper);
     }
 
     @Subscribe
@@ -866,6 +913,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
             }
             coEditionHelper.storeUserEditInfo(httpSession.getId(), id, user, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
             explanatoryScreen.showElementEditor(elementId, elementTagName, element, levelItemVO);
+            openElementEditors.add(elementId);
         }
         catch (Exception ex){
             LOG.error("Exception while edit element operation for ", ex);
@@ -946,6 +994,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
     void closeExplanatoryBlock(CloseElementEditorEvent event){
         String elementId = event.getElementId();
         coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
+        openElementEditors.remove(elementId);
         LOG.debug("User edit information removed");
         eventBus.post(new RefreshDocumentEvent());
         if (elementToEditAfterClose != null) {

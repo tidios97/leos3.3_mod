@@ -36,6 +36,7 @@ define(function leosHierarchicalElementShiftEnterHandlerModule(require) {
     var DATA_AKN_WRAPPED_CONTENT_ID = "data-akn-wrapped-content-id";
     var DATA_AKN_NAME = "data-akn-name";
     var DATA_AKN_ELEMENT = "data-akn-element";
+	var PARAGRAPH = "paragraph";
     var SUBPARAGRAPH = "subparagraph";
     
     var CMD_NAME = "leosHierarchicalElementShiftEnterHandler";
@@ -190,6 +191,10 @@ define(function leosHierarchicalElementShiftEnterHandlerModule(require) {
                     pElement.setAttribute(DATA_AKN_MP_ID, inlineWrapper.getAttribute(DATA_AKN_MP_ID));
                 }
 
+				if(inlineWrapper.getAttribute(DATA_AKN_ELEMENT) != null) {
+					pElement.setAttribute(DATA_AKN_ELEMENT, inlineWrapper.getAttribute(DATA_AKN_ELEMENT));
+				}
+
                 if (leosKeyHandler.isContentEmptyTextNode(content)) {
                     pElement.appendBogus();
                 } else if (content.$.childElementCount === 1 && content.$.firstElementChild.tagName.toLowerCase() === 'p' && content.$.lastElementChild.tagName.toLowerCase() === 'p') {
@@ -232,7 +237,11 @@ define(function leosHierarchicalElementShiftEnterHandlerModule(require) {
             } else if (_isElementInsideTable(startElementParent)) {
                 pElement.setAttribute(DATA_AKN_NAME, 'aknParagraph');
             }
-            pElement.setAttribute(DATA_AKN_ELEMENT, SUBPARAGRAPH);
+			if(leosPluginUtils.isAnnexUnnumberedCNParagraph(startElement)) {            
+				pElement.setAttribute(DATA_AKN_ELEMENT, PARAGRAPH);
+			} else {
+				pElement.setAttribute(DATA_AKN_ELEMENT, SUBPARAGRAPH);
+			}
 
             if (leosKeyHandler.isContentEmptyTextNode(content) && _isStartElementOrderedListOrContent(selection)) {
                 pElement.appendBogus();
@@ -375,7 +384,7 @@ define(function leosHierarchicalElementShiftEnterHandlerModule(require) {
         }
 
         // If element is annex subparagraph soft-enter has to be disabled
-        if (_isAnnexSubparagraphElement(selection.getStartElement())) {
+        if (leosPluginUtils.isAnnexSubparagraphElement(selection.getStartElement())) {
             return false;
         }
         

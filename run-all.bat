@@ -14,7 +14,6 @@
 
 @echo off
 
-CALL "cmd /c start run-annotate.bat"
 CALL "cmd /c start run-user-repository.bat"
 CALL "cmd /c start run-repository.bat"
 CALL "cmd /c start run-leos.bat"

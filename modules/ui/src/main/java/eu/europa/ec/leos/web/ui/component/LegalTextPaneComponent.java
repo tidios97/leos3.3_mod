@@ -216,13 +216,17 @@ public class LegalTextPaneComponent extends CustomComponent {
             final Component selected = ((Accordion) event.getSource()).getSelectedTab();
             for (int i = 0; i < accordion.getComponentCount(); i++) {
                 TabSheet.Tab tab = accordion.getTab(i);
-                if(tab.getComponent().getClass().equals(selected.getClass())) {
+                if (tab.getComponent().getClass().equals(selected.getClass())) {
                     tab.setIcon(VaadinIcons.CHEVRON_DOWN);
                 } else {
                     tab.setIcon(VaadinIcons.CHEVRON_RIGHT);
                 }
             }
         });
+    }
+
+    public void selectTab(Component tabToBeShown) {
+        accordion.setSelectedTab(tabToBeShown);
     }
 
     public void addPaneToLayout(ContentPane pane, Integer position, Boolean isEnabled) {

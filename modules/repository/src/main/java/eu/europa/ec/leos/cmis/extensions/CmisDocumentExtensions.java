@@ -21,17 +21,7 @@ import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.LeosExportStatus;
 import eu.europa.ec.leos.domain.cmis.LeosLegStatus;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
-import eu.europa.ec.leos.domain.cmis.document.Annex;
-import eu.europa.ec.leos.domain.cmis.document.Bill;
-import eu.europa.ec.leos.domain.cmis.document.ConfigDocument;
-import eu.europa.ec.leos.domain.cmis.document.Explanatory;
-import eu.europa.ec.leos.domain.cmis.document.ExportDocument;
-import eu.europa.ec.leos.domain.cmis.document.LegDocument;
-import eu.europa.ec.leos.domain.cmis.document.LeosDocument;
-import eu.europa.ec.leos.domain.cmis.document.MediaDocument;
-import eu.europa.ec.leos.domain.cmis.document.Memorandum;
-import eu.europa.ec.leos.domain.cmis.document.Proposal;
-import eu.europa.ec.leos.domain.cmis.document.Structure;
+import eu.europa.ec.leos.domain.cmis.document.*;
 import eu.europa.ec.leos.model.user.Collaborator;
 import io.atlassian.fugue.Option;
 import org.apache.chemistry.opencmis.client.api.Document;
@@ -49,12 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UnknownFormatConversionException;
 
-import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.getAnnexMetadataOption;
-import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.getBillMetadataOption;
-import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.getExplanatorydataOption;
-import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.getMemorandumMetadataOption;
-import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.getProposalMetadataOption;
-import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.getStructureMetadataOption;
+import static eu.europa.ec.leos.cmis.extensions.CmisMetadataExtensions.*;
 
 public class CmisDocumentExtensions {
 
@@ -99,6 +84,13 @@ public class CmisDocumentExtensions {
                     leosDocument = (T) toLeosAnnex(document, fetchContent, oldVersions);
                 } else {
                     throw new IllegalStateException("Incompatible types! [category=" + category + ", mappedType=" + Annex.class.getSimpleName() + ", wantedType=" + type.getSimpleName() + ']');
+                }
+                break;
+            case FINANCIAL_STATEMENT:
+                if (type.isAssignableFrom(FinancialStatement.class)) {
+                    leosDocument = (T) toFinancialStatement(document, fetchContent, oldVersions);
+                } else {
+                    throw new IllegalStateException("Incompatible types! [category=" + category + ", mappedType=" + FinancialStatement.class.getSimpleName() + ", wantedType=" + type.getSimpleName() + ']');
                 }
                 break;
             case MEDIA:
@@ -222,6 +214,19 @@ public class CmisDocumentExtensions {
                 getClonedFrom(d),
                 contentOption(d, fetchContent),
                 getAnnexMetadataOption(d));
+    }
+
+    private static FinancialStatement toFinancialStatement(Document d, boolean fetchContent, Map<String, String> oldVersions) {
+        return new FinancialStatement(d.getId(), d.getName(), d.getCreatedBy(),
+                getCreationInstant(d),
+                d.getLastModifiedBy(),
+                getLastModificationInstant(d),
+                d.getVersionSeriesId(), d.getVersionLabel(), getLeosVersionLabel(d, oldVersions), d.getCheckinComment(), getVersionType(d), d.isLatestVersion(),
+                getTitle(d),
+                getCollaborators(d),
+                getMilestoneComments(d),
+                contentOption(d, fetchContent),
+                getFinancialstatementdataOption(d), getBaseRevisionId(d));
     }
 
     private static MediaDocument toLeosMediaDocument(Document d, boolean fetchContent) {

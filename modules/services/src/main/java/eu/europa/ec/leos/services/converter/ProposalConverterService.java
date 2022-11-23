@@ -21,4 +21,6 @@ import eu.europa.ec.leos.domain.vo.DocumentVO;
 public interface ProposalConverterService {
 
     DocumentVO createProposalFromLegFile(File file, final DocumentVO document, boolean canUpdateSource);
+
+    DocumentVO createDocument(String docName, File docFile, boolean canModifySource);
 }

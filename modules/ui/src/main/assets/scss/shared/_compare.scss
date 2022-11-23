@@ -141,6 +141,10 @@ $RED_OUTLINE: 1px solid $RED_COLOR;
     }
   }
 
+  paragraph > num.leos-content-removed {
+    margin-left: -40px;
+  }
+
   .leos-content-new-cn[leos\:softaction="add"] {
     & {
       *[leos\:origin="cn"]:not(span):not(list), num:not([leos\:origin="ec"]) {

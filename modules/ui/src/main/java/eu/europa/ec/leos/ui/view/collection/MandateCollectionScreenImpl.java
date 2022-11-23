@@ -123,6 +123,8 @@ public class MandateCollectionScreenImpl extends CollectionScreenImpl {
 
         explanatoryBlockHeading.setCaption(messageHelper.getMessage("collection.block.explanatory.caption"));
         explanatoryBlockHeading.addRightButton(addCreateExplanatoryButton());
+
+        createSupportingDocumentsButton.setVisible(false);
         explanatoryBlockHeading.setCaption(messageHelper.getMessage("collection.block.explanatory.caption"));
     }
 

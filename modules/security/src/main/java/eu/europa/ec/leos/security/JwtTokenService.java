@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.interfaces.Claim;
+import eu.europa.ec.leos.config.PasswordConfigurator;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,11 @@ import javax.annotation.PostConstruct;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -51,6 +56,8 @@ class JwtTokenService implements TokenService {
     @Autowired
     @Qualifier("applicationProperties")
     private Properties applicationProperties;
+
+    PasswordConfigurator passwordConfigurator = new PasswordConfigurator();
     
     @Autowired
     JwtTokenService() {
@@ -63,8 +70,9 @@ class JwtTokenService implements TokenService {
         String keyPrefix = "leos.api.jwt.auth.client.";
         for (String clientName : clientsNames) {
             String clientId = applicationProperties.getProperty(keyPrefix + clientName + ".id");
-            String clientSecret = applicationProperties.getProperty(keyPrefix + clientName + ".secret");
-            if(clientId == null || clientSecret == null){
+            char[] decryptedSecret = passwordConfigurator.getProperty(keyPrefix + clientName + ".secret");
+            String clientSecret = decryptedSecret != null ? new String(decryptedSecret) : null;
+            if (clientId == null || clientSecret == null) {
                 LOG.error("the key 'leos.api.jwt.auth.clients' and its corresponding clientId/secret is not configured correctly for each single client");
                 // for now we do not block the deployment of the application throwing an Exception
             } else {

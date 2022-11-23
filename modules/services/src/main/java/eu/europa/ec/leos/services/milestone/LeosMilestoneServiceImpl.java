@@ -39,6 +39,7 @@ public class LeosMilestoneServiceImpl extends AbstractMilestoneService {
             ExportLeos exportOptions = new ExportLeos(ExportOptions.Output.PDF);
             exportOptions.setWithSuggestions(false);
             exportOptions.setWithAnonymization(true);
+            exportOptions.setWithAnnotations(true);
             return legService.createLegPackageForClone(proposalId, exportOptions);
         }
         ExportLeos exportOptions = new ExportLeos(ExportOptions.Output.WORD);

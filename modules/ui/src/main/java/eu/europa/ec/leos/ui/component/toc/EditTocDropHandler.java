@@ -26,13 +26,20 @@ import eu.europa.ec.leos.model.action.ActionType;
 import eu.europa.ec.leos.model.action.CheckinElement;
 import eu.europa.ec.leos.services.processor.content.TableOfContentHelper;
 import eu.europa.ec.leos.ui.event.toc.TocChangedEvent;
+import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
+import static eu.europa.ec.leos.services.processor.content.TableOfContentHelper.getFirstAscendant;
+import static eu.europa.ec.leos.services.processor.content.TableOfContentProcessor.getTagValueFromTocItemVo;
+import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
+import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
 
 public class EditTocDropHandler implements TreeGridDropListener<TableOfContentItemVO> {
 
@@ -41,13 +48,16 @@ public class EditTocDropHandler implements TreeGridDropListener<TableOfContentIt
     private final MessageHelper messageHelper;
     private final EventBus eventBus;
     private final Map<TocItem, List<TocItem>> tocRules;
+    private final List<TocItem> tocItems;
     private final TocEditor tocEditor;
 
-    public EditTocDropHandler(TreeGrid<TableOfContentItemVO> tocTree, MessageHelper messageHelper, EventBus eventBus, Map<TocItem, List<TocItem>> tocRules, TocEditor tocEditor) {
+    public EditTocDropHandler(TreeGrid<TableOfContentItemVO> tocTree, MessageHelper messageHelper, EventBus eventBus,
+                              List<TocItem> tocItems, Map<TocItem, List<TocItem>> tocRules, TocEditor tocEditor) {
         this.tocTree = tocTree;
         this.messageHelper = messageHelper;
         this.eventBus = eventBus;
         this.tocRules = tocRules;
+        this.tocItems = tocItems;
         this.tocEditor = tocEditor;
     }
 
@@ -64,6 +74,7 @@ public class EditTocDropHandler implements TreeGridDropListener<TableOfContentIt
         final List<CheckinElement> checkinElements = new ArrayList<>();
         if (position != null) {
             final boolean isAdd = dropEvent.getDragSourceComponent().orElse(null) instanceof Label;
+            droppedItems.forEach(tocItem -> checkPointTypeOnDrop(tocItem, targetItem));
             final TocDropResult tocDropResult = tocEditor.addOrMoveItems(isAdd, tocTree, tocRules, droppedItems, targetItem, position);
             if (tocDropResult.isSuccess()) {
                 scrollToDroppedItem(tocTree.getTreeData(), droppedItems.get(0));
@@ -77,6 +88,21 @@ public class EditTocDropHandler implements TreeGridDropListener<TableOfContentIt
             fireTocChange(tocDropResult, checkinElements);
         } else {
             fireTocChange(new TocDropResult(false, "toc.edit.window.drop.error.message", droppedItems.get(0), targetItem), checkinElements);
+        }
+    }
+
+    private void checkPointTypeOnDrop(TableOfContentItemVO tocItem, TableOfContentItemVO targetItem) {
+        if (getTagValueFromTocItemVo(tocItem).equals(POINT)) {
+            TableOfContentItemVO article = getFirstAscendant(targetItem, Arrays.asList(ARTICLE));
+            if (article != null) {
+                if (!tocItem.getTocItem().getNumberingType().equals(StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType(tocItems,
+                        article.getTocItemType(), POINT))) {
+                    TocItem newTocItem = StructureConfigUtils.getTocItemByTagNameAndTocItemType(tocItems, article.getTocItemType(), POINT);
+                    if (newTocItem != null) {
+                        tocItem.setTocItem(newTocItem);
+                    }
+                }
+            }
         }
     }
 

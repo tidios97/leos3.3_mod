@@ -22,8 +22,8 @@ import eu.europa.ec.leos.instance.Instance;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorService;
+import eu.europa.ec.leos.services.compare.processor.LeosPostDiffingProcessor;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
-import eu.europa.ec.leos.services.compare.processor.PostDiffingProcessor;
 import eu.europa.ec.leos.services.support.XPathCatalog;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
     @Override
     public String toEditableContent(XmlDocument xmlDocument, String contextPath, SecurityContext securityContext, byte[] coverPageContent) {
         String[] contentsToCompare = getContentsToCompare(xmlDocument, contextPath, securityContext, coverPageContent);
-        PostDiffingProcessor postDiffingProcessor = new PostDiffingProcessor();
+        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
         if(contentsToCompare != null) {
             switch (contentsToCompare.length) {
                 case 2:

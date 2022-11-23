@@ -144,15 +144,17 @@ define(function listItemNumberModule(require) {
 
     function _initialize(editor) {
         ckEditor = editor;
-        _initializeDefaultList(editor);
+        editor.on("instanceReady", _initializeDefaultList);
     }
 
     /*
      * initialize default sequence list by sequence map
      */
-    function _initializeDefaultList(editor) {
+    function _initializeDefaultList(event) {
+        var editor = event.editor;
         var sequences = _getSequences();
-        listNumberConfig = editor.LEOS.listNumberConfig;
+        var articleType = leosPluginUtils.getArticleType(editor.element, editor.LEOS.articleTypesConfig);
+        listNumberConfig = editor.LEOS.listNumberConfig[articleType];
         numberingConfigs = editor.LEOS.numberingConfigs;
         for (var i = 0; i < listNumberConfig.length; i++) {
             if (sequences[i].inDefault) {
@@ -255,9 +257,14 @@ define(function listItemNumberModule(require) {
         for (var idx = 0; idx < listItems.length; idx++) {
             if (!(listItems[idx].getAttribute('contenteditable') === "false")) {
                 var numID = listItems[idx].getAttribute(leosPluginUtils.DATA_AKN_NUM_ID);
+                // To keep the num id on indentation and avoid diffing issues
+                var originNumID = listItems[idx].getAttribute(leosPluginUtils.DATA_INDENT_ORIGIN_NUM_ID);
                 if (numID && numID.startsWith(deleted)) {
                     listItems[idx].setAttribute(leosPluginUtils.DATA_AKN_NUM_ID, numID.replaceAll(deleted,''));
                     listItems[idx].removeAttribute("data-akn-num-attr-softaction");
+                }
+                if (!!originNumID) {
+                    listItems[idx].setAttribute(leosPluginUtils.DATA_AKN_NUM_ID, originNumID);
                 }
                 sequence && listItems[idx].setAttribute(leosPluginUtils.DATA_AKN_NUM, sequence.generator(orderedList, listItems[idx], newIdx)) && listItems[idx].setAttribute(leosPluginUtils.DATA_AKN_ELEMENT, leosPluginUtils.POINT);
                 newIdx++;

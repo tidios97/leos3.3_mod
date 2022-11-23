@@ -21,6 +21,7 @@ define(function aknListParagraphPluginModule(require) {
     var pluginName = "aknListParagraph";
     var leosKeyHandler = require("plugins/leosKeyHandler/leosKeyHandler");
     var UTILS = require("core/leosUtils");
+    var leosPluginUtils = require("plugins/leosPluginUtils");
 
     var ENTER_KEY = 13;
     var SHIFT_ENTER = CKEDITOR.SHIFT + ENTER_KEY;
@@ -61,7 +62,9 @@ define(function aknListParagraphPluginModule(require) {
     function _onEnterKey(context) {
         let selection = context.event.editor.getSelection();
         let element = leosKeyHandler.getSelectedElement(selection);
-        if ((UTILS.getElementOrigin(element) === ORIGIN_EC && !context.event.editor.LEOS.isClonedProposal) || _isSubparagraphElement(element)) {
+        if ((UTILS.getElementOrigin(element) === ORIGIN_EC && !context.event.editor.LEOS.isClonedProposal) 
+				|| leosPluginUtils.isAnnexSubparagraphElement(element)
+				|| leosKeyHandler.isContentEmptyTextNode(element)) {
             context.event.cancel();
         }
     }
@@ -83,8 +86,8 @@ define(function aknListParagraphPluginModule(require) {
     }
 
     function _transformParagraph(event) {
-        if (!event.data.dataValue.includes("</list>") && event.data.dataValue.includes("<subparagraph>")) {
-            event.data.dataValue = event.data.dataValue.replace("<subparagraph>", "").replace("</paragraph>", "").replace(/subparagraph>/g, "paragraph>").replace(/<subparagraph /g, "<paragraph ");
+        if (!event.data.dataValue.includes("</list>") && event.data.dataValue.includes("</subparagraph>")) {
+            event.data.dataValue = event.data.dataValue.replace(/<subparagraph[^>]*(?:>)/, "").replace("</paragraph>", "").replace(/subparagraph>/g, "paragraph>").replace(/<subparagraph /g, "<paragraph ");
         }
     }
 

@@ -29,6 +29,9 @@ public interface BillProcessor {
     byte[] insertNewElement(Bill document, String elementId, boolean before, String tagName);
 
     @PreAuthorize("hasPermission(#document, 'CAN_UPDATE')")
+    byte[] renumberDocument(Bill document);
+
+    @PreAuthorize("hasPermission(#document, 'CAN_UPDATE')")
     byte[] insertNewElementWithContent(Bill document, String elementId, boolean before, String tagName, String content);
 
     @PreAuthorize("hasPermission(#document, 'CAN_UPDATE')")

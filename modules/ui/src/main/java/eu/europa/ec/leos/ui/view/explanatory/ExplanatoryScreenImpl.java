@@ -436,14 +436,10 @@ abstract class ExplanatoryScreenImpl extends VerticalLayout implements Explanato
                 documentsMetadata, explanatory.getMetadata().getInternalRef());
     }
 
-    private boolean isAnnotateAuthorityEquals(ConfigurationHelper cfgHelper, String instance) {
-        return cfgHelper.getProperty("annotate.authority") != null && cfgHelper.getProperty("annotate.authority").equals(instance);
-    }
-
     @Override
     public void initAnnotations(DocumentVO explanatory, String proposalRef, String connectedEntity) {
         annotateExtension = new AnnotateExtension<>(explanatoryContent, eventBus, cfgHelper, null, AnnotateExtension.OperationMode.NORMAL,
-                isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
                 connectedEntity);
     }
     

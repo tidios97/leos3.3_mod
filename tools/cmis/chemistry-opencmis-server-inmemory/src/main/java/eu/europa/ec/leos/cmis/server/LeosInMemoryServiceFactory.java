@@ -70,6 +70,7 @@ public class LeosInMemoryServiceFactory extends InMemoryServiceFactoryImpl {
         PROPS_KEY_MAPPING.put("metadata.annex.docIndex", "annex:docIndex");
         PROPS_KEY_MAPPING.put("metadata.annex.docNumber", "annex:docNumber");
         PROPS_KEY_MAPPING.put("metadata.annex.docTitle", "annex:docTitle");
+        PROPS_KEY_MAPPING.put("metadata.annex.clonedRef", "annex:clonedRef");
     }
 
     private static final Map<String, Class> PROPS_TYPE_MAPPING = new HashMap<>();

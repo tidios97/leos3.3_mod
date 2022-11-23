@@ -8,14 +8,16 @@ public final class AnnexMetadata extends LeosMetadata {
     private final int index;
     private final String number;
     private final String title;
+    private final String clonedRef; //Optional only required when adding new annex in clone proposal to original
 
     public AnnexMetadata(String stage, String type, String purpose, String template, String language, String docTemplate,
                          String ref, int index, String number, String title, String objectId, String docVersion,
-                         boolean eeaRelevance) {
+                         boolean eeaRelevance, String clonedRef) {
         super(LeosCategory.ANNEX, stage, type, purpose, template, language, docTemplate, ref, objectId, docVersion, eeaRelevance);
         this.index = index;
         this.number = number;
         this.title = title;
+        this.clonedRef = clonedRef;
     }
 
     public int getIndex() {
@@ -30,50 +32,57 @@ public final class AnnexMetadata extends LeosMetadata {
         return title;
     }
 
-    public final AnnexMetadata withPurpose(String purpose) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public String getClonedRef() {
+        return clonedRef;
     }
 
-    public final AnnexMetadata withIndex(int index) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withPurpose(String purpose) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withNumber(String number) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withIndex(int index) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withTitle(String title) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withNumber(String number) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withRef(String ref) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withTitle(String title) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withObjectId(String objectId) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withRef(String ref) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withType(String type) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withObjectId(String objectId) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withTemplate(String template) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withType(String type) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
+    }
+
+    public AnnexMetadata withTemplate(String template) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
     
-    public final AnnexMetadata withDocVersion(String docVersion) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withDocVersion(String docVersion) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
     
-    public final AnnexMetadata withDocTemplate(String docTemplate) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withDocTemplate(String docTemplate) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
-    public final AnnexMetadata withEeaRelevance(boolean eeaRelevance) {
-        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+    public AnnexMetadata withEeaRelevance(boolean eeaRelevance) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
     }
 
+    public AnnexMetadata withClonedRef(String clonedRef) {
+        return new AnnexMetadata(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance, clonedRef);
+    }
 
     @Override
     public String toString() {
@@ -81,7 +90,8 @@ public final class AnnexMetadata extends LeosMetadata {
                 "index=" + index +
                 ", number='" + number + '\'' +
                 ", title='" + title + '\'' +
-                "} " + super.toString();
+                ", clonedRef='" + clonedRef + '\'' +
+                '}';
     }
 
     @Override
@@ -106,6 +116,6 @@ public final class AnnexMetadata extends LeosMetadata {
 
     @Override
     public int hashCode() {
-        return Objects.hash(stage, type, purpose, template, language, docTemplate, ref, index, number, title, objectId, docVersion, eeaRelevance);
+        return Objects.hash(super.hashCode(), index, number, title);
     }
 }

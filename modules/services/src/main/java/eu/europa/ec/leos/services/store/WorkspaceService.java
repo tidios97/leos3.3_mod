@@ -14,7 +14,11 @@
 package eu.europa.ec.leos.services.store;
 
 import eu.europa.ec.leos.domain.cmis.document.LeosDocument;
+import eu.europa.ec.leos.services.dto.response.WorkspaceProposalResponse;
 import eu.europa.ec.leos.model.filter.QueryFilter;
+import eu.europa.ec.leos.security.LeosPermissionAuthorityMap;
+import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.services.dto.request.FilterProposalsRequest;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -31,4 +35,7 @@ public interface WorkspaceService {
     <T extends LeosDocument> T findDocumentById(String id, Class<T> filterType);
 
     <T extends LeosDocument> T findDocumentByRef(String ref, Class<T> filterType);
+
+    <T extends LeosDocument> WorkspaceProposalResponse listDocumentsWithFilter(FilterProposalsRequest request, SecurityContext securityContext,
+                                                                               LeosPermissionAuthorityMap authorityMap);
 }

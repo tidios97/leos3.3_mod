@@ -42,22 +42,5 @@
     }
   }
 
-  division.type_1:not([leos\:auto-num-overwrite]) > num, division.type_1  > heading {
-    font-style: normal;
-    font-weight: bold;
-  }
-  division.type_2:not([leos\:auto-num-overwrite]) > num, division.type_2  > heading {
-    font-style: normal;
-    font-weight: bold;
-  }
-  division.type_3:not([leos\:auto-num-overwrite]) > num, division.type_3  > heading {
-    font-style: italic;
-    font-weight: bold;
-  }
-  division.type_4:not([leos\:auto-num-overwrite]) > num, division.type_4  > heading {
-    font-style: italic;
-    font-weight: normal;
-  }
-
 }
 

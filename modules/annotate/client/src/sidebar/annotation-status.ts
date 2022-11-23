@@ -1,9 +1,0 @@
-'use strict';
-
-export = {
-  ACCEPTED: 'ACCEPTED',
-  DELETED: 'DELETED',
-  NORMAL: 'NORMAL',
-  REJECTED: 'REJECTED',
-  TREATED: 'TREATED'
-};

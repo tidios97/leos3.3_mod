@@ -20,6 +20,7 @@ public class CloneProposalMetadataVO {
     private String clonedFromRef;
     private String clonedFromObjectId;
     private String originRef;
+    private String cloneProposalRef;
 
     public String getLegFileName() {
         return legFileName;
@@ -81,6 +82,14 @@ public class CloneProposalMetadataVO {
 
     public void setOriginRef(String originRef) {
         this.originRef = originRef;
+    }
+
+    public String getCloneProposalRef() {
+        return cloneProposalRef;
+    }
+
+    public void setCloneProposalRef(String cloneProposalRef) {
+        this.cloneProposalRef = cloneProposalRef;
     }
 
     @Override

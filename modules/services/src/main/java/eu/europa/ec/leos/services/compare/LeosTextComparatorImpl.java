@@ -19,9 +19,7 @@ import difflib.Delta;
 import difflib.DiffUtils;
 import difflib.InsertDelta;
 import difflib.Patch;
-import eu.europa.ec.leos.domain.common.InstanceType;
 import eu.europa.ec.leos.i18n.MessageHelper;
-import eu.europa.ec.leos.instance.Instance;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -41,10 +39,9 @@ import java.util.List;
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.ATTR_NAME;
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.CONTENT_ADDED_CLASS;
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.CONTENT_REMOVED_CLASS;
-import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
+import static eu.europa.ec.leos.services.support.XmlHelper.parseXml;
 
 @Service
-@Instance(instances = {InstanceType.OS})
 public class LeosTextComparatorImpl implements TextComparator {
 
     private static final Logger LOG = LoggerFactory.getLogger(LeosTextComparatorImpl.class);
@@ -63,7 +60,7 @@ public class LeosTextComparatorImpl implements TextComparator {
         String result;
         try {
             result = compareTextNodeContentsTwoWayDiff(firstContent, secondContent, context);
-            result = Jsoup.parse(result, EMPTY_STRING, Parser.xmlParser()).toString();
+            result = parseXml(result);
         } catch (Exception e) {
             LOG.error("Failure during text comparison. Exception thrown from text diffing library ", e);
             result = messageHelper.getMessage("leos.version.compare.error.message");

@@ -24,11 +24,13 @@ import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.services.processor.content.TableOfContentProcessor;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.ui.component.ComparisonComponent;
+import eu.europa.ec.leos.ui.component.LeosDisplayField;
 import eu.europa.ec.leos.ui.component.contributions.ContributionsTab;
 import eu.europa.ec.leos.ui.component.markedText.MarkedTextComponent;
 import eu.europa.ec.leos.ui.component.revision.RevisionComponent;
 import eu.europa.ec.leos.ui.component.toc.TocEditor;
 import eu.europa.ec.leos.ui.component.versions.VersionsTab;
+import eu.europa.ec.leos.ui.extension.AnnotateExtension;
 import eu.europa.ec.leos.ui.extension.SoftActionsExtension;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
@@ -56,6 +58,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @ViewScope
 @SpringComponent
@@ -140,10 +143,19 @@ public class ProposalDocumentScreenImpl extends DocumentScreenImpl {
     }
 
     @Override
-    public void showRevision(String content, String contributionStatus, ContributionVO contributionVO,
-                             List<TocItem> tocItemList) {
+    public void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId) {
+        this.showRevision(versionContent, contributionVO, tocItemList);
+        final LeosDisplayField revisionContent =  revisionComponent.getRevisionContent();
+        final String temporaryDocument = contributionVO.getDocumentName().replace(".xml", "");
+        new AnnotateExtension(revisionContent, eventBus, cfgHelper, "leos-revision-content", AnnotateExtension.OperationMode.READ_ONLY,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, null,
+                null, "revision-01", temporaryAnnotationsId, temporaryDocument);
+    }
+
+    @Override
+    public void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList) {
         initRevisionComponent();
-        revisionComponent.populateRevisionContent(content, LeosCategory.BILL, contributionStatus, contributionVO);
+        revisionComponent.populateRevisionContent(content, LeosCategory.BILL, contributionVO);
         changePosition(new LayoutChangeRequestEvent(ColumnPosition.DEFAULT, ComparisonComponent.class, revisionComponent));
     }
 
@@ -178,6 +190,8 @@ public class ProposalDocumentScreenImpl extends DocumentScreenImpl {
         legalTextActionMenuBar.setDownloadVersionWithAnnotationsVisible(true);
         legalTextActionMenuBar.setDownloadCleanVersionVisible(isClonedProposal);
         legalTextActionMenuBar.setShowCleanVersionVisible(isClonedProposal);
+        legalTextActionMenuBar.setRenumberingVisible(false);
+        legalTextActionMenuBar.setRenumberingGroupVisible(false);
     }
 
     @Override
@@ -241,6 +255,12 @@ public class ProposalDocumentScreenImpl extends DocumentScreenImpl {
     @Override
     public void setDownloadStreamResourceForExport(StreamResource streamResource) {
         markedTextComponent.setDownloadStreamResourceForExport(streamResource);
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String versionedReference) {
+        legalTextPaneComponent.selectTab(contributionsTab);
+        return contributionsTab.findContribution(versionedReference);
     }
 
     private boolean isClonedProposal() {

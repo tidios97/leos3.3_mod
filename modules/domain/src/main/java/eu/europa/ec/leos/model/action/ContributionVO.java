@@ -172,7 +172,17 @@ public class ContributionVO implements Comparable<ContributionVO> {
 
     @Override
     public int compareTo(ContributionVO contributionVO) {
-        return versionNumber.compareTo(contributionVO.versionNumber);
+        int compareTo = versionNumber.compareTo(contributionVO.versionNumber);
+        if (compareTo == 0) {
+            if (ContributionStatus.CONTRIBUTION_DONE.equals(contributionStatus)
+                    && ContributionStatus.RECEIVED.equals(contributionVO.getContributionStatus())) {
+                return -1;
+            } else {
+                return 1;
+            }
+        } else {
+            return compareTo;
+        }
     }
 
     public static class VersionNumber implements Comparable<ContributionVO.VersionNumber> {

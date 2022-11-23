@@ -69,6 +69,9 @@ class LeosPropertyDefinition {
     static final PropertyDefinition<String> LEOS_ANNEX_DOC_TITLE =
             PropertyCreationHelper.createStringDefinition("annex:docTitle", "Annex Title", Updatability.READWRITE);
 
+    static final PropertyDefinition<String> LEOS_ANNEX_CLONED_REF =
+            PropertyCreationHelper.createStringDefinition("annex:clonedRef", "Annex cloned ref", Updatability.READWRITE);
+
     static final PropertyDefinition<String> LEOS_INITIAL_CREATED_BY =
             PropertyCreationHelper.createStringDefinition("leos:initialCreatedBy", "LEOS Initial Created By", Updatability.READWRITE);
 

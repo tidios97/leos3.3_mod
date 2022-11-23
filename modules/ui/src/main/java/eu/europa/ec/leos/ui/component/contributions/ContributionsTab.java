@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @SpringComponent
@@ -125,5 +126,12 @@ public class ContributionsTab<D extends XmlDocument> extends VerticalLayout {
             contributionsCardsHolder.addComponent(card);
             allContributionCards.add(card);
         }
+    }
+
+    public Optional<ContributionVO> findContribution(String versionedReference) {
+        if (allContributions != null) {
+            return allContributions.stream().filter(c -> c.getVersionedReference().equals(versionedReference)).findFirst();
+        }
+        return Optional.empty();
     }
 }

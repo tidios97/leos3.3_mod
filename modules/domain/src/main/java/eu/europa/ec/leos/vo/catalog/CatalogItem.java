@@ -49,6 +49,10 @@ public class CatalogItem {
         return enabled != null && enabled;
     }
 
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public String getKey() {
         return key;
     }
@@ -63,6 +67,14 @@ public class CatalogItem {
 
     public Map<String, String> getLanguages() {
         return (langMap != null) ? langMap : new HashMap<String, String>(0);
+    }
+
+    public Map<String, String> getNames() {
+        return (nameMap != null) ? nameMap : new HashMap<String, String>(0);
+    }
+
+    public Map<String, String> getDescriptions() {
+        return (descMap != null) ? descMap : new HashMap<String, String>(0);
     }
 
     public List<CatalogItem> getItems() {

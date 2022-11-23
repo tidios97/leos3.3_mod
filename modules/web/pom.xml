@@ -18,9 +18,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+        <groupId>eu.europa.ec.leos.pilot</groupId>
         <artifactId>leos-modules</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.0-SNAPSHOT</version>
     </parent>
 
     <!-- This would generate a warning but it is needed to generate different artifact for cn/os/ec till we find a better way-->
@@ -39,27 +39,32 @@
     <dependencies>
         <!-- Leos modules -->
         <dependency>
-            <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+            <groupId>eu.europa.ec.leos.pilot</groupId>
+            <artifactId>leos-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.europa.ec.leos.pilot</groupId>
             <artifactId>leos-js</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+            <groupId>eu.europa.ec.leos.pilot</groupId>
             <artifactId>leos-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+            <groupId>eu.europa.ec.leos.pilot</groupId>
             <artifactId>leos-integration</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+            <groupId>eu.europa.ec.leos.pilot</groupId>
             <artifactId>leos-services</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+            <groupId>eu.europa.ec.leos.pilot</groupId>
             <artifactId>leos-ui</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -106,7 +111,7 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+                    <groupId>eu.europa.ec.leos.pilot</groupId>
                     <artifactId>leos-security-preauth</artifactId>
                     <version>${project.version}</version>
                 </dependency>
@@ -125,7 +130,7 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>eu.europa.ec.digit.leos.pilot</groupId>
+                    <groupId>eu.europa.ec.leos.pilot</groupId>
                     <artifactId>leos-security-saml</artifactId>
                     <version>${project.version}</version>
                 </dependency>
@@ -172,6 +177,17 @@
                         </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+
+            <!-- INSTALL -->
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-install</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- WAR -->

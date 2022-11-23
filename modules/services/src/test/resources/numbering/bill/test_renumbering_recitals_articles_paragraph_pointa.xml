@@ -1,0 +1,270 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<recitals leos:editable="false" xml:id="recs">
+		<recital leos:editable="true" leos:origin="ec" leos:softaction="move_from" xml:id="moved_from_rec_4">
+			<num leos:origin="cn" xml:id="moved_from_rec_49_num">(-1)</num>
+			<p>Recital...(1)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" xml:id="rec_1">
+			<num leos:origin="ec" xml:id="rec_1__num">(1#)</num>
+			<p>Recital...(2)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" xml:id="rec_2">
+			<num leos:origin="ec" xml:id="rec_2__num">(2#)</num>
+			<p>Recital...(3)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="cn" xml:id="rec_2a">
+			<num xml:id="rec_2a__num">(2a)</num>
+			<p xml:id="rec_2a__p">Recital...(4)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="cn" xml:id="rec_2b">
+			<num xml:id="rec_2b__num">(2b)</num>
+			<p xml:id="rec_2b__p">Recital...(5)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" xml:id="rec_3">
+			<num leos:origin="ec" xml:id="rec_3__num">(3#)</num>
+			<p>Recital...(6)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" leos:softaction="move_to" xml:id="art_4">
+			<num xml:id="art_4_num">(4#)</num>
+			<p>do not change.  is move_to, Will remain (4#)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" xml:id="rec_5">
+			<num leos:origin="ec" xml:id="rec_3__num">(5#)</num>
+			<p>Recital...(7)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="cn" xml:id="rec_5a">
+			<num xml:id="rec_5a__num">(5a)</num>
+			<p xml:id="rec_5a__p">Recital...(8)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" leos:softaction="del" xml:id="rec_6">
+			<num leos:origin="ec" xml:id="rec_6__num">(6#)</num>
+			<p>do not change. is del</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="cn" xml:id="rec_6a">
+			<num xml:id="rec_6a__num">(6a)</num>
+			<p xml:id="rec_6a__p">Recital...(9)</p>
+		</recital>
+		<recital leos:editable="true" leos:origin="ec" xml:id="art_7">
+			<num leos:origin="ec" xml:id="art_7_num">(7#)</num>
+			<p>Recital...(10)</p>
+		</recital>
+	</recitals>
+	<body leos:origin="ec" xml:id="body">
+		<article leos:editable="true" leos:origin="ec" leos:softaction="move_from" xml:id="moved_from_art_4">
+			<num leos:origin="cn">Article -3</num>
+			<p>should be Article 1</p>
+		</article>
+		<article leos:origin="cn" xml:id="art_m3a">
+			<num leos:origin="cn">Article -3a</num>
+			<p>should be Article 2</p>
+		</article>
+		<article leos:origin="cn" xml:id="art_m3b">
+			<num leos:origin="cn">Article -3b</num>
+			<p>should be Article 3</p>
+		</article>
+		<article leos:origin="ec" xml:id="art_3">
+			<num leos:origin="ec">Article 3</num>
+			<p>should be Article 4</p>
+		</article>
+		<article leos:origin="cn" xml:id="art_3a">
+			<num leos:origin="cn">Article 3a</num>
+			<p>should be Article 5</p>
+		</article>
+		<article leos:origin="ec" leos:softaction="move_to" xml:id="art_4">
+			<num leos:origin="ec">Article 4#</num>
+			<p>do not change. is move_to, Will remain Article 4#</p>
+		</article>
+		<article leos:origin="cn" xml:id="art_4a">
+			<num leos:origin="cn">Article 4a</num>
+			<p>should be Article 6</p>
+		</article>
+		<article leos:origin="cn" xml:id="art_4b">
+			<num leos:origin="cn">Article 4b</num>
+			<p>should be Article 7</p>
+		</article>
+		<article leos:origin="ec" leos:softaction="del" xml:id="art_5">
+			<num leos:origin="ec">Article 5#</num>
+			<p>do not change. Article 5#</p>
+		</article>
+		<article leos:origin="cn" xml:id="art_5a">
+			<num>Article 5a</num>
+			<p>should be Article 8</p>
+		</article>
+		<article leos:origin="ec" xml:id="art6">
+			<num leos:origin="ec" xml:id="art6_num">Article 6</num>
+			<heading leos:origin="ec" xml:id="art6_h">Article heading 9...</heading>
+			<paragraph leos:origin="cn" xml:id="art6_par1">
+				<num leos:origin="cn" xml:id="art6_par1__num">-1.</num>
+				<content leos:origin="cn" xml:id="art6_par1__content">
+					<p leos:origin="cn" xml:id="art6_par1__content__p">Will change to 1.</p>
+				</content>
+			</paragraph>
+			<paragraph leos:origin="cn" xml:id="art6_par2">
+				<num leos:origin="cn" xml:id="art6_par2__num">-1a.</num>
+				<content leos:origin="cn" xml:id="art6_par2__content">
+					<p leos:origin="cn" xml:id="art6_par2__content__p">Will change to 2.</p>
+				</content>
+			</paragraph>
+			<paragraph leos:origin="ec" xml:id="art6_par3">
+				<num leos:origin="ec" xml:id="art6_par3_num">1.</num>
+				<subparagraph leos:origin="ec" xml:id="art6_par3_sub1">
+					<content leos:origin="ec" xml:id="art6_par3_sub1_c">
+						<p leos:origin="ec" xml:id="art6_par3_sub1_c_p">Even for EC is now 3.</p>
+					</content>
+				</subparagraph>
+				<list leos:origin="ec" xml:id="art6_par3_L1">
+					<point leos:origin="cn" xml:id="art6_par3_L1_point1">
+						<num leos:origin="cn" xml:id="art6_par3_L1_point1_num">(-a)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point1_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_pointa_1_p">Will change to (a)</p>
+						</content>
+					</point>
+					<point leos:origin="cn" xml:id="art6_par3_L1_point2">
+						<num leos:origin="cn" xml:id="art6_par3_L1_point2_num">(-aa)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point2_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_pointb_2_p">Will change to (b)</p>
+						</content>
+					</point>
+					<point leos:origin="ec" xml:id="art6_par3_L1_point3">
+						<num leos:origin="ec" xml:id="art6_par3_L1_point3_num">(a)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point3_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_point3_c_p">Even for EC is now (c)</p>
+						</content>
+					</point>
+					<point leos:origin="cn" xml:id="art6_par3_L1_point4">
+						<num leos:origin="cn" xml:id="art6_par3_L1_point4_num">(aa)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point4_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_point4_c_p">Will change to (d)</p>
+						</content>
+					</point>
+					<point leos:origin="ec" xml:id="art6_par3_L1_point5">
+						<num leos:origin="ec" xml:id="art6_par3_L1_point5_num">(b)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point5_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_point5_c_p">Even for EC is now (e)</p>
+						</content>
+					</point>
+					<point leos:origin="cn" xml:id="art6_par3_L1_point6">
+						<num leos:origin="cn" xml:id="art6_par3_L1_point6_num">(ba)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point6_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_point6_c_p">Will change to (f)</p>
+						</content>
+					</point>
+					<point leos:origin="cn" xml:id="art6_par3_L1_point7">
+						<num leos:origin="cn" xml:id="art6_par3_L1_point7_num">(bb)</num>
+						<content leos:origin="ec" xml:id="art6_par3_L1_point7_c">
+							<p leos:origin="ec" xml:id="art6_par3_L1_point7_c_p">Will change to (g)</p>
+						</content>
+					</point>
+					<point leos:origin="ec" xml:id="art6_par3_L1_point5a">
+						<num leos:origin="ec" xml:id="art6_par3_L1_point5a_num">(c)</num>
+						<alinea leos:origin="ec" xml:id="art_1_6G73F7">
+							<content leos:origin="ec" xml:id="art_1_keYk7S">
+								<p leos:origin="ec" xml:id="art_1_PMAuPF">Even for EC is now (h)</p>
+							</content>
+						</alinea>
+						<list leos:origin="ec" xml:id="art6_par3_L2">
+							<point leos:origin="cn" xml:id="art6_par3_L2_point8">
+								<num leos:origin="cn" xml:id="art6_par3_L2_point8_num">(-i)</num>
+								<content leos:origin="ec" xml:id="art6_par3_L2_point8_c">
+									<p leos:origin="ec" xml:id="art6_par3_L2_point8_c_p">Will change to (i)</p>
+								</content>
+							</point>
+							<point leos:origin="cn" xml:id="art6_par3_L2_point9">
+								<num leos:origin="cn" xml:id="art6_par3_L2_point9_num">(-ia)</num>
+								<content leos:origin="ec" xml:id="art6_par3_L2_point9_c">
+									<p leos:origin="ec" xml:id="art6_par3_L2_point9_c_p">Will change to (ii)</p>
+								</content>
+							</point>
+							<point leos:origin="ec" xml:id="art6_par3_L2_point10">
+								<num leos:origin="ec" xml:id="art6_par3_L2_point10_num">(i)</num>
+								<content leos:origin="ec" xml:id="art6_par3_L2_point10_c">
+									<p leos:origin="ec" xml:id="art6_par3_L2_point10_c_p">Even for EC is now (iii)</p>
+								</content>
+							</point>
+							<point leos:origin="cn" xml:id="art6_par3_L2_point11">
+								<num leos:origin="cn" xml:id="art6_par3_L2_point11_num">(ia)</num>
+								<content leos:origin="ec" xml:id="art6_par3_L2_point11_c">
+									<p leos:origin="ec" xml:id="art6_par3_L2_point11_c_p">Will change to (iv)</p>
+								</content>
+							</point>
+							<point leos:origin="ec" xml:id="art6_par3_L2_point10a">
+								<num leos:origin="ec" xml:id="art6_par3_L2_point10a_num">(ii)</num>
+								<alinea leos:origin="ec" xml:id="art6_par3_L2_point10a_a">
+									<content leos:origin="ec" xml:id="art6_par3_L2_point10a_c">
+										<p leos:origin="ec" xml:id="art6_par3_L2_point10a_ac">Even for EC is now (v)</p>
+									</content>
+								</alinea>
+								<list leos:origin="ec" xml:id="art6_par3_L3">
+									<point leos:origin="cn" xml:id="art6_par3_L3_point12">
+										<num leos:origin="cn" xml:id="art6_par3_L3_point12_num">(-1)</num>
+										<content leos:origin="ec" xml:id="art6_par3_L3_point12_c">
+											<p leos:origin="ec" xml:id="art6_par3_L3_point12_c_p">Will change to (1)</p>
+										</content>
+									</point>
+									<point leos:origin="cn" xml:id="art6_par3_L3_point13">
+										<num leos:origin="cn" xml:id="art6_par3_L3_point13_num">(-1a)</num>
+										<content leos:origin="ec" xml:id="art6_par3_L3_point13_c">
+											<p leos:origin="ec" xml:id="art6_par3_L3_point13_c_p">Will change to (2)</p>
+										</content>
+									</point>
+									<point leos:origin="ec" xml:id="art6_par3_L3_point14">
+										<num leos:origin="ec" xml:id="art6_par3_L3_point14_num">(1)</num>
+										<content leos:origin="ec" xml:id="art6_par3_L3_point14_c">
+											<p leos:origin="ec" xml:id="art6_par3_L3_point14_c_p">Even for EC is now (3)</p>
+										</content>
+									</point>
+									<point leos:origin="cn" xml:id="art6_par3_L3_point15">
+										<num leos:origin="cn" xml:id="art6_par3_L3_point15_num">(1a)</num>
+										<content leos:origin="ec" xml:id="art6_par3_L3_point15_c">
+											<p leos:origin="ec" xml:id="art6_par3_L3_point15_c_p">Will change to (4)</p>
+										</content>
+									</point>
+									<point leos:origin="cn" xml:id="art6_par3_L3_point16">
+										<num leos:origin="cn" xml:id="art6_par3_L3_point16_num">(1b)</num>
+										<content leos:origin="ec" xml:id="art6_par3_L3_point16_c">
+											<p leos:origin="ec" xml:id="art6_par3_L3_point16_c_p">Will change to (5)</p>
+										</content>
+									</point>
+									<point leos:origin="ec" xml:id="art6_par3_L3_point16a">
+										<num leos:origin="ec" xml:id="art6_par3_L3_point16aa_num">(2)</num>
+										<alinea leos:origin="ec" xml:id="art6_par3_L3_point16a_a">
+											<content leos:origin="ec" xml:id="art6_par3_L3_point16a_c">
+												<p leos:origin="ec" xml:id="art6_par3_L3_point16aa_ac">Even for EC is now (6)</p>
+											</content>
+										</alinea>
+										<list leos:origin="ec" xml:id="art6_par3_L4">
+											<indent leos:origin="cn" xml:id="art6_par3_L4_point17">
+												<num leos:origin="cn" xml:id="art6_par3_L4_point17_num">-</num>
+												<content leos:origin="ec" xml:id="art6_par3_L4_point17_c">
+													<p leos:origin="ec" xml:id="art6_par3_L4_point17_c_p">Will change to -</p>
+												</content>
+											</indent>
+											<indent leos:origin="ec" xml:id="art6_par3_L4_point18">
+												<num leos:origin="ec" xml:id="art6_par3_L4_point18_num">-</num>
+												<content leos:origin="ec" xml:id="art6_par3_L4_point18_c">
+													<p leos:origin="ec" xml:id="art6_par3_L4_point18_c_p">EC is -</p>
+												</content>
+											</indent>
+										</list>
+									</point>
+								</list>
+							</point>
+						</list>
+					</point>
+				</list>
+			</paragraph>
+			<paragraph leos:origin="cn" xml:id="art6_par4">
+				<num leos:origin="cn" xml:id="art6_par4__num">1a.</num>
+				<content leos:origin="cn" xml:id="art6_par41__content">
+					<p leos:origin="cn" xml:id="art6_par4__content__p">Will change to 4.</p>
+				</content>
+			</paragraph>
+			<paragraph leos:origin="cn" xml:id="art6_par5">
+				<num leos:origin="cn" xml:id="art6_par5__num">1b.</num>
+				<content leos:origin="cn" xml:id="art6_par5__content">
+					<p leos:origin="cn" xml:id="art6_par5__content__p">Will change to 5.</p>
+				</content>
+			</paragraph>
+		</article>
+	</body>
+</akomaNtoso>

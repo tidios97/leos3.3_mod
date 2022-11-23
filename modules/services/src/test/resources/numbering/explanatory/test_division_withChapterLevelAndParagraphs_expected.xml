@@ -2,9 +2,9 @@
     <doc name="ANNEX">
         <mainBody xml:id="body">
             <division class="type_1" xml:id="division_i">
-                <num xml:id="division_i_num">I.</num>
+                <num xml:id="division_i_num"><b>I.</b></num>
                 <content xml:id="division_i_content">
-                    <p xml:id="division_i_content_p">should be I.</p>
+                    <p xml:id="division_i_content_p">should be <b>I.</b></p>
                 </content>
             </division>
             <chapter leos:origin="ec" xml:id="cha_q78MwU">
@@ -13,25 +13,25 @@
                 <section xml:id="akn_section_PeBKFV">
                     <num xml:id="akn_SALxLC">Section 1</num>
                     <division class="type_1" xml:id="division_ii">
-                        <num xml:id="division_ii_num">II.</num>
+                        <num xml:id="division_ii_num"><b>II.</b></num>
                         <content xml:id="division_ii_content">
-                            <p xml:id="division_ii_content_p">should be II.</p>
+                            <p xml:id="division_ii_content_p">should be <b>II.</b></p>
                         </content>
                     </division>
                 </section>
 
                 <division class="type_2" xml:id="division_ii_a">
-                    <num xml:id="division_ii_a_num">A.</num>
+                    <num xml:id="division_ii_a_num"><b>A.</b></num>
                     <content xml:id="division_ii_a_content">
-                        <p xml:id="division_ii_a_content_p">should be A.</p>
+                        <p xml:id="division_ii_a_content_p">should be <b>A.</b></p>
                     </content>
                 </division>
             </chapter>
 
             <division class="type_3" xml:id="division_ii_a_i">
-                <num xml:id="division_ii_a_i_num">I)</num>
+                <num xml:id="division_ii_a_i_num"><b><i>I)</i></b></num>
                 <content xml:id="division_ii_a_i_content">
-                    <p xml:id="division_ii_a_i_content_p">should be I)</p>
+                    <p xml:id="division_ii_a_i_content_p">should be <b><i>I)</i></b></p>
                 </content>
             </division>
 
@@ -113,9 +113,9 @@
                 </list>
             </level>
             <division class="type_4" xml:id="division_ii_a_i_a">
-                <num xml:id="division_ii_a_i_a_num">A)</num>
+                <num xml:id="division_ii_a_i_a_num"><i>A)</i></num>
                 <content xml:id="division_ii_a_i_a_content">
-                    <p xml:id="division_ii_a_i_a_content_p">should be A)</p>
+                    <p xml:id="division_ii_a_i_a_content_p">should be <i>A)</i></p>
                 </content>
             </division>
             <level leos:depth="2" xml:id="body_level_2_1">

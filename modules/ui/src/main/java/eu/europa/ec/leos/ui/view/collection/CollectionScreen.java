@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.ui.view.collection;
 
 import com.vaadin.server.Resource;
+import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.model.user.User;
@@ -36,11 +37,16 @@ interface CollectionScreen {
     
     void showMilestoneExplorer(LegDocument legDocument, String milestoneTitle, String proposalRef);
 
+    void showContributionMilestone(LegDocument clonedLegDocument, LegDocument originalLegDocument, String milestoneTitle,
+                                   String proposalRef, List<Annex> annexes, boolean viewContributionMilestone);
+
     void proposeUsers(List<UserVO> users);
 
     void confirmCollectionDeletion();
 
     void confirmAnnexDeletion(DocumentVO annex);
+
+    void confirmFinancialStatementDeletion(DocumentVO financialStatement);
 
     void confirmExplanatoryDeletion(DocumentVO explanatory);
 
@@ -66,8 +72,12 @@ interface CollectionScreen {
 
     void showCreateDocumentWizard(List<CatalogItem> templates);
 
+    void showSupportDocumentWizard(List<CatalogItem> templates, List<String> templateDocPresent);
+
     void reset();
 
     boolean isCoverPageVisible();
+
+    void populateSupportDocuments(DocumentVO proposalVO);
 
 }

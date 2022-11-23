@@ -395,6 +395,12 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
         }
     }
 
+    @Override
+    protected boolean isElementImpactedByIndention(Map<String, Element> otherContextElements, Element element) {
+        return (!isElementIndented(element) && isElementIndentedInOtherContext(otherContextElements, element)
+                || (isElementIndented(element) && !isElementIndentedInOtherContext(otherContextElements, element)));
+    }
+
     private void appendChangedElement(ContentComparatorContext context, String oldElementCurrentId) {
         Node node = getChangedElementContent(context.getOldContentNode(), context.getOldElement(), context.getAttrName(),
                 getStartTagValueForRemovedElementFromAncestor(context.getOldElement(), context));

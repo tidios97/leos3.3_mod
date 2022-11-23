@@ -51,11 +51,11 @@ public class ProposalExportServiceImpl extends ExportServiceImpl {
 
     protected final AKN4EUService akn4euService;
 
-    @Value("#{integrationProperties['leos.toolBox.converter.jobResultPullingThresholdInSeconds']}")
+    @Value("#{integrationProperties['leos.toolBox.converter.jobResultPullingThresholdInSeconds'] ?: 10}")
     protected int jobResultPullingThresholdInSeconds;
-    @Value("#{integrationProperties['leos.toolBox.converter.jobResultMaxTries']}")
+    @Value("#{integrationProperties['leos.toolBox.converter.jobResultMaxTries'] ?: 50}")
     protected int jobResultMaxTries;
-    @Value("#{integrationProperties['pdf.generation.notification.functional.mailbox']}")
+    @Value("#{integrationProperties['pdf.generation.notification.functional.mailbox'] ?: ''}")
     private String pdfGenerationFunctionalMailBox;
 
     private NotificationService notificationService;

@@ -22,10 +22,13 @@ import eu.europa.ec.leos.vo.toc.TocItem;
 import io.atlassian.fugue.Pair;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jsoup.Jsoup;
+import org.jsoup.parser.Parser;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,6 +75,8 @@ public class XmlHelper {
     public static final String NUM = "num";
     public static final String P = "p";
     public static final String COVERPAGE = "coverPage";
+    public static final String ATTACHMENTS = "attachments";
+    public static final String ATTACHMENT = "attachment";
 
     public static final String EC = "ec";
     public static final String CN = "cn";
@@ -117,6 +122,7 @@ public class XmlHelper {
     public static final String WHITESPACE = " ";
 
     public static final String LEOS_ORIGIN_ATTR = "leos:origin";
+    public static final String LEOS_INITIAL_NUM = "leos:initial-num";
     public static final String LEOS_DELETABLE_ATTR = "leos:deletable";
     public static final String LEOS_EDITABLE_ATTR = "leos:editable";
     public static final String LEOS_AFFECTED_ATTR = "leos:affected";
@@ -139,6 +145,7 @@ public class XmlHelper {
     public static final String SOFT_MOVE_PLACEHOLDER_ID_PREFIX = "moved_";
     public static final String SOFT_DELETE_PLACEHOLDER_ID_PREFIX = "deleted_";
     public static final String SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX = "transformed_";
+    public static final String SOFT_SPLITTED_PLACEHOLDER_ID_PREFIX = "splitted_";
     public static final String TOGGLED_TO_NUM = "toggled_to_num";
     public static final String BACK_TO_NUM_FROM_SOFT_DELETED = "back_to_num_from_soft_deleted";
     public static final String STATUS_IGNORED_ATTR = "status";
@@ -159,6 +166,8 @@ public class XmlHelper {
     public static final String LEOS_INDENT_ORIGIN_NUM_ORIGIN_ATTR = "leos:indent-origin-num-origin";
     public static final String LEOS_INDENT_UNUMBERED_PARAGRAPH = "leos:indent-unumbered-paragraph";
     public static final String LEOS_AUTO_NUM_OVERWRITE = "leos:auto-num-overwrite";
+
+    public static final String COVERPAGE_EEA_RELEVANCE_ID = "_coverpage__eearelevance";
 
     public static final String EMPTY_STRING = "";
     public static final String NON_BREAKING_SPACE = "\u00A0";
@@ -484,6 +493,11 @@ public class XmlHelper {
                 .replaceAll("<\\?xml version=\"1\\.0\" encoding=\"UTF-8\"\\?>", "");
     }
 
+    public static String parseXml(String str) {
+        str = str == null ? "" : str;
+        return Jsoup.parse(str, EMPTY_STRING, Parser.xmlParser()).toString();
+    }
+
     /**
      * Escape the string from only characters interfering with Xerces parsing: "<", ">" and "&". The rest of special characters
      * are left in their UTF representation.
@@ -651,5 +665,20 @@ public class XmlHelper {
     public static String getSoftUserAttribute(User user) {
         return user.getName().concat("(").
                 concat(user.getDefaultEntity().getOrganizationName()).concat(")");
+    }
+
+    public static byte[] cleanDiffingClassesForTag(byte[] xmlContent, String tagName, List<String> classValues) {
+        String content = new String(xmlContent, StandardCharsets.UTF_8);
+        Pattern p = Pattern.compile("(<" + tagName + "[^>]*>.*<\\/" + tagName + ">)",Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+        Matcher m = p.matcher(content);
+        while (m.find()) {
+            String tagAndContent = m.group(1);
+            String cleanTagAndContent = tagAndContent;
+            for (String classValue : classValues) {
+                cleanTagAndContent = cleanTagAndContent.replaceAll("\\s" + CLASS_ATTR + "=\"" + classValue + "\"", "");
+            }
+            content = content.replace(tagAndContent, cleanTagAndContent);
+        }
+        return content.getBytes(StandardCharsets.UTF_8);
     }
 }

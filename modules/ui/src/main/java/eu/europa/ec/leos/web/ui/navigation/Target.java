@@ -20,6 +20,7 @@ import eu.europa.ec.leos.ui.view.collection.CollectionView;
 import eu.europa.ec.leos.ui.view.coverpage.CoverPageView;
 import eu.europa.ec.leos.ui.view.document.DocumentView;
 import eu.europa.ec.leos.ui.view.explanatory.ExplanatoryView;
+import eu.europa.ec.leos.ui.view.financialstatement.FinancialStatementView;
 import eu.europa.ec.leos.ui.view.logout.LogoutView;
 import eu.europa.ec.leos.ui.view.memorandum.MemorandumView;
 import eu.europa.ec.leos.ui.view.workspace.WorkspaceView;
@@ -34,6 +35,7 @@ public enum Target {
     MEMORANDUM(MemorandumView.VIEW_ID),
     COUNCIL_EXPLANATORY(ExplanatoryView.VIEW_ID),
     ANNEX(AnnexView.VIEW_ID),
+    FINANCIAL_STATEMENT(FinancialStatementView.VIEW_ID),
     COVERPAGE(CoverPageView.VIEW_ID),
     LOGOUT(LogoutView.VIEW_ID),
     HOME(WorkspaceView.VIEW_ID),               //Default view
@@ -88,5 +90,14 @@ public enum Target {
                 break;
         }
         return target;
+    }
+
+    public static boolean isDocument(final Target target) {
+        if (target == null) return false;
+        if (target == Target.LEGALTEXT) return true;
+        if (target == Target.MEMORANDUM) return true;
+        if (target == Target.COUNCIL_EXPLANATORY) return true;
+        if (target == Target.ANNEX) return true;
+        return (target == Target.COVERPAGE);
     }
 }

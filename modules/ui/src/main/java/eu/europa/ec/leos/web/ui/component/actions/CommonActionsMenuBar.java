@@ -13,6 +13,7 @@ import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.ChangeDetailsRequestEvent;
 import eu.europa.ec.leos.web.event.view.PaneAddEvent;
 import eu.europa.ec.leos.web.event.view.PaneEnableEvent;
+import eu.europa.ec.leos.web.event.view.document.ConfirmRenumberingEvent;
 import eu.europa.ec.leos.web.event.view.document.ShowCleanVersionRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.ShowImportWindowEvent;
 import eu.europa.ec.leos.web.event.view.document.ShowIntermediateVersionWindowEvent;
@@ -40,6 +41,8 @@ public abstract class CommonActionsMenuBar extends ActionsMenuBarComponent{
     private SimpleFileDownloader fileDownloader;
     private Class childClass;
     private MenuItem showCleanVersionItem;
+    private MenuItem renumberingItem;
+    private MenuItem renumberingGroup;
 
     public CommonActionsMenuBar(MessageHelper messageHelper, EventBus eventBus) {
         super(messageHelper, eventBus, LeosTheme.LEOS_HAMBURGUER_16);
@@ -81,6 +84,13 @@ public abstract class CommonActionsMenuBar extends ActionsMenuBarComponent{
                 selectedItem -> showCleanVersion());
         showCleanVersionItem.setVisible(false);
     }
+
+    protected void buildRenumberingActions() {
+        LOG.debug("Building Renumbering actions group...");
+        renumberingGroup = addCustomSeparator(messageHelper.getMessage("menu.actions.separator.renumbering"));
+        renumberingItem = createMenuItem(messageHelper.getMessage("menu.actions.renumbering"),
+                selectedItem -> renumbering());
+    }
     
     private void downloadActualVersion() {
         eventBus.post(new DownloadActualVersionRequestEvent());
@@ -96,6 +106,10 @@ public abstract class CommonActionsMenuBar extends ActionsMenuBarComponent{
 
     private void showCleanVersion() {
         eventBus.post(new ShowCleanVersionRequestEvent());
+    }
+
+    private void renumbering() {
+        eventBus.post(new ConfirmRenumberingEvent());
     }
 
     protected void buildViewActions() {
@@ -146,6 +160,14 @@ public abstract class CommonActionsMenuBar extends ActionsMenuBarComponent{
 
     public void setShowCleanVersionVisible(boolean visible) {
         showCleanVersionItem.setVisible(visible);
+    }
+
+    public void setRenumberingVisible(boolean visible) {
+        renumberingItem.setVisible(visible);
+    }
+
+    public void setRenumberingGroupVisible(boolean visible) {
+        renumberingGroup.setVisible(visible);
     }
 
     public void setChildComponentClass(Class clazz) {

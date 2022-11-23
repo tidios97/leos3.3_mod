@@ -13,6 +13,11 @@
  */
 package eu.europa.ec.leos.services.processor.content;
 
+import java.util.List;
+import java.util.Map;
+
+import org.w3c.dom.Node;
+
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.model.annex.LevelItemVO;
 import eu.europa.ec.leos.model.user.User;
@@ -20,11 +25,6 @@ import eu.europa.ec.leos.model.xml.Element;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import io.atlassian.fugue.Pair;
-
-import java.util.List;
-import java.util.Map;
-
-import org.w3c.dom.Node;
 
 public interface XmlContentProcessor {
 
@@ -65,7 +65,7 @@ public interface XmlContentProcessor {
     byte[] createDocumentContentWithNewTocList(List<TableOfContentItemVO> tableOfContentItemVOs, byte[] content, User user);
 
     byte[] appendElementToTag(byte[] xmlContent, String tagName, String newContent, boolean asFirstChild);
-    
+
     byte[] doXMLPreProcessing(byte[] xmlContent);
 
     byte[] doXMLPostProcessing(byte[] xmlContent);
@@ -255,6 +255,8 @@ public interface XmlContentProcessor {
 
     byte[] insertDepthAttribute(byte[] xmlContent, String tagName, String elementId);
 
+    byte[] insertCrossheadingAttributes(byte[] xmlContent, String tagName, String elementId, boolean before);
+
     LevelItemVO getLevelItemVo(byte[] xmlContent, String elementId, String elementTagName) throws Exception;
 
     byte[] updateDepthAttribute(byte[] xmlContent) throws Exception;
@@ -262,6 +264,8 @@ public interface XmlContentProcessor {
     byte[] updateRefsWithRefOrigin(byte[] source, String newRef, String oldRef);
 
     byte[] insertAffectedAttributeIntoParentElements(byte[] xmlContent, String idAttributeValue);
+
+    byte[] prepareForRenumber(byte[] xmlContent);
 
     boolean evalXPath(byte[] xmlContent, String xPath, boolean namespaceEnabled);
 
@@ -274,7 +278,7 @@ public interface XmlContentProcessor {
     boolean isAnnexComparisonRequired(byte[] contentBytes);
 
     byte[] insertAutoNumOverwriteAttributeIntoParentElements(byte[] xmlContent, String idAttributeValue);
-    
+
     byte[] getCoverPageContentForRendition(byte[] xmlContent);
 
     byte[] insertAttributeToElement(byte[] xmlContent, String elementTag, String elementId, String attrName, String attrVal);
@@ -282,7 +286,7 @@ public interface XmlContentProcessor {
     byte[] removeAttributeFromElement(byte[] xmlContent, String elementId, String attrName);
 
     List<Element> getElementsByPath(byte[] xmlContent, String xPath);
-    
+
     void updateSoftMoveLabelAttribute(Node documentNode, String attr);
 
     String getAttributeValueByXpath(byte[] xmlContent, String xPath, String attrName);
@@ -290,4 +294,16 @@ public interface XmlContentProcessor {
     String getDocReference(byte[] xmlContent);
 
     LeosCategory identifyCategory(String docName, byte[] xmlContent);
+
+    void updateIfEmptyOrigin(Node node, boolean isEmptyOrigin);
+
+    void updateElementSplit(Node paragraph);
+
+    String getOriginalMilestoneName(String docName, byte[] xmlContent);
+
+    boolean isClonedDocument(byte[] xmlContent);
+
+    String getOriginalDocRefFromClonedContent(byte[] xmlContent);
+
+    byte[] updateInitialNumberForArticles(byte[] xmlContent);
 }

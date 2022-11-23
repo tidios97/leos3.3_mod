@@ -43,6 +43,7 @@ import eu.europa.ec.leos.model.event.UpdateUserInfoEvent;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.security.LeosPermission;
 import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.services.Annotate.AnnotateService;
 import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.document.ContributionService;
 import eu.europa.ec.leos.services.document.DocumentContentService;
@@ -52,7 +53,6 @@ import eu.europa.ec.leos.services.export.ExportLW;
 import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportService;
 import eu.europa.ec.leos.services.export.ExportVersions;
-import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.processor.AttachmentProcessor;
 import eu.europa.ec.leos.services.processor.ElementProcessor;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
@@ -94,6 +94,7 @@ import eu.europa.ec.leos.ui.model.AnnotateMetadata;
 import eu.europa.ec.leos.ui.model.AnnotationStatus;
 import eu.europa.ec.leos.services.clone.InternalRefMap;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
+import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.CommonDelegate;
 import eu.europa.ec.leos.ui.view.ComparisonDelegate;
@@ -121,8 +122,10 @@ import eu.europa.ec.leos.web.event.component.WindowClosedEvent;
 import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
 import eu.europa.ec.leos.web.event.view.document.ComparisonEvent;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
+import eu.europa.ec.leos.web.event.view.document.DocumentNavigationRequest;
 import eu.europa.ec.leos.web.event.view.document.EditElementRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.FetchUserGuidanceRequest;
 import eu.europa.ec.leos.web.event.view.document.FetchUserPermissionsRequest;
@@ -152,7 +155,6 @@ import eu.europa.ec.leos.web.support.xml.DownloadStreamResource;
 import eu.europa.ec.leos.web.ui.navigation.Target;
 import eu.europa.ec.leos.web.ui.screen.document.ColumnPosition;
 import io.atlassian.fugue.Option;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -164,7 +166,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Provider;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -174,6 +175,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -205,6 +207,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
     private final ContributionService contributionService;
     private final InstanceTypeResolver instanceTypeResolver;
     private final AttachmentProcessor attachmentProcessor;
+    private final AnnotateService annotateService;
 
     private String strDocumentVersionSeriesId;
     private String documentId;
@@ -215,6 +218,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
     private boolean milestoneExplorerOpened = false;
     private MergeContributionHelper mergeContributionHelper;
     private XmlContentProcessor xmlContentProcessor;
+    private final List<String> openElementEditors;
 
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -237,6 +241,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
                         WorkspaceService workspaceService, LegService legService,
                         ProposalService proposalService,
                         SearchService searchService, CommonDelegate<Memorandum> commonDelegate,
+                        AnnotateService annotateService,
                         CloneContext cloneContext, ContributionService contributionService, InstanceTypeResolver instanceTypeResolver, AttachmentProcessor attachmentProcessor, MergeContributionHelper mergeContributionHelper, XmlContentProcessor xmlContentProcessor) {
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
         this.instanceTypeResolver = instanceTypeResolver;
@@ -266,6 +271,8 @@ class MemorandumPresenter extends AbstractLeosPresenter {
         this.billContextProvider = billContextProvider;
         this.xmlContentProcessor = xmlContentProcessor;
         this.mergeContributionHelper = mergeContributionHelper;
+        this.annotateService = annotateService;
+        this.openElementEditors = new ArrayList<>();
     }
     
     @Override
@@ -287,6 +294,13 @@ class MemorandumPresenter extends AbstractLeosPresenter {
             Memorandum memorandum = getDocument();
             populateViewData(memorandum);
             populateVersionsData(memorandum);
+            String revisionReference = getRevisionRef();
+            if (revisionReference != null) {
+                Optional<ContributionVO> contributionVO = memorandumScreen.findContributionAndShowTab(revisionReference);
+                if (contributionVO.isPresent()) {
+                    eventBus.post(new OpenRevisionDocumentEvent(contributionVO.get()));
+                }
+            }
         } catch (Exception exception) {
             LOG.error("Exception occurred in init(): ", exception);
             eventBus.post(new NotificationEvent(Type.INFO, "unknown.error.message"));
@@ -326,6 +340,10 @@ class MemorandumPresenter extends AbstractLeosPresenter {
 
     private String getDocumentRef() {
         return (String) httpSession.getAttribute(id + "." + SessionAttribute.MEMORANDUM_REF.name());
+    }
+
+    private String getRevisionRef() {
+        return (String) httpSession.getAttribute(id + "." + SessionAttribute.REVISION_VERSION.name());
     }
 
     private Memorandum getDocument() {
@@ -447,22 +465,52 @@ class MemorandumPresenter extends AbstractLeosPresenter {
     @Subscribe
     void handleCloseDocument(CloseDocumentEvent event) {
         LOG.trace("Handling close document request...");
-
         //if unsaved changes remain in the session, first ask for confirmation
-        if(isMemorandumUnsaved()){
-            eventBus.post(new ShowConfirmDialogEvent(event, null));
+        if(isMemorandumUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(new CloseDocumentConfirmationEvent(), null));
             return;
         }
-        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
-        resetCloneProposalMetadataVO();
-        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS));
+        this.closeDocument();
     }
+
+    @Subscribe
+    void handleNavigationRequest(DocumentNavigationRequest event) {
+        LOG.trace("Handling document navigation request...");
+        if (event.getNavigationEvent() != null) event.getNavigationEvent().setForwardToDocument(false);
+        if(isMemorandumUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(event.getNavigationEvent(), null));
+            return;
+        }
+        eventBus.post(event.getNavigationEvent());
+    }
+
 
     private boolean isMemorandumUnsaved(){
         return getMemorandumFromSession() != null;
     }
+
     private Memorandum getMemorandumFromSession() {
         return (Memorandum) httpSession.getAttribute("memorandum#" + getDocumentRef());
+    }
+
+    private boolean isHasOpenElementEditors() {
+        return this.openElementEditors.size() > 0;
+    }
+
+    @Subscribe
+    void handleCloseDocumentConfirmation(CloseDocumentConfirmationEvent event) {
+        this.closeDocument();
+    }
+
+    private void closeDocument() {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        resetCloneProposalMetadataVO();
+        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS, false));
+    }
+
+    @Subscribe
+    void handleShowConfirmDialog(ShowConfirmDialogEvent event) {
+        ConfirmDialogHelper.showOpenEditorDialog(this.leosUI, event, this.eventBus, this.messageHelper);
     }
 
     @Subscribe
@@ -527,6 +575,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
             String element = elementProcessor.getElement(memorandum, elementTagName, elementId);
             coEditionHelper.storeUserEditInfo(httpSession.getId(), id, user, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
             memorandumScreen.showElementEditor(elementId, elementTagName, element);
+            openElementEditors.add(elementId);
         }
         catch (Exception ex){
             LOG.error("Exception while edit element operation for memorandum", ex);
@@ -567,6 +616,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
     void closeElementEditor(CloseElementEditorEvent event){
         String elementId = event.getElementId();
         coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
+        openElementEditors.remove(elementId);
         LOG.debug("User edit information removed");
         eventBus.post(new RefreshDocumentEvent());
     }
@@ -610,6 +660,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
         Memorandum memorandum = getDocument();
         List<LeosPermission> userPermissions = securityContext.getPermissions(memorandum);
         memorandumScreen.sendUserPermissions(userPermissions);
+        annotateService.sendUserPermissions(userPermissions);
     }
 
     @Subscribe
@@ -694,6 +745,7 @@ class MemorandumPresenter extends AbstractLeosPresenter {
             final String jobFileName = "Proposal_" + proposalId + "_AKN2LW_CLEAN_" + System.currentTimeMillis() + ".zip";
             ExportOptions exportOptions = new ExportLW(ExportOptions.Output.PDF, Memorandum.class, false, true);
             exportOptions.setExportVersions(new ExportVersions(null, getDocument()));
+            exportOptions.setWithCoverPage(false);
             exportService.createDocumentPackage(jobFileName, proposalId, exportOptions, user);
             eventBus.post(new NotificationEvent("document.export.package.button.send", "document.export.message",
                     NotificationEvent.Type.TRAY, exportOptions.getExportOutputDescription(), user.getEmail()));
@@ -807,7 +859,16 @@ class MemorandumPresenter extends AbstractLeosPresenter {
         memorandumScreen.refreshVersions(getVersionVOS(), false);
         Memorandum memorandum = getDocument();
         List<TocItem>  tocItemList = getTocITems(memorandum);
-        memorandumScreen.showRevision(revisionContent, revision.getContributionStatus(), contributionVO, tocItemList);
+        // Storing the revision annotations temporary on the annotate server
+        final String temporaryAnnotationsId = this.storeRevisionAnnotationsTemporary(contributionVO.getDocumentId(), contributionVO.getLegFileName(), contributionVO.getVersionedReference());
+        memorandumScreen.showRevisionWithSidebar(revisionContent, contributionVO, tocItemList, temporaryAnnotationsId);
+    }
+
+    private String storeRevisionAnnotationsTemporary(final String documentId, final String legFileName, final String versionedReference) {
+        final LeosPackage leosPackage = this.packageService.findPackageByDocumentId(documentId);
+        //final LegDocument referenceDocument = this.legService.findLastLegByVersionedReference(leosPackage.getPath(), versionedReference);
+        final LegDocument legDocument = this.packageService.findDocumentByPackagePathAndName(leosPackage.getPath(), legFileName, LegDocument.class);
+        return this.legService.storeLegDocumentTemporary(legDocument);
     }
 
     private List<TocItem> getTocITems(Memorandum memorandum) {

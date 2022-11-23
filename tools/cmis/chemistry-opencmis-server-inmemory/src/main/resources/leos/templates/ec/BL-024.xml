@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="renditions/html/css/bill.css"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+	<bill name="DIR">
+		<meta>
+			<identification source="~_COM">
+				<FRBRWork>
+					<FRBRthis value=""/>
+					<FRBRuri value=""/>
+					<FRBRdate date="2999-01-01" name=""/>
+					<FRBRauthor href=""/>
+					<FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage xml:id="_FRBRlanguage" language="en"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+					<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRManifestation>
+            </identification>
+            <references source="~_COM">
+                <TLCLocation xml:id="_BEL_BRU" href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"/>
+                <TLCOrganization xml:id="_CONSIL" href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL" showAs="Council of the European Union"/>
+                <TLCOrganization xml:id="_EP" href="http://publications.europa.eu/resource/authority/corporate-body/EP" showAs="European Parliament"/>
+                <TLCOrganization xml:id="_COM" href="http://publications.europa.eu/resource/authority/corporate-body/COM" showAs="European Commission"/>
+                <TLCRole xml:id="_PRESID" href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"/>
+                <TLCReference xml:id="_DIR" name="docType" href="http://publications.europa.eu/resource/authority/resource-type/DIR"  showAs="Directive"/>
+                <TLCReference xml:id="_legalBasis" name="contentSubject" href="http://eurovoc.europa.eu/5456" showAs="Legal basis"/>
+                <TLCReference xml:id="_language" name="language" href="http://publications.europa.eu/resource/authority/language/ENG" showAs="en"/>
+                <TLCReference xml:id="_procedure_YYYY_NNN" name="procedureReference" href="http://eur-lex.europa.eu/procedure/EN/YYYY_NNN" showAs="YYYY/NNNN (AAA)" shortForm="YYYY/NNN/AAA"/>
+                <TLCReference xml:id="_azs3y" name="identifier" href="http://publications.europa.eu/resource/authority/document-identifier-format/COM_NUMBER" showAs="AAA(YYYY) NNN" shortForm="AAA/YYYY/NNN"/>
+                <TLCConcept xml:id="_ART_DEF" href="http://publications.europa.eu/resource/subdivision-content/ART_DEF" showAs="Article on definitions"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.1.0</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+				<leos:template>SJ-024</leos:template>
+				<leos:docTemplate>BL-024</leos:docTemplate>
+            </proprietary>
+        </meta>
+        <preface xml:id="_preface">
+            <container name="procedureIdentifier" xml:id="_preface__procedureIdentifier">
+                <p xml:id="_preface__procedureIdentifier__p">
+                    <docketNumber refersTo="~_procedure_YYYY_NNN" xml:id="_preface__procedureIdentifier__p__docketNumber"/>
+                </p>
+            </container>
+            <longTitle xml:id="_preface__longtitle">
+                <p xml:id="_preface__longtitle__p">
+                    <docStage xml:id="_preface__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType refersTo="~_DIR" xml:id="_preface__longtitle__p__doctype">DIRECTIVE OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</docType>
+                    <docPurpose xml:id="_preface__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+        </preface>
+        <preamble xml:id="_preamble">
+            <formula xml:id="_preamble__formula_1" name="actingEntity">
+                <p xml:id="_preamble__formula_1__p">THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,</p>
+            </formula>
+            <citations xml:id="_cits" leos:editable="false">
+                <citation refersTo="~_legalBasis" xml:id="_cit_1" leos:editable="true">
+                    <p xml:id="_cit_1__p">Having regard to the Treaty on the Functioning of the European Union, and in particular Article [...] thereof,</p>
+                </citation>
+                <citation xml:id="_cit_2" leos:editable="true">
+                    <p xml:id="_cit_2__p">Having regard to the proposal from the European Commission,</p>
+                </citation>
+                <citation xml:id="_cit_3" leos:editable="true">
+                    <p xml:id="_cit_3__p">After transmission of the draft legislative act to the national Parliaments,</p>
+                </citation>
+                <citation xml:id="_cit_4" leos:editable="true">
+                    <p xml:id="_cit_4__p">Having regard to the opinion of the European Economic and Social Committee<authorialNote xml:id="_authorialnote_1" marker="1" placement="bottom"><p xml:id="_authorialNote_1__p">OJ C [...], [...], p. [...]</p></authorialNote>,</p>
+                </citation>
+                <citation xml:id="_cit_5" leos:editable="true">
+                    <p xml:id="_cit_5__p">Having regard to the opinion of the Committee of the Regions<authorialNote xml:id="_authorialnote_2" marker="2" placement="bottom"><p xml:id="_authorialNote_2__p">OJ C [...], [...], p. [...]</p></authorialNote>,</p>
+                </citation>
+                <citation xml:id="_cit_6" leos:editable="true">
+                    <p xml:id="_cit_6__p">Acting in accordance with the ordinary legislative procedure,</p>
+                </citation>
+            </citations>
+            <recitals xml:id="_recs" leos:editable="false">
+                <intro xml:id="_recitalsIntro"><p xml:id="_recs_intro">Whereas:</p></intro>
+                <recital xml:id="_rec_1" leos:editable="true">
+                    <num xml:id="_rec_1__num">(1)</num>
+                    <p xml:id="_rec_1__p">Recital...</p>
+                </recital>
+                <recital xml:id="_rec_2" leos:editable="true">
+                    <num xml:id="_rec_2__num">(2)</num>
+                    <p xml:id="_rec_2__p">Recital...</p>
+                </recital>
+                <recital xml:id="_rec_3" leos:editable="true">
+                    <num xml:id="_rec_3__num">(3)</num>
+                    <p xml:id="_rec_3__p">In accordance with the Joint Political Declaration of 28 September 2011 of Member States and the Commission on explanatory documents<authorialNote xml:id="_authorialnote_3" marker="3" placement="bottom"><p>OJ C 369, 17.12.2011, p. 14.</p></authorialNote>, Member States have undertaken to accompany, in justified cases, the notification of their transposition measures with one or more documents explaining the relationship between the components of a directive and the corresponding parts of national transposition instruments. With regard to this Directive, the legislator considers the transmission of such documents to be justified.</p>
+                </recital>
+            </recitals>
+            <formula xml:id="_preamble__formula_2" name="enactingFormula">
+                <p xml:id="_preamble__formula_2__p">HAVE ADOPTED THIS DIRECTIVE:</p>
+            </formula>
+        </preamble>
+        <body xml:id="_body">
+            <article xml:id="_art_1" leos:editable="true" leos:deletable="true" leos:autonumbering="true">
+                <num xml:id="_art_1__num" leos:editable="false">Article 1</num>
+                <heading xml:id="_art_1__heading">Scope</heading>
+                <paragraph xml:id="_art_1__para_1">
+                    <num xml:id="_art_1__para_1__num">1.</num>
+                    <content xml:id="_art_1__para_1__content">
+                        <p xml:id="_art_1__para_1__content__p">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article xml:id="_art_definitions" leos:editable="true" leos:deletable="true" leos:autonumbering="true" refersTo="~_ART_DEF">
+                <num xml:id="_art_definitions__num" leos:editable="false">Article 2</num>
+                <heading xml:id="_art_definitions_heading">Definitions</heading>
+                <paragraph xml:id="_art_definitions__para_1">
+                    <content xml:id="_art_definitions__para_1__content">
+                        <p xml:id="_art_definitions__para_1__content__p">Text...</p>
+                    </content>
+                </paragraph>
+            </article>
+			<!-- Alternative : To modify by Leos dev -->
+                <!-- Model A -->
+            <article xml:id="_art_3" leos:editable="true" leos:deletable="true" leos:alternative="true" leos:optionlist="listOption1" leos:selectedoption="1" leos:autonumbering="true">
+                <num xml:id="_art_3__num" leos:editable="false">Article 3</num>
+                <heading xml:id="_art_3__heading">Transposition</heading>
+                <paragraph xml:id="_art_n1__para_1">
+                    <num xml:id="_art_n1_s1B8uy">1.</num>
+                    <subparagraph xml:id="_art_n1__para_1__subpara_1">
+                        <content xml:id="_art_n1_Qhm10R">
+                            <p xml:id="_art_n1_4CzCN4">Member States shall bring into force the laws, regulations and
+                                administrative provisions necessary to comply with this Directive by [...] <!-- ** Field Guidance** [The time limit for transposition will be as short as possible and, generally, will not exceed two years] -->at the
+                                latest. They shall forthwith communicate to the Commission the text of those provisions.
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph xml:id="_art_n1__para_1__subpara_2">
+                        <content xml:id="_art_n1_bR03pA">
+                            <p xml:id="_art_n1_HTuqhq">When Member States adopt those provisions, they shall contain a
+                                reference to this Directive or be accompanied by such a reference on the occasion of
+                                their official publication. Member States shall determine how such reference is to be
+                                made.
+                            </p>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+                <paragraph xml:id="_art_n1__para_2">
+                    <num xml:id="_art_n1_SzLpQM">2.</num>
+                    <content xml:id="_art_n1_ApnR4I">
+                        <p xml:id="_art_n1_LBE4Df">Member States shall communicate to the Commission the text of the main
+                            provisions of national law which they adopt in the field covered by this Directive.
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+            <!-- /Model A-->
+            <!-- Model B -->
+            <!-- <article xml:id="_art_n2" leos:editable="true" leos:alternative="true" leos:optionlist="listOption1">
+                <num xml:id="_art_n2_tMMjfH" leos:editable="false">Article #</num>
+                <heading xml:id="_art_n2_xM2j7b">Transposition</heading>
+                <paragraph xml:id="_art_n2__para_1">
+                    <num xml:id="_art_n2_i28JyH">1.</num>
+                    <subparagraph xml:id="_art_n2__para_1__subpara_1">
+                        <content xml:id="_art_n2_U4XrFV">
+                            <p xml:id="_art_n2_iBvBjx">Member States shall adopt and publish, by [...]  ** Field Guidance** [The time limit for transposition will be as short as possible and, generally, will not exceed two years] -->
+                            <!--   at the latest, the laws, regulations and administrative provisions necessary to comply with this Directive.
+                                They shall forthwith communicate to the Commission the text of those provisions.
+                            </p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph xml:id="_art_n2__para_1__subpara_2">
+                        <content xml:id="_art_n2_dvPwbu">
+                            <p xml:id="_art_n2_tAP1Yk">They shall apply those provisions from [...].</p>
+                        </content>
+                    </subparagraph>
+                    <subparagraph xml:id="_art_n2__para_1__subpara_3">
+                        <content xml:id="_art_n2_7WZHhd">
+                            <p xml:id="_art_n2_WSB7fW">When Member States adopt those provisions, they shall contain a
+                                reference to this Directive or be accompanied by such a reference on the occasion of
+                                their official publication. Member States shall determine how such reference is to be
+                                made.
+                            </p>
+                        </content>
+                    </subparagraph>
+                </paragraph>
+                <paragraph xml:id="_art_n2__para_2">
+                    <num xml:id="_art_n2_qw6cvY">2.</num>
+                    <content xml:id="_art_n2_bTghug">
+                        <p xml:id="_art_n2_msixSB">Member States shall communicate to the Commission the text of the main
+                            provisions of national law which they adopt in the field covered by this Directive.
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+			-->
+            <!-- /Model B -->
+			<!-- ** Model B guidance ** (to be used where it is essential that the national provisions be applied from the same date in all Member States) -->
+            <article xml:id="_art_n3" leos:editable="true" leos:deletable="false" leos:autonumbering="true">
+                <num xml:id="_art_n3_SY9NX8" leos:editable="false">Article 4</num>
+                <heading xml:id="_art_n3_ZoKQ0d">Entry into force</heading>
+                <paragraph xml:id="_art_n3__para_1">
+	                <content xml:id="_art_n3_KEx5uM">
+	                    <p xml:id="_art_n3_EX7xHn">This Directive shall enter into force on the [...] day following that of its publication in the<i xml:id="_art_n3_9vIgN0">Official Journal of the European Union</i>.</p>
+	                </content>
+                </paragraph>
+            </article>      
+            
+            <article xml:id="_art_n4" leos:editable="true" leos:deletable="false" leos:alternative="true" leos:optionlist="listOption2" leos:selectedoption="1" leos:autonumbering="true">
+                <num xml:id="_art_n4_LcUtyg" leos:editable="false">Article 5</num>
+                <heading xml:id="_art_n4_Q27Lyk">Addressees</heading>
+                <paragraph xml:id="_art_n4__para_1">
+					<content xml:id="_art_n4_QXd2sT">
+	                    <p xml:id="_art_n4_9iYqIL">This Directive is addressed to the Member States.</p>
+	                </content>
+                </paragraph>
+                <!-- <paragraph xml:id="_art_n4__para_1">
+	                <content xml:id="_art_n5_kfM6hD">
+	                    <p xml:id="_art_n5_yZp7Mq">This Directive is addressed to the Member States in accordance with the Treaties.</p>
+	                </content>
+                </paragraph> -->
+            </article>
+           
+        </body>
+        <conclusions xml:id="_conclusions">
+            <p xml:id="_conclusions__p_1">Done at <location refersTo="~_BEL_BRU" xml:id="_conclusions__p__location_1">Brussels</location>, <date date="9999-01-01" xml:id="_akn_aviQud"/></p>
+            <block name="signatory" xml:id="_conclusions__block_1">
+                <signature xml:id="_conclusions__block_1__signature_1">
+                    <organization refersTo="~_EP" xml:id="_conclusions__block_1__signature_1__organization">For the European Parliament</organization>
+                    <role refersTo="~_PRESID" xml:id="_conclusions__block_1__signature_1__role">The President</role>
+                    <person refersTo="" xml:id="_conclusions__block_1__signature_1__person">[...]</person>
+                </signature>
+                <signature xml:id="_conclusions__block_1__signature_2">
+                    <organization refersTo="~_CONSIL" xml:id="_conclusions__block_1__signature_2__organization">For the Council</organization>
+                    <role refersTo="~_PRESID" xml:id="_conclusions__block_1__signature_2__role">The President</role>
+                    <person refersTo="" xml:id="_conclusions__block_1__signature_2__person">[...]</person>
+                </signature>
+            </block>
+        </conclusions>
+    </bill>
+</akomaNtoso>

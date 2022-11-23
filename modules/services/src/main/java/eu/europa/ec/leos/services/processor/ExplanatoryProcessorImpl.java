@@ -1,31 +1,8 @@
 package eu.europa.ec.leos.services.processor;
 
-import eu.europa.ec.leos.domain.cmis.Content;
-import eu.europa.ec.leos.domain.cmis.document.Annex;
-import eu.europa.ec.leos.domain.cmis.document.Explanatory;
-import eu.europa.ec.leos.domain.common.TocMode;
-import eu.europa.ec.leos.i18n.MessageHelper;
-import eu.europa.ec.leos.model.annex.LevelItemVO;
-import eu.europa.ec.leos.model.xml.Element;
-import eu.europa.ec.leos.services.numbering.NumberService;
-import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
-import eu.europa.ec.leos.services.support.XmlHelper;
-import eu.europa.ec.leos.services.processor.content.TableOfContentProcessor;
-import eu.europa.ec.leos.services.toc.StructureContext;
-import eu.europa.ec.leos.vo.toc.NumberingConfig;
-import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
-import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
-import eu.europa.ec.leos.vo.toc.TocItem;
-import io.atlassian.fugue.Pair;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.inject.Provider;
-import java.util.Arrays;
-import java.util.List;
-
 import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
+import static eu.europa.ec.leos.services.support.XmlHelper.BLOCK;
+import static eu.europa.ec.leos.services.support.XmlHelper.CROSSHEADING;
 import static eu.europa.ec.leos.services.support.XmlHelper.DIVISION;
 import static eu.europa.ec.leos.services.support.XmlHelper.DOC;
 import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
@@ -37,9 +14,35 @@ import static eu.europa.ec.leos.services.support.XmlHelper.SUBPARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.SUBPOINT;
 import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.getNumberingConfigByTagName;
 
+import java.util.Arrays;
+import java.util.List;
+
+import javax.inject.Provider;
+
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import eu.europa.ec.leos.domain.cmis.Content;
+import eu.europa.ec.leos.domain.cmis.document.Explanatory;
+import eu.europa.ec.leos.domain.common.TocMode;
+import eu.europa.ec.leos.i18n.MessageHelper;
+import eu.europa.ec.leos.model.annex.LevelItemVO;
+import eu.europa.ec.leos.model.xml.Element;
+import eu.europa.ec.leos.services.numbering.NumberService;
+import eu.europa.ec.leos.services.processor.content.TableOfContentProcessor;
+import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
+import eu.europa.ec.leos.services.support.XmlHelper;
+import eu.europa.ec.leos.services.toc.StructureContext;
+import eu.europa.ec.leos.vo.toc.NumberingConfig;
+import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
+import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
+import eu.europa.ec.leos.vo.toc.TocItem;
+import io.atlassian.fugue.Pair;
+
 @Service
 public class ExplanatoryProcessorImpl implements ExplanatoryProcessor {
-    
+
     private XmlContentProcessor xmlContentProcessor;
     protected NumberService numberService;
     private final ElementProcessor<Explanatory> elementProcessor;
@@ -68,11 +71,11 @@ public class ExplanatoryProcessorImpl implements ExplanatoryProcessor {
     public byte[] insertNewElement(Explanatory document, String elementId, String tagName, boolean before) {
         Validate.notNull(document, "Document is required.");
         Validate.notNull(elementId, "Element id is required.");
-        
+
         final String template;
         byte[] updatedContent;
         List<TocItem> items = structureContextProvider.get().getTocItems();
-        
+
         switch (tagName) {
             case LEVEL:
                 template = XmlHelper.getTemplate(StructureConfigUtils.getTocItemByNameOrThrow(items, tagName), StructureConfigUtils.HASH_NUM_VALUE, messageHelper);
@@ -84,26 +87,32 @@ public class ExplanatoryProcessorImpl implements ExplanatoryProcessor {
                 template = XmlHelper.getTemplate(StructureConfigUtils.getTocItemByNameOrThrow(items, tagName), messageHelper);
                 updatedContent = xmlContentProcessor.insertElementByTagNameAndId(getContent(document), template, tagName, elementId, before);
                 break;
+            case BLOCK:
+            case CROSSHEADING:
+                template = XmlHelper.getTemplate(StructureConfigUtils.getTocItemByNameOrThrow(items, tagName), messageHelper);
+                updatedContent = xmlContentProcessor.insertElementByTagNameAndId(getContent(document), template, tagName, elementId, before);
+                updatedContent = xmlContentProcessor.insertCrossheadingAttributes(updatedContent, tagName, elementId, before);
+                break;
             default:
                 throw new UnsupportedOperationException("Unsupported operation for tag: " + tagName);
         }
-        
+
         updatedContent = xmlContentProcessor.doXMLPostProcessing(updatedContent);
         return updatedContent;
     }
-    
+
     @Override
     public byte[] deleteElement(Explanatory document, String elementId, String tagName) throws Exception {
         Validate.notNull(document, "Document is required.");
         Validate.notNull(elementId, "Element id is required.");
-        
+
         byte[] xmlContent = elementProcessor.deleteElement(document, elementId, tagName);
         return updateExplanatoryContent(elementId, tagName, xmlContent);
     }
 
     @Override
     public Pair<byte[], Element> getSplittedElement(byte[] docContent, String elementContent, String elementName, String elementId) throws Exception {
-    	Validate.notNull(docContent, "Document is required.");
+        Validate.notNull(docContent, "Document is required.");
         Validate.notNull(elementContent, "ElementContent is required.");
         Validate.notNull(elementName, "ElementName is required.");
         Validate.notNull(elementId, "ElementId is required.");

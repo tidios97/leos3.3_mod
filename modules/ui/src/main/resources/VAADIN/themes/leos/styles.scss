@@ -29,6 +29,7 @@
 @import "scss/component/annexView";
 @import "scss/component/coverpageView";
 @import "scss/component/explanatoryView";
+@import "scss/component/financialStatementView";
 @import "scss/component/timeLine";
 @import "scss/component/import";
 @import "scss/component/wizard";
@@ -57,6 +58,7 @@
     @include annexView;
     @include coverpageView;
     @include explanatoryView;
+    @include financialStatementView;
     @include timeLine;
     @include import;
     @include wizard;

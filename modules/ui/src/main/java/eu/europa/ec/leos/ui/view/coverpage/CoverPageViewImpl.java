@@ -33,7 +33,7 @@ class CoverPageViewImpl extends AbstractLeosView<CoverPageScreenImpl> implements
 
     @Override
     protected String[] getParameterKeys() {
-        String[] PARAM_KEYS = {SessionAttribute.PROPOSAL_REF.name()};
+        String[] PARAM_KEYS = {SessionAttribute.PROPOSAL_REF.name(), SessionAttribute.REVISION_VERSION.name()};
         return PARAM_KEYS;
     }
 }

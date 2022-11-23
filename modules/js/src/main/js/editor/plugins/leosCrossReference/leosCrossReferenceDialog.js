@@ -490,7 +490,7 @@ define(function leosCrossReferenceDialog(require) {
                 var charPositionBefore = textInEditor.charAt(indexPositionBefore);
                 while ((charPositionBefore.charCodeAt(0) === CHAR_SPACE || charPositionBefore.charCodeAt(0) === CHAR_NBSP) && indexPositionBefore > 0) {
                     indexPositionBefore--;
-                    charPositionBefore = charPositionBefore.charAt(indexPositionBefore);
+                    charPositionBefore = textInEditor.charAt(indexPositionBefore);
                 }
                 if (charPositionBefore.charCodeAt(0) === CHAR_SPACE || charPositionBefore.charCodeAt(0) === CHAR_NBSP || charPositionBefore === '.') {
                     capital = true;

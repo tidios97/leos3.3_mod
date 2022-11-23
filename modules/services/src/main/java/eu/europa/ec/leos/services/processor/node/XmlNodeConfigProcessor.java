@@ -17,6 +17,7 @@ import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.metadata.AnnexMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.BillMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.ExplanatoryMetadata;
+import eu.europa.ec.leos.domain.cmis.metadata.FinancialStatementMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.MemorandumMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.ProposalMetadata;
 import org.apache.commons.lang3.Validate;
@@ -24,6 +25,7 @@ import org.apache.commons.lang3.Validate;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface XmlNodeConfigProcessor {
@@ -60,12 +62,16 @@ public interface XmlNodeConfigProcessor {
     String ANNEX_INDEX_META = "annexIndexMeta";
     String ANNEX_NUMBER_META = "annexNumberMeta";
     String ANNEX_TITLE_META = "annexTitleMeta";
+    String ANNEX_CLONED_REF_META = "annexClonedRef";
     String ANNEX_NUMBER_COVER = "annexNumberCover";
     String ANNEX_NUMBER_PREFACE = "annexNumberPreface";
     String ANNEX_TITLE_PREFACE = "annexTitlePreface";
 
     String EXPLANATORY_TITLE_PREFACE = "explanatoryTitlePreface";
+    String FIN_STMT_TITLE_PREFACE = "financialStatementTitlePreface";
     String DOC_TITLE_META = "docTitleMeta";
+
+    List<String> docEEATagList = Arrays.asList(DOC_EEA_RELEVANCE_COVER, DOC_EEA_RELEVANCE_PREFACE, DOC_EEA_RELEVANCE_META);
 
     Map<String, XmlNodeConfig> getConfig(LeosCategory proposal);
     Map<String, XmlNodeConfig> getOldPrefaceOfAnnexConfig();
@@ -91,6 +97,9 @@ public interface XmlNodeConfigProcessor {
             case COUNCIL_EXPLANATORY:
                 showAs = "Council Explanatory";
                 break;
+            case FINANCIAL_STATEMENT:
+                showAs = "Financial Statement";
+                break;
             default:
                 throw new IllegalArgumentException("Invalid configuration");
         }
@@ -103,29 +112,8 @@ public interface XmlNodeConfigProcessor {
     static Map<String, String> createValueMap(AnnexMetadata metadata) {
         Map<String, String> keyValueMap = new LinkedHashMap<>();
 
-        keyValueMap.put(DOC_STAGE_META, metadata.getStage());
-        keyValueMap.put(DOC_TYPE_META, metadata.getType());
-        keyValueMap.put(DOC_PURPOSE_META, metadata.getPurpose());
-        keyValueMap.put(DOC_LANGUAGE, metadata.getLanguage().toLowerCase());
-        keyValueMap.put(DOC_TEMPLATE, metadata.getTemplate());
-        keyValueMap.put(DOC_SPECIFIC_TEMPLATE, metadata.getDocTemplate());
-        keyValueMap.put(DOC_REF_META, metadata.getRef());
-        keyValueMap.put(DOC_OBJECT_ID, metadata.getObjectId());
-        keyValueMap.put(DOC_EEA_RELEVANCE_META, String.valueOf(metadata.getEeaRelevance()));
-
-        keyValueMap.put(ANNEX_INDEX_META, Integer.toString(metadata.getIndex()));
-        keyValueMap.put(ANNEX_NUMBER_META, metadata.getNumber());
-        keyValueMap.put(ANNEX_TITLE_META, metadata.getTitle());
-
-        keyValueMap.put(DOC_STAGE_COVER, metadata.getStage());
-        keyValueMap.put(DOC_TYPE_COVER, metadata.getType());
-        keyValueMap.put(DOC_PURPOSE_COVER, metadata.getPurpose());
-        keyValueMap.put(DOC_LANGUAGE_COVER, metadata.getLanguage().toUpperCase());
-        keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
-
-        keyValueMap.put(ANNEX_NUMBER_COVER, metadata.getNumber());
-        keyValueMap.put(ANNEX_NUMBER_PREFACE, metadata.getNumber());
-        keyValueMap.put(ANNEX_TITLE_PREFACE, metadata.getTitle());
+        keyValueMap.putAll(createValueMapWithoutPreface(metadata));
+        keyValueMap.putAll(createPrefaceValueMap(metadata));
 
         return keyValueMap;
     }
@@ -143,6 +131,32 @@ public interface XmlNodeConfigProcessor {
         keyValueMap.put(DOC_EEA_RELEVANCE_META, String.valueOf(metadata.getEeaRelevance()));
 
         keyValueMap.put(EXPLANATORY_TITLE_PREFACE, metadata.getTitle());
+        keyValueMap.put(DOC_TITLE_META, metadata.getTitle());
+
+        keyValueMap.put(DOC_OBJECT_ID, metadata.getObjectId());
+
+        keyValueMap.put(DOC_STAGE_COVER, metadata.getStage());
+        keyValueMap.put(DOC_TYPE_COVER, metadata.getType());
+        keyValueMap.put(DOC_PURPOSE_COVER, metadata.getPurpose());
+        keyValueMap.put(DOC_LANGUAGE_COVER, metadata.getLanguage().toUpperCase());
+        keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
+
+        return keyValueMap;
+    }
+
+    static Map<String, String> createValueMap(FinancialStatementMetadata metadata) {
+        Map<String, String> keyValueMap = new HashMap<>();
+
+        keyValueMap.put(DOC_STAGE_META, metadata.getStage());
+        keyValueMap.put(DOC_TYPE_META, metadata.getType());
+        keyValueMap.put(DOC_PURPOSE_META, metadata.getPurpose());
+        keyValueMap.put(DOC_LANGUAGE, metadata.getLanguage().toLowerCase());
+        keyValueMap.put(DOC_TEMPLATE, metadata.getTemplate());
+        keyValueMap.put(DOC_SPECIFIC_TEMPLATE, metadata.getDocTemplate());
+        keyValueMap.put(DOC_REF_META, metadata.getRef());
+        keyValueMap.put(DOC_EEA_RELEVANCE_META, String.valueOf(metadata.getEeaRelevance()));
+
+        keyValueMap.put(FIN_STMT_TITLE_PREFACE, metadata.getTitle());
         keyValueMap.put(DOC_TITLE_META, metadata.getTitle());
 
         keyValueMap.put(DOC_OBJECT_ID, metadata.getObjectId());
@@ -178,7 +192,7 @@ public interface XmlNodeConfigProcessor {
         return keyValueMap;
     }
 
-    static Map<String, String> createValueMap(BillMetadata metadata) {
+    static Map<String, String> createValueMapWithoutCoverpageEEARelevance(ProposalMetadata metadata) {
         Map<String, String> keyValueMap = new HashMap<>();
 
         keyValueMap.put(DOC_STAGE_META, metadata.getStage());
@@ -194,12 +208,41 @@ public interface XmlNodeConfigProcessor {
         keyValueMap.put(DOC_TYPE_COVER, metadata.getType());
         keyValueMap.put(DOC_PURPOSE_COVER, metadata.getPurpose());
         keyValueMap.put(DOC_LANGUAGE_COVER, metadata.getLanguage().toUpperCase());
+        keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
+
+        return keyValueMap;
+    }
+
+    static Map<String, String> createCoverpageEEARelevanceValueMap(ProposalMetadata metadata) {
+        Map<String, String> keyValueMap = new HashMap<>();
+
+        keyValueMap.put(DOC_EEA_RELEVANCE_COVER, String.valueOf(metadata.getEeaRelevance()));
+
+        return keyValueMap;
+    }
+
+    static Map<String, String> createValueMap(BillMetadata metadata) {
+        Map<String, String> keyValueMap = new HashMap<>();
 
         keyValueMap.put(DOC_STAGE_PREFACE, metadata.getStage());
         keyValueMap.put(DOC_TYPE_PREFACE, metadata.getType());
         keyValueMap.put(DOC_PURPOSE_PREFACE, metadata.getPurpose());
-        keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
         keyValueMap.put(DOC_EEA_RELEVANCE_PREFACE, String.valueOf(metadata.getEeaRelevance()));
+        keyValueMap.put(DOC_STAGE_META, metadata.getStage());
+        keyValueMap.put(DOC_TYPE_META, metadata.getType());
+        keyValueMap.put(DOC_PURPOSE_META, metadata.getPurpose());
+        keyValueMap.put(DOC_EEA_RELEVANCE_META, String.valueOf(metadata.getEeaRelevance()));
+        keyValueMap.put(DOC_LANGUAGE, metadata.getLanguage().toLowerCase());
+        keyValueMap.put(DOC_TEMPLATE, metadata.getTemplate());
+        keyValueMap.put(DOC_SPECIFIC_TEMPLATE, metadata.getDocTemplate());
+        keyValueMap.put(DOC_REF_META, metadata.getRef());
+        keyValueMap.put(DOC_OBJECT_ID, metadata.getObjectId());
+        keyValueMap.put(DOC_STAGE_COVER, metadata.getStage());
+        keyValueMap.put(DOC_TYPE_COVER, metadata.getType());
+        keyValueMap.put(DOC_PURPOSE_COVER, metadata.getPurpose());
+        keyValueMap.put(DOC_LANGUAGE_COVER, metadata.getLanguage().toUpperCase());
+
+        keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
 
         return keyValueMap;
     }
@@ -224,5 +267,47 @@ public interface XmlNodeConfigProcessor {
         keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
 
         return keyValueMap;
+    }
+
+    static Map<String, String> createPrefaceValueMap(AnnexMetadata metadata) {
+        Map<String, String> keyValueMap = new LinkedHashMap<>();
+
+        keyValueMap.put(ANNEX_NUMBER_PREFACE, metadata.getNumber());
+        keyValueMap.put(ANNEX_TITLE_PREFACE, metadata.getTitle());
+
+        return keyValueMap;
+    }
+
+    static Map<String, String> createValueMapWithoutPreface(AnnexMetadata metadata) {
+        Map<String, String> keyValueMap = new LinkedHashMap<>();
+
+        keyValueMap.put(DOC_STAGE_META, metadata.getStage());
+        keyValueMap.put(DOC_TYPE_META, metadata.getType());
+        keyValueMap.put(DOC_PURPOSE_META, metadata.getPurpose());
+        keyValueMap.put(DOC_LANGUAGE, metadata.getLanguage().toLowerCase());
+        keyValueMap.put(DOC_TEMPLATE, metadata.getTemplate());
+        keyValueMap.put(DOC_SPECIFIC_TEMPLATE, metadata.getDocTemplate());
+        keyValueMap.put(DOC_REF_META, metadata.getRef());
+        keyValueMap.put(DOC_OBJECT_ID, metadata.getObjectId());
+        keyValueMap.put(DOC_EEA_RELEVANCE_META, String.valueOf(metadata.getEeaRelevance()));
+
+        keyValueMap.put(ANNEX_INDEX_META, Integer.toString(metadata.getIndex()));
+        keyValueMap.put(ANNEX_NUMBER_META, metadata.getNumber());
+        keyValueMap.put(ANNEX_TITLE_META, metadata.getTitle());
+        keyValueMap.put(ANNEX_CLONED_REF_META, metadata.getClonedRef());
+
+        keyValueMap.put(DOC_STAGE_COVER, metadata.getStage());
+        keyValueMap.put(DOC_TYPE_COVER, metadata.getType());
+        keyValueMap.put(DOC_PURPOSE_COVER, metadata.getPurpose());
+        keyValueMap.put(DOC_LANGUAGE_COVER, metadata.getLanguage().toUpperCase());
+        keyValueMap.put(DOC_VERSION, metadata.getDocVersion());
+
+        keyValueMap.put(ANNEX_NUMBER_COVER, metadata.getNumber());
+
+        return keyValueMap;
+    }
+
+    static List<String> getDocEEATagList() {
+        return docEEATagList;
     }
 }

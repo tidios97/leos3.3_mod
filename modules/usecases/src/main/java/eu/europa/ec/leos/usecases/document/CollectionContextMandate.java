@@ -16,6 +16,7 @@ package eu.europa.ec.leos.usecases.document;
 import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
 import eu.europa.ec.leos.domain.cmis.document.Explanatory;
+import eu.europa.ec.leos.domain.cmis.document.FinancialStatement;
 import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.cmis.metadata.ProposalMetadata;
 import eu.europa.ec.leos.domain.common.InstanceType;
@@ -37,8 +38,7 @@ import javax.inject.Provider;
 import java.util.List;
 import java.util.Map;
 
-import static eu.europa.ec.leos.domain.cmis.LeosCategory.COUNCIL_EXPLANATORY;
-import static eu.europa.ec.leos.domain.cmis.LeosCategory.PROPOSAL;
+import static eu.europa.ec.leos.domain.cmis.LeosCategory.*;
 
 @Component
 @Scope("prototype")
@@ -78,7 +78,7 @@ public class CollectionContextMandate extends CollectionContext {
     }
 
     @Override
-    public void executeCreateExplanatory(){
+    public void executeCreateExplanatory() {
         LeosPackage leosPackage = packageService.findPackageByDocumentId(proposal.getId());
         ExplanatoryContext explanatoryContext = explanatoryContextProvider.get();
         explanatoryContext.usePackage(leosPackage);
@@ -162,5 +162,9 @@ public class CollectionContextMandate extends CollectionContext {
             explanatoryContext.executeUpdateExplanatory();
         });
 
+    }
+
+    @Override
+    public void executeCreateFinancialStatement() {
     }
 }

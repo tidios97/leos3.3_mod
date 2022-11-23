@@ -413,6 +413,8 @@ define(function actionManagerExtensionModule(require) {
             case 'subparagraph':
             case 'point':
             case 'indent':
+            case 'block':
+            case 'crossHeading':
             case 'alinea': {
                 insertBeforeAndAfter = deletable;
                 break;
@@ -437,6 +439,8 @@ define(function actionManagerExtensionModule(require) {
         let type = _getType($element);
         type = type === 'level' ? 'point' : type;
         type = type === 'alinea' ? 'sub-point' : type;
+        type = type === 'crossHeading' ? 'crossheading' : type;
+        type = type === 'block' ? 'crossheading' : type;
         var insertBeforeAndAfter = _insertBeforeAndAfterIcon($element, deletable, connector);
         editable = editable || (editable && $element.attr('leos\:optionlist'));
         deletable = _isDeletable($element, deletable, connector);

@@ -88,14 +88,14 @@ public class SaveTocBillSoftDeleteMandateTest_IT extends SaveTocBillMandateTest_
     }
 
     @Test
-    public void test_delete_Paragraph_splitted() {
+    public void test_delete_Subparagraph_splitted() {
         // Given
         final byte[] xmlInput = TestUtils.getFileContent(PREFIX_SAVE_TOC_BILL_CN, "test_delete_Paragraph_splitted.xml");
         final byte[] xmlExpected = TestUtils.getFileContent(PREFIX_SAVE_TOC_BILL_CN, "test_delete_Paragraph_splitted_expected.xml");
         List<TableOfContentItemVO> toc = buildTableOfContentBill(xmlInput);
 
-        TableOfContentItemVO body = getElementById(toc, "body");
-        softDeleteElement(getElementById(toc, "__akn_article_Vh2NWC"));
+        TableOfContentItemVO body = getElementById(toc, "akn_art_ubc2NQ_Zur2uo");
+        softDeleteElement(body);
         byte[] xmlResult = processSaveTocBill(xmlInput, toc);
 
         // Then

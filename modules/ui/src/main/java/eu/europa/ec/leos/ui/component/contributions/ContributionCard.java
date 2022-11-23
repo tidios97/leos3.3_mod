@@ -107,7 +107,6 @@ public class ContributionCard<D extends XmlDocument> extends VerticalLayout {
 
     private VersionsActionsMenuBar createActionsMenuBar(ContributionVO contributionVO) {
         VersionsActionsMenuBar actionsMenuBar = new VersionsActionsMenuBar(eventBus, messageHelper);
-
         if(contributionVO.getContributionStatus().equals(ContributionVO.ContributionStatus.CONTRIBUTION_DONE)) {
             actionsMenuBar.createMenuItem(messageHelper.getMessage("document.contribution.actions.processed"),
                     selectedItem -> {
@@ -162,6 +161,8 @@ public class ContributionCard<D extends XmlDocument> extends VerticalLayout {
         setContributionDone(contributionVO);
         eventBus.post(new DeclineRevisionDocumentEvent(contributionVO, selectedItem));
         eventBus.post(new DocumentUpdatedEvent());
+        contributionCardAction.removeAllComponents();
+        initActions();
     }
 
     private void setContributionDone(ContributionVO contributionVO) {
@@ -236,7 +237,6 @@ public class ContributionCard<D extends XmlDocument> extends VerticalLayout {
         } else {
             labelStr = VersionsUtil.buildLabel(contributionVO.getCheckinCommentVO(), messageHelper);
         }
-
         Label label = new Label();
         label.setValue(contributionVO.getVersionNumber() + " " + labelStr);
         label.setDescription(getContributionDescription(contributionVO));

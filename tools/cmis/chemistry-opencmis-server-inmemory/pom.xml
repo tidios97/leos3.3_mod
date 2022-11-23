@@ -195,6 +195,32 @@
                 <repo.build.instance>os</repo.build.instance>
             </properties>
         </profile>
+        <!-- EC Instance -->
+        <profile>
+            <id>ec</id>
+            <activation>
+                <property>
+                    <name>instance</name>
+                    <value>ec</value>
+                </property>
+            </activation>
+            <properties>
+                <repo.build.instance>ec</repo.build.instance>
+            </properties>
+        </profile>
+        <!-- CN Instance -->
+        <profile>
+            <id>cn</id>
+            <activation>
+                <property>
+                    <name>instance</name>
+                    <value>cn</value>
+                </property>
+            </activation>
+            <properties>
+                <repo.build.instance>cn</repo.build.instance>
+            </properties>
+        </profile>
 
     </profiles>
 

@@ -12,7 +12,7 @@ import static eu.europa.ec.leos.services.util.TestUtils.squeezeXmlAndRemoveAllNS
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class NumberServiceExplanatoryCouncilTest extends NumberServiceProposalTest {
+public class NumberServiceExplanatoryCouncilTest extends NumberServiceMandateTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(NumberServiceExplanatoryCouncilTest.class);
     protected final static String FILE_PREFIX = "/numbering/explanatory/";
@@ -51,6 +51,14 @@ public class NumberServiceExplanatoryCouncilTest extends NumberServiceProposalTe
     }
 
     @Test
+    public void test_renumbering_divisions_withCustomNumber() {
+        final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_division_custom.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_division_custom_expected.xml");
+        byte[] result = numberService.renumberDivisions(xmlInput);
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+
+    @Test
     public void test_division_withChapterLevelAndParagraphs() {
         final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_division_withChapterLevelAndParagraphs.xml");
         final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_division_withChapterLevelAndParagraphs_expected.xml");
@@ -74,6 +82,14 @@ public class NumberServiceExplanatoryCouncilTest extends NumberServiceProposalTe
         final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_level_indents_added_in_list.xml");
         final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_level_indents_added_in_list_expected.xml");
         byte[] result = numberService.renumberLevel(xmlInput);
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+    
+    @Test
+    public void test_division_when_num_overwritten() {
+    	final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_division_when_num_overwritten.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_division_when_num_overwritten_expected.xml");
+        byte[] result = numberService.renumberDivisions(xmlInput);
         assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
     }
 }

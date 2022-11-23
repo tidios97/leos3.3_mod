@@ -13,48 +13,23 @@
  */
 package eu.europa.ec.leos.services.processor.content;
 
-import eu.europa.ec.leos.domain.common.InstanceType;
-import eu.europa.ec.leos.instance.Instance;
-import eu.europa.ec.leos.model.action.SoftActionType;
-import eu.europa.ec.leos.model.user.User;
-import eu.europa.ec.leos.model.xml.Element;
-import eu.europa.ec.leos.services.processor.content.indent.IndentConversionHelper;
-import eu.europa.ec.leos.services.support.IdGenerator;
-import eu.europa.ec.leos.services.support.XmlHelper;
-import eu.europa.ec.leos.services.processor.content.indent.IndentHelper;
-import eu.europa.ec.leos.services.support.XercesUtils;
-import eu.europa.ec.leos.vo.toc.AknTag;
-import eu.europa.ec.leos.vo.toc.NumberingConfig;
-import eu.europa.ec.leos.vo.toc.NumberingType;
-import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
-import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
-import eu.europa.ec.leos.vo.toc.TocItem;
-import eu.europa.ec.leos.vo.toc.indent.IndentedItemType;
-import io.atlassian.fugue.Pair;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.regex.Pattern;
-
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.CONTENT_SOFT_REMOVED_CLASS;
 import static eu.europa.ec.leos.services.processor.content.TableOfContentHelper.getItemFromTocById;
 import static eu.europa.ec.leos.services.processor.content.TableOfContentHelper.hasTocItemSoftAction;
+import static eu.europa.ec.leos.services.processor.content.TableOfContentHelper.hasTocItemSoftOrigin;
+import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.createNumContent;
+import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.getTagValueFromTocItemVo;
+import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.updateSoftInfo;
+import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.updateTocItemTypeAttributes;
+import static eu.europa.ec.leos.services.processor.content.indent.IndentConversionHelper.PARAGRAPH_LEVEL_ITEMS;
+import static eu.europa.ec.leos.services.support.LeosXercesUtils.formatHeadingNodeForDivision;
+import static eu.europa.ec.leos.services.support.XercesUtils.addAttribute;
+import static eu.europa.ec.leos.services.support.XercesUtils.createElement;
+import static eu.europa.ec.leos.services.support.XercesUtils.createNodeFromXmlFragment;
+import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocument;
 import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
+import static eu.europa.ec.leos.services.support.XercesUtils.getId;
+import static eu.europa.ec.leos.services.support.XercesUtils.updateXMLIDAttributeFullStructureNode;
 import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
 import static eu.europa.ec.leos.services.support.XmlHelper.AUTHORIAL_NOTE;
 import static eu.europa.ec.leos.services.support.XmlHelper.BACK_TO_NUM_FROM_SOFT_DELETED;
@@ -110,6 +85,8 @@ import static eu.europa.ec.leos.services.support.XmlHelper.RECITAL;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_DELETE_PLACEHOLDER_ID_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_MOVE_PLACEHOLDER_ID_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX;
+import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_SPLITTED_PLACEHOLDER_ID_PREFIX;
+import static eu.europa.ec.leos.services.support.XmlHelper.P;
 import static eu.europa.ec.leos.services.support.XmlHelper.SUBPARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.SUBPOINT;
 import static eu.europa.ec.leos.services.support.XmlHelper.TOGGLED_TO_NUM;
@@ -119,16 +96,48 @@ import static eu.europa.ec.leos.services.support.XmlHelper.getAttributeValueAsBo
 import static eu.europa.ec.leos.services.support.XmlHelper.getAttributeValueAsInteger;
 import static eu.europa.ec.leos.services.support.XmlHelper.removeAttribute;
 import static eu.europa.ec.leos.services.support.XmlHelper.updateSoftTransFromAttribute;
-import static eu.europa.ec.leos.services.processor.content.indent.IndentConversionHelper.PARAGRAPH_LEVEL_ITEMS;
-import static eu.europa.ec.leos.services.support.XercesUtils.addAttribute;
-import static eu.europa.ec.leos.services.support.XercesUtils.createElement;
-import static eu.europa.ec.leos.services.support.XercesUtils.createNodeFromXmlFragment;
-import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocument;
-import static eu.europa.ec.leos.services.support.XercesUtils.getId;
-import static eu.europa.ec.leos.services.support.XercesUtils.updateXMLIDAttributeFullStructureNode;
-import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.createNumContent;
-import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.getTagValueFromTocItemVo;
-import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorHelper.updateSoftInfo;
+import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.HASH_NUM_VALUE;
+import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+import eu.europa.ec.leos.vo.toc.TocItemTypeName;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import eu.europa.ec.leos.domain.common.InstanceType;
+import eu.europa.ec.leos.instance.Instance;
+import eu.europa.ec.leos.model.action.SoftActionType;
+import eu.europa.ec.leos.model.user.User;
+import eu.europa.ec.leos.model.xml.Element;
+import eu.europa.ec.leos.services.processor.content.indent.IndentConversionHelper;
+import eu.europa.ec.leos.services.processor.content.indent.IndentHelper;
+import eu.europa.ec.leos.services.support.IdGenerator;
+import eu.europa.ec.leos.services.support.XercesUtils;
+import eu.europa.ec.leos.services.support.XmlHelper;
+import eu.europa.ec.leos.vo.toc.AknTag;
+import eu.europa.ec.leos.vo.toc.NumberingConfig;
+import eu.europa.ec.leos.vo.toc.NumberingType;
+import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
+import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
+import eu.europa.ec.leos.vo.toc.TocItem;
+import eu.europa.ec.leos.vo.toc.indent.IndentedItemType;
+import io.atlassian.fugue.Pair;
 
 @Service
 @Instance(instances = {InstanceType.COUNCIL})
@@ -145,13 +154,19 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
     protected Node buildTocItemContent(List<TocItem> tocItems, List<NumberingConfig> numberingConfigs, Map<TocItem, List<TocItem>> tocRules,
                                        Document document, Node parentNode, TableOfContentItemVO tocVo, User user) {
         Node node = getNode(document, tocVo);
+        TocItemTypeName tocItemType = StructureConfigUtils.getTocItemTypeFromTagNameAndAttributes(tocItems, getTagValueFromTocItemVo(tocVo),
+                XercesUtils.getAttributes(node));
         Node newNode = node.cloneNode(false);
         LOG.debug("buildTocItemContent for tocItemName '{}', tocItemId '{}', nodeName '{}', nodeId '{}', children {}", tocVo.getTocItem().getAknTag().value(), tocVo.getId(), node.getNodeName(), getId(node), tocVo.getChildItemsView().size());
 
         appendChildIfNotNull(buildNumNode(node, tocVo), newNode);
-        appendChildIfNotNull(buildHeadingNode(node, tocVo, user), newNode);
+        appendChildIfNotNull(buildHeadingNode(node, tocVo, user, newNode), newNode);
         appendChildIfNotNull(getFirstChild(node, INTRO), newNode); //recitals intro
 
+        if (!tocVo.getTocItemType().equals(tocItemType) && hasTocItemSoftOrigin(tocVo, EC)) {
+            NumberingType newNumberingType = getNumberingTypeByTagNameAndTocItemType(tocItems, tocVo.getTocItemType(), POINT);
+            updateOriginOfPointsInArticle(tocVo, newNumberingType);
+        }
         for (TableOfContentItemVO child : tocVo.getChildItemsView()) {
             Node newChild = buildTocItemContent(tocItems, numberingConfigs, tocRules, document, newNode, child, user);
             appendChildIfNotNull(newChild, newNode);
@@ -175,7 +190,25 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
         if (tocVo.isIndentedOrRestored()) {
             setIndentAttributes(newNode, tocVo);
         }
+        if (tagName.equals(LIST) && tocVo.getParentItem().isAffected()) {
+            TableOfContentItemVO firstChild = tocVo.getChildItemsView().get(0);
+            XercesUtils.insertOrUpdateAttributeValue(newNode, LEOS_LIST_TYPE_ATTR, firstChild.getTocItem().getNumberingType().toString().toLowerCase());
+        }
+        updateTocItemTypeAttributes(tocItems, newNode, tocVo);
         return newNode;
+    }
+
+    private void updateOriginOfPointsInArticle(TableOfContentItemVO item, NumberingType toNumberingType) {
+        for (TableOfContentItemVO child : item.getChildItems()) {
+            if (getTagValueFromTocItemVo(child).equals(PARAGRAPH)) {
+                child.setAffected(true);
+            }
+            if (child.getTocItem().getNumberingType().equals(toNumberingType)) {
+                child.setOriginNumAttr(CN);
+                child.setAffected(true);
+            }
+            updateOriginOfPointsInArticle(child, toNumberingType);
+        }
     }
 
     private Node buildNumNode(Node node, TableOfContentItemVO tocVo) {
@@ -185,7 +218,7 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
                 && !(Arrays.asList(PARAGRAPH, LEVEL).contains(tagName) && skipParagraphContent(tocVo))
                 && !(Arrays.asList(POINT, INDENT).contains(tagName) && skipPointContent(tocVo))
                 && !Arrays.asList(SUBPARAGRAPH, CITATION).contains(tagName)
-                ) {
+        ) {
             numNode = extractOrBuildNumElement(node, tocVo);
             //this method does the num toggle processing
             numNode = numberElementToggleProcessing(numNode, tocVo);
@@ -206,7 +239,7 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
             for (TableOfContentItemVO child : childList) {
                 // if is not a new SUBPARAGRAPH
                 if (child.getNode() != null && child.getTocItem().getAknTag().value().equals(SUBPARAGRAPH) && !child.isMovedOnEmptyParent()) {
-                    skipParagraphContent = false;
+                    return false;
                 }
             }
         }
@@ -335,10 +368,14 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
         return numNode;
     }
 
-    private Node buildHeadingNode(Node node, TableOfContentItemVO tocVo, User user) {
+    private Node buildHeadingNode(Node node, TableOfContentItemVO tocVo, User user, Node newNode) {
         Node headingNode = null;
         if (!LEVEL.equals(tocVo.getTocItem().getAknTag().value()) || !skipParagraphContent(tocVo)) {
             headingNode = XmlContentProcessorHelper.extractOrBuildHeaderElement(node, tocVo, user);
+            Node numNode = getFirstChild(node, XercesUtils.getNumTag(newNode.getNodeName()));
+            if (node.getNodeName().equals(DIVISION) && numNode.getTextContent().equals(HASH_NUM_VALUE)) {
+                formatHeadingNodeForDivision(node, tocVo, headingNode);
+            }
             XmlContentProcessorHelper.addUserInfoIfContentHasChanged(getFirstChild(node, HEADING), headingNode, user);
         }
         return headingNode;
@@ -817,7 +854,7 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
     }
 
     private byte[] indentElement(byte[] xmlContent, String elementName, String elementId, String elementContent, List<TableOfContentItemVO> toc,
-            Integer targetLevel, Integer originalIndentLevel, Boolean isNumbered) throws IllegalArgumentException {
+                                 Integer targetLevel, Integer originalIndentLevel, Boolean isNumbered) throws IllegalArgumentException {
         if (isNumbered == null && !needsToBeIndented(elementContent)) {
             return xmlContent;
         }
@@ -868,7 +905,7 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
      * @return updated xml content for the document
      */
     private byte[] correctIllegalParagraphStructure(byte[] xmlContent, String elementId, List<TableOfContentItemVO> toc,
-            Integer targetLevel, Integer originalIndentLevel){
+                                                    Integer targetLevel, Integer originalIndentLevel){
         Element parent = this.getParentElement(xmlContent, elementId);
         Element element = this.getElementById(xmlContent, elementId);
         Element sibling = this.getSiblingElement(xmlContent, null, elementId, Collections.emptyList(), false);
@@ -931,6 +968,28 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
         }
         return XercesUtils.nodeToByteArray(document);
     }
+
+    @Override
+    public byte[] prepareForRenumber(byte[] xmlContent) {
+        Node document = createXercesDocument(xmlContent);
+        updateAttributesForRenumbering(document, "/akn:akomaNtoso//akn:recital");
+        updateAttributesForRenumbering(document, "/akn:akomaNtoso//akn:article");
+        updateAttributesForRenumbering(document, "/akn:akomaNtoso//akn:paragraph");
+        updateAttributesForRenumbering(document, "/akn:akomaNtoso//akn:level");
+        updateAttributesForRenumbering(document, "/akn:akomaNtoso//akn:point");
+        return XercesUtils.nodeToByteArray(document);
+    }
+
+    public void updateAttributesForRenumbering(Node document, String xPath) {
+        NodeList nodeList = XercesUtils.getElementsByXPath(document, xPath);
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node childNode = nodeList.item(i);
+            if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                XercesUtils.insertOrUpdateAttributeValue(childNode, "leos:renumbered", "true");
+            }
+        }
+    }
+
 
     @Override
     public byte[] updateDepthAttribute(byte[] xmlContent) {
@@ -1034,9 +1093,65 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
         Document document = createXercesDocument(xmlContent);
         Node node = XercesUtils.getElementById(document, idAttributeValue);
         if(node != null) {
-        	addAttribute(node, LEOS_AUTO_NUM_OVERWRITE, Boolean.TRUE.toString());
+            addAttribute(node, LEOS_AUTO_NUM_OVERWRITE, Boolean.TRUE.toString());
         }
         return XercesUtils.nodeToByteArray(document);
+    }
+
+    /**
+     * Update attributes for CN if empty origin
+     * Add softaction splitted and placeholder in id
+     * @param node Node to update
+     * @param isEmptyOrigin is Origin empty
+     * @return updated node
+     */
+    @Override
+    public void updateIfEmptyOrigin(Node node, boolean isEmptyOrigin) {
+        if (isEmptyOrigin) {
+            XercesUtils.addAttribute(node, LEOS_SOFT_ACTION_ATTR, SoftActionType.SPLITTED.getSoftAction());
+            updateXMLIDAttributeFullStructureNode(node, SOFT_SPLITTED_PLACEHOLDER_ID_PREFIX, false);
+        }
+    }
+
+    /**
+     * Check for cn elements if exists subelement deleted and splitted
+     * If yes , merge on element
+     * @param element Element to check
+     * @return updated element with merge elements
+     */
+    @Override
+    public void updateElementSplit(Node element) {
+
+        boolean isSplit = false;
+        List<Node> elementChilds = XercesUtils.getChildren(element, ELEMENTS_TO_BE_PROCESSED_FOR_NUMBERING);
+        String textContent = "";
+        if(elementChilds != null && elementChilds.size() > 0) {
+
+            Node firstSubElement = elementChilds.get(0);
+            Node firstContent = XercesUtils.getFirstChild(firstSubElement, CONTENT);
+            textContent = firstContent.getTextContent();
+            //Fetch subparagraphs
+            for(Node child:elementChilds) {
+                String idChild = XercesUtils.getAttributeValue(child, XMLID);
+                String originChild = XercesUtils.getAttributeValue(child, LEOS_ORIGIN_ATTR);
+
+                //If CN and deleted_splitted elements, keep the content and delete childs
+                if(originChild != null && idChild != null && originChild.equals(CN) && idChild.startsWith(SOFT_DELETE_PLACEHOLDER_ID_PREFIX + SOFT_SPLITTED_PLACEHOLDER_ID_PREFIX)) {
+                    Node content = XercesUtils.getFirstChild(child, CONTENT);
+                    textContent += " " + content.getTextContent();
+                    element.removeChild(child);
+                    isSplit = true;
+                }
+            }
+            //Merge on element
+            if(isSplit) {
+                Node child = elementChilds.get(0);
+                Node content = XercesUtils.getFirstChild(child, CONTENT);
+                Node p = XercesUtils.getFirstChild(content, P);
+                p.setTextContent(textContent);
+                XercesUtils.replaceElement(content, child);
+            }
+        }
     }
 
 }

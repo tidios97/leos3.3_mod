@@ -179,4 +179,10 @@ public class ProposalRepositoryImpl implements ProposalRepository {
         logger.debug("Finding Proposal by ref... [ref=" + ref + "]");
         return leosRepository.findDocumentByRef(ref, Proposal.class);
     }
+
+    @Override
+    public Proposal getProposalByRef(String ref) {
+        logger.debug("Finding Proposal by ref... [ref=" + ref + "]");
+        return leosRepository.findDocumentByRef(ref, Proposal.class);
+    }
 }

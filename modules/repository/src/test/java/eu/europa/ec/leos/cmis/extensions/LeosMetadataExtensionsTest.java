@@ -114,7 +114,7 @@ public class LeosMetadataExtensionsTest {
         String annexTitle = "annexTitle";
         AnnexMetadata annexMetadata = new AnnexMetadata(METADATA_STAGE_VALUE, METADATA_TYPE_VALUE, METADATA_PURPOSE_VALUE,
                 DOCUMENT_TEMPLATE_VALUE, DOCUMENT_LANGUAGE_VALUE, METADATA_DOCTEMPLATE_VALUE, METADATA_REF_VALUE, annexIndex,
-                annexNumber, annexTitle, DOCUMENT_OBJECT_ID_VALUE, "0.1.0", METADATA_EEA_RELEVANCE_VALUE);
+                annexNumber, annexTitle, DOCUMENT_OBJECT_ID_VALUE, "0.1.0", METADATA_EEA_RELEVANCE_VALUE, null);
 
         //make call
         Map<String, ? extends Object> metadata = LeosMetadataExtensions.toCmisProperties(annexMetadata);
@@ -134,7 +134,7 @@ public class LeosMetadataExtensionsTest {
         String annexTitle = "annexTitle";
         AnnexMetadata annexMetadata = new AnnexMetadata(METADATA_STAGE_VALUE, null, METADATA_PURPOSE_VALUE,
                 DOCUMENT_TEMPLATE_VALUE, DOCUMENT_LANGUAGE_VALUE, METADATA_DOCTEMPLATE_VALUE, null, annexIndex,
-                annexNumber, annexTitle, DOCUMENT_OBJECT_ID_VALUE, "0.1.0", METADATA_EEA_RELEVANCE_VALUE);
+                annexNumber, annexTitle, DOCUMENT_OBJECT_ID_VALUE, "0.1.0", METADATA_EEA_RELEVANCE_VALUE, null);
 
         //make call
         Map<String, ? extends Object> metadata = LeosMetadataExtensions.toCmisProperties(annexMetadata);

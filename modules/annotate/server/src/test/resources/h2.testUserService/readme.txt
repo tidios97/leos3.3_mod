@@ -1,1 +1,0 @@
-Specific database creation scripts and data fill-in scripts could be placed here and be referenced by individual test profiles, if need be.
