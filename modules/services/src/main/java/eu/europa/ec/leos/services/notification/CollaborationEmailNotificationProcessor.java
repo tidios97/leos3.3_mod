@@ -85,6 +85,9 @@ public class CollaborationEmailNotificationProcessor implements EmailNotificatio
         StringJoiner collaborators = new StringJoiner(", ");
         proposal.getCollaborators().forEach((collaborator) -> {
             User user = userService.getUser(collaborator.getLogin());
+            if (user == null) {
+                throw new IllegalStateException("User '" + collaborator.getLogin() + "' not found in the database!");
+            }
             if (collaboratorAuthority != null && collaboratorAuthority.getName().equals(collaborator.getRole())) {
                 collaborators.add(user.getName());
             }

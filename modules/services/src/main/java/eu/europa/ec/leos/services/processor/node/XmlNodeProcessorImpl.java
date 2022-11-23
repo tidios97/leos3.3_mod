@@ -26,7 +26,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.getDocEEATagList;
 import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocument;
+import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
+import static eu.europa.ec.leos.services.support.XmlHelper.parseXml;
 
 @Service
 public class XmlNodeProcessorImpl implements XmlNodeProcessor {
@@ -59,18 +62,18 @@ public class XmlNodeProcessorImpl implements XmlNodeProcessor {
         Document document = createXercesDocument(xmlContent);
         for (Map.Entry<String, String> entry : keyValue.entrySet()) {
             String key = entry.getKey();
-            String value = (entry.getValue() == null) ? "" : StringEscapeUtils.escapeXml10(entry.getValue());
-
-            // EEA Relevance: Transform boolean to default EEA Relevance message (for now, before accepting custom message)
-            if (key.equals("eeaRelevanceCover") || key.equals("eeaRelevancePreface") || key.equals("eeaRelevanceMeta")) {
-                value = Boolean.parseBoolean(value) ?
-                        messageHelper.getMessage("wizard.document.create.metadata.eeaRelevance.default") : "";
-            }
-
             if (config.get(key) == null) {
                 LOG.warn("Configuration not found for:{}, ignoring and continuing", key);
                 continue;
             }
+
+            String value = parseXml(entry.getValue());
+            // EEA Relevance: Transform boolean to default EEA Relevance message (for now, before accepting custom message)
+            if (getDocEEATagList().contains(key)) {
+                value = Boolean.parseBoolean(value) ?
+                        messageHelper.getMessage("wizard.document.create.metadata.eeaRelevance.default") : EMPTY_STRING;
+            }
+
             String xPath = config.get(key).xPath;
             Node node = XercesUtils.getFirstElementByXPath(document, xPath);
             if (oldConfig != null && oldConfig.get(key) != null) {
@@ -90,7 +93,8 @@ public class XmlNodeProcessorImpl implements XmlNodeProcessor {
             } else if (node != null) {
                 // Update existing node
                 updateNode(node, value);
-            } else if (config.get(key).create && !value.isEmpty()) { //LEOS-5691: Do not add the node if empty
+            } else if (config.get(key).create && (!getDocEEATagList().contains(key) ||
+                    (getDocEEATagList().contains(key) && !value.isEmpty()))) { //LEOS-5691: Do not add the node if empty
                 // Create the node, if the creation flag for the specific element is true
                 createAndUpdateNode(document, xPath, config.get(key).attributes, value);
             }
@@ -166,7 +170,7 @@ public class XmlNodeProcessorImpl implements XmlNodeProcessor {
             for (; index < nodes.length; index++) {
                 if (!(nodes[index].contains("documentCollection") || nodes[index].contains("collectionBody"))) {
                     stack.push(nodes[index].replaceAll("//|/", "") // Strip // and /
-                            .replaceAll("@refersTo='#.+' or ", "")); // Strip refersTo first 'or' condition
+                        .replaceAll("@refersTo='#.+' or ", "")); // Strip refersTo first 'or' condition
                 }
             }
 

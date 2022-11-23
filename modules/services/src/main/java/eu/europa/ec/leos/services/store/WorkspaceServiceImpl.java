@@ -14,14 +14,23 @@
 package eu.europa.ec.leos.services.store;
 
 import eu.europa.ec.leos.domain.cmis.document.LeosDocument;
+import eu.europa.ec.leos.domain.cmis.document.Proposal;
+import eu.europa.ec.leos.domain.vo.DocumentVO;
+import eu.europa.ec.leos.services.dto.response.WorkspaceProposalResponse;
 import eu.europa.ec.leos.model.filter.QueryFilter;
 import eu.europa.ec.leos.repository.store.WorkspaceRepository;
+import eu.europa.ec.leos.security.LeosPermissionAuthorityMap;
+import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.vo.catalog.CatalogItem;
+import eu.europa.ec.leos.services.dto.request.FilterProposalsRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -35,8 +44,12 @@ class WorkspaceServiceImpl implements WorkspaceService {
     @Value("${leos.workspaces.path}")
     protected String workspacesPath;
 
-    WorkspaceServiceImpl(WorkspaceRepository workspaceRepository) {
+    private final TemplateService templateService;
+
+    @Autowired
+    WorkspaceServiceImpl(WorkspaceRepository workspaceRepository, TemplateService templateService) {
         this.workspaceRepository = workspaceRepository;
+        this.templateService = templateService;
     }
 
     @Override
@@ -65,5 +78,33 @@ class WorkspaceServiceImpl implements WorkspaceService {
     @Override
     public <T extends LeosDocument> T findDocumentByRef(String ref, Class<T> filterType) {
         return workspaceRepository.findDocumentByRef(ref, filterType);
+    }
+
+    @Override
+    public <T extends LeosDocument> WorkspaceProposalResponse listDocumentsWithFilter(FilterProposalsRequest request,
+                                                                                      SecurityContext securityContext,
+                                                                                      LeosPermissionAuthorityMap authorityMap) {
+        try {
+            List<CatalogItem> catalogItems = templateService.getTemplatesCatalog();
+            WorkspaceOptions workspaceOptions = new WorkspaceOptions(authorityMap, securityContext);
+            workspaceOptions.initializeOptions(catalogItems, request.getFilters());
+            if(request.isSortOrder()) {
+                workspaceOptions.setTitleSortOrder(true);
+            }
+            QueryFilter workspaceFilter = workspaceOptions.getQueryFilter();
+
+            Stream<Proposal> proposals = findDocuments(Proposal.class, false, request.getStartIndex(),
+                    request.getLimit(), workspaceFilter);
+            List<DocumentVO> proposalList = new ArrayList<>();
+            proposals.forEach(proposal -> {
+                DocumentVO documentVO = new DocumentVO(proposal);
+                proposalList.add(documentVO);
+            });
+            Integer count = findDocumentCount(Proposal.class, workspaceFilter);
+            return new WorkspaceProposalResponse(proposalList, count);
+        } catch (IOException e) {
+            LOG.error("Unable to fetch list of proposals " + e);
+            return new WorkspaceProposalResponse(new ArrayList<>(), 0);
+        }
     }
 }

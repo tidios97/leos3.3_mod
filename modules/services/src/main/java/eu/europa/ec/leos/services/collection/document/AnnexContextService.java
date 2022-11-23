@@ -63,6 +63,7 @@ public class AnnexContextService {
     private String annexNumber;
     private String versionComment;
     private String milestoneComment;
+    private boolean eeaRelevance;
 
     public AnnexContextService(
             TemplateService templateService,
@@ -160,6 +161,11 @@ public class AnnexContextService {
         actionMsgMap.put(action, actionMsg);
     }
 
+    public void useEeaRelevance(boolean eeaRelevance) {
+        LOG.trace("Using Proposal eeaRelevance... [eeaRelevance={}]", eeaRelevance);
+        this.eeaRelevance = eeaRelevance;
+    }
+
     public Annex executeCreateAnnex() {
         LOG.trace("Executing 'Create Annex' use case...");
 
@@ -193,7 +199,7 @@ public class AnnexContextService {
         
         final String actionMessage = actionMsgMap.get(ContextActionService.ANNEX_BLOCK_UPDATED);
         AnnexMetadata metadataDocument = (AnnexMetadata) annexDocument.getMetadataDocument();
-        metadataDocument = metadataDocument.withPurpose(purpose);
+        metadataDocument = metadataDocument.withPurpose(purpose).withEeaRelevance(eeaRelevance);
         annex = annexService.createAnnexFromContent(leosPackage.getPath(), metadataDocument, actionMessage, annexDocument.getSource(), annexDocument.getName());
         annex = securityService.updateCollaborators(annex.getId(), collaborators, Annex.class);
         Map<String, Object> annexProperties = new HashMap<>();

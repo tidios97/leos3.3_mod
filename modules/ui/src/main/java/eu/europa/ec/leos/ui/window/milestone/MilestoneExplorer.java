@@ -13,33 +13,6 @@
  */
 package eu.europa.ec.leos.ui.window.milestone;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-import eu.europa.ec.leos.services.support.XmlHelper;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.server.FileDownloader;
@@ -55,21 +28,25 @@ import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
-import eu.europa.ec.leos.domain.cmis.Content;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
+import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.security.SecurityContext;
-import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
+import eu.europa.ec.leos.services.support.XercesUtils;
 import eu.europa.ec.leos.ui.component.LeosDisplayField;
 import eu.europa.ec.leos.ui.event.metadata.DocumentMetadataRequest;
 import eu.europa.ec.leos.ui.event.metadata.DocumentMetadataResponse;
 import eu.europa.ec.leos.ui.event.metadata.SearchMetadataRequest;
 import eu.europa.ec.leos.ui.event.metadata.SearchMetadataResponse;
+import eu.europa.ec.leos.ui.event.revision.OpenAndViewContibutionEvent;
 import eu.europa.ec.leos.ui.event.security.SecurityTokenRequest;
 import eu.europa.ec.leos.ui.event.security.SecurityTokenResponse;
+import eu.europa.ec.leos.ui.event.view.collection.ContributionAnnexAcceptEvent;
+import eu.europa.ec.leos.ui.event.view.collection.ContributionAnnexProcessedEvent;
+import eu.europa.ec.leos.ui.event.view.collection.ContributionAnnexRejectEvent;
 import eu.europa.ec.leos.ui.extension.AnnotateExtension;
 import eu.europa.ec.leos.ui.extension.MathJaxExtension;
 import eu.europa.ec.leos.ui.extension.SoftActionsExtension;
@@ -84,8 +61,28 @@ import eu.europa.ec.leos.web.support.user.UserHelper;
 import eu.europa.ec.leos.web.support.xml.DownloadStreamResource;
 import eu.europa.ec.leos.web.ui.themes.LeosTheme;
 import eu.europa.ec.leos.web.ui.window.AbstractWindow;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MilestoneExplorer extends AbstractWindow {
 
@@ -94,13 +91,25 @@ public class MilestoneExplorer extends AbstractWindow {
 
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
+    public static final String LEOS_CONTENT_PROCESSED = "leos-content-processed";
+    public static final String LEOS_CONTENT_REMOVED = "leos-content-removed";
+    public static final String LEOS_CONTENT_NEW = "leos-content-new";
+    public static final String LEOS_CONTENT_ADDED = "leos-content-added";
+    public static final String LEOS_ANNEX_ADDED = "leos-annex-added";
+    public static final String LEOS_ANNEX_PROCESSED = "leos-annex-processed";
+    public static final String LEOS_ANNEX_REMOVED = "leos-annex-removed";
+    private static final String PROCESSED = "_processed";
+    public static final String LEOS_DOC_MODIFIED = "leos-doc-modified";
+    private static final String PREFACE = "_preface";
+    private static final String BODY = "_body";
+    private static final String CLASS_ATTR = "class";
+
     private final ConfigurationHelper cfgHelper;
     private final SecurityContext securityContext;
     private final UserHelper userHelper;
     private final XmlContentProcessor xmlContentProcessor;
 
     private static final String HTML = ".html";
-    private static final String TOC_HTML = "_toc.html";
     private static final String TOC_JS = "_toc.js";
     private static final String XML = ".xml";
     private static final String PDF = ".pdf";
@@ -116,25 +125,36 @@ public class MilestoneExplorer extends AbstractWindow {
     private static final String DOC_NUMBER_START_TAG_REG = "<leos:annexIndex\\b[^>]*>";
     private static final String DOC_NUMBER_END_TAG = "</leos:annexIndex>";
 
-    private static final String TMP_DIR = "java.io.tmpdir";
-    private static final String MILESTONE_DIR = "/milestone/";
 
     private TabSheet tabsheet;
     private LegDocument legDocument;
+    private LegDocument originalLegDocument; //only populated when viewing contribution milestone
+    private List<Annex> annexList; //only populated when viewing contribution milestone
     private String milestoneTitle;
     private File legFileTemp;
+    private File originalLegFileTemp;
     private Map<String, Object> contentFiles;
+    private Map<String, Object> originalContentFiles;
     private Map<String, Object> jsFiles;
+    private Map<String, Object> originalJsFiles;
     private Map<String, String> docVersionMap;
     private Map<Integer, String> annexIndexesMap;
     private Map<String, Integer> annexKeyMap;
+    private Map<String, Object> annexAddedMap;
+    private Map<String, Object> annexDeletedMap;
     private Map<String, Object> pdfRenditions;
     private String milestoneDir;
     private String selectedDocument;
     private Button export;
+    private VerticalLayout headerLayout;
+    private HorizontalLayout actionButtonsLayout;
+    private Button accept;
+    private Button reject;
+    private Button viewAndMerge;
     protected FileDownloader fileDownloader;
     private String proposalRef;
     private boolean showCoverPage;
+    private boolean isContributionMilestone;
 
     private AnnotateExtension<LeosDisplayField, String> annotateExtension;
 
@@ -150,6 +170,25 @@ public class MilestoneExplorer extends AbstractWindow {
         this.proposalRef = proposalRef;
         this.showCoverPage = showCoverPage;
         this.xmlContentProcessor = xmlContentProcessor;
+        init();
+    }
+
+    public MilestoneExplorer(LegDocument clonedLegDocument, LegDocument originalLegDocument, List<Annex> annexList,
+                             String milestoneTitle, String proposalRef, MessageHelper messageHelper, EventBus eventBus,
+                             ConfigurationHelper cfgHelper, SecurityContext securityContext, UserHelper userHelper,
+                             XmlContentProcessor xmlContentProcessor, boolean showCoverPage, boolean isContributionMilestone) {
+        super(messageHelper, eventBus);
+        this.cfgHelper = cfgHelper;
+        this.securityContext = securityContext;
+        this.legDocument = clonedLegDocument;
+        this.originalLegDocument = originalLegDocument;
+        this.annexList = annexList;
+        this.milestoneTitle = milestoneTitle;
+        this.userHelper = userHelper;
+        this.proposalRef = proposalRef;
+        this.showCoverPage = showCoverPage;
+        this.xmlContentProcessor = xmlContentProcessor;
+        this.isContributionMilestone = isContributionMilestone;
         init();
     }
 
@@ -181,41 +220,32 @@ public class MilestoneExplorer extends AbstractWindow {
     private void filterFilesToDisplay() {
         try {
             legFileTemp = File.createTempFile("milestone", ".leg");
-            Content content = legDocument.getContent().getOrError(() -> "Document content is required!");
-            InputStream is = content.getSource().getInputStream();
-            FileUtils.copyInputStreamToFile(is, legFileTemp);
-            Map<String, Object> unzippedFiles = ZipPackageUtil.unzipFiles(legFileTemp, MILESTONE_DIR);
-            milestoneDir = getMilestoneDir();
-            contentFiles = filterAndSortFiles(unzippedFiles, HTML);
-            jsFiles = filterAndSortFiles(unzippedFiles, TOC_JS);
+            Map<String, Object> unzippedFiles = MilestoneHelper.getMilestoneFiles(legFileTemp, legDocument);
+            contentFiles = MilestoneHelper.filterAndSortFiles(unzippedFiles, HTML);
+            annexAddedMap = new HashMap<>();
+            annexDeletedMap = new HashMap<>();
+            if (isContributionMilestone) {
+                originalLegFileTemp = File.createTempFile("milestoneOriginal", ".leg");
+                Map<String, Object> originalUnzippedFiles = MilestoneHelper.getMilestoneFiles(originalLegFileTemp, originalLegDocument);
+                //populate map with added annexes in Contribution
+                annexAddedMap = MilestoneHelper.populateAnnexAddedMap(unzippedFiles, legDocument, annexList,
+                        xmlContentProcessor);
+                //populate map with deleted annex in Contribution
+                annexDeletedMap = MilestoneHelper.populateAnnexDeletedMap(originalUnzippedFiles, unzippedFiles,
+                        originalLegDocument, annexList, xmlContentProcessor);
+                originalContentFiles = MilestoneHelper.filterAndSortFiles(originalUnzippedFiles, HTML);
+                originalJsFiles = MilestoneHelper.filterAndSortFiles(originalUnzippedFiles, TOC_JS);
+            }
+            milestoneDir = MilestoneHelper.getMilestoneDir(legFileTemp);
+            jsFiles = MilestoneHelper.filterAndSortFiles(unzippedFiles, TOC_JS);
             Map<String, Map> versionAndAnnexNumberMap = populateVersionAndAnnexNumberMap(unzippedFiles);
             docVersionMap = versionAndAnnexNumberMap.get("docVersionMap");
             annexIndexesMap = versionAndAnnexNumberMap.get("annexIndexesMap");
             annexKeyMap = versionAndAnnexNumberMap.get("annexKeyMap");
-            pdfRenditions = filterAndSortFiles(unzippedFiles, PDF);
+            pdfRenditions = MilestoneHelper.filterAndSortFiles(unzippedFiles, PDF);
         } catch (IOException e) {
             LogUtil.logError(LOG, eventBus, "Exception occurred while reading the .leg file", e);
         }
-    }
-
-    private Map<String, Object> filterAndSortFiles(Map<String, Object> files, String fileFilter) {
-        final List<String> tabOrder = Arrays.asList(XmlHelper.ANNEX_FILE_PREFIX, XmlHelper.REG_FILE_PREFIX, XmlHelper.DIR_FILE_PREFIX, XmlHelper.DEC_FILE_PREFIX,
-                XmlHelper.MEMORANDUM_FILE_PREFIX);
-        Map<String, Object> sortedFiles = files.entrySet().stream().
-                filter(e -> (!e.getKey().contains(TOC_HTML) && e.getKey().contains(fileFilter))).
-                sorted(Collections.reverseOrder(Comparator.comparing((Map.Entry e) -> {
-                    String key = e.getKey().toString();
-                    int prefixSeparatorIndex = key.indexOf("-");
-                    if(prefixSeparatorIndex > 0) {
-                        return tabOrder.indexOf(key.substring(0, prefixSeparatorIndex));
-                    } else {
-                        return (int) (key.toLowerCase().charAt(0));
-                    }
-                }))).
-                collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e2, LinkedHashMap::new));
-
-        return sortedFiles;
     }
 
     private Map<String, Map> populateVersionAndAnnexNumberMap(Map<String, Object> files) {
@@ -223,7 +253,7 @@ public class MilestoneExplorer extends AbstractWindow {
         Map<String, String> docVersionMap = new HashMap<>();
         Map<Integer, String> annexIndexesMap = new HashMap<>();
         Map<String, Integer> annexKeyMap = new HashMap<>();
-        Map<String, Object> xmlFiles = filterAndSortFiles(files, XML);
+        Map<String, Object> xmlFiles = MilestoneHelper.filterAndSortFiles(files, XML);
         xmlFiles.forEach((key, value) -> {
             try {
                 String xmlContent = readFileToString(((File) value));
@@ -256,25 +286,49 @@ public class MilestoneExplorer extends AbstractWindow {
     private VerticalLayout buildLayout() {
         VerticalLayout mainLayout = new VerticalLayout();
         mainLayout.setSpacing(true);
-        mainLayout.setMargin(true);
+        mainLayout.setMargin(false);
         mainLayout.setSizeFull();
+
+        headerLayout = new VerticalLayout();
+        headerLayout.setSpacing(true);
+        headerLayout.setMargin(false);
+        headerLayout.setSizeFull();
 
         HorizontalLayout titleLayout = new HorizontalLayout();
         titleLayout.setSpacing(true);
         titleLayout.setMargin(false);
         titleLayout.setSizeFull();
+
         User user = userHelper.getUser(legDocument.getInitialCreatedBy());
         Label description = new Label(messageHelper.getMessage("milestone.explorer.window.description", dateFormat.format(Date.from(legDocument.getInitialCreationInstant())),
                 user.getName(), milestoneTitle), ContentMode.HTML);
         titleLayout.addComponent(description);
+        if(isContributionMilestone) {
+            HorizontalLayout legendLayout = buildLegendLayout();
+            legendLayout.setSpacing(true);
+            legendLayout.setMargin(false);
+            addComponentOnLeft(legendLayout);
+        }
         titleLayout.setComponentAlignment(description, Alignment.TOP_LEFT);
         export = new Button(messageHelper.getMessage("collection.caption.menuitem.export"));
         if(!pdfRenditions.isEmpty()) {
             titleLayout.addComponent(export);
             titleLayout.setComponentAlignment(export, Alignment.TOP_RIGHT);
         }
+        headerLayout.addComponent(titleLayout);
+        headerLayout.setComponentAlignment(titleLayout, Alignment.TOP_CENTER);
+        headerLayout.setExpandRatio(titleLayout, 0.70f);
 
-        mainLayout.addComponent(titleLayout);
+        actionButtonsLayout = new HorizontalLayout();
+        accept = new Button(messageHelper.getMessage("contribution.milestone.annex.accept.action"));
+        reject = new Button(messageHelper.getMessage("contribution.milestone.annex.reject.action"));
+        viewAndMerge = new Button(messageHelper.getMessage("contribution.merge.action"));
+        actionButtonsLayout.addComponent(accept);
+        actionButtonsLayout.addComponent(reject);
+        actionButtonsLayout.addComponent(viewAndMerge);
+        addActionButtonLayout();
+
+        mainLayout.addComponent(headerLayout);
 
         tabsheet = new TabSheet();
         tabsheet.setHeight(100.0f, Unit.PERCENTAGE);
@@ -287,12 +341,28 @@ public class MilestoneExplorer extends AbstractWindow {
 
         tabsheet.setSizeFull();
         mainLayout.addComponent(tabsheet);
-        mainLayout.setComponentAlignment(tabsheet, Alignment.TOP_CENTER);
+        mainLayout.setComponentAlignment(tabsheet, Alignment.MIDDLE_CENTER);
 
-        mainLayout.setExpandRatio(titleLayout, 0.05f);
-        mainLayout.setExpandRatio(tabsheet, 0.95f);
+        mainLayout.setExpandRatio(headerLayout, 0.10f);
+        mainLayout.setExpandRatio(tabsheet, 0.90f);
 
         return mainLayout;
+    }
+
+    private HorizontalLayout buildLegendLayout() {
+        Label legend = new Label(messageHelper.getMessage("contribution.milestone.legend.label"));
+        Label deleted = new Label(messageHelper.getMessage("contribution.milestone.deleted.legend.label"));
+        deleted.addStyleName("leos-deleted-legend");
+        Label added = new Label(messageHelper.getMessage("contribution.milestone.added.legend.label"));
+        added.addStyleName("leos-added-legend");
+        Label modified = new Label(messageHelper.getMessage("contribution.milestone.modified.legend.label"));
+        modified.addStyleName("leos-modified-legend");
+        Label processed = new Label(messageHelper.getMessage("contribution.milestone.processed.legend.label"));
+        processed.addStyleName("leos-processed-legend");
+        HorizontalLayout legendLayout = new HorizontalLayout();
+        legendLayout.addComponents(legend, deleted, added, modified, processed);
+        legendLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+        return legendLayout;
     }
 
     private String getTabName(LeosCategory category, int annexNumber, String version) {
@@ -312,6 +382,7 @@ public class MilestoneExplorer extends AbstractWindow {
     }
 
     private void addDocumentTabs() {
+        HashMap<String, Boolean> annexesComparaison = new HashMap();
         for (Map.Entry<String, Object> entry : contentFiles.entrySet()) {
             String key = entry.getKey();
             String mainFileName = docVersionMap.keySet().stream().filter(value -> value.startsWith(MAIN_DOCUMENT_FILE_NAME)).findFirst().get();
@@ -324,18 +395,34 @@ public class MilestoneExplorer extends AbstractWindow {
             }
             try {
                 HorizontalSplitPanel tocSplitter = new HorizontalSplitPanel();
+                byte[] xmlBytes = Files.readAllBytes(((File) entry.getValue()).toPath());
+                String xmlContent = LeosDomainUtil.wrapXmlFragment(new String(xmlBytes));
+                boolean isCompared = false;
+                if(isContributionMilestone) {
+                    Pattern pattern = Pattern.compile("class=\"leos-content-new\"|class=\"leos-content-removed\"",
+                            Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+                    Matcher matcher = pattern.matcher(xmlContent);
+                    isCompared = matcher.find();
+                }
                 if (isCoverPage) {
                     String tabName = getTabName(LeosCategory.COVERPAGE, 0, version);
-                    tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName), null, 0);
+                    TabSheet.Tab tab = tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName), null, 0);
+                    if(isCompared) {
+                        toggleActionButtons(false);
+                        tab.setStyleName(LEOS_DOC_MODIFIED);
+                    }
                     tabsheet.setSelectedTab(0);
                 } else {
-                    byte[] xmlBytes = Files.readAllBytes(((File) entry.getValue()).toPath());
-                    String xmlContent = LeosDomainUtil.wrapXmlFragment(new String(xmlBytes));
                     LeosCategory category = xmlContentProcessor.identifyCategory(key,
                             xmlContent.getBytes(StandardCharsets.UTF_8));
                     if (!category.equals(LeosCategory.ANNEX)) {
                         String tabName = getTabName(category, 0, version);
-                        tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
+                        TabSheet.Tab tab = tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
+                        if(isCompared) {
+                            tab.setStyleName(LEOS_DOC_MODIFIED);
+                        }
+                    } else {
+                        annexesComparaison.put(entry.getKey(), isCompared);
                     }
                 }
             } catch (IOException e) {
@@ -343,11 +430,61 @@ public class MilestoneExplorer extends AbstractWindow {
             }
         }
         for (Integer annexNumber : annexIndexesMap.keySet()) {
-            String version = docVersionMap.get(annexIndexesMap.get(annexNumber));
+            String annexDocument = annexIndexesMap.get(annexNumber);
+            String version = docVersionMap.get(annexDocument);
             HorizontalSplitPanel tocSplitter = new HorizontalSplitPanel();
             String tabName = getTabName(LeosCategory.ANNEX, annexNumber, version);
-            tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
+            TabSheet.Tab tab = tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
+            if(annexAddedMap.containsKey(annexDocument)) {
+                tab.setStyleName(LEOS_ANNEX_ADDED);
+            } else if (annexAddedMap.containsKey(annexDocument.concat(PROCESSED))) {
+                tab.setStyleName(LEOS_ANNEX_PROCESSED);
+            } else if(annexesComparaison.get(annexDocument + ".html")) {
+                tab.setStyleName(LEOS_DOC_MODIFIED);
+            }
         }
+        if(annexDeletedMap.size() > 0) {
+            for (Map.Entry<String, Object> entry : annexDeletedMap.entrySet()) {
+                String xmlContent = getFileContent(entry);
+                String[] annexVersionAndNumber = getAnnexVersionAndNumber(xmlContent);
+                HorizontalSplitPanel tocSplitter = new HorizontalSplitPanel();
+                String tabName = getTabName(LeosCategory.ANNEX, new Integer(annexVersionAndNumber[1]), annexVersionAndNumber[0]);
+                TabSheet.Tab tab = tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
+                tab.setId(entry.getKey());
+                tab.setStyleName(LEOS_ANNEX_REMOVED);
+                if(entry.getKey().indexOf(PROCESSED) != -1) {
+                    tab.setStyleName(LEOS_ANNEX_PROCESSED);
+                }
+            }
+        }
+    }
+
+    private String getFileContent(Entry<String, Object> entry) {
+        String xmlContent = null;
+        try {
+            xmlContent = readFileToString((File) entry.getValue());
+        } catch (IOException e) {
+            throw new RuntimeException("Unexpected error occurred while reading doc file", e);
+        }
+        return xmlContent;
+    }
+
+    private String[] getAnnexVersionAndNumber(String xmlContent) {
+        Pattern pattern = Pattern.compile(DOC_VERSION_START_TAG_REG);
+        Matcher matcher = pattern.matcher(xmlContent);
+        String docVersion = "";
+        if (matcher.find()) {
+            int endIndex = xmlContent.indexOf(DOC_VERSION_END_TAG);
+            docVersion = xmlContent.substring(matcher.end(), endIndex);
+        }
+        Pattern patternForAnnexIndex = Pattern.compile(DOC_NUMBER_START_TAG_REG);
+        Matcher matcherForAnnexIndex = patternForAnnexIndex.matcher(xmlContent);
+        String annexIndex = "";
+        if (matcherForAnnexIndex.find()) {
+            int endAnnexIndex = xmlContent.indexOf(DOC_NUMBER_END_TAG);
+            annexIndex = xmlContent.substring(matcherForAnnexIndex.end(), endAnnexIndex);
+        }
+        return new String[]{docVersion, annexIndex};
     }
 
     private static String readFileToString(File file) throws IOException {
@@ -358,12 +495,14 @@ public class MilestoneExplorer extends AbstractWindow {
         tabsheet.addSelectedTabChangeListener(event -> {
             TabSheet tabsheet = event.getTabSheet();
             HorizontalSplitPanel splitPanel = (HorizontalSplitPanel) tabsheet.getSelectedTab();
-            String caption = tabsheet.getTab(splitPanel).getCaption();
+            TabSheet.Tab selectedTab = tabsheet.getTab(splitPanel);
+            String caption = selectedTab.getCaption();
+            String selectedTabId = selectedTab.getId();
             boolean isValidTab = false;
             File tocFile = null;
             String content = "";
             LeosCategory category = null;
-            String selectedTab;
+            String selectedTabName;
 
             for (Map.Entry<String, Object> entry : jsFiles.entrySet()) {
                 String key = entry.getKey();
@@ -371,13 +510,12 @@ public class MilestoneExplorer extends AbstractWindow {
                 String mainFileName = docVersionMap.keySet().stream().filter(value -> value.startsWith(MAIN_DOCUMENT_FILE_NAME)).findFirst().get();
                 String contentFileName = key.startsWith(COVER_PAGE_CONTENT_FILE_NAME) ? mainFileName : selectedDocument;
                 String version = docVersionMap.get(contentFileName);
-
                 try {
                     content = readFileToString(((File) contentFiles.get(selectedDocument + HTML)));
                 } catch (IOException e) {
                     throw new RuntimeException("Unexpected error occurred while reading content file", e);
                 }
-                if(!selectedDocument.startsWith(COVER_PAGE_CONTENT_FILE_NAME)) {
+                if (!selectedDocument.startsWith(COVER_PAGE_CONTENT_FILE_NAME)) {
                     int annexNumber = 0;
                     if (annexKeyMap.get(selectedDocument) != null) {
                         annexNumber = annexKeyMap.get(selectedDocument);
@@ -385,23 +523,132 @@ public class MilestoneExplorer extends AbstractWindow {
                     String xmlContent = LeosDomainUtil.wrapXmlFragment(content);
                     category = xmlContentProcessor.identifyCategory(key,
                             xmlContent.getBytes(StandardCharsets.UTF_8));
-                    selectedTab = getTabName(category, annexNumber, version);
+                    selectedTabName = getTabName(category, annexNumber, version);
                 } else {
-                    selectedTab = getTabName(LeosCategory.COVERPAGE, 0, version);
+                    selectedTabName = getTabName(LeosCategory.COVERPAGE, 0, version);
                     category = LeosCategory.COVERPAGE;
                 }
-                if (caption.equalsIgnoreCase(selectedTab)) {
+                if (caption.equalsIgnoreCase(selectedTabName) && !annexDeletedMap.containsKey(selectedTabId)) {
                     tocFile = (File) entry.getValue();
                     isValidTab = true;
+                    if (annexAddedMap.containsKey(selectedDocument)) {
+                        toggleActionButtons(true);
+                        content = injectClassAttribute(content, LEOS_CONTENT_NEW);
+                        splitPanel.addStyleName(LEOS_CONTENT_ADDED);
+                    } else if (annexAddedMap.containsKey(selectedDocument.concat(PROCESSED))) {
+                        markAsProcessed();
+                    } else if(selectedTab.getStyleName() != null && selectedTab.getStyleName().equalsIgnoreCase(LEOS_DOC_MODIFIED)) {
+                        toggleActionButtons(false);
+                    } else {
+                        hideActionButtonLayout();
+                    }
                     break;
                 }
             }
-
+            if (!isValidTab && annexDeletedMap.size() > 0) {
+                for (Map.Entry<String, Object> entry : annexDeletedMap.entrySet()) {
+                    selectedDocument = entry.getKey();
+                    int processedIndex = selectedDocument.indexOf(PROCESSED);
+                    try {
+                        String updatedFileName = processedIndex != -1 ? selectedDocument.substring(0, processedIndex)
+                                : selectedDocument;
+                        content = readFileToString(((File) originalContentFiles.get(updatedFileName + HTML)));
+                        content = injectClassAttribute(content, LEOS_CONTENT_REMOVED);
+                    } catch (IOException e) {
+                        throw new RuntimeException("Unexpected error occurred while reading doc file", e);
+                    }
+                    String xmlContent = getFileContent(entry);
+                    String[] annexVersionAndNumber = getAnnexVersionAndNumber(xmlContent);
+                    selectedTabName = getTabName(LeosCategory.ANNEX, new Integer(annexVersionAndNumber[1]), annexVersionAndNumber[0]);
+                    if (caption.equalsIgnoreCase(selectedTabName)) {
+                        String fileName;
+                        if(processedIndex != -1) {
+                            markAsProcessed();
+                            fileName = selectedDocument.substring(0, processedIndex);
+                        } else {
+                            actionButtonsLayout.setVisible(true);
+                            toggleActionButtons(true);
+                            fileName = selectedDocument;
+                            splitPanel.addStyleName(LEOS_CONTENT_REMOVED);
+                        }
+                        String selectedJsFile = fileName + TOC_JS;
+                        tocFile = (File) originalJsFiles.get(selectedJsFile);
+                        isValidTab = true;
+                        break;
+                    } else {
+                        actionButtonsLayout.setVisible(true);
+                        accept.setVisible(false);
+                        reject.setVisible(false);
+                    }
+                }
+            }
             if (isValidTab) {
                 prepareTabContentLayout(splitPanel, category, tocFile, content);
             }
-
         });
+    }
+
+    private void toggleActionButtons(boolean visible) {
+        actionButtonsLayout.setVisible(true);
+        accept.setVisible(visible);
+        reject.setVisible(visible);
+        viewAndMerge.setVisible(!visible);
+    }
+
+    private void hideActionButtonLayout() {
+        actionButtonsLayout.setVisible(false);
+        accept.setVisible(false);
+        reject.setVisible(false);
+        viewAndMerge.setVisible(false);
+    }
+
+    private String injectClassAttribute(String content, String classAttr) {
+        Document doc = XercesUtils.createXercesDocument(content.getBytes(StandardCharsets.UTF_8), true);
+        Node prefaceNode = XercesUtils.getElementById(doc, PREFACE);
+        if(prefaceNode != null) {
+            XercesUtils.addAttribute(prefaceNode, CLASS_ATTR, classAttr);
+        }
+        Node bodyNode = XercesUtils.getElementById(doc, BODY);
+        if(bodyNode != null) {
+            XercesUtils.addAttribute(bodyNode, CLASS_ATTR, classAttr);
+        }
+        return XercesUtils.nodeToString(doc);
+    }
+
+    private void addActionButtonLayout() {
+        headerLayout.addComponent(actionButtonsLayout);
+        headerLayout.setComponentAlignment(actionButtonsLayout, Alignment.BOTTOM_RIGHT);
+        headerLayout.setExpandRatio(actionButtonsLayout, 0.30f);
+
+        accept.addClickListener(event -> handleAcceptAction());
+        reject.addClickListener(event -> handleRejectAction());
+        viewAndMerge.addClickListener(event -> handleMergeAction());
+        accept.setVisible(false);
+        reject.setVisible(false);
+        viewAndMerge.setVisible(false);
+    }
+
+    private void handleAcceptAction() {
+        if(annexAddedMap != null && annexAddedMap.containsKey(selectedDocument)) {
+            eventBus.post(new ContributionAnnexAcceptEvent(selectedDocument,
+                    (File)annexAddedMap.get(selectedDocument), true));
+        } else if(annexDeletedMap != null && annexDeletedMap.containsKey(selectedDocument)) {
+            eventBus.post(new ContributionAnnexAcceptEvent(selectedDocument,
+                    (File)annexDeletedMap.get(selectedDocument), false));
+        }
+    }
+
+    private void handleRejectAction() {
+        boolean rejectedAdded = (annexAddedMap != null && annexAddedMap.containsKey(selectedDocument));
+        LegDocument legFileToProcess = rejectedAdded ? legDocument : originalLegDocument;
+        eventBus.post(new ContributionAnnexRejectEvent(selectedDocument, legFileToProcess));
+        markAsProcessed();
+    }
+
+    private void handleMergeAction() {
+        String docToViewAndMerge = selectedDocument.equals(COVER_PAGE_CONTENT_FILE_NAME) ? proposalRef : selectedDocument;
+        eventBus.post(new OpenAndViewContibutionEvent(docToViewAndMerge, docToViewAndMerge +
+                "_" + docVersionMap.get(docToViewAndMerge)));
     }
 
     private void prepareTabContentLayout(HorizontalSplitPanel splitPanel, LeosCategory category, File tocFile, String content) {
@@ -504,21 +751,6 @@ public class MilestoneExplorer extends AbstractWindow {
         eventBus.post(new SearchMetadataResponse(metadataList));
     }
 
-    private String getMilestoneDir() {
-        String tempDir = System.getProperty(TMP_DIR);
-        String rootDir = tempDir + MILESTONE_DIR;
-        File folder = new File(rootDir);
-        if (folder.exists()) {
-            File[] files = folder.listFiles();
-            for (File file : files) {
-                if (file.getName().contains(legFileTemp.getName())) {
-                    return file.getPath();
-                }
-            }
-        }
-        return "";
-    }
-
     public void setDownloadStreamResource(Resource downloadResource) {
         fileDownloader.setFileDownloadResource(downloadResource);
     }
@@ -560,44 +792,31 @@ public class MilestoneExplorer extends AbstractWindow {
         }
     }
 
+    @Subscribe
+    public void handleContributionProcessedEvent(ContributionAnnexProcessedEvent event) {
+        markAsProcessed();
+    }
+
+    private void markAsProcessed() {
+        HorizontalSplitPanel splitPanel = (HorizontalSplitPanel) tabsheet.getSelectedTab();
+        TabSheet.Tab tab = tabsheet.getTab(splitPanel);
+        tab.setStyleName(LEOS_ANNEX_PROCESSED);
+        splitPanel.addStyleName(LEOS_CONTENT_PROCESSED);
+        actionButtonsLayout.setVisible(false);
+    }
+
     @Override
     protected void handleCloseButton() {
         LOG.info("Closing milestone explorer window....");
-        deleteTempFilesIfExists();
-        eventBus.post(new WindowClosedEvent<>(this));
-        super.handleCloseButton();
-    }
-
-    private void deleteTempFilesIfExists() {
-        LOG.info("deleting temp files from milestone explorer window....");
-            try {
-                if (legFileTemp != null && legFileTemp.exists()) {
-                    File folder = new File(milestoneDir);
-                    Files.delete(legFileTemp.toPath());
-                    legFileTemp = null;
-                    recursiveDelete(folder);
-                }
-            } catch (IOException e) {
-                LOG.error("Exception occurred while deleting the file " + e);
-            } finally {
-                LOG.info("Closing milestone explorer window ...");
-                super.handleCloseButton();
-            }
-    }
-
-    private void recursiveDelete(File rootDir) throws IOException {
-        File[] files = rootDir.listFiles();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                recursiveDelete(file);
-            } else {
-                if (!file.delete()) {
-                    throw new IOException("Could not delete: " + file.getAbsolutePath());
-                }
-            }
-        }
-        if (!rootDir.delete()) {
-            throw new IOException("Could not delete: " + rootDir.getAbsolutePath());
+        try {
+            MilestoneHelper.deleteTempFilesIfExists(legFileTemp);
+            eventBus.post(new WindowClosedEvent<>(this));
+            super.handleCloseButton();
+        } catch (IOException e) {
+            LOG.error("Exception occurred while deleting the file " + e);
+        } finally {
+            LOG.info("Closing milestone explorer window ...");
+            super.handleCloseButton();
         }
     }
 }

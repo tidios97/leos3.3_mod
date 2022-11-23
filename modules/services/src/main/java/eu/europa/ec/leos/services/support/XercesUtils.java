@@ -1,18 +1,43 @@
 package eu.europa.ec.leos.services.support;
 
-import eu.europa.ec.leos.model.action.SoftActionType;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.jaxen.dom.DOMXPath;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.xml.SimpleNamespaceContext;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import static eu.europa.ec.leos.services.support.XPathCatalog.NAMESPACE_AKN_NAME;
+import static eu.europa.ec.leos.services.support.XPathCatalog.NAMESPACE_AKN_URI;
+import static eu.europa.ec.leos.services.support.XmlHelper.BLOCK;
+import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.CLOSE_END_TAG;
+import static eu.europa.ec.leos.services.support.XmlHelper.CLOSE_TAG;
+import static eu.europa.ec.leos.services.support.XmlHelper.CROSSHEADING;
+import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
+import static eu.europa.ec.leos.services.support.XmlHelper.ID;
+import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
+import static eu.europa.ec.leos.services.support.XmlHelper.INLINE;
+import static eu.europa.ec.leos.services.support.XmlHelper.INLINE_NUM;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.LIST;
+import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
+import static eu.europa.ec.leos.services.support.XmlHelper.OPEN_END_TAG;
+import static eu.europa.ec.leos.services.support.XmlHelper.OPEN_TAG;
+import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
+import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
+import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_ACTIONS_PREFIXES;
+import static eu.europa.ec.leos.services.support.XmlHelper.STYLE;
+import static eu.europa.ec.leos.services.support.XmlHelper.UTF_8;
+import static eu.europa.ec.leos.services.support.XmlHelper.XMLID;
+import static eu.europa.ec.leos.services.support.XmlHelper.XML_NAME;
+import static eu.europa.ec.leos.services.support.XmlHelper.convertStringDateToCalendar;
+import static eu.europa.ec.leos.services.support.XmlHelper.findString;
+import static eu.europa.ec.leos.services.support.XmlHelper.isExcludedNode;
+import static eu.europa.ec.leos.services.support.XmlHelper.parseXml;
+import static eu.europa.ec.leos.services.support.XmlHelper.removeSelfClosingElements;
+
+import java.io.ByteArrayInputStream;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,40 +51,21 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import java.io.ByteArrayInputStream;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import static eu.europa.ec.leos.services.support.XPathCatalog.NAMESPACE_AKN_NAME;
-import static eu.europa.ec.leos.services.support.XPathCatalog.NAMESPACE_AKN_URI;
-import static eu.europa.ec.leos.services.support.XmlHelper.BLOCK;
-import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.CLOSE_END_TAG;
-import static eu.europa.ec.leos.services.support.XmlHelper.CLOSE_TAG;
-import static eu.europa.ec.leos.services.support.XmlHelper.CROSSHEADING;
-import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
-import static eu.europa.ec.leos.services.support.XmlHelper.ID;
-import static eu.europa.ec.leos.services.support.XmlHelper.INLINE;
-import static eu.europa.ec.leos.services.support.XmlHelper.INLINE_NUM;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
-import static eu.europa.ec.leos.services.support.XmlHelper.OPEN_END_TAG;
-import static eu.europa.ec.leos.services.support.XmlHelper.OPEN_TAG;
-import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_ACTIONS_PREFIXES;
-import static eu.europa.ec.leos.services.support.XmlHelper.STYLE;
-import static eu.europa.ec.leos.services.support.XmlHelper.UTF_8;
-import static eu.europa.ec.leos.services.support.XmlHelper.XMLID;
-import static eu.europa.ec.leos.services.support.XmlHelper.XML_NAME;
-import static eu.europa.ec.leos.services.support.XmlHelper.convertStringDateToCalendar;
-import static eu.europa.ec.leos.services.support.XmlHelper.escapeXml;
-import static eu.europa.ec.leos.services.support.XmlHelper.findString;
-import static eu.europa.ec.leos.services.support.XmlHelper.removeSelfClosingElements;
-import static eu.europa.ec.leos.services.support.XmlHelper.isExcludedNode;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.jaxen.dom.DOMXPath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.xml.SimpleNamespaceContext;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import eu.europa.ec.leos.model.action.SoftActionType;
 
 public class XercesUtils {
 
@@ -204,7 +210,7 @@ public class XercesUtils {
                 sb.append(CLOSE_END_TAG);// sb: <tagName atr="attrVal"/>
             }
         } else if (node.getNodeType() == Node.TEXT_NODE) {
-            sb.append(escapeXml(node.getTextContent()));  // append text content. sb:  <tagName atr="attrVal"> nodeValue
+            sb.append(parseXml(node.getTextContent()));
         }
 
         NodeList nodeList = node.getChildNodes();
@@ -556,6 +562,11 @@ public class XercesUtils {
         return attrVal;
     }
 
+    public static boolean getAttributeValueAsSimpleBoolean(Node node, String attrName) {
+        Boolean attrVal = getAttributeValueAsBoolean(node, attrName);
+        return attrVal != null ? Boolean.valueOf(attrVal) : false;
+    }
+
     public static boolean containsAttribute(Node node, String attrName) {
         if (node != null) {
             String attrVal = getAttributeValue(node, attrName);
@@ -701,11 +712,11 @@ public class XercesUtils {
         List<Node> children = new ArrayList<>();
         NodeList nodeList = node.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
-        	Node child = nodeList.item(i);
-			if (child.getNodeType() == Node.ELEMENT_NODE
-					&& (elementsName.contains(child.getNodeName()) || elementsName.isEmpty())) {
-				children.add(child);
-			}
+            Node child = nodeList.item(i);
+            if (child.getNodeType() == Node.ELEMENT_NODE
+                    && (elementsName.contains(child.getNodeName()) || elementsName.isEmpty())) {
+                children.add(child);
+            }
         }
         return children;
     }
@@ -724,6 +735,49 @@ public class XercesUtils {
             }
         }
         return children;
+    }
+
+    public static List<Node> getDescendants(Node node, List<String> tagNames) {
+        List<Node> descendants = new ArrayList<>();
+        List<Node> children = getChildren(node);
+        for (Node child : children) {
+            if (tagNames.contains(child.getNodeName())) {
+                descendants.add(child);
+            }
+            descendants.addAll(getDescendants(child, tagNames));
+        }
+        return descendants;
+    }
+
+    public static Node getFirstDescendant(Node node, List<String> tagNames) {
+        List<Node> children = getChildren(node);
+        for (Node child : children) {
+            if (tagNames.contains(child.getNodeName())) {
+                return child;
+            }
+            Node childDescendant = getFirstDescendant(child, tagNames);
+            if (childDescendant != null) {
+                return childDescendant;
+            }
+        }
+        return null;
+    }
+
+    public static int getPointDepth(Node node) {
+        int pointDepth = 0;
+        if (Arrays.asList(POINT, INDENT).contains(node.getNodeName())) {
+            Node parentNode = node.getParentNode();
+            while (parentNode != null) {
+                String parentName = parentNode.getNodeName();
+                if (LIST.equals(parentName)) {
+                    pointDepth++;
+                } else if (PARAGRAPH.equals(parentName)) {
+                    break;
+                }
+                parentNode = parentNode.getParentNode();
+            }
+        }
+        return pointDepth;
     }
 
     public static boolean checkFirstChildType(Node node, String type) {
@@ -759,6 +813,14 @@ public class XercesUtils {
             id = getAttributeValue(parentNode, XMLID);
         }
         return id;
+    }
+
+    public static Node getParentWithTagName(Node node, String tagName) {
+        Node parentNode = node.getParentNode();
+        while (parentNode != null && !(parentNode.getNodeName().equalsIgnoreCase(tagName))) {
+            parentNode = parentNode.getParentNode();
+        }
+        return parentNode;
     }
 
     public static String getId(Node node) {
@@ -824,16 +886,6 @@ public class XercesUtils {
             nodeNum = numNode.getTextContent();
         }
         return nodeNum;
-    }
-
-    public static Node buildNumElement(Node node, String numLabel) {
-        Node numNode = getFirstChild(node, getNumTag(node.getNodeName()));
-        if (numNode != null) {
-            numNode.setTextContent(numLabel);
-        } else {
-            numNode = createElementAsFirstChildOfNode(node, getNumTag(node.getNodeName()), numLabel);
-        }
-        return numNode;
     }
 
     private static String getSoftActionPrefix(String id) {

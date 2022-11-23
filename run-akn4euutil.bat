@@ -22,6 +22,8 @@ echo "---------------------AKN4EUUtil COMPILING...------------------------------
 call mvn clean install
 echo "---------------------AKN4EUUtil COMPILED.-------------------------------------"
 
+cd ./web
+
 echo "---------------------AKN4EUUtil STARTING...-----------------------------------"
-call mvn spring-boot:run
+call mvn spring-boot:run -Dspring-boot.run.directories=../config/target/generated-config
 echo "---------------------AKN4EUUtil STOPPED....-----------------------------------"

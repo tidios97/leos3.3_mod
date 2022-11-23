@@ -39,7 +39,8 @@ define(function aknDivisionHeadingProfileModule(require) {
     plugins.push(require("plugins/aknHtmlItalic/aknHtmlItalicPlugin"));
     plugins.push(require("plugins/aknHtmlUnderline/aknHtmlUnderlinePlugin"));
 	plugins.push(require("plugins/aknHtmlSuperScript/aknHtmlSuperScriptPlugin"));
-    plugins.push(require("plugins/aknHtmlSubScript/aknHtmlSubScriptPlugin"));    
+    plugins.push(require("plugins/aknHtmlSubScript/aknHtmlSubScriptPlugin"));
+    plugins.push(require("plugins/leosTextCaseChanger/leosTextCaseChangerPlugin"));
 
     var pluginNames=[];
     var specificConfig={};
@@ -83,7 +84,7 @@ define(function aknDivisionHeadingProfileModule(require) {
         toolbar: [
             {name: 'save', items: ['leosInlineSave', 'leosInlineSaveClose', 'leosInlineCancel']},
             {name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
-            {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Subscript', 'Superscript']},
+            {name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Subscript', 'Superscript', 'TransformTextSwitcher']},
             {name: 'insert', items: ['SpecialChar']},
         ],
         //show toolbar on startup

@@ -13,7 +13,6 @@
 # See the Licence for the specific language governing permissions and limitations under the Licence.
 #
 
-./run-annotate.sh
 ./run-user-repository.sh
 ./run-repository.sh
 ./run-leos.sh

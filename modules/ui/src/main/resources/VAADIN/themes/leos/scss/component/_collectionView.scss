@@ -5,6 +5,17 @@ $BLOCK_PADDING_FROM_LEFT: 40px;
 $GREY_COLOUR: #707070;
 $RED_COLOUR: #ce2a2a;
 $HEADING_BLUE: #2a78e4;
+
+%legend {
+    color:white;
+    padding:0 2px;
+    border-radius: 4px;
+}
+
+@mixin backgroundStyle($Color) {
+    background: border-box $Color;
+}
+
 @mixin collectionView {
     .collection-view {
         @include editbox;
@@ -177,6 +188,41 @@ $HEADING_BLUE: #2a78e4;
             }
         }
 
+        .supportingdocuments-block {
+            .create-supportdoc-button {
+                color: green;
+            }
+            .create-supportdoc-button.v-disabled {
+                color: $DARK_GREY;
+            }
+            .supportingdocument-block {
+                .title {
+                    padding-left: 51px; //number to align it with language
+                }
+
+                .move-up-button,
+                .move-down-button{
+                    visibility:hidden;
+                    cursor: pointer;
+                    color:$GREY_COLOUR;
+                    &:hover{
+                        color:$LIGHT_BLUE;
+                    }
+                }
+
+                &:hover {
+                    .move-up-button,
+                    .move-down-button {
+                        visibility: visible;
+                    }
+                }
+            }
+            .v-slot-supportingdocument-block:first-child .supportingdocument-block:hover .move-up-button,
+            .v-slot-supportingdocument-block:last-child  .supportingdocument-block:hover .move-down-button{
+                visibility: hidden;
+            }
+        }
+
         .collaborator-block {
             @extend %add-button;
             @extend %grid-view;
@@ -273,6 +319,28 @@ $HEADING_BLUE: #2a78e4;
         min-width: 36px;
     }
 }
+
+.leos-deleted-legend {
+    @extend %legend;
+    @include backgroundStyle($LIGHT_RED_COLOR);
+}
+
+.leos-modified-legend {
+    @extend %legend;
+    @include backgroundStyle($LIGHT_ORANGE_COLOR);
+}
+
+.leos-added-legend {
+    @extend %legend;
+    @include backgroundStyle($G_GREEN_COLOR);
+    padding:0 6px;
+}
+
+.leos-processed-legend {
+    @extend %legend;
+    @include backgroundStyle($LIGHT_GREY);
+}
+
 
 .sendRevisionLabel {
     border: 1px solid black;

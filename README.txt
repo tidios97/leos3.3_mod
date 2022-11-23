@@ -68,22 +68,7 @@ You must unzip the distribution archive.
     1) Unzip the distribution archive in the local file system
         a) A new directory should now be present: {LEOS}
 
-B2. RUNNING ANNOTATE
-====================
-
-You must compile and run annotate on the command line.
-
-    1) Traverse to folder {LEOS}/modules/annotate
-    2) Execute the following command to compile source code.
-            mvn clean install -Dmaven.test.skip=true
-    3) Traverse to folder {LEOS}/modules/annotate/server
-    4) Execute the following command to run annotate server.
-            mvn spring-boot:run -Dspring-boot.run.profiles=h2 -Dspring-boot.run.directories=../config/target/generated-config/
-
-Once you'll run LEOS, annotate sidebar will be available to annotate documents
-For more details about DB and running this module, check {LEOS}/modules/annotate/README.txt file
-
-B3. RUNNING USER DATABASE
+B2. RUNNING USER DATABASE
 =========================
 
 You must compile and run the user database on the command line.
@@ -94,7 +79,7 @@ You must compile and run the user database on the command line.
     3) Execute the following command to run it.
             mvn spring-boot:run -Drun.profiles=h2
 
-B4. RUNNING REPOSITORY
+B3. RUNNING REPOSITORY
 ======================
 
 There are two options for running CMIS repository.
@@ -115,7 +100,7 @@ There are two options for running CMIS repository.
 
         {LEOS}/docs/CMIS Open Source/LEOS-CMISOpenSource-v1.0.0.pdf
 
-B5. RUNNING LEOS
+B4. RUNNING LEOS
 ================
 
 Notes:
@@ -134,7 +119,7 @@ You must run LEOS on the command line.
         - For default authentication: mvn jetty:run-war
         - For SAML authentication: mvn jetty:run-war -Dsaml
 
-B6. RUNNING AKN4EUUTIL
+B5. RUNNING AKN4EUUTIL
 ======================
 
 You must compile and run akn4euutil on the command line.

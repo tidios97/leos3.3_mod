@@ -355,6 +355,7 @@
             <suffix>)</suffix>
             <sequence>a</sequence>
             <description>(a), (b), etc</description>
+            <regex>[a-z]+$|#</regex>
         </numberingConfig>
         <numberingConfig>
             <type>ROMAN_LOWER_PARENTHESIS</type>
@@ -363,6 +364,8 @@
             <suffix>)</suffix>
             <sequence>i</sequence>
             <description>(i), (ii), etc</description>
+            <regex>m{0,4}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})$|#</regex>
+            <msgValidationError>roman.num.config.validation.error.message</msgValidationError>
         </numberingConfig>
         <numberingConfig>
             <type>ROMAN_UPPER</type>

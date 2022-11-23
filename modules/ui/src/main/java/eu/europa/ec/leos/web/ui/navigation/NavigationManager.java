@@ -30,6 +30,7 @@ import com.vaadin.ui.Window;
 import eu.europa.ec.leos.ui.view.LeosView;
 import eu.europa.ec.leos.web.event.NavigationRequestEvent;
 import eu.europa.ec.leos.web.event.NavigationUpdateEvent;
+import eu.europa.ec.leos.web.event.view.document.DocumentNavigationRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,6 +75,13 @@ public class NavigationManager implements Serializable {
     @Subscribe
     public void navigationRequest(NavigationRequestEvent event) {
         LOG.debug("Navigation request received... [event={}]", event);
+        NavigationRequestEvent previousEvent = navigationStack.peek();
+        // If active target is a document view, forward the event to the document handler to check for unsaved / open editors
+        // In case event.isForwardToDocument() is false the check was already done or is not needed
+        if ((previousEvent != null) && Target.isDocument(previousEvent.getTarget()) && event.isForwardToDocument()) {
+            eventBus.post(new DocumentNavigationRequest(event));
+            return;
+        }
         event = resolveDestination(event);
         String urlFragment = createURLFragment(event.getTarget(), event.getParameters());
         navigator.navigateTo(urlFragment);

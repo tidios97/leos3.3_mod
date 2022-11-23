@@ -88,7 +88,6 @@ public abstract class ProposalConverterServiceImpl implements ProposalConverterS
         // unzip file
         Map<String, Object> unzippedFiles = ZipPackageUtil.unzipFiles(file, "/unzip/");
         try {
-            templatesCatalog = templateService.getTemplatesCatalog();
             String proposalFileKey = unzippedFiles.keySet().stream().filter(x -> x.startsWith(PROPOSAL_FILE)).findFirst().get();
             if (unzippedFiles.containsKey(proposalFileKey)) {
                 List<DocumentVO> propChildDocs = new ArrayList<>();
@@ -139,7 +138,8 @@ public abstract class ProposalConverterServiceImpl implements ProposalConverterS
         documentVO.setRef(docRef != null ? docRef : docName);
     }
 
-    private DocumentVO createDocument(String docName, File docFile, boolean canModifySource) {
+    @Override
+    public DocumentVO createDocument(String docName, File docFile, boolean canModifySource) {
         DocumentVO doc = null;
         try {
             if(docName.endsWith(XML_DOC_EXT)) {
@@ -166,6 +166,7 @@ public abstract class ProposalConverterServiceImpl implements ProposalConverterS
         if (document.getSource() != null) {
             try {
                 MetadataVO metadata = document.getMetadata();
+                templatesCatalog = templateService.getTemplatesCatalog();
                 Map<String, String> metadataVOMap = xmlNodeProcessor.getValuesFromXml(document.getSource(), new String[]{
                         XmlNodeConfigProcessor.DOC_PURPOSE_META,
                         XmlNodeConfigProcessor.DOC_STAGE_META,
@@ -195,6 +196,7 @@ public abstract class ProposalConverterServiceImpl implements ProposalConverterS
 
                 // if the template doesnt exist in the system we don't continue, we won't import it.
                 metadata.setTemplateName(templateService.getTemplateName(templatesCatalog, metadata.getDocTemplate(), metadata.getLanguage()));
+                document.setMetaData(metadata);
             } catch (Exception e) {
                 LOG.error("Error parsing metadata {}", e);
             }

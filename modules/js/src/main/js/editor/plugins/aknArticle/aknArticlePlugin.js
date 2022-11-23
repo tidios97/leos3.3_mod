@@ -98,6 +98,9 @@ define(function aknArticlePluginModule(require) {
             akn : "xml:id",
             html : "id"
         }, {
+            akn : "refersTo",
+            html : "refersto"
+        }, {
             akn : "leos:origin",
             html : "data-origin"
         }, {

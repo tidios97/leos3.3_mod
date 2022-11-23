@@ -1,10 +1,5 @@
 package eu.europa.ec.leos.services.support;
 
-import eu.europa.ec.leos.domain.cmis.LeosCategory;
-import eu.europa.ec.leos.domain.cmis.document.Annex;
-import eu.europa.ec.leos.domain.cmis.document.Bill;
-import eu.europa.ec.leos.domain.cmis.document.Memorandum;
-import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.cmis.document.XmlDocument;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.model.action.CheckinCommentVO;
@@ -47,14 +42,10 @@ public class ContributionsUtil {
             contributionVO.setXmlContent(contribution.getContent());
             contributionVO.setLegFileName(contribution.getLegFileName());
             contributionVO.setDocumentName(contribution.getDocumentName());
-            if (doc.getCategory().equals(LeosCategory.BILL)) {
-                contributionVO.setContributionStatus(((Bill)doc).getContributionStatus());
-            } else if (doc.getCategory().equals(LeosCategory.MEMORANDUM)) {
-                contributionVO.setContributionStatus(((Memorandum)doc).getContributionStatus());
-            } else if (doc.getCategory().equals(LeosCategory.ANNEX)) {
-                contributionVO.setContributionStatus(((Annex)doc).getContributionStatus());
-            } else if (doc.getCategory().equals(LeosCategory.PROPOSAL)) {
-                contributionVO.setContributionStatus(((Proposal)doc).getContributionStatus());
+            if (contributions.indexOf(contribution) < contributions.size() - 1) {
+                contributionVO.setContributionStatus(ContributionVO.ContributionStatus.CONTRIBUTION_DONE.getValue());
+            } else {
+                contributionVO.setContributionStatus(doc.getContributionStatus());
             }
             allContributions.add(contributionVO);
         });

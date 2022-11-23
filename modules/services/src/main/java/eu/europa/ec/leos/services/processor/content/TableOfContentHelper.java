@@ -20,6 +20,7 @@ import eu.europa.ec.leos.vo.toc.NumberingType;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
+import eu.europa.ec.leos.vo.toc.TocItemTypeName;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -40,6 +41,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.CHAPTER;
 import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
 import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.PART;
+import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
 import static eu.europa.ec.leos.services.support.XmlHelper.SECTION;
 import static eu.europa.ec.leos.services.support.XmlHelper.TBLOCK;
 import static eu.europa.ec.leos.services.support.XmlHelper.TITLE;
@@ -139,6 +141,11 @@ public class TableOfContentHelper {
             if (hasTocItemSoftAction(tableOfContentItemVO, ADD)) {
                 itemSoftStyle = "leos-soft-new";
             } else if (hasTocItemSoftAction(tableOfContentItemVO, DELETE)) {
+                String initialNum = tableOfContentItemVO.getInitialNum();
+                if (initialNum != null) {
+                    initialNum = initialNum.replace("Article ", "");
+                    tableOfContentItemVO.setNumber(initialNum);
+                }
                 itemSoftStyle = "leos-soft-removed";
             } else if (hasTocItemSoftAction(tableOfContentItemVO, MOVE_TO)) {
                 itemSoftStyle = "leos-soft-movedto";
@@ -214,6 +221,36 @@ public class TableOfContentHelper {
         }
 
         return startingDepth;
+    }
+
+    public static TableOfContentItemVO getFirstAscendant(TableOfContentItemVO tocItem, List<String> tagNames) {
+        if (tocItem != null) {
+            if (tagNames.contains(getTagValueFromTocItemVo(tocItem))) {
+                return tocItem;
+            } else {
+                return getFirstAscendant(tocItem.getParentItem(), tagNames);
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public static void convertArticle(List<TocItem> tocItems, TableOfContentItemVO article, TocItemTypeName oldValue, TocItemTypeName newValue) {
+        updateTocItemsNumberingConfig(tocItems, article
+                   , StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType(tocItems, oldValue, POINT)
+                   , StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType(tocItems, newValue, POINT));
+    }
+
+    private static void updateTocItemsNumberingConfig(List<TocItem> tocItems, TableOfContentItemVO item, NumberingType fromNumberingType,
+                                                      NumberingType toNumberingType) {
+        for (TableOfContentItemVO child : item.getChildItems()) {
+            if (child.getTocItem().getNumberingType().equals(fromNumberingType)) {
+                TocItem tocItem = StructureConfigUtils.getTocItemByNumberingType(tocItems, toNumberingType, child.getTocItem().getAknTag().name());
+                child.setTocItem(tocItem);
+            }
+            child.setAffected(true);
+            updateTocItemsNumberingConfig(tocItems, child, fromNumberingType, toNumberingType);
+        }
     }
 
 }

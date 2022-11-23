@@ -66,7 +66,7 @@ $LIST_SPACING: 40px;
     }
   }
   // pad all subparagraphs of numbered paragraphs, except the first one which is already padded by the number tag
-  ol > li[data-akn-name="aknNumberedParagraph"] {
+  ol > li[data-akn-num][data-akn-name="aknNumberedParagraph"] {
     & > p:not(:first-of-type):not([data-akn-element=crossHeading])::before {
       @extend %padRight;
     }

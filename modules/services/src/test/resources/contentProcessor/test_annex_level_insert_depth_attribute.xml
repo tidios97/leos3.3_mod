@@ -1,0 +1,43 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+	<doc name="ANNEX">
+        <mainBody xml:id="body">
+            <paragraph leos:origin="ec" xml:id="para_1">
+	            <subparagraph leos:origin="ec" xml:id="para_1_sub_para">
+	                <content leos:origin="ec" xml:id="para_1_sub_para_content">
+	                    <p leos:origin="ec" xml:id="para_1_sub_para_content_text">Paragraph 1 sub paragraph content</p>
+	                </content>
+	            </subparagraph>
+	            <list leos:origin="ec" xml:id="para_1_list">
+	                <point leos:origin="ec" xml:id="para_1_list_point_a">
+	                    <num leos:origin="ec" xml:id="para_1_list_point_a_num">(a)</num>
+	                    <content leos:origin="ec" xml:id="para_1_list_point_a_content">
+	                        <p leos:origin="ec" xml:id="para_1_list_point_a_content_text">Paragraph 1 Point (a) content</p>
+	                    </content>
+	                </point>
+	                <point leos:origin="ec" xml:id="para_1_list_point_b">
+	                    <num leos:origin="ec" xml:id="para_1_list_point_b_num">#</num>
+	                    <content leos:origin="ec" xml:id="para_1_list_point_b_content">
+	                        <p leos:origin="ec" xml:id="para_1_list_point_b_content_text">Paragraph 1 Point (b) content</p>
+	                    </content>
+	                </point>
+	            </list>
+	        </paragraph>
+			<level leos:origin="ec" xml:id="level_1">
+			    <num leos:origin="ec" xml:id="level_1_num">1.</num>
+			    <subparagraph leos:origin="ec" xml:id="level_1_sub_para">
+			        <content leos:origin="ec" xml:id="level_1_sub_para_content">
+			            <p leos:origin="ec" xml:id="level_1_sub_para_content_text">Paragraph 1 Point 1 content</p>
+			        </content>
+			    </subparagraph>
+			    <list leos:origin="ec" xml:id="level_1_list">
+			        <point leos:origin="ec" xml:id="level_1_list_point_a">
+			            <num leos:origin="ec" xml:id="level_1_list_point_a_num">(a)</num>
+			            <content leos:origin="ec" xml:id="level_1_list_point_a_content">
+			                <p leos:origin="ec" xml:id="level_1_list_point_a_content_text">credit institutions;</p>
+			            </content>
+			        </point>
+			    </list>
+			</level>
+        </mainBody>
+    </doc>
+</akomaNtoso>

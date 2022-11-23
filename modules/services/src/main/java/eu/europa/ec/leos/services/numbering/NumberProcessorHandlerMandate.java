@@ -39,7 +39,7 @@ public class NumberProcessorHandlerMandate extends NumberProcessorHandler {
     }
 
     @Override
-    protected void incrementValue(NumberConfig numberConfig) {
+    public void incrementValue(NumberConfig numberConfig) {
         numberConfig.getNextNumberToShow();
         numberConfig.resetComplexValue();
     }
@@ -67,7 +67,7 @@ public class NumberProcessorHandlerMandate extends NumberProcessorHandler {
         if (numberConfig.isComplex()) {
             Node node = nodeList
                     .stream()
-                    .filter(n -> !isElementSameOrigin(n))
+                    .filter(n -> !isElementSameOrigin(n) || "true".equals(XercesUtils.getAttributeValue(n, "leos:renumbered")))
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Incongruent situation. If is a COMPLEX numbering, 1 Node should be of the same instance type"));
             String labelNumber = getNodeNum(node);

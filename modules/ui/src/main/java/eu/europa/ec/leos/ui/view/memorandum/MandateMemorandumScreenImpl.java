@@ -2,13 +2,11 @@ package eu.europa.ec.leos.ui.view.memorandum;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import com.vaadin.server.StreamResource;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
 import eu.europa.ec.leos.domain.cmis.document.Memorandum;
 import eu.europa.ec.leos.domain.cmis.metadata.LeosMetadata;
 import eu.europa.ec.leos.domain.common.InstanceType;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.instance.Instance;
@@ -27,7 +25,6 @@ import eu.europa.ec.leos.ui.component.toc.TocEditor;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.web.event.NotificationEvent;
 import eu.europa.ec.leos.web.event.component.LayoutChangeRequestEvent;
-import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.FetchUserPermissionsResponse;
 import eu.europa.ec.leos.web.event.view.document.InstanceTypeResolver;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
@@ -83,7 +80,13 @@ class MandateMemorandumScreenImpl extends MemorandumScreenImpl {
     }
 
     @Override
-    public void showRevision(String content, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList) {
+    public void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList) {
+        throw new IllegalArgumentException("Operation not valid");
+    }
+
+
+    @Override
+    public void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId) {
         throw new IllegalArgumentException("Operation not valid");
     }
 

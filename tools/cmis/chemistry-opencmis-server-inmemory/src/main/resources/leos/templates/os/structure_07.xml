@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<structure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://eu.europa.ec.digit.leos.pilot/schema/"
+           xsi:schemaLocation="http://eu.europa.ec.digit.leos.pilot/schema/ structure_1.xsd">
+
+    <name>structure_06.xml</name>
+    <description>Structure used for Financial Statement</description>
+    <version>1</version>
+
+    <tocItems>
+        <tocItem>
+            <aknTag>preface</aknTag>
+            <root>true</root>
+            <draggable>false</draggable>
+            <childrenAllowed>false</childrenAllowed>
+            <display>true</display>
+            <itemNumber>none</itemNumber>
+            <itemHeading>none</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>false</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>NONE</numberingType>
+            <editable>false</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>mainBody</aknTag>
+            <root>true</root>
+            <draggable>false</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>none</itemNumber>
+            <itemHeading>none</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>false</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>NONE</numberingType>
+            <editable>false</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>level</aknTag>
+            <root>false</root>
+            <draggable>true</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>true</autoNumbering>
+            <itemHeading>optional</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>LEVEL_NUM</numberingType>
+            <profiles>
+                <profile>
+                    <profileName>inlineAknLevel</profileName>
+                </profile>
+            </profiles>
+            <editable>true</editable>
+            <maxDepth>7</maxDepth>
+        </tocItem>
+
+    </tocItems>
+
+    <numberingConfigs/>
+
+    <alternateConfigs/>
+
+    <tocRules>
+        <entry>
+            <tocItem>longTitle</tocItem>
+            <list>
+                <tocItem>docPurpose</tocItem>
+            </list>
+        </entry>
+    </tocRules>
+
+</structure>

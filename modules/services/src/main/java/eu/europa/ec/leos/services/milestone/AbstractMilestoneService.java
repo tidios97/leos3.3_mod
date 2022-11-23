@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.locks.StampedLock;
 
 public abstract class AbstractMilestoneService implements MilestoneService{
@@ -74,6 +75,21 @@ public abstract class AbstractMilestoneService implements MilestoneService{
             long stamp = updateMilestoneLock.writeLock();
             try{
                 return legService.updateLegDocument(legId, status);
+            } finally {
+                updateMilestoneLock.unlockWrite(stamp);
+            }
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public LegDocument updateMilestone(String legId, List<String> containedDocuments) {
+        LOG.trace("Updating Leg document contained files [legId={}]", legId);
+        if(legId != null && !legId.isEmpty()){
+            long stamp = updateMilestoneLock.writeLock();
+            try{
+                return legService.updateLegDocument(legId, containedDocuments);
             } finally {
                 updateMilestoneLock.unlockWrite(stamp);
             }

@@ -123,18 +123,19 @@ public class ElementProcessorImpl<T extends XmlDocument> implements ElementProce
         elementContent = removeEmptyHeading(document.getContent().get().getSource().getBytes(), elementContent, elementName, elementId, tocItems);
         // merge the updated content with the actual document and return updated document
         byte[] contentBytes = getContent(document);
-        if(isClonedProposal()) {
+        if (isClonedProposal()) {
             Pair<byte[], String> result = xmlContentProcessor.updateSoftMovedElement(contentBytes, elementContent);
             if(result.left() != null && result.left().length > 0) {
                 contentBytes = result.left();
-            } else if(result.right() != null && result.right().getBytes().length > 0) {
+            }
+            if(result.right() != null && result.right().getBytes().length > 0) {
                 elementContent = result.right();
             }
             byte[] originalContentBytes = documentContentService.getOriginalContentToCompare(document);
             Document doc = createXercesDocument(originalContentBytes);
             Node node = XercesUtils.getElementById(doc, elementId);
             String originalContent = nodeToString(node);
-            if(!StringUtils.isEmpty(originalContent)) {
+            if (!StringUtils.isEmpty(originalContent)) {
                 elementContent = compareService.compareDeletedElements(new ContentComparatorContext.Builder(originalContent, elementContent)
                         .withDisplayRemovedContentAsReadOnly(Boolean.TRUE)
                         .build());

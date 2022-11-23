@@ -1,20 +1,21 @@
 package eu.europa.ec.leos.services.numbering.processor;
 
+import static eu.europa.ec.leos.services.numbering.NumberProcessorHandler.skipAutoRenumbering;
+import static eu.europa.ec.leos.services.support.LeosXercesUtils.buildNumElement;
+import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
+import static eu.europa.ec.leos.services.support.XercesUtils.getId;
+import static eu.europa.ec.leos.services.support.XercesUtils.isSoftChanged;
+import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Node;
+
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.model.action.SoftActionType;
 import eu.europa.ec.leos.services.numbering.NumberProcessorHandler;
 import eu.europa.ec.leos.services.numbering.config.NumberConfig;
 import eu.europa.ec.leos.services.support.XercesUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.Node;
-
-import static eu.europa.ec.leos.services.numbering.NumberProcessorHandler.skipAutoRenumbering;
-import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
-import static eu.europa.ec.leos.services.support.XercesUtils.buildNumElement;
-import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
-import static eu.europa.ec.leos.services.support.XercesUtils.getId;
-import static eu.europa.ec.leos.services.support.XercesUtils.isSoftChanged;
 
 public class NumberProcessorAbstract {
 
@@ -58,7 +59,14 @@ public class NumberProcessorAbstract {
     // Numbers like: 1a, 1b, 1c, etc
     private void complexNumbering(Node node, NumberConfig numberConfig, String elementName, String elementId, String parentPrefix) {
         // COMPLEX numbering: CN runningInstance, mixed EC with CN elements
-        if (numberProcessorHandler.isElementSameOrigin(node)) {
+        /*
+         * To better understand this if, it would be this in else:
+         * ( !numberProcessorHandler.isElementSameOrigin(node) || (leosRenumbered != null && leosRenumbered.equals("true")) )
+         * But then, to change it to if:
+         * ( numberProcessorHandler.isElementSameOrigin(node) && (leosRenumbered == null || !leosRenumbered.equals("true")) )
+         */
+        String leosRenumbered = XercesUtils.getAttributeValue(node, "leos:renumbered");
+        if (numberProcessorHandler.isElementSameOrigin(node) && (leosRenumbered == null || !leosRenumbered.equals("true"))) {
             // found an CN element
             // complex numbering, CN element in CN runningInstance
             numberConfig.incrementComplexValue();
@@ -68,17 +76,29 @@ public class NumberProcessorAbstract {
             buildNumElement(node, elementNum);
             LOG.trace("CN {} '{}', numbered to '{}'", elementName, elementId, elementNum);
         } else {
-            // found an EC element.
+            // Found an EC element.
             // Skip numbering and declare "done" any eventual "complex" numbering going on.
             // Increment the next value, or read the actual EC number and parse it as current value for numbering algorithm.
             numberConfig.resetComplexValue();
-            readActualNumber(numberConfig, node, elementName, elementId);
+            if (leosRenumbered != null && leosRenumbered.equals("true")) {
+                String num = readActualNumberForRenumber(numberConfig, elementName, elementId);
+                String elementNum = numberConfig.getPrefix() + parentPrefix + num + numberConfig.getSuffix();
+                elementNum = messageHelper.getMessage("numbering.label." + elementName, elementNum);
+                buildNumElement(node, elementNum);
+            } else {
+                readActualNumber(numberConfig, node, elementName, elementId);
+            }
         }
     }
 
     protected void readActualNumber(NumberConfig numberConfig, Node node, String elementName, String elementId) {
+        readActualNumberForRenumber(numberConfig, elementName, elementId);
+    }
+
+    protected String readActualNumberForRenumber(NumberConfig numberConfig, String elementName, String elementId) {
         String elementNum = numberConfig.getNextNumberToShow();
         LOG.trace("Skipping EC {} '{}', number '{}'", elementName, elementId, elementNum);
+        return elementNum;
     }
 
     /**

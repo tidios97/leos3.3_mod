@@ -568,7 +568,7 @@ public class LegServiceImplTest {
 		Source source = new SourceImpl(new ByteArrayInputStream(xmlContent));
 		Content content = new ContentImpl("AN-000.xml", "mime type", xmlContent.length, source);
 		AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", "AN-000.xml", 
-				"annex_cl3yjnpcz0007k485t5p989mq.xml", 1, "Annex 1", "title", "", "0.0.1", false);
+				"annex_cl3yjnpcz0007k485t5p989mq.xml", 1, "Annex 1", "title", "", "0.0.1", false, STORE_DIR);
 		return new Annex("555", "annex_cl3yjnpcz0007k485t5p989mq.xml", "login", Instant.now(), "login", Instant.now(),
 				"0.1.0", "", "0.1.0", "", VersionType.MINOR, true,
                 "title", Collections.emptyList(), Arrays.asList(""), "", "", "",

@@ -43,6 +43,8 @@
             <xs:element name="expandedByDefault" type="xs:boolean" default="false"/>
             <xs:element name="sameParentAsChild" type="xs:boolean" default="false"/>
             <xs:element name="numberingType" type="numberingType"/>
+            <xs:element name="tocItemTypes" type="tocItemTypes" minOccurs="0"/>
+            <xs:element name="parentNameNumberingTypeDependency" type="aknTag" minOccurs="0"/>
             <xs:element name="profiles" type="profiles" minOccurs="0"/>
             <xs:element name="editable" type="xs:boolean" default="false"/>
             <xs:element name="addSoftAttr" type="xs:boolean" default="true" minOccurs="0"/>
@@ -86,6 +88,44 @@
             <!-- ATTENTION: Make sure that all configNumbers indicated in the list levels are present in the plugin listItemNumberModule.js -->
             <xs:element name="levels" type="levels" minOccurs="0"/>
             <xs:element name="level" type="xs:string" default="" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tocItemType">
+        <xs:sequence>
+            <xs:element name="name" type="tocItemTypeName"/>
+            <xs:element name="attribute" type="attribute" minOccurs="0"/>
+            <xs:element name="subElementNumberingConfigs" type="subElementNumberingConfigs"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="attribute">
+        <xs:sequence>
+            <xs:element name="attributeName" type="xs:string"/>
+            <xs:element name="attributeValue" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="tocItemTypeName" final="restriction">
+        <xs:annotation>
+            <xs:documentation>Names of tocItems' types. For instance: definition articles or regular articles</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="REGULAR"/>
+            <xs:enumeration value="DEFINITION"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="subElementNumberingConfigs">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="subElementNumberingConfig" type="subElementNumberingConfig"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="subElementNumberingConfig">
+        <xs:sequence>
+            <xs:element name="subElement" type="aknTag"/>
+            <xs:element name="numberingType" type="numberingType"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -148,6 +188,7 @@
             <xs:enumeration value="INDENT"/>
             <xs:enumeration value="HIGHER_ELEMENT_NUM"/>
             <xs:enumeration value="POINT_NUM"/>
+            <xs:enumeration value="POINT_NUM_DEF"/>
             <xs:enumeration value="LEVEL_NUM"/>
             <xs:enumeration value="DIVISION_NUM"/>
             <xs:enumeration value="ROMAN_UPPER_POSTFIXDOT"/>
@@ -218,6 +259,12 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tocItemTypes">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="tocItemType" type="tocItemType"/>
         </xs:sequence>
     </xs:complexType>
 

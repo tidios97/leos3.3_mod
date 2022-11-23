@@ -1,0 +1,26 @@
+<article xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xml:id="_imp_art_d1e5242_6jPqhP">
+    <num>Article 64</num>
+    <heading>Definitions</heading>
+    <paragraph>
+        <num/>
+        <subparagraph>
+            <content>
+                <p>par 1</p>
+            </content>
+        </subparagraph>
+        <list>
+            <point>
+                <num>(1)</num>
+                <content>
+                    <p>This should be (1)</p>
+                </content>
+            </point>
+            <point>
+                <num>(2)</num>
+                <content>
+                    <p>This should be (2)</p>
+                </content>
+            </point>
+        </list>
+    </paragraph>
+</article>

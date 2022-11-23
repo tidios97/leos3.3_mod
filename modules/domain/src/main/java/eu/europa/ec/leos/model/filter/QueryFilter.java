@@ -99,7 +99,7 @@ public class QueryFilter {
         public final String operator;
         public final boolean nullCheck;
 
-        public Filter(String key, String operator, boolean nullCheck,  String... value) {
+        public Filter(String key, String operator, boolean nullCheck, String... value) {
             this.key = key;
             this.value = value;
             this.operator = operator;

@@ -19,6 +19,7 @@ import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessorProposal;
 import eu.europa.ec.leos.services.support.XercesUtils;
+import eu.europa.ec.leos.services.util.TestUtils;
 import eu.europa.ec.leos.test.support.LeosTest;
 import org.junit.Ignore;
 import org.junit.Test;

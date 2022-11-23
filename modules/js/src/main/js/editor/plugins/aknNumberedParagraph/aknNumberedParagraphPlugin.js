@@ -25,6 +25,17 @@ define(function aknNumberedParagraphPluginModule(require) {
     var leosPluginUtils = require("plugins/leosPluginUtils");
     var leosCommandStateHandler = require("plugins/leosCommandStateHandler/leosCommandStateHandler");
 
+    var DATA_INDENT_ORIGIN_LEVEL = "data-indent-origin-indent-level";
+    var DATA_INDENT_ORIGIN_NUMBER = "data-indent-origin-num";
+    var DATA_INDENT_ORIGIN_NUMBER_ID = "data-indent-origin-num-id";
+    var DATA_INDENT_ORIGIN_NUMBER_ORIGIN = "data-indent-origin-num-origin";
+    var DATA_INDENT_ORIGIN_TYPE = "data-indent-origin-type";
+    var LEOS_INDENT_ORIGIN_LEVEL = "leos:indent-origin-indent-level";
+    var LEOS_INDENT_ORIGIN_NUMBER = "leos:indent-origin-num";
+    var LEOS_INDENT_ORIGIN_NUMBER_ID = "leos:indent-origin-num-id";
+    var LEOS_INDENT_ORIGIN_NUMBER_ORIGIN = "leos:indent-origin-num-origin";
+    var LEOS_INDENT_ORIGIN_TYPE = "leos:indent-origin-type";
+
     var LOG = require("logger");
     var ENTER_KEY = 13;
     var UNDERLINE = CKEDITOR.CTRL + 85;
@@ -397,9 +408,30 @@ define(function aknNumberedParagraphPluginModule(require) {
                 akn: 'leos:softmove_label',
                 html: 'data-akn-attr-softmove_label'
             }, {
+                akn: LEOS_INDENT_ORIGIN_TYPE,
+                html: DATA_INDENT_ORIGIN_TYPE
+            }, {
+                akn: LEOS_INDENT_ORIGIN_LEVEL,
+                html: DATA_INDENT_ORIGIN_LEVEL
+            }, {
+                akn: LEOS_INDENT_ORIGIN_LEVEL,
+                html: DATA_INDENT_ORIGIN_LEVEL
+            }, {
+                akn: LEOS_INDENT_ORIGIN_NUMBER,
+                html: DATA_INDENT_ORIGIN_NUMBER
+            }, {
+                akn: LEOS_INDENT_ORIGIN_NUMBER_ID,
+                html: DATA_INDENT_ORIGIN_NUMBER_ID
+            }, {
+                akn: LEOS_INDENT_ORIGIN_NUMBER_ORIGIN,
+                html: DATA_INDENT_ORIGIN_NUMBER_ORIGIN
+            }, {
                 html: 'data-akn-name=aknNumberedParagraph'
             }, {
                 html: 'data-akn-element=paragraph'
+            }, {
+                akn : "leos:renumbered",
+                html : "data-akn-attr-renumbered"
             }]
         },
         rootElementsForFrom: ['paragraph'],

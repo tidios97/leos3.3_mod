@@ -24,12 +24,22 @@ public class NavigationRequestEvent {
 
     private Target target;
     private String[] parameters;
+    private boolean forwardToDocument;
+
+    public NavigationRequestEvent(@Nonnull Target target, boolean forwardToDocument, String... parameters) {
+        Validate.notNull(target, "The navigation target must not be null!");
+
+        this.target = target;
+        this.parameters = parameters;
+        this.forwardToDocument = forwardToDocument;
+    }
 
     public NavigationRequestEvent(@Nonnull Target target, String... parameters) {
         Validate.notNull(target, "The navigation target must not be null!");
 
         this.target = target;
         this.parameters = parameters;
+        this.forwardToDocument = true;
     }
 
     public @Nonnull Target getTarget() {
@@ -43,5 +53,13 @@ public class NavigationRequestEvent {
     @Override
     public String toString() {
         return String.format("NavigationRequestEvent{target='%s', parameters=%s}", target, Arrays.toString(parameters));
+    }
+
+    public void setForwardToDocument(boolean forwardToDocument) {
+        this.forwardToDocument = forwardToDocument;
+    }
+
+    public boolean isForwardToDocument() {
+        return this.forwardToDocument;
     }
 }

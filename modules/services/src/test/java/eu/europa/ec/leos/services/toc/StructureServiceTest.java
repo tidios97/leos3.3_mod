@@ -65,7 +65,7 @@ public class StructureServiceTest extends LeosTest {
     public void test_getBillTocItems() {
         List<TocItem> tocItems = structureServiceImpl.getTocItems(docTemplate);
         assertNotNull(tocItems);
-        assertEquals(22, tocItems.size());
+        assertEquals(24, tocItems.size());
     }
 
     @Test

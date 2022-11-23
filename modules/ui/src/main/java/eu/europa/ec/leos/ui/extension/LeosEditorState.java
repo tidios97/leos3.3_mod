@@ -31,6 +31,7 @@ public class LeosEditorState extends LeosJavaScriptExtensionState {
     public String tocItemsJsonArray;
     public String numberingConfigsJsonArray;
     public String listNumberConfigJsonArray;
+    public String articleTypesConfigJsonArray;
     public String alternateConfigsJsonArray;
     public String documentsMetadataJsonArray;
     public String documentRef;

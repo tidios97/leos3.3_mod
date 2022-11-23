@@ -66,7 +66,6 @@ define(function aknExplanatoryParagraphProfileModule(require) {
     plugins.push(require("plugins/aknHtmlExplanatoryHeadingAlign/aknHtmlExplanatoryHeadingAlignPlugin"));
     plugins.push(require("plugins/aknHtmlUnderline/aknHtmlUnderlinePlugin"));
     plugins.push(require("plugins/aknHtmlStrikeThrough/aknHtmlStrikeThroughPlugin"));
-    plugins.push(require("plugins/leosElementSplitHandler/leosElementSplitHandlerPlugin"));
 
 
     var pluginNames=[];
@@ -153,7 +152,12 @@ define(function aknExplanatoryParagraphProfileModule(require) {
         //MathJax plugin configuration - Sets the path to the MathJax library
         mathJaxLib: './webjars/MathJax/2.7.0/MathJax.js?config=default',
         // LEOS-2887 removing tooltip title
-        title: false
+        title: false,
+        allowedElementsForShiftEnter: {
+            table : {
+                elementName: 'table'
+            }
+        }
     };
     // adding the specific configs coming from the plugins.
     profileConfig = $.extend( profileConfig,  specificConfig);

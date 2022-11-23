@@ -29,17 +29,21 @@ import static eu.europa.ec.leos.services.support.XercesUtils.getNextSibling;
 import static eu.europa.ec.leos.services.support.XercesUtils.getParentId;
 import static eu.europa.ec.leos.services.support.XercesUtils.importNodeInDocument;
 import static eu.europa.ec.leos.services.support.XercesUtils.insertOrUpdateAttributeValue;
+import static eu.europa.ec.leos.services.support.XercesUtils.insertOrUpdateStylingAttribute;
 import static eu.europa.ec.leos.services.support.XercesUtils.nodeToByteArray;
 import static eu.europa.ec.leos.services.support.XercesUtils.nodeToString;
 import static eu.europa.ec.leos.services.support.XercesUtils.nodeToStringSimple;
 import static eu.europa.ec.leos.services.support.XercesUtils.removeAttribute;
 import static eu.europa.ec.leos.services.support.XercesUtils.updateXMLIDAttributeFullStructureNode;
+import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
 import static eu.europa.ec.leos.services.support.XmlHelper.ANNEX_FILE_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.AUTHORIAL_NOTE;
+import static eu.europa.ec.leos.services.support.XmlHelper.BLOCK;
 import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.CN;
 import static eu.europa.ec.leos.services.support.XmlHelper.CONTENT;
 import static eu.europa.ec.leos.services.support.XmlHelper.COUNCIL_EXPLANATORY;
+import static eu.europa.ec.leos.services.support.XmlHelper.CROSSHEADING;
 import static eu.europa.ec.leos.services.support.XmlHelper.DEC_FILE_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.DIR_FILE_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.DOC;
@@ -48,11 +52,16 @@ import static eu.europa.ec.leos.services.support.XmlHelper.ELEMENTS_IN_TOC;
 import static eu.europa.ec.leos.services.support.XmlHelper.HEADING;
 import static eu.europa.ec.leos.services.support.XmlHelper.HREF;
 import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
+import static eu.europa.ec.leos.services.support.XmlHelper.INDENT_LEVEL_PROPERTY;
+import static eu.europa.ec.leos.services.support.XmlHelper.INLINE_NUM_PROPERTY;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_AUTO_NUM_OVERWRITE;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_CROSS_HEADING_BLOCK_NAME;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_DELETABLE_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_DEPTH_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_EDITABLE_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_LEVEL_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_ORIGIN_TYPE_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INITIAL_NUM;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_ORIGIN_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_REF;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_REF_BROKEN_ATTR;
@@ -67,7 +76,6 @@ import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_USER_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEVEL;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEVEL_NUM_SEPARATOR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LIST;
-import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
 import static eu.europa.ec.leos.services.support.XmlHelper.MAIN_BODY;
 import static eu.europa.ec.leos.services.support.XmlHelper.MARKER_ATTRIBUTE;
 import static eu.europa.ec.leos.services.support.XmlHelper.MEMORANDUM_FILE_PREFIX;
@@ -77,6 +85,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.NON_BREAKING_SPACE;
 import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
 import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
+import static eu.europa.ec.leos.services.support.XmlHelper.PROPOSAL_FILE;
 import static eu.europa.ec.leos.services.support.XmlHelper.PROP_ACT;
 import static eu.europa.ec.leos.services.support.XmlHelper.REF;
 import static eu.europa.ec.leos.services.support.XmlHelper.REG_FILE_PREFIX;
@@ -121,9 +130,13 @@ import java.util.stream.Collectors;
 
 import javax.inject.Provider;
 
+import eu.europa.ec.leos.vo.toc.Attribute;
+import eu.europa.ec.leos.vo.toc.TocItemTypeName;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.jgroups.util.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,6 +175,7 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
     private static final Logger LOG = LoggerFactory.getLogger(XmlContentProcessorImpl.class);
 
     public static final String NBSP = "\u00a0";
+    public static final String[] NUMBERED_AND_LEVEL_ITEMS = {PARAGRAPH, POINT, LEVEL, INDENT};
 
     @Autowired
     protected ReferenceLabelService referenceLabelService;
@@ -316,7 +330,7 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
     }
 
     protected abstract Node buildTocItemContent(List<TocItem> tocItems, List<NumberingConfig> numberingConfigs, Map<TocItem, List<TocItem>> tocRules,
-            Document document, Node parentNode, TableOfContentItemVO tocVo, User user);
+                                                Document document, Node parentNode, TableOfContentItemVO tocVo, User user);
 
     @Override
     public String getElementValue(byte[] xmlContent, String xPath, boolean namespaceEnabled) {
@@ -629,45 +643,53 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
     }
 
     private void updatePointStructure(Node parentNode) {
-    	NodeList points = XercesUtils.getElementsByName(parentNode, POINT);
-    	for (int i = 0; i < points.getLength(); i++) {
-    		Node point = points.item(i);
-			Node list = XercesUtils.getFirstChild(point, LIST);
-			if(list != null) {
-				List<Node> level2Points = XercesUtils.getChildren(list, POINT);
-				List<Node> level2Indents = XercesUtils.getChildren(list, INDENT);
-				if((level2Points == null || level2Points.isEmpty()) && (level2Indents == null || level2Indents.isEmpty())) {
-		    		List<Node> alineas = XercesUtils.getChildren(point, SUBPOINT);
-		    		if(alineas != null && alineas.size() == 1) {
-		    			Node alinea = alineas.get(0);
-						Node content = XercesUtils.getFirstChild(alinea, CONTENT);
-						XercesUtils.replaceElement(content, alinea);
-		    		}
-					point.removeChild(list);
-				}
-			}
-    	}
+        NodeList points = XercesUtils.getElementsByName(parentNode, POINT);
+        for (int i = 0; i < points.getLength(); i++) {
+            Node point = points.item(i);
+            Node list = XercesUtils.getFirstChild(point, LIST);
+            if(list != null) {
+                List<Node> level2Points = XercesUtils.getChildren(list, POINT);
+                List<Node> level2Indents = XercesUtils.getChildren(list, INDENT);
+                if((level2Points == null || level2Points.isEmpty()) && (level2Indents == null || level2Indents.isEmpty())) {
+                    List<Node> alineas = XercesUtils.getChildren(point, SUBPOINT);
+                    if(alineas != null && alineas.size() == 1) {
+                        Node alinea = alineas.get(0);
+                        Node content = XercesUtils.getFirstChild(alinea, CONTENT);
+                        XercesUtils.replaceElement(content, alinea);
+                    }
+                    point.removeChild(list);
+                }
+            }
+        }
     }
 
     private void updateParagraphStructure(Node parentNode) {
-    	NodeList paragraphs = XercesUtils.getElementsByName(parentNode, PARAGRAPH);
-    	for (int i = 0; i < paragraphs.getLength(); i++) {
-    		Node paragraph = paragraphs.item(i);
-			Node list = XercesUtils.getFirstChild(paragraph, LIST);
-			if(list != null) {
-				List<Node> level2Points = XercesUtils.getChildren(list, POINT);
-				List<Node> level2Indents = XercesUtils.getChildren(list, INDENT);
-				if((level2Points == null || level2Points.isEmpty()) && (level2Indents == null || level2Indents.isEmpty())) {
-		    		List<Node> subparagraphs = XercesUtils.getChildren(paragraph, SUBPARAGRAPH);
-		    		if(subparagraphs != null && subparagraphs.size() == 1) {
-		    			Node subparagraph = subparagraphs.get(0);
-						Node content = XercesUtils.getFirstChild(subparagraph, CONTENT);
-						XercesUtils.replaceElement(content, subparagraph);
-		    		}
-					paragraph.removeChild(list);
-				}
-			}
-    	}
+        NodeList paragraphs = XercesUtils.getElementsByName(parentNode, PARAGRAPH);
+        for (int i = 0; i < paragraphs.getLength(); i++) {
+            Node paragraph = paragraphs.item(i);
+            Node list = XercesUtils.getFirstChild(paragraph, LIST);
+            if(list != null) {
+                List<Node> level2Points = XercesUtils.getChildren(list, POINT);
+                List<Node> level2Indents = XercesUtils.getChildren(list, INDENT);
+                if((level2Points == null || level2Points.isEmpty()) && (level2Indents == null || level2Indents.isEmpty())) {
+                    List<Node> subparagraphs = XercesUtils.getChildren(paragraph, SUBPARAGRAPH);
+                    if(subparagraphs != null && subparagraphs.size() == 1) {
+                        Node subparagraph = subparagraphs.get(0);
+                        Node content = XercesUtils.getFirstChild(subparagraph, CONTENT);
+                        XercesUtils.replaceElement(content, subparagraph);
+                    }
+                    paragraph.removeChild(list);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void updateIfEmptyOrigin(Node node, boolean isEmptyOrigin){
+    }
+
+    @Override
+    public void updateElementSplit(Node paragraph) {
     }
 
     @Override
@@ -765,20 +787,23 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
     }
 
     protected String modifySubElement(Node node, String parentOrigin) {
+
         String originAttr = getAttributeValue(node, LEOS_ORIGIN_ATTR);
+        boolean isEmptyOrigin = false;
         if (originAttr == null) {
             originAttr = parentOrigin;
+            isEmptyOrigin = true;
         }
 
         if (originAttr.equals(parentOrigin)) {
             XercesUtils.addAttribute(node, LEOS_ORIGIN_ATTR, originAttr);
-
             String softAction = getAttributeValue(node, LEOS_SOFT_ACTION_ATTR);
             if (softAction == null) {
                 XercesUtils.addAttribute(node, LEOS_SOFT_ACTION_ATTR, SoftActionType.ADD.getSoftAction());
                 XercesUtils.addAttribute(node, LEOS_SOFT_USER_ATTR, getSoftUserAttribute(securityContext.getUser()));
                 XercesUtils.addAttribute(node, LEOS_SOFT_DATE_ATTR, getDateAsXml());
             }
+
         }
         return originAttr;
     }
@@ -975,6 +1000,28 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
     }
 
     @Override
+    public byte[] insertCrossheadingAttributes(byte[] xmlContent, String tagName, String elementId, boolean before) {
+        Document document = createXercesDocument(xmlContent);
+        Node node = XercesUtils.getElementById(document, elementId);
+        String indentLevelStr = getAttributeValue(node, LEOS_INDENT_LEVEL_ATTR);
+        String inlinePropertyStr = getAttributeValue(node, INLINE_NUM_PROPERTY);
+        Node nodeToSetAttributes;
+        if (before) {
+            nodeToSetAttributes = node.getPreviousSibling();
+        } else {
+            nodeToSetAttributes = node.getNextSibling();
+        }
+        insertOrUpdateAttributeValue(nodeToSetAttributes, LEOS_ORIGIN_ATTR, CN);
+        if (tagName.equals(BLOCK)) {
+            insertOrUpdateAttributeValue(nodeToSetAttributes, LEOS_CROSS_HEADING_BLOCK_NAME, CROSSHEADING);
+        }
+        insertOrUpdateAttributeValue(nodeToSetAttributes, LEOS_INDENT_LEVEL_ATTR, indentLevelStr);
+        insertOrUpdateStylingAttribute(nodeToSetAttributes, INDENT_LEVEL_PROPERTY, indentLevelStr);
+        insertOrUpdateStylingAttribute(nodeToSetAttributes, INLINE_NUM_PROPERTY, org.apache.commons.lang.StringUtils.isNotEmpty(inlinePropertyStr) ? inlinePropertyStr : null);
+        return nodeToByteArray(document);
+    }
+
+    @Override
     public byte[] searchAndReplaceText(byte[] xmlContent, String searchText, String replaceText) {
         Document document = createXercesDocument(xmlContent);
         String xPath = String.format("//*[contains(lower-case(text()), %s)]", wrapXPathWithQuotes(searchText.toLowerCase()));
@@ -998,24 +1045,24 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
 
     @Override
     public byte[] getCoverPageContentForRendition(byte[] xmlContent) {
-    	byte[] coverPageContent = StringUtils.EMPTY.getBytes(StandardCharsets.UTF_8);
+        byte[] coverPageContent = StringUtils.EMPTY.getBytes(StandardCharsets.UTF_8);
 
-    	Document document = createXercesDocument(xmlContent, true);
-    	XercesUtils.addLeosNamespace(document);
+        Document document = createXercesDocument(xmlContent, true);
+        XercesUtils.addLeosNamespace(document);
 
-    	Node akomaNtosoNode = XercesUtils.getFirstElementByXPath(document, xPathCatalog.getXPathAkomaNtoso(), true);
-    	Node meta = XercesUtils.getFirstElementByXPath(document, xPathCatalog.getXPathMeta(), true);
-    	Node coverPageNode = XercesUtils.getFirstElementByXPath(document, xPathCatalog.getXPathCoverPage(), true);
+        Node akomaNtosoNode = XercesUtils.getFirstElementByXPath(document, xPathCatalog.getXPathAkomaNtoso(), true);
+        Node meta = XercesUtils.getFirstElementByXPath(document, xPathCatalog.getXPathMeta(), true);
+        Node coverPageNode = XercesUtils.getFirstElementByXPath(document, xPathCatalog.getXPathCoverPage(), true);
         if(akomaNtosoNode != null) {
-        	akomaNtosoNode.setTextContent(StringUtils.EMPTY);
+            akomaNtosoNode.setTextContent(StringUtils.EMPTY);
 
-        	if(meta != null) {
-        		XercesUtils.addChild(meta, akomaNtosoNode);
-        	}
+            if(meta != null) {
+                XercesUtils.addChild(meta, akomaNtosoNode);
+            }
 
-        	if(coverPageNode != null) {
-            	XercesUtils.addChild(coverPageNode, akomaNtosoNode);
-            	coverPageContent = nodeToByteArray(akomaNtosoNode);
+            if(coverPageNode != null) {
+                XercesUtils.addChild(coverPageNode, akomaNtosoNode);
+                coverPageContent = nodeToByteArray(akomaNtosoNode);
             }
         }
 
@@ -1103,12 +1150,44 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
         xmlContent = normalizeSpace(xmlContent);
         Document document = createXercesDocument(xmlContent.getBytes(StandardCharsets.UTF_8));
         Node node = document.getFirstChild();
+        node = setAttributeForDefinitionArticle(node);
         String idPrefix = "imp_" + XercesUtils.getId(node);
         String newIdAttrValue = IdGenerator.generateId(idPrefix, 7);
         addAttribute(node, XMLID, newIdAttrValue);
         String updatedElement = nodeToString(node);
         updatedElement = removeSelfClosingElements(updatedElement);
         return updatedElement;
+    }
+
+    private Node setAttributeForDefinitionArticle(Node node) {
+        if (node.getNodeName().equals(ARTICLE)) {
+            // Will check here if it is a definitions' article.
+            // The checking is done thanks to the points' numbering scheme of the article
+            // That could be done just checking the heading, but I found it not accurate, because:
+            //  1. Heading text can depend on the language
+            //  2. Heading text can be slightly different from exact text "Definitions"
+            //  Example: Article 5 of REGULATION 575 2013.
+            Node pointOrIndent = XercesUtils.getFirstDescendant(node, Arrays.asList(POINT, INDENT));
+            if (pointOrIndent != null) {
+                int depth = XercesUtils.getPointDepth(pointOrIndent);
+                String numValue = XercesUtils.getFirstChild(pointOrIndent, NUM).getTextContent();
+                List<TocItem> tocItems = structureContextProvider.get().getTocItems();
+                List<NumberingConfig> numberingConfigs = structureContextProvider.get().getNumberingConfigs();
+                List<TocItem> foundTocItems = StructureConfigUtils.getTocItemsByName(tocItems, pointOrIndent.getNodeName());
+                TocItem tocItem = StructureConfigUtils.getTocItemByNumValue(numberingConfigs, foundTocItems, numValue, depth);
+                // Means it's a definition article
+                if (tocItem != null
+                        && tocItem.getNumberingType().equals(
+                                StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType(tocItems,
+                                        TocItemTypeName.DEFINITION, pointOrIndent.getNodeName()))) {
+                    Attribute attribute =  StructureConfigUtils.getAttributeByTagNameAndTocItemType(tocItems, TocItemTypeName.DEFINITION, ARTICLE);
+                    if (attribute != null) {
+                        XercesUtils.addAttribute(node, attribute.getAttributeName(), attribute.getAttributeValue());
+                    }
+                }
+            }
+        }
+        return node;
     }
 
     @Override
@@ -1205,7 +1284,17 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
                     String[] levelArr = StringUtils.split(elementNumber, LEVEL_NUM_SEPARATOR);
                     depth = levelArr.length;
                 } else {
-                    depth = calculateDepthForNewElement(node, elementId);
+                    if (!XercesUtils.getId(node).equals(elementId) && elementNumber.contains("#")) {
+                        depth = calculateDepthForNewElement(node, elementId);
+                    } else {
+                        Node parent = node.getParentNode();
+                        while (parent != null) {
+                            if (ArrayUtils.contains(NUMBERED_AND_LEVEL_ITEMS, parent.getLocalName())) {
+                                depth++;
+                            }
+                            parent = parent.getParentNode();
+                        }
+                    }
                 }
             }
         }
@@ -1280,6 +1369,11 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
 
     @Override
     public byte[] insertAffectedAttributeIntoParentElements(byte[] xmlContent, String idAttributeValue) {
+        return xmlContent;
+    }
+
+    @Override
+    public byte[] prepareForRenumber(byte[] xmlContent) {
         return xmlContent;
     }
 
@@ -1766,5 +1860,39 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
             }
         }
         return category;
+    }
+
+    @Override
+    public String getOriginalMilestoneName(String docName, byte[] xmlContent) {
+        if(docName != null && docName.startsWith(PROPOSAL_FILE)) {
+            String xPath = xPathCatalog.getXPathRefOriginForCloneOriginalMilestone();
+            return getElementValue(xmlContent, xPath, true);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isClonedDocument(byte[] xmlContent) {
+        String xPath = xPathCatalog.getXPathClonedProposal();
+        return evalXPath(xmlContent, xPath, true);
+    }
+
+    @Override
+    public String getOriginalDocRefFromClonedContent(byte[] xmlContent) {
+        return getElementValue(xmlContent, xPathCatalog.getXPathRefOriginForCloneRefAttr(), true);
+    }
+
+    @Override
+    public byte[] updateInitialNumberForArticles(byte[] xmlContent) {
+        Document document = createXercesDocument(xmlContent);
+        NodeList nodes = XercesUtils.getElementsByName(document, ARTICLE);
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            String num = XercesUtils.getNodeNum(node);
+            if (num != null) {
+                XercesUtils.addAttribute(node, LEOS_INITIAL_NUM, num);
+            }
+        }
+        return XercesUtils.nodeToByteArray(document);
     }
 }

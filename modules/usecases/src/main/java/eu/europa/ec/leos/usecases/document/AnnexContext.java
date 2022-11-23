@@ -186,11 +186,13 @@ public class AnnexContext {
         Validate.notNull(annex, "Annex template is required!");
         Validate.notNull(collaborators, "Annex collaborators are required!");
         Validate.notNull(annexNumber, "Annex number is required");
+        Validate.notNull(index, "Annex number is required");
         Validate.notNull(purpose, "Annex purpose is required!");
         Validate.notNull(type, "Annex type is required!");
         
         final String actionMessage = actionMsgMap.get(ContextAction.ANNEX_BLOCK_UPDATED);
-        final AnnexMetadata metadataDocument = (AnnexMetadata) annexDocument.getMetadataDocument();
+        AnnexMetadata metadataDocument = (AnnexMetadata) annexDocument.getMetadataDocument();
+        metadataDocument = metadataDocument.withIndex(index).withNumber(annexNumber);
         annex = annexService.createAnnexFromContent(leosPackage.getPath(), metadataDocument, actionMessage, annexDocument.getSource(), annexDocument.getName());
         annex = securityService.updateCollaborators(annex.getId(), collaborators, Annex.class);
 

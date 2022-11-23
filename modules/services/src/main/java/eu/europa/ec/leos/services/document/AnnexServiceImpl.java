@@ -205,7 +205,7 @@ public abstract class AnnexServiceImpl implements AnnexService {
         newXmlContent = xmlContentProcessor.createDocumentContentWithNewTocList(tocList, getContent(annex), user);
         switch(structureType) {
             case ARTICLE:
-                newXmlContent = numberService.renumberArticles(newXmlContent);
+                newXmlContent = numberService.renumberArticles(newXmlContent, true);
                 break;
             case LEVEL:
                 newXmlContent = numberService.renumberLevel(newXmlContent);

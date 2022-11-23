@@ -112,7 +112,7 @@ define(function aknOrderedListPluginModule(require) {
     function _startObservingAllLists(event){
         var editor = event.editor;
         if(editor.editable && editor.editable().getChildren && editor.editable().getChildren().count() > 0){
-            _addMutationObserverToLists(editor.editable().getChildren().getItem(0).find(ORDERED_LIST_SELECTOR).$)
+            _addMutationObserverToLists(editor.editable().getChildren().getItem(0).find(ORDERED_LIST_SELECTOR).$);
         }
     }
 
@@ -135,7 +135,7 @@ define(function aknOrderedListPluginModule(require) {
      * 2. Transform singe sub-points into single points
      */
     function _processMutations(mutationsList) {
-        var mutations = _getMutations(mutationsList);
+       var mutations = _getMutations(mutationsList);
        leosPluginUtils.popSingleSubElement(mutations.singleSubPoints);
     }
 

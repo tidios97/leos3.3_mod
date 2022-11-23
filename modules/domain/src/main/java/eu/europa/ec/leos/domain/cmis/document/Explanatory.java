@@ -27,4 +27,9 @@ public final class Explanatory extends XmlDocument {
     public final Option<ExplanatoryMetadata> getMetadata() {
         return this.metadata;
     }
+
+    @Override
+    public String getContributionStatus() {
+        return null;
+    }
 }

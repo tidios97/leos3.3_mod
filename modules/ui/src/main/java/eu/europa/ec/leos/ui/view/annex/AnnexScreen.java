@@ -15,6 +15,7 @@ package eu.europa.ec.leos.ui.view.annex;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -23,7 +24,6 @@ import com.vaadin.server.StreamResource;
 import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.cmis.metadata.LeosMetadata;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.SearchMatchVO;
 import eu.europa.ec.leos.model.action.ContributionVO;
@@ -106,7 +106,9 @@ interface AnnexScreen {
     
     void showVersion(String versionContent, String versionInfo);
 
-    void showRevision(String versionContent, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList);
+    void showRevision(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList);
+
+    void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId);
 
     void disableMergePane();
 
@@ -142,4 +144,6 @@ interface AnnexScreen {
     void refineSearch(Long searchId, int matchedIndex, boolean isReplaced);
 
     boolean isCoverPageVisible();
+
+    Optional<ContributionVO> findContributionAndShowTab(String revisionVersion);
 }

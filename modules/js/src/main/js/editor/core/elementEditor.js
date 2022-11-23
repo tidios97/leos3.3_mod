@@ -61,6 +61,7 @@ define(function elementEditorModule(require) {
         var tocItemsList = JSON.parse(connector.getState().tocItemsJsonArray);
         var numberingConfigs = JSON.parse(connector.getState().numberingConfigsJsonArray);
         var listNumberConfig = JSON.parse(connector.getState().listNumberConfigJsonArray);
+        var articleTypesConfigJsonArray = JSON.parse(connector.getState().articleTypesConfigJsonArray);
         var alternateConfigs = JSON.parse(connector.getState().alternateConfigsJsonArray);
         var levelItemObject = JSON.parse(levelItemVo);
 
@@ -81,6 +82,7 @@ define(function elementEditorModule(require) {
                 tocItemsList: tocItemsList,
                 numberingConfigs: numberingConfigs,
                 listNumberConfig: listNumberConfig,
+                articleTypesConfig: articleTypesConfigJsonArray,
                 isClonedProposal: isClonedProposal
             }
             // load the specific profile and initialize the editor
@@ -150,6 +152,7 @@ define(function elementEditorModule(require) {
                 tocItemsList : params.tocItemsList,
                 numberingConfigs : params.numberingConfigs,
                 listNumberConfig : params.listNumberConfig,
+                articleTypesConfig : params.articleTypesConfig,
                 documentsMetadata: JSON.parse(connector.getState().documentsMetadataJsonArray),
                 documentRef: connector.getState().documentRef,
                 isClonedProposal: params.isClonedProposal
@@ -161,7 +164,7 @@ define(function elementEditorModule(require) {
             editor.on("requestToc", _requestToc.bind(undefined, connector));
             editor.on("requestRefLabel", _requestRefLabel.bind(undefined, connector));
             editor.on("merge", _mergeElement.bind(undefined, connector, params.elementId, params.elementType));
-            editor.on('focus', _removeZeroWidthSpacesOnFocus.bind(undefined, connector, params.elementId));
+            editor.on('selectionChange', _removeZeroWidthSpacesOnFocus.bind(undefined, connector, params.elementId));
 
             // load XML fragment in editor
             var options = {
@@ -327,7 +330,7 @@ define(function elementEditorModule(require) {
     }
 
     function _isEmptyElement(elementId, editor) {
-        var emptyElements = $("#" + elementId + ", h2[data-akn-heading-id='" + elementId + "']").find(":emptyTrim").addBack(":emptyTrim");
+        var emptyElements = $("#" + elementId + ", h2[data-akn-heading-id='" + elementId + "'], p[data-akn-num-id='" + elementId + "']").find(":emptyTrim").addBack(":emptyTrim");
         if (emptyElements.length > 0) {
             pluginTools.addDialog(dialogDefinition.dialogName, dialogDefinition.initializeDialog);
             var dialogCommand = editor.addCommand(dialogDefinition.dialogName, new CKEDITOR.dialogCommand(dialogDefinition.dialogName));

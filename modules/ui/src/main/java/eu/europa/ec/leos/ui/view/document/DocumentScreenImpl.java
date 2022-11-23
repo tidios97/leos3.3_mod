@@ -31,7 +31,6 @@ import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.document.Bill;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.cmis.metadata.LeosMetadata;
-import eu.europa.ec.leos.domain.common.InstanceType;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.SearchMatchVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
@@ -76,6 +75,7 @@ import eu.europa.ec.leos.web.event.view.document.FetchUserPermissionsResponse;
 import eu.europa.ec.leos.web.event.view.document.InstanceTypeResolver;
 import eu.europa.ec.leos.web.event.view.document.ReferenceLabelResponseEvent;
 import eu.europa.ec.leos.web.event.view.document.RefreshElementEvent;
+import eu.europa.ec.leos.web.event.view.document.RenumberingEvent;
 import eu.europa.ec.leos.web.event.view.document.SearchActResponseEvent;
 import eu.europa.ec.leos.web.model.TocAndAncestorsVO;
 import eu.europa.ec.leos.web.model.VersionInfoVO;
@@ -107,6 +107,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -283,7 +284,7 @@ abstract class DocumentScreenImpl extends VerticalLayout implements DocumentScre
 
     public abstract void showVersion(String content, String versionInfo);
 
-    public abstract void showRevision(String content, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList);
+    public abstract void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList);
 
     public abstract void showCleanVersion(String content, String versionInfo);
 
@@ -587,5 +588,28 @@ abstract class DocumentScreenImpl extends VerticalLayout implements DocumentScre
     @Override
     public void initLeosEditor(DocumentVO bill, List<LeosMetadata> documentsMetadata) {
         legalTextPaneComponent.initLeosEditor(bill, documentsMetadata);
+    }
+
+    @Override
+    public void confirmRenumberDocument() {
+        // ask confirmation before auto renumbering
+        ConfirmDialog confirmDialog = ConfirmDialog.getFactory().create(
+                messageHelper.getMessage("document.renumbering.confirmation.title"),
+                messageHelper.getMessage("document.renumbering.confirmation.message"),
+                messageHelper.getMessage("document.renumbering.confirmation.confirm"),
+                messageHelper.getMessage("document.renumbering.confirmation.cancel"), null);
+        confirmDialog.setContentMode(ConfirmDialog.ContentMode.HTML);
+        confirmDialog.getContent().setHeightUndefined();
+        confirmDialog.setHeightUndefined();
+        confirmDialog.show(getUI(), dialog -> {
+            if (dialog.isConfirmed()) {
+                eventBus.post(new RenumberingEvent());
+            }
+        }, true);
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String revisionVersion) {
+        return Optional.empty();
     }
 }

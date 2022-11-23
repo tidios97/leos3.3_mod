@@ -13,17 +13,19 @@ import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
 import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.cmis.document.Bill;
+import eu.europa.ec.leos.domain.cmis.document.Explanatory;
+import eu.europa.ec.leos.domain.cmis.document.FinancialStatement;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.cmis.document.MediaDocument;
 import eu.europa.ec.leos.domain.cmis.document.Memorandum;
-import eu.europa.ec.leos.domain.cmis.document.Explanatory;
 import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.cmis.document.XmlDocument;
 import eu.europa.ec.leos.domain.cmis.metadata.AnnexMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.BillMetadata;
+import eu.europa.ec.leos.domain.cmis.metadata.ExplanatoryMetadata;
+import eu.europa.ec.leos.domain.cmis.metadata.FinancialStatementMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.MemorandumMetadata;
 import eu.europa.ec.leos.domain.cmis.metadata.ProposalMetadata;
-import eu.europa.ec.leos.domain.cmis.metadata.ExplanatoryMetadata;
 import eu.europa.ec.leos.domain.common.TocMode;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.LegDocumentVO;
@@ -37,29 +39,30 @@ import eu.europa.ec.leos.security.LeosPermissionAuthorityMapHelper;
 import eu.europa.ec.leos.services.Annotate.AnnotateService;
 import eu.europa.ec.leos.services.compare.ContentComparatorContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorService;
-import eu.europa.ec.leos.services.processor.AttachmentProcessor;
-import eu.europa.ec.leos.services.document.DocumentContentService;
+import eu.europa.ec.leos.services.compare.processor.LeosPostDiffingProcessor;
 import eu.europa.ec.leos.services.converter.ProposalConverterService;
 import eu.europa.ec.leos.services.document.AnnexService;
 import eu.europa.ec.leos.services.document.BillService;
+import eu.europa.ec.leos.services.document.DocumentContentService;
+import eu.europa.ec.leos.services.document.ExplanatoryService;
+import eu.europa.ec.leos.services.document.FinancialStatementService;
 import eu.europa.ec.leos.services.document.MemorandumService;
 import eu.europa.ec.leos.services.document.ProposalService;
-import eu.europa.ec.leos.services.document.ExplanatoryService;
 import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportResource;
 import eu.europa.ec.leos.services.export.ExportVersions;
 import eu.europa.ec.leos.services.export.LegPackage;
 import eu.europa.ec.leos.services.export.RelevantElements;
 import eu.europa.ec.leos.services.export.ZipPackageUtil;
-import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
-import eu.europa.ec.leos.services.processor.rendition.HtmlRenditionProcessor;
-import eu.europa.ec.leos.services.compare.processor.PostDiffingProcessor;
+import eu.europa.ec.leos.services.processor.AttachmentProcessor;
 import eu.europa.ec.leos.services.processor.content.TableOfContentHelper;
-import eu.europa.ec.leos.services.support.XPathCatalog;
-import eu.europa.ec.leos.services.support.XmlHelper;
+import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.services.processor.node.XmlNodeConfig;
 import eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor;
 import eu.europa.ec.leos.services.processor.node.XmlNodeProcessor;
+import eu.europa.ec.leos.services.processor.rendition.HtmlRenditionProcessor;
+import eu.europa.ec.leos.services.support.XPathCatalog;
+import eu.europa.ec.leos.services.support.XmlHelper;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemHtmlVO;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
@@ -80,7 +83,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,13 +104,21 @@ import static eu.europa.ec.leos.services.compare.ContentComparatorService.DOUBLE
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.DOUBLE_COMPARE_ORIGINAL_STYLE;
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.DOUBLE_COMPARE_REMOVED_CLASS;
 import static eu.europa.ec.leos.services.compare.ContentComparatorService.DOUBLE_COMPARE_RETAIN_CLASS;
+import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.createCoverpageEEARelevanceValueMap;
+import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.createPrefaceValueMap;
 import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.createValueMap;
+import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.createValueMapWithoutCoverpageEEARelevance;
+import static eu.europa.ec.leos.services.processor.node.XmlNodeConfigProcessor.createValueMapWithoutPreface;
+import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
+import static eu.europa.ec.leos.services.support.XmlHelper.DOC;
+import static eu.europa.ec.leos.services.support.XmlHelper.MAIN_BODY;
+import static eu.europa.ec.leos.services.support.XmlHelper.PREFACE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service
 public class LegServiceImpl implements LegService {
     private static final Logger LOG = LoggerFactory.getLogger(LegServiceImpl.class);
-    
+
     private final PackageRepository packageRepository;
     private final WorkspaceRepository workspaceRepository;
     private final AttachmentProcessor attachmentProcessor;
@@ -128,6 +138,7 @@ public class LegServiceImpl implements LegService {
     private final ExplanatoryService explanatoryService;
     private final XmlContentProcessor xmlContentProcessor;
     private final ProposalService proposalService;
+    private final FinancialStatementService financialStatementService;
     private final XPathCatalog xPathCatalog;
 
     private static final String MEDIA_DIR = "media/";
@@ -151,6 +162,7 @@ public class LegServiceImpl implements LegService {
     private static final String memoStyleSheet = LeosCategory.MEMORANDUM.name().toLowerCase() + STYLE_SHEET_EXT;
     private static final String billStyleSheet = LeosCategory.BILL.name().toLowerCase() + STYLE_SHEET_EXT;
     private static final String coverPageStyleSheet = LeosCategory.COVERPAGE.name().toLowerCase() + STYLE_SHEET_EXT;
+    private static final String financialStatementStyleSheet = LeosCategory.FINANCIAL_STATEMENT.name().toLowerCase() + STYLE_SHEET_EXT;
     private static final String explanatoryStyleSheet = "explanatory" + STYLE_SHEET_EXT;
 
     public static final String FORMAT_DATE_TIME_ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
@@ -158,23 +170,23 @@ public class LegServiceImpl implements LegService {
 
     @Autowired
     public LegServiceImpl(PackageRepository packageRepository,
-                   WorkspaceRepository workspaceRepository,
-                   AttachmentProcessor attachmentProcessor,
-                   XmlNodeProcessor xmlNodeProcessor,
-                   XmlNodeConfigProcessor xmlNodeConfigProcessor,
-                   AnnotateService annotateService,
-                   HtmlRenditionProcessor htmlRenditionProcessor,
-                   ProposalConverterService proposalConverterService,
-                   LeosPermissionAuthorityMapHelper authorityMapHelper,
-                   ContentComparatorService compareService,
-                   MessageHelper messageHelper,
-                   Provider<StructureContext> structureContextProvider,
-                   DocumentContentService documentContentService, BillService billService,
-                   MemorandumService memorandumService,
-                   AnnexService annexService, XmlContentProcessor xmlContentProcessor,
-                   ProposalService proposalService,
-                   XPathCatalog xPathCatalog,
-                   ExplanatoryService explanatoryService) {
+                          WorkspaceRepository workspaceRepository,
+                          AttachmentProcessor attachmentProcessor,
+                          XmlNodeProcessor xmlNodeProcessor,
+                          XmlNodeConfigProcessor xmlNodeConfigProcessor,
+                          AnnotateService annotateService,
+                          HtmlRenditionProcessor htmlRenditionProcessor,
+                          ProposalConverterService proposalConverterService,
+                          LeosPermissionAuthorityMapHelper authorityMapHelper,
+                          ContentComparatorService compareService,
+                          MessageHelper messageHelper,
+                          Provider<StructureContext> structureContextProvider,
+                          DocumentContentService documentContentService, BillService billService,
+                          MemorandumService memorandumService,
+                          AnnexService annexService, XmlContentProcessor xmlContentProcessor,
+                          ProposalService proposalService,
+                          XPathCatalog xPathCatalog,
+                          ExplanatoryService explanatoryService,FinancialStatementService financialStatementService) {
         this.packageRepository = packageRepository;
         this.workspaceRepository = workspaceRepository;
         this.attachmentProcessor = attachmentProcessor;
@@ -195,13 +207,14 @@ public class LegServiceImpl implements LegService {
         this.proposalService = proposalService;
         this.xPathCatalog = xPathCatalog;
         this.explanatoryService = explanatoryService;
+        this.financialStatementService = financialStatementService;
     }
 
     @Override
     public LegDocument findLastLegByVersionedReference(String path, String versionedReference) {
         return packageRepository.findLastLegByVersionedReference(path, versionedReference);
     }
-    
+
     @Override
     public List<LegDocumentVO> getLegDocumentDetailsByUserId(String userId, String proposalId, String legStatus) {
         List<LegDocumentVO> legDocumentVOs = new ArrayList<>();
@@ -274,10 +287,27 @@ public class LegServiceImpl implements LegService {
     private byte[] addMetadataToProposal(Proposal proposal, byte[] xmlContent) {
         ProposalMetadata metadata = proposal.getMetadata().get();
         metadata = metadata.withObjectId(proposal.getId()).withDocVersion(proposal.getVersionLabel());
-        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()));
+        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMap(metadata)
+                , xmlNodeConfigProcessor.getConfig(metadata.getCategory()));
         return xmlContent;
     }
-    
+
+    private byte[] addMetadataToProposalWithoutEEARelevanceMetadata(Proposal proposal, byte[] xmlContent) {
+        ProposalMetadata metadata = proposal.getMetadata().get();
+        metadata = metadata.withObjectId(proposal.getId()).withDocVersion(proposal.getVersionLabel());
+        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMapWithoutCoverpageEEARelevance(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()),
+                xmlNodeConfigProcessor.getConfig(metadata.getCategory()));
+        return xmlContent;
+    }
+
+    private byte[] addEEARelevanceMetadataToOriginalProposal(Proposal originalProposal) {
+        byte[] xmlContent = originalProposal.getContent().get().getSource().getBytes();
+        ProposalMetadata metadata = originalProposal.getMetadata().get();
+        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createCoverpageEEARelevanceValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()),
+                xmlNodeConfigProcessor.getConfig(metadata.getCategory()));
+        return xmlContent;
+    }
+
     private byte[] addMetadataToMemorandum(Memorandum memorandum, byte[] xmlContent) {
         MemorandumMetadata metadata = memorandum.getMetadata().get();
         metadata = metadata.withObjectId(memorandum.getId()).withDocVersion(memorandum.getVersionLabel());
@@ -291,11 +321,35 @@ public class LegServiceImpl implements LegService {
         xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()));
         return xmlContent;
     }
-    
+
     private byte[] addMetadataToAnnex(Annex annex, byte[] xmlContent) {
         AnnexMetadata metadata = annex.getMetadata().get();
         metadata = metadata.withObjectId(annex.getId()).withDocVersion(annex.getVersionLabel());
         xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()),
+                xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());
+        return xmlContent;
+    }
+
+    private byte[] addMetadataToFinancialStatement(FinancialStatement financialStatement, byte[] xmlContent) {
+        FinancialStatementMetadata metadata = financialStatement.getMetadata().get();
+        metadata = metadata.withObjectId(financialStatement.getId()).withDocVersion(financialStatement.getVersionLabel());
+        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()),
+                xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());
+        return xmlContent;
+    }
+
+    private byte[] addPrefaceMetadataToAnnex(Annex annex, byte[] xmlContent) {
+        AnnexMetadata metadata = annex.getMetadata().get();
+        metadata = metadata.withObjectId(annex.getId()).withDocVersion(annex.getVersionLabel());
+        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createPrefaceValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()),
+                xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());
+        return xmlContent;
+    }
+
+    private byte[] addMetadataToAnnexWithoutPreface(Annex annex, byte[] xmlContent) {
+        AnnexMetadata metadata = annex.getMetadata().get();
+        metadata = metadata.withObjectId(annex.getId()).withDocVersion(annex.getVersionLabel());
+        xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMapWithoutPreface(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()),
                 xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());
         return xmlContent;
     }
@@ -306,7 +360,7 @@ public class LegServiceImpl implements LegService {
         xmlContent = xmlNodeProcessor.setValuesInXml(xmlContent, createValueMap(metadata), xmlNodeConfigProcessor.getConfig(metadata.getCategory()));
         return xmlContent;
     }
-    
+
     /**
      * Creates the LegPackage for the given leg file.
      *
@@ -319,7 +373,7 @@ public class LegServiceImpl implements LegService {
         // legFile will be deleted after createProposalFromLegFile(), so we save the bytes in a temporary file
         File legFileTemp = File.createTempFile("RENDITION_", ".leg");
         FileUtils.copyFile(legFile, legFileTemp);
-        
+
         final DocumentVO proposalVO = proposalConverterService.createProposalFromLegFile(legFile, new DocumentVO(LeosCategory.PROPOSAL), false);
         final byte[] proposalXmlContent = proposalVO.getSource();
         ExportResource proposalExportResource = new ExportResource(LeosCategory.PROPOSAL);
@@ -329,11 +383,11 @@ public class LegServiceImpl implements LegService {
         final byte[] memorandumXmlContent = memorandumVO.getSource();
         final ExportResource memorandumExportResource = buildExportResourceMemorandum(proposalRefsMap, memorandumXmlContent);
         proposalExportResource.addChildResource(memorandumExportResource);
-        
+
         final DocumentVO billVO = proposalVO.getChildDocument(LeosCategory.BILL);
         final byte[] billXmlContent = billVO.getSource();
         final ExportResource billExportResource = buildExportResourceBill(proposalRefsMap, billXmlContent);
-        
+
         // add annexes to billExportResource
         final Map<String, String> attachmentIds = attachmentProcessor.getAttachmentsIdFromBill(billXmlContent);
         final List<DocumentVO> annexesVO = billVO.getChildDocuments(LeosCategory.ANNEX);
@@ -404,7 +458,8 @@ public class LegServiceImpl implements LegService {
                 } else {
                     xmlContent = xmlContentProcessor.cleanSoftActions(memorandum.getContent().get().getSource().getBytes());
                 }
-                enrichZipWithMemorandum(contentToZip, exportProposalResource, proposalRefsMap, memorandum, proposal.getMetadata().getOrNull().getRef(), xmlContent);                                
+                enrichZipWithMemorandum(contentToZip, exportProposalResource, proposalRefsMap, memorandum, proposal.getMetadata().getOrNull().getRef(), xmlContent);
+                legPackage.addContainedFile(memorandum.getVersionedReference());
             } else if (Bill.class.equals(exportOptions.getFileType())) {
                 final Bill bill = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(),
                         proposalRefsMap.get(LeosCategory.BILL.name() + "_href"), Bill.class);
@@ -430,6 +485,17 @@ public class LegServiceImpl implements LegService {
                 exportProposalResource.addChildResource(exportBillResource);
                 addAnnexToPackage(leosPackage, contentToZip, exportOptions, exportBillResource, legPackage, proposal.getMetadata().getOrNull().getRef(), billXmlContent);
                 legPackage.addContainedFile(bill.getVersionedReference());
+            } else if (FinancialStatement.class.equals(exportOptions.getFileType())) {
+                FinancialStatement financialStatement = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(),
+                        proposalRefsMap.get(LeosCategory.FINANCIAL_STATEMENT.name() + "_href"), FinancialStatement.class);
+                byte[] xmlContent;
+                if (exportOptions.isComparisonMode()) {
+                    xmlContent = getComparedContent(exportOptions);
+                } else {
+                    xmlContent = xmlContentProcessor.cleanSoftActions(financialStatement.getContent().get().getSource().getBytes());
+                }
+                enrichZipWithFinancialStatement(contentToZip, exportProposalResource, proposalRefsMap, financialStatement, proposal.getMetadata().getOrNull().getRef(), xmlContent);
+                legPackage.addContainedFile(financialStatement.getVersionedReference());
             } else if (Explanatory.class.equals(exportOptions.getFileType())) {
             	addExplanatoryToPackage(leosPackage, contentToZip, exportOptions, exportProposalResource, legPackage, proposal);
             } else if (Proposal.class.equals(exportOptions.getFileType())) {
@@ -441,6 +507,7 @@ public class LegServiceImpl implements LegService {
             addMemorandumToPackage(leosPackage, contentToZip, exportProposalResource, proposalRefsMap, legPackage, proposal.getMetadata().getOrNull().getRef());
             addExplanatoryToPackage(leosPackage, contentToZip, exportOptions, exportProposalResource, legPackage, proposal);
             addBillToPackage(leosPackage, contentToZip, exportOptions, exportProposalResource, proposalRefsMap, legPackage, proposal.getMetadata().getOrNull().getRef());
+            addFinancialStatementToPackage(leosPackage, contentToZip, exportProposalResource, proposalRefsMap, legPackage, proposal.getMetadata().getOrNull().getRef());
             addCoverPageHtmlRendition(contentToZip, proposalContent, coverPageStyleSheet, proposal);
             enrichZipWithToc(contentToZip);
             enrichZipWithMedia(contentToZip, leosPackage);
@@ -449,6 +516,50 @@ public class LegServiceImpl implements LegService {
         legPackage.setFile(ZipPackageUtil.zipFiles(legPackageName, contentToZip, language));
         legPackage.setExportResource(exportProposalResource);
         return legPackage;
+    }
+
+    private void enrichZipWithFinancialStatement(final Map<String, Object> contentToZip, ExportResource exportProposalResource,
+                                         Map<String, String> proposalRefsMap, FinancialStatement financialStatement,
+                                         String proposalRef) {
+        ExportOptions exportOptions = exportProposalResource.getExportOptions();
+
+        byte[] xmlContent = financialStatement.getContent().get().getSource().getBytes();
+        xmlContent = addMetadataToFinancialStatement(financialStatement, xmlContent);
+        contentToZip.put(financialStatement.getName(), xmlContent);
+
+        addAnnotateToZipContent(contentToZip, financialStatement.getMetadata().get().getRef(), financialStatement.getName(), exportOptions, proposalRef);
+        addFilteredAnnotationsToZipContent(contentToZip, financialStatement.getName(), exportOptions);
+
+        addResourceToZipContent(contentToZip, financialStatementStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
+        structureContextProvider.get().useDocumentTemplate(financialStatement.getMetadata().get().getDocTemplate());
+        final String fsTocJson = getTocAsJson(financialStatementService.getTableOfContent(financialStatement, TocMode.SIMPLIFIED_CLEAN));
+        addHtmlRendition(contentToZip, financialStatement.getName(), xmlContent, financialStatementStyleSheet, fsTocJson);
+
+        final ExportResource financialStatementExportResource = buildExportResourceFinancialStatement(proposalRefsMap, xmlContent);
+        exportProposalResource.addChildResource(financialStatementExportResource);
+    }
+
+    private ExportResource enrichZipWithFinancialStatement(final Map<String, Object> contentToZip, ExportResource exportProposalResource, Map<String, String> proposalRefsMap,
+                                                           FinancialStatement financialStatement, String proposalRef, byte[] xmlContent) {
+        ExportOptions exportOptions = exportProposalResource.getExportOptions();
+        contentToZip.put(financialStatement.getName(), xmlContent);
+
+        addAnnotateToZipContent(contentToZip, financialStatement.getMetadata().get().getRef(), financialStatement.getName(), exportOptions, proposalRef);
+        if (exportOptions.getFileType().equals(FinancialStatement.class)) {
+            addFilteredAnnotationsToZipContent(contentToZip, financialStatement.getName(), exportOptions);
+        }
+
+        if (!exportOptions.isComparisonMode()) {
+            addResourceToZipContent(contentToZip, financialStatementStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
+            structureContextProvider.get().useDocumentTemplate(financialStatement.getMetadata().get().getDocTemplate());
+            final String fsTocJson = getTocAsJson(financialStatementService.getTableOfContent(financialStatement, TocMode.SIMPLIFIED_CLEAN));
+            addHtmlRendition(contentToZip, financialStatement.getName(), xmlContent, financialStatementStyleSheet, fsTocJson);
+        }
+
+        final ExportResource exportfinStmntResource = buildExportResourceFinancialStatement(proposalRefsMap, xmlContent);
+        exportfinStmntResource.setExportOptions(exportOptions);
+        exportProposalResource.addChildResource(exportfinStmntResource);
+        return exportfinStmntResource;
     }
 
     private void addMemorandumToPackage(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
@@ -461,34 +572,49 @@ public class LegServiceImpl implements LegService {
             legPackage.addContainedFile(memorandum.getVersionedReference());
         }
     }
-    
+
+    private void addFinancialStatementToPackage(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
+                                        ExportResource exportProposalResource, final Map<String, String> proposalRefsMap,
+                                        LegPackage legPackage, String proposalRef) {
+        final String financialStatementRef = proposalRefsMap.get(LeosCategory.FINANCIAL_STATEMENT.name() + "_href");
+        if (!StringUtils.isEmpty(financialStatementRef) && !financialStatementRef.equals("#")) {
+            final FinancialStatement financialStatement = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(), financialStatementRef, FinancialStatement.class);
+            enrichZipWithFinancialStatement(contentToZip, exportProposalResource, proposalRefsMap, financialStatement, proposalRef);
+            legPackage.addContainedFile(financialStatement.getVersionedReference());
+        }
+    }
+
+
+
     private void addExplanatoryToPackage(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
-                                   ExportOptions exportOptions, ExportResource exportProposalResource, LegPackage legPackage,
-                                   Proposal proposal) {
-    	// if we are in comparison mode, we don't need to fetch the document from CMIS, is already present in exportVersions
-        final String explanatoryId = exportOptions.isComparisonMode() || exportOptions.isCleanVersion() ? exportOptions.getExportVersions().getCurrent().getMetadata().get().getRef() : null;
-        
+                                         ExportOptions exportOptions, ExportResource exportProposalResource, LegPackage legPackage,
+                                         Proposal proposal) {
+        // if we are in comparison mode, we don't need to fetch the document from CMIS, is already present in exportVersions
+        final String explanatoryId = exportOptions.isComparisonMode() ||
+                exportOptions.isCleanVersion() &&
+                exportOptions.getExportVersions() != null ? exportOptions.getExportVersions().getCurrent().getMetadata().get().getRef() : null;
+
         byte[] proposalContent = proposal.getContent().get().getSource().getBytes();
         final Map<String, String> documentRefMap = proposalService.getExplanatoryDocumentRef(proposalContent);
-                
+
         if (!documentRefMap.isEmpty()){
             for (Map.Entry<String, String> entry : documentRefMap.entrySet()) {
                 String href = entry.getKey();
                 String id = entry.getValue();
                 Explanatory explanatory;
                 if (explanatoryId == null) {
-                	explanatory = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(), href, Explanatory.class);
+                    explanatory = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(), href, Explanatory.class);
                 } else if(href.contains(explanatoryId)){
-                	explanatory = (Explanatory) exportOptions.getExportVersions().getCurrent();
+                    explanatory = (Explanatory) exportOptions.getExportVersions().getCurrent();
                 } else {
                     continue;
                 }
-    
+
                 String proposalRef = proposal.getMetadata().getOrNull().getRef();
-            	enrichZipWithExplanatory(contentToZip, exportProposalResource, explanatory, exportOptions, id, href, proposalRef);
+                enrichZipWithExplanatory(contentToZip, exportProposalResource, explanatory, exportOptions, id, href, proposalRef);
                 legPackage.addContainedFile(explanatory.getVersionedReference());
             }
-            
+
             if (explanatoryId != null) { // only if we are not in comparison mode
                 addResourceToZipContent(contentToZip, explanatoryStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
             }
@@ -496,8 +622,8 @@ public class LegServiceImpl implements LegService {
     }
 
     private void addBillToPackage(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
-                                    ExportOptions exportOptions, ExportResource exportProposalResource, final Map<String, String> proposalRefsMap,
-                                    LegPackage legPackage, String proposalRef) {
+                                  ExportOptions exportOptions, ExportResource exportProposalResource, final Map<String, String> proposalRefsMap,
+                                  LegPackage legPackage, String proposalRef) {
         final String billRef = proposalRefsMap.get(LeosCategory.BILL.name() + "_href");
         if (!StringUtils.isEmpty(billRef) && !billRef.equals("#")) {
             final Bill bill = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(), billRef, Bill.class);
@@ -514,15 +640,15 @@ public class LegServiceImpl implements LegService {
             addAnnexToPackage(leosPackage, contentToZip, exportOptions, exportBillResource, legPackage, proposalRef, billXmlContent);
         }
     }
-    
+
     private void addAnnexToPackage(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
                                    ExportOptions exportOptions, ExportResource exportProposalResource, LegPackage legPackage,
                                    String proposalRef, byte[] xmlContent) {
         // if we are in comparison mode, we don't need to fetch the document from CMIS, is already present in exportVersions
-        final String annexId = exportOptions.isComparisonMode() || exportOptions.isCleanVersion() ?
-                exportOptions.getExportVersions().getCurrent().getMetadata().get().getRef()
-                : null;
-        
+        final String annexId = exportOptions.isComparisonMode() ||
+                exportOptions.isCleanVersion() &&
+                exportOptions.getExportVersions() != null ? exportOptions.getExportVersions().getCurrent().getMetadata().get().getRef() : null;
+
         final Map<String, String> attachmentIds = attachmentProcessor.getAttachmentsIdFromBill(xmlContent);
         if (!attachmentIds.isEmpty()){
             for (Map.Entry<String, String> entry : attachmentIds.entrySet()) {
@@ -536,11 +662,11 @@ public class LegServiceImpl implements LegService {
                 } else {
                     continue;
                 }
-    
+
                 enrichZipWithAnnex(contentToZip, exportProposalResource, annex, exportOptions, id, href, proposalRef);
                 legPackage.addContainedFile(annex.getVersionedReference());
             }
-            
+
             if (annexId != null) { // only if we are not in comparison mode
                 addResourceToZipContent(contentToZip, annexStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
             }
@@ -566,13 +692,18 @@ public class LegServiceImpl implements LegService {
         byte[] xmlContent = proposal.getContent().get().getSource().getBytes();
         if(exportOptions.isComparisonMode()) {
             XmlDocument originalProposal = documentContentService.getOriginalProposal(proposal);
-            xmlContent = simpleCompareXmlContentsForClone(originalProposal, proposal).getBytes(UTF_8);
+            byte[] originalContent = addEEARelevanceMetadataToOriginalProposal((Proposal) originalProposal);
+            xmlContent = simpleCompareXmlContentsForClone(originalContent, xmlContent).getBytes(UTF_8);
         }
         List<Element> docPurposeElements = xmlContentProcessor.getElementsByTagName(xmlContent, Arrays.asList("docPurpose"), true);
         String title = !docPurposeElements.isEmpty() ?
                 xmlContentProcessor.getElementByNameAndId(xmlContent, docPurposeElements.get(0).getElementTagName(), docPurposeElements.get(0).getElementId()) :
                 null;
-        xmlContent = addMetadataToProposal(proposal, xmlContent);
+        if (exportOptions.isComparisonMode()) {
+            xmlContent = addMetadataToProposalWithoutEEARelevanceMetadata(proposal, xmlContent);
+        } else {
+            xmlContent = addMetadataToProposal(proposal, xmlContent);
+        }
         if (title != null) {
             xmlContent = xmlContentProcessor.replaceElementById(xmlContent, title, docPurposeElements.get(0).getElementId());
         }
@@ -595,7 +726,7 @@ public class LegServiceImpl implements LegService {
         addResourceToZipContent(contentToZip, "leos-toc-rendition" + JS_EXT, JS_SOURCE_PATH + "rendition/", JS_DEST_DIR);
         addResourceToZipContent(contentToZip, "leos-toc-rendition" + STYLE_SHEET_EXT, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
     }
-    
+
     private void enrichZipWithMemorandum(final Map<String, Object> contentToZip, ExportResource exportProposalResource,
                                          Map<String, String> proposalRefsMap, Memorandum memorandum,
                                          String proposalRef) {
@@ -604,7 +735,7 @@ public class LegServiceImpl implements LegService {
         byte[] xmlContent = memorandum.getContent().get().getSource().getBytes();
         xmlContent = addMetadataToMemorandum(memorandum, xmlContent);
         contentToZip.put(memorandum.getName(), xmlContent);
-        
+
         addAnnotateToZipContent(contentToZip, memorandum.getMetadata().get().getRef(), memorandum.getName(), exportOptions, proposalRef);
         addFilteredAnnotationsToZipContent(contentToZip, memorandum.getName(), exportOptions);
 
@@ -612,13 +743,13 @@ public class LegServiceImpl implements LegService {
         structureContextProvider.get().useDocumentTemplate(memorandum.getMetadata().get().getDocTemplate());
         final String memoTocJson = getTocAsJson(memorandumService.getTableOfContent(memorandum, TocMode.SIMPLIFIED_CLEAN));
         addHtmlRendition(contentToZip, memorandum.getName(), xmlContent, memoStyleSheet, memoTocJson);
-        
+
         final ExportResource memorandumExportResource = buildExportResourceMemorandum(proposalRefsMap, xmlContent);
         exportProposalResource.addChildResource(memorandumExportResource);
     }
 
     private ExportResource enrichZipWithMemorandum(final Map<String, Object> contentToZip, ExportResource exportProposalResource, Map<String, String> proposalRefsMap,
-            Memorandum memorandum, String proposalRef, byte[] xmlContent) {
+                                                   Memorandum memorandum, String proposalRef, byte[] xmlContent) {
         ExportOptions exportOptions = exportProposalResource.getExportOptions();
         contentToZip.put(memorandum.getName(), xmlContent);
 
@@ -657,7 +788,7 @@ public class LegServiceImpl implements LegService {
             final String coverPage = exportProposalResource.getComponentId(XmlNodeConfigProcessor.DOC_REF_COVER);
             addHtmlRendition(contentToZip, bill.getName(), xmlContent, billStyleSheet, billTocJson);
         }
-        
+
         final ExportResource exportBillResource = buildExportResourceBill(proposalRefsMap, xmlContent);
         exportBillResource.setExportOptions(exportOptions);
         exportProposalResource.addChildResource(exportBillResource);
@@ -702,9 +833,11 @@ public class LegServiceImpl implements LegService {
                 .withDocuwriteExport(isDocuwrite)
                 .build());
 
-        PostDiffingProcessor postDiffingProcessor = new PostDiffingProcessor();
+        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
         diffResult = postDiffingProcessor.adjustSoftActionDoubleDiffing(diffResult);
         diffResult = postDiffingProcessor.adjustTagsDiffing(diffResult);
+        diffResult = postDiffingProcessor.adjustDeletedElements(diffResult, DOUBLE_COMPARE_REMOVED_CLASS + DOUBLE_COMPARE_ORIGINAL_STYLE, DOUBLE_COMPARE_ADDED_CLASS + DOUBLE_COMPARE_ORIGINAL_STYLE);
+        diffResult = postDiffingProcessor.adjustDeletedElements(diffResult, DOUBLE_COMPARE_REMOVED_CLASS + DOUBLE_COMPARE_INTERMEDIATE_STYLE, DOUBLE_COMPARE_ADDED_CLASS + DOUBLE_COMPARE_INTERMEDIATE_STYLE);
         return diffResult;
     }
 
@@ -720,10 +853,11 @@ public class LegServiceImpl implements LegService {
                 .withThreeWayDiff(false)
                 .withDocuwriteExport(isDocuwrite)
                 .build());
-        PostDiffingProcessor postDiffingProcessor = new PostDiffingProcessor();
+        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
         diffResult = postDiffingProcessor.adjustSoftActionDiffing(diffResult);
         diffResult = postDiffingProcessor.adjustTagsDiffing(diffResult);
         diffResult = postDiffingProcessor.adjustSoftRootSubParagraph(diffResult);
+        diffResult = postDiffingProcessor.adjustDeletedElements(diffResult, DOUBLE_COMPARE_REMOVED_CLASS, DOUBLE_COMPARE_ADDED_CLASS);
         return diffResult;
     }
 
@@ -745,7 +879,7 @@ public class LegServiceImpl implements LegService {
             xmlContent = addCommentsMetadata(exportOptions.getComments(), xmlContent);
         }
         contentToZip.put(annex.getName(), xmlContent);
-        
+
         addAnnotateToZipContent(contentToZip, annex.getMetadata().get().getRef(), annex.getName(), exportOptions, proposalRef);
         if (exportOptions.getFileType().equals(Annex.class)) {
             addFilteredAnnotationsToZipContent(contentToZip, annex.getName(), exportOptions);
@@ -757,15 +891,15 @@ public class LegServiceImpl implements LegService {
             final String annexTocJson = getTocAsJson(annexService.getTableOfContent(annex, TocMode.SIMPLIFIED_CLEAN));
             addHtmlRendition(contentToZip, annex.getName(), xmlContent, annexStyleSheet, annexTocJson);
         }
-        
+
         int docNumber = annex.getMetadata().get().getIndex();
         final ExportResource annexExportResource = buildExportResourceAnnex(docNumber, resourceId, href, xmlContent);
         exportBillResource.addChildResource(annexExportResource);
     }
 
     private void enrichZipWithExplanatory(final Map<String, Object> contentToZip, ExportResource exportBillResource,
-                                    Explanatory explanatory, ExportOptions exportOptions, String resourceId, String href,
-                                    String proposalRef) {
+                                          Explanatory explanatory, ExportOptions exportOptions, String resourceId, String href,
+                                          String proposalRef) {
         byte[] xmlContent;
         if(exportOptions.isComparisonMode()){
             xmlContent = getComparedContent(exportOptions);
@@ -798,7 +932,7 @@ public class LegServiceImpl implements LegService {
         final ExportResource explanatoryExportResource = buildExportResourceExplanatory(docNumber, resourceId, href, xmlContent);
         exportBillResource.addChildResource(explanatoryExportResource);
     }
-    
+
     private List<TableOfContentItemHtmlVO> buildTocHtml(List<TableOfContentItemVO> tableOfContents) {
         List<TableOfContentItemHtmlVO> tocHtml = new ArrayList<>();
         for (TableOfContentItemVO item : tableOfContents) {
@@ -811,7 +945,7 @@ public class LegServiceImpl implements LegService {
         }
         return tocHtml;
     }
-    
+
     private String getTocAsJson(List<TableOfContentItemVO> tableOfContent) {
         final String json;
         try {
@@ -831,23 +965,29 @@ public class LegServiceImpl implements LegService {
         config.putAll(xmlNodeConfigProcessor.getProposalComponentsConfig(LeosCategory.BILL, "href"));
         config.putAll(xmlNodeConfigProcessor.getProposalComponentsConfig(LeosCategory.COUNCIL_EXPLANATORY, "xml:id"));
         config.putAll(xmlNodeConfigProcessor.getProposalComponentsConfig(LeosCategory.COUNCIL_EXPLANATORY, "href"));
+        config.putAll(xmlNodeConfigProcessor.getProposalComponentsConfig(LeosCategory.FINANCIAL_STATEMENT, "xml:id"));
+        config.putAll(xmlNodeConfigProcessor.getProposalComponentsConfig(LeosCategory.FINANCIAL_STATEMENT, "href"));
         config.putAll(xmlNodeConfigProcessor.getConfig(LeosCategory.PROPOSAL));
 
         Map<String, String> proposalRefsMap = xmlNodeProcessor.getValuesFromXml(xmlContent,
                 new String[]{XmlNodeConfigProcessor.PROPOSAL_DOC_COLLECTION, XmlNodeConfigProcessor.DOC_REF_COVER,
+                        LeosCategory.COUNCIL_EXPLANATORY.name() + "_xml:id",
+                        LeosCategory.COUNCIL_EXPLANATORY.name() + "_href",
                         LeosCategory.MEMORANDUM.name() + "_xml:id",
                         LeosCategory.MEMORANDUM.name() + "_href",
                         LeosCategory.BILL.name() + "_xml:id",
-                        LeosCategory.BILL.name() + "_href"
+                        LeosCategory.BILL.name() + "_href",
+                        LeosCategory.FINANCIAL_STATEMENT.name() + "_xml:id",
+                        LeosCategory.FINANCIAL_STATEMENT.name() + "_href"
                 },
                 config);
-        
+
         exportResource.setResourceId(proposalRefsMap.get(XmlNodeConfigProcessor.PROPOSAL_DOC_COLLECTION));
         exportResource.setComponentsIdsMap(Collections.singletonMap(XmlNodeConfigProcessor.DOC_REF_COVER,
                 proposalRefsMap.get(XmlNodeConfigProcessor.DOC_REF_COVER)));
         return proposalRefsMap;
     }
-    
+
     private ExportResource buildExportResourceMemorandum(Map<String, String> proposalRefsMap, byte[] xmlContent) {
         ExportResource memorandumExportResource = new ExportResource(LeosCategory.MEMORANDUM);
         memorandumExportResource.setResourceId(proposalRefsMap.get(LeosCategory.MEMORANDUM.name() + "_xml:id"));
@@ -867,7 +1007,7 @@ public class LegServiceImpl implements LegService {
     private ExportResource buildExportResourceExplanatory(int docNumber, String resourceId, byte[] xmlContent) {
         return buildExportResourceExplanatory(docNumber, resourceId, null, xmlContent);
     }
-    
+
     private ExportResource buildExportResourceBill(Map<String, String> proposalRefsMap, byte[] xmlContent) {
         ExportResource billExportResource = new ExportResource(LeosCategory.BILL);
         billExportResource.setResourceId(proposalRefsMap.get(LeosCategory.BILL.name() + "_xml:id"));
@@ -875,7 +1015,7 @@ public class LegServiceImpl implements LegService {
         billExportResource.setComponentsIdsMap(getCoverPage(LeosCategory.BILL, xmlContent));
         return billExportResource;
     }
-    
+
     private ExportResource buildExportResourceAnnex(int docNumber, String resourceId, String href, byte[] xmlContent) {
         ExportResource annexExportResource = new ExportResource(LeosCategory.ANNEX);
         annexExportResource.setResourceId(resourceId);
@@ -883,6 +1023,14 @@ public class LegServiceImpl implements LegService {
         annexExportResource.setDocNumber(docNumber);
         annexExportResource.setComponentsIdsMap(getCoverPage(LeosCategory.ANNEX, xmlContent));
         return annexExportResource;
+    }
+
+    private ExportResource buildExportResourceFinancialStatement(Map<String, String> proposalRefsMap, byte[] xmlContent) {
+        ExportResource finStmntExportResource = new ExportResource(LeosCategory.FINANCIAL_STATEMENT);
+        finStmntExportResource.setResourceId(proposalRefsMap.get(LeosCategory.FINANCIAL_STATEMENT.name() + "_xml:id"));
+        finStmntExportResource.setHref(proposalRefsMap.get(LeosCategory.FINANCIAL_STATEMENT.name() + "_href"));
+        finStmntExportResource.setComponentsIdsMap(getCoverPage(LeosCategory.FINANCIAL_STATEMENT, xmlContent));
+        return finStmntExportResource;
     }
 
     private ExportResource buildExportResourceAnnex(int docNumber, String resourceId, byte[] xmlContent) {
@@ -900,7 +1048,7 @@ public class LegServiceImpl implements LegService {
         return Collections.singletonMap(XmlNodeConfigProcessor.DOC_REF_COVER,
                 refsMap.get(XmlNodeConfigProcessor.DOC_REF_COVER));
     }
-    
+
     private void enrichZipWithMedia(final Map<String, Object> contentToZip, LeosPackage leosPackage) {
         final List<MediaDocument> mediaDocs = packageRepository.findDocumentsByPackagePath(leosPackage.getPath(), MediaDocument.class, true);
         for (MediaDocument mediaDoc : mediaDocs) {
@@ -908,7 +1056,7 @@ public class LegServiceImpl implements LegService {
             contentToZip.put(MEDIA_DIR + mediaDoc.getName(), byteContent);
         }
     }
-    
+
     @Override
     public LegDocument createLegDocument(String proposalId, String jobId, LegPackage legPackage, LeosLegStatus status) throws IOException {
         LOG.trace("Creating Leg Document for Package... [documentId={}]", proposalId);
@@ -927,7 +1075,13 @@ public class LegServiceImpl implements LegService {
         LOG.trace("Updating Leg document status... [id={}, status={}]", id, status.name());
         return packageRepository.updateLegDocument(id, status);
     }
-    
+
+    @Override
+    public LegDocument updateLegDocument(String id, List<String> containedDocuments) {
+        LOG.trace("Updating Leg document contained documents... [id={}]", id);
+        return packageRepository.updateLegDocument(id, containedDocuments);
+    }
+
     @Override
     public LegDocument updateLegDocument(String id, byte[] pdfJobZip, byte[] wordJobZip) {
         LOG.trace("Updating Leg document with id={} status to {} and content with pdf and word renditions", id, LeosLegStatus.FILE_READY.name());
@@ -957,25 +1111,25 @@ public class LegServiceImpl implements LegService {
                 .findAny()
                 .orElse(null);
     }
-    
+
     @Override
     public List<LegDocument> findLegDocumentByStatus(LeosLegStatus leosLegStatus) {
         return packageRepository.findDocumentsByStatus(leosLegStatus, LegDocument.class);
     }
-    
+
     @Override
     public List<LegDocument> findLegDocumentByProposal(String proposalId) {
         LeosPackage leosPackage = packageRepository.findPackageByDocumentId(proposalId);
         return packageRepository.findDocumentsByPackageId(leosPackage.getId(), LegDocument.class, false, false);
     }
-    
+
     private byte[] updateContentWithPdfAndWordRenditions(byte[] pdfJobZip, byte[] wordJobZip, Content content) throws IOException {
         Map<String, Object> legContent = ZipPackageUtil.unzipByteArray(content.getSource().getBytes());
         addPdfRendition(pdfJobZip, legContent);
         addWordRenditions(wordJobZip, legContent);
         return ZipPackageUtil.zipByteArray(legContent);
     }
-    
+
     private void addPdfRendition(byte[] pdfJobZip, Map<String, Object> legContent) throws IOException {
         Map.Entry<String, Object> neededEntry = unzipJobResult(pdfJobZip).entrySet().stream()
                 .filter(pdfEntry -> !pdfEntry.getKey().endsWith("_pdfa.pdf"))
@@ -983,7 +1137,7 @@ public class LegServiceImpl implements LegService {
                 .orElseThrow(() -> new FileNotFoundException("Pdf rendition not found in the pdf document job file"));
         legContent.put(PDF_RENDITION + neededEntry.getKey(), neededEntry.getValue());
     }
-    
+
     private void addWordRenditions(byte[] wordJobZip, Map<String, Object> legContent) throws IOException {
         List<String> wordEntries = new ArrayList<>();
         unzipJobResult(wordJobZip).entrySet().stream()
@@ -996,7 +1150,7 @@ public class LegServiceImpl implements LegService {
             throw new FileNotFoundException("No word rendition found in the word document job file");
         }
     }
-    
+
     private Map<String, Object> unzipJobResult(byte[] jobZip) throws IOException {
         Map<String, Object> jobContent = ZipPackageUtil.unzipByteArray(jobZip);
         for (Map.Entry<String, Object> entry : jobContent.entrySet()) {
@@ -1006,7 +1160,7 @@ public class LegServiceImpl implements LegService {
         }
         throw new FileNotFoundException("The job result zip file is not present in the job file");
     }
-    
+
     private byte[] getFileContent(File file) throws IOException {
         try (InputStream is = new FileInputStream(file)) {
             byte[] content = new byte[(int) file.length()];
@@ -1022,76 +1176,60 @@ public class LegServiceImpl implements LegService {
         }
         byte[] coverPageContent = xmlContentProcessor.getCoverPageContentForRendition(proposalContent);
         addResourceToZipContent(contentToZip, coverPageStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
-        try {
-            RenderedDocument htmlDocument = new RenderedDocument();
-            htmlDocument.setContent(new ByteArrayInputStream(coverPageContent));
-            htmlDocument.setStyleSheetName(styleSheetName);
-            String htmlName = HTML_RENDITION + XmlNodeConfigProcessor.DOC_REF_COVER + ".html";
-            contentToZip.put(htmlName, htmlRenditionProcessor.processCoverPage(htmlDocument).getBytes("UTF-8"));
+        RenderedDocument htmlDocument = new RenderedDocument();
+        htmlDocument.setContent(new ByteArrayInputStream(coverPageContent));
+        htmlDocument.setStyleSheetName(styleSheetName);
+        String htmlName = HTML_RENDITION + XmlNodeConfigProcessor.DOC_REF_COVER + ".html";
+        contentToZip.put(htmlName, htmlRenditionProcessor.processCoverPage(htmlDocument).getBytes(UTF_8));
 
-            structureContextProvider.get().useDocumentTemplate(proposal.getMetadata().get().getDocTemplate());
-            final String coverPageTocJson = getTocAsJson(proposalService.getCoverPageTableOfContent(proposal, TocMode.SIMPLIFIED_CLEAN));
-            String xmlDocumentName = XmlNodeConfigProcessor.DOC_REF_COVER + ".xml";
-            addCoverPageTocHtmlRendition(contentToZip, styleSheetName, coverPageContent, coverPageTocJson, xmlDocumentName);
-        } catch (UnsupportedEncodingException exception) {
-            throw new IllegalStateException("UnsupportedEncodingException while processing cover page ", exception);
-        }
+        structureContextProvider.get().useDocumentTemplate(proposal.getMetadata().get().getDocTemplate());
+        final String coverPageTocJson = getTocAsJson(proposalService.getCoverPageTableOfContent(proposal, TocMode.SIMPLIFIED_CLEAN));
+        String xmlDocumentName = XmlNodeConfigProcessor.DOC_REF_COVER + ".xml";
+        addCoverPageTocHtmlRendition(contentToZip, styleSheetName, coverPageContent, coverPageTocJson, xmlDocumentName);
     }
 
     private void addCoverPageTocHtmlRendition(Map<String, Object> contentToZip, String styleSheetName, byte[] coverPageContent, String coverPageTocJson, String xmlDocumentName) {
-        try {
-            // Build toc_docName.js file
-            RenderedDocument tocHtmlDocument = new RenderedDocument();
-            tocHtmlDocument.setContent(new ByteArrayInputStream(coverPageContent));
-            tocHtmlDocument.setStyleSheetName(styleSheetName);
-            final String tocJsName = xmlDocumentName.substring(0, xmlDocumentName.indexOf(".xml")) + "_toc" + ".js";
-            final String tocJsFile = JS_DEST_DIR + tocJsName;
-            contentToZip.put(tocJsFile, htmlRenditionProcessor.processJsTemplate(coverPageTocJson).getBytes("UTF-8"));
+        // Build toc_docName.js file
+        RenderedDocument tocHtmlDocument = new RenderedDocument();
+        tocHtmlDocument.setContent(new ByteArrayInputStream(coverPageContent));
+        tocHtmlDocument.setStyleSheetName(styleSheetName);
+        final String tocJsName = xmlDocumentName.substring(0, xmlDocumentName.indexOf(".xml")) + "_toc" + ".js";
+        final String tocJsFile = JS_DEST_DIR + tocJsName;
+        contentToZip.put(tocJsFile, htmlRenditionProcessor.processJsTemplate(coverPageTocJson).getBytes(UTF_8));
 
-            //build html_docName_toc.html
-            tocHtmlDocument = new RenderedDocument();
-            tocHtmlDocument.setContent(new ByteArrayInputStream(coverPageContent));
-            tocHtmlDocument.setStyleSheetName(styleSheetName);
-            String tocHtmlFile = HTML_RENDITION + xmlDocumentName;
-            tocHtmlFile = tocHtmlFile.substring(0, tocHtmlFile.indexOf(".xml")) + "_toc" + ".html";
-            contentToZip.put(tocHtmlFile, htmlRenditionProcessor.processCoverPageTocTemplate(tocHtmlDocument, tocJsName).getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException exception) {
-            throw new IllegalStateException("UnsupportedEncodingException while processing document " + xmlDocumentName, exception);
-        }
+        //build html_docName_toc.html
+        tocHtmlDocument = new RenderedDocument();
+        tocHtmlDocument.setContent(new ByteArrayInputStream(coverPageContent));
+        tocHtmlDocument.setStyleSheetName(styleSheetName);
+        String tocHtmlFile = HTML_RENDITION + xmlDocumentName;
+        tocHtmlFile = tocHtmlFile.substring(0, tocHtmlFile.indexOf(".xml")) + "_toc" + ".html";
+        contentToZip.put(tocHtmlFile, htmlRenditionProcessor.processCoverPageTocTemplate(tocHtmlDocument, tocJsName).getBytes(UTF_8));
     }
 
     private void addHtmlRendition(Map<String, Object> contentToZip, String xmlDocumentName, byte[] xmlContent, String styleSheetName, String tocJson) {
-        try {
-            RenderedDocument htmlDocument = new RenderedDocument();
-            htmlDocument.setContent(new ByteArrayInputStream(xmlContent));
-            htmlDocument.setStyleSheetName(styleSheetName);
-            String htmlName = HTML_RENDITION + xmlDocumentName.replaceAll(".xml", ".html");
-            contentToZip.put(htmlName, htmlRenditionProcessor.processTemplate(htmlDocument).getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException exception) {
-            throw new IllegalStateException("UnsupportedEncodingException while processing document " + xmlDocumentName, exception);
-        }
-        
-        try {
-            // Build toc_docName.js file
-            RenderedDocument tocHtmlDocument = new RenderedDocument();
-            tocHtmlDocument.setContent(new ByteArrayInputStream(xmlContent));
-            tocHtmlDocument.setStyleSheetName(styleSheetName);
-            final String tocJsName = xmlDocumentName.substring(0, xmlDocumentName.indexOf(".xml")) + "_toc" + ".js";
-            final String tocJsFile = JS_DEST_DIR + tocJsName;
-            contentToZip.put(tocJsFile, htmlRenditionProcessor.processJsTemplate(tocJson).getBytes("UTF-8"));
-            
-            //build html_docName_toc.html
-            tocHtmlDocument = new RenderedDocument();
-            tocHtmlDocument.setContent(new ByteArrayInputStream(xmlContent));
-            tocHtmlDocument.setStyleSheetName(styleSheetName);
-            String tocHtmlFile = HTML_RENDITION + xmlDocumentName;
-            tocHtmlFile = tocHtmlFile.substring(0, tocHtmlFile.indexOf(".xml")) + "_toc" + ".html";
-            contentToZip.put(tocHtmlFile, htmlRenditionProcessor.processTocTemplate(tocHtmlDocument, tocJsName).getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException exception) {
-            throw new IllegalStateException("UnsupportedEncodingException while processing document " + xmlDocumentName, exception);
-        }
+        RenderedDocument htmlDocument = new RenderedDocument();
+        htmlDocument.setContent(new ByteArrayInputStream(xmlContent));
+        htmlDocument.setStyleSheetName(styleSheetName);
+        String htmlName = HTML_RENDITION + xmlDocumentName.replaceAll(".xml", ".html");
+        contentToZip.put(htmlName, htmlRenditionProcessor.processTemplate(htmlDocument).getBytes(UTF_8));
+
+        // Build toc_docName.js file
+        RenderedDocument tocHtmlDocument = new RenderedDocument();
+        tocHtmlDocument.setContent(new ByteArrayInputStream(xmlContent));
+        tocHtmlDocument.setStyleSheetName(styleSheetName);
+        final String tocJsName = xmlDocumentName.substring(0, xmlDocumentName.indexOf(".xml")) + "_toc" + ".js";
+        final String tocJsFile = JS_DEST_DIR + tocJsName;
+        contentToZip.put(tocJsFile, htmlRenditionProcessor.processJsTemplate(tocJson).getBytes(UTF_8));
+
+        //build html_docName_toc.html
+        tocHtmlDocument = new RenderedDocument();
+        tocHtmlDocument.setContent(new ByteArrayInputStream(xmlContent));
+        tocHtmlDocument.setStyleSheetName(styleSheetName);
+        String tocHtmlFile = HTML_RENDITION + xmlDocumentName;
+        tocHtmlFile = tocHtmlFile.substring(0, tocHtmlFile.indexOf(".xml")) + "_toc" + ".html";
+        contentToZip.put(tocHtmlFile, htmlRenditionProcessor.processTocTemplate(tocHtmlDocument, tocJsName).getBytes(UTF_8));
     }
-    
+
     /**
      * Add resource to exported .leg file in renditions/html/css or js folder
      */
@@ -1103,7 +1241,7 @@ public class LegServiceImpl implements LegService {
             LOG.error("Error occurred while getting styles ", io);
         }
     }
-    
+
     /**
      * Calls service to get Annotations per document
      */
@@ -1136,14 +1274,14 @@ public class LegServiceImpl implements LegService {
     private String creatAnnotationFileName(String docName) {
         return MEDIA_DIR + ANNOT_FILE_PREFIX + docName + ANNOT_FILE_EXT;
     }
-    
+
     private void setComponentsRefs(LeosCategory leosCategory, final ExportResource exportResource, byte[] xmlContent) {
         Map<String, String> componentMap = xmlNodeProcessor.getValuesFromXml(xmlContent,
                 new String[]{XmlNodeConfigProcessor.DOC_REF_COVER},
                 xmlNodeConfigProcessor.getConfig(leosCategory));
         exportResource.setComponentsIdsMap(componentMap);
     }
-    
+
     private byte[] getContent(XmlDocument xmlDocument) {
         final Content content = xmlDocument.getContent().getOrError(() -> "xml content is required!");
         return content.getSource().getBytes();
@@ -1252,10 +1390,12 @@ public class LegServiceImpl implements LegService {
         if(exportOptions.isComparisonMode()) {
             XmlDocument originalBill = documentContentService.getOriginalBill(bill);
             xmlContent = simpleCompareXmlContentsForClone(originalBill, bill).getBytes(UTF_8);
+            // LEOS-6022: Cleaning attachments' diffing classes in contents after comparison
+            xmlContent = XmlHelper.cleanDiffingClassesForTag(xmlContent, XmlHelper.ATTACHMENTS, Arrays.asList(CONTENT_ADDED_CLASS, CONTENT_REMOVED_CLASS));
+            xmlContent = XmlHelper.cleanDiffingClassesForTag(xmlContent, XmlHelper.PREFACE, Arrays.asList(CONTENT_ADDED_CLASS, CONTENT_REMOVED_CLASS));
         } else if (exportOptions.isCleanVersion()) {
             xmlContent = xmlContentProcessor.cleanSoftActions(xmlContent);
         }
-
         xmlContent = addMetadataToBill(bill, xmlContent);
 
         ExportResource exportBillResource = enrichZipWithBillForClone(contentToZip, exportProposalResource,
@@ -1275,6 +1415,10 @@ public class LegServiceImpl implements LegService {
         enrichZipWithMedia(contentToZip, leosPackage);
 
         //6. Add Cover page rendition
+        if(exportOptions.isComparisonMode()) {
+            XmlDocument originalProposal = documentContentService.getOriginalProposal(proposal);
+            proposalContent = simpleCompareXmlContentsForClone(originalProposal, proposal).getBytes(UTF_8);
+        }
         addCoverPageHtmlRendition(contentToZip, proposalContent, coverPageStyleSheet, proposal);
 
         legPackage.setFile(ZipPackageUtil.zipFiles(proposalRefsMap.get(XmlNodeConfigProcessor.PROPOSAL_DOC_COLLECTION) + ".leg",
@@ -1287,6 +1431,18 @@ public class LegServiceImpl implements LegService {
     private String simpleCompareXmlContentsForClone(XmlDocument originalContent, XmlDocument currentContent) {
         String originalCompareXml = originalContent.getContent().get().getSource().toString();
         String currentCompareXml = currentContent.getContent().get().getSource().toString();
+
+        return compareService.compareContents(new ContentComparatorContext.Builder(originalCompareXml, currentCompareXml)
+                .withAttrName(ATTR_NAME)
+                .withRemovedValue(CONTENT_REMOVED_CLASS)
+                .withAddedValue(CONTENT_ADDED_CLASS)
+                .withDisplayRemovedContentAsReadOnly(Boolean.TRUE)
+                .build());
+    }
+
+    private String simpleCompareXmlContentsForClone(byte[] originalContent, byte[] currentContent) {
+        String originalCompareXml = new String(originalContent, UTF_8);
+        String currentCompareXml = new String(currentContent, UTF_8);
 
         return compareService.compareContents(new ContentComparatorContext.Builder(originalCompareXml, currentCompareXml)
                 .withAttrName(ATTR_NAME)
@@ -1311,6 +1467,7 @@ public class LegServiceImpl implements LegService {
         addResourceToZipContent(contentToZip, billStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
         structureContextProvider.get().useDocumentTemplate(bill.getMetadata().get().getDocTemplate());
         final String billTocJson = getTocAsJson(billService.getTableOfContent(bill, TocMode.SIMPLIFIED_CLEAN));
+
         addHtmlRendition(contentToZip, bill.getName(), xmlContent, billStyleSheet, billTocJson);
 
         final ExportResource exportBillResource = buildExportResourceBill(proposalRefsMap, xmlContent);
@@ -1320,8 +1477,8 @@ public class LegServiceImpl implements LegService {
     }
 
     private void addAnnexToPackageForClone(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
-                                   ExportOptions exportOptions, ExportResource exportProposalResource, LegPackage legPackage,
-                                   String proposalRef, byte[] xmlContent) {
+                                           ExportOptions exportOptions, ExportResource exportProposalResource, LegPackage legPackage,
+                                           String proposalRef, byte[] xmlContent) {
 
         final Map<String, String> attachmentIds = attachmentProcessor.getAttachmentsIdFromBill(xmlContent);
         if (!attachmentIds.isEmpty()) {
@@ -1338,16 +1495,18 @@ public class LegServiceImpl implements LegService {
     }
 
     private void enrichZipWithAnnexForClone(final Map<String, Object> contentToZip, ExportResource exportBillResource,
-                                    Annex annex, ExportOptions exportOptions, String resourceId, String href,
-                                    String proposalRef) {
+                                            Annex annex, ExportOptions exportOptions, String resourceId, String href,
+                                            String proposalRef) {
         byte[] xmlContent = annex.getContent().get().getSource().getBytes();
-        if(exportOptions.isComparisonMode()) {
+        xmlContent = addPrefaceMetadataToAnnex(annex, xmlContent);
+        if(exportOptions.isComparisonMode() && !annex.getClonedFrom().isEmpty()) {
             XmlDocument originalAnnex = documentContentService.getOriginalAnnex(annex);
             xmlContent = simpleCompareXmlContentsForClone(originalAnnex, annex).getBytes(UTF_8);
         } else if (exportOptions.isCleanVersion()) {
             xmlContent = xmlContentProcessor.cleanSoftActions(xmlContent);
         }
-        xmlContent = addMetadataToAnnex(annex, xmlContent);
+        xmlContent = addMetadataToAnnexWithoutPreface(annex, xmlContent);
+
         contentToZip.put(annex.getName(), xmlContent);
         if(exportOptions.isWithAnnotations()) {
             addAnnotateToZipContentForClone(contentToZip, annex.getMetadata().get().getRef(), annex.getName(), proposalRef, exportOptions);
@@ -1359,6 +1518,14 @@ public class LegServiceImpl implements LegService {
         addResourceToZipContent(contentToZip, annexStyleSheet, STYLES_SOURCE_PATH, STYLE_DEST_DIR);
         structureContextProvider.get().useDocumentTemplate(annex.getMetadata().get().getDocTemplate());
         final String annexTocJson = getTocAsJson(annexService.getTableOfContent(annex, TocMode.SIMPLIFIED_CLEAN));
+        if (annex.getClonedFrom().isEmpty() && exportOptions.isComparisonMode()) {
+            try {
+                xmlContent = xmlContentProcessor.setAttributeForAllChildren(xmlContent, DOC, Arrays.asList(MAIN_BODY, PREFACE), CLASS_ATTR, CONTENT_ADDED_CLASS);
+            } catch (Exception e) {
+                LOG.debug("Error while setting class attribute on new annex");
+            }
+            contentToZip.put(annex.getName(), xmlContent);
+        }
         addHtmlRendition(contentToZip, annex.getName(), xmlContent, annexStyleSheet, annexTocJson);
 
         int docNumber = annex.getMetadata().get().getIndex();
@@ -1367,27 +1534,27 @@ public class LegServiceImpl implements LegService {
     }
 
     private void addMemorandumToPackageForClone(final LeosPackage leosPackage, final Map<String, Object> contentToZip,
-                                        ExportResource exportProposalResource, final Map<String, String> proposalRefsMap,
-                                        LegPackage legPackage, String proposalRef) {
+                                                ExportResource exportProposalResource, final Map<String, String> proposalRefsMap,
+                                                LegPackage legPackage, String proposalRef) {
         final Memorandum memorandum = packageRepository.findDocumentByPackagePathAndName(leosPackage.getPath(), proposalRefsMap.get(LeosCategory.MEMORANDUM.name() + "_href"), Memorandum.class);
         enrichZipWithMemorandumForClone(contentToZip, exportProposalResource, proposalRefsMap, memorandum, proposalRef);
         legPackage.addContainedFile(memorandum.getVersionedReference());
     }
 
     private void enrichZipWithMemorandumForClone(final Map<String, Object> contentToZip, ExportResource exportProposalResource,
-                                         Map<String, String> proposalRefsMap, Memorandum memorandum,
-                                         String proposalRef) {
+                                                 Map<String, String> proposalRefsMap, Memorandum memorandum,
+                                                 String proposalRef) {
         ExportOptions exportOptions = exportProposalResource.getExportOptions();
 
         byte[] xmlContent = memorandum.getContent().get().getSource().getBytes();
         if(exportOptions.isComparisonMode()) {
-            XmlDocument originalMemorandum= documentContentService.getOriginalMemorandum(memorandum);
+            XmlDocument originalMemorandum = documentContentService.getOriginalMemorandum(memorandum);
             xmlContent = simpleCompareXmlContentsForClone(originalMemorandum, memorandum).getBytes(UTF_8);
         } else if (exportOptions.isCleanVersion()) {
             xmlContent = xmlContentProcessor.cleanSoftActions(xmlContent);
         }
-
         xmlContent = addMetadataToMemorandum(memorandum, xmlContent);
+
         contentToZip.put(memorandum.getName(), xmlContent);
         if (exportOptions.isWithAnnotations()) {
             addAnnotateToZipContentForClone(contentToZip, memorandum.getMetadata().get().getRef(), memorandum.getName(), proposalRef, exportOptions);
@@ -1463,5 +1630,16 @@ public class LegServiceImpl implements LegService {
         } catch (Exception e) {
             LOG.error("Error while anonymize a permission with name" + permissionName, e);
         }
+    }
+
+    @Override
+    public String storeLegDocumentTemporary(final LegDocument legDocument) {
+        final byte[] legBytes = legDocument.getContent().getOrNull().getSource().getBytes();
+        return this.annotateService.createTemporaryAnnotations(legBytes, "");
+    }
+
+    @Override
+    public String storeLegDocumentTemporary(final byte[] bytes) {
+        return this.annotateService.createTemporaryAnnotations(bytes, "");
     }
 }

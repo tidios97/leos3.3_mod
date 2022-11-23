@@ -16,7 +16,11 @@ public class CheckinElement {
     
     // Empty constructor needed for jackson ObjectMapper
     public CheckinElement(){}
-    
+
+    public CheckinElement(ActionType actionType) {
+        this.actionType = actionType;
+    }
+
     public CheckinElement(ActionType actionType, Set<CheckinElement> childElements) {
         this.actionType = actionType;
         this.childElements = childElements;

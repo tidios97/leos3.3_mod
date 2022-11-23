@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+coverPage longTitle > aknp > *, coverPage longTitle > p > *, coverPage container[name=docLabel] > * {
+  margin: 0;
+}
+
+coverPage longTitle > aknp > *, coverPage longTitle > p > *, coverPage container[name=docLabel] > * {
+  padding-top: 6pt;
+  padding-bottom: 6pt;
+}
+
+coverPage longTitle {
+  font-weight: bold;
+  text-align: center;
+}
+coverPage longTitle > aknp, coverPage longTitle > p {
+  text-decoration: none;
+  display: block;
+}
+coverPage longTitle > aknp > *, coverPage longTitle > p > * {
+  display: block;
+}
+coverPage longTitle > aknp > docstage, coverPage longTitle > p > docstage {
+  font-weight: normal;
+}
+coverPage longTitle > aknp > doctype, coverPage longTitle > p > doctype {
+  text-transform: uppercase;
+}
+
+coverPage {
+  position: relative;
+  display: block;
+  margin: 0.5cm 0.5cm 0.5cm 0.8%;
+  width: 21cm;
+  min-height: 29.7cm;
+  padding: 2cm 2.5cm;
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
+  white-space: normal;
+  background-color: white;
+}
+
+coverPage {
+  display: block;
+}
+coverPage container[name=language],
+coverPage container[name=mainDocLanguage] {
+  font-weight: bold;
+  position: absolute;
+  font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 24pt;
+  bottom: 2cm;
+}
+coverPage container[name=language]:before,
+coverPage container[name=mainDocLanguage]:before {
+  content: attr(data-lang);
+  float: left;
+  margin-left: -1.2cm;
+}
+coverPage container[name=language]:after,
+coverPage container[name=mainDocLanguage]:after {
+  content: attr(data-lang);
+  float: right;
+  margin-left: 21.0cm;
+}
+coverPage container[name=logo] {
+  padding-bottom: 4.65cm;
+  display: inline-block;
+}
+coverPage container[name=logo] > * > img {
+  width: 180px;
+  height: 90px;
+}
+coverPage container[name=actingEntity] > * {
+  font-size: 14pt;
+  margin-left: 0.5em;
+  display: inline-block;
+  max-width: 35%;
+  font-family: Arial;
+}
+coverPage container[name=mainDoc] {
+  display: block;
+  margin-top: 52pt;
+  margin-left: 8.99cm;
+}
+coverPage container[name=mainDoc] > block[name=placeAndDate] {
+  display: block;
+  margin-bottom: -15px;
+}
+coverPage container[name=mainDoc] > block[name=placeAndDate] > location {
+  display: inline;
+}
+coverPage container[name=mainDoc] > block[name=placeAndDate] > date {
+  display: inline;
+}
+coverPage container[name=mainDoc] > block[name=reference] {
+  display: block;
+}
+coverPage container[name=mainDoc] > block[name=reference] > docNumber {
+  display: inline;
+}
+coverPage container[name=procedureIdentifier] {
+  display: block;
+  margin-left: 8.99cm;
+  margin-bottom: 24pt;
+}
+coverPage container[name=procedureIdentifier] > p > docketNumber {
+  display: inline;
+}
+coverPage container[name=docLabel] > * {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}

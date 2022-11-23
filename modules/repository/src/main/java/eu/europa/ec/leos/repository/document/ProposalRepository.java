@@ -181,4 +181,12 @@ public interface ProposalRepository {
     Integer findRecentMinorVersionsCount(String documentId, String documentRef);
 
     Proposal findFirstVersion(String ref);
+
+
+    /**
+     * Only to be used internally to get the proposal document using ref.
+     * @param ref
+     * @return
+     */
+    Proposal getProposalByRef(String ref);
 }

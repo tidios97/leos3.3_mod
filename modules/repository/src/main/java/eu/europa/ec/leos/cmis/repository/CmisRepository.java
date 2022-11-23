@@ -77,7 +77,7 @@ public class CmisRepository {
     Folder createFolder(final String path, final String name) {
         logger.trace("Creating folder... [path=" + path + ", name=" + name + "]");
         OperationContext context = getMinimalContext(cmisSession);
-        Folder parentFolder = findFolderByPath(path, context);
+        Folder parentFolder = findFolderByPath(path);
 
         Map<String, String> properties = new HashMap<>();
         properties.put(PropertyIds.OBJECT_TYPE_ID, BaseTypeId.CMIS_FOLDER.value());
@@ -88,16 +88,14 @@ public class CmisRepository {
 
     void deleteFolder(final String path) {
         logger.trace("Deleting folder... [path=" + path + "]");
-        OperationContext context = getMinimalContext(cmisSession);
-        Folder folder = findFolderByPath(path, context);
+        Folder folder = findFolderByPath(path);
         folder.deleteTree(true, UnfileObject.DELETE, true);
     }
 
     Document createDocumentFromContent(final String path, final String name, Map<String, ?> properties, final String mimeType, byte[] contentBytes) {
         logger.trace("Creating document... [path=" + path + ", name=" + name + ", mimeType=" + mimeType + "]");
-        OperationContext context = getMinimalContext(cmisSession);
 
-        Folder targetFolder = findFolderByPath(path, context);
+        Folder targetFolder = findFolderByPath(path);
         ByteArrayInputStream byteStream = new ByteArrayInputStream(contentBytes);
         ContentStream contentStream = cmisSession.getObjectFactory().createContentStream(name, (long) contentBytes.length, mimeType, byteStream);
 
@@ -113,7 +111,7 @@ public class CmisRepository {
         logger.trace("Creating document from source... [sourceId=" + sourceId + "]");
         OperationContext context = getMinimalContext(cmisSession);
 
-        Folder targetFolder = findFolderByPath(path, context);
+        Folder targetFolder = findFolderByPath(path);
         Document sourceDoc = findDocumentById(sourceId, false, context);
 
         Map<String, Object> updatedProperties = new LinkedHashMap<>();
@@ -220,7 +218,7 @@ public class CmisRepository {
     List<Document> findDocumentsByParentPath(final String path, final String primaryType, final Set<LeosCategory> categories, final boolean descendants) {
         logger.trace("Finding documents by parent path... [path=" + path + ", primaryType=" + primaryType + ", categories=" + categories + ", descendants=" + descendants + ']');
         OperationContext context = OperationContextProvider.getOperationContext(cmisSession, "cmis:lastModificationDate DESC");
-        Folder folder = findFolderByPath(path, context);
+        Folder folder = findFolderByPath(path);
         List<Document> documents = getSearchStrategy().findDocuments(folder, primaryType, categories, descendants, false, context);
         logger.trace("Found " + documents.size() + " CMIS document(s).");
         return documents;
@@ -244,7 +242,7 @@ public class CmisRepository {
     Stream<Document> findDocumentByParentPath(final String path, final String name, final String primaryType) {
         logger.trace("Finding document by parent path... [path=" + path + ", name=" + name + ']');
         OperationContext context = getMinimalContext(cmisSession);
-        String folderId = self.findFolderIdByPath(path, context);
+        String folderId = self.findFolderIdByPath(path);
         return getSearchStrategy().findDocumentByNameAndFolder(folderId, name, primaryType, context);
     }
 
@@ -293,12 +291,13 @@ public class CmisRepository {
     }
 
     @Cacheable(value = "cmisRepositoryFolderCache", key = "#path")
-    public String findFolderIdByPath(String path, OperationContext context) {
-        return findFolderByPath(path, context).getId();
+    public String findFolderIdByPath(String path) {
+        return findFolderByPath(path).getId();
     }
 
-    private Folder findFolderByPath(String path, OperationContext context) {
-        CmisObject cmisObject = cmisSession.getObjectByPath(path, context);
+    Folder findFolderByPath(String path) {
+        OperationContext context = getMinimalContext(cmisSession);
+        CmisObject cmisObject = cmisSession.getObjectByPath(path);
         require(cmisObject instanceof Folder, "CMIS object referenced by path [" + path + "] is not a Folder!");
         return (Folder) cmisObject;
     }
@@ -357,7 +356,7 @@ public class CmisRepository {
         logger.trace("Finding documents by parent path... [path=$path, primaryType=$primaryType, categories=$categories, descendants=$descendants]");
         OperationContext context = OperationContextProvider.getOperationContext(cmisSession, maxResults);
 
-        String folderId = self.findFolderIdByPath(path, context);
+        String folderId = self.findFolderIdByPath(path);
         Stream<Document> documents = getSearchStrategy().findDocumentPage(folderId, primaryType, categories, descendants, false, context, startIndex, workspaceFilter);
 
         logger.trace("Found ${documents.count()} CMIS document(s).");
@@ -368,7 +367,7 @@ public class CmisRepository {
         logger.trace("Finding documents by parent path... [path=$path, primaryType=$primaryType, categories=$categories, descendants=$descendants]");
         OperationContext context = OperationContextProvider.getMinimalContext(cmisSession);
 
-        String folderId = self.findFolderIdByPath(path, context);
+        String folderId = self.findFolderIdByPath(path);
         int documentCount = getSearchStrategy().findDocumentCount(folderId, primaryType, categories, descendants, false, context, workspaceFilter);
 
         logger.trace("Found ${documentCount} CMIS document(s).");

@@ -85,7 +85,7 @@ public class TableOfContentHelperExplanatoryMandateTest extends TableOfXmlConten
                         .withChild(TocItemVOBuilder.getBuilder()
                                 .withId("_body_para_1__crossheading")
                                 .withTocItem(
-                                        StructureConfigUtils.getTocItemByNumberingConfig(tocItems, NumberingType.BULLET_BLACK_CIRCLE, "CROSS_HEADING")
+                                        StructureConfigUtils.getTocItemByNumberingType(tocItems, NumberingType.BULLET_BLACK_CIRCLE, "CROSS_HEADING")
                                 )
                                 .withHeading(null)
                                 .withContent("The request of the EP and the EU Agency for Fundamental Rights[the European Data Protection Officer] Comment....delivered an opinion: \\(x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)")

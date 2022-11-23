@@ -3,7 +3,6 @@ package eu.europa.ec.leos.ui.view.coverpage;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.StreamResource;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
@@ -54,10 +53,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.inject.Provider;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @ViewScope
 @SpringComponent
@@ -126,9 +125,9 @@ class ProposalCoverPageScreenImpl extends CoverPageScreenImpl {
     }
 
     @Override
-    public void showRevision(String versionContent, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList) {
+    public void showRevision(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList) {
         initRevisionComponent();
-        revisionComponent.populateRevisionContent(versionContent, LeosCategory.PROPOSAL, contributionStatus, contributionVO);
+        revisionComponent.populateRevisionContent(versionContent, LeosCategory.PROPOSAL, contributionVO);
         changePosition(new LayoutChangeRequestEvent(ColumnPosition.DEFAULT, ComparisonComponent.class, revisionComponent));
     }
 
@@ -252,6 +251,12 @@ class ProposalCoverPageScreenImpl extends CoverPageScreenImpl {
 
     private boolean isClonedProposal() {
         return cloneContext != null && cloneContext.isClonedProposal();
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String versionedReference) {
+        accordion.setSelectedTab(contributionsTab);
+        return contributionsTab.findContribution(versionedReference);
     }
 
     @Override

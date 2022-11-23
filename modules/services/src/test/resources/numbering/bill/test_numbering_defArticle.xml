@@ -1,0 +1,27 @@
+<article xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos"  refersTo="~_ART_DEF"
+         xml:id="_imp__imp_art_d1e5242_6jPqhP_Yoh0kL">
+    <num>Article 64</num>
+    <heading>Definitions</heading>
+    <paragraph>
+        <num>1.</num>
+        <subparagraph>
+            <content>
+                <p>par 1</p>
+            </content>
+        </subparagraph>
+        <list leos:list-type="POINT_NUM_DEF">
+            <point>
+                <num>-fakeNum</num>
+                <content>
+                    <p>This should be (1)</p>
+                </content>
+            </point>
+            <point>
+                <num>fakeNum</num>
+                <content>
+                    <p>This should be (2)</p>
+                </content>
+            </point>
+        </list>
+    </paragraph>
+</article>

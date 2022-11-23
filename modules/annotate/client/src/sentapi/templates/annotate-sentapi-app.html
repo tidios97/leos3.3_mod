@@ -1,7 +1,0 @@
-<div class="spinner_wrapper" ng-show="vm.sending && !vm.sent"></div>
-<div class="message_wrapper" ng-show="!vm.sending || vm.sent">
-  <p class="message" ng-style="vm.isError && {'color':'red'}">{{vm.message}}</p>
-</div> 
-<div class="buttons_wrapper" ng-show="!vm.sending">
-  <input class="btn" type="button" value="{{vm.buttons.yes}}" ng-disabled="vm.isError" ng-show="!vm.sent" ng-click="vm.sendRequest()"/>
-</div> 

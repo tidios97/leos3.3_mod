@@ -103,7 +103,7 @@ public class NumberServiceMandate implements NumberService {
 
     @Override
     public byte[] renumberArticles(byte[] xmlContent, boolean renumberChildElement) {
-        return new byte[0];
+        return renumberArticles(xmlContent);
     }
 
     @Override

@@ -70,7 +70,7 @@ define(function leosEditorExtensionModule(require) {
         toolbarPositionAdapter.teardown(connector);
         actionHandler.teardown(connector);
         _teardownEditorChannel(connector);
-        _unregisterUnLoadHandlers;
+        _unregisterUnLoadHandlers();
     }
 
     function _teardownEditorChannel(connector) {
@@ -87,19 +87,69 @@ define(function leosEditorExtensionModule(require) {
     function _registerUnLoadHandlers(connector) {
         log.debug("Registering beforeunload handler...");
         $(window).on("beforeunload", function() {
-            if ($("akomantoso .cke_editable").is("[data-wrapped-id]") ||
-                    $("div.leos-toc-tree-editable").length) {
+            if (_isTextEditorOpen()) {
                 return "Changes you made may not be saved."; // Browser shows it's own message and not this
             }
         });
+
+        _registerOnPopStateHandler();
         log.debug("Registering unload handler...");
         $(window).on("unload", _closeBrowser.bind(undefined, connector));
+    }
+
+    function _registerOnPopStateHandler() {
+        log.debug("Registering popstate handler...");
+        // Add additional history state to prevent user from leaving the current page in case back button is pressed
+        // and user would like to stay if open editors are detected.
+        window.leosEditorState = { 'checkForOpenEditors': true };
+        window.history.pushState(null, "", window.location.href);
+        $(window).on('popstate', (jqueryEvent) => { _onPopState(jqueryEvent.originalEvent) });
+    }
+
+    function _onPopState(event) {
+        event.preventDefault();
+        if (!window.leosEditorState) {
+            return;
+        }
+        if (!window.leosEditorState.checkForOpenEditors) {
+            _goBack();
+            return;
+        }
+        _checkForOpenEditors();
+    }
+
+    function _checkForOpenEditors() {
+        log.debug('Check for open editor');
+        if (!_isTextEditorOpen()) {
+            _goBack();
+            return;
+        }
+
+        log.debug('Open editor detected');
+        let proceed = confirm('Changes you made may not be saved. Would you like to proceed?');
+        log.debug(`Proceed: ${proceed}`);
+        if (proceed) {
+            _goBack();
+            return;
+        }
+        window.history.pushState(null, "", window.location.href);
+    }
+
+    function _goBack() {
+        window.leosEditorState = null;
+        window.history.back();
+    }
+
+    function _isTextEditorOpen() {
+        return $("akomantoso .cke_editable").is("[data-wrapped-id]")
+            || $("div.leos-toc-tree-editable").length;
     }
 
     function _unregisterUnLoadHandlers() {
         log.debug("Unregistering unload handlers...");
         $(window).off("beforeunload");
         $(window).off("unload");
+        $(window).off("popstate");
     }
 
     function _closeBrowser(connector) {

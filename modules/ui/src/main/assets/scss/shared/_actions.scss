@@ -88,6 +88,10 @@ $DARK_BLUE: #0066a5;
         @extend %elementEditable;
     }
 
+    crossheading {
+        @extend %elementEditable;
+    }
+
     citations[leos\:origin='ec'] {
         .leos-editable-content {
             @extend %contentEditable;
@@ -249,6 +253,11 @@ $DARK_BLUE: #0066a5;
 
     .merge-contribution-wrapper {
         @extend %mergeContributionWrapper;
+    }
+
+    container.merge-contribution-wrapper {
+        @extend %mergeContributionWrapper;
+        display: inline-block;
     }
 
     list.merge-contribution-wrapper {

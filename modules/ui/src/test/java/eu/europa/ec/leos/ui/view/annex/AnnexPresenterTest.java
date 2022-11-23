@@ -222,7 +222,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(content.getSource()).thenReturn(source);
 
         AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml",
-                "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+                "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
         Instant now = Instant.now();
         Annex annex = getMockedAnnex(content, documentVersion, annexMetadata);
         DocumentVO annexVO = new DocumentVO(docId,"EN", LeosCategory.ANNEX, "login",  Date.from(now));
@@ -308,7 +308,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(content.getSource()).thenReturn(source);
 
         AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml",
-                "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+                "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
         Instant now = Instant.now();
         Annex annex = getMockedAnnex(content, documentVersion, annexMetadata);
         DocumentVO annexVO = new DocumentVO(docId,"EN", LeosCategory.ANNEX, "login",  Date.from(now));
@@ -401,7 +401,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
 
     @Test
     public void testCloseDocumentUnsavedAnnexInSession() {
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
 
         Annex annex = getMockedAnnex(mock(Content.class), "0.0.1", annexMetadata);
         when(httpSession.getAttribute(eq("annex#" + docRef))).thenReturn(annex);
@@ -420,7 +420,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(source.getBytes()).thenReturn(byteContent);
         when(content.getSource()).thenReturn(source);
         Instant now = Instant.now();
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
         Annex annex = getMockedAnnex(content, documentVersion, annexMetadata);
         DocumentVO annexVO = new DocumentVO(docId,"EN", LeosCategory.ANNEX, "login",  Date.from(now));
         annexVO.setDocNumber(1);
@@ -490,7 +490,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(source.getBytes()).thenReturn(byteContent);
         when(content.getSource()).thenReturn(source);
 
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
     
         Annex originalDocument = getMockedAnnex(content, "", annexMetadata);
     
@@ -524,7 +524,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(source.getBytes()).thenReturn(byteContent);
         when(content.getSource()).thenReturn(source);
 
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
     
         Annex originalDocument = getMockedAnnex(content, "", annexMetadata);
     
@@ -556,7 +556,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(source.getBytes()).thenReturn(byteContent);
         when(content.getSource()).thenReturn(source);
 
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
     
         Annex document = getMockedAnnex(content, "", annexMetadata);
         String elementTag = LEVEL;
@@ -585,7 +585,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(source.getBytes()).thenReturn(byteContent);
         when(content.getSource()).thenReturn(source);
 
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
 
         Annex document = getMockedAnnex(content, "", annexMetadata);
         String elementTag = LEVEL;
@@ -614,7 +614,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
         when(source.getBytes()).thenReturn(byteContent);
         when(content.getSource()).thenReturn(source);
 
-        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false);
+        AnnexMetadata annexMetadata = new AnnexMetadata("", "REGULATION", "", "AN-000.xml", "EN", docTemplate, "annex-id", 1, "Annex 1", docTitle, "", "0.0.1", false, null);
     
         Annex originalDocument = getMockedAnnex(content, "", annexMetadata);
     

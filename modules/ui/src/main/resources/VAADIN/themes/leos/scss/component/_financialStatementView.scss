@@ -1,0 +1,41 @@
+@import "changePane";
+
+@mixin financialStatementView {
+
+    .leos-financialStatement-view {
+
+        .close-button {
+            float: right;
+            font-weight: normal;
+            border: 1px solid $G_BORDER_COLOR;
+            
+           .v-icon {
+             color: #B92222;        
+           }
+        }
+
+        .leos-financialStatementview-title {
+            font-size: 16px;
+        }
+
+        .leos-financialStatementview-icon {
+            color: $G_ORANGE_COLOR;
+            font-size: 32px;
+            padding-left: 5px;
+            font-family: Vaadin-Icons;
+        }
+
+        .leos-doc-content {
+            overflow: auto;
+            color: black;
+            background: $GREY;
+            position: relative;
+        }
+
+        @include changePane("doc");
+
+        .leos-padbar {
+            border-bottom: 1px solid $G_BORDER_COLOR;
+        }
+    }
+}

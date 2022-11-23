@@ -85,6 +85,7 @@ public class TokenServiceTest extends LeosTest {
         String clientId = "fakeClientName";
         String clientSecret = "clientSecret";
         String clientSubject = "acc:jane@DEMO";
+        String clientUser = "jane";
         List<AuthClient> registeredClients = Arrays.asList(new AuthClient("name1", "id1", "secret1"),
                            new AuthClient("name2", "id2", "secret2"),
                            new AuthClient(clientName, clientId, clientSecret)) ;
@@ -94,7 +95,7 @@ public class TokenServiceTest extends LeosTest {
         ReflectionTestUtils.setField(tokenService, "accessTokenExpirationInMin", 1);
         
         //When
-        String accessToken = generateJwtToken(clientId, clientSecret, clientSubject); //we create token for client "fakeClientName"
+        String accessToken = generateJwtToken(clientId, clientSecret, clientSubject, clientUser); //we create token for client "fakeClientName"
         AuthClient authClient = tokenService.validateClientByJwtToken(accessToken); //the token should have been verified by the secret of the same client. Check the logs!
         
         //Then
@@ -103,13 +104,14 @@ public class TokenServiceTest extends LeosTest {
         assertTrue(authClient.isVerified());
     }
     
-    private String generateJwtToken(String issuer, String secret, String subject) throws UnsupportedEncodingException {
+    private String generateJwtToken(String issuer, String secret, String subject, String user) throws UnsupportedEncodingException {
         Date now = Calendar.getInstance().getTime();
         Algorithm algorithm = Algorithm.HMAC256(secret);
         String token = com.auth0.jwt.JWT.create()
                 .withIssuer(issuer)
                 .withSubject(subject)
                 .withIssuedAt(now)
+                .withClaim("user", user)
                 .sign(algorithm);
         return token;
     }
@@ -117,18 +119,24 @@ public class TokenServiceTest extends LeosTest {
     @Ignore
     @Test
     public void test_printToken() throws Exception {
-        //LOCAL
+        //LOCAL Annotation
 //        String clientId = "AnnotateIssuedClientId";
 //        String clientSecret = "AnnotateIssuedSecret";
 //        String clientSubject = "acct:jane@LEOS";
-        
-        //DEV
-        String clientId = "4d8ca472-f23d-11e7-9793-376d993d81da";
-        String clientSecret = "NHVOpl8rAzzTOVzIf3_HrL0N_e4QshPEt2__zhBEdHQ";
-        String clientSubject = "acct:insert_your_user@LEOS";
-        
-        String token = generateJwtToken(clientId, clientSecret, clientSubject);
+
+        //DEV Annotation
+//        String clientId = "4d8ca472-f23d-11e7-9793-376d993d81da";
+//        String clientSecret = "NHVOpl8rAzzTOVzIf3_HrL0N_e4QshPEt2__zhBEdHQ";
+//        String clientSubject = "acct:insert_your_user@LEOS";
+
+        //LOCAL/DEV ISC
+        String clientId = "iscClientId";
+        String clientSecret = "iscSecret";
+        String clientSubject = "acc:demo@demo";
+        String clientUser = "jane";
+
+        String token = generateJwtToken(clientId, clientSecret, clientSubject, clientUser);
         System.out.println(token);
     }
-    
+
 }

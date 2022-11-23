@@ -81,6 +81,7 @@ public class BillContextService {
     private String moveDirection = null;
     private String annexId;
     private boolean cloneProposal;
+    private boolean eeaRelevance;
 
     private DocumentVO billDocument;
     private DocumentVO annexDocument;
@@ -194,6 +195,11 @@ public class BillContextService {
         this.cloneProposal = cloneProposal;
     }
 
+    public void useEeaRelevance(boolean eeaRelevance) {
+        LOG.trace("Using Proposal eeaRelevance... [eeaRelevance={}]", eeaRelevance);
+        this.eeaRelevance = eeaRelevance;
+    }
+
     public Bill executeCreateBill() {
         LOG.trace("Executing 'Create Bill' use case...");
         Validate.notNull(leosPackage, "Bill package is required!");
@@ -305,7 +311,7 @@ public class BillContextService {
         final String ref = billService.generateBillReference(bill.getContent().get().getSource().getBytes(), bill.getMetadata().get().getLanguage());
         final BillMetadata updatedBillMetadata = bill.getMetadata().get()
                 .withPurpose(purpose)
-                .withRef(ref);
+                .withRef(ref).withEeaRelevance(eeaRelevance);
         final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(billDocument.getSource(), createValueMap(updatedBillMetadata), xmlNodeConfigProcessor.getConfig(updatedBillMetadata.getCategory()));
         
         billDocument.setName(ref + XML_DOC_EXT);
@@ -443,6 +449,7 @@ public class BillContextService {
         annexContext.usePurpose(metadata.getPurpose());
         annexContext.useType(metadata.getType());
         annexContext.usePackageTemplate(metadata.getTemplate());
+        annexContext.useEeaRelevance(eeaRelevance);
 
         MetadataVO annexMeta = annexDocument.getMetadata();
         annexContext.useTemplate(annexMeta.getDocTemplate());
@@ -490,7 +497,8 @@ public class BillContextService {
                 .withType(billMetadata.getType())
                 .withTemplate(annexMetadataVO.getDocTemplate())
                 .withRef(ref);
-        final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(annexDocument.getSource(), createValueMap(updatedAnnexMetadata), xmlNodeConfigProcessor.getConfig(updatedAnnexMetadata.getCategory()));
+        final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(annexDocument.getSource(), createValueMap(updatedAnnexMetadata),
+                xmlNodeConfigProcessor.getConfig(updatedAnnexMetadata.getCategory()), xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());
 
         annexDocument.setName(ref + XML_DOC_EXT);
         annexDocument.setMetadataDocument(updatedAnnexMetadata);

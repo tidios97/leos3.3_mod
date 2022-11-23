@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="renditions/html/css/annex.css"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <doc name="EXPL_COUNCIL">
+        <meta>
+            <identification source="~_CONSIL">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage xml:id="_FRBRlanguage" language="en"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                        <akn4eu:akn4euVersion value="4.0.0.0"/>
+                    </preservation>
+                </FRBRManifestation>
+            </identification>
+            <references source="~_CONSIL">
+                <TLCLocation xml:id="_BEL_BRU" href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"/>
+                <TLCOrganization xml:id="_CONSIL" href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL" showAs="Council of the European Union"/>
+                <TLCOrganization xml:id="_EP" href="http://publications.europa.eu/resource/authority/corporate-body/EP" showAs="European Parliament"/>
+                <TLCOrganization xml:id="_COM" href="http://publications.europa.eu/resource/authority/corporate-body/COM" showAs="European Commission"/>
+                <TLCRole xml:id="_PRESID" href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"/>
+                <TLCReference xml:id="_EXPL_COUNCIL" name="docType" href="http://publications.europa.eu/resource/authority/resource-type/EXPL_COUNCIL" showAs="Council explanatory"/>
+                <TLCReference xml:id="_legalBasis" name="contentSubject" href="http://eurovoc.europa.eu/5456" showAs="Legal basis"/>
+                <TLCReference xml:id="_language" name="language" href="http://publications.europa.eu/resource/authority/language/ENG" showAs="en"/>
+                <TLCReference xml:id="_procedure_YYYY_NNN" name="procedureReference" href="http://eur-lex.europa.eu/procedure/EN/YYYY_NNN" showAs="YYYY/NNNN (AAA)" shortForm="YYYY/NNN/AAA"/>
+                <TLCReference xml:id="_azs3y" name="identifier" href="http://publications.europa.eu/resource/authority/document-identifier-format/COM_NUMBER" showAs="AAA(YYYY) NNN" shortForm="AAA/YYYY/NNN"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.0.1</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:docTemplate>CE-001</leos:docTemplate>
+            </proprietary>
+        </meta>
+        <preface xml:id="_preface" status="ignored">
+            <container name="procedureIdentifier">
+                <p>
+                    <docketNumber refersTo="~_procedure_YYYY_NNN"/>
+                </p>
+            </container>
+            <longTitle xml:id="_preface__longtitle">
+                <p xml:id="_preface__longtitle__p">
+                    <docType refersTo="~_EXPL_COUNCIL" xml:id="_preface__longtitle__p__doctype">Explanatory</docType>
+                    <docTitle xml:id="_preface__longtitle__p__doctitle"></docTitle>
+                </p>
+            </longTitle>
+        </preface>
+        <mainBody xml:id="_body">
+            <paragraph xml:id="_body_para_1">
+                <content xml:id="_body_para_1__content">
+                    <p xml:id="_body_para_1__content__p">With a view to the meeting of the Working Party on … that will take place on …, delegations will find attached a Presidency compromise text on the above-mentioned proposal.</p>
+                </content>
+            </paragraph>
+            <paragraph xml:id="_body_para_2">
+                <content xml:id="_body_para_2__content">
+                    <p xml:id="_body_para_2__content__p">Changes compared to the previous version (12345/21) are indicated in <b xml:id="_body_para_2__content__p_b_1"><u xml:id="_body_para_2__content__p_u_1">bold</u></b> and <b xml:id="_body_para_2__content__p_b_2"><u xml:id="_body_para_2__content__p_u_2">underline</u></b> for additions and in <b xml:id="_body_para_2__content__p_b_3"><u xml:id="_body_para_2__content__p_u_3"><del xml:id="_body_para_2__content__p_del_1">bold, strikethrough and underline</del></u></b> for deletions. Previous additions or deletions to the text of the Commission proposal (12345/21) are marked respectively in <b xml:id="_body_para_2__content__p_b_4">bold</b> or in <b xml:id="_body_para_2__content__p_b_5"><del xml:id="_body_para_2__content__p_del_2">bold and strikethrough</del></b>.</p>
+                </content>
+            </paragraph>
+        </mainBody>
+    </doc>
+</akomaNtoso>

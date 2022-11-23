@@ -40,6 +40,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
+import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
@@ -63,6 +64,7 @@ import eu.europa.ec.leos.ui.event.view.collection.CreateAnnexRequest;
 import eu.europa.ec.leos.ui.event.view.collection.DeleteAnnexEvent;
 import eu.europa.ec.leos.ui.event.view.collection.DeleteCollectionRequest;
 import eu.europa.ec.leos.ui.event.view.collection.DeleteExplanatoryEvent;
+import eu.europa.ec.leos.ui.event.view.collection.DeleteFinancialStatementEvent;
 import eu.europa.ec.leos.ui.event.view.collection.SearchUserResponse;
 import eu.europa.ec.leos.ui.model.ExportPackageVO;
 import eu.europa.ec.leos.ui.model.MilestonesVO;
@@ -86,6 +88,7 @@ import eu.europa.ec.leos.web.support.xml.DownloadStreamResource;
 import eu.europa.ec.leos.web.ui.component.AnnexBlockComponent;
 import eu.europa.ec.leos.web.ui.component.EditBoxComponent;
 import eu.europa.ec.leos.web.ui.component.ExplanatoryBlockComponent;
+import eu.europa.ec.leos.web.ui.component.FinancialStatementBlockComponent;
 import eu.europa.ec.leos.web.ui.component.HeadingComponent;
 import eu.europa.ec.leos.web.ui.component.collaborators.CollaboratorsComponent;
 import eu.europa.ec.leos.web.ui.converter.LangCodeToDescriptionV8Converter;
@@ -184,6 +187,11 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
     protected HeadingComponent annexesBlockHeading;
     protected VerticalLayout annexesLayout;
 
+    // Supporting documents
+    protected Button createSupportingDocumentsButton = new Button(); // initialized to avoid unmapped field exception from design
+    protected HeadingComponent supportDocumentsBlockHeading;
+    protected VerticalLayout supportDocumentsLayout;
+
     // UserManagement
     protected HeadingComponent collaboratorsBlockHeading;
     protected HorizontalLayout searchContextHolder;
@@ -205,6 +213,7 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
     protected MessageHelper messageHelper;
     protected EventBus eventBus;
     protected final LanguageHelper langHelper;
+    protected final ConfigurationHelper cfgHelper;
     private LangCodeToDescriptionV8Converter langConverter;
     private WebApplicationContext webApplicationContext;
     protected SecurityContext securityContext;
@@ -212,7 +221,6 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
     private UrlBuilder urlBuilder;
     private XmlContentProcessor xmlContentProcessor;
     private final LeosPermissionAuthorityMapHelper authorityMapHelper;
-    private final ConfigurationHelper cfgHelper;
     private final CloneContext cloneContext;
     private CloneProposalMetadataVO cloneProposalMetadataVO;
 
@@ -291,6 +299,8 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
         annexesBlockHeading.addRightButton(addCreateAnnexButton());
         annexesBlockHeading.setCaption(messageHelper.getMessage("collection.block.caption.annexes"));
 
+        supportDocumentsBlockHeading.setCaption(messageHelper.getMessage("collection.block.caption.supporting.documents"));
+
         collaboratorsBlockHeading.addRightButton(addCollaboratorButton());
         collaboratorsBlockHeading.setCaption(messageHelper.getMessage("collection.block.caption.collaborator"));
 
@@ -351,6 +361,7 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
         populateDetailsData(proposalVO.getMetadata());
         populateMemorandumData(proposalVO.getChildDocument(LeosCategory.MEMORANDUM));
         populateLegalTextData(proposalVO.getChildDocument(LeosCategory.BILL));
+        populateFinancialStatementData(proposalVO.getChildDocument(LeosCategory.FINANCIAL_STATEMENT));
         populateExplanatory(proposalVO);
         this.cloneProposalMetadataVO = proposalVO.getCloneProposalMetadataVO();
         populateCloneProposalMetadata(cloneProposalMetadataVO);
@@ -358,6 +369,16 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
         populateCoverPage(proposalVO.getChildDocument(LeosCategory.COVERPAGE));
         setProposalURL();
         docPurpose.setTitleMaxSize(TITLE_TEXT_MAX_LENGTH);
+    }
+
+    private void populateFinancialStatementData(DocumentVO financialStatment) {
+        if (financialStatment == null) {
+            supportDocumentsLayout.setVisible(false);
+        } else {
+            supportDocumentsLayout.setVisible(true);
+            supportDocumentsLayout.setData(financialStatment);
+            addFinancialDocument(financialStatment);
+        }
     }
 
     @Override
@@ -420,6 +441,28 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
                     public void onClose(ConfirmDialog dialog) {
                         if (dialog.isConfirmed()) {
                             eventBus.post(new DeleteAnnexEvent(annex));
+                        }
+                    }
+                }, true);
+    }
+
+    @Override
+    public void confirmFinancialStatementDeletion(DocumentVO financialStatement) {
+        // ask confirmation before delete
+        ConfirmDialog confirmDialog = ConfirmDialog.getFactory().create(
+                messageHelper.getMessage("collection.financial.statement.delete.confirmation.title"),
+                messageHelper.getMessage("collection.financial.statement.delete.confirmation.message"),
+                messageHelper.getMessage("collection.financial.statement.delete.confirmation.confirm"),
+                messageHelper.getMessage("collection.financial.statement.delete.confirmation.cancel"), null);
+        confirmDialog.setContentMode(ConfirmDialog.ContentMode.HTML);
+
+        confirmDialog.show(getUI(),
+                new ConfirmDialog.Listener() {
+                    private static final long serialVersionUID = 144198814274639L;
+
+                    public void onClose(ConfirmDialog dialog) {
+                        if (dialog.isConfirmed()) {
+                            eventBus.post(new DeleteFinancialStatementEvent(financialStatement));
                         }
                     }
                 }, true);
@@ -584,7 +627,7 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
     private Optional<CollaboratorVO> createCollaboratorVO(String login, String authority, Function<String, User> converter, String entityName) {
         try {
             User user = converter.apply(login);
-            return Optional.of(new CollaboratorVO(new UserVO(user,pickFromUserEntitiesByName(user,entityName)), authorityMapHelper.getRoleFromListOfRoles(authority)));
+            return Optional.of(new CollaboratorVO(new UserVO(user, pickFromUserEntitiesByName(user,entityName)), authorityMapHelper.getRoleFromListOfRoles(authority)));
         } catch (Exception e) {
             return Optional.empty();
         }
@@ -622,6 +665,12 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
         AnnexBlockComponent annexComponent = webApplicationContext.getBean(AnnexBlockComponent.class);
         annexesLayout.addComponent(annexComponent);
         annexComponent.populateData(annex);
+    }
+
+    private void addFinancialDocument(DocumentVO document) {
+        FinancialStatementBlockComponent financialStatementBlockComponent = webApplicationContext.getBean(FinancialStatementBlockComponent.class);
+        supportDocumentsLayout.addComponent(financialStatementBlockComponent);
+        financialStatementBlockComponent.populateData(document);
     }
 
     private void openMemorandum() {
@@ -714,6 +763,17 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
     }
 
     @Override
+    public void showContributionMilestone(LegDocument legDocument, LegDocument originalLegDocument, String milestoneTitle,
+                                          String proposalRef, List<Annex> annexes, boolean viewContributionMilestone) {
+        MilestoneExplorer milestoneExplorer = new MilestoneExplorer(legDocument, originalLegDocument, annexes,
+                milestoneTitle, proposalRef, messageHelper, eventBus, cfgHelper, securityContext, userHelper,
+                xmlContentProcessor, isCoverPageVisible(), viewContributionMilestone);
+        UI.getCurrent().addWindow(milestoneExplorer);
+        milestoneExplorer.center();
+        milestoneExplorer.focus();
+    }
+
+    @Override
     public boolean isExportPackageBlockVisible() {
         return exportPackageBlock.isVisible();
     }
@@ -731,7 +791,15 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
     }
 
     @Override
+    public void populateSupportDocuments(DocumentVO proposalVO) {
+        supportDocumentsLayout.setVisible(true);
+    }
+
+    @Override
     public void showCreateDocumentWizard(List<CatalogItem> templates) {}
+
+    @Override
+    public void showSupportDocumentWizard(List<CatalogItem> templates, List<String> templateDocPresent) {}
 
     private boolean isClonedProposal() {
         cloneContext.setCloneProposalMetadataVO(cloneProposalMetadataVO);

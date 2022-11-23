@@ -1,0 +1,51 @@
+<article xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" leos:origin="ec"
+         leos:softaction="move_from" leos:softactionroot="true" leos:softdate="2022-09-21T14:35:58.619+02:00"
+         leos:softmove_from="moved___akn_article_XiUbXW" leos:softmove_label="MOVED from Article 2"
+         leos:softuser="DOE Jane(DGT)" xml:id="__akn_article_XiUbXW">
+    <num leos:editable="false" leos:origin="ls" xml:id="__akn_article_XiUbXW_AxA7bt">Article 3</num>
+    <heading leos:origin="ec" xml:id="__akn_article_XiUbXW_559BlA">Article heading...</heading>
+    <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW-par1">
+        <num leos:origin="ec" xml:id="__akn_article_XiUbXW_3OlGaO">1.</num>
+        <subparagraph leos:origin="ec" xml:id="__akn_article_XiUbXW_EFGPjF">
+            <content leos:origin="ec" xml:id="__akn_article_XiUbXW_tC8eLp">
+                <p leos:origin="ec" xml:id="__akn_article_XiUbXW_P6i17O">Text...</p>
+            </content>
+        </subparagraph>
+        <list leos:origin="ec" xml:id="__akn_article_XiUbXW_QXDklD">
+            <point leos:origin="ec" xml:id="__akn_article_XiUbXW_qTQKIl">
+                <num leos:origin="ec" xml:id="__akn_article_XiUbXW_JiOFwK">(a)</num>
+                <content leos:origin="ec" xml:id="__akn_article_XiUbXW_elKgJg">
+                    <p leos:origin="ec" xml:id="__akn_article_XiUbXW_ZaR8A1">grhe4h4545y45</p>
+                </content>
+            </point>
+            <point leos:editable="false" leos:origin="ec" leos:softaction="move_to" leos:softactionroot="true"
+                   leos:softdate="2022-09-21T14:47:56.768+02:00" leos:softmove_to="__akn_article_XiUbXW_qUcDga"
+            leos:softuser="DOE Jane(DGT)" xml:id="moved___akn_article_XiUbXW_qUcDga">
+                <num leos:origin="ec" xml:id="__akn_article_XiUbXW_CEPhFu">(b)</num>
+                <content leos:origin="ec" xml:id="__akn_article_XiUbXW_eNJKLe">
+                    <p leos:origin="ec" xml:id="__akn_article_XiUbXW_bWAioz">34t34tergergergerg</p>
+                </content>
+            </point>
+            <point leos:origin="ec" xml:id="__akn_article_XiUbXW_ncxthR">
+                <num leos:origin="ec" xml:id="__akn_article_XiUbXW_rGtW0E">(b)</num>
+                <content leos:origin="ec" xml:id="__akn_article_XiUbXW_rULzWV">
+                    <p leos:origin="ec" xml:id="__akn_article_XiUbXW_iaV1kI">w4t34t34t34t34</p>
+                </content>
+            </point>
+            <point leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                   leos:softdate="2022-09-21T14:43:15+02:00" leos:softmove_from="moved___akn_article_XiUbXW_qUcDga"
+                   leos:softuser="DOE Jane(DGT)" xml:id="temp___akn_article_XiUbXW_qUcDga">
+                <num leos:origin="ls" xml:id="__akn_article_XiUbXW_CEPhFu">(c)</num>
+                <content leos:origin="ec" xml:id="__akn_article_XiUbXW_eNJKLe">
+                    <p leos:origin="ec" xml:id="__akn_article_XiUbXW_bWAioz">34t34tergergergerg</p>
+                </content>
+            </point>
+        </list>
+    </paragraph>
+    <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW_WtU0mc">
+        <num leos:origin="ec" xml:id="__akn_article_XiUbXW_g5zcUg">2.</num>
+        <content leos:origin="ec" xml:id="__akn_article_XiUbXW_eGxAhA">
+            <p leos:origin="ec" xml:id="__akn_article_XiUbXW_dFeblR">g34tg34tg34gt34g3</p>
+        </content>
+    </paragraph>
+</article>

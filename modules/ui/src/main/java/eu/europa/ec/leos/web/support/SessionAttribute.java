@@ -18,5 +18,7 @@ public enum SessionAttribute {
     MEMORANDUM_REF,
     EXPLANATORY_REF,
     BILL_REF,
-    ANNEX_REF
+    ANNEX_REF,
+    REVISION_VERSION,
+    FINANCIAL_STATEMENT
 }

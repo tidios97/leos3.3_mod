@@ -116,7 +116,7 @@ public class UserSearchComponent extends InputListeningComboBox {
             if (user == null || StringUtils.isEmpty(user.getName())) {// Not using validators as validators are fired at binding time also
                 throw new Validator.EmptyValueException(messageHelper.getMessage("collaborator.editor.name.error.empty"));
             } else if (existingUsers.contains(user)) {
-                throw new Validator.InvalidValueException(messageHelper.getMessage("collaborator.editor.name.already.present"));
+                throw new Validator.InvalidValueException(messageHelper.getMessage("collaborator.editor.name.already.present", user.getLogin(), user.getRoles(), user.getEntity()));
             }
         });
     }

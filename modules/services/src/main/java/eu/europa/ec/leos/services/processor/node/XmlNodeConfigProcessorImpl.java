@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.services.processor.node;
 
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
+import eu.europa.ec.leos.services.support.XmlHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -32,6 +33,7 @@ public class XmlNodeConfigProcessorImpl implements XmlNodeConfigProcessor {
         All_CONFIG_MAP.put(LeosCategory.MEMORANDUM, createMemorandumConfig());
         All_CONFIG_MAP.put(LeosCategory.ANNEX, createAnnexConfig());
         All_CONFIG_MAP.put(LeosCategory.COUNCIL_EXPLANATORY, createExplanatoryConfig());
+        All_CONFIG_MAP.put(LeosCategory.FINANCIAL_STATEMENT, createFinancialStatementConfig());
     }
 
     private static Map<String, XmlNodeConfig> createProposalConfig() {
@@ -43,7 +45,9 @@ public class XmlNodeConfigProcessorImpl implements XmlNodeConfigProcessor {
         coverPageConfig.put(DOC_TYPE_COVER, new XmlNodeConfig("//akn:coverPage/akn:longTitle/akn:p/akn:docType", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_cover_doctype", "docType"))));
         coverPageConfig.put(DOC_PURPOSE_COVER, new XmlNodeConfig("//akn:coverPage/akn:longTitle/akn:p/akn:docPurpose", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_cover_docpurpose", "docPurpose"))));
         coverPageConfig.put(DOC_LANGUAGE_COVER, new XmlNodeConfig("//akn:coverPage/akn:container[@name='language']/akn:p", false, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_cover_language", "container"))));
-        coverPageConfig.put(DOC_EEA_RELEVANCE_COVER, new XmlNodeConfig("//akn:coverPage/akn:container[@name='eeaRelevance']/akn:p", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_coverpage__eearelevance", "container")),
+        coverPageConfig.put(DOC_EEA_RELEVANCE_COVER, new XmlNodeConfig("//akn:coverPage/akn:container[@name='eeaRelevance']/akn:p", true,
+                Arrays.asList(new XmlNodeConfig.Attribute("xml:id", XmlHelper.COVERPAGE_EEA_RELEVANCE_ID, "container"),
+                new XmlNodeConfig.Attribute("xml:id", XmlHelper.COVERPAGE_EEA_RELEVANCE_ID + "_p", "p")),
             true, "//akn:coverPage/akn:container[@name='eeaRelevance']"));
 
         proposalConfigMap.putAll(coverPageConfig);
@@ -105,6 +109,7 @@ public class XmlNodeConfigProcessorImpl implements XmlNodeConfigProcessor {
         metadataConfig.put(ANNEX_INDEX_META, new XmlNodeConfig("/akn:akomaNtoso//akn:meta/akn:proprietary/leos:annexIndex", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_proprietary__annexIndex", "leos:annexIndex"), new XmlNodeConfig.Attribute("source", "~leos", "proprietary"))));
         metadataConfig.put(ANNEX_NUMBER_META, new XmlNodeConfig("/akn:akomaNtoso//akn:meta/akn:proprietary/leos:annexNumber", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_proprietary__annexNumber", "leos:annexNumber"), new XmlNodeConfig.Attribute("source", "~leos", "proprietary"))));
         metadataConfig.put(ANNEX_TITLE_META, new XmlNodeConfig("/akn:akomaNtoso//akn:meta/akn:proprietary/leos:annexTitle", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_proprietary__annexTitle", "leos:annexTitle"), new XmlNodeConfig.Attribute("source", "~leos", "proprietary"))));
+        metadataConfig.put(ANNEX_CLONED_REF_META, new XmlNodeConfig("/akn:akomaNtoso//akn:meta/akn:proprietary/leos:clonedRef", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_proprietary__clonedRef", "leos:clonedRef"), new XmlNodeConfig.Attribute("source", "~leos", "proprietary"))));
         annexConfigMap.putAll(metadataConfig);
 
         final Map<String, XmlNodeConfig> prefaceConfig = new HashMap<>(2);
@@ -116,6 +121,21 @@ public class XmlNodeConfigProcessorImpl implements XmlNodeConfigProcessor {
         annexConfigMap.putAll(otherConfig);
 
         return annexConfigMap;
+    }
+
+    private static Map<String, XmlNodeConfig> createFinancialStatementConfig() {
+        Map<String, XmlNodeConfig> financialStatementConfigMap = new HashMap<>();
+
+        financialStatementConfigMap.putAll(populateMetadataConfigMap());
+
+        final Map<String, XmlNodeConfig> prefaceConfig = new HashMap<>(4);
+        prefaceConfig.put(FIN_STMT_TITLE_PREFACE, new XmlNodeConfig("//akn:preface/akn:longTitle/akn:p/akn:docTitle", true, Arrays.asList(new XmlNodeConfig.Attribute("xml:id", "_preface_doctitle", "docTitle"))));
+        financialStatementConfigMap.putAll(prefaceConfig);
+
+        final Map<String, XmlNodeConfig> otherConfig = populateOtherConfig();
+        financialStatementConfigMap.putAll(otherConfig);
+
+        return financialStatementConfigMap;
     }
 
     public Map<String, XmlNodeConfig> getOldPrefaceOfAnnexConfig() {

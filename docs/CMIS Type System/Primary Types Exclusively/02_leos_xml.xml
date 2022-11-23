@@ -651,6 +651,22 @@
         <cmis:defaultValue/>
     </cmis:propertyStringDefinition>
     <cmis:propertyStringDefinition>
+        <cmis:id>annex:clonedRef</cmis:id>
+        <cmis:localName>annex:clonedRef</cmis:localName>
+        <cmis:displayName>Annex cloned ref</cmis:displayName>
+        <cmis:queryName>annex:clonedRef</cmis:queryName>
+        <cmis:description>This is a Annex cloned ref property.</cmis:description>
+        <cmis:propertyType>string</cmis:propertyType>
+        <cmis:cardinality>single</cmis:cardinality>
+        <cmis:updatability>readwrite</cmis:updatability>
+        <cmis:inherited>false</cmis:inherited>
+        <cmis:required>false</cmis:required>
+        <cmis:queryable>true</cmis:queryable>
+        <cmis:orderable>true</cmis:orderable>
+        <cmis:openChoice>false</cmis:openChoice>
+        <cmis:defaultValue/>
+    </cmis:propertyStringDefinition>
+    <cmis:propertyStringDefinition>
         <cmis:id>metadata:ref</cmis:id>
         <cmis:localName>metadata:ref</cmis:localName>
         <cmis:displayName>LEOS REF</cmis:displayName>

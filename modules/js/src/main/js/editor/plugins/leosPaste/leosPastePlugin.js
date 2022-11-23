@@ -180,10 +180,26 @@ define(function leosPastePluginModule(require) {
             _convertToAknXmlFragment(editor, fragment);
         }
         else if (type === 'text') {
+			if(_hasElementNodes(fragment)) {
+				fragment.filter(htmlFilter);//clean using filter for html and text
+            	_convertToAknXmlFragment(editor, fragment);
+			}
             //it will come here as text for PDF
             //TODO
         }
     }
+
+	function _hasElementNodes(fragment) {
+		if(!fragment || !fragment.children || fragment.children.length <= 0) {
+			return false;
+		}
+		for ( var idx = 0, len = fragment.children.length; idx < len; idx++ ) {
+			if(fragment.children[idx].type == CKEDITOR.NODE_ELEMENT) {
+				return true;
+			}
+		}
+		return false;
+	}
 
     function _convertToAknXmlFragment(editor, fragment) {
         var configElement = editor.config.defaultPasteElement;// this should come from profile

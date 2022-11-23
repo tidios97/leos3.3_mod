@@ -43,7 +43,7 @@ public class LeosPermissionAuthorityMapHelper {
         }
         return null;
     }
-    
+
     public String[] getPermissionsForRoles(List<String> authorities) {
 
         Set<LeosPermission> leosPermission = leosPermissionAuthorityMap.getPermissions(authorities);

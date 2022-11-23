@@ -18,12 +18,15 @@ import eu.europa.ec.leos.model.action.SoftActionType;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.services.support.XmlHelper;
 import eu.europa.ec.leos.services.support.XercesUtils;
+import eu.europa.ec.leos.vo.toc.Attribute;
 import eu.europa.ec.leos.vo.toc.NumberingConfig;
 import eu.europa.ec.leos.vo.toc.NumberingType;
 import eu.europa.ec.leos.vo.toc.OptionsType;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.vo.toc.StructureConfigUtils;
+import eu.europa.ec.leos.vo.toc.TocItemType;
+import eu.europa.ec.leos.vo.toc.TocItemTypeName;
 import eu.europa.ec.leos.vo.toc.indent.IndentedItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -37,10 +40,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
 import static eu.europa.ec.leos.services.support.XmlHelper.BLOCK;
 import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.CLAUSE;
 import static eu.europa.ec.leos.services.support.XmlHelper.CN;
 import static eu.europa.ec.leos.services.support.XmlHelper.CROSSHEADING;
 import static eu.europa.ec.leos.services.support.XmlHelper.EC;
@@ -100,7 +101,10 @@ import static eu.europa.ec.leos.services.support.XercesUtils.getParentTagName;
 import static eu.europa.ec.leos.services.support.XercesUtils.insertOrUpdateAttributeValue;
 import static eu.europa.ec.leos.services.support.XercesUtils.removeAttribute;
 import static eu.europa.ec.leos.services.processor.content.XmlContentProcessorImpl.NBSP;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INITIAL_NUM;
 import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.HASH_NUM_VALUE;
+import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.getAttributeByTagNameAndTocItemType;
+import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.getTocItemTypesByTagName;
 
 public class XmlContentProcessorHelper {
 
@@ -183,7 +187,6 @@ public class XmlContentProcessorHelper {
         String numId = null;
         SoftActionType numSoftActionAttribute = null;
         Node numNode = getFirstChild(node, NUM);
-
         if (numNode != null) {
             originNumAttr = getAttributeValue(numNode, LEOS_ORIGIN_ATTR);
             numId = getAttributeValue(numNode, XMLID);
@@ -196,9 +199,10 @@ public class XmlContentProcessorHelper {
                 indentOriginNumValue = number;
                 indentOriginNumId = numId;
             }
-
-            tocItem = getTocItemFromNumberingType(number, tagName, tocItem, numberingConfigs, tocItems, node);
+            TocItem foundTocItem = getTocItemFromNumberingType(number, tagName, tocItem, numberingConfigs, tocItems, node);
+            tocItem = foundTocItem != null ? foundTocItem : tocItem;
         }
+        String initialNumber = getAttributeValue(node, LEOS_INITIAL_NUM);
 
         boolean isCrossheadingInList = false;
         Node inlineNode = getFirstChild(node, INLINE);
@@ -211,7 +215,7 @@ public class XmlContentProcessorHelper {
                 number = extractNumber(inlineNode.getTextContent(), tocItem.isNumWithType());
                 if (number != null && !number.isEmpty()) {
                     NumberingType numberingType = StructureConfigUtils.getNumberingTypeBySequence(numberingConfigs, number);
-                    tocItem = StructureConfigUtils.getTocItemByNumberingConfig(tocItems, numberingType, tocItem.getAknTag().name());
+                    tocItem = StructureConfigUtils.getTocItemByNumberingType(tocItems, numberingType, tocItem.getAknTag().name());
                 }
             }
             String isInList = XercesUtils.getAttributeValue(node, LEOS_CROSSHEADING_TYPE);
@@ -256,6 +260,9 @@ public class XmlContentProcessorHelper {
         //get attribute set to determine if elements auto numbering should be overwritten
         Boolean isAutoNumOverwrite = Boolean.parseBoolean(getAttributeValue(node, LEOS_AUTO_NUM_OVERWRITE));
 
+        //get attribute set to determine if article is a definition article
+        TocItemTypeName tocItemType = StructureConfigUtils.getTocItemTypeFromTagNameAndAttributes(tocItems, tagName, XercesUtils.getAttributes(node));
+
         // build the table of content item and return it
         TableOfContentItemVO item =  new TableOfContentItemVO(tocItem, elementId, originAttr, number, originNumAttr, heading, originHeadingAttr, node, list, content,
                 softActionAttr, isSoftActionRoot, softUserAttr, softDateAttr, softMovedFrom, softMovedTo, softTransFrom, false,
@@ -263,6 +270,8 @@ public class XmlContentProcessorHelper {
                 indentLevel, numId, indentOriginType, indentOriginDepth, indentOriginNumId, indentOriginNumValue, indentOriginNumOrigin,
                 style, isAutoNumOverwrite);
         item.setCrossHeadingInList(isCrossheadingInList);
+        item.setInitialNum(initialNumber);
+        item.setTocItemType(tocItemType);
         return item;
     }
 
@@ -524,7 +533,9 @@ public class XmlContentProcessorHelper {
                     insertOrUpdateAttributeValue(node, LEOS_SOFT_MOVE_FROM, moveId);
                     break;
                 case UNDELETE:
-                    restoreOldId(node);
+                    if(XercesUtils.getId(node).startsWith(SOFT_DELETE_PLACEHOLDER_ID_PREFIX)) {
+                    	restoreOldId(node);
+                    }
                     removeAttribute(node, LEOS_EDITABLE_ATTR);
                     removeAttribute(node, LEOS_DELETABLE_ATTR);
                     break;
@@ -570,6 +581,22 @@ public class XmlContentProcessorHelper {
         if ((node != null) && (newNode != null) && (!newNode.getTextContent().equals(node.getTextContent()))) {
             insertOrUpdateAttributeValue(newNode, LEOS_SOFT_USER_ATTR, user != null ? getSoftUserAttribute(user) : null);
             insertOrUpdateAttributeValue(newNode, LEOS_SOFT_DATE_ATTR, getDateAsXml());
+        }
+    }
+
+    protected static void updateTocItemTypeAttributes(List<TocItem> tocItems, Node node, TableOfContentItemVO item) {
+        String tagName = TableOfContentProcessor.getTagValueFromTocItemVo(item);
+        List<TocItemType> tocItemTypes = getTocItemTypesByTagName(tocItems, tagName);
+        // Clean attributes first
+        tocItemTypes.forEach(tocItemType -> {
+            if (tocItemType.getAttribute() != null) {
+                XercesUtils.removeAttribute(node, tocItemType.getAttribute().getAttributeName());
+            }
+        });
+        // Add attribute
+        Attribute attribute = getAttributeByTagNameAndTocItemType(tocItems, item.getTocItemType(), tagName);
+        if (attribute != null) {
+            XercesUtils.addAttribute(node, attribute.getAttributeName(), attribute.getAttributeValue());
         }
     }
 }

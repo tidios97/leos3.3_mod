@@ -32,6 +32,7 @@ public class LegalTextActionsMenuBar extends CommonActionsMenuBar {
     protected void initDropDownMenu() {
         buildVersionActions();
         buildExportPackageActions();
+        buildRenumberingActions();
         buildImporterActions();
         buildViewActions();
     }

@@ -5,8 +5,9 @@ import eu.europa.ec.leos.domain.vo.SearchMatchVO;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessorImpl;
 import eu.europa.ec.leos.services.support.XmlHelper;
 import eu.europa.ec.leos.services.support.XercesUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.parser.Parser;
 import org.jsoup.parser.Tag;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -25,6 +26,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static eu.europa.ec.leos.services.support.XmlHelper.AKOMANTOSO;
+import static eu.europa.ec.leos.services.support.XmlHelper.parseXml;
 import static eu.europa.ec.leos.services.support.XmlHelper.XMLID;
 import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocument;
 import static eu.europa.ec.leos.services.support.XercesUtils.nodeToByteArray;
@@ -393,7 +395,7 @@ public class SearchEngineImpl implements SearchEngine {
                         }
                     }
 
-                    node.setTextContent(StringEscapeUtils.escapeXml10(updatedContent));
+                    node.setTextContent(parseXml(updatedContent));
                     lastUpdatedNode = node;
 
                     replaceSegment = replaceSegment.substring(minReplaceSegmentLength);
@@ -407,8 +409,7 @@ public class SearchEngineImpl implements SearchEngine {
             // In case if the replace segment is too large and still some part was remaining,
             // simple append at the end.
             if (lastUpdatedNode != null && replaceSegment.length() > 0) {
-                lastUpdatedNode.setTextContent(lastUpdatedNode.getTextContent() +
-                        StringEscapeUtils.escapeXml10(replaceSegment));
+                lastUpdatedNode.setTextContent(lastUpdatedNode.getTextContent() + parseXml(replaceSegment));
             }
         }
 

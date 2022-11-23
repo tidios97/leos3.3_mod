@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -300,7 +301,7 @@ abstract class AnnexScreenImpl extends VerticalLayout implements AnnexScreen {
 
         markAsDirty();
     }
-    
+
     private void initListeners() {
     	//LEOS-5435: Screen level controls are disabled for now as they are interrupting editor level scrolling.
     	//this.addShortcutListener(new CtrlHomeListener("leos-doc-content"));
@@ -452,14 +453,10 @@ abstract class AnnexScreenImpl extends VerticalLayout implements AnnexScreen {
                 null, documentsMetadata, annex.getMetadata().getInternalRef());
     }
 
-    private boolean isAnnotateAuthorityEquals(ConfigurationHelper cfgHelper, String instance) {
-        return cfgHelper.getProperty("annotate.authority") != null && cfgHelper.getProperty("annotate.authority").equals(instance);
-    }
-
     @Override
     public void initAnnotations(DocumentVO annex, String proposalRef, String connectedEntity) {
         annotateExtension = new AnnotateExtension<>(annexContent, eventBus, cfgHelper, null, AnnotateExtension.OperationMode.NORMAL,
-                isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
                 connectedEntity);
     }
     
@@ -724,7 +721,7 @@ abstract class AnnexScreenImpl extends VerticalLayout implements AnnexScreen {
         milestoneExplorer.center();
         milestoneExplorer.focus();
     }
-    
+
     @Override
     public void scrollTo(String elementId) {
         com.vaadin.ui.JavaScript.getCurrent().execute("LEOS.scrollTo('" + elementId + "');");
@@ -743,5 +740,10 @@ abstract class AnnexScreenImpl extends VerticalLayout implements AnnexScreen {
     @Override
     public void closeSearchBar() {
         searchDelegate.closeSearchBarComponent();
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String revisionVersion) {
+        return Optional.empty();
     }
 }

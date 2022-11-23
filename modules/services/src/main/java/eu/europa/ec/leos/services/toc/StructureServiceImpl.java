@@ -136,18 +136,20 @@ public class StructureServiceImpl implements StructureService {
     
     private Map<TocItem, List<TocItem>> buildProposalTocRules(Structure structure, List<TocItem> tocItems) {
         Map<TocItem, List<TocItem>> tocRules = new HashMap<>();
-        for (TocRules.Entry entry : structure.getTocRules().getEntries()) {
-            AknTag itemName = entry.getTocItem();
-            List<TocItem> foundTocItems = getTocItemsByName(tocItems, itemName.value());
-            for (TocItem tocItem : foundTocItems) {
-                List<TocItem> list = new ArrayList<>();
-                for (AknTag listTocName : entry.getList().getTocItems()) {
-                    list.addAll(getTocItemsByName(tocItems, listTocName.value()));
+        if(structure.getTocRules() != null) {
+            for (TocRules.Entry entry : structure.getTocRules().getEntries()) {
+                AknTag itemName = entry.getTocItem();
+                List<TocItem> foundTocItems = getTocItemsByName(tocItems, itemName.value());
+                for (TocItem tocItem : foundTocItems) {
+                    List<TocItem> list = new ArrayList<>();
+                    for (AknTag listTocName : entry.getList().getTocItems()) {
+                        list.addAll(getTocItemsByName(tocItems, listTocName.value()));
+                    }
+                    tocRules.put(tocItem, list);
                 }
-                tocRules.put(tocItem, list);
             }
+
         }
-        
         return tocRules;
     }
 }

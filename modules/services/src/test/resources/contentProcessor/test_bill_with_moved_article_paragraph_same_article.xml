@@ -1,0 +1,307 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <bill name="REG">
+        <meta>
+            <identification source="~_COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="true"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage language="en" xml:id="_FRBRlanguage"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                        <akn4eu:akn4euVersion value="4.0.0.0"/>
+                    </preservation>
+                </FRBRManifestation>
+            </identification>
+            <references source="~_COM">
+                <TLCLocation href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"
+                             xml:id="_BEL_BRU"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL"
+                                 showAs="Council of the European Union" xml:id="_CONSIL"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/EP"
+                                 showAs="European Parliament" xml:id="_EP"/>
+                <TLCOrganization href="http://publications.europa.eu/resource/authority/corporate-body/COM"
+                                 showAs="European Commission" xml:id="_COM"/>
+                <TLCRole href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"
+                         xml:id="_PRESID"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/resource-type/REG" name="docType"
+                              showAs="Regulation" xml:id="_REG"/>
+                <TLCReference href="http://eurovoc.europa.eu/5456" name="contentSubject" showAs="Legal basis"
+                              xml:id="_legalBasis"/>
+                <TLCReference href="http://publications.europa.eu/resource/authority/language/ENG" name="language"
+                              showAs="en" xml:id="_language"/>
+                <TLCReference href="http://eur-lex.europa.eu/procedure/EN/YYYY_NNN" name="procedureReference"
+                              shortForm="YYYY/NNN/AAA" showAs="YYYY/NNNN (AAA)" xml:id="_procedure_YYYY_NNN"/>
+                <TLCReference
+                        href="http://publications.europa.eu/resource/authority/document-identifier-format/COM_NUMBER"
+                        name="identifier" shortForm="AAA/YYYY/NNN" showAs="AAA(YYYY) NNN" xml:id="_azs3y"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.1.0</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:template>SJ-023</leos:template>
+                <leos:docTemplate>BL-023</leos:docTemplate>
+                <leos:docPurpose xml:id="_proprietary__docpurpose">on ...</leos:docPurpose>
+                <leos:docStage xml:id="_proprietary__docstage">Proposal for a</leos:docStage>
+                <leos:ref>REG-cl8bo84pt000b7s47863oyvrb-en</leos:ref>
+                <leos:refOriginForClone ref="REG-cl8bg3vur0003rk47446ke1e8-en">
+                    <originMilestone>PROP_ACT-cl8bo7uqg00067s4790h28i9f-en.leg</originMilestone>
+                    <iscRef>LEOS</iscRef>
+                    <objectId>250</objectId>
+                </leos:refOriginForClone>
+                <leos:clonedProposal>true</leos:clonedProposal>
+                <leos:docType xml:id="_proprietary__doctype">REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                </leos:docType>
+                <leos:objectId/>
+            </proprietary>
+        </meta>
+        <preface leos:origin="ec" xml:id="_preface">
+            <container leos:origin="ec" name="procedureIdentifier" xml:id="_preface__procedureIdentifier">
+                <p leos:origin="ec" xml:id="_preface__procedureIdentifier__p">
+                    <docketNumber leos:origin="ec" refersTo="~_procedure_YYYY_NNN"
+                                  xml:id="_preface__procedureIdentifier__p__docketNumber"/>
+                </p>
+            </container>
+            <longTitle leos:origin="ec" xml:id="_preface__longtitle">
+                <p leos:origin="ec" xml:id="_preface__longtitle__p">
+                    <docStage leos:origin="ec" xml:id="_preface__longtitle__p__docstage">Proposal for a</docStage>
+                    <docType leos:origin="ec" refersTo="~_REG" xml:id="_preface__longtitle__p__doctype">REGULATION OF
+                        THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+                    </docType>
+                    <docPurpose leos:origin="ec" xml:id="_preface__longtitle__p__docpurpose">on ...</docPurpose>
+                </p>
+            </longTitle>
+        </preface>
+        <preamble leos:origin="ec" xml:id="_preamble">
+            <formula leos:origin="ec" name="actingEntity" xml:id="_preamble__formula_1">
+                <p leos:origin="ec" xml:id="_preamble__formula_1__p">THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE
+                    EUROPEAN UNION,
+                </p>
+            </formula>
+            <citations leos:editable="false" leos:origin="ec" xml:id="_cits">
+                <citation leos:editable="true" leos:origin="ec" refersTo="~_legalBasis" xml:id="_cit_1">
+                    <p leos:origin="ec" xml:id="_cit_1__p">Having regard to the Treaty on the Functioning of the
+                        European Union, and in particular Article [...] thereof,
+                    </p>
+                </citation>
+                <citation leos:editable="true" leos:origin="ec" xml:id="_cit_2">
+                    <p leos:origin="ec" xml:id="_cit_2__p">Having regard to the proposal from the European Commission,
+                    </p>
+                </citation>
+                <citation leos:editable="true" leos:origin="ec" xml:id="_cit_3">
+                    <p leos:origin="ec" xml:id="_cit_3__p">After transmission of the draft legislative act to the
+                        national Parliaments,
+                    </p>
+                </citation>
+                <citation leos:editable="true" leos:origin="ec" xml:id="_cit_4">
+                    <p leos:origin="ec" xml:id="_cit_4__p">Having regard to the opinion of the European Economic and
+                        Social Committee
+                        <authorialNote leos:origin="ec" marker="1" placement="bottom" xml:id="_authorialnote_1">
+                            <p leos:origin="ec" xml:id="_authorialNote_1__p">OJ C [...], [...], p. [...]</p>
+                        </authorialNote>
+                        ,
+                    </p>
+                </citation>
+                <citation leos:editable="true" leos:origin="ec" xml:id="_cit_5">
+                    <p leos:origin="ec" xml:id="_cit_5__p">Having regard to the opinion of the Committee of the Regions
+                        <authorialNote leos:origin="ec" marker="2" placement="bottom" xml:id="_authorialnote_2">
+                            <p leos:origin="ec" xml:id="_authorialNote_2__p">OJ C [...], [...], p. [...]</p>
+                        </authorialNote>
+                        ,
+                    </p>
+                </citation>
+                <citation leos:editable="true" leos:origin="ec" xml:id="_cit_6">
+                    <p leos:origin="ec" xml:id="_cit_6__p">Acting in accordance with the ordinary legislative
+                        procedure,
+                    </p>
+                </citation>
+            </citations>
+            <recitals leos:editable="false" leos:origin="ec" xml:id="_recs">
+                <intro leos:origin="ec" xml:id="_recitalsIntro">
+                    <p leos:origin="ec" xml:id="_recs_intro">Whereas:</p>
+                </intro>
+                <recital leos:editable="true" leos:origin="ec" xml:id="_rec_1">
+                    <num leos:origin="ec" xml:id="_rec_1__num">(1)</num>
+                    <p leos:origin="ec" xml:id="_rec_1__p">Recital...</p>
+                </recital>
+                <recital leos:editable="true" leos:origin="ec" xml:id="_rec_2">
+                    <num leos:origin="ec" xml:id="_rec_2__num">(2)</num>
+                    <p leos:origin="ec" xml:id="_rec_2__p">Recital...</p>
+                </recital>
+            </recitals>
+            <formula leos:origin="ec" name="enactingFormula" xml:id="_preamble__formula_2">
+                <p leos:origin="ec" xml:id="_preamble__formula_2__p">HAVE ADOPTED THIS REGULATION:</p>
+            </formula>
+        </preamble>
+        <body leos:origin="ec" xml:id="_body">
+            <article leos:autonumbering="true" leos:deletable="true" leos:editable="true" leos:origin="ec"
+                     xml:id="_art_1">
+                <num leos:editable="false" leos:origin="ec" xml:id="_art_1__num">Article 1</num>
+                <heading leos:origin="ec" xml:id="_art_1__heading">Scope</heading>
+                <paragraph leos:origin="ec" xml:id="_art_1__para_1">
+                    <num leos:origin="ec" xml:id="_art_1__para_1__num">1.</num>
+                    <content leos:origin="ec" xml:id="_art_1__para_1__content">
+                        <p leos:origin="ec" xml:id="_art_1__para_1__content__p">Text...</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_1_01mqU2">
+                    <num leos:origin="ec" xml:id="_art_1_oz60MD">2.</num>
+                    <content leos:origin="ec" xml:id="_art_1_Bnqh4N">
+                        <p leos:origin="ec" xml:id="_art_1_9fnogS">threyhwfseh</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_1_HEKrHo">
+                    <num leos:origin="ec" xml:id="_art_1_GGtnpK">3.</num>
+                    <content leos:origin="ec" xml:id="_art_1_XkyGiE">
+                        <p leos:origin="ec" xml:id="_art_1_VqKxid">wergwegwegew</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="_art_1_v01SHK">
+                    <num leos:origin="ec" xml:id="_art_1_32Oyqp">4.</num>
+                    <content leos:origin="ec" xml:id="_art_1_pL3jdf">
+                        <p leos:origin="ec" xml:id="_art_1_2RXeaM">weewhwehh</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:deletable="false" leos:editable="false" leos:origin="ec" leos:softaction="move_to"
+                     leos:softactionroot="true" leos:softdate="2022-09-21T15:39:15.631+02:00"
+                     leos:softmove_label="MOVED to Article 3" leos:softmove_to="__akn_article_XiUbXW"
+                     leos:softuser="DOE Jane(DGT)" xml:id="moved___akn_article_XiUbXW">
+                <num leos:editable="false" leos:origin="ec" xml:id="moved___akn_article_XiUbXW_AxA7bt">Article 2</num>
+                <heading leos:origin="ec" xml:id="moved___akn_article_XiUbXW_559BlA">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="moved___akn_article_XiUbXW-par1">
+                    <num leos:origin="ec" xml:id="moved___akn_article_XiUbXW_3OlGaO">1.</num>
+                    <content leos:origin="ec" xml:id="moved___akn_article_XiUbXW_tC8eLp">
+                        <p leos:origin="ec" xml:id="moved___akn_article_XiUbXW_P6i17O">Text...</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="moved___akn_article_XiUbXW_qTQKIl">
+                    <num leos:origin="ec" xml:id="moved___akn_article_XiUbXW_JiOFwK">2.</num>
+                    <content leos:origin="ec" xml:id="moved___akn_article_XiUbXW_elKgJg">
+                        <p leos:origin="ec" xml:id="moved___akn_article_XiUbXW_ZaR8A1">grhe4h4545y45</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="moved___akn_article_XiUbXW_qUcDga">
+                    <num leos:origin="ec" xml:id="moved___akn_article_XiUbXW_CEPhFu">3.</num>
+                    <content leos:origin="ec" xml:id="moved___akn_article_XiUbXW_eNJKLe">
+                        <p leos:origin="ec" xml:id="moved___akn_article_XiUbXW_bWAioz">34t34tergergergerg</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="moved___akn_article_XiUbXW_ncxthR">
+                    <num leos:origin="ec" xml:id="moved___akn_article_XiUbXW_rGtW0E">4.</num>
+                    <content leos:origin="ec" xml:id="moved___akn_article_XiUbXW_rULzWV">
+                        <p leos:origin="ec" xml:id="moved___akn_article_XiUbXW_iaV1kI">w4t34t34t34t34</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="moved___akn_article_XiUbXW_WtU0mc">
+                    <num leos:origin="ec" xml:id="moved___akn_article_XiUbXW_g5zcUg">5.</num>
+                    <content leos:origin="ec" xml:id="moved___akn_article_XiUbXW_eGxAhA">
+                        <p leos:origin="ec" xml:id="moved___akn_article_XiUbXW_dFeblR">g34tg34tg34gt34g3</p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:autonumbering="true" leos:deletable="true" leos:editable="true" leos:origin="ec"
+                     xml:id="_art_2">
+                <num leos:editable="false" leos:origin="ec" xml:id="_art_2__num">Article 2</num>
+                <heading leos:origin="ec" xml:id="_art_2__heading">Entry into force</heading>
+                <paragraph leos:origin="ec" xml:id="_art_2__para_1">
+                    <content leos:origin="ec" xml:id="_art_2__para_1__content">
+                        <p leos:origin="ec" xml:id="_art_2__para_1__content__p">This Regulation shall enter into force
+                            on the [...] day following that of its publication in the <i leos:origin="ec"
+                                                                                         xml:id="_art_2__para_1__content__p__i">
+                                Official Journal of the European Union</i>.
+                        </p>
+                    </content>
+                </paragraph>
+            </article>
+            <article leos:depth="1" leos:origin="ec" leos:softaction="move_from" leos:softactionroot="true"
+                     leos:softdate="2022-09-21T15:39:15.633+02:00" leos:softmove_from="moved___akn_article_XiUbXW"
+                     leos:softmove_label="MOVED from Article 2" leos:softuser="DOE Jane(DGT)"
+                     xml:id="__akn_article_XiUbXW">
+                <num leos:editable="false" leos:origin="ls" xml:id="__akn_article_XiUbXW_AxA7bt">Article 3</num>
+                <heading leos:origin="ec" xml:id="__akn_article_XiUbXW_559BlA">Article heading...</heading>
+                <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW-par1">
+                    <num leos:origin="ec" xml:id="__akn_article_XiUbXW_3OlGaO">1.</num>
+                    <content leos:origin="ec" xml:id="__akn_article_XiUbXW_tC8eLp">
+                        <p leos:origin="ec" xml:id="__akn_article_XiUbXW_P6i17O">Text...</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW_qTQKIl">
+                    <num leos:origin="ec" xml:id="__akn_article_XiUbXW_JiOFwK">2.</num>
+                    <content leos:origin="ec" xml:id="__akn_article_XiUbXW_elKgJg">
+                        <p leos:origin="ec" xml:id="__akn_article_XiUbXW_ZaR8A1">grhe4h4545y45</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW_qUcDga">
+                    <num leos:origin="ec" xml:id="__akn_article_XiUbXW_CEPhFu">3.</num>
+                    <content leos:origin="ec" xml:id="__akn_article_XiUbXW_eNJKLe">
+                        <p leos:origin="ec" xml:id="__akn_article_XiUbXW_bWAioz">34t34tergergergerg</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW_ncxthR">
+                    <num leos:origin="ec" xml:id="__akn_article_XiUbXW_rGtW0E">4.</num>
+                    <content leos:origin="ec" xml:id="__akn_article_XiUbXW_rULzWV">
+                        <p leos:origin="ec" xml:id="__akn_article_XiUbXW_iaV1kI">w4t34t34t34t34</p>
+                    </content>
+                </paragraph>
+                <paragraph leos:origin="ec" xml:id="__akn_article_XiUbXW_WtU0mc">
+                    <num leos:origin="ec" xml:id="__akn_article_XiUbXW_g5zcUg">5.</num>
+                    <content leos:origin="ec" xml:id="__akn_article_XiUbXW_eGxAhA">
+                        <p leos:origin="ec" xml:id="__akn_article_XiUbXW_dFeblR">g34tg34tg34gt34g3</p>
+                    </content>
+                </paragraph>
+            </article>
+            <clause leos:alternative="true" leos:deletable="true" leos:editable="true" leos:optionlist="listOption1"
+                    leos:origin="ec" leos:selectedoption="1" xml:id="_clause_1">
+                <content leos:origin="ec" xml:id="_clause_1__content">
+                    <p leos:origin="ec" xml:id="_clause_1__content__p">This Regulation shall be binding in its entirety
+                        and directly applicable in all Member States.
+                    </p>
+                </content>
+            </clause>
+        </body>
+        <conclusions leos:origin="ec" xml:id="_conclusions">
+            <p leos:origin="ec" xml:id="_conclusions__p_1">Done at <location leos:origin="ec" refersTo="~_BEL_BRU"
+                                                                             xml:id="_conclusions__p__location_1">
+                Brussels</location>,
+                <date date="9999-01-01" leos:origin="ec" xml:id="_akn_aviQud"/>
+            </p>
+            <block leos:origin="ec" name="signatory" xml:id="_conclusions__block_1">
+                <signature leos:origin="ec" xml:id="_conclusions__block_1__signature_1">
+                    <organization leos:origin="ec" refersTo="~_EP"
+                                  xml:id="_conclusions__block_1__signature_1__organization">For the European Parliament
+                    </organization>
+                    <role leos:origin="ec" refersTo="~_PRESID" xml:id="_conclusions__block_1__signature_1__role">The
+                        President
+                    </role>
+                    <person leos:origin="ec" refersTo="" xml:id="_conclusions__block_1__signature_1__person">[...]
+                    </person>
+                </signature>
+                <signature leos:origin="ec" xml:id="_conclusions__block_1__signature_2">
+                    <organization leos:origin="ec" refersTo="~_CONSIL"
+                                  xml:id="_conclusions__block_1__signature_2__organization">For the Council
+                    </organization>
+                    <role leos:origin="ec" refersTo="~_PRESID" xml:id="_conclusions__block_1__signature_2__role">The
+                        President
+                    </role>
+                    <person leos:origin="ec" refersTo="" xml:id="_conclusions__block_1__signature_2__person">[...]
+                    </person>
+                </signature>
+            </block>
+        </conclusions>
+    </bill>
+</akomaNtoso>

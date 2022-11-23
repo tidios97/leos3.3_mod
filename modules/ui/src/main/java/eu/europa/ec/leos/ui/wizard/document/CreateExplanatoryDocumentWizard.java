@@ -49,7 +49,7 @@ public class CreateExplanatoryDocumentWizard extends AbstractWizard {
     }
 
     public void init(List<CatalogItem> templates) {
-        registerWizardStep(new TemplateSelectionStep(document, templates, messageHelper, true));
+        registerWizardStep(new TemplateSelectionStep(document, templates, messageHelper, true, false));
         setWizardStep(0);
     }
 

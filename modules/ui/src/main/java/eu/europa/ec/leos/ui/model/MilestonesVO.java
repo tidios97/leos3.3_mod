@@ -23,20 +23,24 @@ import java.util.Objects;
 public class MilestonesVO {
     private String title;
     private final String legDocumentName;
+    private final String proposalRef;
     private final String createdDate;
     private Date updatedDate;
     private String status;
-    List<MilestonesVO> clonedMilestones;
-    Boolean isClone ;
+    private List<MilestonesVO> clonedMilestones;
+    private Boolean isClone ;
+    private boolean isContributionChanged;
 
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    public MilestonesVO(List<String> titles, Date createdDate, Date updatedDate, String status, String legDocumentName) {
+    public MilestonesVO(List<String> titles, Date createdDate, Date updatedDate, String status, String legDocumentName,
+                        String proposalRef) {
         this.title = String.join(",", titles);
         this.updatedDate = updatedDate;
         this.createdDate = dateFormat.format(createdDate);
         this.status = status;
         this.legDocumentName = legDocumentName;
+        this.proposalRef = proposalRef;
     }
 
     public String getTitle() {
@@ -67,6 +71,10 @@ public class MilestonesVO {
         return legDocumentName;
     }
 
+    public String getProposalRef() {
+        return proposalRef;
+    }
+
     public void setTitle(String title){this.title = title;}
 
     public List<MilestonesVO> getClonedMilestones() {
@@ -83,6 +91,14 @@ public class MilestonesVO {
 
     public void setClone(Boolean clone) {
         this.isClone = clone;
+    }
+
+    public boolean isContributionChanged() {
+        return isContributionChanged;
+    }
+
+    public void setContributionChanged(boolean contributionChanged) {
+        isContributionChanged = contributionChanged;
     }
 
     @Override

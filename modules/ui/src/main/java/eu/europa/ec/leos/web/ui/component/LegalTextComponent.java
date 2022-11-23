@@ -375,13 +375,9 @@ public class LegalTextComponent extends CustomComponent implements ContentPane {
         return searchButton;
     }
 
-    private boolean isAnnotateAuthorityEquals(ConfigurationHelper cfgHelper, String instance) {
-        return cfgHelper.getProperty("annotate.authority") != null && cfgHelper.getProperty("annotate.authority").equals(instance);
-    }
-
     void initAnnotateExtension(final DocumentVO bill, final String proposalRef, final String connectedEntity) {
         annotateExtension = new AnnotateExtension<>(docContent, eventBus, cfgHelper, null, AnnotateExtension.OperationMode.NORMAL,
-                isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, proposalRef,
                 connectedEntity);
     }
 

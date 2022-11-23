@@ -9,7 +9,6 @@ import com.vaadin.spring.annotation.ViewScope;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.common.InstanceType;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.instance.Instance;
@@ -23,7 +22,6 @@ import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportVersions;
 import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
-import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.processor.content.TableOfContentProcessor;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.ui.component.ComparisonComponent;
@@ -38,7 +36,6 @@ import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.web.event.NotificationEvent;
 import eu.europa.ec.leos.web.event.component.LayoutChangeRequestEvent;
-import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.InstanceTypeResolver;
 import eu.europa.ec.leos.web.support.LeosCacheToken;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
@@ -119,7 +116,12 @@ public class MandateAnnexScreenImpl extends AnnexScreenImpl {
     }
 
     @Override
-    public void showRevision(String content, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList){
+    public void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList){
+        throw new IllegalArgumentException("Operation not valid");
+    }
+
+    @Override
+    public void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId) {
         throw new IllegalArgumentException("Operation not valid");
     }
 

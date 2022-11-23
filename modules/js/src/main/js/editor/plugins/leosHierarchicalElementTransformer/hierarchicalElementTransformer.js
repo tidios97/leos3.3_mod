@@ -56,6 +56,7 @@ define(function hierarchicalElementTransformer(require) {
     var DATA_INDENT_ORIGIN_TYPE = "data-indent-origin-type";
     var DATA_INDENT_UNUMBERED_PARAGRAPH = "data-indent-unumbered-paragraph";
     var DATA_AKN_CROSS_HEADING_TYPE = "data-akn-crossheading-type";
+    var DATA_AKN_ATTR_RENUMBERED = "data-akn-attr-renumbered";
     var LEOS_CROSS_HEADING_TYPE= "leos:crossheading-type";
     var DATA_LIST_CROSS_HEADING_PATH = "list/crossheading";
     var LEOS_INDENT_ORIGIN_LEVEL = "leos:indent-origin-indent-level";
@@ -171,7 +172,12 @@ define(function hierarchicalElementTransformer(require) {
                         }]
                     });
                     if (isFirstInlineChildElement) { //LEOS-3384
-                    	createContent.call(that, childElement.parent, [rootPath, wrapper].join("/"), inlineGroup, DATA_AKN_CONTENT_ID, DATA_CONTENT_ORIGIN);
+                        var contentId = childElement.parent.attributes[DATA_AKN_WRAPPED_CONTENT_ID] ?
+                            DATA_AKN_WRAPPED_CONTENT_ID : DATA_AKN_CONTENT_ID;
+
+                        var contentOrigin = childElement.parent.attributes[DATA_WRAPPED_CONTENT_ORIGIN] ?
+                            DATA_WRAPPED_CONTENT_ORIGIN : DATA_CONTENT_ORIGIN;
+                    	createContent.call(that, childElement.parent, [rootPath, wrapper].join("/"), inlineGroup, contentId, contentOrigin);
                     	isFirstInlineChildElement = false;
                     } else {
                     	createContentWithNoAttributes.call(that, childElement.parent, [rootPath, wrapper].join("/"), inlineGroup);
@@ -622,6 +628,10 @@ define(function hierarchicalElementTransformer(require) {
                                                 to: "data-akn-name",
                                                 toValue: getElementNameFromRootElement.call(that, element, rootElementsForFrom),
                                                 action: "passAttributeTransformer"
+                                            },{
+                                                from: "leos:renumbered",
+                                                to: DATA_AKN_ATTR_RENUMBERED,
+                                                action: "passAttributeTransformer"
                                             }]
                                         });
                                         this._.isContentWrapperPresent = false;
@@ -986,6 +996,10 @@ define(function hierarchicalElementTransformer(require) {
                                                from: DATA_AKN_SOFTTRANS_FROM,
                                                to: "leos:softtrans_from",
                                                action: "passAttributeTransformer"
+                                           },{
+                                               from: DATA_AKN_ATTR_RENUMBERED,
+                                               to: "leos:renumbered",
+                                               action: "passAttributeTransformer"
                                            }]
                                        }, {
                                            toPath: [rootsElementsPathForFrom, "num"].join("/"),
@@ -1097,7 +1111,11 @@ define(function hierarchicalElementTransformer(require) {
                                                from: DATA_AKN_SOFTTRANS_FROM,
                                                to: "leos:softtrans_from",
                                                action: "passAttributeTransformer"
-                                           }]
+                                           },{
+                                                from: DATA_AKN_ATTR_RENUMBERED,
+                                                to: "leos:renumbered",
+                                                action: "passAttributeTransformer"
+                                            }]
                                         }]);
                                     }
                                     var isContentWrapperPresent = shouldContentBeWrapped.call(this, element);

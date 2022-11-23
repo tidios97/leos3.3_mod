@@ -10,7 +10,6 @@ import com.vaadin.spring.annotation.ViewScope;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.common.InstanceType;
-import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.instance.Instance;
@@ -27,6 +26,7 @@ import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.services.processor.content.TableOfContentProcessor;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.ui.component.ComparisonComponent;
+import eu.europa.ec.leos.ui.component.LeosDisplayField;
 import eu.europa.ec.leos.ui.component.markedText.MarkedTextComponent;
 import eu.europa.ec.leos.ui.component.revision.RevisionComponent;
 import eu.europa.ec.leos.ui.component.toc.TableOfContentItemConverter;
@@ -34,13 +34,13 @@ import eu.europa.ec.leos.ui.component.contributions.ContributionsTab;
 import eu.europa.ec.leos.ui.component.versions.VersionsTab;
 import eu.europa.ec.leos.ui.event.view.AddStructureChangeMenuEvent;
 import eu.europa.ec.leos.ui.component.toc.TocEditor;
+import eu.europa.ec.leos.ui.extension.AnnotateExtension;
 import eu.europa.ec.leos.ui.extension.SoftActionsExtension;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.web.event.NotificationEvent;
 import eu.europa.ec.leos.web.event.component.LayoutChangeRequestEvent;
 import eu.europa.ec.leos.web.event.component.ResetRevisionComponentEvent;
-import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.CreateEventParameter;
 import eu.europa.ec.leos.web.event.view.document.InstanceTypeResolver;
 import eu.europa.ec.leos.web.support.LeosCacheToken;
@@ -60,6 +60,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @ViewScope
 @SpringComponent
@@ -123,6 +124,16 @@ public class ProposalAnnexScreenImpl extends AnnexScreenImpl {
     }
 
     @Override
+    public void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId) {
+        this.showRevision(versionContent, contributionVO, tocItemList);
+        final LeosDisplayField revisionContent =  revisionComponent.getRevisionContent();
+        final String temporaryDocument = contributionVO.getDocumentName().replace(".xml", "");
+        new AnnotateExtension(revisionContent, eventBus, cfgHelper, "leos-revision-content", AnnotateExtension.OperationMode.READ_ONLY,
+                ConfigurationHelper.isAnnotateAuthorityEquals(cfgHelper, "LEOS"), true, null,
+                null, "revision-01", temporaryAnnotationsId, temporaryDocument);
+    }
+
+    @Override
     public void showVersion(String content, String versionInfo) {
         changePosition(new LayoutChangeRequestEvent(ColumnPosition.DEFAULT, ComparisonComponent.class, markedTextComponent));
         markedTextComponent.populateMarkedContent(content, LeosCategory.ANNEX, versionInfo, null);
@@ -131,9 +142,9 @@ public class ProposalAnnexScreenImpl extends AnnexScreenImpl {
     }
 
     @Override
-    public void showRevision(String content, String contributionStatus, ContributionVO contributionVO, List<TocItem> tocItemList) {
+    public void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList) {
         initRevisionComponent();
-        revisionComponent.populateRevisionContent(content, LeosCategory.ANNEX, contributionStatus, contributionVO);
+        revisionComponent.populateRevisionContent(content, LeosCategory.ANNEX, contributionVO);
         changePosition(new LayoutChangeRequestEvent(ColumnPosition.DEFAULT, ComparisonComponent.class, revisionComponent));
     }
 
@@ -272,6 +283,12 @@ public class ProposalAnnexScreenImpl extends AnnexScreenImpl {
     @Override
     public boolean isCoverPageVisible() {
         return !coverPageSeparated;
+    }
+
+    @Override
+    public Optional<ContributionVO> findContributionAndShowTab(String versionedReference) {
+        accordion.setSelectedTab(contributionsTab);
+        return contributionsTab.findContribution(versionedReference);
     }
 
     private boolean isClonedProposal() {

@@ -335,7 +335,7 @@ public class RevisionComponent<T extends XmlDocument> extends CustomComponent im
         return selectorStyleMap;
     }
 
-    public void populateRevisionContent(String revisionContentText, LeosCategory leosCategory, String contributionStatus, ContributionVO contributionVO) {
+    public void populateRevisionContent(String revisionContentText, LeosCategory leosCategory, ContributionVO contributionVO) {
         this.contributionVO = contributionVO;
         applyButton.setEnabled(false);
         revisionContent.addStyleName(leosCategory.name().toLowerCase());
@@ -343,7 +343,7 @@ public class RevisionComponent<T extends XmlDocument> extends CustomComponent im
                 replaceAll("(?i) leos:softmove_to=\"", " leos:softmove_to=\"revision-").
                 replaceAll("(?i) leos:softmove_from=\"", " leos:softmove_from=\"revision-"));
 
-        if (ContributionVO.ContributionStatus.CONTRIBUTION_DONE.getValue().equalsIgnoreCase(contributionStatus)) {
+        if (ContributionVO.ContributionStatus.CONTRIBUTION_DONE.getValue().equalsIgnoreCase(contributionVO.getContributionStatus().getValue())) {
             //Revision done or declined
             disableMergePane(true);
         } else {
@@ -413,5 +413,9 @@ public class RevisionComponent<T extends XmlDocument> extends CustomComponent im
             contributionSelection--;
         }
         return contributionSelection;
+    }
+
+    public LeosDisplayField getRevisionContent() {
+        return this.revisionContent;
     }
 }

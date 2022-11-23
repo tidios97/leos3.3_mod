@@ -102,6 +102,7 @@ public class PostProcessingProposalServiceImpl extends PostProcessingDocumentSer
                         if (doc.getCategory().equals(LeosCategory.BILL)) {
                             updatedDocContent = preserveOriginalDocumentProperties(docContent, legFileName, iscRef);
                             updatedDocContent = xmlContentProcessor.setAttributeForAllChildren(updatedDocContent, BILL, Collections.emptyList(), LEOS_ORIGIN_ATTR, EC);
+                            updatedDocContent = xmlContentProcessor.updateInitialNumberForArticles(updatedDocContent);
                             doc.setSource(updatedDocContent);
 
                             for (DocumentVO annex : doc.getChildDocuments()) {

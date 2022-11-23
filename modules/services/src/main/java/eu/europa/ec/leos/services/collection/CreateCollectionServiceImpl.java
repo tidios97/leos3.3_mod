@@ -1,5 +1,7 @@
 package eu.europa.ec.leos.services.collection;
 
+import com.google.common.base.Stopwatch;
+import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.common.Result;
@@ -10,6 +12,7 @@ import eu.europa.ec.leos.model.notification.cloneProposal.ClonedProposalNotifica
 import eu.europa.ec.leos.model.notification.cloneProposal.RevisionDoneNotification;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.clone.CloneContext;
+import eu.europa.ec.leos.services.collection.document.ContextActionService;
 import eu.europa.ec.leos.services.converter.ProposalConverterService;
 import eu.europa.ec.leos.services.document.ContributionService;
 import eu.europa.ec.leos.services.document.PostProcessingDocumentService;
@@ -28,6 +31,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Provider;
 import java.io.File;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.PROPOSAL;
 
@@ -90,23 +94,55 @@ public class CreateCollectionServiceImpl implements CreateCollectionService {
             }
         }
     }
-    
+
     @Override
-    public CreateCollectionResult createCollection(File legDocument) throws CreateCollectionException {
+    public CreateCollectionResult createCollection(DocumentVO documentVO) throws CreateCollectionException {
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        LOG.debug("Handling create document request event... [category={}]", documentVO.getCategory());
+        CollectionIdsAndUrlsHolder idsAndUrlsHolder = new CollectionIdsAndUrlsHolder();
+        if (LeosCategory.PROPOSAL.equals(documentVO.getCategory())) {
+            CollectionContextService context = proposalContextProvider.get();
+            String template = documentVO.getMetadata().getDocTemplate();
+            String[] templates = (template != null) ? template.split(";") : new String[0];
+            for (String name : templates) {
+                context.useTemplate(name);
+            }
+            context.usePurpose(documentVO.getMetadata().getDocPurpose());
+            context.useEeaRelevance(documentVO.getMetadata().getEeaRelevance());
+            context.useActionMessage(ContextActionService.METADATA_UPDATED, messageHelper.getMessage("operation.metadata.updated"));
+            context.useActionMessage(ContextActionService.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
+            //create proposal
+            Proposal proposal = context.executeCreateProposal();
+
+            String proposalId = proposal.getMetadata().get().getRef();
+            String proposalUrl = urlBuilder.buildProposalViewUrl(proposalId);
+            idsAndUrlsHolder.setProposalId(proposalId);
+            idsAndUrlsHolder.setProposalUrl(proposalUrl);
+            LOG.info("New document of type {} created in {} milliseconds ({} sec)", documentVO.getCategory(),
+                    stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
+            return new CreateCollectionResult(idsAndUrlsHolder, true, null);
+        }
+        CreateCollectionError error = new CreateCollectionError(0,
+                messageHelper.getMessage("repository.create.proposal.error"));
+        throw new CreateCollectionException(error.getMessage());
+    }
+
+    @Override
+    public CreateCollectionResult createCollectionFromLeg(File legDocument) throws CreateCollectionException {
 
         String proposalUrl;
         String proposalId;
 
         CollectionIdsAndUrlsHolder idsAndUrlsHolder = new CollectionIdsAndUrlsHolder();
         DocumentVO propDocument = createDocumentVOFromLegfile(legDocument);
-        
+
         CollectionContextService context = proposalContextProvider.get();
         context.useDocument(propDocument);
         context.useIdsAndUrlsHolder(idsAndUrlsHolder);
         addTemplateInContext(context, propDocument);
         postProcessingDocumentService.processDocument(propDocument);
         Proposal proposal = context.executeImportProposal();
-        
+
         proposalId = proposal.getMetadata().get().getRef();
         proposalUrl = urlBuilder.buildProposalViewUrl(proposalId);
         idsAndUrlsHolder.setProposalId(proposalId);
@@ -114,7 +150,7 @@ public class CreateCollectionServiceImpl implements CreateCollectionService {
 
         return new CreateCollectionResult(idsAndUrlsHolder, true, null);
     }
-    
+
     @Override
     public CreateCollectionResult cloneCollection(File legDocument, String iscRef, String targetUser, String connectedEntity) throws CreateCollectionException {
         String proposalUrl;

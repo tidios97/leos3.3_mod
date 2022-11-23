@@ -30,13 +30,14 @@ public class CmisMapper {
         documentCategoryMap = new HashMap<>();
 
         // FIXME move this mapping somewhere else or implement in better way?!!!
-        documentCategoryMap.put(LeosDocument.class, EnumSet.of(PROPOSAL, MEMORANDUM, COUNCIL_EXPLANATORY, BILL, ANNEX, MEDIA, CONFIG, LEG, EXPORT));
-        documentCategoryMap.put(XmlDocument.class, EnumSet.of(PROPOSAL, MEMORANDUM, COUNCIL_EXPLANATORY, BILL, ANNEX));
+        documentCategoryMap.put(LeosDocument.class, EnumSet.of(PROPOSAL, MEMORANDUM, COUNCIL_EXPLANATORY, BILL, ANNEX, MEDIA, CONFIG, LEG, EXPORT, FINANCIAL_STATEMENT));
+        documentCategoryMap.put(XmlDocument.class, EnumSet.of(PROPOSAL, MEMORANDUM, COUNCIL_EXPLANATORY, BILL, ANNEX, FINANCIAL_STATEMENT));
         documentCategoryMap.put(Proposal.class, singleton(PROPOSAL));
         documentCategoryMap.put(Memorandum.class, singleton(MEMORANDUM));
         documentCategoryMap.put(Explanatory.class, singleton(COUNCIL_EXPLANATORY));
         documentCategoryMap.put(Bill.class, singleton(BILL));
         documentCategoryMap.put(Annex.class, singleton(ANNEX));
+        documentCategoryMap.put(FinancialStatement.class, singleton(FINANCIAL_STATEMENT));
         documentCategoryMap.put(MediaDocument.class, singleton(MEDIA));
         documentCategoryMap.put(ConfigDocument.class, singleton(CONFIG));
         documentCategoryMap.put(LegDocument.class, singleton(LEG));
@@ -51,6 +52,7 @@ public class CmisMapper {
         documentPrimaryTypeMap.put(Explanatory.class, "leos:xml");
         documentPrimaryTypeMap.put(Bill.class, "leos:xml");
         documentPrimaryTypeMap.put(Annex.class, "leos:xml");
+        documentPrimaryTypeMap.put(FinancialStatement.class, "leos:xml");
         documentPrimaryTypeMap.put(MediaDocument.class, "leos:media");
         documentPrimaryTypeMap.put(ConfigDocument.class, "leos:config");
         documentPrimaryTypeMap.put(LegDocument.class, "leos:leg");

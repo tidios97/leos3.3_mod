@@ -39,6 +39,10 @@ $LEVEL_SPACING: 27px;
   , block[leos\:indent-level] {
     padding-left: calc(#{$LIST_SPACING} * var(--indent-level));
   }
+  crossHeading[leos\:indent-level="0"]
+  , block[leos\:indent-level="0"] {
+    padding-left: 5px;
+  }
   crossHeading[leos\:indent-level][style*="--inline-num:1;"]
   , block[leos\:indent-level][style*="--inline-num:1;"] {
     padding-left: calc(#{$LIST_SPACING} + (#{$LIST_SPACING} * var(--indent-level)));

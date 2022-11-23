@@ -11,5 +11,7 @@ public enum LeosCategory {
     LEG,
     STRUCTURE,
     EXPORT,
-    COVERPAGE
+    COVERPAGE,
+    SUPPORT_DOCUMENT,
+    FINANCIAL_STATEMENT
 }

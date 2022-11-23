@@ -111,6 +111,9 @@ define(function aknRecitalMandatePluginModule(require) {
         }, {
             akn : "leos:softmove_label",
             html : "data-akn-attr-softmove_label"
+        }, {
+            akn : "leos:renumbered",
+            html : "data-akn-attr-renumbered"
         }],
         sub: [{
             akn: "num",

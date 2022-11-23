@@ -34,6 +34,7 @@ public enum CmisProperties {
     ANNEX_INDEX("annex:docIndex"),
     ANNEX_NUMBER("annex:docNumber"),
     ANNEX_TITLE("annex:docTitle"),
+    ANNEX_CLONED_REF("annex:clonedRef"),
     COLLABORATORS("leos:collaborators"),
     VERSION_LABEL("leos:versionLabel"),
     VERSION_TYPE("leos:versionType"),

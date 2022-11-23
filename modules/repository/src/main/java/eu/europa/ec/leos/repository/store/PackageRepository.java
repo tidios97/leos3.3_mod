@@ -79,6 +79,14 @@ public interface PackageRepository {
     LegDocument updateLegDocument(String id, LeosLegStatus status);
 
     /**
+     * Updating Leg document contained documents.
+     *
+     * @param id     the leg document id.
+     * @param containedDocuments the updated contained documents.
+     */
+    LegDocument updateLegDocument(String id, List<String> containedDocuments);
+
+    /**
      * Updating Leg document status and content.
      *
      * @param id      the leg document id.

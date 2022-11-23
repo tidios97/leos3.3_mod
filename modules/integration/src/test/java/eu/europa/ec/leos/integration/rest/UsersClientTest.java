@@ -92,7 +92,7 @@ public class UsersClientTest extends LeosTest{
 
         when(restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<UserJSON>>() {}, params)).thenReturn(responseEntity);
 
-        List<User> result = usersClientImpl.searchUsers(searchKey);
+        List<User> result =  (List<User>) (List<? extends User>) usersClientImpl.searchUsers(searchKey);
 
         assertThat(result, notNullValue());
         assertThat(result.size(), is(2));

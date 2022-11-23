@@ -14,10 +14,10 @@
                     </p>
                 </content>
             </subparagraph>
-            <subparagraph leos:origin="cn" leos:softaction="add" leos:softdate="2022-06-17T09:27:53.945+02:00"
-                          leos:softuser="demo(DIGIT)" xml:id="imp_art_d1e34277_V6MXDb_BmKiVA">
-                <content xml:id="imp_art_d1e34277_V6MXDb_sawpuz">
-                    <p xml:id="imp_art_d1e34277_V6MXDb_ixDMH6">as calculated under Part Three, Title II, Chapter 4
+            <subparagraph leos:origin="cn" leos:softaction="splitted" leos:softdate="2022-06-17T09:27:53.945+02:00"
+                          leos:softuser="demo(DIGIT)" xml:id="splitted_imp_art_d1e34277_V6MXDb_BmKiVA">
+                <content xml:id="splitted_imp_art_d1e34277_V6MXDb_sawpuz">
+                    <p xml:id="splitted_imp_art_d1e34277_V6MXDb_ixDMH6">as calculated under Part Three, Title II, Chapter 4
                         taking into account the credit risk mitigation, volatility adjustments, and any maturity
                         mismatch (E*).
                     </p>

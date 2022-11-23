@@ -36,6 +36,14 @@ public class NumberServiceBillProposalTest extends NumberServiceProposalTest {
     }
 
     @Test
+    public void test_numbering_defArticle() {
+        final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_numbering_defArticle.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_numbering_defArticle_expected.xml");
+        byte[] result = numberService.renumberArticles(xmlInput, true);
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+
+    @Test
     public void test_numbering_articles_with_soft_attributes() {
         final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_numbering_articles_with_soft_attr.xml");
         final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_numbering_articles_with_soft_attr_expected.xml");

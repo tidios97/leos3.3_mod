@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.services.user;
 
 import eu.europa.ec.leos.integration.UsersProvider;
+import eu.europa.ec.leos.integration.rest.UserJSON;
 import eu.europa.ec.leos.model.user.Entity;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.test.support.LeosTest;
@@ -83,19 +84,18 @@ public class UserServiceImplTest extends LeosTest {
         entities.add(new Entity("1", "EXT.A1", "Ext"));
 
         String searchKey = "smith";
-        
-        User user1 = new User(1l, user1Login, user1LastName + " " + user1FirstName, entities, user1Mail,user1Roles);
-        User user2 = new User(0l, user2Login, user2LastName + " " + user2FirstName, entities, user2Mail,user2Roles);
 
         String key = searchKey;
-        List<User> users = new ArrayList();
+        UserJSON user1 = new UserJSON(user1Login, 1l, user1FirstName, user1LastName, entities, user1Mail, user1Roles);
+        UserJSON user2 = new UserJSON(user2Login, 0l, user2FirstName, user2LastName, entities, user2Mail, user2Roles);
 
+        List<UserJSON> users = new ArrayList<UserJSON>();
         users.add(user1);
         users.add(user2);
 
         when(usersClient.searchUsers(key)).thenReturn(users);
 
-        List<User> results = userServiceImpl.searchUsersByKey(key);
+        List<User> results = (List<User>) (List<? extends User>) userServiceImpl.searchUsersByKey(key);
         assertNotNull(results);
         assertThat(results.size(), is(2));
         

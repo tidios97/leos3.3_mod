@@ -1,0 +1,81 @@
+{
+  "guidance": [
+    {
+      "targets": [
+        {
+          "destinationId": "_preamble__formula_1__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_preamble__formula_1__p\" class=\"guidance-green-block\"><span id=\"_preamble__formula_1__p-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Citations\" target=\"_blank\">Citations</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_cit_4",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-cit-4\" class=\"guidance-green-block\"><span id=\"cit-4-guidance\">[where necessary]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_cit_5",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-cit-5\" class=\"guidance-green-block\"><span id=\"cit-5-guidance\">[where necessary]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_recitalsIntro",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_recitalsIntro\" class=\"guidance-green-block\"><span id=\"_recitalsIntro-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/x/Yxt2F\" target=\"_blank\">Recitals</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_preamble__formula_2__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_preamble__formula_2__p\" class=\"guidance-green-block\"><span id=\"_preamble__formula_2__p-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Enacting+terms\" target=\"_blank\">Enacting terms</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_1__heading",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_art_1__heading\" class=\"guidance-green-block\"><span id=\"_art_1__heading-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Scope\" target=\"_blank\">Scope</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_definitions_heading",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_art_definitions_heading\" class=\"guidance-green-block\"><span id=\"_art_2_definitions_heading-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Definitions\" target=\"_blank\">Definitions</a></span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_art_2__heading",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_art_2__heading\" class=\"guidance-green-block\"><span id=\"_art_2__heading-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Date+of+entry+into+force\" target=\"_blank\">Entry into force</a></span></guidance>"
+    }
+  ],
+  "structure": [
+    {
+      "name": "structure_01"
+    }
+  ]
+}

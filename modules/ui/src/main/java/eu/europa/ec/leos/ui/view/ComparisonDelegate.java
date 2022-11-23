@@ -22,7 +22,7 @@ import eu.europa.ec.leos.services.compare.ContentComparatorService;
 import eu.europa.ec.leos.services.document.DocumentContentService;
 import eu.europa.ec.leos.services.document.TransformationService;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
-import eu.europa.ec.leos.services.compare.processor.PostDiffingProcessor;
+import eu.europa.ec.leos.services.compare.processor.LeosPostDiffingProcessor;
 import eu.europa.ec.leos.web.support.UrlBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,7 +120,7 @@ public abstract class ComparisonDelegate<T extends XmlDocument> {
         final String contextPath = urlBuilder.getWebAppPath(VaadinServletService.getCurrentServletRequest());
         final String currentHtml = documentContentService.getDocumentAsHtml(current, contextPath, securityContext.getPermissions(current), includeCoverPage);
 
-        PostDiffingProcessor postDiffingProcessor = new PostDiffingProcessor();
+        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
         if(threeWayEnabled) {
             final String proposalHtml = documentContentService.getDocumentAsHtml(originalProposal, contextPath, securityContext.getPermissions(originalProposal),
                     includeCoverPage);

@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.services.user;
 
 import eu.europa.ec.leos.integration.UsersProvider;
+import eu.europa.ec.leos.integration.rest.UserJSON;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.security.AuthenticatedUser;
 import eu.europa.ec.leos.security.SecurityUser;
@@ -51,14 +52,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> searchUsersByKey(String key) {
-        List<User> result = usersClient.searchUsers(key);
-        return result;
+    public List<UserJSON> searchUsersByKey(String key) {
+        return usersClient.searchUsers(key);
     }
 
     @Override
-    public List<User> searchUsersInContextByKeyAndReference(String key, String searchContext, String searchReference) {
-        List<User> result = usersClient.searchUsersInContext(key, searchContext, searchReference);
+    public List<UserJSON> searchUsersInContextByKeyAndReference(String key, String searchContext, String searchReference) {
+        List<UserJSON> result = usersClient.searchUsersInContext(key, searchContext, searchReference);
         return result;
     }
 

@@ -16,11 +16,15 @@ package eu.europa.ec.leos.services.milestone;
 import eu.europa.ec.leos.domain.cmis.LeosLegStatus;
 import eu.europa.ec.leos.domain.cmis.document.LegDocument;
 
+import java.util.List;
+
 public interface MilestoneService {
 
     LegDocument createMilestone(String proposalId, String milestoneComment) throws Exception;
 
     LegDocument updateMilestone(String legId, LeosLegStatus status);
+
+    LegDocument updateMilestone(String legId, List<String> containedDocuments);
 
     LegDocument updateMilestoneRendition(String documentId, String jobId, byte[] pdfJobZip, byte[] wordJobZip);
 }

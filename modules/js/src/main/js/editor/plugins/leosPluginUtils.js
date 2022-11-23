@@ -21,12 +21,14 @@ define(function leosPluginUtilsModule(require) {
     var UNKNOWN = "unknown";
     var DATA_AKN_NUM = "data-akn-num";
     var DATA_AKN_NUM_ID = "data-akn-num-id";
+    var DATA_INDENT_ORIGIN_NUM_ID = "data-indent-origin-num-id";
     var DATA_NUM_ORIGIN = "data-num-origin";
     var DATA_ORIGIN = "data-origin";
     var DATA_AKN_ELEMENT = "data-akn-element";
     var DATA_AKN_NAME = "data-akn-name";
     var DATA_AKN_ID = "data-akn-id";
     var ID = "id";
+    var REGULAR = "REGULAR";
     var CROSSHEADING_LIST_ATTR = "data-akn-crossheading-type";
     var DATA_INDENT_LEVEL_ATTR = "data-indent-level";
     var AKN_ORDERED_ANNEX_LIST = "aknAnnexOrderedList";
@@ -46,6 +48,7 @@ define(function leosPluginUtilsModule(require) {
     var NUM = "num";
     var SUBPARAGRAPH = "subparagraph";
     var PARAGRAPH = "paragraph";
+    var ARTICLE = "article";
     var LEVEL = "level";
     var CROSSHEADING = "crossHeading";
     var EC = "ec";
@@ -58,6 +61,8 @@ define(function leosPluginUtilsModule(require) {
     var ATTR_INDENT_LEVEL = "data-indent-level";
     var ATTR_INDENT_NUMBERED = "data-indent-numbered";
     var DATA_AKN_WRAPPED_CONTENT_ID = "data-akn-wrapped-content-id";
+    var DATA_AKN_CONTENT_ID = "data-akn-content-id";
+    var DATA_CONTENT_ORIGIN = "data-content-origin";
     var DATA_WRAPPED_CONTENT_ORIGIN = "data-wrapped-content-origin";
     var DATA_AKN_MP_ID = "data-akn-mp-id";
     var DATA_MP_ORIGIN = "data-mp-origin";
@@ -82,7 +87,7 @@ define(function leosPluginUtilsModule(require) {
         if (element instanceof CKEDITOR.dom.element) {
             elementName = element.getName();
         } else if (element instanceof CKEDITOR.dom.text
-            || (element && element.nodeName && element.nodeName === "#text")) {
+                || (element && element.nodeName && element.nodeName === "#text")) {
             elementName = TEXT;
         } else if(element && element.localName){
             elementName = element.localName;
@@ -120,13 +125,35 @@ define(function leosPluginUtilsModule(require) {
     function _isListElement(el) {
         return (el && (el.getAscendant(ORDER_LIST_ELEMENT) || el.getAscendant(HTML_POINT)));
     }
-
+    
     function _isAnnexList(element) {
         return !!element && 'aknAnnexList' === element.getAttribute(DATA_AKN_NAME);
     }
 
     function _isOrderedAnnexList(element) {
         return !!element && AKN_ORDERED_ANNEX_LIST === element.getAttribute(DATA_AKN_NAME);
+    }
+
+	function _isUnnumberedCNParagraph(el) {
+		return el && (!el.getAttribute(DATA_ORIGIN) || el.getAttribute(DATA_ORIGIN).toLowerCase() === 'cn') 
+			&& el.getAttribute(DATA_AKN_ELEMENT) && el.getAttribute(DATA_AKN_ELEMENT).toLowerCase() === PARAGRAPH 
+			&& !el.getAttribute(DATA_AKN_NUM);
+	}
+
+	function _isAnnexUnnumberedCNParagraph(el) {
+		return el && _isAnnexList(el.getAscendant(ORDER_LIST_ELEMENT, true)) && _isUnnumberedCNParagraph(el);
+	}
+
+    function _isAnnexSubparagraphElement(element) {
+        var elementName = element.getName && element.getName();
+        if (elementName === 'p' && 'subparagraph' === element.getAttribute('data-akn-element')) {
+            var parentElement = element.getAscendant('ol');
+            if (parentElement && 'aknAnnexList' === parentElement.getAttribute('data-akn-name')
+                && 'paragraph' === parentElement.getAttribute('data-akn-element')) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function _isSubparagraph(element) {
@@ -207,7 +234,7 @@ define(function leosPluginUtilsModule(require) {
         }
         return listDepth === 1;
     }
-
+    
     function _getAnnexList(element) {
         var olElement = element.getAscendant(ORDER_LIST_ELEMENT);
         while (olElement && !_isAnnexList(olElement)) {
@@ -414,11 +441,12 @@ define(function leosPluginUtilsModule(require) {
             }
             if (point.getParent().is('li')
                 && !!point.getParent().getAttribute(DATA_AKN_ELEMENT)
-                && point.getParent().getAttribute(DATA_AKN_ELEMENT) == LEVEL
+                && (point.getParent().getAttribute(DATA_AKN_ELEMENT) == LEVEL || point.getParent().getAttribute(DATA_AKN_ELEMENT) == PARAGRAPH)
                 && _isPointOrIndent(point)) {
                 point.setAttribute(DATA_AKN_ELEMENT, SUBPARAGRAPH);
                 if (!!point.is && point.is('li') && !point.getParent().is('ol')) {
                     point.renameNode('p');
+					point.removeAttribute('data-akn-name');
                 } else if (!!point.is && point.is('p') && point.getParent().is('ol')) {
                     point.renameNode('li');
                 }
@@ -744,14 +772,40 @@ define(function leosPluginUtilsModule(require) {
             if (parent) {
                 while (subElement.getChildCount() > 0) {
                     subElement.getChild(0).insertBefore(subElement);
-                    parent.setAttribute(DATA_AKN_WRAPPED_CONTENT_ID, subElement.getAttribute(DATA_AKN_WRAPPED_CONTENT_ID));
-                    parent.setAttribute(DATA_WRAPPED_CONTENT_ORIGIN, subElement.getAttribute(DATA_WRAPPED_CONTENT_ORIGIN));
-                    parent.setAttribute(DATA_AKN_MP_ID, subElement.getAttribute(DATA_AKN_MP_ID));
-                    parent.setAttribute(DATA_MP_ORIGIN, subElement.getAttribute(DATA_MP_ORIGIN));
+                    _copyContentAndMpAttributeToElement(subElement, parent);
                 }
                 subElement.remove();
             }
         });
+    }
+
+    function _copyContentAndMpAttributeToElement(from, to) {
+        if (!!from.getAttribute(DATA_AKN_WRAPPED_CONTENT_ID)) {
+            to.setAttribute(DATA_AKN_WRAPPED_CONTENT_ID, from.getAttribute(DATA_AKN_WRAPPED_CONTENT_ID));
+            to.setAttribute(DATA_AKN_CONTENT_ID, from.getAttribute(DATA_AKN_WRAPPED_CONTENT_ID));
+        }
+        if (!!from.getAttribute(DATA_WRAPPED_CONTENT_ORIGIN)) {
+            to.setAttribute(DATA_WRAPPED_CONTENT_ORIGIN, from.getAttribute(DATA_WRAPPED_CONTENT_ORIGIN));
+            to.setAttribute(DATA_CONTENT_ORIGIN, from.getAttribute(DATA_WRAPPED_CONTENT_ORIGIN));
+        }
+        if (!!from.getAttribute(DATA_AKN_CONTENT_ID)) {
+            to.setAttribute(DATA_AKN_WRAPPED_CONTENT_ID, from.getAttribute(DATA_AKN_CONTENT_ID));
+            to.setAttribute(DATA_AKN_CONTENT_ID, from.getAttribute(DATA_AKN_CONTENT_ID));
+        }
+        if (!!from.getAttribute(DATA_CONTENT_ORIGIN)) {
+            to.setAttribute(DATA_WRAPPED_CONTENT_ORIGIN, from.getAttribute(DATA_CONTENT_ORIGIN));
+            to.setAttribute(DATA_CONTENT_ORIGIN, from.getAttribute(DATA_CONTENT_ORIGIN));
+        }
+        if (!!from.getAttribute(DATA_AKN_MP_ID)) {
+            to.setAttribute(DATA_AKN_MP_ID, from.getAttribute(DATA_AKN_MP_ID));
+        } else {
+            to.setAttribute(DATA_AKN_MP_ID, "");
+        }
+        if (!!from.getAttribute(DATA_MP_ORIGIN)) {
+            to.setAttribute(DATA_MP_ORIGIN, from.getAttribute(DATA_MP_ORIGIN));
+        } else {
+            to.setAttribute(DATA_MP_ORIGIN, "");
+        }
     }
 
     function _handleIndentAttributes(node, isIndentAttributesToBeSet) {
@@ -774,11 +828,50 @@ define(function leosPluginUtilsModule(require) {
                     elementName = "POINT";
                     break;
             }
-            node.setAttribute(DATA_INDENT_ORIGIN_TYPE, elementName);
-            node.getAttribute(DATA_AKN_NUM) ? node.setAttribute(DATA_INDENT_ORIGIN_NUMBER, node.getAttribute(DATA_AKN_NUM)) : null;
-            node.setAttribute(DATA_INDENT_ORIGIN_NUMBER_ID, node.getAttribute(DATA_AKN_NUM_ID));
-            node.setAttribute(DATA_INDENT_ORIGIN_NUMBER_ORIGIN, node.getAttribute(DATA_NUM_ORIGIN));
+            if (elementName == 'PARAGRAPH'
+                || elementName == 'OTHER_SUBPARAGRAPH'
+                || elementName == 'OTHER_SUBPOINT'
+                || !!node.getAttribute(DATA_AKN_NUM_ID)) {
+                node.setAttribute(DATA_INDENT_ORIGIN_TYPE, elementName);
+                node.getAttribute(DATA_AKN_NUM) ? node.setAttribute(DATA_INDENT_ORIGIN_NUMBER, node.getAttribute(DATA_AKN_NUM)) : null;
+            }
+            if (!!node.getAttribute(DATA_AKN_NUM_ID)) {
+                node.setAttribute(DATA_INDENT_ORIGIN_NUMBER_ID, node.getAttribute(DATA_AKN_NUM_ID));
+            }
+            if (!!node.getAttribute(DATA_NUM_ORIGIN)) {
+                node.setAttribute(DATA_INDENT_ORIGIN_NUMBER_ORIGIN, node.getAttribute(DATA_NUM_ORIGIN));
+            }
         }
+    }
+
+    function _hasPointAttribute(element) {
+        return (!!element.attributes[DATA_AKN_ELEMENT]
+            && element.attributes[DATA_AKN_ELEMENT].value == POINT);
+    }
+
+    function _getArticleType(element, articleTypesConfig) {
+        var type = REGULAR;
+        var article = $(element.$).parents(ARTICLE);
+        if (article.length == 0) {
+            article = $(element.$).find(ARTICLE);
+        }
+        if (article.length > 0) {
+            article = article.get(0);
+            for (var key in articleTypesConfig) {
+                var attribute = articleTypesConfig[key];
+                if (!!attribute.attributeName && attribute.attributeName === "") {
+                    type = key;
+                } else if (!!attribute.attributeName
+                    && (article.hasAttribute(attribute.attributeName)
+                        || article.hasAttribute(attribute.attributeName.toLowerCase()))) {
+                    if (article.getAttribute(attribute.attributeName) == attribute.attributeValue
+                        || article.getAttribute(attribute.attributeName.toLowerCase()) == attribute.attributeValue) {
+                        return key;
+                    }
+                }
+            }
+        }
+        return type;
     }
 
     return {
@@ -790,6 +883,9 @@ define(function leosPluginUtilsModule(require) {
         isSelectionInFirstLevelList: _isSelectionInFirstLevelList,
         isAnnexList: _isAnnexList,
         isOrderedAnnexList: _isOrderedAnnexList,
+		isUnnumberedCNParagraph: _isUnnumberedCNParagraph,
+		isAnnexUnnumberedCNParagraph: _isAnnexUnnumberedCNParagraph,
+		isAnnexSubparagraphElement: _isAnnexSubparagraphElement,
         isSubparagraph: _isSubparagraph,
         isPointOrIndent: _isPointOrIndent,
         isListIntro: _isListIntro,
@@ -824,6 +920,9 @@ define(function leosPluginUtilsModule(require) {
         manageEmptySubparagraphs: _manageEmptySubparagraphs,
         manageSiblingLists: _manageSiblingLists,
         manageCrossheadings: _manageCrossheadings,
+        copyContentAndMpAttributeToElement: _copyContentAndMpAttributeToElement,
+        hasPointAttribute: _hasPointAttribute,
+        getArticleType: _getArticleType,
         MAX_LEVEL_DEPTH: MAX_LEVEL_DEPTH,
         MAX_LIST_LEVEL: MAX_LIST_LEVEL,
         MAX_LEVEL_LIST_DEPTH: MAX_LEVEL_LIST_DEPTH,
@@ -831,6 +930,7 @@ define(function leosPluginUtilsModule(require) {
         HTML_SUB_POINT: HTML_SUB_POINT,
         DATA_ORIGIN: DATA_ORIGIN,
         MAINBODY: MAINBODY,
+        ARTICLE: ARTICLE,
         POINT: POINT,
         INDENT: INDENT,
         CROSSHEADING: CROSSHEADING,
@@ -848,6 +948,9 @@ define(function leosPluginUtilsModule(require) {
         CN: CN,
         DATA_AKN_NUM: DATA_AKN_NUM,
         DATA_AKN_NUM_ID: DATA_AKN_NUM_ID,
+        DATA_INDENT_ORIGIN_NUM_ID: DATA_INDENT_ORIGIN_NUM_ID,
+        DATA_AKN_WRAPPED_CONTENT_ID: DATA_AKN_WRAPPED_CONTENT_ID,
+        DATA_AKN_MP_ID: DATA_AKN_MP_ID,
         CROSSHEADING_LIST_ATTR: CROSSHEADING_LIST_ATTR,
         DATA_INDENT_LEVEL_ATTR: DATA_INDENT_LEVEL_ATTR,
         INDENT_LEVEL_ATTR: INDENT_LEVEL_ATTR,

@@ -1,13 +1,13 @@
 {
   "guidance": [
-   {
+    {
       "targets": [
         {
-          "destinationId": "_coverpage__longtitle__p__docpurpose",
-          "position": "AFTER"
+          "destinationId": "_coverpage__longtitle__p",
+          "position": "AFTER-WRAPPER"
         }
       ],
-      "content": "<guidance id=\"guidance\" class=\"guidance-green-block\"><span id=\"docpurpose-guidance\">[Document title].</span></guidance>"
+      "content": "<guidance id=\"guidance-_coverpage__longtitle__p\" class=\"guidance-green-block\"><span id=\"_coverpage__longtitle__p-guidance\">[DAP info] <a href=\"https://webgate.ec.europa.eu/fpfis/wikis/display/dap/Title\" target=\"_blank\">Title</a></span></guidance>"
     }
   ],
   "alternatives": [

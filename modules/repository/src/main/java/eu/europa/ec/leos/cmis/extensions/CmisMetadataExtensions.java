@@ -69,16 +69,28 @@ class CmisMetadataExtensions {
         String number = getAnnexNumber(document);
         String title = getAnnexTitle(document);
         String annexTitle = title == null ? "" : title;
+        String clonedRef = getAnnexClonedRef(document);
 
         return buildMetadata(document, props -> {
             if (index != null && number != null) {
                 return Option.some(
                         new AnnexMetadata(props.stage, props.type, props.purpose, props.template,
-                                props.language, props.docTemplate, props.ref, index, number, annexTitle, null, "0.1.0", props.eeaRelevance));
+                                props.language, props.docTemplate, props.ref, index, number, annexTitle, null, "0.1.0", props.eeaRelevance, clonedRef));
             } else {
                 return Option.none();
             }
 
+        });
+    }
+
+    static Option<FinancialStatementMetadata> getFinancialstatementdataOption(Document document) {
+        String title = getFinancialStatementTitle(document);
+        return buildMetadata(document, props -> {
+            Option<FinancialStatementMetadata> fin =
+             Option.some(
+                    new FinancialStatementMetadata(props.stage, props.type, props.purpose, props.template,
+                            props.language, props.docTemplate, props.ref, title, null, "0.1.0", props.eeaRelevance));
+            return fin;
         });
     }
 
@@ -143,6 +155,10 @@ class CmisMetadataExtensions {
         return (String) document.getPropertyValue(CmisProperties.ANNEX_TITLE.getId());
     }
 
+    private static String getAnnexClonedRef(Document document) {
+        return (String) document.getPropertyValue(CmisProperties.ANNEX_CLONED_REF.getId());
+    }
+
     // FIXME make this property mandatory???
     private static String getExplanatoryTitle(Document document) {
         return (String) document.getPropertyValue(CmisProperties.DOCUMENT_TITLE.getId());
@@ -159,5 +175,9 @@ class CmisMetadataExtensions {
 
     private static String getLanguage(Document document) {
         return (String) document.getPropertyValue(CmisProperties.DOCUMENT_LANGUAGE.getId());
+    }
+
+    private static String getFinancialStatementTitle(Document document) {
+        return (String) document.getPropertyValue(CmisProperties.DOCUMENT_TITLE.getId());
     }
 }

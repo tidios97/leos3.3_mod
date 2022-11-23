@@ -13,7 +13,14 @@ package eu.europa.ec.leos.vo.toc;
  * See the Licence for the specific language governing permissions and limitations under the Licence.
  */
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StructureConfigUtils {
@@ -21,7 +28,117 @@ public class StructureConfigUtils {
     public static final String NUM_HEADING_SEPARATOR = " - ";
     public static final String HASH_NUM_VALUE = "#";
     public static final String CONTENT_SEPARATOR = " ";
-    
+
+    public static List<TocItemType> getTocItemTypesByTagName(List<TocItem> tocItems, String tagName) {
+        TocItem tocItem = getTocItemByName(tocItems, tagName);
+        if (tocItem != null && tocItem.getTocItemTypes() != null) {
+            return tocItem.getTocItemTypes().getTocItemTypes();
+        }
+        return Arrays.asList();
+    }
+
+    public static NumberingType getNumberingTypeByTagNameAndTocItemType(List<TocItem> tocItems, TocItemTypeName tocItemType, String subElementTagName) {
+        List<TocItem> subElementTocItems = getTocItemsByName(tocItems, subElementTagName);
+        if (subElementTocItems.size() > 1 && subElementTocItems.get(0).getParentNameNumberingTypeDependency() != null) {
+            TocItem parentTocItem = getTocItemByName(tocItems, subElementTocItems.get(0).getParentNameNumberingTypeDependency().value());
+            for (TocItemType tocItemTyp : parentTocItem.getTocItemTypes().tocItemTypes) {
+                if (tocItemTyp.getName().equals(tocItemType)) {
+                    return getNumberingTypeFromSubElementNumberingConfigs(tocItems, subElementTagName, tocItemTyp.getSubElementNumberingConfigs());
+                }
+            }
+        } else if (subElementTocItems.size() >= 1) {
+            return subElementTocItems.get(0).getNumberingType();
+        }
+        return null;
+    }
+
+    public static TocItem getTocItemByTagNameAndTocItemType(List<TocItem> tocItems, TocItemTypeName tocItemType, String subElementTagName) {
+        List<TocItem> subElementTocItems = getTocItemsByName(tocItems, subElementTagName);
+        if (subElementTocItems.size() > 1 && subElementTocItems.get(0).getParentNameNumberingTypeDependency() != null) {
+            TocItem parentTocItem = getTocItemByName(tocItems, subElementTocItems.get(0).getParentNameNumberingTypeDependency().value());
+            for (TocItemType tocItemTyp : parentTocItem.getTocItemTypes().tocItemTypes) {
+                if (tocItemTyp.getName().equals(tocItemType)) {
+                    NumberingType numberingType = getNumberingTypeFromSubElementNumberingConfigs(tocItems, subElementTagName,
+                            tocItemTyp.getSubElementNumberingConfigs());
+                    return getTocItemByNumberingType(tocItems, numberingType, subElementTagName);
+                }
+            }
+        } else if (subElementTocItems.size() == 1) {
+            return getTocItemByNumberingType(tocItems, subElementTocItems.get(0).getNumberingType(), subElementTagName);
+        }
+        return null;
+    }
+
+    public static Attribute getAttributeByTagNameAndTocItemType(List<TocItem> tocItems, TocItemTypeName tocItemType, String tagName) {
+        TocItem tocItem = getTocItemByName(tocItems, tagName);
+        if (tocItem != null && tocItem.getTocItemTypes() != null) {
+            for (TocItemType tocItemTyp : tocItem.getTocItemTypes().getTocItemTypes()) {
+                if (tocItemTyp.getName().equals(tocItemType)) {
+                    return tocItemTyp.getAttribute();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Map<TocItemTypeName, List<Level>> getNumberingConfigsFromTocItem(List<NumberingConfig> numberingConfigs, List<TocItem> tocItems,
+                                                                                String tagName) {
+        List<TocItem> foundTocItems = getTocItemsByName(tocItems, tagName);
+        Map<TocItemTypeName, List<Level>> foundNumberingConfigs = new HashMap<>();
+        if (foundTocItems.size() == 1) {
+            NumberingConfig numberingConfig = getNumberingConfig(numberingConfigs, foundTocItems.get(0).getNumberingType());
+            foundNumberingConfigs.put(TocItemTypeName.REGULAR, numberingConfig != null ? numberingConfig.getLevels().getLevels() : null);
+        } else if (foundTocItems.size() > 1 && foundTocItems.get(0).getParentNameNumberingTypeDependency() != null) {
+            TocItem tocItem = getTocItemByName(tocItems, foundTocItems.get(0).getParentNameNumberingTypeDependency().value());
+            if (tocItem != null) {
+                for (TocItemType tocItemTyp : tocItem.getTocItemTypes().getTocItemTypes()) {
+                    TocItemTypeName tocItemType = tocItemTyp.getName();
+                    SubElementNumberingConfigs subElementNumberingConfigs = tocItemTyp.getSubElementNumberingConfigs();
+                    if (!subElementNumberingConfigs.getSubElementNumberingConfigs().isEmpty()) {
+                        for (SubElementNumberingConfig subElementNumberingConfig : subElementNumberingConfigs.getSubElementNumberingConfigs()) {
+                            if (subElementNumberingConfig.getSubElement().value().equals(tagName)) {
+                                NumberingConfig numberingConfig = getNumberingConfig(numberingConfigs, subElementNumberingConfig.getNumberingType());
+                                foundNumberingConfigs.put(tocItemType, numberingConfig != null ? numberingConfig.getLevels().getLevels() : null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return foundNumberingConfigs;
+    }
+
+    private static NumberingType getNumberingTypeFromSubElementNumberingConfigs(List<TocItem> tocItems,
+                                                                        String subElementTagName, SubElementNumberingConfigs subElementNumberingConfigs) {
+        if (!subElementNumberingConfigs.getSubElementNumberingConfigs().isEmpty()) {
+            for (SubElementNumberingConfig subElementNumberingConfig : subElementNumberingConfigs.getSubElementNumberingConfigs()) {
+                if (subElementNumberingConfig.getSubElement().value().equals(subElementTagName)) {
+                    return subElementNumberingConfig.getNumberingType();
+                }
+            }
+        }
+        TocItem tocItem = getTocItemByName(tocItems, subElementTagName);
+        if (tocItem != null) {
+            return tocItem.getNumberingType();
+        }
+        return null;
+    }
+
+    public static TocItemTypeName getTocItemTypeFromTagNameAndAttributes(List<TocItem> tocItems, String tagName, Map<String, String> attributes) {
+        TocItem tocItem = getTocItemByName(tocItems, tagName);
+        TocItemTypeName tocItemType = TocItemTypeName.REGULAR;
+        if (tocItem != null && tocItem.getTocItemTypes() != null) {
+            for (TocItemType tocItemTyp : tocItem.getTocItemTypes().tocItemTypes) {
+                if (tocItemTyp.getAttribute() != null
+                        && attributes.containsKey(tocItemTyp.getAttribute().getAttributeName())
+                        && attributes.get(tocItemTyp.getAttribute().getAttributeName()).equals(tocItemTyp.getAttribute().getAttributeValue())) {
+                    return tocItemTyp.getName();
+                }
+            }
+        }
+        return tocItemType;
+    }
+
     public static TocItem getTocItemByName(List<TocItem> tocItems, String tagName) {
         return tocItems.stream()
                 .filter(tocItem -> tocItem.getAknTag().value().equalsIgnoreCase(tagName))
@@ -48,27 +165,27 @@ public class StructureConfigUtils {
                 .collect(Collectors.toList());
     }
 
-    public static TocItem getTocItemByNumberingConfig(List<TocItem> tocItems, NumberingType numType, String tagName) {
+    public static TocItem getTocItemByNumberingType(List<TocItem> tocItems, NumberingType numType, String tagName) {
         return tocItems.stream()
                 .filter(tocItem -> tocItem.getAknTag().name().equalsIgnoreCase(tagName) && tocItem.getNumberingType().equals(numType)).findFirst()
                 .orElseThrow(() -> new IllegalStateException("NumberingType '" + numType + "' not present in the list of TocItems [" + tocItems + "]"));
     }
 
     public static TocItem getTocItemByNumValue(List<NumberingConfig> numberingConfigs, List<TocItem> foundTocItems, String numValue, int depth) {
-        NumberingType numberingType = getNumberingTypeBySequence(numberingConfigs, numValue);
+        List<NumberingType> numberingTypes = getNumberingTypesBySequence(numberingConfigs, numValue);
         return foundTocItems.stream()
                 .filter(tocItem -> {
                     NumberingConfig tocItemNumberingConfig = getNumberingConfig(numberingConfigs, tocItem.getNumberingType());
                     return isNumberingTypeMatchesSequence(numberingConfigs, tocItem.getNumberingType(), numValue)
-                            || isNumberingTypePartOfNumberingConfig(numberingType, tocItemNumberingConfig, depth);
+                            || isNumberingTypesPartOfNumberingConfig(numberingTypes, tocItemNumberingConfig, depth);
                 })
                 .findFirst()
                 .orElse(null);
     }
 
-    private static boolean isNumberingTypePartOfNumberingConfig(NumberingType numberingType, NumberingConfig numberingConfig, int depth) {
-        if (numberingType != null && numberingConfig.getLevels() != null && !numberingConfig.getLevels().getLevels().isEmpty()) {
-            return numberingConfig.getLevels().getLevels().stream().anyMatch(level -> level.getDepth() == depth && level.getNumberingType().equals(numberingType));
+    private static boolean isNumberingTypesPartOfNumberingConfig(List<NumberingType> numberingTypes, NumberingConfig numberingConfig, int depth) {
+        if (!numberingTypes.isEmpty() && numberingConfig.getLevels() != null && !numberingConfig.getLevels().getLevels().isEmpty()) {
+            return numberingConfig.getLevels().getLevels().stream().anyMatch(level -> level.getDepth() == depth && numberingTypes.contains(level.getNumberingType()));
         }
         return false;
     }
@@ -117,14 +234,19 @@ public class StructureConfigUtils {
     public static NumberingType getNumberingTypeBySequence(List<NumberingConfig> numberingConfigs, String sequence) {
         NumberingConfig numberingConfig = numberingConfigs.stream()
                 .filter(numberConfig -> {
-                    String numValue = sequence;
-                    if (numberConfig.getPrefix() != null && numValue.startsWith(numberConfig.getPrefix())) {
-                        numValue = numValue.substring(numberConfig.getPrefix().length());
+                    if (StringUtils.isNotBlank(numberConfig.getSequence())) {
+                        String numValueToCompare = "";
+                        if (numberConfig.getPrefix() != null) {
+                            numValueToCompare += numberConfig.getPrefix();
+                        }
+                        numValueToCompare += numberConfig.getSequence();
+                        if (numberConfig.getSuffix() != null) {
+                            numValueToCompare += numberConfig.getSuffix();
+                        }
+
+                        return (numValueToCompare.equalsIgnoreCase(sequence));
                     }
-                    if (numberConfig.getSuffix() != null && numValue.endsWith(numberConfig.getSuffix())) {
-                        numValue = numValue.substring(0, numValue.length() - numberConfig.getSuffix().length());
-                    }
-                    return (numberConfig.getSequence() != null && numberConfig.getSequence().equalsIgnoreCase(numValue));
+                    return false;
                 })
                 .findFirst()
                 .orElse(null);
@@ -134,44 +256,31 @@ public class StructureConfigUtils {
         return numberingConfig.getType();
     }
 
-    public static TocItem getTocItemByNumValue(List<NumberingConfig> numberingConfigs, List<TocItem> foundTocItems, String numValue) {
-        if (numValue == null || numValue.equals(HASH_NUM_VALUE)) {
-            return getTocItemWithNumberedNumberingConfig(numberingConfigs, foundTocItems);
-        }
-
-        NumberingType numberingTypeMatchingSequence = getNumberingTypeBySequence(numberingConfigs, numValue);
-        List<TocItem> tocItemsWithMatchingNumberingConfig = foundTocItems.stream()
-                .filter(tocItem -> {
-                    NumberingConfig tocItemNumberingConfig = getNumberingConfig(numberingConfigs, tocItem.getNumberingType());
-                    return (isNumberingTypeMatchesSequence(numberingConfigs, tocItem.getNumberingType(), numValue)
-                            || isNumberingTypePartOfNumberingConfig(numberingTypeMatchingSequence, tocItemNumberingConfig));
-                })
-                .collect(Collectors.toList());
-        if (tocItemsWithMatchingNumberingConfig.isEmpty()) {
-            return getTocItemWithNumberedNumberingConfig(numberingConfigs, foundTocItems);
-        } else if (tocItemsWithMatchingNumberingConfig.size() == 1) {
-            return tocItemsWithMatchingNumberingConfig.get(0);
-        } else {
-            return tocItemsWithMatchingNumberingConfig.stream()
-                    .filter(tocItem -> isNumberingTypeMatchesSequence(numberingConfigs, tocItem.getNumberingType(), numValue))
-                    .findFirst().orElseGet(() -> getTocItemWithNumberedNumberingConfig(numberingConfigs, foundTocItems));
-        }
-    }
-
-    public static TocItem getTocItemWithNumberedNumberingConfig(List<NumberingConfig> numberingConfigs, List<TocItem> foundTocItems) {
-        return foundTocItems.stream()
-                .filter(tocItem -> {
-                    NumberingConfig tocItemNumberingConfig = getNumberingConfig(numberingConfigs, tocItem.getNumberingType());
-                    return tocItemNumberingConfig.isNumbered();
-                })
-                .findFirst().orElse(null);
-    }
-
-    private static boolean isNumberingTypePartOfNumberingConfig(NumberingType numberingType, NumberingConfig numberingConfig) {
-        if (numberingType != null && numberingConfig.getLevels() != null && !numberingConfig.getLevels().getLevels().isEmpty()) {
-            return numberingConfig.getLevels().getLevels().stream().anyMatch(level -> level.getNumberingType().equals(numberingType));
-        }
-        return false;
+    public static List<NumberingType> getNumberingTypesBySequence(List<NumberingConfig> numberingConfigs, String sequence) {
+        List<NumberingConfig> matchingNumberingConfigs = numberingConfigs.stream()
+                .filter(numberConfig -> {
+                    if (StringUtils.isNotBlank(numberConfig.getSequence())) {
+                        String numValueToCompare = "";
+                        if (numberConfig.getPrefix() != null) {
+                            numValueToCompare += numberConfig.getPrefix();
+                        }
+                        numValueToCompare += numberConfig.getSequence();
+                        if (numberConfig.getSuffix() != null) {
+                            numValueToCompare += numberConfig.getSuffix();
+                        }
+                        if (numValueToCompare.equalsIgnoreCase(sequence)) {
+                            return true;
+                        } else if (StringUtils.isNotBlank(numberConfig.getRegex())
+                                && isNumValueWithPrefixAndSuffix(sequence, numberConfig)) {
+                            Pattern pattern = Pattern.compile(numberConfig.getRegex());
+                            String num = getNumValueWithoutPrefixAndSuffix(sequence, numberConfig);
+                            Matcher matcher = pattern.matcher(num);
+                            return matcher.find() && StringUtils.isNotBlank(matcher.group(0));
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+        return matchingNumberingConfigs.stream().map(nc -> nc.getType()).collect(Collectors.toList());
     }
 
     private static boolean isNumberingTypeMatchesSequence(List<NumberingConfig> numberingConfigs, NumberingType numberingType, String numValue) {

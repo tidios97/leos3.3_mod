@@ -14,6 +14,7 @@
 ; // jshint ignore:line
 define(function leosIdentityHandler(require) {
     "use strict";
+    var leosPluginUtils = require("plugins/leosPluginUtils");
 
     // load module dependencies
     const CKEDITOR = require("promise!ckEditor");
@@ -121,7 +122,9 @@ define(function leosIdentityHandler(require) {
         let query = getMultipleAttributesQuerySelector(secondElement);
         let [firstElementAncestor, secondElementAncestor] = [firstElement, secondElement];
         // Compute closest un-common ancestors
-        while (firstElementAncestor.getParent() && !commonAncestor.equals(firstElementAncestor.getParent()) && firstElementAncestor.getParent().find(query).count() === 1){
+        while (firstElementAncestor.getParent()
+        && !commonAncestor.equals(firstElementAncestor.getParent())
+        && (firstElementAncestor.getParent().find(query).count() === 1 || secondElementAncestor.getParent().find(query).count() === 1)){
             firstElementAncestor = firstElementAncestor.getParent();
             secondElementAncestor = secondElementAncestor.getParent();
         }
@@ -231,7 +234,12 @@ define(function leosIdentityHandler(require) {
 
     function getWeight(element){
         if(element instanceof CKEDITOR.dom.element){
-            return (element.getText().trim().replace(REG_EXP_FOR_UNICODE_ZERO_WIDTH_SPACE_IN_HEX, '').length);
+            // If element contains a list, take only the content of the first sub para whitout content of the list.
+            if ($(element.$).children(leosPluginUtils.ORDER_LIST_ELEMENT).length > 0) {
+                return getWeight(element.getFirst());
+            } else {
+                return (element.getText().trim().replace(REG_EXP_FOR_UNICODE_ZERO_WIDTH_SPACE_IN_HEX, '').length);
+            }
         } else if (element){
             return element.textContent ? element.textContent.length : ( element.innerText ? element.innerText.length : 0 );
         } else {

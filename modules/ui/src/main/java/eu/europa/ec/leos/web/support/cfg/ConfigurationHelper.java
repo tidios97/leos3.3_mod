@@ -39,4 +39,11 @@ public class ConfigurationHelper {
     public String getIntegrationProperty(String key) {
         return integrationProperties.getProperty(key);
     }
+
+    public static boolean isAnnotateAuthorityEquals(ConfigurationHelper cfgHelper, String instance) {
+        if (cfgHelper.getProperty("annotate.authority") == null) {
+            return false;
+        }
+        return cfgHelper.getProperty("annotate.authority").equals(instance);
+    }
 }

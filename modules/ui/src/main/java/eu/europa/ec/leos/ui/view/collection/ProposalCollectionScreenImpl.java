@@ -1,6 +1,7 @@
 package eu.europa.ec.leos.ui.view.collection;
 
 import com.google.common.eventbus.EventBus;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FileDownloader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Resource;
@@ -8,6 +9,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinResponse;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.UI;
 import eu.europa.ec.leos.domain.common.InstanceType;
@@ -27,17 +29,24 @@ import eu.europa.ec.leos.ui.event.view.collection.DownloadProposalEvent;
 import eu.europa.ec.leos.ui.event.view.collection.ExportProposalEvent;
 import eu.europa.ec.leos.ui.model.MilestonesVO;
 import eu.europa.ec.leos.ui.window.LegalService.RevisionWindow;
+import eu.europa.ec.leos.ui.wizard.document.CreateSupportDocumentWizard;
+import eu.europa.ec.leos.vo.catalog.CatalogItem;
+import eu.europa.ec.leos.web.event.view.repository.ExplanatoryCreateWizardRequestEvent;
+import eu.europa.ec.leos.web.event.view.repository.SupportingDocumentsCreateWizardRequestEvent;
 import eu.europa.ec.leos.web.support.UrlBuilder;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 import eu.europa.ec.leos.web.support.user.UserHelper;
+import net.sf.saxon.expr.BooleanExpression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.context.WebApplicationContext;
 import org.vaadin.dialogs.ConfirmDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @ViewScope
 @SpringComponent
@@ -93,6 +102,14 @@ public class ProposalCollectionScreenImpl extends CollectionScreenImpl {
         createRevisionWindow.focus();
     }
 
+    @Override
+    public void showSupportDocumentWizard(List<CatalogItem> templates, List<String> templateDocPresent) {
+        CreateSupportDocumentWizard createSupportDocumentWizard = new CreateSupportDocumentWizard(templates, templateDocPresent, messageHelper, langHelper, eventBus, cfgHelper);
+        UI.getCurrent().addWindow(createSupportDocumentWizard);
+        createSupportDocumentWizard.focus();
+        createSupportingDocumentsButton.setEnabled(true);
+    }
+
     private class ExportToPdfCommand implements MenuBar.Command {
 
         private static final long serialVersionUID = 4268175635432779914L;
@@ -123,6 +140,17 @@ public class ProposalCollectionScreenImpl extends CollectionScreenImpl {
         exportCollectionToLegiswrite.setDescription(messageHelper.getMessage("collection.description.menuitem.export.document.legiswrite"));
 
         downloadCollection.setDescription(messageHelper.getMessage("collection.description.button.download.legiswrite"));
+        supportDocumentsBlockHeading.addRightButton(addCreatSupportingDocumentButton());
+    }
+
+    private Button addCreatSupportingDocumentButton() {
+        createSupportingDocumentsButton.setIcon(VaadinIcons.PLUS_CIRCLE);
+        createSupportingDocumentsButton.setDescription(messageHelper.getMessage("collection.description.button.create.supporting.documents"));
+        createSupportingDocumentsButton.addStyleName("create-supportdoc-button");
+        createSupportingDocumentsButton.setDisableOnClick(true);
+        createSupportingDocumentsButton.addClickListener(clickEvent -> eventBus.post(new SupportingDocumentsCreateWizardRequestEvent()));
+        createSupportingDocumentsButton.setEnabled( Boolean.valueOf(cfgHelper.getProperty("leos.supporting.documents.enable")));
+        return createSupportingDocumentsButton;
     }
 
     @Override

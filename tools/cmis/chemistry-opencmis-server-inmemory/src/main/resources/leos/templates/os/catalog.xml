@@ -76,6 +76,126 @@
                         </item>
                     </item>
                 </item>
+                <item type="CATEGORY" id="c1.1.1.2" enabled="true" key="DIRECTIVE OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL">
+                    <names>
+                        <name lang="EN">Proposal for a directive</name>
+                        <name lang="FR">Proposition de directive</name>
+                    </names>
+                    <descriptions>
+                        <description lang="EN">Directive to be adopted by the European Parliament and the Council</description>
+                        <description lang="FR">Directive à adopter conjointement par le Parlement Européen et le Conseil</description>
+                    </descriptions>
+                    <item type="TEMPLATE" id="PR-024;EM-LP01;BL-024" enabled="true" key="SJ-024">
+                        <names>
+                            <name lang="EN">SJ-024 - Proposal for a Directive of the European Parliament and of the Council</name>
+                            <name lang="FR">SJ-024 - Proposition de directive du Parlement européen et du Conseil</name>
+                        </names>
+                        <descriptions>
+                            <description lang="EN">Template 24 of the LS: Proposal for a DIRECTIVE OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</description>
+                            <description lang="FR">Template 24 du SJ: Proposition de DIRECTIVE DU PARLEMENT EUROPÉEN ET DU CONSEIL</description>
+                        </descriptions>
+                        <languages>
+                            <language lang="EN">English</language>
+                            <!--<language lang="FR">Français</language>-->
+                        </languages>
+                        <item type="TEMPLATE" id="SG-017" enabled="true" key="SG-017">
+                            <names>
+                                <name lang="EN">SG-017 - Annex to a proposal / to another proposal</name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
+						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+							<names>
+								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
+								</name>
+							</names>
+							<descriptions>
+								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+							</descriptions>
+						</item>
+                        
+                    </item>
+                </item>
+                <item type="CATEGORY" id="c1.1.1.3" enabled="true" key="DECISION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL">
+                    <names>
+                        <name lang="EN">Proposal for a decision</name>
+                        <name lang="FR">Proposition de décision</name>
+                    </names>
+                    <descriptions>
+                        <description lang="EN">Decision to be adopted by the European Parliament and the Council</description>
+                        <description lang="FR">Décision à adopter conjointement par le Parlement Européen et le Conseil</description>
+                    </descriptions>
+                    <languages>
+                        <language lang="EN">English</language>
+                        <language lang="FR">Français</language>
+                    </languages>
+                    <item type="TEMPLATE" id="PR-025;EM-LP01;BL-025" enabled="true" key="SJ-025">
+                        <names>
+                            <name lang="EN">SJ-025 - Proposal for a Decision of the European Parliament and of the Council</name>
+                            <name lang="FR">SJ-025 - Proposition de décision du Parlement européen et du Conseil</name>
+                        </names>
+                        <descriptions>
+                            <description lang="EN">Template 25 of the LS: Proposal for a DECISION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL</description>
+                            <description lang="FR">Template 25 du SJ: Proposition de DÉCISION DU PARLEMENT EUROPÉEN ET DU CONSEIL</description>
+                        </descriptions>
+                        <languages>
+                            <language lang="EN">English</language>
+                            <!--<language lang="FR">Français</language>-->
+                        </languages>
+                        <item type="TEMPLATE" id="SG-017" enabled="true" key="SG-017">
+                            <names>
+                                <name lang="EN">SG-017 - Annex to a proposal / to another proposal</name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
+						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+							<names>
+								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
+								</name>
+							</names>
+							<descriptions>
+								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+							</descriptions>
+						</item>
+                        
+                    </item>
+                    <item type="TEMPLATE" id="PR-026;EM-LP01;BL-026" enabled="true" key="SJ-026">
+                        <names>
+                            <name lang="EN">SJ-026 - Proposal for a Decision of the European Parliament and of the Council (without addressees)</name>
+                            <name lang="FR">SJ-026 - Proposition de décision du Parlement européen et du Conseil (sans destinataires)</name>
+                        </names>
+                        <descriptions>
+                            <description lang="EN">Template 26 of the LS: Proposal for a DECISION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL without addressees</description>
+                            <description lang="FR">Template 26 du SJ: Proposition de DÉCISION DU PARLEMENT EUROPÉEN ET DU CONSEIL sans destinataires</description>
+                        </descriptions>
+                        <languages>
+                            <language lang="EN">English</language>
+                            <!--<language lang="FR">Français</language>-->
+                        </languages>
+                        <item type="TEMPLATE" id="SG-017" enabled="true" key="SG-017">
+                            <names>
+                                <name lang="EN">SG-017 - Annex to a proposal / to another proposal</name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
+						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+							<names>
+								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
+								</name>
+							</names>
+							<descriptions>
+								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+							</descriptions>
+						</item>
+                        
+                    </item>
+                </item>
             </item>
             <item type="CATEGORY" id="c1.1.2" enabled="false" key="SPECIAL_LEGISLATIVE_ACTS">
                 <names>
@@ -160,6 +280,22 @@
                     </item>
                 </item>
             </item>
+        </item>
+    </item>
+    <item type="CATEGORY" id="c2" enabled="true" key="SUPPORTING_DOCUMENTS">
+        <names>
+            <name lang="EN">Other supporting documents</name>
+        </names>
+        <descriptions>
+            <description lang="EN">Other supporting documents</description>
+        </descriptions>
+        <item type="TEMPLATE" id="FS-001" enabled="true" key="FS-001">
+            <names>
+                <name lang="EN">Financial statement</name>
+            </names>
+            <descriptions>
+                <description lang="EN">Financial statement</description>
+            </descriptions>
         </item>
     </item>
 </catalog>

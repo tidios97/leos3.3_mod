@@ -180,7 +180,7 @@
                             <p xml:id="imp_null_QBaI3s_JRkOKT">The Partnership Agreement shall set out:</p>
                         </content>
                     </subparagraph>
-                    <list xml:id="imp_null_QBaI3s_rdNmwr">
+                    <list leos:list-type="point_num" xml:id="imp_null_QBaI3s_rdNmwr">
                         <point xml:id="imp_null_QBaI3s_gXK9Yo">
                             <num xml:id="imp_null_QBaI3s_WXq8Dh">(a)</num>
                             <alinea xml:id="imp_null_QBaI3s_3Vlr6Y">
@@ -193,7 +193,7 @@
                                     </p>
                                 </content>
                             </alinea>
-                            <list xml:id="imp_null_QBaI3s_V8JLI2">
+                            <list leos:list-type="point_num" xml:id="imp_null_QBaI3s_V8JLI2">
                                 <point xml:id="imp_null_QBaI3s_KPYmH6">
                                     <num xml:id="imp_null_QBaI3s_t20L7x">(i)</num>
                                     <content xml:id="imp_null_QBaI3s_6jHq1x">
@@ -245,7 +245,7 @@
                                     <p xml:id="imp_null_QBaI3s_74Bhcl">arrangements to ensure effective implementation of the ESI Funds, including:</p>
                                 </content>
                             </alinea>
-                            <list xml:id="imp_null_QBaI3s_LLgzIW">
+                            <list leos:list-type="point_num" xml:id="imp_null_QBaI3s_LLgzIW">
                                 <point xml:id="imp_null_QBaI3s_lJqiRY">
                                     <num xml:id="imp_null_QBaI3s_d7riED">(i)</num>
                                     <content xml:id="imp_null_QBaI3s_n4dqbl">
@@ -305,7 +305,7 @@
                             <p xml:id="imp_null_QBaI3s_zjkCAm">The Partnership Agreement shall also indicate:</p>
                         </content>
                     </subparagraph>
-                    <list xml:id="imp_null_QBaI3s_6sj97v">
+                    <list leos:list-type="point_num" xml:id="imp_null_QBaI3s_6sj97v">
                         <point xml:id="imp_null_QBaI3s_GQ2t7h">
                             <num xml:id="imp_null_QBaI3s_5Qw3CR">(a)</num>
                             <alinea xml:id="imp_null_QBaI3s_IlUHbU">
@@ -313,7 +313,7 @@
                                     <p xml:id="imp_null_QBaI3s_6rJzB7">an integrated approach to territorial development supported by the ESI Funds or a summary of the integrated approaches to territorial development based on the content of the programmes, setting out:</p>
                                 </content>
                             </alinea>
-                            <list xml:id="imp_null_QBaI3s_bvvfJs">
+                            <list leos:list-type="point_num" xml:id="imp_null_QBaI3s_bvvfJs">
                                 <point xml:id="imp_null_QBaI3s_2otUuN">
                                     <num xml:id="imp_null_QBaI3s_VBT6cJ">(i)</num>
                                     <content xml:id="imp_null_QBaI3s_uh4os9">

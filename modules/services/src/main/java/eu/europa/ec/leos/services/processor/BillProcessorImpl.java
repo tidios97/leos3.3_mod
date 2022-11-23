@@ -134,6 +134,16 @@ public class BillProcessorImpl implements BillProcessor {
         return updatedContent;
     }
 
+    public byte[] renumberDocument(Bill document) {
+        Validate.notNull(document, "Document is required.");
+        byte[] updatedContent = getContent(document);
+        updatedContent = xmlContentProcessor.prepareForRenumber(updatedContent);
+        updatedContent = numberService.renumberRecitals(updatedContent);
+        updatedContent = numberService.renumberArticles(updatedContent);
+        updatedContent = xmlContentProcessor.doXMLPostProcessing(updatedContent);
+        return updatedContent;
+    }
+
     @Override
     public byte[] insertNewElementWithContent(Bill document, String elementId, boolean before, String tagName, String content) {
         Validate.notNull(document, "Document is required.");

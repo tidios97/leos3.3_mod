@@ -61,4 +61,6 @@ public abstract class XmlDocument extends LeosDocument implements Securable {
     public String getVersionedReference() {
         return this.getMetadata().get().getRef() + "_" + this.getVersionLabel();
     }
+
+    public abstract String getContributionStatus();
 }

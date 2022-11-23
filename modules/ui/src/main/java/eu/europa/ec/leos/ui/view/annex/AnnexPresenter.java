@@ -52,6 +52,7 @@ import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.model.xml.Element;
 import eu.europa.ec.leos.security.LeosPermission;
 import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.services.Annotate.AnnotateService;
 import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.document.AnnexService;
 import eu.europa.ec.leos.services.document.ContributionService;
@@ -65,7 +66,6 @@ import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportService;
 import eu.europa.ec.leos.services.export.ExportVersions;
 import eu.europa.ec.leos.services.export.FileHelper;
-import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.label.ReferenceLabelService;
 import eu.europa.ec.leos.services.messaging.UpdateInternalReferencesProducer;
 import eu.europa.ec.leos.services.notification.NotificationService;
@@ -124,6 +124,7 @@ import eu.europa.ec.leos.ui.model.AnnotateMetadata;
 import eu.europa.ec.leos.ui.model.AnnotationStatus;
 import eu.europa.ec.leos.services.clone.InternalRefMap;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
+import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.support.DownloadExportRequest;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.CommonDelegate;
@@ -154,9 +155,11 @@ import eu.europa.ec.leos.web.event.component.WindowClosedEvent;
 import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseElementEvent;
 import eu.europa.ec.leos.web.event.view.document.ComparisonEvent;
 import eu.europa.ec.leos.web.event.view.document.DeleteElementRequestEvent;
+import eu.europa.ec.leos.web.event.view.document.DocumentNavigationRequest;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
 import eu.europa.ec.leos.web.event.view.document.EditElementRequestEvent;
 import eu.europa.ec.leos.web.event.view.document.FetchCrossRefTocRequestEvent;
@@ -197,7 +200,6 @@ import eu.europa.ec.leos.web.ui.navigation.Target;
 import eu.europa.ec.leos.web.ui.screen.document.ColumnPosition;
 import io.atlassian.fugue.Option;
 import io.atlassian.fugue.Pair;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -210,7 +212,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Provider;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -222,6 +223,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -287,6 +289,8 @@ class AnnexPresenter extends AbstractLeosPresenter {
     private MergeContributionHelper mergeContributionHelper;
     private NumberService numberService;
     private XmlContentProcessor xmlContentProcessor;
+    private final AnnotateService annotateService;
+    private final List<String> openElementEditors;
 
     @Autowired
     AnnexPresenter(SecurityContext securityContext, HttpSession httpSession, EventBus eventBus,
@@ -299,7 +303,7 @@ class AnnexPresenter extends AbstractLeosPresenter {
                    CoEditionHelper coEditionHelper, EventBus leosApplicationEventBus, UuidHelper uuidHelper,
                    Provider<StructureContext> structureContextProvider, ReferenceLabelService referenceLabelService, WorkspaceService workspaceService,
                    UpdateInternalReferencesProducer updateInternalReferencesProducer, TransformationService transformationService, LegService legService,
-                   ProposalService proposalService, SearchService searchService, ExportPackageService exportPackageService,
+                   ProposalService proposalService, SearchService searchService, ExportPackageService exportPackageService, AnnotateService annotateService,
                    NotificationService notificationService, CommonDelegate<Annex> commonDelegate, CloneContext cloneContext, AttachmentProcessor attachmentProcessor, InstanceTypeResolver instanceTypeResolver, NumberService numberService, MergeContributionHelper mergeContributionHelper, XmlContentProcessor xmlContentProcessor) {
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
         this.attachmentProcessor = attachmentProcessor;
@@ -335,6 +339,8 @@ class AnnexPresenter extends AbstractLeosPresenter {
         this.numberService = numberService;
         this.mergeContributionHelper = mergeContributionHelper;
         this.xmlContentProcessor = xmlContentProcessor;
+        this.openElementEditors = new ArrayList<>();
+        this.annotateService = annotateService;
     }
 
     @Override
@@ -356,6 +362,13 @@ class AnnexPresenter extends AbstractLeosPresenter {
             Annex annex = getDocument();
             populateViewData(annex, TocMode.SIMPLIFIED);
             populateVersionsData(annex);
+            String revisionReference = getRevisionRef();
+            if (revisionReference != null) {
+                Optional<ContributionVO> contributionVO = annexScreen.findContributionAndShowTab(revisionReference);
+                if (contributionVO.isPresent()) {
+                    eventBus.post(new OpenRevisionDocumentEvent(contributionVO.get()));
+                }
+            }
         } catch (Exception exception) {
             LOG.error("Exception occurred in init(): ", exception);
             eventBus.post(new NotificationEvent(Type.INFO, "unknown.error.message"));
@@ -395,6 +408,10 @@ class AnnexPresenter extends AbstractLeosPresenter {
 
     private String getDocumentRef() {
         return (String) httpSession.getAttribute(id + "." + SessionAttribute.ANNEX_REF.name());
+    }
+
+    private String getRevisionRef() {
+        return (String) httpSession.getAttribute(id + "." + SessionAttribute.REVISION_VERSION.name());
     }
 
     private Annex getDocument() {
@@ -543,6 +560,7 @@ class AnnexPresenter extends AbstractLeosPresenter {
             }
             exportOptions.setWithFilteredAnnotations(isWithAnnotations);
             exportOptions.setFilteredAnnotations(annotations);
+            exportOptions.setWithCoverPage(false);
             LeosPackage leosPackage = packageService.findPackageByDocumentId(documentId);
             BillContext context = billContextProvider.get();
             context.usePackage(leosPackage);
@@ -758,10 +776,12 @@ class AnnexPresenter extends AbstractLeosPresenter {
         } catch (Exception e) {
             LogUtil.logError(LOG, eventBus, "Unexpected error occurred while generating Export Package", e);
         } finally {
-            exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
-            if ((exportDocument != null) && (!exportDocument.getStatus().equals(LeosExportStatus.FILE_READY))) {
-                exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
-                leosApplicationEventBus.post(new ExportPackageCreatedEvent(proposalRef, exportDocument));
+            if (exportDocument != null) {
+                exportDocument = exportPackageService.findExportDocumentById(exportDocument.getId(), false);
+                if ((exportDocument != null) && (!exportDocument.getStatus().equals(LeosExportStatus.FILE_READY))) {
+                    exportDocument = exportPackageService.updateExportDocument(exportDocument.getId(), processedStatus);
+                    leosApplicationEventBus.post(new ExportPackageCreatedEvent(proposalRef, exportDocument));
+                }
             }
         }
     }
@@ -833,14 +853,22 @@ class AnnexPresenter extends AbstractLeosPresenter {
         LOG.trace("Handling close document request...");
 
         //if unsaved changes remain in the session, first ask for confirmation
-        if(isAnnexUnsaved()){
-            eventBus.post(new ShowConfirmDialogEvent(event, null));
+        if(this.isAnnexUnsaved() || this.isHasOpenElementEditors()){
+            eventBus.post(new ShowConfirmDialogEvent(new CloseDocumentConfirmationEvent(), null));
             return;
         }
+        this.closeDocument();
+    }
 
-        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
-        resetCloneProposalMetadataVO();
-        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS));
+    @Subscribe
+    void handleNavigationRequest(DocumentNavigationRequest event) {
+        LOG.trace("Handling document navigation request...");
+        if (event.getNavigationEvent() != null) event.getNavigationEvent().setForwardToDocument(false);
+        if(isAnnexUnsaved() || this.isHasOpenElementEditors()) {
+            eventBus.post(new ShowConfirmDialogEvent(event.getNavigationEvent(), null));
+            return;
+        }
+        eventBus.post(event.getNavigationEvent());
     }
 
     private boolean isAnnexUnsaved(){
@@ -849,6 +877,26 @@ class AnnexPresenter extends AbstractLeosPresenter {
 
     private Annex getAnnexFromSession() {
         return (Annex) httpSession.getAttribute("annex#" + getDocumentRef());
+    }
+
+    private boolean isHasOpenElementEditors() {
+        return this.openElementEditors.size() > 0;
+    }
+
+    @Subscribe
+    void handleCloseDocumentConfirmation(CloseDocumentConfirmationEvent event) {
+        this.closeDocument();
+    }
+
+    private void closeDocument() {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        resetCloneProposalMetadataVO();
+        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS, false));
+    }
+
+    @Subscribe
+    void handleShowConfirmDialog(ShowConfirmDialogEvent event) {
+        ConfirmDialogHelper.showOpenEditorDialog(this.leosUI, event, this.eventBus, this.messageHelper);
     }
 
     @Subscribe
@@ -1018,6 +1066,7 @@ class AnnexPresenter extends AbstractLeosPresenter {
             }
             coEditionHelper.storeUserEditInfo(httpSession.getId(), id, user, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
             annexScreen.showElementEditor(elementId, elementTagName, element, levelItemVO);
+            openElementEditors.add(elementId);
         }
         catch (Exception ex){
             LOG.error("Exception while edit element operation for ", ex);
@@ -1093,6 +1142,7 @@ class AnnexPresenter extends AbstractLeosPresenter {
     void closeAnnexBlock(CloseElementEditorEvent event){
         String elementId = event.getElementId();
         coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, elementId, InfoType.ELEMENT_INFO);
+        openElementEditors.remove(elementId);
         LOG.debug("User edit information removed");
         eventBus.post(new RefreshDocumentEvent());
         if (elementToEditAfterClose != null) {
@@ -1135,6 +1185,7 @@ class AnnexPresenter extends AbstractLeosPresenter {
         compareAndShowRevision(event.getContributionVO());
     }
 
+
     private void compareAndShowRevision(ContributionVO contributionVO) {
         final Annex revision = annexService.findAnnex(contributionVO.getDocumentId(), false);
         final String revisionContent = documentContentService.getDocumentForContributionAsHtml(contributionVO.getXmlContent(),
@@ -1145,7 +1196,16 @@ class AnnexPresenter extends AbstractLeosPresenter {
         annexScreen.refreshVersions(getVersionVOS(), false);
         Annex annex = getDocument();
         List<TocItem>  tocItemList = getTocITems(annex);
-        annexScreen.showRevision(revisionContent, revision.getContributionStatus(), contributionVO, tocItemList);
+
+        final String temporaryAnnotationsId = this.storeRevisionAnnotationsTemporary(contributionVO.getDocumentId(), contributionVO.getLegFileName(), contributionVO.getVersionedReference());
+        annexScreen.showRevisionWithSidebar(revisionContent, contributionVO, tocItemList, temporaryAnnotationsId);
+    }
+
+    private String storeRevisionAnnotationsTemporary(final String documentId, final String legFileName, final String versionedReference) {
+        final LeosPackage leosPackage = this.packageService.findPackageByDocumentId(documentId);
+        //final LegDocument referenceDocument = this.legService.findLastLegByVersionedReference(leosPackage.getPath(), versionedReference);
+        final LegDocument legDocument = this.packageService.findDocumentByPackagePathAndName(leosPackage.getPath(), legFileName, LegDocument.class);
+        return this.legService.storeLegDocumentTemporary(legDocument);
     }
 
     private List<TocItem> getTocITems(Annex annex) {
@@ -1395,6 +1455,7 @@ class AnnexPresenter extends AbstractLeosPresenter {
         Annex annex = getDocument();
         List<LeosPermission> userPermissions = securityContext.getPermissions(annex);
         annexScreen.sendUserPermissions(userPermissions);
+        annotateService.sendUserPermissions(userPermissions);
     }
 
     @Subscribe

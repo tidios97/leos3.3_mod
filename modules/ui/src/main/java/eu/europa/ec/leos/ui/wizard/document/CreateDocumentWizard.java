@@ -48,7 +48,7 @@ public class CreateDocumentWizard extends AbstractWizard {
         // Currently there is only one use case: create proposal!
         // Ideally the category would be resolved from wizard data,
         // depending on some attribute of the selected template...
-        registerWizardStep(new TemplateSelectionStep(document, templates, messageHelper, false));
+        registerWizardStep(new TemplateSelectionStep(document, templates, messageHelper, false, false));
         registerWizardStep(new MetadataInputStep(document, messageHelper, languageHelper));
         setWizardStep(0);
     }

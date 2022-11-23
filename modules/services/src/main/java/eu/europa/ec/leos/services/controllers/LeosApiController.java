@@ -25,8 +25,9 @@ import eu.europa.ec.leos.model.event.MilestoneUpdatedEvent;
 import eu.europa.ec.leos.model.user.Collaborator;
 import eu.europa.ec.leos.security.AuthClient;
 import eu.europa.ec.leos.security.TokenService;
-import eu.europa.ec.leos.services.collection.CreateCollectionService;
+import eu.europa.ec.leos.services.api.ApiService;
 import eu.europa.ec.leos.services.collection.CreateCollectionResult;
+import eu.europa.ec.leos.services.collection.CreateCollectionService;
 import eu.europa.ec.leos.services.compare.ContentComparatorContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorService;
 import eu.europa.ec.leos.services.document.TransformationService;
@@ -79,6 +80,7 @@ public class LeosApiController {
 
     private final LegService legService;
     private final WorkspaceService workspaceService;
+    private final ApiService apiService;
     private final TokenService tokenService;
     private final TransformationService transformationService;
     private final ContentComparatorService comparatorService;
@@ -99,7 +101,7 @@ public class LeosApiController {
                              TransformationService transformationService, ContentComparatorService comparatorService,
                              EventBus leosApplicationEventBus, ExportService exportService,
                              CreateCollectionService createCollectionService, Properties applicationProperties,
-                             ExportPackageService exportPackageService) {
+                             ExportPackageService exportPackageService, ApiService apiService) {
         this.legService = legService;
         this.workspaceService = workspaceService;
         this.tokenService = tokenService;
@@ -110,6 +112,7 @@ public class LeosApiController {
         this.createCollectionService = createCollectionService;
         this.applicationProperties = applicationProperties;
         this.exportPackageService = exportPackageService;
+        this.apiService = apiService;
     }
 
     @RequestMapping(value = "/token", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -312,7 +315,7 @@ public class LeosApiController {
                 return new ResponseEntity<>("An error occurred during the reading of the Leg file.", HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
-            createCollectionResult = createCollectionService.createCollection(content);
+            createCollectionResult = createCollectionService.createCollectionFromLeg(content);
             return new ResponseEntity<>(createCollectionResult, HttpStatus.OK);
         } catch (Exception ex) {
             LOG.error("Error Occurred while creating collection from the Leg file: " + ex.getMessage(), ex);
@@ -375,52 +378,5 @@ public class LeosApiController {
             return new ResponseEntity<>("Error occurred while retrieving export package for id " +
                     exportPackageId, HttpStatus.NOT_FOUND);
         }
-    }
-
-    /**
-     * The following methods are temporary. They will be removed once ISC group fully adapt to the new security changes.
-     * From now on our endpoint will be accessible in a secure way as:
-     * - /api/secured/endpointName
-     *
-     * The only endpoint not secured is /token which can be accessed
-     * - /api/token
-     *
-     * The following *_compatibility methods will keep the code working for the ongoing calls:
-     * - /secured-api/method
-     **/
-
-    @RequestMapping(value = "/compare", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ResponseBody
-    public ResponseEntity<Object> compareContents_compatibility(HttpServletRequest request, @RequestParam("mode") int mode,
-               @RequestParam("firstContent") MultipartFile firstContent, @RequestParam("secondContent") MultipartFile secondContent){
-        return compareContents(request, mode, firstContent, secondContent);
-    }
-
-    @RequestMapping(value = {"/search/{userId}", "/search/{userId}?proposalId={proposalId}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<Object> getProposalsForUser_compatibility(@PathVariable("userId") String userId,
-                                                                    @RequestParam(value = "proposalId", defaultValue = "false") String optionalProposalId,
-                                                                    @RequestParam(value = "legFilesStatus", defaultValue = "false") String legFilesStatus) {
-        return getProposalsForUser(userId, optionalProposalId, legFilesStatus);
-    }
-
-    @RequestMapping(value = "/searchlegfile/{legFileId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    @ResponseBody
-    public ResponseEntity<Object> getLegFile_compatibility(@PathVariable("legFileId") String legFileId) {
-        return getLegFile(legFileId);
-    }
-
-    @RequestMapping(value = "/renditionfromleg", method = RequestMethod.POST, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    @ResponseBody
-    public ResponseEntity<Object> getPdfFromLegFile_compatibility(@RequestParam("legFile") MultipartFile legFile, @RequestParam("type") String type) {
-        return getPdfFromLegFile(legFile, type);
-    }
-
-    @RequestMapping(value = "/cloneProposal", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<Object> cloneProposalFromLeg_compatibility(@RequestParam("file") MultipartFile legFile, @RequestParam("targetUser") String targetUser,
-                                                                     @RequestParam("connectedEntity") String connectedEntity,
-                                                                     @RequestParam("iscRef") String iscRef) {
-        return cloneProposalFromLeg(legFile, targetUser, connectedEntity, iscRef);
     }
 }

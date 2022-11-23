@@ -331,4 +331,5 @@ public abstract class CollectionContext {
     public abstract void executeCreateExplanatory();
     public abstract void executeCreateProposal();
     protected abstract void executeUpdateExplanatory(LeosPackage leosPackage, String purpose, Map<ContextAction, String> actionMsgMap);
+    public abstract void executeCreateFinancialStatement();
 }

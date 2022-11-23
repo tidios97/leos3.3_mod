@@ -16,7 +16,6 @@ package eu.europa.ec.leos.ui.component.toc;
 
 import com.google.common.collect.Lists;
 import com.vaadin.data.TreeData;
-import com.vaadin.data.provider.HierarchicalQuery;
 import com.vaadin.data.provider.TreeDataProvider;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.ui.TreeGrid;
@@ -184,7 +183,6 @@ public class MandateTocEditor extends AbstractTocEditor {
     @Override
     protected void addOrMoveItem(final boolean isAdd, final TableOfContentItemVO sourceItem, final TableOfContentItemVO targetItem,
             final TreeGrid<TableOfContentItemVO> tocTree, final TableOfContentItemVO actualTargetItem, final ItemPosition position) {
-        boolean isRestored = false;
         if (isAdd) {
             super.addOrMoveItem(true, sourceItem, targetItem, tocTree, actualTargetItem, position);
             moveOriginAttribute(sourceItem, targetItem);
@@ -201,11 +199,11 @@ public class MandateTocEditor extends AbstractTocEditor {
             updateMovedOnEmptyParent(sourceItem, actualTargetItem, LEVEL, SUBPARAGRAPH);
             handleMoveAction(sourceItem, tocTree);
             super.addOrMoveItem(false, sourceItem, targetItem, tocTree, actualTargetItem, position);
-            isRestored = restoreMovedItemOrSetNumber(tocTree, sourceItem, targetItem, position);
+            restoreMovedItemOrSetNumber(tocTree, sourceItem, targetItem, position);
         }
         updateStyleClassOfTocItems(tocTree.getTreeData().getChildren(sourceItem.getParentItem()), DIVISION);
         updateDepthOfTocItems(tocTree.getTreeData().getChildren(sourceItem.getParentItem()));
-        handleLevelMove(sourceItem, targetItem, tocTree, actualTargetItem, position, isRestored);
+        handleLevelMove(sourceItem, targetItem);
         setAffectedAttribute(sourceItem, tocTree.getTreeData());
         setBlockOrCrossHeading(sourceItem);
         resetUserInfo(sourceItem);

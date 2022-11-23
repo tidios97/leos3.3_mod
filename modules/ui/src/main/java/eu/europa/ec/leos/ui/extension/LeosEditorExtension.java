@@ -14,8 +14,13 @@
 package eu.europa.ec.leos.ui.extension;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import eu.europa.ec.leos.services.support.XmlHelper;
+import eu.europa.ec.leos.vo.toc.Attribute;
+import eu.europa.ec.leos.vo.toc.TocItemType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -59,6 +64,8 @@ import eu.europa.ec.leos.web.model.UserVO;
 import eu.europa.ec.leos.web.support.LeosCacheToken;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 
+import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
+
 @JavaScript({"vaadin://../js/editor/leosEditorConnector.js" + LeosCacheToken.TOKEN})
 public class LeosEditorExtension<T extends AbstractComponent> extends LeosJavaScriptExtension {
 
@@ -78,7 +85,9 @@ public class LeosEditorExtension<T extends AbstractComponent> extends LeosJavaSc
         getState().spellCheckerSourceUrl = cfgHelper.getIntegrationProperty("leos.spell.checker.source.url");
         getState().tocItemsJsonArray = toJsonString(tocItemList);
         getState().numberingConfigsJsonArray = toJsonString(numberingConfigs);
-        getState().listNumberConfigJsonArray = toJsonString(getListNumberConfig(numberingConfigs, NumberingType.POINT_NUM));
+        getState().listNumberConfigJsonArray = toJsonString(StructureConfigUtils.getNumberingConfigsFromTocItem(numberingConfigs, tocItemList,
+                XmlHelper.POINT));
+        getState().articleTypesConfigJsonArray = toJsonString(getArticleTypesAttributes(tocItemList));
         getState().alternateConfigsJsonArray = toJsonString(alternateConfigs);
         getState().documentsMetadataJsonArray = toJsonString(documents);
         getState().documentRef = documentRef;
@@ -278,12 +287,19 @@ public class LeosEditorExtension<T extends AbstractComponent> extends LeosJavaSc
 
     }
 
-    private List<Level> getListNumberConfig(List<NumberingConfig> numberingConfigs, NumberingType numberingType) {
-        if (numberingConfigs != null && !numberingConfigs.isEmpty()) {
-            NumberingConfig numberingConfig = StructureConfigUtils.getNumberingConfig(numberingConfigs, numberingType);
-            return numberingConfig != null ? numberingConfig.getLevels().getLevels() : null;
-        }
-        return null;
+    private Map<String, Attribute> getArticleTypesAttributes(List<TocItem> tocItems) {
+        Map<String, Attribute> articleTypesAttributes = new HashMap<>();
+        List<TocItemType> tocItemTypes = StructureConfigUtils.getTocItemTypesByTagName(tocItems, ARTICLE);
+        tocItemTypes.forEach(tocItemType -> {
+            Attribute attribute = tocItemType.getAttribute();
+            if (attribute == null) {
+                attribute = new Attribute();
+                attribute.setAttributeName("");
+                attribute.setAttributeValue("");
+            }
+            articleTypesAttributes.put(tocItemType.getName().name(), attribute);
+        });
+        return articleTypesAttributes;
     }
 
     private String toJsonString(Object o) {

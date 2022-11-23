@@ -6,6 +6,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.RelevantElements;
+import eu.europa.ec.leos.ui.event.CreateExportPackageActualVersionRequestEvent;
 import eu.europa.ec.leos.ui.event.CreateExportPackageCleanVersionRequestEvent;
 import eu.europa.ec.leos.ui.event.CreateExportPackageRequestEvent;
 
@@ -50,8 +51,10 @@ public class ExplanatoryExportPackageWindow extends ExportPackageWindow {
             exportOptions.setWithFilteredAnnotations(isWithAnnotations);
             exportOptions.setRelevantElements(relevantElements);
             eventBus.post(new CreateExportPackageRequestEvent(title, exportOptions));
+        } else if (Boolean.parseBoolean(cleanVersionRadioButtonGroup.getValue().toString())) {
+            eventBus.post(new CreateExportPackageCleanVersionRequestEvent(title, relevantElements, isWithAnnotations));
         } else {
-            eventBus.post(new CreateExportPackageCleanVersionRequestEvent(title, relevantElements, isWithAnnotations, cleanVersionRadioButtonGroup.getValue().toString()));
+            eventBus.post(new CreateExportPackageActualVersionRequestEvent(title, relevantElements, isWithAnnotations));
         }
     }
 }

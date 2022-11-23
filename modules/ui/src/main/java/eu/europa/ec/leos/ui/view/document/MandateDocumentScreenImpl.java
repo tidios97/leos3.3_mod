@@ -35,7 +35,6 @@ import eu.europa.ec.leos.services.export.ExportOptions;
 import eu.europa.ec.leos.services.export.ExportVersions;
 import eu.europa.ec.leos.services.export.ZipPackageUtil;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
-import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.processor.content.TableOfContentProcessor;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.ui.component.ComparisonComponent;
@@ -149,8 +148,12 @@ public class MandateDocumentScreenImpl extends DocumentScreenImpl {
     }
 
     @Override
-    public void showRevision(String content, String contributionStatus, ContributionVO contributionVO,
-                             List<TocItem> tocItemList){
+    public void showRevision(String content, ContributionVO contributionVO, List<TocItem> tocItemList){
+        throw new IllegalArgumentException("Operation not valid");
+    }
+    
+    @Override
+    public void showRevisionWithSidebar(String versionContent, ContributionVO contributionVO, List<TocItem> tocItemList, String temporaryAnnotationsId) {
         throw new IllegalArgumentException("Operation not valid");
     }
 
@@ -254,6 +257,14 @@ public class MandateDocumentScreenImpl extends DocumentScreenImpl {
         legalTextActionMenuBar.setDownloadVersionWithAnnotationsVisible(true);
         legalTextActionMenuBar.setDownloadCleanVersionVisible(true);
         legalTextActionMenuBar.setShowCleanVersionVisible(false);
+        boolean canRenumber = securityContext.hasPermission(bill, LeosPermission.CAN_RENUMBER);
+        if (canRenumber) {
+            legalTextActionMenuBar.setRenumberingVisible(true);
+            legalTextActionMenuBar.setRenumberingGroupVisible(true);
+        } else {
+            legalTextActionMenuBar.setRenumberingVisible(false);
+            legalTextActionMenuBar.setRenumberingGroupVisible(false);
+        }
     }
 
     @Override

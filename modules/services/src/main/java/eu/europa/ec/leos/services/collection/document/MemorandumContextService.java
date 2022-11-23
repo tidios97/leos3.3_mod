@@ -57,6 +57,7 @@ public class MemorandumContextService {
     private String milestoneComment;
     private String type = null;
     private String template = null;
+    private boolean eeaRelevance;
 
     private DocumentVO memoDocument;
 
@@ -123,6 +124,11 @@ public class MemorandumContextService {
         this.template = template;
     }
 
+    public void useEeaRelevance(boolean eeaRelevance) {
+        LOG.trace("Using Proposal eeaRelevance... [eeaRelevance={}]", eeaRelevance);
+        this.eeaRelevance = eeaRelevance;
+    }
+
     public Memorandum executeCreateMemorandum() {
         LOG.trace("Executing 'Create Memorandum' use case...");
         Validate.notNull(leosPackage, "Memorandum package is required!");
@@ -148,7 +154,7 @@ public class MemorandumContextService {
             Validate.isTrue(metadataOption.isDefined(), "Memorandum metadata is required!");
 
             Validate.notNull(purpose, "Memorandum purpose is required!");
-            MemorandumMetadata metadata = metadataOption.get().withPurpose(purpose);
+            MemorandumMetadata metadata = metadataOption.get().withPurpose(purpose).withEeaRelevance(eeaRelevance);
 
             memorandumService.updateMemorandum(memorandum, metadata, VersionType.MINOR, actionMsgMap.get(ContextActionService.METADATA_UPDATED));
         }
@@ -167,7 +173,7 @@ public class MemorandumContextService {
                                         withPurpose(purpose).
                                         withType(type).
                                         withTemplate(template).
-                                        withRef(ref);
+                                        withRef(ref).withEeaRelevance(eeaRelevance);
 
         Validate.notNull(memoDocument.getSource(), "Memorandum xml is required!");
         final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(memoDocument.getSource(), createValueMap(metadata),

@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.web.support.user;
 
 import eu.europa.ec.leos.i18n.MessageHelper;
+import eu.europa.ec.leos.integration.rest.UserJSON;
 import eu.europa.ec.leos.model.user.Collaborator;
 import eu.europa.ec.leos.model.user.Entity;
 import eu.europa.ec.leos.model.user.User;
@@ -67,11 +68,12 @@ public class UserHelper {
             return value;
         }
     }
-    public List<User> searchUsersByKey(String key){
-        return userService.searchUsersByKey(key);
+    public List<User> searchUsersByKey(String key) {
+        List<UserJSON> results = userService.searchUsersByKey(key);
+        return (List<User>) (List<? extends User>) results;
     }
 
-    public List<User> searchUsersInContextByKeyAndReference(String key, String searchContext, String searchReference) {
+    public List<UserJSON> searchUsersInContextByKeyAndReference(String key, String searchContext, String searchReference) {
         return userService.searchUsersInContextByKeyAndReference(key, searchContext, searchReference);
     }
 

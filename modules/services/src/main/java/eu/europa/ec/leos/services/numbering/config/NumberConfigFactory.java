@@ -40,7 +40,7 @@ public class NumberConfigFactory {
             XercesUtils.removeAttribute(firstElement.getParentNode(), LEOS_LIST_TYPE_ATTR);
         } else if (foundTocItems.size() > 1 && XercesUtils.getFirstChild(firstElement, NUM) != null) {
             String currentNum = XercesUtils.getNodeNum(firstElement);
-            TocItem tocItem = getTocItemByNumValue(numberingConfigs, foundTocItems, currentNum);
+            TocItem tocItem = getTocItemByNumValue(numberingConfigs, foundTocItems, currentNum, depth);
             if (tocItem != null) {
                 numberingType = tocItem.getNumberingType();
             } else {

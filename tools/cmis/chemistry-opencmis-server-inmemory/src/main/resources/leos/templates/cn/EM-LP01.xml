@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="renditions/html/css/memorandum.css"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <doc name="EXPL_MEMORANDUM">
+        <meta>
+            <identification source="~_COM">
+                <FRBRWork>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRcountry value="EU"/>
+                    <FRBRprescriptive value="false"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+                    <FRBRlanguage xml:id="_FRBRlanguage" language="en"/>
+
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value=""/>
+                    <FRBRuri value=""/>
+                    <FRBRdate date="2999-01-01" name=""/>
+                    <FRBRauthor href=""/>
+					<preservation xmlns:akn4eu="http://imfc.europa.eu/akn4eu">
+                		<akn4eu:akn4euVersion value="4.0.0.0"/>
+                	</preservation>
+                </FRBRManifestation>
+            </identification>
+            <references source="~_COM">
+                <TLCLocation xml:id="_BEL_BRU" href="http://publications.europa.eu/resource/authority/place/BEL_BRU" showAs="Brussels"/>
+                <TLCOrganization xml:id="_CONSIL" href="http://publications.europa.eu/resource/authority/corporate-body/CONSIL" showAs="Council of the European Union"/>
+                <TLCOrganization xml:id="_EP" href="http://publications.europa.eu/resource/authority/corporate-body/EP" showAs="European Parliament"/>
+                <TLCOrganization xml:id="_COM" href="http://publications.europa.eu/resource/authority/corporate-body/COM" showAs="European Commission"/>
+                <TLCReference xml:id="_EXPL_MEMORANDUM" name="docType" href="http://publications.europa.eu/resource/authority/resource-type/EXPL_MEMORANDUM"  showAs="Explanatory Memorandum"/>
+                <TLCRole xml:id="_PRESID" href="http://publications.europa.eu/resource/authority/role/PRESID" showAs="President"/>
+                <TLCReference xml:id="_legalBasis" name="contentSubject" href="http://eurovoc.europa.eu/5456" showAs="Legal basis"/>
+                <TLCReference xml:id="_language" name="language" href="http://publications.europa.eu/resource/authority/language/ENG" showAs="en"/>
+                <TLCReference xml:id="_procedure_YYYY_NNN" name="procedureReference" href="http://eur-lex.europa.eu/procedure/EN/YYYY_NNN" showAs="YYYY/NNNN (AAA)" shortForm="YYYY/NNN/AAA"/>
+                <TLCReference xml:id="_azs3y" name="identifier" href="http://publications.europa.eu/resource/authority/document-identifier-format/COM_NUMBER" showAs="AAA(YYYY) NNN" shortForm="AAA/YYYY/NNN"/>
+            </references>
+            <proprietary source="~_leos">
+                <leos:templateVersion>2.1.0</leos:templateVersion>
+                <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:docTemplate>EM-LP01</leos:docTemplate>
+            </proprietary>
+        </meta>
+        <preface xml:id="_preface">
+            <container name="procedureIdentifier" xml:id="_preface__procedureIdentifier">
+                <p xml:id="_preface__procedureIdentifier__p">
+                    <docketNumber refersTo="~_procedure_YYYY_NNN" xml:id="_preface__procedureIdentifier__p__docketNumber"/>
+                </p>
+            </container>
+            <longTitle xml:id="_preface__longtitle">
+                <p xml:id="_preface__longtitle__p">
+                    <docType refersTo="~_EXPL_MEMORANDUM" xml:id="_preface__longtitle__p__doctype">EXPLANATORY MEMORANDUM</docType>
+                </p>
+            </longTitle>
+        </preface>
+        <mainBody xml:id="_body">
+            <tblock xml:id="_tblock_1" refersTo="~_proposal_s_context">
+                <num xml:id="_tblock_1__num">1.</num>
+                <heading xml:id="_tblock_1__heading">CONTEXT OF THE PROPOSAL</heading>
+                <tblock xml:id="_tblock_1__tblock_1" refersTo="~_rationale">
+                    <num xml:id="_tblock_1__tblock_1__num">•</num>
+                    <heading xml:id="_tblock_1__tblock_1__heading">Reasons for and objectives of the proposal</heading>
+                    <blockContainer xml:id="_tblock_1__tblock_1__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_1__tblock_1__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_1__tblock_2" refersTo="~_consistencyAreaPolicy">
+                    <num xml:id="_tblock_1__tblock_2__num">•</num>
+                    <heading xml:id="_tblock_1__tblock_2__heading">Consistency with existing policy provisions in the policy area</heading>
+                    <blockContainer xml:id="_tblock_1__tblock_2__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_1__tblock_2__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_1__tblock_3" refersTo="~_consistencyUnionPolicy">
+                    <num xml:id="_tblock_1__tblock_3__num">•</num>
+                    <heading xml:id="_tblock_1__tblock_3__heading">Consistency with other Union policies</heading>
+                    <blockContainer xml:id="_tblock_1__tblock_3__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_1__tblock_3__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+            <tblock xml:id="_tblock_2" refersTo="~_statementOfLegalReasons">
+                <num xml:id="_tblock_2__num">2.</num>
+                <heading xml:id="_tblock_2__heading">LEGAL BASIS, SUBSIDIARITY AND PROPORTIONALITY</heading>
+                <tblock xml:id="_tblock_2__tblock_1" refersTo="~_legalBasis">
+                    <num xml:id="_tblock_2__tblock_1__num">•</num>
+                    <heading xml:id="_tblock_2__tblock_1__heading">Legal basis</heading>
+                    <blockContainer xml:id="_tblock_2__tblock_1__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_2__tblock_1__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_2__tblock_2" refersTo="~_subsidiarity">
+                    <num xml:id="_tblock_2__tblock_2__num">•</num>
+                    <heading xml:id="_tblock_2__tblock_2__heading">Subsidiarity (for non-exclusive competence)</heading>
+                    <blockContainer xml:id="_tblock_2__tblock_2__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_2__tblock_2__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_2__tblock_3" refersTo="~_proportionality">
+                    <num xml:id="_tblock_2__tblock_3__num">•</num>
+                    <heading xml:id="_tblock_2__tblock_3__heading">Proportionality</heading>
+                    <blockContainer xml:id="_tblock_2__tblock_3__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_2__tblock_3__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_2__tblock_4" refersTo="~_legalInstrument">
+                    <num xml:id="_tblock_2__tblock_4__num">•</num>
+                    <heading xml:id="_tblock_2__tblock_4__heading">Choice of the instrument</heading>
+                    <blockContainer xml:id="_tblock_2__tblock_4__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_2__tblock_4__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+            <tblock xml:id="_tblock_3" refersTo="~_resultsOfPreparatoryAnalysis">
+                <num xml:id="_tblock_3__num">3.</num>
+                <heading xml:id="_tblock_3__heading">RESULTS OF EX-POST EVALUATIONS, STAKEHOLDER CONSULTATIONS AND IMPACT ASSESSMENTS</heading>
+                <tblock xml:id="_tblock_3__tblock_1" refersTo="~_ex_post_evaluation">
+                    <num xml:id="_tblock_3__tblock_1__num">•</num>
+                    <heading xml:id="_tblock_3__tblock_1__heading">Ex-post evaluations/fitness checks of existing legislation</heading>
+                    <blockContainer xml:id="_tblock_3__tblock_1__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_3__tblock_1__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_3__tblock_2" refersTo="~_stakeholderConsultation">
+                    <num xml:id="_tblock_3__tblock_2__num">•</num>
+                    <heading xml:id="_tblock_3__tblock_2__heading">Stakeholder consultations</heading>
+                    <blockContainer xml:id="_tblock_3__tblock_2__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_3__tblock_2__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_3__tblock_3" refersTo="~_expertGroupInput">
+                    <num xml:id="_tblock_3__tblock_3__num">•</num>
+                    <heading xml:id="_tblock_3__tblock_3__heading">Collection and use of expertise</heading>
+                    <blockContainer xml:id="_tblock_3__tblock_3__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_3__tblock_3__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_3__tblock_4" refersTo="~_impactAssessment">
+                    <num xml:id="_tblock_3__tblock_4__num">•</num>
+                    <heading xml:id="_tblock_3__tblock_4__heading">Impact assessment</heading>
+                    <blockContainer xml:id="_tblock_3__tblock_4__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_3__tblock_4__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_3__tblock_5" refersTo="~_regulatoryFitness">
+                    <num xml:id="_tblock_3__tblock_5__num">•</num>
+                    <heading xml:id="_tblock_3__tblock_5__heading">Regulatory fitness and simplification</heading>
+                    <blockContainer xml:id="_tblock_3__tblock_5__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_3__tblock_5__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_3__tblock_6" refersTo="~_fundamentalRights">
+                    <num xml:id="_tblock_3__tblock_6__num">•</num>
+                    <heading xml:id="_tblock_3__tblock_6__heading">Fundamental rights</heading>
+                    <blockContainer xml:id="_tblock_3__tblock_6__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_3__tblock_6__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+            <tblock xml:id="_tblock_4" refersTo="~_budgetaryImplications">
+                <num xml:id="_tblock_4__num">4.</num>
+                <heading xml:id="_tblock_4__heading">BUDGETARY IMPLICATIONS</heading>
+                <blockContainer xml:id="_tblock_4__blockcontainer" leos:editable="true">
+                    <p xml:id="_tblock_4__blockcontainer__p">Not Applicable</p>
+                </blockContainer>
+            </tblock>
+            <tblock xml:id="_tblock_5">
+                <num xml:id="_tblock_5__num">5.</num>
+                <heading xml:id="_tblock_5__heading">OTHER ELEMENTS</heading>
+                <tblock xml:id="_tblock_5__tblock_1" refersTo="~_proposalImplementation">
+                    <num xml:id="_tblock_5__tblock_1_num">•</num>
+                    <heading xml:id="_tblock_5__tblock_1__heading">Implementation plans and monitoring, evaluation and reporting arrangements</heading>
+                    <blockContainer xml:id="_tblock_5__tblock_1__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_5__tblock_1__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+                <tblock xml:id="_tblock_5__tblock_2" refersTo="~_provisions">
+                    <num xml:id="_tblock_5__tblock_2__num">•</num>
+                    <heading xml:id="_tblock_5__tblock_2__heading">Detailed explanation of the specific provisions of the proposal</heading>
+                    <blockContainer xml:id="_tblock_5__tblock_2__blockcontainer" leos:editable="true">
+                        <p xml:id="_tblock_5__tblock_2__blockcontainer__p">Not Applicable</p>
+                    </blockContainer>
+                </tblock>
+            </tblock>
+        </mainBody>
+    </doc>
+</akomaNtoso>

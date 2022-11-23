@@ -23,7 +23,8 @@ public enum SoftActionType {
     DELETE("del"),
     TRANSFORM("trans"),
     DELETE_TRANSFORM("del_trans"),
-    UNDELETE("undelete");
+    UNDELETE("undelete"),
+    SPLITTED("splitted");
 
     String softAction;
 

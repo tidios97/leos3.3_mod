@@ -18,6 +18,7 @@ import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
 import eu.europa.ec.leos.domain.cmis.document.Bill;
+import eu.europa.ec.leos.domain.cmis.document.Explanatory;
 import eu.europa.ec.leos.domain.cmis.document.Memorandum;
 import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.cmis.document.XmlDocument;
@@ -25,11 +26,13 @@ import eu.europa.ec.leos.domain.cmis.metadata.ProposalMetadata;
 import eu.europa.ec.leos.domain.vo.CloneProposalMetadataVO;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.MetadataVO;
+import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.model.user.Entity;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.collection.document.BillContextService;
 import eu.europa.ec.leos.services.collection.document.ContextActionService;
+import eu.europa.ec.leos.services.collection.document.ExplanatoryContextService;
 import eu.europa.ec.leos.services.collection.document.MemorandumContextService;
 import eu.europa.ec.leos.services.document.ProposalService;
 import eu.europa.ec.leos.services.store.PackageService;
@@ -50,6 +53,7 @@ import java.util.List;
 import java.util.Map;
 
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.BILL;
+import static eu.europa.ec.leos.domain.cmis.LeosCategory.COUNCIL_EXPLANATORY;
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.MEMORANDUM;
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.PROPOSAL;
 
@@ -59,25 +63,22 @@ public class CollectionContextService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CollectionContextService.class);
 
+    private final MessageHelper messageHelper;
     private final TemplateService templateService;
     private final PackageService packageService;
     private final ProposalService proposalService;
     private final CollectionUrlBuilder urlBuilder;
-
     private final Provider<MemorandumContextService> memorandumContextProvider;
     private final Provider<BillContextService> billContextProvider;
+    private final Provider<ExplanatoryContextService> explanatoryContextProvider;
     private SecurityContext securityContext;
-
     private final Map<LeosCategory, XmlDocument> categoryTemplateMap;
-
     private final Map<ContextActionService, String> actionMsgMap;
-
     private Proposal proposal = null;
     private String purpose;
     private String versionComment;
     private String milestoneComment;
     private boolean eeaRelevance;
-
     private DocumentVO propDocument;
     private String propChildDocument;
     private String proposalComment;
@@ -87,21 +88,21 @@ public class CollectionContextService {
     private String connectedEntity;
     private CloneProposalMetadataVO cloneProposalMetadataVO;
 
-    CollectionContextService(TemplateService templateService,
-                             PackageService packageService,
-                             ProposalService proposalService,
+    CollectionContextService(TemplateService templateService, PackageService packageService, ProposalService proposalService,
                              CollectionUrlBuilder urlBuilder, Provider<MemorandumContextService> memorandumContextProvider,
-                             Provider<BillContextService> billContextProvider,
-                             SecurityContext securityContext) {
+                             Provider<BillContextService> billContextProvider, SecurityContext securityContext,
+                             Provider<ExplanatoryContextService> explanatoryContextProvider, MessageHelper messageHelper) {
         this.templateService = templateService;
         this.packageService = packageService;
         this.proposalService = proposalService;
         this.urlBuilder = urlBuilder;
         this.memorandumContextProvider = memorandumContextProvider;
         this.billContextProvider = billContextProvider;
+        this.explanatoryContextProvider = explanatoryContextProvider;
         this.securityContext = securityContext;
         this.categoryTemplateMap = new HashMap<>();
         this.actionMsgMap = new HashMap<>();
+        this.messageHelper = messageHelper;
     }
 
     public void useTemplate(String name) {
@@ -234,6 +235,7 @@ public class CollectionContextService {
                 memorandumContext.useActionMessageMap(actionMsgMap);
                 memorandumContext.useType(metadata.getType());
                 memorandumContext.usePackageTemplate(metadata.getTemplate());
+                memorandumContext.useEeaRelevance(eeaRelevance);
                 Memorandum memorandum = memorandumContext.executeImportMemorandum();
                 proposal = proposalService.addComponentRef(proposal, memorandum.getName(), LeosCategory.MEMORANDUM);
                 String memorandumRef = memorandum.getMetadata().get().getRef();
@@ -252,6 +254,7 @@ public class CollectionContextService {
                 billContext.useActionMessageMap(actionMsgMap);
                 billContext.useIdsAndUrlsHolder(idsAndUrlsHolder);
                 billContext.useCloneProposal(cloneProposal);
+                billContext.useEeaRelevance(eeaRelevance);
                 Bill bill = billContext.executeImportBill();
                 proposal = proposalService.addComponentRef(proposal, bill.getName(), LeosCategory.BILL);
                 String billRef = bill.getMetadata().get().getRef();
@@ -274,7 +277,7 @@ public class CollectionContextService {
         user.setConnectedEntity(entity);
     }
 
-    public void executeCreateProposal() {
+    public Proposal executeCreateProposal() {
         LOG.trace("Executing 'Create Proposal' use case...");
 
         LeosPackage leosPackage = packageService.createPackage();
@@ -310,10 +313,10 @@ public class CollectionContextService {
         billContext.useActionMessageMap(actionMsgMap);
         Bill bill = billContext.executeCreateBill();
         proposalService.addComponentRef(proposal, bill.getName(), LeosCategory.BILL);
-        proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
+        return proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
     }
 
-    public void executeUpdateProposal() {
+    public Proposal executeUpdateProposal() {
         LOG.trace("Executing 'Update Proposal' use case...");
 
         Validate.notNull(proposal, "Proposal is required!");
@@ -340,6 +343,8 @@ public class CollectionContextService {
         billContext.usePurpose(purpose);
         billContext.useActionMessageMap(actionMsgMap);
         billContext.executeUpdateBill();
+
+        return proposal;
     }
 
     public void executeDeleteProposal() {
@@ -389,6 +394,24 @@ public class CollectionContextService {
         billContext.useVersionComment(versionComment);
         billContext.useMilestoneComment(milestoneComment);
         billContext.executeCreateMilestone();
+    }
+    public void executeCreateExplanatory() {
+        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposal.getId());
+        ExplanatoryContextService explanatoryContext = explanatoryContextProvider.get();
+        explanatoryContext.usePackage(leosPackage);
+        String template = categoryTemplateMap.get(COUNCIL_EXPLANATORY).getName();
+        explanatoryContext.useTemplate(template);
+        explanatoryContext.usePurpose(purpose);
+        explanatoryContext.useTitle(messageHelper.getMessage("document.default.explanatory.title.default." + template));
+        Option<ProposalMetadata> metadataOption = proposal.getMetadata();
+        Validate.isTrue(metadataOption.isDefined(), "Proposal metadata is required!");
+        ProposalMetadata metadata = metadataOption.get();
+        explanatoryContext.useType(metadata.getType());
+        explanatoryContext.useActionMessageMap(actionMsgMap);
+        explanatoryContext.useCollaborators(proposal.getCollaborators());
+        Explanatory explanatory = explanatoryContext.executeCreateExplanatory();
+        proposalService.addComponentRef(proposal, explanatory.getName(), COUNCIL_EXPLANATORY);
+        proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
     }
 
     @SuppressWarnings("unchecked")

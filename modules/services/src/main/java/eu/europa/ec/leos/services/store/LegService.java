@@ -29,6 +29,8 @@ public interface LegService {
     LegDocument updateLegDocument(String id, byte[] content);
 
     LegDocument updateLegDocument(String id, LeosLegStatus status);
+
+    LegDocument updateLegDocument(String id, List<String> containedDocuments);
     
     LegDocument updateLegDocument(String id, byte[] pdfJobZip, byte[] wordJobZip);
     
@@ -53,4 +55,8 @@ public interface LegService {
     byte[] updateLegPackageContentWithComments(byte[] legPackageContent, List<String> comments) throws IOException;
 
     void addFilteredAnnotationsToZipContent(Map<String, Object> contentToZip, String docName, ExportOptions exportOptions);
+
+    String storeLegDocumentTemporary(final LegDocument legDocument);
+
+    String storeLegDocumentTemporary(final byte[] bytes);
 }
