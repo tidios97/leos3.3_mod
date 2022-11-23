@@ -14,8 +14,10 @@
 package eu.europa.ec.digit.userdata;
 
 import eu.europa.ec.digit.userdata.entities.Entity;
+import eu.europa.ec.digit.userdata.entities.SpecialEntity;
 import eu.europa.ec.digit.userdata.entities.User;
 import eu.europa.ec.digit.userdata.repositories.EntityRepository;
+import eu.europa.ec.digit.userdata.repositories.SpecialEntityRepository;
 import eu.europa.ec.digit.userdata.repositories.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +33,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -47,6 +50,8 @@ public class ApplicationTests {
 
     @Autowired
     private EntityRepository entityRepository;
+    @Autowired
+    private SpecialEntityRepository specialEntityRepository;
 
     @Test
     @Transactional(readOnly = true)
@@ -80,5 +85,24 @@ public class ApplicationTests {
                 .findAllFullPathEntities(Arrays.asList("4", "8"));
         List<Entity> test = entities.collect(Collectors.toList());
         assertEquals(test.size(), 8);
+    }
+    @Test
+    @Transactional
+    public void test_insertSpecialEntity() {
+        SpecialEntity entity1 = new SpecialEntity("520", "DIGIT-EDIT", null, "DIGIT-EDIT");
+        SpecialEntity entity2 = new SpecialEntity("521", "DGT-EDIT", null, "DGT-EDIT");
+
+        specialEntityRepository.save(entity1);
+        specialEntityRepository.save(entity2);
+
+        Iterable<SpecialEntity> organizations = specialEntityRepository.findAll();
+        assertEquals(2, StreamSupport.stream(organizations.spliterator(), false).count());
+    }
+
+    @Test
+    @Transactional(readOnly = true)
+    public void test_findAllSpecialEntity() {
+        Iterable<SpecialEntity> organizations = specialEntityRepository.findAll();
+        assertEquals(0, StreamSupport.stream(organizations.spliterator(), false).count());
     }
 }
