@@ -79,5 +79,5 @@ public interface DocumentContentService {
 
     byte[] getOriginalContentToCompare(XmlDocument xmlDocument);
 
-    boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory);
+    boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory, SecurityContext securityContext);
 }

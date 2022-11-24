@@ -54,7 +54,7 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
     public String toEditableContent(XmlDocument xmlDocument, String contextPath, SecurityContext securityContext, byte[] coverPageContent) {
     	String currentDocumentEditableXml = getEditableXml(xmlDocument, contextPath, securityContext, coverPageContent);
     	
-    	if(!isComparisonRequired(xmlDocument)) {
+    	if(!isComparisonRequired(xmlDocument, securityContext)) {
         	return currentDocumentEditableXml;
         }
     	

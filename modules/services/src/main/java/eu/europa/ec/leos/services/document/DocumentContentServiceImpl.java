@@ -68,13 +68,13 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
         this.xPathCatalog = xPathCatalog;
     }
     
-    protected boolean isComparisonRequired(XmlDocument xmlDocument) {
+    protected boolean isComparisonRequired(XmlDocument xmlDocument, SecurityContext securityContext) {
     	byte[] contentBytes = xmlDocument.getContent().get().getSource().getBytes();
     	switch (xmlDocument.getCategory()) {
 	        case MEMORANDUM:
 	        	return isMemorandumComparisonRequired(contentBytes);
 	        case COUNCIL_EXPLANATORY:
-	            return isCouncilExplanatoryComparisonRequired((Explanatory) xmlDocument);
+	            return isCouncilExplanatoryComparisonRequired((Explanatory) xmlDocument, securityContext);
 	        case ANNEX:
 	            return isAnnexComparisonRequired(contentBytes);
 	        case BILL:
@@ -126,7 +126,7 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
                 break;
             case COUNCIL_EXPLANATORY:
                 contentBytes = xmlDocument.getContent().get().getSource().getBytes();
-                if (isCouncilExplanatoryComparisonRequired((Explanatory) xmlDocument)) {
+                if (isCouncilExplanatoryComparisonRequired((Explanatory) xmlDocument, securityContext)) {
                     originalDocument = getOriginalExplanatory((Explanatory) xmlDocument);
                 } else {
                     return new String[]{currentDocumentEditableXml};
@@ -292,8 +292,8 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
     }
 
     @Override
-    public boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory) {
-        return explanatory.isLiveDiffingRequired();
+    public boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory, SecurityContext securityContext) {
+        return securityContext.hasPermission(explanatory, LeosPermission.CAN_TOGGLE_LIVE_DIFFING) && explanatory.isLiveDiffingRequired();
     }
 
 }
