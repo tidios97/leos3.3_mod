@@ -166,6 +166,8 @@ public class CmisDocumentExtensions {
                 getCollaborators(d),
                 getMilestoneComments(d),
                 contentOption(d, fetchContent),
+                getBaseRevisionId(d),
+                isLiveDiffingRequired(d),
                 getExplanatorydataOption(d));
     }
 
@@ -445,5 +447,10 @@ public class CmisDocumentExtensions {
 
     private static String getBaseRevisionId(Document document) {
         return document.getPropertyValue(CmisProperties.BASE_REVISION_ID.getId());
+    }
+    
+    private static boolean isLiveDiffingRequired(Document document) {
+    	Boolean liveDiffingRequired = document.getPropertyValue(CmisProperties.LIVE_DIFFING_REQUIRED.getId());
+    	return liveDiffingRequired != null ? liveDiffingRequired : false;
     }
 }

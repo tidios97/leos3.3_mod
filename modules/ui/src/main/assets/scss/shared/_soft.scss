@@ -138,6 +138,62 @@ $BLUE_COLOR: blue;
   }
 }
 
+division.leos-content-soft-removed {
+  @extend %softRemoved;
+  * {
+    @extend %softRemoved;
+  }
+}
+
+division.leos-content-soft-new {
+  @extend %softAdded;
+  * {
+    @extend %softAdded;
+  }
+}
+
+level.leos-content-soft-removed {
+  @extend %softRemoved;
+  * {
+    @extend %softRemoved;
+  }
+}
+
+level.leos-content-soft-new {
+  @extend %softAdded;
+  * {
+    @extend %softAdded;
+  }
+}
+
+b.leos-content-soft-removed {
+  @extend %softRemoved;
+  * {
+    @extend %softRemoved;
+  }
+}
+
+b.leos-content-soft-new {
+  @extend %softAdded;
+  * {
+    @extend %softAdded;
+  }
+}
+
+i.leos-content-soft-removed {
+  @extend %softRemoved;
+  * {
+    @extend %softRemoved;
+  }
+}
+
+i.leos-content-soft-new {
+  @extend %softAdded;
+  * {
+    @extend %softAdded;
+  }
+}
+
 span.leos-content-soft-removed {
   @extend %softRemoved;
   * {

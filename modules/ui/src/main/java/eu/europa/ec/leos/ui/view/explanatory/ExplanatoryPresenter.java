@@ -19,6 +19,7 @@ import com.google.common.eventbus.Subscribe;
 import com.vaadin.server.VaadinServletService;
 import eu.europa.ec.leos.cmis.domain.ContentImpl;
 import eu.europa.ec.leos.cmis.domain.SourceImpl;
+import eu.europa.ec.leos.cmis.mapping.CmisProperties;
 import eu.europa.ec.leos.domain.cmis.Content;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.LeosExportStatus;
@@ -75,8 +76,10 @@ import eu.europa.ec.leos.services.store.ExportPackageService;
 import eu.europa.ec.leos.services.store.LegService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.WorkspaceService;
+import eu.europa.ec.leos.services.support.VersionsUtil;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.ui.component.ComparisonComponent;
+import eu.europa.ec.leos.ui.event.ChangeBaseVersionEvent;
 import eu.europa.ec.leos.ui.event.CloseBrowserRequestEvent;
 import eu.europa.ec.leos.ui.event.CloseScreenRequestEvent;
 import eu.europa.ec.leos.ui.event.CreateExportPackageCleanVersionRequestEvent;
@@ -85,6 +88,7 @@ import eu.europa.ec.leos.ui.event.DownloadCleanVersion;
 import eu.europa.ec.leos.ui.event.DownloadXmlVersionRequestEvent;
 import eu.europa.ec.leos.ui.event.FetchMilestoneByVersionedReferenceEvent;
 import eu.europa.ec.leos.ui.event.MergeElementRequestEvent;
+import eu.europa.ec.leos.ui.event.ToggleLiveDiffingRequiredEvent;
 import eu.europa.ec.leos.ui.event.doubleCompare.DocuWriteExportRequestEvent;
 import eu.europa.ec.leos.ui.event.doubleCompare.DoubleCompareRequestEvent;
 import eu.europa.ec.leos.ui.event.metadata.DocumentMetadataRequest;
@@ -208,6 +212,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
 import static eu.europa.ec.leos.services.support.XmlHelper.SUBPARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.SUBPOINT;
+import static eu.europa.ec.leos.util.LeosDomainUtil.CMIS_PROPERTY_SPLITTER;
 
 @Component
 @Scope("prototype")
@@ -351,12 +356,11 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
             if (explanatoryMetadata.isDefined()) {
                 explanatoryScreen.setTitle(messageHelper.getMessage("document.explanatory.title.default"));
             }
-            explanatoryScreen.setDocumentVersionInfo(getVersionInfo(explanatory));
-            explanatoryScreen.setContent(getEditableXml(explanatory));
             explanatoryScreen.setToc(getTableOfContent(explanatory, mode));
             DocumentVO explanatoryVO = createExplanatoryVO(explanatory);
             explanatoryScreen.updateUserCoEditionInfo(coEditionHelper.getCurrentEditInfo(explanatory.getVersionSeriesId()), id);
             explanatoryScreen.setPermissions(explanatoryVO);
+            updateView(explanatory);
             explanatoryScreen.initAnnotations(explanatoryVO, proposalRef, connectedEntity);
         }
         catch (Exception ex) {
@@ -882,7 +886,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         //load content from session if exists
         Explanatory explanatoryFromSession = getExplanatoryFromSession();
         if(explanatoryFromSession != null) {
-            explanatoryScreen.setContent(getEditableXml(explanatoryFromSession));
+        	updateView(explanatoryFromSession);
         }else{
             eventBus.post(new RefreshDocumentEvent());
         }
@@ -1072,7 +1076,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         leosApplicationEventBus.post(new DocumentUpdatedByCoEditorEvent(user, strDocumentVersionSeriesId, id));
     }
 
-    private String getVersionInfoAsString(XmlDocument document) {
+    private String getVersionInfoAsString(Explanatory document) {
         final VersionInfoVO versionInfo = getVersionInfo(document);
         final String versionInfoString = messageHelper.getMessage(
                 "document.version.caption",
@@ -1185,15 +1189,21 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
         commonDelegate.mergeSuggestions(explanatory, event, elementProcessor, explanatoryService::updateExplanatory);
     }
 
-    private VersionInfoVO getVersionInfo(XmlDocument document) {
+    private VersionInfoVO getVersionInfo(Explanatory document) {
         String userId = document.getLastModifiedBy();
         User user = userHelper.getUser(userId);
-
+        String versionLabel = null;
+        String versionComment = null;
+        String baseRevisionId = document.getBaseRevisionId();
+        if(StringUtils.isNotBlank(baseRevisionId) && baseRevisionId.split(CMIS_PROPERTY_SPLITTER).length >= 3) {
+            versionLabel = baseRevisionId.split(CMIS_PROPERTY_SPLITTER)[1];
+            versionComment = baseRevisionId.split(CMIS_PROPERTY_SPLITTER)[2];
+        }
         return new VersionInfoVO(
                 document.getVersionLabel(),
                 user.getName(), user.getDefaultEntity() != null ? user.getDefaultEntity().getOrganizationName() : "",
                 dateFormatter.format(Date.from(document.getLastModificationInstant())),
-                document.getVersionType());
+                document.getVersionType(), versionLabel, versionComment);
     }
 
     private DocumentVO createExplanatoryVO(Explanatory explanatory) {
@@ -1359,7 +1369,7 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
 
         Explanatory explanatoryUpdated = copyIntoNew(explanatoryFromSession, updatedContent);
         httpSession.setAttribute("explanatory#" + getDocumentRef(), explanatoryUpdated);
-        explanatoryScreen.setContent(getEditableXml(explanatoryUpdated));
+        updateView(explanatoryUpdated);
         eventBus.post(new ReplaceAllMatchResponseEvent(true));
     }
 
@@ -1390,6 +1400,8 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
                 source.getCollaborators(),
                 source.getMilestoneComments(),
                 updatedContentOptionObj,
+                source.getBaseRevisionId(),
+                source.isLiveDiffingRequired(),
                 source.getMetadata()
         );
     }
@@ -1427,11 +1439,55 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
 
             Explanatory explanatoryUpdated = copyIntoNew(explanatoryFromSession, updatedContent);
             httpSession.setAttribute("explanatory#" + getDocumentRef(), explanatoryUpdated);
-            explanatoryScreen.setContent(getEditableXml(explanatoryUpdated));
+            updateView(explanatoryUpdated);
             explanatoryScreen.refineSearch(event.getSearchId(), event.getMatchIndex(), true);
         } else {
             explanatoryScreen.refineSearch(event.getSearchId(), event.getMatchIndex(), false);
         }
+    }
+    
+    @Subscribe
+    void changeBaseVersion(ChangeBaseVersionEvent event) {
+    	 String documentId = event.getVersionId();
+         String versionLabel = event.getVersionLabel();
+         String versionTitle = event.getBaseVersionTitle();
+         
+         Explanatory updatedExplanatory = updateBaseVersion(documentId, versionLabel, versionTitle);
+         
+         NotificationEvent notification;
+         if(!updatedExplanatory.isLiveDiffingRequired()) {
+        	 updatedExplanatory = updateLiveDiffingRequired(true);
+        	 notification = new NotificationEvent(NotificationEvent.Type.INFO, "document.base.version.changed.warning", versionLabel);
+         } else {
+        	 notification = new NotificationEvent(NotificationEvent.Type.INFO, "document.base.version.changed.info", versionLabel);
+         }
+         
+         updateView(updatedExplanatory);
+         eventBus.post(notification);
+    }
+    
+    @Subscribe
+    void toggleLiveDiffingRequired(ToggleLiveDiffingRequiredEvent event) {
+    	boolean liveDiffingRequired = event.isLiveDiffingRequired();
+    	
+    	Explanatory updatedExplanatory = updateLiveDiffingRequired(liveDiffingRequired);
+    	
+    	NotificationEvent notification;
+    	if(liveDiffingRequired) {
+    		String baseRevisionId = updatedExplanatory.getBaseRevisionId();
+        	if(StringUtils.isEmpty(baseRevisionId)) {
+        		VersionVO versionVO = VersionsUtil.buildVersionVO(Arrays.asList(updatedExplanatory), messageHelper).get(0);
+        		updatedExplanatory = updateBaseVersion(versionVO.getDocumentId(), versionVO.getVersionNumber().toString(), versionVO.getCheckinCommentVO().getTitle());
+        		notification = new NotificationEvent(Type.INFO, "document.live.diffing.on.warning", versionVO.getVersionNumber().toString());
+        	} else {
+        		notification = new NotificationEvent(Type.INFO, "document.live.diffing.on");
+        	}
+    	} else {
+    		notification = new NotificationEvent(Type.INFO, "document.live.diffing.off");
+    	}
+    	
+    	updateView(updatedExplanatory);
+    	eventBus.post(notification);
     }
 
     @Subscribe
@@ -1452,4 +1508,25 @@ class ExplanatoryPresenter extends AbstractLeosPresenter {
                 filter(tocItem -> (tocItem.getAknTag().value().equalsIgnoreCase(ExplanatoryStructureType.LEVEL.getType()))).collect(Collectors.toList());
         return tocItems.size() > 0 ? ExplanatoryStructureType.valueOf(tocItems.get(0).getAknTag().value().toUpperCase()) : null;
     }
+    
+    private Explanatory updateBaseVersion(String documentId, String versionLabel, String versionTitle) {
+    	 Map<String, Object> properties = new HashMap<>();
+         properties.put(CmisProperties.BASE_REVISION_ID.getId(), documentId + CMIS_PROPERTY_SPLITTER + versionLabel + CMIS_PROPERTY_SPLITTER + versionTitle);
+         Explanatory updatedExplanatory =  explanatoryService.updateExplanatory(documentId, properties, true);
+         return updatedExplanatory;
+    }
+    
+    private Explanatory updateLiveDiffingRequired(boolean liveDiffingRequired) {
+    	Map<String, Object> properties = new HashMap<>();
+        properties.put(CmisProperties.LIVE_DIFFING_REQUIRED.getId(), liveDiffingRequired);
+        Explanatory updatedExplanatory = explanatoryService.updateExplanatory(documentId, properties, true);
+        return updatedExplanatory;
+    }
+    
+    private void updateView(Explanatory explanatory) {
+    	explanatoryScreen.setLiveDiffingRequired(explanatory.isLiveDiffingRequired());
+    	explanatoryScreen.setDocumentVersionInfo(getVersionInfo(explanatory));
+        explanatoryScreen.setContent(getEditableXml(explanatory));
+    }
+
 }

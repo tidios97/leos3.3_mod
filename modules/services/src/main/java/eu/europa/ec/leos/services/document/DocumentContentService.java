@@ -57,8 +57,6 @@ public interface DocumentContentService {
 
     boolean isProposalComparisonRequired(byte[] contentBytes);
 
-    boolean isCouncilExplanatoryComparisonRequired(byte[] contentBytes);
-
     String getDocumentAsHtml(XmlDocument xmlDocument, String contextPath, List<LeosPermission> permissions);
 
     String getDocumentAsHtml(XmlDocument xmlDocument, String contextPath, List<LeosPermission> permissions, boolean includeCoverPage);
@@ -80,4 +78,6 @@ public interface DocumentContentService {
     boolean isCoverPageExists(byte[] xmlContent);
 
     byte[] getOriginalContentToCompare(XmlDocument xmlDocument);
+
+    boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory);
 }

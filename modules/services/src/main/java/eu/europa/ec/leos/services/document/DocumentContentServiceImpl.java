@@ -27,6 +27,7 @@ import eu.europa.ec.leos.services.compare.ContentComparatorService;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.services.support.XPathCatalog;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,47 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
         this.xmlContentProcessor = xmlContentProcessor;
         this.xPathCatalog = xPathCatalog;
     }
+    
+    protected boolean isComparisonRequired(XmlDocument xmlDocument) {
+    	byte[] contentBytes = xmlDocument.getContent().get().getSource().getBytes();
+    	switch (xmlDocument.getCategory()) {
+	        case MEMORANDUM:
+	        	return isMemorandumComparisonRequired(contentBytes);
+	        case COUNCIL_EXPLANATORY:
+	            return isCouncilExplanatoryComparisonRequired((Explanatory) xmlDocument);
+	        case ANNEX:
+	            return isAnnexComparisonRequired(contentBytes);
+	        case BILL:
+	            return true;
+	        case PROPOSAL:
+	        	return true;
+	        default:
+	            throw new UnsupportedOperationException("No transformation supported for this category");
+	    }
+    }
+    
+    protected XmlDocument getOriginalDocument(XmlDocument xmlDocument) {
+    	switch (xmlDocument.getCategory()) {
+	        case MEMORANDUM:
+	        	return getOriginalMemorandum((Memorandum) xmlDocument);
+	        case COUNCIL_EXPLANATORY:
+	        	return getOriginalExplanatory((Explanatory) xmlDocument);
+	        case ANNEX:
+	        	return getOriginalAnnex((Annex) xmlDocument);
+	        case BILL:
+	        	return getOriginalBill((Bill) xmlDocument);
+	        case PROPOSAL:
+	        	return getOriginalProposal((Proposal) xmlDocument);
+	        default:
+	            throw new UnsupportedOperationException("No transformation supported for this category");
+	    }
+    }
+    
+    protected boolean isSameDocument(XmlDocument xmlDocument, XmlDocument originalDocument) {
+    	return originalDocument != null 
+    			&& StringUtils.equals(originalDocument.getId(), xmlDocument.getId()) 
+    			&& StringUtils.equals(originalDocument.getVersionLabel(), xmlDocument.getVersionLabel());
+    }
 
     protected String[] getContentsToCompare(XmlDocument xmlDocument, String contextPath, SecurityContext securityContext,
                                             byte[] coverPageContent) {
@@ -84,7 +126,7 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
                 break;
             case COUNCIL_EXPLANATORY:
                 contentBytes = xmlDocument.getContent().get().getSource().getBytes();
-                if (isCouncilExplanatoryComparisonRequired(contentBytes)) {
+                if (isCouncilExplanatoryComparisonRequired((Explanatory) xmlDocument)) {
                     originalDocument = getOriginalExplanatory((Explanatory) xmlDocument);
                 } else {
                     return new String[]{currentDocumentEditableXml};
@@ -248,4 +290,10 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
         final Content content = xmlDocument.getContent().getOrError(() -> "Document content is required!");
         return content.getSource().getBytes();
     }
+
+    @Override
+    public boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory) {
+        return explanatory.isLiveDiffingRequired();
+    }
+
 }

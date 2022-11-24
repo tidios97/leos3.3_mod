@@ -306,4 +306,6 @@ public interface XmlContentProcessor {
     String getOriginalDocRefFromClonedContent(byte[] xmlContent);
 
     byte[] updateInitialNumberForArticles(byte[] xmlContent);
+    
+    public byte[] insertSoftAddedClassAttribute(byte[] contentBytes);
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ExplanatoryRepositoryImpl implements ExplanatoryRepository {
@@ -35,6 +36,12 @@ public class ExplanatoryRepositoryImpl implements ExplanatoryRepository {
         logger.debug("Creating Explanatory From Content... [tpath=" + path + ", name=" + name + "]");
         return leosRepository.createDocumentFromContent(path, name, metadata, Explanatory.class,
                 LeosCategory.COUNCIL_EXPLANATORY.name(), content);
+    }
+    
+    @Override
+    public Explanatory updateExplanatory(String id, Map<String, Object> properties, boolean latest) {
+    	logger.debug("Updating Annex metadata... [id=" + id + "]");
+        return leosRepository.updateDocument(id, properties, Explanatory.class, latest);
     }
 
     @Override
@@ -89,6 +96,12 @@ public class ExplanatoryRepositoryImpl implements ExplanatoryRepository {
     public Explanatory findExplanatoryByRef(String ref) {
         logger.debug("Finding Explanatory by ref... [ref=" + ref + "]");
         return leosRepository.findDocumentByRef(ref, Explanatory.class);
+    }
+    
+    @Override
+    public Explanatory findExplanatoryByVersion(String documentRef, String versionLabel) {
+    	logger.debug("Finding Explanatory by version... [ref=" + documentRef + " and version=" + versionLabel + "]");
+        return leosRepository.findDocumentByVersion(Explanatory.class, documentRef, versionLabel);
     }
 
     @Override

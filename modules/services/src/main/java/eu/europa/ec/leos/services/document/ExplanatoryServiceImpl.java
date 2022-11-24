@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static eu.europa.ec.leos.services.support.XmlHelper.DOC;
@@ -302,5 +303,20 @@ public class ExplanatoryServiceImpl implements ExplanatoryService {
     @Override
     public List<Explanatory> findCouncilExplanatoryByPackagePath(String path) {
         return packageRepository.findDocumentsByPackagePath(path, Explanatory.class, true);
+    }
+    
+    @Override
+    public Explanatory updateExplanatory(String id, Map<String, Object> properties, boolean latest) {
+    	LOG.trace("Updating Explanatory Xml Content... [id={}]", id);
+    	Stopwatch stopwatch = Stopwatch.createStarted();
+    	Explanatory explanatory = explanatoryRepository.updateExplanatory(id, properties, latest);
+    	LOG.trace("Updated Explanatory ...({} milliseconds)", stopwatch.elapsed(TimeUnit.MILLISECONDS));
+        return explanatory;
+    }
+    
+    @Override
+    public Explanatory findExplanatoryByVersion(String documentRef, String versionLabel) {
+    	LOG.trace("Finding Explanatory by version... [ref=" + documentRef + " and version=" + versionLabel + "]");
+        return explanatoryRepository.findExplanatoryByVersion(documentRef, versionLabel);
     }
 }

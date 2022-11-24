@@ -1033,5 +1033,14 @@ public class XercesUtils {
         }
         return softActionType;
     }
+    
+    public static void insertOrUpdateAttributeValueRecursively(Node node, String attrName, String attrValue) {
+    	insertOrUpdateAttributeValue(node, attrName, attrValue);
+    	if(node.hasChildNodes()) {
+    		for(Node child : getChildren(node)) {
+    			insertOrUpdateAttributeValueRecursively(child, attrName, attrValue);
+    		}
+    	}
+    }
 
 }

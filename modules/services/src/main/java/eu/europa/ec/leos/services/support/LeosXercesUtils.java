@@ -63,18 +63,43 @@ public class LeosXercesUtils {
     }
 
     private static void formatDivisionPartWithLeosRules(Node node, Node divisionNodePart, String textContent, String style) {
-        divisionNodePart.setTextContent("");
-        Node formattedNode;
-        if (style.contains(TYPE_1.name().toLowerCase()) || style.contains(TYPE_2.name().toLowerCase())) {
-            formattedNode = createElement(node.getOwnerDocument(), BOLD, textContent);
-        } else if (style.contains(TYPE_3.name().toLowerCase())) {
-            formattedNode = createElement(node.getOwnerDocument(), BOLD, "");
-            Node iNode = createElement(node.getOwnerDocument(), ITALICS, textContent);
-            formattedNode.appendChild(iNode);
-        } else { // TYPE_4
-            formattedNode = createElement(node.getOwnerDocument(), ITALICS, textContent);
-        }
-        divisionNodePart.appendChild(formattedNode);
+    	Node formattedNode;
+    	if (style.contains(TYPE_1.name().toLowerCase()) || style.contains(TYPE_2.name().toLowerCase())) {
+    		formattedNode = getBoldNode(node, divisionNodePart, textContent);
+    	} else if (style.contains(TYPE_3.name().toLowerCase())) {
+    		formattedNode = getBoldNode(node, divisionNodePart, "");
+    		Node iNode = getItalicNode(node, divisionNodePart, textContent);
+    		formattedNode.appendChild(iNode);
+    	} else { // TYPE_4
+    		formattedNode = getItalicNode(node, divisionNodePart, textContent);
+    	}
+    	divisionNodePart.setTextContent("");
+    	divisionNodePart.appendChild(formattedNode);
+    }
+    
+    private static Node getBoldNode(Node node, Node divisionNodePart, String textContent) {
+    	Node bNode;
+    	if(XercesUtils.getFirstElementByName(divisionNodePart, BOLD) != null) {
+    		bNode = XercesUtils.getFirstElementByName(divisionNodePart, BOLD).cloneNode(true);
+    		bNode.setTextContent(textContent);
+    	} else {
+    		bNode = createElement(node.getOwnerDocument(), BOLD, textContent);
+    	}
+    	
+    	return bNode;
+    }
+    
+    private static Node getItalicNode(Node node, Node divisionNodePart, String textContent) {
+    	Node iNode;
+    	Node bNode = XercesUtils.getFirstElementByName(divisionNodePart, BOLD);
+    	if(bNode != null && XercesUtils.getFirstElementByName(bNode, ITALICS) != null) {
+    		iNode = XercesUtils.getFirstElementByName(bNode, ITALICS).cloneNode(true);
+    		iNode.setTextContent(textContent);
+    	} else {
+    		iNode = createElement(node.getOwnerDocument(), ITALICS, textContent);
+    	}
+    	
+    	return iNode;
     }
 
 }

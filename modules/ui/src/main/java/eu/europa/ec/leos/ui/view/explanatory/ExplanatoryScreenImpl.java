@@ -176,6 +176,7 @@ abstract class ExplanatoryScreenImpl extends VerticalLayout implements Explanato
     
     protected ExplanatoryActionsMenuBar explanatoryActionsMenuBar;
     protected Label versionInfoLabel;
+    protected Button toggleLiveDiffingButton;
     protected Button refreshNoteButton;
     protected Button refreshButton;
     protected Button searchButton;
@@ -361,10 +362,22 @@ abstract class ExplanatoryScreenImpl extends VerticalLayout implements Explanato
 
     @Override
     public void setDocumentVersionInfo(VersionInfoVO versionInfoVO) {
-        this.versionInfoLabel.setValue(messageHelper.getMessage("document.version.caption", versionInfoVO.getDocumentVersion(), versionInfoVO.getLastModifiedBy(), versionInfoVO.getEntity(), versionInfoVO.getLastModificationInstant()));
+        String baseVersionStr = "";
+        String revisedBaseVersion = versionInfoVO.getRevisedBaseVersion();
+        if(!StringUtils.isEmpty(revisedBaseVersion) && isLiveDiffingOn()) {
+            baseVersionStr = messageHelper.getMessage("document.base.version.toolbar.info", versionInfoVO.getBaseVersionTitle(),
+                    versionInfoVO.getRevisedBaseVersion());
+        }
+        this.versionInfoLabel.setValue(messageHelper.getMessage("document.version.caption",
+                versionInfoVO.getDocumentVersion(), versionInfoVO.getLastModifiedBy(), versionInfoVO.getEntity(),
+                versionInfoVO.getLastModificationInstant()) + " " + baseVersionStr);
     }
 
-    private void refreshNoteButton() {
+    private boolean isLiveDiffingOn() {
+		return toggleLiveDiffingButton.isVisible() && toggleLiveDiffingButton.getData() != null && StringUtils.equalsIgnoreCase((String)toggleLiveDiffingButton.getData(), "ON");
+	}
+
+	private void refreshNoteButton() {
         refreshNoteButton.setCaptionAsHtml(true);
         refreshNoteButton.setCaption(messageHelper.getMessage("document.request.refresh.msg"));
         refreshNoteButton.setIcon(LeosTheme.LEOS_INFO_YELLOW_16);
@@ -680,9 +693,10 @@ abstract class ExplanatoryScreenImpl extends VerticalLayout implements Explanato
 
         boolean canRestorePreviousVersion = securityContext.hasPermission(annexVO, LeosPermission.CAN_RESTORE_PREVIOUS_VERSION);
         boolean canDownload = securityContext.hasPermission(annexVO, LeosPermission.CAN_DOWNLOAD_XML_COMPARISON);
+        boolean canEnableLiveDiffing = securityContext.hasPermission(annexVO, LeosPermission.CAN_TOGGLE_LIVE_DIFFING);
 
         versionsTab.setDataFunctions(allVersions, minorVersionsFn, countMinorVersionsFn,
-                recentChangesFn, countRecentChangesFn, true, false,
+                recentChangesFn, countRecentChangesFn, true, canEnableLiveDiffing ? true : false,
                 canRestorePreviousVersion, canDownload);
 
     }
