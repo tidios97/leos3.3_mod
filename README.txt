@@ -134,3 +134,16 @@ You must compile and run akn4euutil on the command line.
 Open the browser and navigate to the LEOS web interface available at the following URL:
 
     http://localhost:8080/leos-pilot/ui
+
+
+B6. VIEW H2 CONSOLE
+===================
+
+1 - Make sure application.properties has console enable:
+        spring.h2.console.enabled=true
+
+2 - Enter the below url in browser (don't forget the context of the application)
+    USER REPO : http://localhost:9095/ud-repo/h2-console
+    ANNOTATIONS: http://localhost:9099/annotate/h2-console
+
+JDBC URL : jdbc:h2:mem:~/test;Mode=Oracle;DB_CLOSE_ON_EXIT=FALSE
