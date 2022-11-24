@@ -85,7 +85,7 @@ define(function hContainerExtensionModule(require) {
     function _addListeners(connector, attributeName, attributeValue) {
         var target = connector.target;
         $(target).find(HCONTAINER + "[" + attributeName + "='" + attributeValue + "']").each(function( index ) {
-            var div = $(this).first();
+            var div = $($(this).children()[0]);
             if (div.prop("tagName").toLowerCase() != DIV || div.attr(NAME) != CHECKBOX) {
                 div = $('<' + DIV + ' ' + NAME + '="' + CHECKBOX + '"/>').attr(divStyle);
                 var cssCheckBoxWidth = window.getComputedStyle(this, '::before').width;
