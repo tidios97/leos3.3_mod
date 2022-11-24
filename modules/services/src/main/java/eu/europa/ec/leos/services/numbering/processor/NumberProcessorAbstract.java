@@ -5,6 +5,7 @@ import static eu.europa.ec.leos.services.support.LeosXercesUtils.buildNumElement
 import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
 import static eu.europa.ec.leos.services.support.XercesUtils.getId;
 import static eu.europa.ec.leos.services.support.XercesUtils.isSoftChanged;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_RENUMBERED;
 import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
 
 import org.slf4j.Logger;
@@ -65,7 +66,7 @@ public class NumberProcessorAbstract {
          * But then, to change it to if:
          * ( numberProcessorHandler.isElementSameOrigin(node) && (leosRenumbered == null || !leosRenumbered.equals("true")) )
          */
-        String leosRenumbered = XercesUtils.getAttributeValue(node, "leos:renumbered");
+        String leosRenumbered = XercesUtils.getAttributeValue(node, LEOS_RENUMBERED);
         if (numberProcessorHandler.isElementSameOrigin(node) && (leosRenumbered == null || !leosRenumbered.equals("true"))) {
             // found an CN element
             // complex numbering, CN element in CN runningInstance

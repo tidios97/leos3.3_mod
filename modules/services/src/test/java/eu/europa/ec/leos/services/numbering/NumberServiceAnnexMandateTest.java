@@ -123,4 +123,22 @@ public class NumberServiceAnnexMandateTest extends NumberServiceTest {
         assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
     }
 
+    @Test
+    public void test_auto_numbering_level_cn_withNegatives() {
+        final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_auto_numbering_level_cn_withNegatives.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_auto_numbering_level_cn_withNegatives_expected.xml");
+        byte[] result = xmlContentProcessor.prepareForRenumber(xmlInput);
+        result = numberService.renumberLevel(result);
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+
+    @Test
+    public void test_auto_numbering_level_cn_with_soft_attributes() {
+        final byte[] xmlInput = TestUtils.getFileContent(FILE_PREFIX, "test_auto_numbering_level_cn_with_soft_attributes.xml");
+        final byte[] xmlExpected = TestUtils.getFileContent(FILE_PREFIX, "test_auto_numbering_level_cn_with_soft_attributes_expected.xml");
+        byte[] result = xmlContentProcessor.prepareForRenumber(xmlInput);
+        result = numberService.renumberLevel(result);
+        assertEquals(squeezeXmlAndRemoveAllNS(new String(xmlExpected)), squeezeXmlAndRemoveAllNS(new String(result)));
+    }
+
 }

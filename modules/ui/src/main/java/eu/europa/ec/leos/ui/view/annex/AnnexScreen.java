@@ -145,5 +145,7 @@ interface AnnexScreen {
 
     boolean isCoverPageVisible();
 
+    void confirmRenumberDocument();
+
     Optional<ContributionVO> findContributionAndShowTab(String revisionVersion);
 }

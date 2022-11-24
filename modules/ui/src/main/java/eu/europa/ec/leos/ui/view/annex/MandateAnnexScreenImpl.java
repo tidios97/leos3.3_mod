@@ -238,6 +238,14 @@ public class MandateAnnexScreenImpl extends AnnexScreenImpl {
         actionsMenuBar.setDownloadVersionWithAnnotationsVisible(true);
         actionsMenuBar.setDownloadCleanVersionVisible(true);
         actionsMenuBar.setShowCleanVersionVisible(false);
+        boolean canRenumber = securityContext.hasPermission(annex, LeosPermission.CAN_RENUMBER);
+        if (canRenumber) {
+            actionsMenuBar.setRenumberingVisible(true);
+            actionsMenuBar.setRenumberingGroupVisible(true);
+        } else {
+            actionsMenuBar.setRenumberingVisible(false);
+            actionsMenuBar.setRenumberingGroupVisible(false);
+        }
     }
 
     @Override

@@ -30,72 +30,7 @@ import static eu.europa.ec.leos.services.support.XercesUtils.createXercesDocumen
 import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
 import static eu.europa.ec.leos.services.support.XercesUtils.getId;
 import static eu.europa.ec.leos.services.support.XercesUtils.updateXMLIDAttributeFullStructureNode;
-import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
-import static eu.europa.ec.leos.services.support.XmlHelper.AUTHORIAL_NOTE;
-import static eu.europa.ec.leos.services.support.XmlHelper.BACK_TO_NUM_FROM_SOFT_DELETED;
-import static eu.europa.ec.leos.services.support.XmlHelper.BLOCK;
-import static eu.europa.ec.leos.services.support.XmlHelper.BODY;
-import static eu.europa.ec.leos.services.support.XmlHelper.CITATION;
-import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.CN;
-import static eu.europa.ec.leos.services.support.XmlHelper.CONTENT;
-import static eu.europa.ec.leos.services.support.XmlHelper.CROSSHEADING;
-import static eu.europa.ec.leos.services.support.XmlHelper.DIVISION;
-import static eu.europa.ec.leos.services.support.XmlHelper.EC;
-import static eu.europa.ec.leos.services.support.XmlHelper.ELEMENTS_TO_BE_PROCESSED_FOR_NUMBERING;
-import static eu.europa.ec.leos.services.support.XmlHelper.ELEMENTS_WITH_TEXT;
-import static eu.europa.ec.leos.services.support.XmlHelper.EMPTY_STRING;
-import static eu.europa.ec.leos.services.support.XmlHelper.HEADING;
-import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
-import static eu.europa.ec.leos.services.support.XmlHelper.INDENT_LEVEL_PROPERTY;
-import static eu.europa.ec.leos.services.support.XmlHelper.INLINE_NUM_PROPERTY;
-import static eu.europa.ec.leos.services.support.XmlHelper.INTRO;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_AFFECTED_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_AUTO_NUM_OVERWRITE;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_CROSSHEADING_TYPE;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_CROSS_HEADING_BLOCK_NAME;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_DELETABLE_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_DEPTH_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_EDITABLE_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_LEVEL_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_NUMBERED_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_ORIGIN_INDENT_LEVEL_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_ORIGIN_NUM_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_ORIGIN_NUM_ID_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_ORIGIN_NUM_ORIGIN_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_ORIGIN_TYPE_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_INDENT_UNUMBERED_PARAGRAPH;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_LIST_TYPE_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_ORIGIN_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ROOT_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_DATE_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_MOVE_FROM;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_MOVE_TO;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_TRANS_FROM;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_USER_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEVEL;
-import static eu.europa.ec.leos.services.support.XmlHelper.LIST;
-import static eu.europa.ec.leos.services.support.XmlHelper.MAIN_BODY;
-import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
-import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
-import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
-import static eu.europa.ec.leos.services.support.XmlHelper.PREFACE;
-import static eu.europa.ec.leos.services.support.XmlHelper.RECITAL;
-import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_DELETE_PLACEHOLDER_ID_PREFIX;
-import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_MOVE_PLACEHOLDER_ID_PREFIX;
-import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX;
-import static eu.europa.ec.leos.services.support.XmlHelper.SOFT_SPLITTED_PLACEHOLDER_ID_PREFIX;
-import static eu.europa.ec.leos.services.support.XmlHelper.P;
-import static eu.europa.ec.leos.services.support.XmlHelper.SUBPARAGRAPH;
-import static eu.europa.ec.leos.services.support.XmlHelper.SUBPOINT;
-import static eu.europa.ec.leos.services.support.XmlHelper.TOGGLED_TO_NUM;
-import static eu.europa.ec.leos.services.support.XmlHelper.UTF_8;
-import static eu.europa.ec.leos.services.support.XmlHelper.XMLID;
-import static eu.europa.ec.leos.services.support.XmlHelper.getAttributeValueAsBoolean;
-import static eu.europa.ec.leos.services.support.XmlHelper.getAttributeValueAsInteger;
-import static eu.europa.ec.leos.services.support.XmlHelper.removeAttribute;
-import static eu.europa.ec.leos.services.support.XmlHelper.updateSoftTransFromAttribute;
+import static eu.europa.ec.leos.services.support.XmlHelper.*;
 import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.HASH_NUM_VALUE;
 import static eu.europa.ec.leos.vo.toc.StructureConfigUtils.getNumberingTypeByTagNameAndTocItemType;
 
@@ -985,7 +920,7 @@ public class XmlContentProcessorMandate extends XmlContentProcessorImpl {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node childNode = nodeList.item(i);
             if (childNode.getNodeType() == Node.ELEMENT_NODE) {
-                XercesUtils.insertOrUpdateAttributeValue(childNode, "leos:renumbered", "true");
+                XercesUtils.insertOrUpdateAttributeValue(childNode, LEOS_RENUMBERED, "true");
             }
         }
     }

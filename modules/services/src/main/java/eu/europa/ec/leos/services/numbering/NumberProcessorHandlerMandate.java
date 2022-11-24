@@ -2,9 +2,7 @@ package eu.europa.ec.leos.services.numbering;
 
 import static eu.europa.ec.leos.services.numbering.depthBased.ParentChildConverter.getNodeDepth;
 import static eu.europa.ec.leos.services.support.XercesUtils.getNodeNum;
-import static eu.europa.ec.leos.services.support.XmlHelper.CN;
-import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_ORIGIN_ATTR;
-import static eu.europa.ec.leos.services.support.XmlHelper.NUM;
+import static eu.europa.ec.leos.services.support.XmlHelper.*;
 
 import java.util.List;
 
@@ -67,7 +65,7 @@ public class NumberProcessorHandlerMandate extends NumberProcessorHandler {
         if (numberConfig.isComplex()) {
             Node node = nodeList
                     .stream()
-                    .filter(n -> !isElementSameOrigin(n) || "true".equals(XercesUtils.getAttributeValue(n, "leos:renumbered")))
+                    .filter(n -> !isElementSameOrigin(n) || XercesUtils.getAttributeValueAsSimpleBoolean(n, LEOS_RENUMBERED))
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Incongruent situation. If is a COMPLEX numbering, 1 Node should be of the same instance type"));
             String labelNumber = getNodeNum(node);
