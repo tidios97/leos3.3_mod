@@ -270,6 +270,8 @@ public class ProposalAnnexScreenImpl extends AnnexScreenImpl {
         actionsMenuBar.setDownloadVersionWithAnnotationsVisible(true);
         actionsMenuBar.setDownloadCleanVersionVisible(isClonedProposal);
         actionsMenuBar.setShowCleanVersionVisible(isClonedProposal);
+        actionsMenuBar.setRenumberingVisible(false);
+        actionsMenuBar.setRenumberingGroupVisible(false);
     }
 
     @Override

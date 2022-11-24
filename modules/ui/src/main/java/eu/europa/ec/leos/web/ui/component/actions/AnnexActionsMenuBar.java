@@ -76,6 +76,7 @@ public class AnnexActionsMenuBar extends CommonActionsMenuBar {
     protected void initDropDownMenu() {
         buildVersionActions();
         buildExportPackageActions();
+        buildRenumberingActions();
         //buildStructureChangeAction();
         buildViewActions();
     }

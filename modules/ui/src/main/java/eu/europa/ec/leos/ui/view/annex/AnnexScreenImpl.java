@@ -41,6 +41,7 @@ import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.ui.event.search.ReplaceMatchResponseEvent;
 import eu.europa.ec.leos.ui.event.search.SearchTextResponseEvent;
 import eu.europa.ec.leos.ui.extension.ChangeDetailsExtension;
+import eu.europa.ec.leos.web.event.view.document.*;
 import eu.europa.ec.leos.web.ui.component.SearchDelegate;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -125,15 +126,7 @@ import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.vo.toc.TocItem;
 import eu.europa.ec.leos.web.event.component.ComparisonResponseEvent;
 import eu.europa.ec.leos.web.event.component.LayoutChangeRequestEvent;
-import eu.europa.ec.leos.web.event.view.document.CancelActionElementRequestEvent;
-import eu.europa.ec.leos.web.event.view.document.CheckDeleteLastEditingTypeEvent;
 import eu.europa.ec.leos.web.event.view.document.CheckElementCoEditionEvent.Action;
-import eu.europa.ec.leos.web.event.view.document.CreateEventParameter;
-import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
-import eu.europa.ec.leos.web.event.view.document.FetchUserPermissionsResponse;
-import eu.europa.ec.leos.web.event.view.document.InstanceTypeResolver;
-import eu.europa.ec.leos.web.event.view.document.RefreshDocumentEvent;
-import eu.europa.ec.leos.web.event.view.document.RefreshElementEvent;
 import eu.europa.ec.leos.web.model.VersionInfoVO;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 import eu.europa.ec.leos.web.support.user.UserHelper;
@@ -720,6 +713,24 @@ abstract class AnnexScreenImpl extends VerticalLayout implements AnnexScreen {
         UI.getCurrent().addWindow(milestoneExplorer);
         milestoneExplorer.center();
         milestoneExplorer.focus();
+    }
+
+    @Override
+    public void confirmRenumberDocument() {
+        // ask confirmation before auto renumbering
+        ConfirmDialog confirmDialog = ConfirmDialog.getFactory().create(
+                messageHelper.getMessage("document.renumbering.confirmation.title"),
+                messageHelper.getMessage("document.annex.renumbering.confirmation.message"),
+                messageHelper.getMessage("document.renumbering.confirmation.confirm"),
+                messageHelper.getMessage("document.renumbering.confirmation.cancel"), null);
+        confirmDialog.setContentMode(ConfirmDialog.ContentMode.HTML);
+        confirmDialog.getContent().setHeightUndefined();
+        confirmDialog.setHeightUndefined();
+        confirmDialog.show(getUI(), dialog -> {
+            if (dialog.isConfirmed()) {
+                eventBus.post(new RenumberingEvent());
+            }
+        }, true);
     }
 
     @Override

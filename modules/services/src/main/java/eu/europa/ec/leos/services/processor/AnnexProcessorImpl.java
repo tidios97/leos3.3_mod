@@ -17,6 +17,7 @@ import eu.europa.ec.leos.domain.cmis.Content;
 import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.common.TocMode;
 import eu.europa.ec.leos.i18n.MessageHelper;
+import eu.europa.ec.leos.model.annex.AnnexStructureType;
 import eu.europa.ec.leos.model.annex.LevelItemVO;
 import eu.europa.ec.leos.model.xml.Element;
 import eu.europa.ec.leos.services.numbering.NumberService;
@@ -215,6 +216,23 @@ class AnnexProcessorImpl implements AnnexProcessor {
             updatedContent = elementProcessor.updateElement(annex, elementFragment, tagName, elementId);
         }
         return updateAnnexContent(elementId, tagName, updatedContent);
+    }
+
+    public byte[] renumberDocument(Annex document, AnnexStructureType structureType) {
+        Validate.notNull(document, "Document is required.");
+        byte[] updatedContent = getContent(document);
+        updatedContent = xmlContentProcessor.prepareForRenumber(updatedContent);
+        switch(structureType) {
+            case ARTICLE:
+                updatedContent = numberService.renumberArticles(updatedContent, true);
+                break;
+            case LEVEL:
+                updatedContent = numberService.renumberLevel(updatedContent);
+                updatedContent = numberService.renumberParagraph(updatedContent);
+                break;
+        }
+        updatedContent = xmlContentProcessor.doXMLPostProcessing(updatedContent);
+        return updatedContent;
     }
 
     private byte[] updateAnnexContent(String elementId, String tagName, byte[] xmlContent) {

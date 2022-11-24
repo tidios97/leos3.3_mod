@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.services.processor;
 
 import eu.europa.ec.leos.domain.cmis.document.Annex;
+import eu.europa.ec.leos.model.annex.AnnexStructureType;
 import eu.europa.ec.leos.model.annex.LevelItemVO;
 import eu.europa.ec.leos.model.xml.Element;
 
@@ -48,6 +49,9 @@ public interface AnnexProcessor {
     
     @PreAuthorize("hasPermission(#document, 'CAN_UPDATE')")
     byte[] deleteAnnexBlock(Annex document, String elementId, String tagName) throws Exception;
+
+    @PreAuthorize("hasPermission(#document, 'CAN_RENUMBER')")
+    byte[] renumberDocument(Annex document, AnnexStructureType structureType);
 
     Pair<byte[], Element> getSplittedElement(byte[] docContent, String elementContent, String elementName, String elementId) throws Exception;
 

@@ -166,6 +166,7 @@ public class XmlHelper {
     public static final String LEOS_INDENT_ORIGIN_NUM_ORIGIN_ATTR = "leos:indent-origin-num-origin";
     public static final String LEOS_INDENT_UNUMBERED_PARAGRAPH = "leos:indent-unumbered-paragraph";
     public static final String LEOS_AUTO_NUM_OVERWRITE = "leos:auto-num-overwrite";
+    public static final String LEOS_RENUMBERED = "leos:renumbered";
 
     public static final String COVERPAGE_EEA_RELEVANCE_ID = "_coverpage__eearelevance";
 

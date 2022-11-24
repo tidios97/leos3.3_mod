@@ -23,11 +23,12 @@ import java.util.List;
 
 import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_AUTO_NUM_OVERWRITE;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_RENUMBERED;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_SOFT_ACTION_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.LIST;
-import static eu.europa.ec.leos.services.support.XmlHelper.PARAGRAPH;
 import static eu.europa.ec.leos.services.support.XmlHelper.POINT;
 import static eu.europa.ec.leos.services.support.XmlHelper.ARTICLE;
+
 import static eu.europa.ec.leos.services.support.XercesUtils.getAttributeForSoftAction;
 import static eu.europa.ec.leos.services.support.XercesUtils.getId;
 import static eu.europa.ec.leos.services.support.XercesUtils.getNodeNum;
@@ -190,12 +191,15 @@ public abstract class NumberProcessorHandler {
             for (int i = 0; i < nodeList.size(); i++) {
                 final ParentChildNode parentChildNode = nodeList.get(i);
                 final Node node = parentChildNode.getNode();
-                numberProcessorsDepthBased.stream()
-                        .filter(numberProcessor -> numberProcessor.canRenumber(node))
-                        .findFirst()
-                        .get()
-                        .renumberDepthBased(parentChildNode, numberConfig, elementName, depth);
-                removeAttribute(node, XmlHelper.LEOS_AFFECTED_ATTR);//TODO temp, until migration finishes
+                boolean leosRenumberedForNode = XercesUtils.getAttributeValueAsSimpleBoolean(node, LEOS_RENUMBERED);
+                if (!leosRenumberedForNode || !skipAutoRenumbering(node)) {
+                    numberProcessorsDepthBased.stream()
+                            .filter(numberProcessor -> numberProcessor.canRenumber(node))
+                            .findFirst()
+                            .get()
+                            .renumberDepthBased(parentChildNode, numberConfig, elementName, depth);
+                    removeAttribute(node, XmlHelper.LEOS_AFFECTED_ATTR);//TODO temp, until migration finishes
+                }
             }
         }
     }
@@ -207,16 +211,16 @@ public abstract class NumberProcessorHandler {
             final String elementName = firstElement.getNodeName();
             final NumberConfig numberConfig = numberConfigFactory.getNumberConfig(elementName, elementDepth, firstElement);
             numberConfig.setComplex(setComplexNumbering(nodeList));
-            String leosRenumbered = XercesUtils.getAttributeValue(firstElement, "leos:renumbered");
-            if (leosRenumbered == null || !leosRenumbered.equals("true")) {
+            boolean leosRenumbered = XercesUtils.getAttributeValueAsSimpleBoolean(firstElement, LEOS_RENUMBERED);
+            if (!leosRenumbered) {
                 updateStartingNumber(nodeList, numberConfig, elementName);
             }
 
             for (int i = 0; i < nodeList.size(); i++) {
                 final Node node = nodeList.get(i);
                 if (skipAutoRenumbering(node)) {
-                    String leosRenumberedForNode = XercesUtils.getAttributeValue(node, "leos:renumbered");
-                    if (leosRenumberedForNode == null || !leosRenumberedForNode.equals("true")) {
+                    boolean leosRenumberedForNode = XercesUtils.getAttributeValueAsSimpleBoolean(node, LEOS_RENUMBERED);
+                    if (!leosRenumberedForNode) {
                         incrementValue(numberConfig);
                     }
                     LOG.trace("Skipping SoftChanged {} '{}', number '{}'", elementName, getId(node), getNodeNum(node));
