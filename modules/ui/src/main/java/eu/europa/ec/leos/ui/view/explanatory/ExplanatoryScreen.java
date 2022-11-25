@@ -124,4 +124,8 @@ interface ExplanatoryScreen {
     void refineSearch(Long searchId, int matchedIndex, boolean isReplaced);
 
     boolean isCoverPageVisible();
+    
+    void setLiveDiffingRequired(boolean liveDiffingRequired);
+    
+    void toggleLiveDiffingButton();
 }

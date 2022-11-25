@@ -34,6 +34,17 @@ public class VersionInfoVO {
         this.versionType = versionType;
     }
     
+    public VersionInfoVO(String documentVersion, String lastModifiedBy, String entity, String lastModificationInstant, VersionType versionType, String revisedBaseVersion, String baseVersionTitle) {
+		super();
+		this.documentVersion = documentVersion;
+		this.lastModifiedBy = lastModifiedBy;
+		this.entity = entity;
+		this.lastModificationInstant = lastModificationInstant;
+		this.versionType = versionType;
+		this.revisedBaseVersion = revisedBaseVersion;
+		this.baseVersionTitle = baseVersionTitle;
+	}
+    
     public String getDocumentVersion() {
         return documentVersion;
     }

@@ -111,4 +111,7 @@ class LeosPropertyDefinition {
     static final PropertyDefinition<String> LEOS_BASE_REVISION_ID =
             PropertyCreationHelper.createStringDefinition("leos:baseRevisionId", "LEOS Base revision document id", Updatability.READWRITE);
 
+    static final PropertyDefinition<Boolean> LEOS_LIVE_DIFFING_REQUIRED =
+            PropertyCreationHelper.createBooleanDefinition("leos:liveDiffingRequired", "Live Diffing Flag", Updatability.READWRITE);
+
 }

@@ -15,6 +15,7 @@ package eu.europa.ec.leos.services.document;
 
 import eu.europa.ec.leos.domain.cmis.document.Annex;
 import eu.europa.ec.leos.domain.cmis.document.Bill;
+import eu.europa.ec.leos.domain.cmis.document.Explanatory;
 import eu.europa.ec.leos.domain.cmis.document.Memorandum;
 import eu.europa.ec.leos.domain.cmis.document.XmlDocument;
 import eu.europa.ec.leos.domain.common.InstanceType;
@@ -38,6 +39,8 @@ import static eu.europa.ec.leos.util.LeosDomainUtil.CMIS_PROPERTY_SPLITTER;
 @Instance(InstanceType.COUNCIL)
 public class DocumentContentServiceMandateImpl extends DocumentContentServiceImpl {
 
+	private static final String BASE_EC_VERSION = "0.1.0";
+	
     @Autowired
     public DocumentContentServiceMandateImpl(TransformationService transformationService,
                                              ContentComparatorService compareService, AnnexService annexService, BillService billService,
@@ -49,40 +52,35 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
 
     @Override
     public String toEditableContent(XmlDocument xmlDocument, String contextPath, SecurityContext securityContext, byte[] coverPageContent) {
-        String[] contentsToCompare = getContentsToCompare(xmlDocument, contextPath, securityContext, coverPageContent);
-        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
-        if(contentsToCompare != null) {
-            switch (contentsToCompare.length) {
-                case 2:
-                    String currentDocumentEditableXml = contentsToCompare[0];
-                    String originalDocumentEditableXml = contentsToCompare[1];
-                    currentDocumentEditableXml = postDiffingProcessor.adjustSoftActionDiffing(currentDocumentEditableXml);
-                    String result =  compareService.compareContents(new ContentComparatorContext.Builder(originalDocumentEditableXml, currentDocumentEditableXml)
-                            .withAttrName(ATTR_NAME)
-                            .withRemovedValue(CONTENT_SOFT_REMOVED_CLASS)
-                            .withAddedValue(CONTENT_SOFT_ADDED_CLASS)
-                            .withDisplayRemovedContentAsReadOnly(Boolean.TRUE)
-                            .build());
-                    result = postDiffingProcessor.adjustMarkersAuthorialNotes(result);
-                    result = postDiffingProcessor.adjustSoftRootSubParagraph(result);
-                    return result;
-                case 1:
-                    return contentsToCompare[0];
-                default:
-                    LOG.error("Invalid number of documents returned");
-                    return null;
-            }
+    	String currentDocumentEditableXml = getEditableXml(xmlDocument, contextPath, securityContext, coverPageContent);
+    	
+    	if(!isComparisonRequired(xmlDocument, securityContext)) {
+        	return currentDocumentEditableXml;
         }
-        return null;
+    	
+    	XmlDocument originalDocument = getOriginalDocument(xmlDocument);
+    	if(originalDocument == null) {
+    		return currentDocumentEditableXml;
+    	}
+    	
+    	String originalDocumentEditableXml = getEditableXml(originalDocument, contextPath, securityContext,
+                coverPageContent != null && coverPageContent.length > 0 ? getCoverPageContent(originalDocument.getContent().get().getSource().getBytes()) : coverPageContent);
+    	
+        LeosPostDiffingProcessor postDiffingProcessor = new LeosPostDiffingProcessor();
+        currentDocumentEditableXml = postDiffingProcessor.adjustSoftActionDiffing(currentDocumentEditableXml);
+        String result =  compareService.compareContents(new ContentComparatorContext.Builder(originalDocumentEditableXml, currentDocumentEditableXml)
+                .withAttrName(ATTR_NAME)
+                .withRemovedValue(CONTENT_SOFT_REMOVED_CLASS)
+                .withAddedValue(CONTENT_SOFT_ADDED_CLASS)
+                .withDisplayRemovedContentAsReadOnly(Boolean.TRUE)
+                .build());
+        result = postDiffingProcessor.adjustMarkersAuthorialNotes(result);
+        result = postDiffingProcessor.adjustSoftRootSubParagraph(result);
+        return result;
     }
 
     @Override
     public boolean isMemorandumComparisonRequired(byte[] contentBytes) {
-        return false;
-    }
-
-    @Override
-    public boolean isCouncilExplanatoryComparisonRequired(byte[] contentBytes) {
         return false;
     }
 
@@ -112,5 +110,14 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
         } else {
             return billService.findBill(bill.getBaseRevisionId().split(CMIS_PROPERTY_SPLITTER)[0], false);
         }
+    }
+
+    @Override
+    public XmlDocument getOriginalExplanatory(Explanatory explanatory) {
+    	if(StringUtils.isEmpty(explanatory.getBaseRevisionId())) {
+    		return explanatoryService.findFirstVersion(explanatory.getMetadata().get().getRef());
+    	} else {
+    		return explanatoryService.findExplanatoryVersion(explanatory.getBaseRevisionId().split(CMIS_PROPERTY_SPLITTER)[0]);
+    	}
     }
 }
