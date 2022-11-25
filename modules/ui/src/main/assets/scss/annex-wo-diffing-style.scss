@@ -1,43 +1,43 @@
-doc[name="ANNEX" i] longTitle[leos\:origin="ec"] {
+doc[name="ANNEX" i] longTitle {
     font-weight: normal;
 }
 
-doc[name="ANNEX" i] table[leos\:origin="ec"] > tr:first-child {
+doc[name="ANNEX" i] table > tr:first-child {
     font-weight: normal;
 }
 
-akomaNtoso doc[name="ANNEX" i] coverPage[leos\:origin="ec"] container[name=mainDocLanguage] {
+akomaNtoso doc[name="ANNEX" i] coverPage container[name=mainDocLanguage] {
     font-weight: normal;
 }
 
-akomaNtoso doc[name="ANNEX" i] coverPage[leos\:origin="ec"] container[name=docLabel] > * {
+akomaNtoso doc[name="ANNEX" i] coverPage container[name=docLabel] > * {
     font-weight: normal;
 }
 
-doc[name="ANNEX" i] part > num[leos\:origin="ec"], doc[name="ANNEX" i] part[leos\:origin="ec"] > heading {
+doc[name="ANNEX" i] part > num, doc[name="ANNEX" i] part > heading {
     font-weight: normal;
 }
 
-doc[name="ANNEX" i] aknTitle > num[leos\:origin="ec"], doc[name="ANNEX" i] aknTitle[leos\:origin="ec"] > heading {
+doc[name="ANNEX" i] aknTitle > num, doc[name="ANNEX" i] aknTitle > heading {
     font-weight: normal;
 }
 
-doc[name="ANNEX" i] chapter[leos\:origin="ec"] > num, doc[name="ANNEX" i] chapter[leos\:origin="ec"] > heading {
+doc[name="ANNEX" i] chapter > num, doc[name="ANNEX" i] chapter > heading {
     font-weight: normal;
 }
 
-doc[name="ANNEX" i] section > num[leos\:origin="ec"], doc[name="ANNEX" i] section[leos\:origin="ec"] > heading {
+doc[name="ANNEX" i] section > num, doc[name="ANNEX" i] section > heading {
     font-weight: normal;
 }
 
-doc[name="ANNEX" i] article > heading[leos\:origin="ec"], doc[name="ANNEX" i] .cke_editable article[leos\:origin="ec"] .akn-article-heading {
+doc[name="ANNEX" i] article > heading, doc[name="ANNEX" i] .cke_editable article .akn-article-heading {
     font-weight: normal;
 }
 
-akomaNtoso doc[name="ANNEX" i] mainbody[leos\:origin="ec"], akomaNtoso doc[name="ANNEX" i] preface[leos\:origin="ec"] {
+akomaNtoso doc[name="ANNEX" i] mainbody, akomaNtoso doc[name="ANNEX" i] preface {
   font-weight: normal;
 }
 
-doc[name="ANNEX" i] .leos-authnote marker[leos\:origin="ec"] {
+doc[name="ANNEX" i] .leos-authnote marker {
     font-weight: normal;
 }

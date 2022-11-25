@@ -308,4 +308,6 @@ public interface XmlContentProcessor {
     byte[] updateInitialNumberForArticles(byte[] xmlContent);
     
     public byte[] insertSoftAddedClassAttribute(byte[] contentBytes);
+    
+    boolean isAnnexFromCouncil(byte[] contentBytes);
 }

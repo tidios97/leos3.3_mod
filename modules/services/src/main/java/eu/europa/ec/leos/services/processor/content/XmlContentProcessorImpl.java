@@ -1900,4 +1900,17 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
 		}
 		return nodeToByteArray(document);
     }
+    
+    @Override
+    public boolean isAnnexFromCouncil(byte[] contentBytes) {
+    	boolean isAnnexFromCouncil = false;
+        Document document = createXercesDocument(contentBytes);
+        NodeList nodes = document.getElementsByTagName(DOC);
+        if(nodes != null && nodes.getLength() > 0) {
+            Node node = XercesUtils.getFirstChild(nodes.item(0), MAIN_BODY);
+            String origin = XercesUtils.getAttributeValue(node, LEOS_ORIGIN_ATTR);
+            isAnnexFromCouncil = CN.equals(origin);
+        }
+        return isAnnexFromCouncil;
+    }
 }

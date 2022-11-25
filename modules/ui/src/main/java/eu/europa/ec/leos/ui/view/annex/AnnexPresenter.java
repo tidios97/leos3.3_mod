@@ -77,6 +77,7 @@ import eu.europa.ec.leos.services.store.ExportPackageService;
 import eu.europa.ec.leos.services.store.LegService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.WorkspaceService;
+import eu.europa.ec.leos.services.support.VersionsUtil;
 import eu.europa.ec.leos.services.toc.StructureContext;
 import eu.europa.ec.leos.ui.component.ComparisonComponent;
 import eu.europa.ec.leos.ui.event.ChangeBaseVersionEvent;
@@ -847,6 +848,13 @@ class AnnexPresenter extends AbstractLeosPresenter {
         String baseRevisionId = document.getBaseRevisionId();
         cloneContext.setCloneProposalMetadataVO(cloneProposalMetadataVO);
 
+        if(StringUtils.isBlank(baseRevisionId)) {
+    		VersionVO versionVO = VersionsUtil.buildVersionVO(Arrays.asList(document), messageHelper).get(0);
+    		Map<String, Object> properties = new HashMap<>();
+    		properties.put(CmisProperties.BASE_REVISION_ID.getId(), versionVO.getDocumentId() + CMIS_PROPERTY_SPLITTER + versionVO.getVersionNumber().toString() + CMIS_PROPERTY_SPLITTER + versionVO.getCheckinCommentVO().getTitle());
+    		document =  annexService.updateAnnex(documentId, properties, true);
+    		baseRevisionId = document.getBaseRevisionId();
+    	}
         if(!StringUtils.isEmpty(baseRevisionId) && baseRevisionId.split(CMIS_PROPERTY_SPLITTER).length >= 3) {
             String versionLabel = baseRevisionId.split(CMIS_PROPERTY_SPLITTER)[1];
             String versionComment = baseRevisionId.split(CMIS_PROPERTY_SPLITTER)[2];
