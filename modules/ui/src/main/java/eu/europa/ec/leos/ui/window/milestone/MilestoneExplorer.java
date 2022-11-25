@@ -376,6 +376,8 @@ public class MilestoneExplorer extends AbstractWindow {
                 return "Annex " + annexNumber + versionLabel;
             case COVERPAGE:
                 return  showCoverPage ? messageHelper.getMessage(COVER_PAGE_TAB_TITLE_KEY) + " " + versionLabel : "";
+            case FINANCIAL_STATEMENT:
+                return "Financial Statement" + versionLabel;
             default:
                 return "";
         }
@@ -415,7 +417,7 @@ public class MilestoneExplorer extends AbstractWindow {
                 } else {
                     LeosCategory category = xmlContentProcessor.identifyCategory(key,
                             xmlContent.getBytes(StandardCharsets.UTF_8));
-                    if (!category.equals(LeosCategory.ANNEX)) {
+                    if (!category.equals(LeosCategory.ANNEX) && !category.equals(LeosCategory.FINANCIAL_STATEMENT)) {
                         String tabName = getTabName(category, 0, version);
                         TabSheet.Tab tab = tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
                         if(isCompared) {
@@ -457,6 +459,39 @@ public class MilestoneExplorer extends AbstractWindow {
                 }
             }
         }
+        for (Map.Entry<String, Object> entry : contentFiles.entrySet()) {
+            String key = entry.getKey();
+            String mainFileName = docVersionMap.keySet().stream().filter(value -> value.startsWith(MAIN_DOCUMENT_FILE_NAME)).findFirst().get();
+            String contentFileName = key.startsWith(COVER_PAGE_CONTENT_FILE_NAME) ? mainFileName : key.substring(0, key.indexOf(HTML));
+            String version = docVersionMap.get(contentFileName);
+
+            try {
+                HorizontalSplitPanel tocSplitter = new HorizontalSplitPanel();
+                byte[] xmlBytes = Files.readAllBytes(((File) entry.getValue()).toPath());
+                String xmlContent = LeosDomainUtil.wrapXmlFragment(new String(xmlBytes));
+                boolean isCompared = false;
+                if(isContributionMilestone) {
+                    Pattern pattern = Pattern.compile("class=\"leos-content-new\"|class=\"leos-content-removed\"",
+                            Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+                    Matcher matcher = pattern.matcher(xmlContent);
+                    isCompared = matcher.find();
+                }
+
+                LeosCategory category = xmlContentProcessor.identifyCategory(key,
+                        xmlContent.getBytes(StandardCharsets.UTF_8));
+
+                if (category != null && category.equals(LeosCategory.FINANCIAL_STATEMENT)) {
+                    String tabName = getTabName(category, 0, version);
+                    TabSheet.Tab tab = tabsheet.addTab(tocSplitter, StringUtils.capitalize(tabName));
+                    if(isCompared) {
+                        tab.setStyleName(LEOS_DOC_MODIFIED);
+                    }
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Unexpected error occurred while reading doc file", e);
+            }
+        }
+
     }
 
     private String getFileContent(Entry<String, Object> entry) {
