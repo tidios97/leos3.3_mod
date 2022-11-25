@@ -43,7 +43,7 @@ public class FinancialStatementServiceImpl implements FinancialStatementService 
 
     private static final Logger LOG = LoggerFactory.getLogger(FinancialStatementServiceImpl.class);
 
-    public static final String FINANCIAL_STATEMENT_NAME_PREFIX = "FINANCIAL_STATEMENT_";
+    public static final String FINANCIAL_STATEMENT_NAME_PREFIX = "FINANCIAL_STATEMENT-";
     public static final String FINANCIAL_STATEMENT_DOC_EXTENSION = ".xml";
 
     private final FinancialStatementRepository financialStatementRepository;
@@ -83,7 +83,8 @@ public class FinancialStatementServiceImpl implements FinancialStatementService 
     public FinancialStatement createFinancialStatement(String templateId, String path, FinancialStatementMetadata metadata, String actionMessage, byte[] content) {
         LOG.trace("Creating FinancialStatement... [templateId={}, path={}, metadata={}]", templateId, path, metadata);
         final String FinancialStatementUid = Cuid.createCuid();
-        final String ref = FINANCIAL_STATEMENT_NAME_PREFIX + FinancialStatementUid;
+        final String language = metadata.getLanguage();
+        final String ref = FINANCIAL_STATEMENT_NAME_PREFIX + FinancialStatementUid +  "-" + language.toLowerCase();
         final String fileName = ref + FINANCIAL_STATEMENT_DOC_EXTENSION;
         metadata = metadata.withRef(ref);
         FinancialStatement FinancialStatement = financialStatementRepository.createFinancialStatement(templateId, path, fileName, metadata);

@@ -38,7 +38,7 @@ public class MilestoneHelper {
     private static final String MILESTONE_DIR = "/milestone/";
 
     public static Map<String, Object> filterAndSortFiles(Map<String, Object> files, String fileFilter) {
-        final List<String> tabOrder = Arrays.asList(XmlHelper.ANNEX_FILE_PREFIX, XmlHelper.REG_FILE_PREFIX, XmlHelper.DIR_FILE_PREFIX, XmlHelper.DEC_FILE_PREFIX,
+        final List<String> tabOrder = Arrays.asList(XmlHelper.FINANCIAL_STATEMENT, XmlHelper.ANNEX_FILE_PREFIX, XmlHelper.REG_FILE_PREFIX, XmlHelper.DIR_FILE_PREFIX, XmlHelper.DEC_FILE_PREFIX,
                 XmlHelper.MEMORANDUM_FILE_PREFIX);
         Map<String, Object> sortedFiles = files.entrySet().stream().
                 filter(e -> (!e.getKey().contains(TOC_HTML) && e.getKey().endsWith(fileFilter))).
