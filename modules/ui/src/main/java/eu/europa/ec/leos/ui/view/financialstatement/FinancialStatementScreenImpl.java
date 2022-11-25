@@ -191,9 +191,9 @@ abstract public class FinancialStatementScreenImpl extends VerticalLayout implem
 
     @Autowired
     FinancialStatementScreenImpl(MessageHelper messageHelper, EventBus eventBus, SecurityContext securityContext, UserHelper userHelper,
-                          ConfigurationHelper cfgHelper, TocEditor tocEditor, InstanceTypeResolver instanceTypeResolver, VersionsTab<FinancialStatement> versionsTab,
-                          Provider<StructureContext> structureContextProvider, TableOfContentProcessor tableOfContentProcessor,
-                          XmlContentProcessor xmlContentProcessor) {
+                                 ConfigurationHelper cfgHelper, TocEditor tocEditor, InstanceTypeResolver instanceTypeResolver, VersionsTab<FinancialStatement> versionsTab,
+                                 Provider<StructureContext> structureContextProvider, TableOfContentProcessor tableOfContentProcessor,
+                                 XmlContentProcessor xmlContentProcessor) {
         LOG.trace("Initializing explanatory screen...");
         Validate.notNull(messageHelper, "MessageHelper must not be null!");
         this.messageHelper = messageHelper;
@@ -282,36 +282,31 @@ abstract public class FinancialStatementScreenImpl extends VerticalLayout implem
     @Override
     public void setContent(String content) {
         financialStatementContent.setValue(addTimestamp(content));
+        refreshNoteButton.setVisible(false);
     }
 
     @Override
     public void refreshElementEditor(String elementId, String elementTagName, String elementContent) {
-
     }
 
     @Override
     public void showElementEditor(String elementId, String elementTagName, String element, LevelItemVO levelItemVO) {
-
     }
 
     @Override
     public void showTimeLineWindow(List<FinancialStatement> documentVersions) {
-
     }
 
     @Override
     public void updateTimeLineWindow(List<FinancialStatement> documentVersions) {
-
     }
 
     @Override
     public void displayComparison(HashMap<ComparisonDisplayMode, Object> htmlCompareResult) {
-
     }
 
     @Override
     public void showIntermediateVersionWindow() {
-
     }
 
     @Override
@@ -348,7 +343,7 @@ abstract public class FinancialStatementScreenImpl extends VerticalLayout implem
     public void setPermissions(DocumentVO documentVO, boolean isClonedProposal){
         boolean enableUpdate = securityContext.hasPermission(documentVO, LeosPermission.CAN_UPDATE);
         actionsMenuBar.setSaveVersionVisible(enableUpdate);
-        tableOfContentComponent.setPermissions(enableUpdate);
+        tableOfContentComponent.setPermissions(false);
         searchButton.setVisible(enableUpdate);
 
         // add extensions only if the user has the permission.

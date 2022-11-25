@@ -56,16 +56,25 @@ import eu.europa.ec.leos.services.store.LegService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.WorkspaceService;
 import eu.europa.ec.leos.services.toc.StructureContext;
+import eu.europa.ec.leos.ui.event.CloseBrowserRequestEvent;
+import eu.europa.ec.leos.ui.event.CloseScreenRequestEvent;
 import eu.europa.ec.leos.ui.event.revision.OpenRevisionDocumentEvent;
+import eu.europa.ec.leos.ui.event.search.ShowConfirmDialogEvent;
+import eu.europa.ec.leos.ui.event.toc.CloseTocAndDocumentEvent;
+import eu.europa.ec.leos.ui.event.toc.InlineTocEditRequestEvent;
 import eu.europa.ec.leos.ui.support.CoEditionHelper;
+import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.ComparisonDelegate;
 import eu.europa.ec.leos.usecases.document.CollectionContext;
 import eu.europa.ec.leos.usecases.document.FinancialStatementContext;
 import eu.europa.ec.leos.vo.coedition.InfoType;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
+import eu.europa.ec.leos.web.event.NavigationRequestEvent;
 import eu.europa.ec.leos.web.event.NotificationEvent;
 import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
+import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
 import eu.europa.ec.leos.web.event.view.document.SaveElementAttributeRequestEvent;
 import eu.europa.ec.leos.web.model.VersionInfoVO;
@@ -74,6 +83,7 @@ import eu.europa.ec.leos.web.support.UrlBuilder;
 import eu.europa.ec.leos.web.support.UuidHelper;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 import eu.europa.ec.leos.web.support.user.UserHelper;
+import eu.europa.ec.leos.web.ui.navigation.Target;
 import io.atlassian.fugue.Option;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -86,6 +96,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Provider;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -134,6 +145,7 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
     private String documentId;
     private String proposalRef;
     private String connectedEntity;
+    private final List<String> openElementEditors;
 
     protected FinancialStatementPresenter(SecurityContext securityContext, HttpSession httpSession, EventBus eventBus, EventBus leosApplicationEventBus, UuidHelper uuidHelper, PackageService packageService, WorkspaceService workspaceService, FinancialStatementScreen financialStatementScreen, FinancialStatementService financialStatementService, ContributionService contributionService, ElementProcessor<FinancialStatement> elementProcessor, FinancialStatementProcessor financialStatementProcessor, DocumentContentService documentContentService, UrlBuilder urlBuilder, ComparisonDelegate<FinancialStatement> comparisonDelegate, UserHelper userHelper, MessageHelper messageHelper, ConfigurationHelper cfgHelper, Provider<CollectionContext> proposalContextProvider, CoEditionHelper coEditionHelper, ExportService exportService, Provider<StructureContext> structureContextProvider, ReferenceLabelService referenceLabelService, Provider<FinancialStatementContext> financialStatementContextProvider, UpdateInternalReferencesProducer updateInternalReferencesProducer, TransformationService transformationService, LegService legService, ProposalService proposalService, SearchService searchService, ExportPackageService exportPackageService, NotificationService notificationService, CloneContext cloneContext, AttachmentProcessor attachmentProcessor) {
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
@@ -163,6 +175,7 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
         this.notificationService = notificationService;
         this.cloneContext = cloneContext;
         this.attachmentProcessor = attachmentProcessor;
+        this.openElementEditors = new ArrayList<>();
     }
 
     @Override
@@ -176,6 +189,61 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
         super.detach();
         coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
         resetCloneProposalMetadataVO();
+    }
+
+    private boolean isFinancialStatementUnsaved(){
+        return getFinancialStatementFromSession() != null;
+    }
+
+    private FinancialStatement getFinancialStatementFromSession() {
+        return (FinancialStatement) httpSession.getAttribute("financialstatement#" + getDocumentRef());
+    }
+
+    private boolean isHasOpenElementEditors() {
+        return this.openElementEditors.size() > 0;
+    }
+
+    @Subscribe
+    void handleCloseDocumentConfirmation(CloseDocumentConfirmationEvent event) {
+        this.closeDocument();
+    }
+
+    private void closeDocument() {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        resetCloneProposalMetadataVO();
+        eventBus.post(new NavigationRequestEvent(Target.PREVIOUS, false));
+    }
+
+    @Subscribe
+    void handleShowConfirmDialog(ShowConfirmDialogEvent event) {
+        ConfirmDialogHelper.showOpenEditorDialog(this.leosUI, event, this.eventBus, this.messageHelper);
+    }
+
+    @Subscribe
+    void handleCloseBrowserRequest(CloseBrowserRequestEvent event) {
+        coEditionHelper.removeUserEditInfo(id, strDocumentVersionSeriesId, null, InfoType.DOCUMENT_INFO);
+        resetCloneProposalMetadataVO();
+    }
+
+    @Subscribe
+    void handleCloseScreenRequest(CloseScreenRequestEvent event) {
+        if (financialStatementScreen.isTocEnabled()) {
+            eventBus.post(new CloseTocAndDocumentEvent());
+        } else {
+            eventBus.post(new CloseDocumentEvent());
+        }
+    }
+
+    @Subscribe
+    void handleCloseDocument(CloseDocumentEvent event) {
+        LOG.trace("Handling close document request...");
+
+        //if unsaved changes remain in the session, first ask for confirmation
+        if(this.isFinancialStatementUnsaved() || this.isHasOpenElementEditors()){
+            eventBus.post(new ShowConfirmDialogEvent(new CloseDocumentConfirmationEvent(), null));
+            return;
+        }
+        this.closeDocument();
     }
 
     private void init() {
@@ -291,6 +359,13 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
         String editableXml = documentContentService.toEditableContent(financialStatement,
                 urlBuilder.getWebAppPath(VaadinServletService.getCurrentServletRequest()), securityContext, coverPageContent);
         return StringEscapeUtils.unescapeXml(editableXml);
+    }
+
+    @Subscribe
+    void editInlineToc(InlineTocEditRequestEvent event) {
+        FinancialStatement financialStatement = getDocument();
+        coEditionHelper.storeUserEditInfo(httpSession.getId(), id, user, strDocumentVersionSeriesId, null, InfoType.TOC_INFO);
+        financialStatementScreen.enableTocEdition(getTableOfContent(financialStatement, TocMode.NOT_SIMPLIFIED));
     }
 
 
