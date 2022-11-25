@@ -46,7 +46,8 @@ public enum CmisProperties {
     CONTRIBUTION_STATUS("leos:contributionStatus"),
     COMMENTS("leos:comments"),
     CLONED_MILESTONE_ID("leos:clonedMilestoneId"),
-    BASE_REVISION_ID("leos:baseRevisionId");
+    BASE_REVISION_ID("leos:baseRevisionId"),
+    LIVE_DIFFING_REQUIRED("leos:liveDiffingRequired");
 
     private String id;
 

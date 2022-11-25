@@ -16,6 +16,7 @@
             <permission>CAN_ADD_REMOVE_COLLABORATOR</permission>
             <permission>CAN_DOWNLOAD_PROPOSAL</permission>
             <permission>CAN_UPLOAD</permission>
+            <permission>CAN_TOGGLE_LIVE_DIFFING</permission>
         </permissions>
         <application-role>false</application-role>
         <collaborator>true</collaborator>

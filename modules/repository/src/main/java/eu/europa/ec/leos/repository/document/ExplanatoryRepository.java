@@ -6,6 +6,7 @@ import eu.europa.ec.leos.domain.cmis.metadata.ExplanatoryMetadata;
 import org.springframework.security.access.prepost.PostAuthorize;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ExplanatoryRepository {
     /**
@@ -49,6 +50,16 @@ public interface ExplanatoryRepository {
      * @return the updated Explanatory document.
      */
     Explanatory updateExplanatory(String id, byte[] content, VersionType versionType, String comment);
+    
+    /**
+     * Updates an [Explanatory] document with the given properties.
+     * 
+     * @param id
+     * @param properties
+     * @param latest
+     * @return
+     */
+    Explanatory updateExplanatory(String id, Map<String, Object> properties, boolean latest);
 
     /**
      * Updates a [Explanatory] document with the given metadata and content.
@@ -99,6 +110,8 @@ public interface ExplanatoryRepository {
      */
     @PostAuthorize("hasPermission(returnObject, 'CAN_READ')")
     Explanatory findExplanatoryByRef(String ref);
+    
+    Explanatory findExplanatoryByVersion(String documentRef, String versionLabel);
 
     List<Explanatory> findAllMinorsForIntermediate(String docRef, String curr, int startIndex, int maxResults);
 

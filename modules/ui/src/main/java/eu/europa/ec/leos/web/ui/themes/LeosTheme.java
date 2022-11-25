@@ -52,5 +52,7 @@ public class LeosTheme extends ValoTheme {
     public static final ThemeResource LEOS_HAMBURGUER_VERSIONS_16 = new ThemeResource("icons/16/version_actions.png");
     public static final ThemeResource LEOS_CONTRIBUTION_RECEIVED_16 = new ThemeResource("icons/16/contribution_received.png");
     public static final ThemeResource LEOS_CONTRIBUTION_DONE_16 = new ThemeResource("icons/16/contribution_done.png");
+    public static final ThemeResource LEOS_TOGGLE_ON_32 = new ThemeResource("icons/32/toggle-on.png");
+    public static final ThemeResource LEOS_TOGGLE_OFF_32 = new ThemeResource("icons/32/toggle-off.png");
 
 }

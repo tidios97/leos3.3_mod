@@ -537,7 +537,7 @@ public class LegServiceImplTest {
 		ExplanatoryMetadata explanatoryMetadata = new ExplanatoryMetadata("", "REGULATION", "", "CE-001", "EN", "CE-001",
 				"explanatory_cl43ykqyd0006k485zxvf53na.xml", "Working Party cover page", "555", "0.1.0", false);
 		return new Explanatory("555", "explanatory_cl43ykqyd0006k485zxvf53na.xml", "test", Instant.now(), "test", Instant.now(), "", "", "", "", VersionType.MINOR, false, "", collaborators, Arrays.asList(""),
-				Option.some(content), Option.some(explanatoryMetadata));
+				Option.some(content), null, false, Option.some(explanatoryMetadata));
 	}
 	
 	private Bill getMockedBill(List<Collaborator> collaborators) {

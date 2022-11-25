@@ -13,6 +13,8 @@
  */
 package eu.europa.ec.leos.services.processor.content;
 
+import static eu.europa.ec.leos.services.compare.ContentComparatorService.ATTR_NAME;
+import static eu.europa.ec.leos.services.compare.ContentComparatorService.CONTENT_SOFT_ADDED_CLASS;
 import static eu.europa.ec.leos.services.processor.content.TableOfContentHelper.isElementInToc;
 import static eu.europa.ec.leos.services.support.XercesUtils.addAttribute;
 import static eu.europa.ec.leos.services.support.XercesUtils.addSibling;
@@ -1754,15 +1756,7 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
 
     @Override
     public boolean isAnnexComparisonRequired(byte[] contentBytes) {
-        boolean comparisonRequired = false;
-        Document document = createXercesDocument(contentBytes);
-        NodeList nodes = document.getElementsByTagName(DOC);
-        if(nodes != null && nodes.getLength() > 0) {
-            Node node = XercesUtils.getFirstChild(nodes.item(0), MAIN_BODY);
-            String origin = XercesUtils.getAttributeValue(node, LEOS_ORIGIN_ATTR);
-            comparisonRequired = EC.equals(origin);
-        }
-        return comparisonRequired;
+        return true;
     }
 
     @Override
@@ -1894,5 +1888,16 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
             }
         }
         return XercesUtils.nodeToByteArray(document);
+    }
+    
+    @Override
+    public byte[] insertSoftAddedClassAttribute(byte[] contentBytes) {
+    	Document document = createXercesDocument(contentBytes);
+		NodeList nodes = document.getElementsByTagName(DOC);
+		if (nodes != null && nodes.getLength() > 0) {
+			Node bodyNode = XercesUtils.getFirstChild(nodes.item(0), MAIN_BODY);
+			XercesUtils.insertOrUpdateAttributeValueRecursively(bodyNode, ATTR_NAME, CONTENT_SOFT_ADDED_CLASS);
+		}
+		return nodeToByteArray(document);
     }
 }

@@ -19,6 +19,7 @@
             <permission>CAN_UPLOAD</permission>
             <permission>CAN_WORK_WITH_EXPORT_PACKAGE</permission>
             <permission>CAN_RENUMBER</permission>
+            <permission>CAN_TOGGLE_LIVE_DIFFING</permission>
         </permissions>
         <application-role>false</application-role>
         <collaborator>true</collaborator>

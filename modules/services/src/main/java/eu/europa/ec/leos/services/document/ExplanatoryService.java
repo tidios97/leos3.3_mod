@@ -10,6 +10,7 @@ import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ExplanatoryService {
 
@@ -64,4 +65,8 @@ public interface ExplanatoryService {
     Explanatory findFirstVersion(String documentRef);
 
     List<Explanatory> findCouncilExplanatoryByPackagePath(String path);
+    
+    Explanatory updateExplanatory(String id, Map<String, Object> properties, boolean latest);
+
+    Explanatory findExplanatoryByVersion(String documentRef, String versionLabel);
 }

@@ -82,12 +82,6 @@ public class DocumentContentServiceProposalImpl extends DocumentContentServiceIm
         return true;
     }
 
-    @Override
-    public boolean isCouncilExplanatoryComparisonRequired(byte[] contentBytes) {
-        return false;
-    }
-
-
     public boolean isProposalComparisonRequired(byte[] contentBytes) {
         return true;
     }

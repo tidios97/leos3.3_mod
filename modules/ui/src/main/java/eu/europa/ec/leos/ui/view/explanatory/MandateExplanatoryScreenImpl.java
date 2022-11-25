@@ -23,6 +23,7 @@ import eu.europa.ec.leos.ui.component.ComparisonComponent;
 import eu.europa.ec.leos.ui.component.doubleCompare.DoubleComparisonComponent;
 import eu.europa.ec.leos.ui.component.toc.TableOfContentItemConverter;
 import eu.europa.ec.leos.ui.component.versions.VersionsTab;
+import eu.europa.ec.leos.ui.event.ToggleLiveDiffingRequiredEvent;
 import eu.europa.ec.leos.ui.extension.SoftActionsExtension;
 import eu.europa.ec.leos.ui.component.toc.TocEditor;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
@@ -32,6 +33,7 @@ import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 import eu.europa.ec.leos.web.support.user.UserHelper;
 import eu.europa.ec.leos.web.support.xml.DownloadStreamResource;
 import eu.europa.ec.leos.web.ui.screen.document.ColumnPosition;
+import eu.europa.ec.leos.web.ui.themes.LeosTheme;
 
 import javax.inject.Provider;
 import java.util.List;
@@ -60,6 +62,7 @@ public class MandateExplanatoryScreenImpl extends ExplanatoryScreenImpl {
         explanatoryActionsMenuBar.setChildComponentClass(DoubleComparisonComponent.class);
         screenLayoutHelper.addPane(comparisonComponent, 2, false);
         screenLayoutHelper.layoutComponents();
+        toggleLiveDiffingButton();
         new SoftActionsExtension<>(explanatoryContent);
     }
 
@@ -130,11 +133,29 @@ public class MandateExplanatoryScreenImpl extends ExplanatoryScreenImpl {
         explanatoryActionsMenuBar.setDownloadVersionWithAnnotationsVisible(true);
         boolean enableExportPackage = securityContext.hasPermission(explanatory, LeosPermission.CAN_WORK_WITH_EXPORT_PACKAGE);
         doubleComparisonComponent.enableExportPackage(enableExportPackage);
+        boolean enableLiveDiffing = securityContext.hasPermission(explanatory, LeosPermission.CAN_TOGGLE_LIVE_DIFFING);
+        toggleLiveDiffingButton.setVisible(enableLiveDiffing);
     }
 
     @Override
     public boolean isCoverPageVisible() {
         return false;
+    }
+
+    @Override
+    public void setLiveDiffingRequired(boolean liveDiffingRequired) {
+    	toggleLiveDiffingButton.setData(liveDiffingRequired ? "ON" : "OFF");
+    	toggleLiveDiffingButton.setIcon(liveDiffingRequired ? LeosTheme.LEOS_TOGGLE_ON_32 : LeosTheme.LEOS_TOGGLE_OFF_32);
+    }
+    
+    @Override
+    public void toggleLiveDiffingButton() {
+    	toggleLiveDiffingButton.addStyleName("leos-toggle-button");
+    	toggleLiveDiffingButton.setDescription(messageHelper.getMessage("document.live.diffing.minimized.description"));
+    	toggleLiveDiffingButton.addClickListener(event -> {
+    		boolean liveDiffingRequired = toggleLiveDiffingButton.getData() == "ON" ? false : true;
+    		eventBus.post(new ToggleLiveDiffingRequiredEvent(liveDiffingRequired));
+    	});
     }
 
 }

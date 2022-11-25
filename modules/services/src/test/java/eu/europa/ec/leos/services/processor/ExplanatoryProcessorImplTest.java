@@ -222,6 +222,6 @@ public class ExplanatoryProcessorImplTest extends LeosTest {
         collaborators.add(new Collaborator("test", "OWNER", "SG"));
         return new Explanatory("555", "EXPL_COUNCIL", "test", Instant.now(), "test", Instant.now(),
                 "", "", "", "", VersionType.MINOR, false, "", collaborators, Arrays.asList(""),
-                Option.some(content), Option.some(explanatoryMetadata));
+                Option.some(content), null, false, Option.some(explanatoryMetadata));
     }
 }
