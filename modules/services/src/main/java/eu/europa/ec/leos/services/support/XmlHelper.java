@@ -211,6 +211,7 @@ public class XmlHelper {
     public static final String PROPOSAL_FILE = "main";
     public static final String PROP_ACT = "PROP_ACT";
     public static final String COUNCIL_EXPLANATORY = "EXPL_COUNCIL";
+    public static final String FINANCIAL_STATEMENT = "FINANCIAL_STATEMENT";
 
     public static String extractContentFromTocItem(TableOfContentItemVO tocItem) {
         if (tocItem.getContent() == null) {

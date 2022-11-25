@@ -42,11 +42,8 @@
             <proprietary source="~leos">
                 <leos:templateVersion>0.1.0</leos:templateVersion>
                 <leos:docVersion>0.1.0</leos:docVersion>
-                <leos:template>SJ-023</leos:template>
                 <leos:docTemplate>FS-001</leos:docTemplate>
-                <leos:ref>FINANCIAL_STATEMENT-cl93seo3i0055a25624ejl0jcf-en</leos:ref>
                 <leos:docType>LEGISLATIVE FINANCIAL STATEMENT</leos:docType>
-                <leos:objectId>4274c07df711d48b120e1dd4b0fa22229bcde1a0</leos:objectId>
             </proprietary>
         </meta>
         <preface>
@@ -538,7 +535,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table (landscape) -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td rowspan="2" style="border:1px solid black;padding:15px;text-align:center;">
                                     <p>Heading of multiannual financial framework</p>
@@ -637,7 +634,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table (landscape) -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td rowspan="2" style="border:1px solid black;padding:15px;text-align:center;">
                                     <p>Heading of multiannual financial framework</p>
@@ -709,7 +706,7 @@
                 <num>3.2.</num>
                 <heading>Estimated financial impact of the proposal on appropriations</heading>
             </level>
-            <level>
+            <level class="landscape">
                 <num>3.2.1.</num>
                 <heading>Summary of estimated impact on operational appropriations</heading>
                 <hcontainer name="check">
@@ -730,7 +727,7 @@
                     <content>
                         <!-- rotated table (landscape) -->
                         <!-- sorry for all the inline styles, surely need cleanup I got to redo it all from word -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td style="background-color:#D3D3D3;border:1px solid black;padding:15px;text-align:center;">
                                     <p>
@@ -754,7 +751,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table (landscape) -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
                                     width="264">
@@ -1290,7 +1287,7 @@
                             <br/>
                         </p>
                         <!-- rotated table -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr style="height: 13.85pt;">
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
                                     rowspan="2" width="264">
@@ -1568,7 +1565,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td rowspan="2" style="border:1px solid black;padding:15px;text-align:left;">
                                     <p>• TOTAL operational appropriations (all operational headings)</p>
@@ -1750,7 +1747,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td style="border:1px solid black;padding:15px;text-align:center; background-color:#D3D3D3;">
                                     <p>
@@ -1787,7 +1784,7 @@
                         </p>
                         <!-- / Guidance -->
                         <!-- rotated table -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr style="border:1px solid black;">
                                 <td style="border:1px solid black;padding:15px;text-align:center;">
                                     <p>DG: &lt;…….&gt;</p>
@@ -1886,7 +1883,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td style="border:1px solid black;padding:15px;text-align:center; background-color:#D3D3D3;">
                                     <p>
@@ -1937,7 +1934,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table -->
-                        <table style="border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="border-collapse:collapse;">
                             <tr>
                                 <td style="border:none;">
                                     <p/>
@@ -2066,7 +2063,7 @@
                     </content>
                 </subparagraph>
             </level>
-            <level>
+            <level class="landscape">
                 <num>3.2.2.</num>
                 <heading>Estimated impact on administrative appropriations</heading>
                 <subparagraph>
@@ -2077,7 +2074,7 @@
                 <subparagraph>
                     <content>
                         <!-- rotated table -->
-                        <table style="text-align:center;border-collapse:collapse;transform: rotate(90deg);">
+                        <table style="text-align:center;border-collapse:collapse;">
                             <tr>
                                 <td rowspan="3" style="border:1px solid black;padding:15px">
                                     <p>
@@ -2531,7 +2528,7 @@
                     </content>
                 </subparagraph>
             </level>
-            <level>
+            <level class="landscape">
                 <num>3.2.3.</num>
                 <heading>Summary of estimated impact on administrative appropriations</heading>
                 <hcontainer name="check">
@@ -2977,7 +2974,7 @@
                     </content>
                 </subparagraph>
             </level>
-            <level>
+            <level  class="landscape">
                 <num>3.2.3.1</num>
                 <heading>Estimated requirements of human resources</heading>
                 <hcontainer name="check">
@@ -3571,7 +3568,7 @@
                     </hcontainer>
                 </hcontainer>
             </level>
-            <level>
+            <level  class="landscape">
                 <num>3.2.5.</num>
                 <heading>Third-party contributions</heading>
                 <hcontainer name="check">
@@ -3697,7 +3694,7 @@
                     </content>
                 </subparagraph>
             </level>
-            <level>
+            <level  class="landscape">
                 <num>3.3.</num>
                 <heading>Estimated impact on revenue</heading>
                 <hcontainer name="check">

@@ -3,8 +3,8 @@
            xmlns="http://eu.europa.ec.digit.leos.pilot/schema/"
            xsi:schemaLocation="http://eu.europa.ec.digit.leos.pilot/schema/ structure_1.xsd">
 
-    <name>structure_06.xml</name>
-    <description>Structure used for Financial Statement</description>
+    <name>structure_07.xml</name>
+    <description>Structure used for financial statement</description>
     <version>1</version>
 
     <tocItems>
@@ -47,6 +47,119 @@
         </tocItem>
 
         <tocItem>
+            <aknTag>part</aknTag>
+            <root>false</root>
+            <higherElement>true</higherElement>
+            <draggable>true</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>false</autoNumbering>
+            <itemHeading>mandatory</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>true</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>true</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>ROMAN_UPPER</numberingType>
+            <editable>false</editable>
+            <template><![CDATA[<part xml:id="_${id}"><num>${num}</num><heading>${heading}</heading></part>]]></template>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>title</aknTag>
+            <root>false</root>
+            <higherElement>true</higherElement>
+            <draggable>true</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>false</autoNumbering>
+            <itemHeading>mandatory</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>true</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>true</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>ROMAN_UPPER</numberingType>
+            <editable>false</editable>
+            <template><![CDATA[<title xml:id="_${id}"><num>${num}</num><heading>${heading}</heading></title>]]></template>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>chapter</aknTag>
+            <root>false</root>
+            <higherElement>true</higherElement>
+            <draggable>true</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>false</autoNumbering>
+            <itemHeading>mandatory</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>true</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>true</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>HIGHER_ELEMENT_NUM</numberingType>
+            <editable>false</editable>
+            <template><![CDATA[<chapter xml:id="_${id}"><num>${num}</num><heading>${heading}</heading></chapter>]]></template>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>section</aknTag>
+            <root>false</root>
+            <higherElement>true</higherElement>
+            <draggable>true</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>true</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>false</autoNumbering>
+            <itemHeading>mandatory</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>true</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>true</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>ARABIC_PARENTHESIS</numberingType>
+            <editable>false</editable>
+            <template><![CDATA[<section xml:id="_${id}"><num>${num}</num><heading>${heading}</heading></section>]]></template>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>heading</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>false</childrenAllowed>
+            <display>false</display>
+            <itemNumber>none</itemNumber>
+            <itemHeading>none</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>false</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>NONE</numberingType>
+            <profiles>
+                <profile>
+                    <elementSelector>heading:not(level heading)</elementSelector>
+                    <profileName>inlineAknHeading</profileName>
+                </profile>
+            </profiles>
+            <editable>true</editable>
+        </tocItem>
+
+        <tocItem>
             <aknTag>level</aknTag>
             <root>false</root>
             <draggable>true</draggable>
@@ -72,17 +185,126 @@
             <maxDepth>7</maxDepth>
         </tocItem>
 
+
+        <tocItem>
+            <aknTag>subparagraph</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>false</childrenAllowed>
+            <display>false</display>
+            <itemNumber>none</itemNumber>
+            <itemHeading>none</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>NONE</numberingType>
+            <editable>false</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>list</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>false</display>
+            <itemNumber>none</itemNumber>
+            <itemHeading>none</itemHeading>
+            <itemDescription>true</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>false</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>NONE</numberingType>
+            <editable>false</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>point</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>true</childrenAllowed>
+            <display>false</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>true</autoNumbering>
+            <itemHeading>none</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>true</sameParentAsChild>
+            <numberingType>POINT_NUM</numberingType>
+            <editable>false</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>indent</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>false</childrenAllowed>
+            <display>false</display>
+            <itemNumber>mandatory</itemNumber>
+            <autoNumbering>true</autoNumbering>
+            <itemHeading>none</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>true</sameParentAsChild>
+            <numberingType>POINT_NUM</numberingType>
+            <editable>false</editable>
+        </tocItem>
+
+        <tocItem>
+            <aknTag>alinea</aknTag>
+            <root>false</root>
+            <draggable>false</draggable>
+            <childrenAllowed>false</childrenAllowed>
+            <display>false</display>
+            <itemNumber>none</itemNumber>
+            <itemHeading>none</itemHeading>
+            <itemDescription>false</itemDescription>
+            <numberEditable>false</numberEditable>
+            <contentDisplayed>true</contentDisplayed>
+            <deletable>true</deletable>
+            <numWithType>false</numWithType>
+            <expandedByDefault>true</expandedByDefault>
+            <sameParentAsChild>false</sameParentAsChild>
+            <numberingType>NONE</numberingType>
+            <editable>false</editable>
+        </tocItem>
     </tocItems>
 
-    <numberingConfigs/>
+    <numberingConfigs>
+
+    </numberingConfigs>
 
     <alternateConfigs/>
 
     <tocRules>
         <entry>
-            <tocItem>longTitle</tocItem>
+            <tocItem>preface</tocItem>
+            <list/>
+        </entry>
+        <entry>
+            <tocItem>mainBody</tocItem>
             <list>
-                <tocItem>docPurpose</tocItem>
+                <tocItem>level</tocItem>
+            </list>
+        </entry>
+        <entry>
+            <tocItem>level</tocItem>
+            <list>
+                <tocItem>level</tocItem>
             </list>
         </entry>
     </tocRules>

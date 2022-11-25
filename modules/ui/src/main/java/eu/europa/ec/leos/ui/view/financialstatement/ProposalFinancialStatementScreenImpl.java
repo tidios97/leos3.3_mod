@@ -90,7 +90,6 @@ public class ProposalFinancialStatementScreenImpl extends FinancialStatementScre
         this.markedTextComponent = markedTextComponent;
         this.contributionsTab = contributionsTab;
         this.cloneContext = cloneContext;
-        init();
     }
 
     @Override

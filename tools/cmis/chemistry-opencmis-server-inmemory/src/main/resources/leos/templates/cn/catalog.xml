@@ -306,4 +306,20 @@
             </descriptions>
         </item>
     </item>
+    <item type="CATEGORY" id="c2" hidden="true" enabled="true" key="SUPPORTING_DOCUMENTS">
+        <names>
+            <name lang="EN">Other supporting documents</name>
+        </names>
+        <descriptions>
+            <description lang="EN">Other supporting documents</description>
+        </descriptions>
+        <item type="TEMPLATE" id="FS-001" enabled="true" key="FS-001">
+            <names>
+                <name lang="EN">Financial statement</name>
+            </names>
+            <descriptions>
+                <description lang="EN">Financial statement</description>
+            </descriptions>
+        </item>
+    </item>
 </catalog>

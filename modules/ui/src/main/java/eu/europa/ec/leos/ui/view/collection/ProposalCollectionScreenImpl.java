@@ -107,7 +107,7 @@ public class ProposalCollectionScreenImpl extends CollectionScreenImpl {
         CreateSupportDocumentWizard createSupportDocumentWizard = new CreateSupportDocumentWizard(templates, templateDocPresent, messageHelper, langHelper, eventBus, cfgHelper);
         UI.getCurrent().addWindow(createSupportDocumentWizard);
         createSupportDocumentWizard.focus();
-        createSupportingDocumentsButton.setEnabled(true);
+        createSupportingDocumentsButton.setEnabled(Boolean.valueOf(cfgHelper.getProperty("leos.supporting.documents.enable")));
     }
 
     private class ExportToPdfCommand implements MenuBar.Command {
@@ -138,19 +138,7 @@ public class ProposalCollectionScreenImpl extends CollectionScreenImpl {
         exportCollectionToLegiswrite = exportMenu.addItem(messageHelper.getMessage("collection.caption.menuitem.export.legiswrite"),
                 new ExportToLegiswriteCommand());
         exportCollectionToLegiswrite.setDescription(messageHelper.getMessage("collection.description.menuitem.export.document.legiswrite"));
-
         downloadCollection.setDescription(messageHelper.getMessage("collection.description.button.download.legiswrite"));
-        supportDocumentsBlockHeading.addRightButton(addCreatSupportingDocumentButton());
-    }
-
-    private Button addCreatSupportingDocumentButton() {
-        createSupportingDocumentsButton.setIcon(VaadinIcons.PLUS_CIRCLE);
-        createSupportingDocumentsButton.setDescription(messageHelper.getMessage("collection.description.button.create.supporting.documents"));
-        createSupportingDocumentsButton.addStyleName("create-supportdoc-button");
-        createSupportingDocumentsButton.setDisableOnClick(true);
-        createSupportingDocumentsButton.addClickListener(clickEvent -> eventBus.post(new SupportingDocumentsCreateWizardRequestEvent()));
-        createSupportingDocumentsButton.setEnabled( Boolean.valueOf(cfgHelper.getProperty("leos.supporting.documents.enable")));
-        return createSupportingDocumentsButton;
     }
 
     @Override

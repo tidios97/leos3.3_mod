@@ -78,6 +78,7 @@ import eu.europa.ec.leos.web.event.NotificationEvent;
 import eu.europa.ec.leos.web.event.view.document.OpenCoverPageEvent;
 import eu.europa.ec.leos.web.event.view.document.OpenLegalTextEvent;
 import eu.europa.ec.leos.web.event.view.memorandum.OpenMemorandumEvent;
+import eu.europa.ec.leos.web.event.view.repository.SupportingDocumentsCreateWizardRequestEvent;
 import eu.europa.ec.leos.web.event.window.SaveMetaDataRequestEvent;
 import eu.europa.ec.leos.web.model.CollaboratorVO;
 import eu.europa.ec.leos.web.model.UserVO;
@@ -311,6 +312,19 @@ abstract class CollectionScreenImpl extends VerticalLayout implements Collection
         initDownloader();
         revision.setVisible(false);
         originRef.setVisible(false);
+        if(Boolean.valueOf(cfgHelper.getProperty("leos.supporting.documents.enable"))){
+            supportDocumentsBlockHeading.addRightButton(addCreatSupportingDocumentButton());
+        }
+    }
+
+    private Button addCreatSupportingDocumentButton() {
+        createSupportingDocumentsButton.setIcon(VaadinIcons.PLUS_CIRCLE);
+        createSupportingDocumentsButton.setDescription(messageHelper.getMessage("collection.description.button.create.supporting.documents"));
+        createSupportingDocumentsButton.addStyleName("create-supportdoc-button");
+        createSupportingDocumentsButton.setDisableOnClick(true);
+        createSupportingDocumentsButton.addClickListener(clickEvent -> eventBus.post(new SupportingDocumentsCreateWizardRequestEvent()));
+        createSupportingDocumentsButton.setEnabled(true);
+        return createSupportingDocumentsButton;
     }
 
     private void initListeners() {

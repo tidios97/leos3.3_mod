@@ -49,6 +49,7 @@ import static eu.europa.ec.leos.services.support.XmlHelper.DIR_FILE_PREFIX;
 import static eu.europa.ec.leos.services.support.XmlHelper.DOC;
 import static eu.europa.ec.leos.services.support.XmlHelper.EC;
 import static eu.europa.ec.leos.services.support.XmlHelper.ELEMENTS_IN_TOC;
+import static eu.europa.ec.leos.services.support.XmlHelper.FINANCIAL_STATEMENT;
 import static eu.europa.ec.leos.services.support.XmlHelper.HEADING;
 import static eu.europa.ec.leos.services.support.XmlHelper.HREF;
 import static eu.europa.ec.leos.services.support.XmlHelper.INDENT;
@@ -1854,6 +1855,9 @@ public abstract class XmlContentProcessorImpl implements XmlContentProcessor {
                     break;
                 case PROP_ACT:
                     category = null;
+                    break;
+                case FINANCIAL_STATEMENT:
+                    category = LeosCategory.FINANCIAL_STATEMENT;
                     break;
                 default:
                     category = LeosCategory.MEDIA;

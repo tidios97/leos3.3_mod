@@ -14,6 +14,7 @@
 package eu.europa.ec.leos.ui.view.collection;
 
 import com.google.common.eventbus.EventBus;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FileDownloader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Resource;
@@ -21,7 +22,9 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinResponse;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.UI;
 import eu.europa.ec.leos.domain.common.InstanceType;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.i18n.LanguageHelper;
@@ -37,6 +40,9 @@ import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
 import eu.europa.ec.leos.ui.event.view.collection.DeleteCollectionEvent;
 import eu.europa.ec.leos.ui.event.view.collection.DownloadProposalEvent;
 import eu.europa.ec.leos.ui.event.view.collection.ExportProposalEvent;
+import eu.europa.ec.leos.ui.wizard.document.CreateSupportDocumentWizard;
+import eu.europa.ec.leos.vo.catalog.CatalogItem;
+import eu.europa.ec.leos.web.event.view.repository.SupportingDocumentsCreateWizardRequestEvent;
 import eu.europa.ec.leos.web.support.UrlBuilder;
 import eu.europa.ec.leos.web.support.cfg.ConfigurationHelper;
 import eu.europa.ec.leos.web.support.user.UserHelper;
@@ -48,6 +54,7 @@ import org.vaadin.dialogs.ConfirmDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @ViewScope
 @SpringComponent
@@ -105,6 +112,7 @@ public class ProposalOSCollectionScreenImpl extends CollectionScreenImpl {
         exportCollectionToPdf.setDescription(messageHelper.getMessage("collection.description.menuitem.export.pdf"));
 
         downloadCollection.setDescription(messageHelper.getMessage("collection.description.button.download.legiswrite"));
+
     }
 
     @Override
@@ -136,6 +144,14 @@ public class ProposalOSCollectionScreenImpl extends CollectionScreenImpl {
             }
         };
         fileDownloader.extend(downloadCollection);
+    }
+
+    @Override
+    public void showSupportDocumentWizard(List<CatalogItem> templates, List<String> templateDocPresent) {
+        CreateSupportDocumentWizard createSupportDocumentWizard = new CreateSupportDocumentWizard(templates, templateDocPresent, messageHelper, langHelper, eventBus, cfgHelper);
+        UI.getCurrent().addWindow(createSupportDocumentWizard);
+        createSupportDocumentWizard.focus();
+        createSupportingDocumentsButton.setEnabled(Boolean.valueOf(cfgHelper.getProperty("leos.supporting.documents.enable")));
     }
 
     private void initExportPdfDownloader() {
