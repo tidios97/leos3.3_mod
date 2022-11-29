@@ -1,0 +1,63 @@
+{
+  "guidance": [
+    {
+      "targets": [
+        {
+          "destinationId": "_141__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_141__p\" class=\"guidance-green-block\"><span id=\"_141__p-guidance\">[Please limit the general objective to max 1 - 2.<br> The general objective(s) shall explain how the Programme contributes to the achievement of the policy.<br>The general objectives should be specific, measurable, attainable, relevant and time-bound.<br>Please follow the Better Regulation Guidelines in drafting the objectives.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_142__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_142__p\" class=\"guidance-green-block\"><span id=\"_142__p-guidance\">[Please limit the specific objective(s) to 2-3.<br>The specific objective(s) should be linked to the general one(s) and translate in concrete terms how the general objective(s) will be pursued.<br>The specific objectives should be specific, measurable, attainable, relevant and time-bound.<br>Please follow the Better Regulation Guidelines in drafting the objectives.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_144__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_144__p\" class=\"guidance-green-block\"><span id=\"_144__p-guidance\">[A limited core set of indicators (i.e. one per objective) should be clearly defined and should generate information in a continuous and systematic way on implementation and performance.<br>The indicators should be relevant, accepted, credible, easy and robust.<br>Over the time indicators should be comparable and consistent for concepts, definitions and methods.<br> DGs should ensure the quality of indicators, the relevant aspects being:<br>(a) Effectiveness and timeliness: indicators should allow to monitor performance by providing information on progress on a regular basis and on achievements along the programming period.<br>(b) Efficiency: processes should be optimized for collection and processing of data, avoiding unnecessary or duplicative requests for information<br>(c) Relevance of the indicators and the need to limit the associated administrative burden.<br>(d) Clarity: indicators should be delivered in a clear and understandable form, with supporting metadata and in a form that facilitates proper interpretation and meaningful communication.<br>Each indicator should be accompanied by targets and baseline.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_221__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_221__p\" class=\"guidance-green-block\"><span id=\"_221__p-guidance\">[DGs are to explain why the management mode(s), funding implementation mechanism(s), payment modalities, and control strategy proposed are considered to be the most appropriate solutions in this case – not only in terms of the policy/programme objectives but also in terms of balancing the internal control objectives (control effectiveness, efficiency and economy; i.e. low errors, fast contracting/paying and low control costs) – knowing that complexity of programmes can impact the error rates and (together with the volumes of transactions to be processed) also the costs of controls.<br>Remark: Such justification is especially crucial when the programme is split into segments, with a deviating delivery set-up for some of them.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_222__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_222__p\" class=\"guidance-green-block\"><span id=\"_222__p-guidance\">[This includes explaining how the root causes of high error rates in the previous programme(s) are being addressed now, e.g. by simplifying previously complex modalities which were prone to error and/or by intensifying the (ex-ante and/or ex-post) controls for inherently high-risk activities.]</span></guidance>"
+    },
+    {
+      "targets": [
+        {
+          "destinationId": "_223__p",
+          "position": "AFTER-WRAPPER"
+        }
+      ],
+      "content": "<guidance id=\"guidance-_223__p\" class=\"guidance-green-block\"><span id=\"_223__p-guidance\">[The costs of controls are to be estimated at Commission level and, for shared and indirect management, also (separately) at the level of Member States or Entrusted Entities. Also the source of the information (related to the cost of controls at the level of Member States or Entrusted Entities) and how they were estimated should be presented.<br>If for the whole or part of the programme the estimated total cost of controls (i.e. those of the Commission plus, if applicable, those of the Member States or the Entrusted Entities) are relatively high, then this should be explained by referring to possible cost drivers such as the specific risk-profile, the (dis)economies of scale in terms of number and size of the DG's typical transactions processed, complexity of delivery mechanisms, etc.<br>Remark: Such justification is especially crucial when the programme is split into segments, with a deviating delivery set-up for some of them.<br>In terms of expected error rate(s), at the stage of the legislative proposals the aim is to maintain the error rate below the threshold of 2%. A different materiality threshold could only be discussed on a case-by-case basis in the light of the legislative debate, notably when the Legislative Authority would not (fully) endorse the proposed programme simplifications and/or would cap the controls, which would have consequences on the expected error rate. This would then require a coordinated approach.]</span></guidance>"
+    }
+  ],
+  "structure": [
+    {
+      "name": "structure_07"
+    }
+  ]
+}
