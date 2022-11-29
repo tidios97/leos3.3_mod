@@ -16,6 +16,11 @@
 //Standard A4 page size
 $A4-PAGE_WIDTH: 21cm;
 $A4-PAGE_HEIGHT: 29.7cm;
+$A4-PAGE_SHADOW: 0 5px 11px rgba(0, 0, 0, 0.5);
+
+$LANDSCAPE_WIDTH: 44cm;
+$LANDSCAPE_MARGIN_LEFT: 12px;
+$PORTRAIT_MARGIN_LEFT: 12px;
 
 // LegisWrite page margins for page
 $PAGE-MARGIN-VERTICAL: 2cm;
@@ -24,27 +29,24 @@ $PAGE-MARGIN-HORIZONTAL: 2.5cm;
 %pageLayout {
     position: relative;
     display: block;
-    margin: 0.5cm 0.5cm 0.5cm 0.8%;
+    margin: 0.5cm auto 0.5cm 12px;
     width: $A4-PAGE_WIDTH;
+
     min-height: $A4-PAGE_HEIGHT;
     padding: $PAGE-MARGIN-VERTICAL $PAGE-MARGIN-HORIZONTAL;
-    box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
+    box-shadow: $A4-PAGE_SHADOW;
     white-space: normal;
     background-color: white;
 }
 
 %xmlSecondPage {
     & > :not(coverPage) {
-        display: block;
-        position:relative;
-        width: $A4-PAGE_WIDTH;
-        white-space: normal;
-        background-color: white;
-        padding-left: $PAGE-MARGIN-HORIZONTAL;
-        padding-right: $PAGE-MARGIN-HORIZONTAL;
-        margin-left: 0.8%;
-        margin-right: auto;
-        box-shadow: 0 11px 11px rgba(0, 0, 0, 0.5);
+        min-height: auto;
+        padding-bottom: 0;
+        padding-top: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+        @extend %pageLayout;
     }
 
     & > preface {
@@ -66,6 +68,14 @@ $PAGE-MARGIN-HORIZONTAL: 2.5cm;
         }
     }
 
+    & > preamble {
+        padding-top: 24pt;
+        padding-bottom: 14pt;
+        & > * {
+            display: block;
+        }
+    }
+
     & > :last-child {
         padding-bottom: $PAGE-MARGIN-VERTICAL;
         margin-bottom: 0.5cm;
@@ -73,5 +83,9 @@ $PAGE-MARGIN-HORIZONTAL: 2.5cm;
 
     & > mainBody{
         min-height: calc(#{$A4-PAGE_HEIGHT} - 125px);
+    }
+
+    & > conclusions {
+        padding-top: 20pt;
     }
 }

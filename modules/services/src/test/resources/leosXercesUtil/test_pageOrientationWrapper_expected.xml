@@ -1,0 +1,128 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:leos="urn:eu:europa:ec:leos">
+    <doc name="FINANCIAL_STATEMENT">
+        <preface xml:id="_akn_LkjX3b">
+            <longTitle xml:id="_akn_9zW3oQ">
+                <p xml:id="_akn_nCWGiy">
+                    <docType refersTo="~_FINANCIAL_STATEMENT" xml:id="_akn_wCQRn1">LEGISLATIVE FINANCIAL STATEMENT</docType>
+                    <docType xml:id="_preface_doctitle">Legislative Financial statement</docType>
+                </p>
+            </longTitle>
+        </preface>
+        <mainBody xml:id="_akn_03wlgd">
+            <div class="portrait">
+                <level xml:id="_akn_kFzbs1">
+                    <num xml:id="_akn_cOHjlV">1.</num>
+                </level>
+                <level xml:id="_akn_XpzZ1b">
+                    <num xml:id="_akn_pvgmaS">1.1.</num>
+                </level>
+                <level xml:id="_akn_xNcpA5">
+                    <num xml:id="_akn_ZtFj3z">1.2.</num>
+                </level>
+                <level xml:id="_akn_hCEBGp">
+                    <num xml:id="_akn_xljWvk">1.3.</num>
+                </level>
+                <level xml:id="_akn_BlOM2O">
+                    <num xml:id="_akn_HiryLA">1.4.</num>
+                </level>
+                <level xml:id="_akn_tQavw0">
+                    <num xml:id="_akn_azsOT3">1.4.1.</num>
+                </level>
+                <level xml:id="_akn_r0kdHu">
+                    <num xml:id="_akn_BWYRCI">1.4.2.</num>
+                </level>
+                <level xml:id="_akn_2BFkVc">
+                    <num xml:id="_akn_uuUwaH">1.4.3.</num>
+                </level>
+                <level xml:id="_akn_T6lB94">
+                    <num xml:id="_akn_1XliXU">1.4.4.</num>
+                </level>
+                <level xml:id="_akn_bOipKO">
+                    <num xml:id="_akn_NRiGoY">1.5.</num>
+                </level>
+                <level xml:id="_akn_jLGQzb">
+                    <num xml:id="_akn_oSpHW5">1.5.1.</num>
+                </level>
+                <level xml:id="_akn_FcUutE">
+                    <num xml:id="_akn_hLwqPZ">1.5.2.</num>
+                </level>
+                <level xml:id="_akn_HBWAb3">
+                    <num xml:id="_akn_0vChmB">1.5.3.</num>
+                </level>
+                <level xml:id="_akn_xdAHAF">
+                    <num xml:id="_akn_DTtF6X">1.5.4.</num>
+                </level>
+                <level xml:id="_akn_6KFTY1">
+                    <num xml:id="_akn_Qxlsea">1.5.5.</num>
+                </level>
+                <level xml:id="_akn_yciJlp">
+                    <num xml:id="_akn_9d7nvY">1.6.</num>
+                </level>
+                <level xml:id="_akn_GFNR8F">
+                    <num xml:id="_akn_Hftp5i">1.7.</num>
+                </level>
+                <level xml:id="_akn_22xWEU">
+                    <num xml:id="_akn_JrvnwF">2.</num>
+                </level>
+                <level xml:id="_akn_NdytXK">
+                    <num xml:id="_akn_b3BsWx">2.1.</num>
+                </level>
+                <level xml:id="_akn_a3ikDD">
+                    <num xml:id="_akn_Ol2K9G">2.2.</num>
+                </level>
+                <level xml:id="_akn_lp6dKf">
+                    <num xml:id="_akn_VyWHbO">2.2.1.</num>
+                </level>
+                <level xml:id="_akn_gfebhr">
+                    <num xml:id="_akn_rgMjtu">2.2.2.</num>
+                </level>
+                <level xml:id="_akn_8Hsu4g">
+                    <num xml:id="_akn_ReQm0l">2.2.3.</num>
+                </level>
+                <level xml:id="_akn_ta6wKA">
+                    <num xml:id="_akn_TwiL0D">2.3.</num>
+                </level>
+                <level xml:id="_akn_dFaf5j">
+                    <num xml:id="_akn_7KyyUs">3.</num>
+                </level>
+            </div>
+            <div class="landscape">
+                <level class="landscape" xml:id="_akn_jFED04">
+                    <num xml:id="_akn_ZemsYf">3.1.</num>
+                </level>
+            </div>
+            <div class="portrait">
+                <level xml:id="_akn_eBftLR">
+                    <num xml:id="_akn_o5Scly">3.2.</num>
+                </level>
+            </div>
+            <div class="landscape">
+                <level class="landscape" xml:id="_akn_QYSFzi">
+                    <num xml:id="_akn_3aF1ly">3.2.1.</num>
+                </level>
+                <level class="landscape" xml:id="_akn_BaEs0U">
+                    <num xml:id="_akn_ocZpJK">3.2.2.</num>
+                </level>
+                <level class="landscape" xml:id="_akn_BzDVAX">
+                    <num xml:id="_akn_KQgGU2">3.2.3.</num>
+                </level>
+                <level class="landscape" xml:id="_akn_8MfgE3">
+                    <num xml:id="_akn_mylMI8">3.2.3.1</num>
+                </level>
+            </div>
+            <div class="portrait">
+                <level xml:id="_akn_v6MhhQ">
+                    <num xml:id="_akn_sAXMTl">3.2.4.</num>
+                </level>
+            </div>
+            <div class="landscape">
+                <level class="landscape" xml:id="_akn_ift9eG">
+                    <num xml:id="_akn_HciriN">3.2.5.</num>
+                </level>
+                <level class="landscape" xml:id="_akn_bjG9Fg">
+                    <num xml:id="_akn_nRYCz5">3.3.</num>
+                </level>
+            </div>
+        </mainBody>
+    </doc>
+</akomaNtoso>

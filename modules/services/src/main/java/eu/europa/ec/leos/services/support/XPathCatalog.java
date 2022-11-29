@@ -8,6 +8,10 @@ public class XPathCatalog {
     public static final String NAMESPACE_AKN_NAME = "akn";
     public static final String NAMESPACE_AKN_URI = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
+    public static String getXPathElement(String element) {
+        return "//akn:" + element;
+    }
+
     public String getXPathRefOrigin() {
         return "/akn:akomaNtoso//akn:meta/akn:proprietary/leos:refOrigin";
     }
@@ -135,7 +139,6 @@ public class XPathCatalog {
     public static String removeNamespaceFromXml(String xml) {
         return xml.replaceAll(NAMESPACE_AKN_NAME + ":", "");
     }
-
 
 
 }

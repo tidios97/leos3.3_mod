@@ -173,6 +173,9 @@ public class XmlHelper {
     public static final String EMPTY_STRING = "";
     public static final String NON_BREAKING_SPACE = "\u00A0";
     public static final String CLASS_ATTR = "class";
+    public static final String DIV = "div";
+    public static final String ORIENTATION_LANDSCAPE = "landscape";
+    public static final String ORIENTATION_PORTRAIT = "portrait";
 
     private static final String ID_PLACEHOLDER = "${id}";
     private static final String ID_PLACEHOLDER_ESCAPED = "\\Q${id}\\E";
@@ -227,7 +230,7 @@ public class XmlHelper {
     }
 
     public static boolean containsXmlTags(String content) {
-       return content.contains(OPEN_TAG) || content.contains(CLOSE_TAG);
+        return content.contains(OPEN_TAG) || content.contains(CLOSE_TAG);
     }
 
     private static Pair<Integer, Integer> getStartEndIndexesOfContent(TableOfContentItemVO tocItem) {

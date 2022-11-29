@@ -868,6 +868,12 @@ public class XercesUtils {
         return element;
     }
 
+    public static Element createElement(Document document, String elementName, String attr, String attrValue, String elementContent) {
+        Element element = createElement(document, elementName, elementContent);
+        XercesUtils.addAttribute(element, attr, attrValue);
+        return element;
+    }
+
     public static Element createElement(Document document, String elementName, String elementId, String content) {
         Element element = document.createElement(elementName);
 

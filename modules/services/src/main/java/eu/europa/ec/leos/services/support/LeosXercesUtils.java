@@ -10,16 +10,25 @@ import static eu.europa.ec.leos.services.support.XercesUtils.getAttributeValueAs
 import static eu.europa.ec.leos.services.support.XercesUtils.getFirstChild;
 import static eu.europa.ec.leos.services.support.XercesUtils.getNumTag;
 import static eu.europa.ec.leos.services.support.XmlHelper.BOLD;
+import static eu.europa.ec.leos.services.support.XmlHelper.DIV;
 import static eu.europa.ec.leos.services.support.XmlHelper.CLASS_ATTR;
 import static eu.europa.ec.leos.services.support.XmlHelper.DIVISION;
+import static eu.europa.ec.leos.services.support.XmlHelper.ORIENTATION_LANDSCAPE;
+import static eu.europa.ec.leos.services.support.XmlHelper.ORIENTATION_PORTRAIT;
 import static eu.europa.ec.leos.services.support.XmlHelper.ITALICS;
 import static eu.europa.ec.leos.services.support.XmlHelper.LEOS_AUTO_NUM_OVERWRITE;
+import static eu.europa.ec.leos.services.support.XmlHelper.MAIN_BODY;
+import static eu.europa.ec.leos.services.support.XmlHelper.LEVEL;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
+
+import java.util.List;
 
 public class LeosXercesUtils {
 
@@ -102,4 +111,46 @@ public class LeosXercesUtils {
     	return iNode;
     }
 
+    public static byte[] wrapWithPageOrientationDivs(Document document) {
+        Element landscapeDiv = XercesUtils.createElement(document, DIV, CLASS_ATTR, ORIENTATION_LANDSCAPE, "");
+        Element portraitDiv = XercesUtils.createElement(document, DIV, CLASS_ATTR, ORIENTATION_PORTRAIT, "");
+
+        Node mainBody = XercesUtils.getElementsByXPath(document, XPathCatalog.getXPathElement(MAIN_BODY)).item(0);
+        List<Node> children = XercesUtils.getChildren(mainBody);
+        String prevElement = null;
+        mainBody.setTextContent("");
+        for (int i = 0; i < children.size(); i++) {
+            Node node = children.get(i);
+            if (node.getNodeName().equals(LEVEL)) {
+                String orientationClass = XercesUtils.getAttributeValue(node, "class");
+                if (ORIENTATION_LANDSCAPE.equals(orientationClass)) {
+                    if (prevElement == null) {
+                        mainBody.appendChild(landscapeDiv);
+                    }
+                    if (ORIENTATION_LANDSCAPE.equals(prevElement)) {
+                        landscapeDiv.appendChild(node);
+                    } else {
+                        landscapeDiv = XercesUtils.createElement(document, DIV, CLASS_ATTR, ORIENTATION_LANDSCAPE, "");
+                        landscapeDiv.appendChild(node);
+                        mainBody.appendChild(landscapeDiv);
+                    }
+                    prevElement = ORIENTATION_LANDSCAPE;
+                } else {
+                    if (ORIENTATION_PORTRAIT.equals(prevElement) || prevElement == null) {
+                        if (prevElement == null) {
+                            mainBody.appendChild(portraitDiv);
+                        }
+                        portraitDiv.appendChild(node);
+                    } else {
+                        portraitDiv = XercesUtils.createElement(document, DIV, CLASS_ATTR, ORIENTATION_PORTRAIT, "");
+                        portraitDiv.appendChild(node);
+                        mainBody.appendChild(portraitDiv);
+                    }
+                    prevElement = ORIENTATION_PORTRAIT;
+                }
+            }
+        }
+
+        return XercesUtils.nodeToByteArray(document);
+    }
 }

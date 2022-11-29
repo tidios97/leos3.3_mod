@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /**
- * Copyright 2019 European Commission
+ * Copyright 2022 European Commission
  *
  * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
  * You may not use this work except in compliance with the Licence.
@@ -13,16 +13,24 @@
  * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
 
-//------------------------------- XML Styles --------------------------------//
-%xmlCoverPageFS {
-    coverPage {
-        margin: 0 0 0 $LANDSCAPE_MARGIN_LEFT;
+%pageLayoutFS {
+    @extend %pageLayout;
+    margin: 0.5cm auto 0.5cm $LANDSCAPE_MARGIN_LEFT;
+}
 
-        @extend %pageLayout;
+%xmlSecondPageFS {
+    & > :not(coverPage, mainBody, preface) {
+        @extend %pageLayoutFS;
+    }
 
-        & > * {
-            display: block;
-            @extend %paddedText;
-        }
+    & > preface {
+        min-height: inherit;
+        padding-bottom: 0px;
+        margin-bottom: 0;
+        @extend %pageLayoutFS;
+    }
+
+    & > mainBody{
+        display: block;
     }
 }
