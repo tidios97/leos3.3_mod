@@ -753,534 +753,529 @@
                         <!-- rotated table (landscape) -->
                         <table style="border-collapse:collapse;">
                             <tr>
-                                <td style="width: 198.0pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="264">
-                                    <p style="text-align: center;" align="center">DG: &lt;…….&gt;</p>
+                                <td style="width: 198.0pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;">
+                                    <p style="text-align: center;" >DG: &lt;…….&gt;</p>
                                 </td>
                                 <td style="width: 78.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="2" valign="top" width="104">
+                                    colspan="2" >
                                     <p> </p>
                                 </td>
                                 <td style="width: 26.7pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    valign="top" width="36">
-                                    <p style="text-align: center;" align="center"> </p>
+                                    >
+                                    <p style="text-align: center;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: center;" align="center">Year
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;">
+                                    <p style="text-align: center;" >Year
                                         <br/>
-                                        <strong>N
-                                            <a title="" href="#_ftn1" name="_ftnref1">
-                                                <strong>[1]</strong>
+                                        <b>N
+                                            <a title="" href="#_ftn1">
+                                                <b>[1]</b>
                                             </a>
-                                        </strong>
+                                        </b>
+                                    </p>
+                                </td>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;">
+                                    <p style="text-align: center;">Year
+                                        <br/>
+                                        <b>N+1</b>
+                                    </p>
+                                </td>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;">
+                                    <p style="text-align: center;" >Year
+                                        <br/>
+                                        <b>N+2</b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: center;" align="center">Year
+                                    >
+                                    <p style="text-align: center;" >Year
                                         <br/>
-                                        <strong>N+1</strong>
-                                    </p>
-                                </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: center;" align="center">Year
-                                        <br/>
-                                        <strong>N+2</strong>
-                                    </p>
-                                </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: center;" align="center">Year
-                                        <br/>
-                                        <strong>N+3</strong>
+                                        <b>N+3</b>
                                     </p>
                                 </td>
                                 <td style="width: 130.2pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="3" width="174">
-                                    <p style="text-align: center;" align="center">Enter as many years as necessary to
+                                    colspan="3" >
+                                    <p style="text-align: center;" >Enter as many years as necessary to
                                         show the duration of the impact (see point 1.6)
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: center;" align="center">
-                                        <strong>TOTAL</strong>
+                                    >
+                                    <p style="text-align: center;" >
+                                        <b>TOTAL</b>
                                     </p>
                                 </td>
                             </tr>
                             <tr style="height: 10.65pt;">
                                 <td style="width: 302.7pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    colspan="4" width="404">
+                                    colspan="4">
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Ÿ Operational appropriations</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
+                                    >
+                                    <p> </p>
+                                </td>
+                                <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;">
                                     <p> </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
+                                    >
                                     <p> </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
+                                    >
                                     <p> </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
+                                    >
                                     <p> </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
+                                    >
                                     <p> </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
-                                    <p> </p>
-                                </td>
-                                <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 10.65pt;"
-                                    width="118">
+                                   >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr style="height: 13.85pt;">
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    rowspan="2" width="264">
+                                    rowspan="2" >
                                     <p>Budget line
-                                        <a title="" href="#_ftn2" name="_ftnref2">[2]</a>
+                                        <a title="" href="#_ftn2">[2]</a>
                                     </p>
                                 </td>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="96">
+                                    >
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Commitments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" align="center">(1a)</p>
+                                    colspan="2" >
+                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" >(1a)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Payments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" align="center">(2a)</p>
+                                    colspan="2" >
+                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" >(2a)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    rowspan="2" width="264">
+                                    rowspan="2" >
                                     <p>Budget line</p>
                                 </td>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Commitments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" align="center">(1b)</p>
+                                    colspan="2" >
+                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" >(1b)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Payments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" align="center">(2b)</p>
+                                    colspan="2" >
+                                    <p style="text-align: center; margin: 1.0pt 0cm 1.0pt 0cm;" >(2b)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr style="height: 11.55pt;">
                                 <td style="width: 302.7pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    colspan="4" width="404">
+                                    colspan="4">
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Appropriations of an administrative nature
                                         financed from the envelope of specific programmes
-                                        <a title="" href="#_ftn3" name="_ftnref3">[3]</a>
+                                        <a title="" href="#_ftn3">[3]</a>
                                     </p>
                                     <p style="margin: 0cm;"> </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="58">
+                                    >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 11.55pt;"
-                                    width="118">
+                                   >
                                     <p>
-                                        <strong> </strong>
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr style="height: 15.95pt;">
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="264">
+                                    >
                                     <p style="margin: 3.0pt 0cm 3.0pt 0cm;">Budget line</p>
                                 </td>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="96">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center; margin: 2.0pt 0cm 2.0pt 0cm;" align="center">(3)</p>
+                                    colspan="2" >
+                                    <p style="text-align: center; margin: 2.0pt 0cm 2.0pt 0cm;" >(3)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 15.95pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 2.0pt 0cm 2.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    rowspan="2" width="264">
-                                    <p style="text-align: center;" align="center">
-                                        <strong>TOTAL appropriations</strong>
+                                    rowspan="2" >
+                                    <p style="text-align: center;" >
+                                        <b>TOTAL appropriations</b>
                                         <br/>
-                                        <strong>for DG</strong>
+                                        <b>for DG</b>
                                         &lt;…….&gt;
                                     </p>
                                 </td>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p>Commitments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center;" align="center">=1a+1b +3</p>
+                                    colspan="2" >
+                                    <p style="text-align: center;" >=1a+1b +3</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p>Payments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    colspan="2" width="44">
-                                    <p style="text-align: center;" align="center">=2a+2b</p>
-                                    <p style="text-align: center;" align="center">+3</p>
+                                    colspan="2" >
+                                    <p style="text-align: center;" >=2a+2b</p>
+                                    <p style="text-align: center;" >+3</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: none;" width="187"> </td>
-                                <td style="border: none;" width="89"> </td>
-                                <td style="border: none;" width="8"> </td>
-                                <td style="border: none;" width="35"> </td>
-                                <td style="border: none;" width="49"> </td>
-                                <td style="border: none;" width="49"> </td>
-                                <td style="border: none;" width="49"> </td>
-                                <td style="border: none;" width="49"> </td>
-                                <td style="border: none;" width="40"> </td>
-                                <td style="border: none;" width="39"> </td>
-                                <td style="border: none;" width="39"> </td>
-                                <td style="border: none;" width="90"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
+                                <td style="border: none;"> </td>
                             </tr>
                         </table>
                         <p>
@@ -1290,260 +1285,250 @@
                         <table style="border-collapse:collapse;">
                             <tr style="height: 13.85pt;">
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    rowspan="2" width="264">
-                                    <br style="page-break-before: always;" clear="all"/>
+                                    rowspan="2" >
+                                    <!--br style="page-break-before: always;" clear="all"/-->
                                     <p style="margin: 1.0pt 0cm 1.0pt 0cm;">Ÿ TOTAL operational appropriations</p>
                                 </td>
-                                <td style="width: 72.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="96">
+                                <td style="width: 72.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
                                     <p style="margin: 2.4pt 0cm 2.4pt 0cm;">Commitments</p>
                                 </td>
-                                <td style="width: 32.7pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="44">
-                                    <p style="text-align: center; margin: 2.4pt 0cm 2.4pt 0cm;" align="center">(4)</p>
+                                <td style="width: 32.7pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: center; margin: 2.4pt 0cm 2.4pt 0cm;" >(4)</p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
-                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                <td style="width: 43.4pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
-                                <td style="width: 88.85pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                <td style="width: 88.85pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 13.85pt;">
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p style="margin: 2.4pt 0cm 2.4pt 0cm;">Payments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="44">
-                                    <p style="text-align: center; margin: 2.4pt 0cm 2.4pt 0cm;" align="center">(5)</p>
+                                    >
+                                    <p style="text-align: center; margin: 2.4pt 0cm 2.4pt 0cm;" >(5)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr style="height: 26.65pt;">
                                 <td style="width: 270.0pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    colspan="2" width="360">
+                                    colspan="2">
                                     <p style="margin: 2.4pt 0cm 2.4pt 0cm;">Ÿ TOTAL appropriations of an administrative
                                         nature financed from the envelope for specific programmes
                                     </p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="44">
-                                    <p style="text-align: center; margin: 2.4pt 0cm 2.4pt 0cm;" align="center">(6)</p>
+                                    >
+                                    <p style="text-align: center; margin: 2.4pt 0cm 2.4pt 0cm;" >(6)</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 26.65pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 198.0pt; border: solid windowtext 1.0pt; border-top: none; background: #F1F1F1; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    rowspan="2" width="264">
-                                    <p style="text-align: center;" align="center">
-                                        <strong>TOTAL appropriations</strong>
+                                    rowspan="2" >
+                                    <p style="text-align: center;" >
+                                        <b>TOTAL appropriations</b>
                                         <br/>
-                                        <strong>under HEADING &lt;….&gt;</strong>
+                                        <b>under HEADING &lt;….&gt;</b>
                                         <br/>
                                         of the multiannual financial framework
                                     </p>
                                 </td>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p>Commitments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="44">
-                                    <p style="text-align: center;" align="center">=4+ 6</p>
+                                    >
+                                    <p style="text-align: center;" >=4+ 6</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 72.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="96">
+                                    >
                                     <p>Payments</p>
                                 </td>
                                 <td style="width: 32.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="44">
-                                    <p style="text-align: center;" align="center">=5+ 6</p>
+                                    >
+                                    <p style="text-align: center;" >=5+ 6</p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right"> </p>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" > </p>
                                 </td>
                                 <td style="width: 43.4pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="58">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                    >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                                 <td style="width: 88.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt;"
-                                    width="118">
-                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" align="right">
-                                        <strong> </strong>
+                                   >
+                                    <p style="text-align: right; margin: 1.0pt 0cm 1.0pt 0cm;" >
+                                        <b> </b>
                                     </p>
                                 </td>
                             </tr>
@@ -1554,11 +1539,11 @@
                 <subparagraph>
                     <content>
                         <p>
-                            <strong>
+                            <b>
                                 <u>If more than one operational heading is affected by the proposal / initiative, repeat
                                     the section above:
                                 </u>
-                            </strong>
+                            </b>
                         </p>
                     </content>
                 </subparagraph>
@@ -2141,49 +2126,49 @@
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;padding:15px">
                                     <p>Cost</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;padding:15px">
                                     <p>Cost</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;padding:15px">
                                     <p>Cost</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;padding:15px">
                                     <p>Cost</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;padding:15px">
                                     <p>Cost</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;padding:15px">
                                     <p>Cost</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid
 									black;border-right:dashed;padding:15px">
-                                    <p style="transform:rotate(90deg);">No</p>
+                                    <p>No</p>
                                 </td>
                                 <td style="background-color:#D3D3D3;border:1px solid black;padding:15px">
                                     <p>Cost</p>
@@ -3044,7 +3029,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: none; padding: 0cm 0cm 0cm 0cm;" width="1">
+                                <td style="border: none; padding: 0cm 0cm 0cm 0cm;">
                                     <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; " colspan="2">
@@ -3163,7 +3148,7 @@
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
                                     <p> </p>
                                 </td>
-                                <td style="border: solid windowtext 1.0pt; border-top: none; " colspan="2" width="317">
+                                <td style="border: solid windowtext 1.0pt; border-top: none; " colspan="2">
                                     <p>Other budget lines (specify)</p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
@@ -3264,7 +3249,7 @@
                                 <td style="border: none; padding: 0cm 0cm 0cm 0cm;">
                                     <p> </p>
                                 </td>
-                                <td style="border: solid windowtext 1.0pt; border-top: none; " rowspan="2" width="158">
+                                <td style="border: solid windowtext 1.0pt; border-top: none; " rowspan="2">
                                     <p>
                                         <b>XX</b>
                                         01  xx
@@ -3368,7 +3353,7 @@
                                 <td style="border: none; padding: 0cm 0cm 0cm 0cm;">
                                     <p> </p>
                                 </td>
-                                <td style="border: solid windowtext 1.0pt; border-top: none; " colspan="2" width="317">
+                                <td style="border: solid windowtext 1.0pt; border-top: none; " colspan="2">
                                     <p> 01 01 01 12 (AC, END, INT - Direct research)</p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
