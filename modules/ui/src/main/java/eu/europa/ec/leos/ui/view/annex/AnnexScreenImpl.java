@@ -374,8 +374,9 @@ abstract class AnnexScreenImpl extends VerticalLayout implements AnnexScreen {
     @Override
     public void setDocumentVersionInfo(VersionInfoVO versionInfoVO) {
         String baseVersionStr = "";
+        String baseECVersion = messageHelper.getMessage("document.base.ec.version");
         String revisedBaseVersion = versionInfoVO.getRevisedBaseVersion();
-        if(!StringUtils.isEmpty(revisedBaseVersion)) {
+        if(!StringUtils.isEmpty(revisedBaseVersion) && !baseECVersion.equalsIgnoreCase(revisedBaseVersion)) {
             baseVersionStr = messageHelper.getMessage("document.base.version.toolbar.info", versionInfoVO.getBaseVersionTitle(),
                     versionInfoVO.getRevisedBaseVersion());
         }
