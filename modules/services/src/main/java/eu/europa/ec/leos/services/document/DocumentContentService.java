@@ -80,4 +80,6 @@ public interface DocumentContentService {
     byte[] getOriginalContentToCompare(XmlDocument xmlDocument);
 
     boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory, SecurityContext securityContext);
+    
+    boolean isAnnexFromCouncil(XmlDocument xmlDocument);
 }

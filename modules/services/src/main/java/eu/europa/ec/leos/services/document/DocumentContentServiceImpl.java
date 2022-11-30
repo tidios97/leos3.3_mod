@@ -307,5 +307,10 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
     public boolean isCouncilExplanatoryComparisonRequired(Explanatory explanatory, SecurityContext securityContext) {
         return securityContext.hasPermission(explanatory, LeosPermission.CAN_TOGGLE_LIVE_DIFFING) && explanatory.isLiveDiffingRequired();
     }
+    
+    @Override
+    public boolean isAnnexFromCouncil(XmlDocument xmlDocument) {
+    	return xmlContentProcessor.isAnnexFromCouncil(xmlDocument.getContent().get().getSource().getBytes());
+    }
 
 }

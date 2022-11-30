@@ -58,6 +58,12 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
         	return currentDocumentEditableXml;
         }
     	
+    	if(isAnnexFromCouncil(xmlDocument) && (StringUtils.isBlank(((Annex)xmlDocument).getBaseRevisionId()) || isBaseECVersion((Annex)xmlDocument))) {
+    		byte[] resultContent = xmlContentProcessor.insertSoftAddedClassAttribute(xmlDocument.getContent().get().getSource().getBytes());
+    		return transformationService.toEditableXml(getContentInputStream(resultContent), contextPath, xmlDocument.getCategory(),
+    				securityContext.getPermissions(xmlDocument), getContentInputStream(coverPageContent));
+    	}
+    	
     	XmlDocument originalDocument = getOriginalDocument(xmlDocument);
     	if(originalDocument == null) {
     		return currentDocumentEditableXml;
@@ -119,5 +125,11 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
     	} else {
     		return explanatoryService.findExplanatoryVersion(explanatory.getBaseRevisionId().split(CMIS_PROPERTY_SPLITTER)[0]);
     	}
+    }
+    
+    private boolean isBaseECVersion(Annex document) {
+    	String baseRevisionId = document.getBaseRevisionId();
+    	String baseVersionLabel = baseRevisionId.split(CMIS_PROPERTY_SPLITTER)[1];
+    	return BASE_EC_VERSION.equalsIgnoreCase(baseVersionLabel);
     }
 }

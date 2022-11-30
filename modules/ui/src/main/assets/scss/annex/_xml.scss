@@ -25,10 +25,6 @@
             @extend %xmlCoverPage;
             @extend %xmlSecondPage;
 
-            mainbody[leos\:origin="cn"], preface[leos\:origin="cn"] {
-                font-weight: bold;
-            }
-
             .cke_editable {
                 font-weight: normal;
             }

@@ -388,7 +388,7 @@ public class AnnexPresenterTest extends LeosPresenterTest {
     private Annex getMockedAnnex(Content content, String documentVersion, AnnexMetadata annexMetadata) {
         return new Annex(docId, "Annex", "login", Instant.now(), "login", Instant.now(),
                     documentVersion, "", documentVersion, "", VersionType.MINOR, true,
-                    docTitle, Collections.emptyList(), Arrays.asList(""), "", "", "",
+                    docTitle, Collections.emptyList(), Arrays.asList(""), docId+"0.1.0"+"Document Created", "", "",
                     Option.some(content), Option.some(annexMetadata));
     }
     
