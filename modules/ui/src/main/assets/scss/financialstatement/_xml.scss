@@ -22,8 +22,10 @@
         @extend %pageFont;
 
         doc[name="FINANCIAL_STATEMENT" i] {
+            @extend %xmlCoverPageFS;
             @extend %xmlCoverPage;
-            @extend %xmlSecondPage;
+            @extend %xmlSecondPageFS;
+            //@extend %xmlSecondPage;
 
             mainbody[leos\:origin="cn"], preface[leos\:origin="cn"] {
                 font-weight: bold;
@@ -35,6 +37,26 @@
 
             meta * {
                 display: none;
+            }
+
+            div.portrait {
+                padding: 20px 2.5cm 10px;
+                margin: 0 0 0 $PORTRAIT_MARGIN_LEFT;
+                @extend %pageLayout;
+
+                & > :nth-child(1) {
+                    //padding: 20px 2.5cm 10px;
+                    //margin: 0 0 0 180px;
+                }
+            }
+
+            div.landscape {
+                width: $LANDSCAPE_WIDTH;
+                margin-left: $LANDSCAPE_MARGIN_LEFT;
+                @extend %pageLayout;
+
+                & > :nth-child(1) {
+                }
             }
         }
     }
@@ -51,7 +73,7 @@
         @extend %xmlPreface;
         @extend %xmlList;
         @extend %xmlTable;
-        @extend %xmlFinancialStatementCoverPage;
+        @extend %xmlCoverPageFS;
         @extend %compare;
         @extend %xmlHigherElements;
         @extend %xmlImage;
@@ -67,7 +89,7 @@
         @extend %xmlHContainer;
 
         @include editor;
-        
+
         display: block;
     }
 

@@ -25,17 +25,23 @@ import eu.europa.ec.leos.security.LeosPermission;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.compare.ContentComparatorService;
 import eu.europa.ec.leos.services.processor.content.XmlContentProcessor;
+import eu.europa.ec.leos.services.support.LeosXercesUtils;
 import eu.europa.ec.leos.services.support.XPathCatalog;
 
+import eu.europa.ec.leos.services.support.XercesUtils;
+import eu.europa.ec.leos.services.support.XmlHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+
+import static eu.europa.ec.leos.domain.cmis.LeosCategory.FINANCIAL_STATEMENT;
 
 @Service
 public abstract class DocumentContentServiceImpl implements DocumentContentService {
@@ -67,7 +73,7 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
         this.xmlContentProcessor = xmlContentProcessor;
         this.xPathCatalog = xPathCatalog;
     }
-    
+
     protected boolean isComparisonRequired(XmlDocument xmlDocument, SecurityContext securityContext) {
     	byte[] contentBytes = xmlDocument.getContent().get().getSource().getBytes();
     	switch (xmlDocument.getCategory()) {
@@ -85,7 +91,7 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
 	            throw new UnsupportedOperationException("No transformation supported for this category");
 	    }
     }
-    
+
     protected XmlDocument getOriginalDocument(XmlDocument xmlDocument) {
     	switch (xmlDocument.getCategory()) {
 	        case MEMORANDUM:
@@ -102,10 +108,10 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
 	            throw new UnsupportedOperationException("No transformation supported for this category");
 	    }
     }
-    
+
     protected boolean isSameDocument(XmlDocument xmlDocument, XmlDocument originalDocument) {
-    	return originalDocument != null 
-    			&& StringUtils.equals(originalDocument.getId(), xmlDocument.getId()) 
+    	return originalDocument != null
+    			&& StringUtils.equals(originalDocument.getId(), xmlDocument.getId())
     			&& StringUtils.equals(originalDocument.getVersionLabel(), xmlDocument.getVersionLabel());
     }
 
@@ -156,8 +162,14 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
 
     protected String getEditableXml(XmlDocument xmlDocument, String contextPath, SecurityContext securityContext,
                                     byte[] coverPageContent) {
-        return transformationService.toEditableXml(getContentInputStream(xmlDocument), contextPath, xmlDocument.getCategory(),
+        String content = transformationService.toEditableXml(getContentInputStream(xmlDocument), contextPath, xmlDocument.getCategory(),
                 securityContext.getPermissions(xmlDocument), getContentInputStream(coverPageContent));
+        if(FINANCIAL_STATEMENT.equals(xmlDocument.getCategory())){
+            final Document document = XercesUtils.createXercesDocument(content.getBytes(XmlHelper.UTF_8));
+            final byte[] node = LeosXercesUtils.wrapWithPageOrientationDivs(document);
+            content = new String(node, XmlHelper.UTF_8);
+        }
+        return content;
     }
 
     @Override

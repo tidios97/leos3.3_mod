@@ -76,7 +76,7 @@ public class ParentChildConverter {
         int lastDepth = (lastNode.getDepth() != null) ? lastNode.getDepth() : 1;
         int depth = (node.getDepth() != null) ? node.getDepth() : 1;
         if (depth - lastDepth == 1) {
-            LOG.trace("Added [ {} ] as child of [ {} ]", node, lastNode);
+//            LOG.trace("Added [ {} ] as child of [ {} ]", node, lastNode);
             lastNode.addChild(node);  //add as child. Parent will be updated to lastNode.
         } else if (depth - lastDepth == 0) {
             addSiblingOrInRoot(basedOnDepthList, lastNode, node); // add as sibling
@@ -84,12 +84,12 @@ public class ParentChildConverter {
             if(lastDepth < depth) { // decreasing
                 XercesUtils.addAttribute(node.getNode(), LEOS_DEPTH_ATTR, String.valueOf(lastDepth + 1));
                 node.setDepth(lastDepth + 1);
-                LOG.trace("Added [ {} ] as child of [ {} ]", node, lastNode);
+//                LOG.trace("Added [ {} ] as child of [ {} ]", node, lastNode);
                 lastNode.addChild(node);
             } else {
                 addChildAtDepth(basedOnDepthList, node);
             }
-            LOG.trace("Added [ {} ] as last element of the list", node, lastNode);
+//            LOG.trace("Added [ {} ] as last element of the list", node, lastNode);
         }
         return node;
     }
