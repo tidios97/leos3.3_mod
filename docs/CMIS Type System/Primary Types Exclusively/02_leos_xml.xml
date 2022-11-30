@@ -865,6 +865,21 @@
         <cmis:orderable>false</cmis:orderable>
         <cmis:defaultValue/>
     </cmis:propertyStringDefinition>
+    <cmis:propertyBooleanDefinition>
+        <cmis:id>leos:liveDiffingRequired</cmis:id>
+        <cmis:localName>leos:liveDiffingRequired</cmis:localName>
+        <cmis:displayName>Live Diffing Flag</cmis:displayName>
+        <cmis:queryName>leos:liveDiffingRequired</cmis:queryName>
+        <cmis:description>Live Diffing Flag</cmis:description>
+        <cmis:propertyType>boolean</cmis:propertyType>
+        <cmis:cardinality>single</cmis:cardinality>
+        <cmis:updatability>readwrite</cmis:updatability>
+        <cmis:inherited>false</cmis:inherited>
+        <cmis:required>false</cmis:required>
+        <cmis:queryable>true</cmis:queryable>
+        <cmis:orderable>false</cmis:orderable>
+        <cmis:defaultValue/>
+    </cmis:propertyBooleanDefinition>
     <cmis:versionable>true</cmis:versionable>
     <cmis:contentStreamAllowed>allowed</cmis:contentStreamAllowed>
 </cmis:type>
