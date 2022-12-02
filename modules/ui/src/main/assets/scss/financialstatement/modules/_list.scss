@@ -54,6 +54,11 @@ $LIST_SPACING: 40px;
             @extend %padList;
         }
     }
+    list[refersTo="~_CHECK"] {
+        indent > num {
+            cursor: pointer;
+        }
+    }
 }
 
 //------------------------------- Editor Styles -----------------------------//

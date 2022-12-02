@@ -50,15 +50,17 @@ public class FinancialStatementProcessorImpl implements FinancialStatementProces
     }
 
     @Override
-    public byte[] updateElementAttribute(FinancialStatement document, String elementName, String elementId, String attributeName, String attributeValue) throws Exception {
+    public byte[] updateElement(FinancialStatement document, String elementName, String elementId, String elementFragment) throws Exception {
         Validate.notNull(document, "Document is required.");
         Validate.notNull(elementId, "Element id is required.");
-        Validate.notNull(attributeName, "Attribute name is required.");
-        Validate.notNull(attributeValue, "Attribute value is required.");
+        Validate.notNull(elementFragment, "Element Fragment is required.");
+        byte[] updatedContent = elementProcessor.updateElement(document, elementFragment, elementName, elementId);
 
-        // TODO: That's where specific rules should be applied on updating a check box like hiding/showing content or
-        //       checking/unchecking other checkboxes
-        return elementProcessor.insertAttribute(getContent(document), elementName, elementId, attributeName, attributeValue);
+        return updateFinancialStatementContent(elementId, elementName, updatedContent);
+    }
+
+    private byte[] updateFinancialStatementContent(String elementId, String tagName, byte[] xmlContent) {
+        return xmlContentProcessor.doXMLPostProcessing(xmlContent);
     }
 
     private byte[] getContent(FinancialStatement financialStatement) {

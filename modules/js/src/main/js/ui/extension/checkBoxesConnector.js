@@ -1,5 +1,4 @@
-@charset "UTF-8";
-/**
+/*
  * Copyright 2022 European Commission
  *
  * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
@@ -11,27 +10,15 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Licence for the specific language governing permissions and limitations under the Licence.
-*/
+ */
+; // jshint ignore:line
+window.eu_europa_ec_leos_ui_extension_CheckBoxesExtension = function connectorInitializer() {
+    "use strict";
 
-//------------------------------- XML Styles --------------------------------//
-%checkBox {
-  display: inline-block;
-  width: 40px;
-  height: 30px;
-}
+    var connector = this;
 
-%xmlHContainer {
-  hcontainer {
-    display: block;
-  }
-
-  hcontainer[name="unchecked"]:before {
-    @extend %checkBox;
-    content: "☐";
-  }
-
-  hcontainer[name="checked"]:before {
-    @extend %checkBox;
-    content: "☑";
-  }
-}
+    require(["extension/checkBoxesExtension"], function moduleInitializer(checkBoxes) {
+        checkBoxes.init(connector);
+        connector.jsDepsInited();
+    });
+};

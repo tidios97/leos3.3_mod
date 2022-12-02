@@ -71,7 +71,7 @@ import eu.europa.ec.leos.ui.event.toc.InlineTocCloseRequestEvent;
 import eu.europa.ec.leos.ui.extension.ActionManagerExtension;
 import eu.europa.ec.leos.ui.extension.AnnotateExtension;
 import eu.europa.ec.leos.ui.extension.ChangeDetailsExtension;
-import eu.europa.ec.leos.ui.extension.HContainerExtension;
+import eu.europa.ec.leos.ui.extension.CheckBoxesExtension;
 import eu.europa.ec.leos.ui.extension.LeosEditorExtension;
 import eu.europa.ec.leos.ui.extension.MathJaxExtension;
 import eu.europa.ec.leos.ui.extension.RefToLinkExtension;
@@ -172,6 +172,8 @@ abstract public class FinancialStatementScreenImpl extends VerticalLayout implem
     protected final SecurityContext securityContext;
     protected final XmlContentProcessor xmlContentProcessor;
     private final TableOfContentProcessor tableOfContentProcessor;
+    private static final String CHECKED = "\u2611";
+    private static final String UNCHECKED = "\u2610";
 
     private AnnotateExtension<LeosDisplayField, String> annotateExtension;
     private SearchDelegate searchDelegate;
@@ -222,7 +224,8 @@ abstract public class FinancialStatementScreenImpl extends VerticalLayout implem
     }
 
     void init() {
-        new HContainerExtension<>(financialStatementContent, eventBus, "name", "checked", "unchecked");        markAsDirty();
+        new CheckBoxesExtension<>(financialStatementContent, eventBus, XmlHelper.INDENT, CHECKED, UNCHECKED);
+        markAsDirty();
         actionsMenuBar.setChildComponentClass(MarkedTextComponent.class);
         tableOfContentComponent = new TableOfContentComponent(messageHelper, eventBus, securityContext, cfgHelper, tocEditor, structureContextProvider, tableOfContentProcessor);
         accordion.addTab(tableOfContentComponent, messageHelper.getMessage("toc.title"), VaadinIcons.CHEVRON_DOWN);

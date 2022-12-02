@@ -86,8 +86,6 @@
         @extend %xmlReference;
         @extend %xmlChangeDetails;
 
-        @extend %xmlHContainer;
-
         @include editor;
 
         display: block;

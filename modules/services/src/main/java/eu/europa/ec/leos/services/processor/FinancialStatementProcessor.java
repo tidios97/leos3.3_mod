@@ -22,11 +22,10 @@ public interface FinancialStatementProcessor {
      * @param document
      * @param elementName: tag name of the element where attribute should be updated
      * @param elementId: id of the element where attribute should be updated
-     * @param attributeName: attribute's name that should be updated or added
-     * @param attributeValue: new attribute's value
+     * @param elementFragment: updated content of the element
      * @return udpated xml content
      */
     @PreAuthorize("hasPermission(#document, 'CAN_UPDATE')")
-    byte[] updateElementAttribute(FinancialStatement document, String elementName, String elementId, String attributeName, String attributeValue) throws Exception;
+    byte[] updateElement(FinancialStatement document, String elementName, String elementId, String elementFragment) throws Exception;
 
 }
