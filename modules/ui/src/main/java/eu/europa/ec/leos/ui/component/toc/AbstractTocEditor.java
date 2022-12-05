@@ -638,6 +638,10 @@ public abstract class AbstractTocEditor implements TocEditor {
         movedItem.setSoftDateAttr(null);
         movedItem.setSoftActionRoot(null);
         movedItem.setRestored(true);
+        if (originalItem.isIndented()) {
+            movedItem.populateIndentInfo(originalItem.getIndentOriginType(), originalItem.getIndentOriginIndentLevel()
+                    , originalItem.getIndentOriginNumId(), originalItem.getIndentOriginNumValue(), originalItem.getIndentOriginNumOrigin());
+        }
     }
 
     protected TableOfContentItemVO moveItem(TableOfContentItemVO item, TableOfContentItemVO moveBefore, TreeData<TableOfContentItemVO> treeData) {
