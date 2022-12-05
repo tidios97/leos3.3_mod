@@ -42,8 +42,9 @@
                 <TLCReference xml:id="_azs3y" name="identifier" href="http://publications.europa.eu/resource/authority/document-identifier-format/COM_NUMBER" showAs="AAA(YYYY) NNN" shortForm="AAA/YYYY/NNN"/>
             </references>
             <proprietary source="~_leos">
-                <leos:templateVersion>2.1.0</leos:templateVersion>
+                <leos:templateVersion>2.1.1</leos:templateVersion>
                 <leos:docVersion>0.1.0</leos:docVersion>
+                <leos:template>SG-017</leos:template>
                 <leos:docTemplate>SG-018</leos:docTemplate>
             </proprietary>
         </meta>
