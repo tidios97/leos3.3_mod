@@ -78,6 +78,9 @@ public class FinancialStatementBlockComponent extends VerticalLayout {
     @Value("${leos.coedition.sip.domain}")
     private String coEditionSipDomain;
 
+    @Value("${leos.supporting.documents.enable:false}")
+    private boolean supportingDocEnabled;
+
     @Autowired
     public FinancialStatementBlockComponent(LanguageHelper languageHelper, MessageHelper messageHelper, EventBus eventBus, UserHelper userHelper,
                                             SecurityContext securityContext) {
@@ -106,7 +109,9 @@ public class FinancialStatementBlockComponent extends VerticalLayout {
         supportDocLanguage.setCaption(messageHelper.getMessage("collection.caption.language"));
         heading.setCaption(messageHelper.getMessage("collection.block.caption.financial.statement"));
 
-        heading.addRightButton(createDeleteDocumentButton());
+        if(supportingDocEnabled) {
+            heading.addRightButton(createDeleteDocumentButton());
+        }
         openButton.addClickListener(event -> openDocument());
         title.addValueChangeListener(event -> saveData());
     }
@@ -121,7 +126,6 @@ public class FinancialStatementBlockComponent extends VerticalLayout {
     }
 
     private void deleteFinancialStatement() {
-        // TODO Confirm
         eventBus.post(new DeleteFinancialStatementRequest((DocumentVO) this.getData()));
     }
 
@@ -137,7 +141,9 @@ public class FinancialStatementBlockComponent extends VerticalLayout {
 
     private void resetBasedOnPermissions(DocumentVO documentVO) {
         boolean enableUpdate = securityContext.hasPermission(documentVO, LeosPermission.CAN_UPDATE);
-        heading.getRightButton().setVisible(enableUpdate);
+        if(heading.getRightButton() != null) {
+            heading.getRightButton().setVisible(enableUpdate);
+        }
         title.setEnabled(enableUpdate);
     }
 

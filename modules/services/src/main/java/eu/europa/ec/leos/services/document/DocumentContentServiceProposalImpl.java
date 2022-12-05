@@ -86,4 +86,9 @@ public class DocumentContentServiceProposalImpl extends DocumentContentServiceIm
         return true;
     }
 
+    @Override
+    public boolean isFinancialStatementComparisonRequired(byte[] contentBytes) {
+        return true;
+    }
+
 }

@@ -1,16 +1,13 @@
-package eu.europa.ec.leos.usecases.document;
+package eu.europa.ec.leos.services.collection.document;
 
 import eu.europa.ec.leos.domain.cmis.Content;
 import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
-import eu.europa.ec.leos.domain.cmis.document.Explanatory;
-import eu.europa.ec.leos.domain.cmis.document.FinancialStatement;
 import eu.europa.ec.leos.domain.cmis.document.FinancialStatement;
 import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.cmis.metadata.FinancialStatementMetadata;
 import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.model.user.Collaborator;
-import eu.europa.ec.leos.services.document.FinancialStatementService;
 import eu.europa.ec.leos.services.document.FinancialStatementService;
 import eu.europa.ec.leos.services.document.ProposalService;
 import eu.europa.ec.leos.services.document.SecurityService;
@@ -29,9 +26,9 @@ import java.util.Map;
 
 @Component
 @Scope("prototype")
-public class FinancialStatementContext {
+public class FinancialStatementContextService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FinancialStatementContext.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FinancialStatementContextService.class);
 
     private final TemplateService templateService;
     private final FinancialStatementService financialStatementService;
@@ -48,12 +45,12 @@ public class FinancialStatementContext {
     private List<Collaborator> collaborators = null;
 
     private DocumentVO FinancialStatementDocument;
-    private final Map<ContextAction, String> actionMsgMap;
+    private final Map<ContextActionService, String> actionMsgMap;
     private String versionComment;
     private String milestoneComment;
     private String financialStatementId;
 
-    public FinancialStatementContext(
+    public FinancialStatementContextService(
             TemplateService templateService,
             FinancialStatementService financialStatementService,
             ProposalService proposalService, SecurityService securityService) {
@@ -73,7 +70,7 @@ public class FinancialStatementContext {
         LOG.trace("Using {} template... [id={}, name={}]", financialStatement.getCategory(), financialStatement.getId(), financialStatement.getName());
     }
 
-    public void useActionMessageMap(Map<ContextAction, String> messages) {
+    public void useActionMessageMap(Map<ContextActionService, String> messages) {
         Validate.notNull(messages, "Action message map is required!");
 
         actionMsgMap.putAll(messages);
@@ -142,7 +139,7 @@ public class FinancialStatementContext {
         this.milestoneComment = milestoneComment;
     }
 
-    public void useActionMessage(ContextAction action, String actionMsg) {
+    public void useActionMessage(ContextActionService action, String actionMsg) {
         Validate.notNull(actionMsg, "Action message is required!");
         Validate.notNull(action, "Context Action not found! [name=%s]", action);
 
@@ -169,10 +166,10 @@ public class FinancialStatementContext {
         Validate.notNull(purpose, "FinancialStatement purpose is required!");
         FinancialStatementMetadata metadata = metadataOption.get().withPurpose(purpose).withType(type).withTemplate(template).withTitle(title);
 
-        financialStatement = financialStatementService.createFinancialStatement(financialStatement.getId(), leosPackage.getPath(), metadata, actionMsgMap.get(ContextAction.FINANCIAL_STATEMENT_METADATA_UPDATED), null);
+        financialStatement = financialStatementService.createFinancialStatement(financialStatement.getId(), leosPackage.getPath(), metadata, actionMsgMap.get(ContextActionService.FINANCIAL_STATEMENT_METADATA_UPDATED), null);
         financialStatement = securityService.updateCollaborators(financialStatement.getId(), collaborators, FinancialStatement.class);
 
-        return financialStatementService.createVersion(financialStatement.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextAction.DOCUMENT_CREATED));
+        return financialStatementService.createVersion(financialStatement.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
     }
 
     public FinancialStatement executeImportFinancialStatement() {
@@ -183,12 +180,12 @@ public class FinancialStatementContext {
         Validate.notNull(purpose, "FinancialStatement purpose is required!");
         Validate.notNull(type, "FinancialStatement type is required!");
 
-        final String actionMessage = actionMsgMap.get(ContextAction.ANNEX_BLOCK_UPDATED);
+        final String actionMessage = actionMsgMap.get(ContextActionService.ANNEX_BLOCK_UPDATED);
         final FinancialStatementMetadata metadataDocument = (FinancialStatementMetadata) FinancialStatementDocument.getMetadataDocument();
         financialStatement = financialStatementService.createFinancialStatementFromContent(leosPackage.getPath(), metadataDocument, actionMessage, FinancialStatementDocument.getSource(), FinancialStatementDocument.getName());
         financialStatement = securityService.updateCollaborators(financialStatement.getId(), collaborators, FinancialStatement.class);
 
-        return financialStatementService.createVersion(financialStatement.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextAction.DOCUMENT_CREATED));
+        return financialStatementService.createVersion(financialStatement.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
     }
 
     public void executeUpdateFinancialStatement() {
@@ -201,7 +198,7 @@ public class FinancialStatementContext {
 
         // Updating only purpose at this time. other metadata needs to be set, if needed
         FinancialStatementMetadata FinancialStatementMetadata = metadataOption.get().withPurpose(purpose);
-        financialStatementService.updateFinancialStatement(financialStatement, FinancialStatementMetadata, VersionType.MINOR, actionMsgMap.get(ContextAction.METADATA_UPDATED));
+        financialStatementService.updateFinancialStatement(financialStatement, FinancialStatementMetadata, VersionType.MINOR, actionMsgMap.get(ContextActionService.METADATA_UPDATED));
     }
 
     public void executeUpdateFinancialStatementStructure() {
@@ -218,7 +215,7 @@ public class FinancialStatementContext {
                 .withDocVersion(metadata.getDocVersion())
                 .withDocTemplate(template);
 
-        financialStatement = financialStatementService.updateFinancialStatement(financialStatement, xmlContent, financialStatementMetadata, VersionType.INTERMEDIATE, actionMsgMap.get(ContextAction.ANNEX_STRUCTURE_UPDATED));
+        financialStatement = financialStatementService.updateFinancialStatement(financialStatement, xmlContent, financialStatementMetadata, VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.ANNEX_STRUCTURE_UPDATED));
     }
 
     private byte[] getContent(FinancialStatement FinancialStatement) {

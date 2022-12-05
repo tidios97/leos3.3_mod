@@ -19,6 +19,7 @@ import eu.europa.ec.leos.domain.cmis.LeosPackage;
 import eu.europa.ec.leos.domain.cmis.common.VersionType;
 import eu.europa.ec.leos.domain.cmis.document.Bill;
 import eu.europa.ec.leos.domain.cmis.document.Explanatory;
+import eu.europa.ec.leos.domain.cmis.document.FinancialStatement;
 import eu.europa.ec.leos.domain.cmis.document.Memorandum;
 import eu.europa.ec.leos.domain.cmis.document.Proposal;
 import eu.europa.ec.leos.domain.cmis.document.XmlDocument;
@@ -33,7 +34,9 @@ import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.collection.document.BillContextService;
 import eu.europa.ec.leos.services.collection.document.ContextActionService;
 import eu.europa.ec.leos.services.collection.document.ExplanatoryContextService;
+import eu.europa.ec.leos.services.collection.document.FinancialStatementContextService;
 import eu.europa.ec.leos.services.collection.document.MemorandumContextService;
+import eu.europa.ec.leos.services.document.ExplanatoryService;
 import eu.europa.ec.leos.services.document.ProposalService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.TemplateService;
@@ -54,6 +57,7 @@ import java.util.Map;
 
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.BILL;
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.COUNCIL_EXPLANATORY;
+import static eu.europa.ec.leos.domain.cmis.LeosCategory.FINANCIAL_STATEMENT;
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.MEMORANDUM;
 import static eu.europa.ec.leos.domain.cmis.LeosCategory.PROPOSAL;
 
@@ -64,6 +68,7 @@ public class CollectionContextService {
     private static final Logger LOG = LoggerFactory.getLogger(CollectionContextService.class);
 
     private final MessageHelper messageHelper;
+    private final ExplanatoryService explanatoryService;
     private final TemplateService templateService;
     private final PackageService packageService;
     private final ProposalService proposalService;
@@ -87,18 +92,23 @@ public class CollectionContextService {
     private boolean cloneProposal = false;
     private String connectedEntity;
     private CloneProposalMetadataVO cloneProposalMetadataVO;
+    private Provider<FinancialStatementContextService> financialStatementContextProvider;
+    private String explanatoryId;
+    protected LeosPackage leosPackage = null;
 
     CollectionContextService(TemplateService templateService, PackageService packageService, ProposalService proposalService,
                              CollectionUrlBuilder urlBuilder, Provider<MemorandumContextService> memorandumContextProvider,
                              Provider<BillContextService> billContextProvider, SecurityContext securityContext,
-                             Provider<ExplanatoryContextService> explanatoryContextProvider, MessageHelper messageHelper) {
+                             Provider<ExplanatoryContextService> explanatoryContextProvider, Provider<FinancialStatementContextService> financialStatementContextProvider, ExplanatoryService explanatoryService, MessageHelper messageHelper) {
         this.templateService = templateService;
+        this.explanatoryService = explanatoryService;
         this.packageService = packageService;
         this.proposalService = proposalService;
         this.urlBuilder = urlBuilder;
         this.memorandumContextProvider = memorandumContextProvider;
         this.billContextProvider = billContextProvider;
         this.explanatoryContextProvider = explanatoryContextProvider;
+        this.financialStatementContextProvider = financialStatementContextProvider;
         this.securityContext = securityContext;
         this.categoryTemplateMap = new HashMap<>();
         this.actionMsgMap = new HashMap<>();
@@ -120,6 +130,10 @@ public class CollectionContextService {
 
         LOG.trace("Using action message... [action={}, name={}]", action, actionMsg);
         actionMsgMap.put(action, actionMsg);
+    }
+
+    public String getUpdatedProposalId() {
+        return proposal.getId();
     }
 
     public void useProposal(Proposal proposal) {
@@ -194,6 +208,18 @@ public class CollectionContextService {
         Validate.notNull(cloneProposalMetadataVO, "cloned metadata vo is required!");
         this.cloneProposalMetadataVO = cloneProposalMetadataVO;
     }
+
+    public void usePackage(LeosPackage leosPackage) {
+        Validate.notNull(leosPackage, "Bill package is required!");
+        LOG.trace("Using Bill package... [id={}, path={}]", leosPackage.getId(), leosPackage.getPath());
+        this.leosPackage = leosPackage;
+    }
+
+    public void useExplanatoryId(String explanatoryId) {
+        Validate.notNull(explanatoryId, "Proposal 'explId' is required!");
+        LOG.trace("Using Proposal explanatory id [explId={}]", explanatoryId);
+        this.explanatoryId = explanatoryId;
+    }
     
     public Proposal executeImportProposal()  {
 
@@ -263,6 +289,8 @@ public class CollectionContextService {
                 if(cloneProposal) {
                     idsAndUrlsHolder.addDocCloneAndOriginIdMap(billRef, docChild.getRef());
                 }
+            } else if (docChild.getCategory() == FINANCIAL_STATEMENT) {
+                executeCreateFinancialStatement();
             }
         }
         String coverpageRef = proposal.getMetadata().get().getRef();
@@ -275,6 +303,25 @@ public class CollectionContextService {
         Entity entity = new Entity(Cuid.createCuid(), connectedEntity, connectedEntity);
         User user = securityContext.getUser();
         user.setConnectedEntity(entity);
+    }
+
+    public void executeCreateFinancialStatement() {
+        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposal.getId());
+        FinancialStatementContextService financialStatementContext = financialStatementContextProvider.get();
+        financialStatementContext.usePackage(leosPackage);
+        String template = categoryTemplateMap.get(FINANCIAL_STATEMENT).getName();
+        financialStatementContext.useTemplate(template);
+        financialStatementContext.usePurpose(purpose);
+        financialStatementContext.useTitle(messageHelper.getMessage("document.default.financial.statement.title.default." + template));
+        Option<ProposalMetadata> metadataOption = proposal.getMetadata();
+        Validate.isTrue(metadataOption.isDefined(), "Proposal metadata is required!");
+        ProposalMetadata metadata = metadataOption.get();
+        financialStatementContext.useType(metadata.getType());
+        financialStatementContext.useActionMessageMap(actionMsgMap);
+        financialStatementContext.useCollaborators(proposal.getCollaborators());
+        FinancialStatement financialStatement = financialStatementContext.executeCreateFinancialStatement();
+        proposalService.addComponentRef(proposal, financialStatement.getName(), FINANCIAL_STATEMENT);
+        proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
     }
 
     public Proposal executeCreateProposal() {
@@ -395,6 +442,7 @@ public class CollectionContextService {
         billContext.useMilestoneComment(milestoneComment);
         billContext.executeCreateMilestone();
     }
+
     public void executeCreateExplanatory() {
         LeosPackage leosPackage = packageService.findPackageByDocumentId(proposal.getId());
         ExplanatoryContextService explanatoryContext = explanatoryContextProvider.get();
@@ -412,6 +460,16 @@ public class CollectionContextService {
         Explanatory explanatory = explanatoryContext.executeCreateExplanatory();
         proposalService.addComponentRef(proposal, explanatory.getName(), COUNCIL_EXPLANATORY);
         proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextActionService.DOCUMENT_CREATED));
+    }
+
+    public void executeRemoveExplanatory() {
+        LOG.trace("Executing 'Remove council explanatory' use case...");
+        Validate.notNull(leosPackage, "Leos package is required!");
+        Explanatory explanatory = explanatoryService.findExplanatory(explanatoryId);
+        explanatoryService.deleteExplanatory(explanatory);
+        Proposal proposal = proposalService.findProposalByPackagePath(leosPackage.getPath());
+        proposal = proposalService.removeComponentRef(proposal, explanatory.getName());
+        proposalService.updateProposal(proposal.getId(), proposal.getContent().get().getSource().getBytes());
     }
 
     @SuppressWarnings("unchecked")

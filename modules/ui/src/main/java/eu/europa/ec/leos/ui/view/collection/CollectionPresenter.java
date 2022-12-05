@@ -43,8 +43,11 @@ import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.security.UserAuthentication;
 import eu.europa.ec.leos.services.clone.CloneContext;
 import eu.europa.ec.leos.services.collection.CollaboratorService;
+import eu.europa.ec.leos.services.collection.CollectionContextService;
 import eu.europa.ec.leos.services.collection.CreateCollectionResult;
 import eu.europa.ec.leos.services.collection.CreateCollectionService;
+import eu.europa.ec.leos.services.collection.document.ContextActionService;
+import eu.europa.ec.leos.services.collection.document.FinancialStatementContextService;
 import eu.europa.ec.leos.services.converter.ProposalConverterService;
 import eu.europa.ec.leos.services.document.AnnexService;
 import eu.europa.ec.leos.services.document.BillService;
@@ -90,9 +93,7 @@ import eu.europa.ec.leos.ui.view.ComparisonDelegate;
 import eu.europa.ec.leos.ui.window.milestone.MilestoneExplorer;
 import eu.europa.ec.leos.ui.window.milestone.MilestoneHelper;
 import eu.europa.ec.leos.usecases.document.BillContext;
-import eu.europa.ec.leos.usecases.document.CollectionContext;
 import eu.europa.ec.leos.usecases.document.ContextAction;
-import eu.europa.ec.leos.usecases.document.FinancialStatementContext;
 import eu.europa.ec.leos.vo.catalog.CatalogItem;
 import eu.europa.ec.leos.web.event.NavigationRequestEvent;
 import eu.europa.ec.leos.web.event.NotificationEvent;
@@ -161,9 +162,9 @@ class CollectionPresenter extends AbstractLeosPresenter {
     private static final Logger LOG = LoggerFactory.getLogger(CollectionPresenter.class);
 
     private final CollectionScreen collectionScreen;
-    private final Provider<CollectionContext> proposalContextProvider;
+    private final Provider<CollectionContextService> proposalContextProvider;
     private final Provider<BillContext> billContextProvider;
-    private final Provider<FinancialStatementContext> financialStatementContextProvider;
+    private final Provider<FinancialStatementContextService> financialStatementContextProvider;
     private final Provider<RepositoryContext> repositoryContextProvider;
     private final AnnexService annexService;
     private final ExplanatoryService explanatoryService;
@@ -209,9 +210,9 @@ class CollectionPresenter extends AbstractLeosPresenter {
     CollectionPresenter(SecurityContext securityContext, HttpSession httpSession, EventBus eventBus,
                         EventBus leosApplicationEventBus,
                         CollectionScreen collectionScreen,
-                        Provider<CollectionContext> proposalContextProvider,
+                        Provider<CollectionContextService> proposalContextProvider,
                         Provider<BillContext> billContextProvider,
-                        Provider<FinancialStatementContext> financialStatementContextProvider, Provider<RepositoryContext> repositoryContextProvider, AnnexService annexService,
+                        Provider<FinancialStatementContextService> financialStatementContextProvider, Provider<RepositoryContext> repositoryContextProvider, AnnexService annexService,
                         BillService billService,
                         ExplanatoryService explanatoryService,
                         PackageService packageService,
@@ -727,12 +728,12 @@ class CollectionPresenter extends AbstractLeosPresenter {
     @Subscribe
     void saveMetaData(SaveMetaDataRequestEvent event) {
         LOG.trace("Saving proposal metadata...");
-        CollectionContext context = proposalContextProvider.get();
-        context.useProposal(proposalId);
+        CollectionContextService context = proposalContextProvider.get();
+        context.useProposalId(proposalId);
         context.usePurpose(event.getMetaDataVO().getDocPurpose());
         context.useEeaRelevance(event.getMetaDataVO().getEeaRelevance());
         String comment = messageHelper.getMessage("operation.metadata.updated");
-        context.useActionMessage(ContextAction.METADATA_UPDATED, comment);
+        context.useActionMessage(ContextActionService.METADATA_UPDATED, comment);
         context.useActionComment(comment);
         context.executeUpdateProposal();
         eventBus.post(new NotificationEvent(NotificationEvent.Type.INFO, "metadata.edit.saved"));
@@ -892,11 +893,11 @@ class CollectionPresenter extends AbstractLeosPresenter {
         // 1. delete FinancialStatement
         LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
 
-        FinancialStatementContext financialStatementContext = financialStatementContextProvider.get();
+        FinancialStatementContextService financialStatementContext = financialStatementContextProvider.get();
         financialStatementContext.useFinancialStatement(event.getFinancialStatement().getId());
         financialStatementContext.usePackage(leosPackage);
-        financialStatementContext.useActionMessage(ContextAction.FINANCIAL_STATEMENT_METADATA_UPDATED, messageHelper.getMessage("collection.block.financial.statement.metadata.updated"));
-        financialStatementContext.useActionMessage(ContextAction.FINANCIAL_STATEMENT_DELETED, messageHelper.getMessage("collection.block.financial.statement.deleted"));
+        financialStatementContext.useActionMessage(ContextActionService.FINANCIAL_STATEMENT_METADATA_UPDATED, messageHelper.getMessage("collection.block.financial.statement.metadata.updated"));
+        financialStatementContext.useActionMessage(ContextActionService.FINANCIAL_STATEMENT_DELETED, messageHelper.getMessage("collection.block.financial.statement.deleted"));
         financialStatementContext.executeDeleteFinancialStatement();
         updateInternalReferencesProducer.send(new UpdateInternalReferencesMessage(proposalId, event.getFinancialStatement().getMetadata().getInternalRef(), id));
         eventBus.post(new DocumentUpdatedEvent());
@@ -947,13 +948,13 @@ class CollectionPresenter extends AbstractLeosPresenter {
             Proposal proposal = proposalService.findProposal(proposalId);
             ProposalMetadata metadata = proposal.getMetadata().getOrError(() -> "Proposal metadata is required!");
 
-            CollectionContext context = proposalContextProvider.get();
+            CollectionContextService context = proposalContextProvider.get();
             String template = !StringUtils.isEmpty(event.getTemplate()) ? event.getTemplate() : "CE-003";
 
             context.useTemplate(template);
             context.usePurpose(metadata.getPurpose());
-            context.useProposal(proposalId);
-            context.useActionMessage(ContextAction.EXPLANATORY_ADDED, messageHelper.getMessage("collection.block.explanatory.added"));
+            context.useProposalId(proposalId);
+            context.useActionMessage(ContextActionService.EXPLANATORY_ADDED, messageHelper.getMessage("collection.block.explanatory.added"));
             context.executeCreateExplanatory();
 
             eventBus.post(new DocumentUpdatedEvent());
@@ -982,16 +983,16 @@ class CollectionPresenter extends AbstractLeosPresenter {
             LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
             Proposal proposal = proposalService.findProposalByPackagePath(leosPackage.getPath());
             ProposalMetadata metadata = proposal.getMetadata().getOrError(() -> "Proposal metadata is required!");
-            CollectionContext context = proposalContextProvider.get();
+            CollectionContextService context = proposalContextProvider.get();
             String template = event.getTemplate();
             context.useTemplate(template);
             context.usePurpose(metadata.getPurpose());
-            context.useProposal(proposalId);
+            context.useProposalId(proposalId);
             String actionMessage;
             switch (template) {
                 default :
                     actionMessage = messageHelper.getMessage("collection.block.financial.statement.added");
-                    context.useActionMessage(ContextAction.FINANCIAL_STATEMENT_ADDED, actionMessage);
+                    context.useActionMessage(ContextActionService.FINANCIAL_STATEMENT_ADDED, actionMessage);
                     context.executeCreateFinancialStatement();
             }
             eventBus.post(new DocumentUpdatedEvent());
@@ -1008,11 +1009,11 @@ class CollectionPresenter extends AbstractLeosPresenter {
         Stopwatch stopwatch = Stopwatch.createStarted();
         // 1. delete explanatory
         LeosPackage leosPackage = packageService.findPackageByDocumentId(proposalId);
-        CollectionContext collectionContext = proposalContextProvider.get();
-        collectionContext.useExplanatory(event.getExplanatory().getId());
+        CollectionContextService collectionContext = proposalContextProvider.get();
+        collectionContext.useExplanatoryId(event.getExplanatory().getId());
         collectionContext.usePackage(leosPackage);
-        collectionContext.useActionMessage(ContextAction.EXPLANATORY_METADATA_UPDATED, messageHelper.getMessage("collection.block.explanatory.metadata.updated"));
-        collectionContext.useActionMessage(ContextAction.EXPLANATORY_DELETED, messageHelper.getMessage("collection.block.explanatory.removed"));
+        collectionContext.useActionMessage(ContextActionService.EXPLANATORY_METADATA_UPDATED, messageHelper.getMessage("collection.block.explanatory.metadata.updated"));
+        collectionContext.useActionMessage(ContextActionService.EXPLANATORY_DELETED, messageHelper.getMessage("collection.block.explanatory.removed"));
         collectionContext.executeRemoveExplanatory();
         updateInternalReferencesProducer.send(new UpdateInternalReferencesMessage(proposalId, event.getExplanatory().getMetadata().getInternalRef(), id));
         eventBus.post(new DocumentUpdatedEvent());
@@ -1115,7 +1116,7 @@ class CollectionPresenter extends AbstractLeosPresenter {
             Stopwatch stopwatch = Stopwatch.createStarted();
             final String milestoneComment = event.getMilestoneComment();
             final String versionComment = messageHelper.getMessage("milestone.versionComment");
-            final CollectionContext context = proposalContextProvider.get();
+            final CollectionContextService context = proposalContextProvider.get();
             createMajorVersions(proposalId, milestoneComment, versionComment, context);
             String milestoneProposalId = context.getUpdatedProposalId();
             createMilestone(milestoneProposalId, milestoneComment);
@@ -1214,8 +1215,8 @@ class CollectionPresenter extends AbstractLeosPresenter {
      * @param versionComment   the version comment
      * @param context          the proposal context
      */
-    private void createMajorVersions(String proposalId, String milestoneComment, String versionComment, CollectionContext context) {
-        context.useProposal(proposalId);
+    private void createMajorVersions(String proposalId, String milestoneComment, String versionComment, CollectionContextService context) {
+        context.useProposalId(proposalId);
         context.useMilestoneComment(milestoneComment);
         context.useVersionComment(versionComment);
         context.executeCreateMilestone();
@@ -1232,8 +1233,8 @@ class CollectionPresenter extends AbstractLeosPresenter {
     @Subscribe
     void deleteCollection(DeleteCollectionEvent event) {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        CollectionContext context = proposalContextProvider.get();
-        context.useProposal(proposalId);
+        CollectionContextService context = proposalContextProvider.get();
+        context.useProposalId(proposalId);
         context.executeDeleteProposal();
         if (cloneProposalMetadataVO != null && cloneProposalMetadataVO.isClonedProposal()) {
             String originalProposalId = cloneProposalMetadataVO.getClonedFromObjectId();
@@ -1447,7 +1448,7 @@ class CollectionPresenter extends AbstractLeosPresenter {
     @Subscribe
     void updateProposalMetadata(DocumentUpdatedEvent event) {
         if (event.isModified()) {
-            CollectionContext context = proposalContextProvider.get();
+            CollectionContextService context = proposalContextProvider.get();
             context.useChildDocument(proposalId);
             context.useActionComment(messageHelper.getMessage("operation.metadata.updated"));
             context.executeUpdateProposalAsync();

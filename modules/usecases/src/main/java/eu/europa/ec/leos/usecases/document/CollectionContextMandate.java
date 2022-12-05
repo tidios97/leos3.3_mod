@@ -161,10 +161,5 @@ public class CollectionContextMandate extends CollectionContext {
             explanatoryContext.useActionMessageMap(actionMsgMap);
             explanatoryContext.executeUpdateExplanatory();
         });
-
-    }
-
-    @Override
-    public void executeCreateFinancialStatement() {
     }
 }

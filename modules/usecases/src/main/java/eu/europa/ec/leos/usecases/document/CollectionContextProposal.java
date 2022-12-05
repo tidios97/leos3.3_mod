@@ -45,7 +45,6 @@ public class CollectionContextProposal extends CollectionContext {
 
     private static final Logger LOG = LoggerFactory.getLogger(CollectionContextProposal.class);
 
-    private final Provider<FinancialStatementContext> financialStatementContextProvider;
     private final MessageHelper messageHelper;
 
     @Autowired
@@ -53,9 +52,8 @@ public class CollectionContextProposal extends CollectionContext {
                               PackageService packageService,
                               ProposalService proposalService,
                               Provider<MemorandumContext> memorandumContextProvider,
-                              Provider<BillContext> billContextProvider, Provider<FinancialStatementContext> financialStatementContextProvider, MessageHelper messageHelper) {
+                              Provider<BillContext> billContextProvider, MessageHelper messageHelper) {
         super(templateService, packageService, proposalService, memorandumContextProvider, billContextProvider);
-        this.financialStatementContextProvider = financialStatementContextProvider;
         this.messageHelper = messageHelper;
     }
     @Override
@@ -76,26 +74,6 @@ public class CollectionContextProposal extends CollectionContext {
     }
     @Override
     protected void executeUpdateExplanatory(LeosPackage leosPackage, String purpose, Map<ContextAction, String> actionMsgMap) {
-    }
-
-    @Override
-    public void executeCreateFinancialStatement() {
-        LeosPackage leosPackage = packageService.findPackageByDocumentId(proposal.getId());
-        FinancialStatementContext financialStatementContext = financialStatementContextProvider.get();
-        financialStatementContext.usePackage(leosPackage);
-        String template = categoryTemplateMap.get(FINANCIAL_STATEMENT).getName();
-        financialStatementContext.useTemplate(template);
-        financialStatementContext.usePurpose(purpose);
-        financialStatementContext.useTitle(messageHelper.getMessage("document.default.financial.statement.title.default." + template));
-        Option<ProposalMetadata> metadataOption = proposal.getMetadata();
-        Validate.isTrue(metadataOption.isDefined(), "Proposal metadata is required!");
-        ProposalMetadata metadata = metadataOption.get();
-        financialStatementContext.useType(metadata.getType());
-        financialStatementContext.useActionMessageMap(actionMsgMap);
-        financialStatementContext.useCollaborators(proposal.getCollaborators());
-        FinancialStatement financialStatement = financialStatementContext.executeCreateFinancialStatement();
-        proposalService.addComponentRef(proposal, financialStatement.getName(), FINANCIAL_STATEMENT);
-        proposalService.createVersion(proposal.getId(), VersionType.INTERMEDIATE, actionMsgMap.get(ContextAction.DOCUMENT_CREATED));
     }
 
     public void executeCreateProposal() {

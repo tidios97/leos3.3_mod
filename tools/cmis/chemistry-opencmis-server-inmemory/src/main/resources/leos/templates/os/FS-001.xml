@@ -1264,18 +1264,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
-                                <td style="border: none;"> </td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
+                                <td style="border: none;"><p> </p></td>
                             </tr>
                         </table>
                         <p>
@@ -1891,11 +1891,11 @@
                                 </td>
                                 <td style="border:1px solid black;padding:15px;text-align:right;">
                                     <p>[...]</p>
-                                    >
+                                    <p>></p>
                                 </td>
                                 <td style="border:1px solid black;padding:15px;text-align:right;">
                                     <p>[...]</p>
-                                    >
+                                    <p>></p>
                                 </td>
                                 <td style="border:1px solid black;padding:15px;text-align:right;">
                                     <p>[...]</p>
@@ -2592,34 +2592,28 @@
                                     </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
-                                     
-                                </td>
-                                <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
                                     <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
-                                     
-                                </td>
-                                <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
                                     <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
-                                     
+                                    <p> </p>
+                                </td>
+                                <td style="border: solid windowtext 1.0pt; border-left: none; ">
+                                    <p> </p>
+                                </td>
+                                <td style="border: solid windowtext 1.0pt; border-left: none; ">
+                                    <p> </p>
                                 </td>
                             </tr>
                             <tr>
@@ -2627,34 +2621,28 @@
                                     <p>Human resources</p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                             <tr style="height: 29.25pt;">
@@ -2662,34 +2650,28 @@
                                     <p>Other administrative expenditure</p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                             <tr style="height: 29.25pt;">
@@ -2702,34 +2684,28 @@
                                     </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none;">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none;">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none;">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none;">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none;">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/> 
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none;">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                         </table>
@@ -2771,16 +2747,10 @@
                                     <p/>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                             <tr>
@@ -2802,20 +2772,14 @@
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
                                     <p/>
                                 </td>
-                                <td style="border: solid windowtext 1.0pt; border-left: none; ">>
-                                    <p/>
+                                <td style="border: solid windowtext 1.0pt; border-left: none; ">
+                                    <p>></p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                             <tr>
@@ -2844,16 +2808,10 @@
                                     <p/>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                             <tr>
@@ -2886,16 +2844,10 @@
                                     <p/>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                         </table>
@@ -2907,52 +2859,28 @@
                                     </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p>
-                                        <b/>
-                                    </p>
-                                     
+                                    <p> </p>
                                 </td>
                             </tr>
                         </table>
@@ -3224,13 +3152,13 @@
                                     <p>20 02 03 (AC, AL, END, INT and JPD in the delegations)</p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>>
+                                    <p>></p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
+                                    <p>></p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
-                                    <p/>
+                                    <p>></p>
                                 </td>
                                 <td style="border: solid windowtext 1.0pt; border-left: none; ">
                                     <p/>
@@ -3458,8 +3386,6 @@
                 <subparagraph>
                     <content>
                         <p>XX is the policy area or budget title concerned.</p>
-                    </content>
-                    <content>
                         <p>The human resources required will be met by staff from the DG who are already assigned to
                             management of the action and/or have been redeployed within the DG, together if necessary
                             with any additional allocation which may be granted to the managing DG under the annual

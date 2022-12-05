@@ -37,6 +37,7 @@ import eu.europa.ec.leos.model.event.DocumentUpdatedByCoEditorEvent;
 import eu.europa.ec.leos.model.user.User;
 import eu.europa.ec.leos.security.SecurityContext;
 import eu.europa.ec.leos.services.clone.CloneContext;
+import eu.europa.ec.leos.services.collection.document.FinancialStatementContextService;
 import eu.europa.ec.leos.services.document.ContributionService;
 import eu.europa.ec.leos.services.document.DocumentContentService;
 import eu.europa.ec.leos.services.document.FinancialStatementService;
@@ -66,8 +67,7 @@ import eu.europa.ec.leos.ui.support.CoEditionHelper;
 import eu.europa.ec.leos.ui.support.ConfirmDialogHelper;
 import eu.europa.ec.leos.ui.view.AbstractLeosPresenter;
 import eu.europa.ec.leos.ui.view.ComparisonDelegate;
-import eu.europa.ec.leos.usecases.document.CollectionContext;
-import eu.europa.ec.leos.usecases.document.FinancialStatementContext;
+import eu.europa.ec.leos.usecases.document.CollectionContext;;
 import eu.europa.ec.leos.vo.coedition.InfoType;
 import eu.europa.ec.leos.vo.toc.TableOfContentItemVO;
 import eu.europa.ec.leos.web.event.NavigationRequestEvent;
@@ -127,7 +127,7 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
     private final ExportService exportService;
     private final Provider<StructureContext> structureContextProvider;
     private final ReferenceLabelService referenceLabelService;
-    private final Provider<FinancialStatementContext> financialStatementContextProvider;
+    private final Provider<FinancialStatementContextService> financialStatementContextProvider;
     private final UpdateInternalReferencesProducer updateInternalReferencesProducer;
     private final TransformationService transformationService;
     private final LegService legService;
@@ -147,7 +147,7 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
     private String connectedEntity;
     private final List<String> openElementEditors;
 
-    protected FinancialStatementPresenter(SecurityContext securityContext, HttpSession httpSession, EventBus eventBus, EventBus leosApplicationEventBus, UuidHelper uuidHelper, PackageService packageService, WorkspaceService workspaceService, FinancialStatementScreen financialStatementScreen, FinancialStatementService financialStatementService, ContributionService contributionService, ElementProcessor<FinancialStatement> elementProcessor, FinancialStatementProcessor financialStatementProcessor, DocumentContentService documentContentService, UrlBuilder urlBuilder, ComparisonDelegate<FinancialStatement> comparisonDelegate, UserHelper userHelper, MessageHelper messageHelper, ConfigurationHelper cfgHelper, Provider<CollectionContext> proposalContextProvider, CoEditionHelper coEditionHelper, ExportService exportService, Provider<StructureContext> structureContextProvider, ReferenceLabelService referenceLabelService, Provider<FinancialStatementContext> financialStatementContextProvider, UpdateInternalReferencesProducer updateInternalReferencesProducer, TransformationService transformationService, LegService legService, ProposalService proposalService, SearchService searchService, ExportPackageService exportPackageService, NotificationService notificationService, CloneContext cloneContext, AttachmentProcessor attachmentProcessor) {
+    protected FinancialStatementPresenter(SecurityContext securityContext, HttpSession httpSession, EventBus eventBus, EventBus leosApplicationEventBus, UuidHelper uuidHelper, PackageService packageService, WorkspaceService workspaceService, FinancialStatementScreen financialStatementScreen, FinancialStatementService financialStatementService, ContributionService contributionService, ElementProcessor<FinancialStatement> elementProcessor, FinancialStatementProcessor financialStatementProcessor, DocumentContentService documentContentService, UrlBuilder urlBuilder, ComparisonDelegate<FinancialStatement> comparisonDelegate, UserHelper userHelper, MessageHelper messageHelper, ConfigurationHelper cfgHelper, Provider<CollectionContext> proposalContextProvider, CoEditionHelper coEditionHelper, ExportService exportService, Provider<StructureContext> structureContextProvider, ReferenceLabelService referenceLabelService, Provider<FinancialStatementContextService> financialStatementContextProvider, UpdateInternalReferencesProducer updateInternalReferencesProducer, TransformationService transformationService, LegService legService, ProposalService proposalService, SearchService searchService, ExportPackageService exportPackageService, NotificationService notificationService, CloneContext cloneContext, AttachmentProcessor attachmentProcessor) {
         super(securityContext, httpSession, eventBus, leosApplicationEventBus, uuidHelper, packageService, workspaceService);
         this.financialStatementScreen = financialStatementScreen;
         this.financialStatementService = financialStatementService;

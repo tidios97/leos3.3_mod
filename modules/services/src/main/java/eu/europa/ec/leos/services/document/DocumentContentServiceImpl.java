@@ -85,6 +85,8 @@ public abstract class DocumentContentServiceImpl implements DocumentContentServi
 	            return isAnnexComparisonRequired(contentBytes);
 	        case BILL:
 	            return true;
+            case FINANCIAL_STATEMENT:
+                return isFinancialStatementComparisonRequired(contentBytes);
 	        case PROPOSAL:
 	        	return true;
 	        default:

@@ -75,7 +75,6 @@ public class MandateFinancialStatementScreenImpl extends FinancialStatementScree
                 versionsTab, structureContextProvider, tableOfContentProcessor, xmlContentProcessor);
         ExportOptions exportOptions = new ExportDW(ExportOptions.Output.WORD, FinancialStatement.class, false);
         doubleComparisonComponent = new DoubleComparisonComponent<>(exportOptions, eventBus, messageHelper, securityContext);
-        init();
     }
 
     @Override
