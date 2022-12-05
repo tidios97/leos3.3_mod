@@ -25,11 +25,14 @@ import eu.europa.ec.leos.domain.vo.ValidationVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.model.filter.QueryFilter;
 import eu.europa.ec.leos.security.SecurityContext;
+import eu.europa.ec.leos.services.collection.CollectionContextService;
+import eu.europa.ec.leos.services.collection.document.ContextActionService;
 import eu.europa.ec.leos.services.converter.ProposalConverterService;
 import eu.europa.ec.leos.services.document.PostProcessingDocumentService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.TemplateService;
 import eu.europa.ec.leos.services.store.WorkspaceService;
+import eu.europa.ec.leos.services.support.url.CollectionIdsAndUrlsHolder;
 import eu.europa.ec.leos.services.validation.ValidationService;
 import eu.europa.ec.leos.ui.event.CreateDocumentRequestEvent;
 import eu.europa.ec.leos.ui.event.view.collection.DisplayCollectionEvent;
@@ -65,7 +68,7 @@ class WorkspacePresenter extends AbstractLeosPresenter {
     private final WorkspaceScreen workspaceScreen;
     private final WorkspaceService workspaceService;
     private final TemplateService templateService;
-    private final Provider<CollectionContext> proposalContextProvider;
+    private final Provider<CollectionContextService> proposalContextProvider;
     private final MessageHelper messageHelper;
     private final ValidationService validationService;
     private final ProposalConverterService proposalConverterService;
@@ -78,7 +81,7 @@ class WorkspacePresenter extends AbstractLeosPresenter {
                        WorkspaceScreen workspaceScreen,
                        WorkspaceService workspaceService,
                        TemplateService templateService,
-                       Provider<CollectionContext> proposalContextProvider,
+                       Provider<CollectionContextService> proposalContextProvider,
                        PackageService packageService,
                        MessageHelper messageHelper,
                        ValidationService validationService,
@@ -149,18 +152,19 @@ class WorkspacePresenter extends AbstractLeosPresenter {
         LOG.debug("Handling create document request event... [category={}]", event.getDocument().getCategory());
         if (event.getDocument().isUploaded()) {
             //if it has id means that it is an uploaded document.
-            CollectionContext context = proposalContextProvider.get();
+            CollectionContextService context = proposalContextProvider.get();
             context.useDocument(event.getDocument());
             addTemplateInContext(context, event.getDocument());
-            context.useActionMessage(ContextAction.METADATA_UPDATED, messageHelper.getMessage("operation.document.imported"));
-            context.useActionMessage(ContextAction.ANNEX_BLOCK_UPDATED, messageHelper.getMessage("operation.document.imported"));
-            context.useActionMessage(ContextAction.ANNEX_ADDED, messageHelper.getMessage("collection.block.annex.added"));
-            context.useActionMessage(ContextAction.EXPLANATORY_ADDED, messageHelper.getMessage("collection.block.explanatory.added"));
-            context.useActionMessage(ContextAction.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
+            context.useIdsAndUrlsHolder(new CollectionIdsAndUrlsHolder());
+            context.useActionMessage(ContextActionService.METADATA_UPDATED, messageHelper.getMessage("operation.document.imported"));
+            context.useActionMessage(ContextActionService.ANNEX_BLOCK_UPDATED, messageHelper.getMessage("operation.document.imported"));
+            context.useActionMessage(ContextActionService.ANNEX_ADDED, messageHelper.getMessage("collection.block.annex.added"));
+            context.useActionMessage(ContextActionService.EXPLANATORY_ADDED, messageHelper.getMessage("collection.block.explanatory.added"));
+            context.useActionMessage(ContextActionService.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
             context.executeImportProposal();
             LOG.info("New document of type {} imported in {} milliseconds ({} sec)", event.getDocument().getCategory(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
         } else if (LeosCategory.PROPOSAL.equals(event.getDocument().getCategory())) {
-            CollectionContext context = proposalContextProvider.get();
+            CollectionContextService context = proposalContextProvider.get();
             String template = event.getDocument().getMetadata().getDocTemplate();
             String[] templates = (template != null) ? template.split(";") : new String[0];
             for (String name : templates) {
@@ -168,8 +172,8 @@ class WorkspacePresenter extends AbstractLeosPresenter {
             }
             context.usePurpose(event.getDocument().getMetadata().getDocPurpose());
             context.useEeaRelevance(event.getDocument().getMetadata().getEeaRelevance());
-            context.useActionMessage(ContextAction.METADATA_UPDATED, messageHelper.getMessage("operation.metadata.updated"));
-            context.useActionMessage(ContextAction.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
+            context.useActionMessage(ContextActionService.METADATA_UPDATED, messageHelper.getMessage("operation.metadata.updated"));
+            context.useActionMessage(ContextActionService.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
             context.executeCreateProposal();
             LOG.info("New document of type {} created in {} milliseconds ({} sec)", event.getDocument().getCategory(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
         } else {
@@ -212,7 +216,7 @@ class WorkspacePresenter extends AbstractLeosPresenter {
         proposalConverterService.createProposalFromLegFile(event.getFile(), event.getDocument(), true);
     }
 
-    private void addTemplateInContext(CollectionContext context, DocumentVO documentVO) {
+    private void addTemplateInContext(CollectionContextService context, DocumentVO documentVO) {
         context.useTemplate(documentVO.getMetadata().getDocTemplate());
         if (documentVO.getChildDocuments() != null) {
             for (DocumentVO docChild : documentVO.getChildDocuments()) {

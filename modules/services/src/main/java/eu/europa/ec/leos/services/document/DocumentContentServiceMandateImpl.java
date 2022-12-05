@@ -96,6 +96,11 @@ public class DocumentContentServiceMandateImpl extends DocumentContentServiceImp
     }
 
     @Override
+    public boolean isFinancialStatementComparisonRequired(byte[] contentBytes) {
+        return false;
+    }
+
+    @Override
     public XmlDocument getOriginalMemorandum(Memorandum memorandum) {
         return memorandumService.findFirstVersion(memorandum.getMetadata().get().getRef());
     }

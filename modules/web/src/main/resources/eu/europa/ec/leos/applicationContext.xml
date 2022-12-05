@@ -14,7 +14,7 @@
     <context:property-placeholder properties-ref="applicationProperties" ignore-unresolvable="true"/> <!-- TODO ..this should be false  due to other modules -->
 
     <!-- Application Properties -->
-    <util:properties id="applicationProperties" location="classpath:application_leos.properties"/>
+    <util:properties id="applicationProperties" ignore-resource-not-found="true" location="classpath:application_leos.properties"/>
 
     <!-- Application Language Tags (tags as specified by IETF BCP 47) -->
     <util:list id="applicationLanguageTags">

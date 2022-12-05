@@ -57,6 +57,8 @@ public interface DocumentContentService {
 
     boolean isProposalComparisonRequired(byte[] contentBytes);
 
+    boolean isFinancialStatementComparisonRequired(byte[] contentBytes);
+
     String getDocumentAsHtml(XmlDocument xmlDocument, String contextPath, List<LeosPermission> permissions);
 
     String getDocumentAsHtml(XmlDocument xmlDocument, String contextPath, List<LeosPermission> permissions, boolean includeCoverPage);
