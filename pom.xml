@@ -19,7 +19,7 @@
 
     <groupId>eu.europa.ec.leos.pilot</groupId>
     <artifactId>leos</artifactId>
-    <version>3.3.0-SNAPSHOT</version>
+    <version>3.3.0</version>
     <packaging>pom</packaging>
 
     <name>LEOS Pilot</name>
