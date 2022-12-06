@@ -74,6 +74,11 @@ define(function leosPluginUtilsModule(require) {
     var DATA_INDENT_ORIGIN_NUMBER_ORIGIN = "data-indent-origin-num-origin";
     var DATA_INDENT_ORIGIN_TYPE = "data-indent-origin-type";
 
+    var LEOS_SOFTACTION = "leos:softaction";
+    var DATA_AKN_NUM_SOFTACTION = "data-akn-num-attr-softaction";
+    var DEL = "del";
+    var MOVETO = "move_to";
+
     var COUNCIL_INSTANCE = "COUNCIL";
 
 
@@ -609,13 +614,36 @@ define(function leosPluginUtilsModule(require) {
         }
     }
 
-    function _isUnumberedHtmlParagraph(editor, indentationStatus) {
+    function _isUnumberedHtmlParagraph(editor) {
         var paragraph = $(editor.element.$).find(HTML_POINT).first()
-        return (paragraph && !indentationStatus.original.num && paragraph.attr(DATA_AKN_ELEMENT) && paragraph.attr(DATA_AKN_ELEMENT).toLocaleLowerCase() == PARAGRAPH && !paragraph.attr(DATA_AKN_NUM));
+        return (paragraph && paragraph.attr(DATA_AKN_ELEMENT) && paragraph.attr(DATA_AKN_ELEMENT).toLocaleLowerCase() == PARAGRAPH && !_hasHtmlNum(paragraph));
     }
 
     function _isUnumberedparagraph(paragraph) {
-        return (paragraph && paragraph.prop("tagName").toLocaleLowerCase() == PARAGRAPH && paragraph.children(NUM).length == 0);
+        return (paragraph && paragraph.prop("tagName").toLocaleLowerCase() == PARAGRAPH && !_hasNum(paragraph));
+    }
+
+    function _hasHtmlNum(element) {
+        if (element.attr(DATA_AKN_NUM)) {
+            var dataAknNumAttrSoftAction = element.attr(DATA_AKN_NUM_SOFTACTION);
+            if (!!dataAknNumAttrSoftAction && dataAknNumAttrSoftAction == DEL) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    function _hasNum(element) {
+        var childNum = element.children(NUM);
+        if (childNum.length > 0) {
+            var dataAknNumAttrSoftAction = childNum.attr(LEOS_SOFTACTION);
+            if (!!dataAknNumAttrSoftAction && dataAknNumAttrSoftAction == DEL) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     function _resetIndent(editor, isIndent) {
@@ -951,6 +979,9 @@ define(function leosPluginUtilsModule(require) {
         DATA_INDENT_ORIGIN_NUM_ID: DATA_INDENT_ORIGIN_NUM_ID,
         DATA_AKN_WRAPPED_CONTENT_ID: DATA_AKN_WRAPPED_CONTENT_ID,
         DATA_AKN_MP_ID: DATA_AKN_MP_ID,
+        LEOS_SOFTACTION: LEOS_SOFTACTION,
+        DEL: DEL,
+        MOVETO: MOVETO,
         CROSSHEADING_LIST_ATTR: CROSSHEADING_LIST_ATTR,
         DATA_INDENT_LEVEL_ATTR: DATA_INDENT_LEVEL_ATTR,
         INDENT_LEVEL_ATTR: INDENT_LEVEL_ATTR,

@@ -1063,14 +1063,14 @@ define(function leosAnnexIndentListPluginModule(require) {
 
     function _calculateNewLevel(editor, isIndent) {
         var source = $(editor.element.$);
-        if (!isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
+        if (!isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 1
                 && !indentationStatus.current.numbered))) {
             indentationStatus.current.numbered = true;
         }
-        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
+        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 1

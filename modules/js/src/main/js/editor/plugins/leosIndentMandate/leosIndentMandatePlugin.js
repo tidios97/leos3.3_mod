@@ -215,7 +215,7 @@ define(function leosIndentMandatePluginModule(require) {
 
     function _calculateNewLevel(editor, isIndent) {
         let source = $(editor.element.$);
-        if (!isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
+        if (!isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 1
@@ -223,7 +223,7 @@ define(function leosIndentMandatePluginModule(require) {
             indentationStatus.current.level --;
             indentationStatus.current.numbered = true;
         }
-        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
+        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 1
@@ -231,7 +231,7 @@ define(function leosIndentMandatePluginModule(require) {
                 && indentationStatus.original.numbered))) {
             indentationStatus.current.numbered = true;
         }
-        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
+        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 0
@@ -254,6 +254,9 @@ define(function leosIndentMandatePluginModule(require) {
             indentationStatus.current.level = indentationStatus.original.level;
             indentationStatus.original.num = leosPluginUtils.getCurrentNumValue(editor);
             indentationStatus.original.numbered = !(leosPluginUtils.isSubpoint(editor) && !leosPluginUtils.isFirstChild(editor));
+            if (leosPluginUtils.isUnumberedHtmlParagraph(editor)) {
+                indentationStatus.original.numbered = false;
+            }
             indentationStatus.current.numbered = indentationStatus.original.numbered;
         }
     }
@@ -298,6 +301,11 @@ define(function leosIndentMandatePluginModule(require) {
             parentChildren = currentParent.children(ITEMS_SELECTOR);
         }
         prevSibling = $(parentChildren[indentationStatus.original.position - 1]);
+        if (!!prevSibling.attr(leosPluginUtils.LEOS_SOFTACTION)
+            && (prevSibling.attr(leosPluginUtils.LEOS_SOFTACTION) == leosPluginUtils.DEL
+                || prevSibling.attr(leosPluginUtils.LEOS_SOFTACTION) == leosPluginUtils.MOVETO)) {
+            return false;
+        }
 
         let currentParentDepth = 0;
         if (!prevSibling.length && currentParent.prop("tagName").toLowerCase() == LEVEL) {
