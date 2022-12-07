@@ -68,7 +68,8 @@ class WorkspacePresenter extends AbstractLeosPresenter {
     private final WorkspaceScreen workspaceScreen;
     private final WorkspaceService workspaceService;
     private final TemplateService templateService;
-    private final Provider<CollectionContextService> proposalContextProvider;
+    private final Provider<CollectionContextService> proposalContextServiceProvider;
+    private final Provider<CollectionContext> proposalContextProvider;
     private final MessageHelper messageHelper;
     private final ValidationService validationService;
     private final ProposalConverterService proposalConverterService;
@@ -81,7 +82,8 @@ class WorkspacePresenter extends AbstractLeosPresenter {
                        WorkspaceScreen workspaceScreen,
                        WorkspaceService workspaceService,
                        TemplateService templateService,
-                       Provider<CollectionContextService> proposalContextProvider,
+                       Provider<CollectionContextService> proposalContextServiceProvider,
+                       Provider<CollectionContext> proposalContextProvider,
                        PackageService packageService,
                        MessageHelper messageHelper,
                        ValidationService validationService,
@@ -94,6 +96,7 @@ class WorkspacePresenter extends AbstractLeosPresenter {
         this.workspaceScreen = workspaceScreen;
         this.workspaceService = workspaceService;
         this.templateService = templateService;
+        this.proposalContextServiceProvider = proposalContextServiceProvider;
         this.proposalContextProvider = proposalContextProvider;
         this.messageHelper = messageHelper;
         this.validationService = validationService;
@@ -152,7 +155,7 @@ class WorkspacePresenter extends AbstractLeosPresenter {
         LOG.debug("Handling create document request event... [category={}]", event.getDocument().getCategory());
         if (event.getDocument().isUploaded()) {
             //if it has id means that it is an uploaded document.
-            CollectionContextService context = proposalContextProvider.get();
+            CollectionContextService context = proposalContextServiceProvider.get();
             context.useDocument(event.getDocument());
             addTemplateInContext(context, event.getDocument());
             context.useIdsAndUrlsHolder(new CollectionIdsAndUrlsHolder());
@@ -164,7 +167,7 @@ class WorkspacePresenter extends AbstractLeosPresenter {
             context.executeImportProposal();
             LOG.info("New document of type {} imported in {} milliseconds ({} sec)", event.getDocument().getCategory(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
         } else if (LeosCategory.PROPOSAL.equals(event.getDocument().getCategory())) {
-            CollectionContextService context = proposalContextProvider.get();
+            CollectionContext context = proposalContextProvider.get();
             String template = event.getDocument().getMetadata().getDocTemplate();
             String[] templates = (template != null) ? template.split(";") : new String[0];
             for (String name : templates) {
@@ -172,8 +175,8 @@ class WorkspacePresenter extends AbstractLeosPresenter {
             }
             context.usePurpose(event.getDocument().getMetadata().getDocPurpose());
             context.useEeaRelevance(event.getDocument().getMetadata().getEeaRelevance());
-            context.useActionMessage(ContextActionService.METADATA_UPDATED, messageHelper.getMessage("operation.metadata.updated"));
-            context.useActionMessage(ContextActionService.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
+            context.useActionMessage(ContextAction.METADATA_UPDATED, messageHelper.getMessage("operation.metadata.updated"));
+            context.useActionMessage(ContextAction.DOCUMENT_CREATED, messageHelper.getMessage("operation.document.created"));
             context.executeCreateProposal();
             LOG.info("New document of type {} created in {} milliseconds ({} sec)", event.getDocument().getCategory(), stopwatch.elapsed(TimeUnit.MILLISECONDS), stopwatch.elapsed(TimeUnit.SECONDS));
         } else {
