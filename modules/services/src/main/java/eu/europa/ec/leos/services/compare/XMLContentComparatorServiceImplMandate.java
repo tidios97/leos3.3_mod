@@ -299,7 +299,8 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
                             context.getOldElement().getParent().getTagId());
                     appendMovedOrTransformedContent(context, softMovedToTansformedElement);
                 } else if(context.getNewElement().getTagName().equals(PARAGRAPH) &&
-                        containsSoftTransformedElement(context.getOldContentElements(), context.getNewElement())
+                        (containsSoftTransformedElement(context.getOldContentElements(), context.getNewElement())
+                                && !isElementIndented(context.getNewElement()))
                         && (!containsSoftMoveToElement(context.getNewContentElements(), context.getOldElement()))) { //TODO: FIX this if condition remove check for PARAGRAPH
                     appendMovedOrTransformedContent(context, context.getNewElement());
                 } else if (SoftActionType.DELETE_TRANSFORM.equals(getSoftAction(context.getNewElement().getNode()))) {
