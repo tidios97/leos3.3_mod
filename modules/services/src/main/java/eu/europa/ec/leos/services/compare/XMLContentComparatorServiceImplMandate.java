@@ -32,6 +32,8 @@ import org.w3c.dom.Node;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.findElementInOtherContext;
 import static eu.europa.ec.leos.services.compare.IndentContentComparatorHelper.getAllowedTags;
@@ -269,6 +271,21 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
         return attrValue;
     }
 
+    private boolean isRemovedSubparagraphFromIndentedElement(Element oldElement, Element newElement) {
+        if (oldElement.getTagName().equals(SUBPARAGRAPH) || oldElement.getTagName().equals(SUBPOINT)) {
+            Optional<Element> subElement = oldElement.getParent().getChildren().stream()
+                    .filter(e -> e.getTagName().equals(SUBPARAGRAPH)
+                            || e.getTagName().equals(SUBPOINT))
+                    .findFirst();
+            if (subElement.isPresent()) {
+                return newElement.getTagId().endsWith(oldElement.getParent().getTagId())
+                        && newElement.getTagId().startsWith(SOFT_TRANSFORM_PLACEHOLDER_ID_PREFIX)
+                        && subElement.get().equals(oldElement);
+            }
+        }
+        return false;
+    }
+
     @Override
     protected void appendRemovedElementContent(ContentComparatorContext context) {
         if (context.getOldElement() == null) {
@@ -343,6 +360,7 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
                     appendMovedToElementWithoutContent(context);
                 } else if (!isSoftAction(context.getNewElement().getNode(), SoftActionType.TRANSFORM)
                         && !isSoftAction(context.getOldElement().getNode(), SoftActionType.TRANSFORM)
+                        && (!isRemovedSubparagraphFromIndentedElement(context.getOldElement(), context.getNewElement()))
                         && !context.getNewContentElements().containsKey(context.getOldElement().getTagId())
                         && !emptyListInOldContext(context)
                         && !(isRemovedNumInUnumbered(context))) {
@@ -526,7 +544,8 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
 
     private void appendMovedToElementWithoutContent(ContentComparatorContext context) {
         Element softMovedToElement = context.getNewContentElements().get(SOFT_MOVE_PLACEHOLDER_ID_PREFIX + context.getOldElement().getTagId());
-        if (softMovedToElement != null) {
+        Node removedNode = softMovedToElement == null ? null : XercesUtils.getElementById(context.getResultNode(), softMovedToElement.getTagId());
+        if (softMovedToElement != null && removedNode == null) {
             String attrValue;
             if (context.getThreeWayDiff()) {
                 attrValue = containsSoftMoveToElement(context.getIntermediateContentElements(), context.getOldElement()) ?
@@ -538,7 +557,7 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
             // LEOS-5819: If the moved element is also out/indented, then append original node.
             if(isElementIndented(softMovedToElement)) {
             	node = context.getOldElement().getNode().cloneNode(true);
-                Node newNode = XercesUtils.getElementById(context.getNewContentNode(), softMovedToElement.getTagId());
+                Node newNode = softMovedToElement.getNode();
                 NamedNodeMap attributesMap = newNode.getAttributes();
                 if (attributesMap != null) {
                     for (int i = 0; i < attributesMap.getLength(); i++) {

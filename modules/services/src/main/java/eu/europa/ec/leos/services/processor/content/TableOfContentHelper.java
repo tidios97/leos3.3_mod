@@ -106,7 +106,12 @@ public class TableOfContentHelper {
                 }
                 captionMaxSize = captionMaxSize+itemDescription.length();
             } else {
-                itemDescription.append(tocItem.getNumber());
+                if (tocItem.isIndented() && !tocItem.getNumber().equals(tocItem.getIndentOriginNumValue())) {
+                    itemDescription.append("<span class=\"leos-soft-num-new\">" + tocItem.getNumber() + "</span>");
+                    captionMaxSize = captionMaxSize+itemDescription.length();
+                } else {
+                    itemDescription.append(tocItem.getNumber());
+                }
                 if (shoudlAddMovedLabel) {
                     itemDescription.append(SPAN_END_TAG).append(getMovedLabel(messageHelper));
                 }
