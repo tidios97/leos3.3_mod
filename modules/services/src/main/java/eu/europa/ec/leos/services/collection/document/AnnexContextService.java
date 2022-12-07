@@ -108,12 +108,6 @@ public class AnnexContextService {
         LOG.trace("Using Annex type... [type={}]", type);
         this.type = type;
     }
-
-    public void usePackageTemplate(String template) {
-        Validate.notNull(template, "template is required!");
-        LOG.trace("Using template... [template={}]", template);
-        this.template = template;
-    }
     
     public void useIndex(int index) {
         Validate.notNull(index, "Annex index is required!");
@@ -199,7 +193,7 @@ public class AnnexContextService {
         
         final String actionMessage = actionMsgMap.get(ContextActionService.ANNEX_BLOCK_UPDATED);
         AnnexMetadata metadataDocument = (AnnexMetadata) annexDocument.getMetadataDocument();
-        metadataDocument = metadataDocument.withPurpose(purpose).withEeaRelevance(eeaRelevance);
+        metadataDocument = metadataDocument.withPurpose(purpose).withEeaRelevance(eeaRelevance).withTemplate(template);
         annex = annexService.createAnnexFromContent(leosPackage.getPath(), metadataDocument, actionMessage, annexDocument.getSource(), annexDocument.getName());
         annex = securityService.updateCollaborators(annex.getId(), collaborators, Annex.class);
         Map<String, Object> annexProperties = new HashMap<>();

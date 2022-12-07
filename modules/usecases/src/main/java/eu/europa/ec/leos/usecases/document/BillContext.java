@@ -395,7 +395,6 @@ public class BillContext {
         Validate.isTrue(metadataOption.isDefined(), "Bill metadata is required!");
         BillMetadata metadata = metadataOption.get();
         annexContext.useType(metadata.getType());
-        annexContext.usePackageTemplate(metadata.getTemplate());
         // We dont need to fetch the content here, the executeUpdateAnnexMetadata gets the latest version of the annex by id
         List<Annex> annexes = packageService.findDocumentsByPackagePath(leosPackage.getPath(), Annex.class, false);
         int annexIndex = annexes.size() + 1;
@@ -442,10 +441,9 @@ public class BillContext {
         BillMetadata metadata = metadataOption.get();
         annexContext.usePurpose(metadata.getPurpose());
         annexContext.useType(metadata.getType());
-        annexContext.usePackageTemplate(metadata.getTemplate());
 
         MetadataVO annexMeta = annexDocument.getMetadata();
-        annexContext.useTemplate(annexMeta.getDocTemplate());
+        annexContext.useTemplate(annexMeta.getTemplate());
         annexContext.useCollaborators(bill.getCollaborators());
         annexContext.useDocument(annexDocument);
         annexContext.useActionMessageMap(actionMsgMap);

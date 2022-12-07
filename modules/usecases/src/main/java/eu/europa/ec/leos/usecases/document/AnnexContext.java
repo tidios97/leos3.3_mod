@@ -106,12 +106,6 @@ public class AnnexContext {
         LOG.trace("Using Annex type... [type={}]", type);
         this.type = type;
     }
-
-    public void usePackageTemplate(String template) {
-        Validate.notNull(template, "template is required!");
-        LOG.trace("Using template... [template={}]", template);
-        this.template = template;
-    }
     
     public void useIndex(int index) {
         Validate.notNull(index, "Annex index is required!");
@@ -235,7 +229,7 @@ public class AnnexContext {
         Validate.isTrue(metadataOption.isDefined(), "Annex metadata is required!");
         AnnexMetadata metadata = metadataOption.get();
         AnnexMetadata annexMetadata = metadata.withPurpose(metadata.getPurpose()).
-                    withType(metadata.getType()).withTitle(metadata.getTitle()).withTemplate(template).
+                    withType(metadata.getType()).withTitle(metadata.getTitle()).withTemplate(metadata.getTemplate()).
                     withDocVersion(metadata.getDocVersion()).withDocTemplate(template);
         
         annex = annexService.updateAnnex(annex, xmlContent, annexMetadata, VersionType.INTERMEDIATE, actionMsgMap.get(ContextAction.ANNEX_STRUCTURE_UPDATED));
