@@ -76,7 +76,7 @@ import eu.europa.ec.leos.web.event.view.AddChangeDetailsMenuEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentConfirmationEvent;
 import eu.europa.ec.leos.web.event.view.document.CloseDocumentEvent;
 import eu.europa.ec.leos.web.event.view.document.DocumentUpdatedEvent;
-import eu.europa.ec.leos.web.event.view.document.SaveElementAttributeRequestEvent;
+import eu.europa.ec.leos.web.event.view.document.SaveElementRequestEvent;
 import eu.europa.ec.leos.web.model.VersionInfoVO;
 import eu.europa.ec.leos.web.support.SessionAttribute;
 import eu.europa.ec.leos.web.support.UrlBuilder;
@@ -370,16 +370,15 @@ public class FinancialStatementPresenter extends AbstractLeosPresenter {
 
 
     @Subscribe
-    void saveElementAttribute(SaveElementAttributeRequestEvent event) {
+    void saveElement(SaveElementRequestEvent event) {
         try {
             Stopwatch stopwatch = Stopwatch.createStarted();
             final String elementId = event.getElementId();
             final String elementType = event.getElementTagName();
-            final String attributeName = event.getAttributeName();
-            final String attributeValue = event.getAttributeValue();
+            final String elementFragment = event.getElementContent();
 
             FinancialStatement financialStatement = getDocument();
-            byte[] newXmlContent = financialStatementProcessor.updateElementAttribute(financialStatement, elementType, elementId, attributeName, attributeValue);
+            byte[] newXmlContent = financialStatementProcessor.updateElement(financialStatement, elementType, elementId, elementFragment);
             if (newXmlContent == null) {
                 financialStatementScreen.showAlertDialog("operation.element.not.performed");
                 return;

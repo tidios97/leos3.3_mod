@@ -19,26 +19,26 @@ import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.JavaScriptFunction;
 import elemental.json.JsonArray;
 import elemental.json.JsonObject;
-import eu.europa.ec.leos.web.event.view.document.SaveElementAttributeRequestEvent;
+import eu.europa.ec.leos.web.event.view.document.SaveElementRequestEvent;
 import eu.europa.ec.leos.web.support.LeosCacheToken;
+import org.apache.commons.lang3.Validate;
 
-@JavaScript({"vaadin://../js/ui/extension/hContainerConnector.js"+ LeosCacheToken.TOKEN })
-public class HContainerExtension<T extends AbstractField<V>, V> extends LeosJavaScriptExtension {
+@JavaScript({"vaadin://../js/ui/extension/checkBoxesConnector.js"+ LeosCacheToken.TOKEN })
+public class CheckBoxesExtension<T extends AbstractField<V>, V> extends LeosJavaScriptExtension {
 
     private static final long serialVersionUID = 1L;
 
     private final EventBus eventBus;
 
-    public HContainerExtension(T target, EventBus eventBus, String checkBoxAttributeName
-            , String checkedBoxAttributeValue, String uncheckedBoxAttributeValue) {
+    public CheckBoxesExtension(T target, EventBus eventBus, String checkBoxTagName
+            , String checkedBoxValue, String uncheckedBoxValue) {
         super();
         this.eventBus =  eventBus;
         registerServerSideAPI();
         // These values should be configurable (In structure file ?)
-        // Be carefull of css (_hContainer.scss file)
-        getState().checkBoxAttributeName = checkBoxAttributeName;
-        getState().checkedBoxAttributeValue = checkedBoxAttributeValue;
-        getState().uncheckedBoxAttributeValue = uncheckedBoxAttributeValue;
+        getState().checkBoxTagName = checkBoxTagName;
+        getState().checkedBoxValue = checkedBoxValue;
+        getState().uncheckedBoxValue = uncheckedBoxValue;
         extend(target);
     }
 
@@ -49,10 +49,9 @@ public class HContainerExtension<T extends AbstractField<V>, V> extends LeosJava
                 LOG.trace("Saving element...");
                 JsonObject data = arguments.get(0);
                 String elementId = data.getString("elementId");
-                String elementTagName = data.getString("elementType");
-                String attributeName = data.getString("attributeName");
-                String attributeValue = data.getString("attributeValue");
-                eventBus.post(new SaveElementAttributeRequestEvent(elementId, elementTagName, attributeName, attributeValue));
+                String elementType = data.getString("elementType");
+                String elementFragment = data.getString("elementFragment");
+                eventBus.post(new SaveElementRequestEvent(elementId, elementType, elementFragment, false));
             }
         });
     }
@@ -70,12 +69,12 @@ public class HContainerExtension<T extends AbstractField<V>, V> extends LeosJava
     }
 
     @Override
-    protected HContainerState getState() {
-        return (HContainerState)super.getState();
+    protected CheckBoxesState getState() {
+        return (CheckBoxesState)super.getState();
     }
 
     @Override
-    protected HContainerState getState(boolean markAsDirty) {
-        return (HContainerState)super.getState(markAsDirty);
+    protected CheckBoxesState getState(boolean markAsDirty) {
+        return (CheckBoxesState)super.getState(markAsDirty);
     }
 }

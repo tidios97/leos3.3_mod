@@ -11,14 +11,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the Licence for the specific language governing permissions and limitations under the Licence.
  */
-; // jshint ignore:line
-window.eu_europa_ec_leos_ui_extension_HContainerExtension = function connectorInitializer() {
-    "use strict";
+package eu.europa.ec.leos.ui.extension;
 
-    var connector = this;
+import eu.europa.ec.leos.ui.shared.js.LeosJavaScriptExtensionState;
 
-    require(["extension/hContainerExtension"], function moduleInitializer(hContainer) {
-        hContainer.init(connector);
-        connector.jsDepsInited();
-    });
-};
+public class CheckBoxesState extends LeosJavaScriptExtensionState {
+    private static final long serialVersionUID = 1L;
+
+    public String checkBoxTagName;
+    public String checkedBoxValue;
+    public String uncheckedBoxValue;
+}

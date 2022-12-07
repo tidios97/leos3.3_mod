@@ -176,8 +176,8 @@ public class StructureConfigUtils {
         return foundTocItems.stream()
                 .filter(tocItem -> {
                     NumberingConfig tocItemNumberingConfig = getNumberingConfig(numberingConfigs, tocItem.getNumberingType());
-                    return isNumberingTypeMatchesSequence(numberingConfigs, tocItem.getNumberingType(), numValue)
-                            || isNumberingTypesPartOfNumberingConfig(numberingTypes, tocItemNumberingConfig, depth);
+                    return tocItemNumberingConfig != null && (isNumberingTypeMatchesSequence(numberingConfigs, tocItem.getNumberingType(), numValue)
+                            || isNumberingTypesPartOfNumberingConfig(numberingTypes, tocItemNumberingConfig, depth));
                 })
                 .findFirst()
                 .orElse(null);
