@@ -193,7 +193,7 @@ public class AnnexContextService {
         
         final String actionMessage = actionMsgMap.get(ContextActionService.ANNEX_BLOCK_UPDATED);
         AnnexMetadata metadataDocument = (AnnexMetadata) annexDocument.getMetadataDocument();
-        metadataDocument = metadataDocument.withPurpose(purpose).withEeaRelevance(eeaRelevance).withTemplate(template);
+        metadataDocument = metadataDocument.withPurpose(purpose).withEeaRelevance(eeaRelevance);
         annex = annexService.createAnnexFromContent(leosPackage.getPath(), metadataDocument, actionMessage, annexDocument.getSource(), annexDocument.getName());
         annex = securityService.updateCollaborators(annex.getId(), collaborators, Annex.class);
         Map<String, Object> annexProperties = new HashMap<>();
