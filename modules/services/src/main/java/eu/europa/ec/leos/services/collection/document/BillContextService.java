@@ -450,7 +450,7 @@ public class BillContextService {
         annexContext.useEeaRelevance(eeaRelevance);
 
         MetadataVO annexMeta = annexDocument.getMetadata();
-        annexContext.useTemplate(annexMeta.getTemplate());
+        annexContext.useTemplate(annexMeta.getDocTemplate());
         annexContext.useIndex(Integer.parseInt(annexDocument.getMetadata().getIndex()));
         annexContext.useCollaborators(bill.getCollaborators());
         annexContext.useDocument(annexDocument);
@@ -493,7 +493,7 @@ public class BillContextService {
                 .withNumber(annexMetadataVO.getNumber())
                 .withTitle(annexMetadataVO.getTitle())
                 .withType(billMetadata.getType())
-                .withTemplate(annexMetadataVO.getDocTemplate())
+                .withTemplate(annexMetadataVO.getTemplate())
                 .withRef(ref);
         final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(annexDocument.getSource(), createValueMap(updatedAnnexMetadata),
                 xmlNodeConfigProcessor.getConfig(updatedAnnexMetadata.getCategory()), xmlNodeConfigProcessor.getOldPrefaceOfAnnexConfig());

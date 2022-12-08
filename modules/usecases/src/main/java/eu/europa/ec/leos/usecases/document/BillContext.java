@@ -443,7 +443,7 @@ public class BillContext {
         annexContext.useType(metadata.getType());
 
         MetadataVO annexMeta = annexDocument.getMetadata();
-        annexContext.useTemplate(annexMeta.getTemplate());
+        annexContext.useTemplate(annexMeta.getDocTemplate());
         annexContext.useCollaborators(bill.getCollaborators());
         annexContext.useDocument(annexDocument);
         annexContext.useActionMessageMap(actionMsgMap);
@@ -495,7 +495,7 @@ public class BillContext {
                 .withNumber(annexMetadataVO.getNumber())
                 .withTitle(annexMetadataVO.getTitle())
                 .withType(billMetadata.getType())
-                .withTemplate(annexMetadataVO.getDocTemplate())
+                .withTemplate(annexMetadataVO.getTemplate())
                 .withClonedRef(annexDocument.getRef())
                 .withRef(ref);
         final byte[] updatedSource = xmlNodeProcessor.setValuesInXml(annexDocument.getSource(), createValueMap(updatedAnnexMetadata),
