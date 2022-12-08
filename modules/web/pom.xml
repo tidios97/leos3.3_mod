@@ -20,7 +20,7 @@
     <parent>
         <groupId>eu.europa.ec.leos.pilot</groupId>
         <artifactId>leos-modules</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <version>3.3.0</version>
     </parent>
 
     <!-- This would generate a warning but it is needed to generate different artifact for cn/os/ec till we find a better way-->
