@@ -26,6 +26,7 @@ import org.apache.xerces.dom.DeferredElementImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.MethodOverrides;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -286,6 +287,17 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
         return false;
     }
 
+    private boolean isMovedElementIndentedToNewElement(ContentComparatorContext context) {
+        if (containsSoftTransformedElement(context.getOldContentElements(), context.getNewElement())
+                && isElementIndented(context.getNewElement())
+                && containsSoftMoveToElement(context.getNewContentElements(), context.getOldElement())) {
+            Element indentedSoftMovedToElement =
+                    context.getNewContentElements().get(SOFT_MOVE_PLACEHOLDER_ID_PREFIX + context.getOldElement().getTagId());
+            return (indentedSoftMovedToElement != null && indentedSoftMovedToElement.getParent().getParent().equals(context.getNewElement()));
+        }
+        return false;
+    }
+
     @Override
     protected void appendRemovedElementContent(ContentComparatorContext context) {
         if (context.getOldElement() == null) {
@@ -303,6 +315,9 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
                                 && !isElementIndented(context.getNewElement()))
                         && (!containsSoftMoveToElement(context.getNewContentElements(), context.getOldElement()))) { //TODO: FIX this if condition remove check for PARAGRAPH
                     appendMovedOrTransformedContent(context, context.getNewElement());
+                } else if (isMovedElementIndentedToNewElement(context)) {
+                    // Old element was a point or paragraph with children: indented, then moved
+                    return;
                 } else if (SoftActionType.DELETE_TRANSFORM.equals(getSoftAction(context.getNewElement().getNode()))) {
                     getChangedElementContent(context.getNewElement().getNode(), context.getNewElement(), context.getAttrName(), context.getRemovedValue());
                     addToResultNode(context, context.getNewElement().getNode());
@@ -435,6 +450,19 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
         Node node = softDeletedNewElement.getNode();
         String attrName = context.getAttrName();
         String attrValue = getStartTagValueForRemovedElement(softDeletedNewElement, context);
+        if (attrName != null && attrValue != null) {
+            XercesUtils.addAttribute(node, attrName, attrValue);
+        }
+        addReadOnlyAttributes(node);
+        addToResultNode(context, node);
+    }
+
+    @Override
+    protected void appendMovedToOrDeletedElement(ContentComparatorContext context) {
+        Element softMovedToOrDeletedNewElement = context.getNewElement();
+        Node node = softMovedToOrDeletedNewElement.getNode();
+        String attrName = context.getAttrName();
+        String attrValue = getStartTagValueForRemovedElement(softMovedToOrDeletedNewElement, context);
         if (attrName != null && attrValue != null) {
             XercesUtils.addAttribute(node, attrName, attrValue);
         }

@@ -136,6 +136,13 @@ $BLUE_COLOR: blue;
     @extend %softRemoved;
     @extend %numRemoved;
   }
+
+  point.leos-content-soft-removed[leos\:indent-origin-num]::before,
+  paragraph.leos-content-soft-removed[leos\:indent-origin-num]::before {
+    content: attr(leos\:indent-origin-num);
+    @extend %softRemoved;
+    @extend %numRemoved;
+  }
 }
 
 division.leos-content-soft-removed {

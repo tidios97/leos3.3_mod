@@ -424,4 +424,8 @@ public class XMLContentComparatorServiceImplProposal extends XMLContentComparato
                 || IndentContentComparatorHelper.hasIndentedChild(otherContextElements, element)
                 || IndentContentComparatorHelper.hasIndentedChild(otherContextElements, element.getParent()));
     }
+
+    @Override
+    protected void appendMovedToOrDeletedElement(ContentComparatorContext context) {
+    }
 }

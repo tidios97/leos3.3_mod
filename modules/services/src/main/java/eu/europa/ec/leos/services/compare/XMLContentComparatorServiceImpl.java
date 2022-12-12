@@ -122,6 +122,8 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
         context.getResultNode().appendChild(node);
     }
 
+    abstract void appendMovedToOrDeletedElement(ContentComparatorContext context);
+
     private void computeDifferencesAtNodeLevel(ContentComparatorContext context) {
 
         if (shouldIgnoreElement(context.getOldContentRoot())) {
@@ -146,6 +148,14 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
 
             // at each step, check for a particular structural change in this order
             if (shouldIgnoreElement(context.getNewElement())) {
+                // Case when removed element has been indented, his position in the hierarchy has changed:
+                // that's the best way to display removed element at his original position
+                if (isElementIndented(context.getNewElement())
+                        && (isSoftAction(context.getNewElement().getNode(), SoftActionType.MOVE_TO)
+                        || isSoftAction(context.getNewElement().getNode(), SoftActionType.DELETE))
+                        && (!shouldIgnoreElement(context.getOldElement()))) {
+                    appendMovedToOrDeletedElement(context);
+                }
                 newContentChildIndex++;
                 if(context.getThreeWayDiff() && shouldIgnoreElement(context.getIntermediateElement())) {
                     intermediateContentChildIndex++;
@@ -354,9 +364,7 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 // in the new location so display the removed oldElement in the original location also provided there is
                 // no new element added in the new content before it.
                 // Is Moved To element has been indented, then skip it ?
-                if (!isRemovedElementIndentedInNewContext(context, context.getOldElement())) {
-                    appendRemovedElementContentIfRequired(context);
-                }
+                appendRemovedElementContentIfRequired(context);
                 oldContentChildIndex++;
                 intermediateContentChildIndex = incrementIntermediateIndexIfRequired(context, context.getOldElement(), intermediateContentChildIndex);
             } else if ((context.getIndexOfNewElementInOldContent() < 0 && getIndexOfIgnoredElementInNewContent(context) < 0)
@@ -669,7 +677,7 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
     }
 
     protected final void appendRemovedElementContentIfRequired(ContentComparatorContext context) {
-        if (shouldIgnoreElement(context.getNewContentRoot()) || isElementInItsOriginalPosition(context.getNewContentRoot())) {
+        if (!isRemovedElementIndentedInNewContext(context, context.getOldElement()) && (shouldIgnoreElement(context.getNewContentRoot()) || isElementInItsOriginalPosition(context.getNewContentRoot()))) {
             appendRemovedElementContent(context);
         } else if (!isElementMovedOrTransformed(context.getNewElement()) || isCurrentElementNonIgnored(getNodeFromElement(context.getOldElement()))) {
             appendRemovedContent(context);
