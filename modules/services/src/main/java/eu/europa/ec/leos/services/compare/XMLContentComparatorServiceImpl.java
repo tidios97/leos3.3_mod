@@ -152,7 +152,8 @@ public abstract class XMLContentComparatorServiceImpl implements ContentComparat
                 // that's the best way to display removed element at his original position
                 if (isElementIndented(context.getNewElement())
                         && (isSoftAction(context.getNewElement().getNode(), SoftActionType.MOVE_TO)
-                        || isSoftAction(context.getNewElement().getNode(), SoftActionType.DELETE))
+                        || isSoftAction(context.getNewElement().getNode(), SoftActionType.DELETE)
+                        || isSoftAction(context.getNewElement().getNode(), SoftActionType.DELETE_TRANSFORM))
                         && (!shouldIgnoreElement(context.getOldElement()))) {
                     appendMovedToOrDeletedElement(context);
                 }

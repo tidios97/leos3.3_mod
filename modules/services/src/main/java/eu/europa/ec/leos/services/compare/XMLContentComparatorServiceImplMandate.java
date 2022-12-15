@@ -81,11 +81,10 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
     protected boolean shouldIgnoreElement(Element element) {
         return element != null
                 && (isSoftAction(element.getNode(), SoftActionType.DELETE)
+                || isSoftAction(element.getNode(), SoftActionType.DELETE_TRANSFORM)
                 || isSoftAction(element.getNode(), SoftActionType.MOVE_TO)
                 || withPlaceholderPrefix(element.getNode(), SOFT_DELETE_PLACEHOLDER_ID_PREFIX)
-                || element.getTagId().contains("eeaRelevance"))
-                && !isSoftAction(element.getNode(), SoftActionType.DELETE_TRANSFORM)
-                ;
+                || element.getTagId().contains("eeaRelevance"));
     }
 
     @Override
@@ -466,7 +465,7 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
         if (attrName != null && attrValue != null) {
             XercesUtils.addAttribute(node, attrName, attrValue);
         }
-        addReadOnlyAttributes(node);
+        getChangedElementContent(node, context.getNewElement(), context.getAttrName(), context.getRemovedValue());
         addToResultNode(context, node);
     }
 
@@ -658,7 +657,8 @@ public class XMLContentComparatorServiceImplMandate extends XMLContentComparator
             if (getAllowedTags().contains(child.getTagName())) {
                 if (!notDeletedElements.contains(child)
                         || isSoftAction(childNode, SoftActionType.MOVE_TO)
-                        || isSoftAction(childNode, SoftActionType.DELETE)) {
+                        || isSoftAction(childNode, SoftActionType.DELETE)
+                        || isSoftAction(childNode, SoftActionType.DELETE_TRANSFORM)) {
                     addReadOnlyAttributes(childNode);
                     XercesUtils.insertOrUpdateAttributeValue(childNode, context.getAttrName(), context.getThreeWayDiff() ? context.getRemovedOriginalValue() : context.getRemovedValue());
                     removeNotDeletedElementsFromContent(context, notDeletedElements, child, childNode);

@@ -215,7 +215,7 @@ define(function leosIndentMandatePluginModule(require) {
 
     function _calculateNewLevel(editor, isIndent) {
         let source = $(editor.element.$);
-        if (!isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
+        if (!isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 1
@@ -223,7 +223,7 @@ define(function leosIndentMandatePluginModule(require) {
             indentationStatus.current.level --;
             indentationStatus.current.numbered = true;
         }
-        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
+        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 1
@@ -231,7 +231,7 @@ define(function leosIndentMandatePluginModule(require) {
                 && indentationStatus.original.numbered))) {
             indentationStatus.current.numbered = true;
         }
-        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor)
+        if (isIndent && (leosPluginUtils.isUnumberedHtmlParagraph(editor, indentationStatus)
             || (source.parents(PARAGRAPH).length
                 && leosPluginUtils.isUnumberedparagraph(source.parents(PARAGRAPH))
                 && indentationStatus.current.level == 0

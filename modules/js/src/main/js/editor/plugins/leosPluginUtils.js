@@ -614,9 +614,13 @@ define(function leosPluginUtilsModule(require) {
         }
     }
 
-    function _isUnumberedHtmlParagraph(editor) {
+    function _isUnumberedHtmlParagraph(editor, indentationStatus) {
         var paragraph = $(editor.element.$).find(HTML_POINT).first()
-        return (paragraph && paragraph.attr(DATA_AKN_ELEMENT) && paragraph.attr(DATA_AKN_ELEMENT).toLocaleLowerCase() == PARAGRAPH && !_hasHtmlNum(paragraph));
+        if (!!indentationStatus) {
+            return (!indentationStatus.original.numbered && paragraph && paragraph.attr(DATA_AKN_ELEMENT) && paragraph.attr(DATA_AKN_ELEMENT).toLocaleLowerCase() == PARAGRAPH && !_hasHtmlNum(paragraph));
+        } else {
+            return (paragraph && paragraph.attr(DATA_AKN_ELEMENT) && paragraph.attr(DATA_AKN_ELEMENT).toLocaleLowerCase() == PARAGRAPH && !_hasHtmlNum(paragraph));
+        }
     }
 
     function _isUnumberedparagraph(paragraph) {
