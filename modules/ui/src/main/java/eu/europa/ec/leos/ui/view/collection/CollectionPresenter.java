@@ -16,6 +16,7 @@ package eu.europa.ec.leos.ui.view.collection;
 import com.google.common.base.Stopwatch;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import eu.europa.ec.leos.cmis.mapping.CmisProperties;
 import eu.europa.ec.leos.domain.cmis.LeosCategory;
 import eu.europa.ec.leos.domain.cmis.LeosExportStatus;
 import eu.europa.ec.leos.domain.cmis.LeosPackage;
@@ -28,6 +29,7 @@ import eu.europa.ec.leos.domain.vo.DocumentVO;
 import eu.europa.ec.leos.domain.vo.MetadataVO;
 import eu.europa.ec.leos.i18n.MessageHelper;
 import eu.europa.ec.leos.integration.rest.UserJSON;
+import eu.europa.ec.leos.model.action.VersionVO;
 import eu.europa.ec.leos.model.event.ExportPackageCreatedEvent;
 import eu.europa.ec.leos.model.event.ExportPackageDeletedEvent;
 import eu.europa.ec.leos.model.event.ExportPackageUpdatedEvent;
@@ -71,6 +73,7 @@ import eu.europa.ec.leos.services.store.ExportPackageService;
 import eu.europa.ec.leos.services.store.PackageService;
 import eu.europa.ec.leos.services.store.TemplateService;
 import eu.europa.ec.leos.services.store.WorkspaceService;
+import eu.europa.ec.leos.services.support.VersionsUtil;
 import eu.europa.ec.leos.services.user.UserService;
 import eu.europa.ec.leos.ui.event.CloneProposalRequestEvent;
 import eu.europa.ec.leos.ui.event.CloseScreenRequestEvent;
@@ -140,9 +143,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -154,6 +159,7 @@ import java.util.concurrent.locks.StampedLock;
 import java.util.stream.Collectors;
 
 import static eu.europa.ec.leos.services.support.XmlHelper.XML_DOC_EXT;
+import static eu.europa.ec.leos.util.LeosDomainUtil.CMIS_PROPERTY_SPLITTER;
 
 @Component
 @Scope("prototype")
@@ -747,6 +753,18 @@ class CollectionPresenter extends AbstractLeosPresenter {
         Annex annex = annexService.findAnnex(event.getAnnex().getId(), true);
         AnnexMetadata metadata = annex.getMetadata().getOrError(() -> "Annex metadata not found!");
         AnnexMetadata updatedMetadata = metadata.withTitle(event.getAnnex().getTitle());
+
+        String baseRevisionId = annex.getBaseRevisionId();
+        cloneContext.setCloneProposalMetadataVO(cloneProposalMetadataVO);
+
+        if(StringUtils.isBlank(baseRevisionId)) {
+            VersionVO versionVO = VersionsUtil.buildVersionVO(Arrays.asList(annex), messageHelper).get(0);
+            Map<String, Object> properties = new HashMap<>();
+            properties.put(CmisProperties.BASE_REVISION_ID.getId(), versionVO.getDocumentId() + CMIS_PROPERTY_SPLITTER +
+                    versionVO.getVersionNumber().toString() + CMIS_PROPERTY_SPLITTER +
+                    versionVO.getCheckinCommentVO().getTitle());
+            annex =  annexService.updateAnnex(annex.getId(), properties, true);
+        }
 
         // 2. save metadata
         annexService.updateAnnex(annex, updatedMetadata, VersionType.MINOR, messageHelper.getMessage("collection.block.annex.metadata.updated"));
