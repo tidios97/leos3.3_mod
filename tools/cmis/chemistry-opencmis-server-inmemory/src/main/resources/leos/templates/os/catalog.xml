@@ -57,15 +57,15 @@
                                 <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
                             </descriptions>
                         </item>
-						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
-							<names>
-								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
-								</name>
-							</names>
-							<descriptions>
-								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
-							</descriptions>
-						</item>
+                        <item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+                            <names>
+                                <name lang="EN">SG-018 - Annex to a proposal / to another proposal
+                                </name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
                         <item type="TEMPLATE" id="CP-036" enabled="false" key="CP-036">
                             <names>
                                 <name lang="EN">CP-036 - Annex to a proposal / to another proposal</name>
@@ -106,21 +106,21 @@
                                 <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
                             </descriptions>
                         </item>
-						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
-							<names>
-								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
-								</name>
-							</names>
-							<descriptions>
-								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
-							</descriptions>
-						</item>
-                        
+                        <item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+                            <names>
+                                <name lang="EN">SG-018 - Annex to a proposal / to another proposal
+                                </name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
+
                     </item>
                 </item>
                 <item type="CATEGORY" id="c1.1.1.3" enabled="true" key="DECISION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL">
                     <names>
-                        <name lang="EN">Proposal for a decision</name>
+                        <name lang="EN">doc 1.1 </name>
                         <name lang="FR">Proposition de décision</name>
                     </names>
                     <descriptions>
@@ -131,9 +131,9 @@
                         <language lang="EN">English</language>
                         <language lang="FR">Français</language>
                     </languages>
-                    <item type="TEMPLATE" id="PR-025;EM-LP01;BL-025" enabled="true" key="SJ-025">
+                    <item type="TEMPLATE" id="PR-025;BL-025" enabled="true" key="SJ-025">
                         <names>
-                            <name lang="EN">SJ-025 - Proposal for a Decision of the European Parliament and of the Council</name>
+                            <name lang="EN">SJ-025 doc </name>
                             <name lang="FR">SJ-025 - Proposition de décision du Parlement européen et du Conseil</name>
                         </names>
                         <descriptions>
@@ -152,16 +152,16 @@
                                 <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
                             </descriptions>
                         </item>
-						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
-							<names>
-								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
-								</name>
-							</names>
-							<descriptions>
-								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
-							</descriptions>
-						</item>
-                        
+                        <item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+                            <names>
+                                <name lang="EN">SG-018 - Annex to a proposal / to another proposal
+                                </name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
+
                     </item>
                     <item type="TEMPLATE" id="PR-026;EM-LP01;BL-026" enabled="true" key="SJ-026">
                         <names>
@@ -184,16 +184,16 @@
                                 <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
                             </descriptions>
                         </item>
-						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
-							<names>
-								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
-								</name>
-							</names>
-							<descriptions>
-								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
-							</descriptions>
-						</item>
-                        
+                        <item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+                            <names>
+                                <name lang="EN">SG-018 - Annex to a proposal / to another proposal
+                                </name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
+
                     </item>
                 </item>
             </item>
@@ -260,15 +260,15 @@
                                 <description lang="EN">Annex to a proposal / to another proposal (COM/JOIN)</description>
                             </descriptions>
                         </item>
-						<item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
-							<names>
-								<name lang="EN">SG-018 - Annex to a proposal / to another proposal
-								</name>
-							</names>
-							<descriptions>
-								<description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
-							</descriptions>
-						</item>
+                        <item type="TEMPLATE" id="SG-018" enabled="true" key="SG-018">
+                            <names>
+                                <name lang="EN">SG-018 - Annex to a proposal / to another proposal
+                                </name>
+                            </names>
+                            <descriptions>
+                                <description lang="EN">Annex to a proposal / to another	proposal (COM/JOIN)</description>
+                            </descriptions>
+                        </item>
                         <item type="TEMPLATE" id="CP-036" enabled="false" key="CP-036">
                             <names>
                                 <name lang="EN">CP-036 - Annex to a proposal / to another proposal</name>

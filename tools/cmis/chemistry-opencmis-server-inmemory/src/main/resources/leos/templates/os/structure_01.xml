@@ -8,62 +8,9 @@
     <version>1</version>
 
     <tocItems>
-        <tocItem>
-            <aknTag>preface</aknTag>
-            <root>true</root>
-            <draggable>false</draggable>
-            <childrenAllowed>false</childrenAllowed>
-            <display>true</display>
-            <itemNumber>none</itemNumber>
-            <itemHeading>none</itemHeading>
-            <itemDescription>true</itemDescription>
-            <numberEditable>false</numberEditable>
-            <contentDisplayed>false</contentDisplayed>
-            <deletable>false</deletable>
-            <numWithType>false</numWithType>
-            <expandedByDefault>true</expandedByDefault>
-            <sameParentAsChild>false</sameParentAsChild>
-            <numberingType>NONE</numberingType>
-            <editable>false</editable>
-        </tocItem>
 
-        <tocItem>
-            <aknTag>docstage</aknTag>
-            <root>false</root>
-            <draggable>false</draggable>
-            <childrenAllowed>false</childrenAllowed>
-            <display>false</display>
-            <itemNumber>none</itemNumber>
-            <itemHeading>none</itemHeading>
-            <itemDescription>true</itemDescription>
-            <numberEditable>false</numberEditable>
-            <contentDisplayed>false</contentDisplayed>
-            <deletable>false</deletable>
-            <numWithType>false</numWithType>
-            <expandedByDefault>true</expandedByDefault>
-            <sameParentAsChild>false</sameParentAsChild>
-            <numberingType>NONE</numberingType>
-            <editable>false</editable>
-        </tocItem>
 
-        <tocItem>
-            <aknTag>doctype</aknTag>
-            <root>false</root>
-            <draggable>false</draggable>
-            <childrenAllowed>false</childrenAllowed>
-            <display>false</display>
-            <itemNumber>none</itemNumber>
-            <itemHeading>none</itemHeading>
-            <itemDescription>true</itemDescription>
-            <numberEditable>false</numberEditable>
-            <contentDisplayed>false</contentDisplayed>
-            <deletable>false</deletable>
-            <numWithType>false</numWithType>
-            <expandedByDefault>true</expandedByDefault>
-            <sameParentAsChild>false</sameParentAsChild>
-            <numberingType>NONE</numberingType>
-            <editable>false</editable>
-        </tocItem>
+
 
         <tocItem>
             <aknTag>docpurpose</aknTag>
@@ -84,24 +31,6 @@
             <editable>false</editable>
         </tocItem>
 
-        <tocItem>
-            <aknTag>body</aknTag>
-            <root>true</root>
-            <draggable>false</draggable>
-            <childrenAllowed>true</childrenAllowed>
-            <display>true</display>
-            <itemNumber>none</itemNumber>
-            <itemHeading>none</itemHeading>
-            <itemDescription>true</itemDescription>
-            <numberEditable>false</numberEditable>
-            <contentDisplayed>false</contentDisplayed>
-            <deletable>false</deletable>
-            <numWithType>false</numWithType>
-            <expandedByDefault>true</expandedByDefault>
-            <sameParentAsChild>false</sameParentAsChild>
-            <numberingType>NONE</numberingType>
-            <editable>false</editable>
-        </tocItem>
 
         <tocItem>
             <aknTag>preamble</aknTag>
@@ -582,24 +511,7 @@
             <editable>true</editable>
         </tocItem>
 
-        <tocItem>
-            <aknTag>formula</aknTag>
-            <root>false</root>
-            <draggable>false</draggable>
-            <childrenAllowed>false</childrenAllowed>
-            <display>false</display>
-            <itemNumber>none</itemNumber>
-            <itemHeading>none</itemHeading>
-            <itemDescription>false</itemDescription>
-            <numberEditable>false</numberEditable>
-            <contentDisplayed>false</contentDisplayed>
-            <deletable>false</deletable>
-            <numWithType>false</numWithType>
-            <expandedByDefault>false</expandedByDefault>
-            <sameParentAsChild>false</sameParentAsChild>
-            <numberingType>NONE</numberingType>
-            <editable>false</editable>
-        </tocItem>
+       
     </tocItems>
 
     <numberingConfigs>
